@@ -1,11 +1,7 @@
 Przewodnik po pakiecie R 4.0
 ============================
 
-![Okładka](/resources/cover4.png?raw=true)
-
-![Okładka](https://raw.githubusercontent.com/pbiecek/Przewodnik/master/resources/cover4.png)
-
-![[https://raw.githubusercontent.com/pbiecek/Przewodnik/master/resources/cover4.png|alt=Okładka]]
+![Okładka](/resources/cover4.png?raw=true | width=300)
 
 # Programowanie w języku R
 
