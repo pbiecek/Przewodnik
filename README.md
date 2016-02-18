@@ -1,12 +1,26 @@
-Przewodnik po analizie danych
-=============================
+Przewodnik po pakiecie R 4.0
+============================
 
-Analizę danych opiszemy w następujących częsciach:
+<div style="width:300px; height=400px">
+![Image](resources/cover4.png)
+</div>
 
-- Programowanie w R 
-- Analiza eksploracyjna 
-- Analiza konfirmacyjna
-- Modelowanie danych 
-  * supervised
-  * un-supervised
-  * semi-supervised
+# Programowanie w języku R
+
+* Jak korzystać z RStudio?
+
+* Jak korzystać z GitHuba?
+
+* Jak opracować raport?
+
+* Jak stworzyć własny pakiet?
+
+
+# Analiza danych z programem R
+
+## Analiza eksploracyjna 
+
+## Modelowanie
+
+## Testowanie
+
