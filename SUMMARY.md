@@ -3,7 +3,7 @@
 * [Wprowadzenie](README.md)
 * [Programowanie w języku R](Programowanie/programowanie_w_jezyku_r.md)
    * Jak korzystać z tej książki?
-   * Jak zainstalować R i RStudio?
+   * [Jak zainstalować R i RStudio?](Programowanie/jak_zainstalowac_r_i_rstudio.md)
    * Jak wczytywać i zapisywać dane?
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
