@@ -1,5 +1,6 @@
 # Summary
 
+* [Wprowadzenie](README.md)
 * [Programowanie w języku R](Programowanie/programowanie_w_jezyku_r.md)
    * Jak korzystać z tej książki?
    * Jak zainstalować R i RStudio?
@@ -15,3 +16,4 @@
    * Eksploracja danych
    * Modelowanie danych
    * Testy
+
