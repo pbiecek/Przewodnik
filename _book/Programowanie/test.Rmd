@@ -6,3 +6,6 @@ sqrt(2)
 
 ```
 
+
+The devtools `r citep(bib['devtools'])` package makes it easy to develop R packages.
+

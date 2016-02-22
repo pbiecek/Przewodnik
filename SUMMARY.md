@@ -18,4 +18,4 @@
    * Eksploracja danych
    * Modelowanie danych
    * Testy
-
+* [Bibliografia](references.md)
