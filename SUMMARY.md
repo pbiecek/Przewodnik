@@ -12,6 +12,7 @@
    * Jak tworzyć reprodukowalne raporty?
    * Jak debugować kod R?
    * Jak zwiększyć wydajność kodu R?
+   * Jak korzystać z serwisu GitHub i Waffle?
 * [Analiza danych z programem R](Analiza/analiza_danych_z_programem_r.md)
    * Eksploracja danych
    * Modelowanie danych
