@@ -1,0 +1,6 @@
+# Jak korzystać z serwisu GitHub i Waffle?
+
+
+
+Tutaj dokumentacja `r citep(bib['ProGit'])`.
+ 
