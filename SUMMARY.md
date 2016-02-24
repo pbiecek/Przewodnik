@@ -16,7 +16,7 @@
    * [Test?](Programowanie/test.md)
 * [Analiza danych z programem R](Analiza/analiza_danych_z_programem_r.md)
    * [Eksploracja danych](Analiza/eksploracja_danych.md)
-       * Analiza Skupisk
+       * [Analiza Skupisk](Analiza/analiza_skupisk.md)
    * Modelowanie danych
    * Testy
 * [Bibliografia](references.md)
