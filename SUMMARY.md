@@ -8,7 +8,7 @@
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
-   * Jak budować pakiety?
+   * [Jak budować pakiety?](Programowanie/jak_budowac_pakiety.md)
    * Jak tworzyć reprodukowalne raporty?
    * Jak debugować kod R?
    * Jak zwiększyć wydajność kodu R?
@@ -19,3 +19,4 @@
    * Modelowanie danych
    * Testy
 * [Bibliografia](references.md)
+
