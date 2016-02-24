@@ -15,7 +15,7 @@
    * [Jak korzystać z serwisu GitHub i Waffle?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Test?](Programowanie/test.md)
 * [Analiza danych z programem R](Analiza/analiza_danych_z_programem_r.md)
-   * Eksploracja danych
+   * [Eksploracja danych](Analiza/eksploracja_danych.md)
    * Modelowanie danych
    * Testy
 * [Bibliografia](references.md)
