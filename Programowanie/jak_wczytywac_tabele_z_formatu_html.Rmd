@@ -10,28 +10,15 @@ http://pl.wikipedia.org/wiki/Reprezentacja_Polski_w_pi%C5%82ce_no%C5%BCnej.
 
 NA ten stronie znajduje się wiele tabel. Wczytajmy je wszystkie i zobaczmy ile ich jest.
 
-
-```r
+```{r}
 library(XML)
 html <- "https://pl.wikipedia.org/wiki/Reprezentacja_Polski_w_pi%C5%82ce_no%C5%BCnej"
 tabele <- readHTMLTable(html, stringsAsFactors = FALSE)
-```
-
-```
-## Error: XML content does not seem to be XML: 'https://pl.wikipedia.org/wiki/Reprezentacja_Polski_w_pi%C5%82ce_no%C5%BCnej'
-```
-
-```r
 length(tabele)
 ```
 
-```
-## [1] 0
-```
 
-
-
-```r
+```{r, eval=FALSE}
 # Tabel jest dużo, a ta której szukamy jest akurat 19
 zwyciestwa <- tabele[[19]]
 
@@ -39,6 +26,7 @@ library(dplyr)
 zwyciestwa$ProcentZwyciestw <- as.numeric(as.character(zwyciestwa[,2])) /
                                  as.numeric(as.character(zwyciestwa[,5]))
 arrange(zwyciestwa, ProcentZwyciestw)
+
 ```
 
 
@@ -47,8 +35,8 @@ arrange(zwyciestwa, ProcentZwyciestw)
 
 
 
+```{r, eval=FALSE}
 
-```r
 # Odczytanie treści strony www
 html <- readLines("http://pl.wikipedia.org/wiki/Reprezentacja_Polski_w_pi%C5%82ce_no%C5%BCnej")
 html <- paste(html, collapse="")
@@ -61,5 +49,6 @@ wartosci <- na.omit(as.numeric(tmp3))
 
 # i rysunek pozycji reprezentajci Polski w rankingu FIFA
 barplot(wartosci[wartosci < 1000], las=1, col="black")
+
 ```
 
