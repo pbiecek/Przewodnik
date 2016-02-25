@@ -2,7 +2,7 @@
 
 Jeżeli pracujesz nad bardziej złożonym projektem lub pracujesz nad projektem w zespole to z pewnością potrzebujesz sprawdzić jakie zmiany, przez kogo i kiedy zostały wprowadzone do plików projektowych. Świetnym narzędziem do tego jest system git.
 
-Git to rozproszony system kontroli wersji stworzony przez Linusa Torvaldsa (Wikipedia, 2016). Jest otwartym oprogramowaniem dostępnym na licencji GNU GPL 2. Pozwala na zarządzanie i śledzenie zmian w plikach. Zazwyczaj są to pliki z kodami, np. w języku R lub innym języku programowania, ale mogą być to też inne pliki binarne.
+Git to rozproszony system kontroli wersji stworzony przez Linusa Torvaldsa . Jest otwartym oprogramowaniem dostępnym na licencji GNU GPL 2. Pozwala na zarządzanie i śledzenie zmian w plikach. Zazwyczaj są to pliki z kodami, np. w języku R lub innym języku programowania, ale mogą być to też inne pliki binarne.
 
 Git jest systemem, który każdy może pobrać i zainstalować na swoim serwerze. Jednak na potrzeby mniejszych projektów wygodnie jest skorzystać z serwisu GitHub http://github.com/, który umożliwia korzystanie z systemu git bez konieczności samodzielnej instalacji.
 
