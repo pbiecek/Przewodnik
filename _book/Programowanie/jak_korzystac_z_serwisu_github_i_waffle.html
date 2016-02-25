@@ -53,7 +53,7 @@
         data-chapter-title="Jak korzystać z serwisu GitHub i Waffle?"
         data-filepath="Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md"
         data-basepath=".."
-        data-revision="Thu Feb 25 2016 01:32:13 GMT+0100 (CET)"
+        data-revision="Thu Feb 25 2016 01:47:16 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -356,13 +356,24 @@
                     
                         <h1 id="jak-korzysta&#x107;-z-serwisu-github-i-waffle">Jak korzysta&#x107; z serwisu GitHub i Waffle?</h1>
 <p>Je&#x17C;eli pracujesz nad bardziej z&#x142;o&#x17C;onym projektem lub pracujesz nad projektem w zespole to z pewno&#x15B;ci&#x105; potrzebujesz sprawdzi&#x107; jakie zmiany, przez kogo i kiedy zosta&#x142;y wprowadzone do plik&#xF3;w projektowych. &#x15A;wietnym narz&#x119;dziem do tego jest system git.</p>
-<p>Git to rozproszony system kontroli wersji stworzony przez Linusa Torvaldsa (Wikipedia, 2016). Jest otwartym oprogramowaniem dost&#x119;pnym na licencji GNU GPL 2. Pozwala na zarz&#x105;dzanie i &#x15B;ledzenie zmian w plikach. Zazwyczaj s&#x105; to pliki z kodami, np. w j&#x119;zyku R lub innym jezyku programowania, ale mog&#x105; by&#x107; to te&#x17C; inne pliki binarne.</p>
+<p>Git to rozproszony system kontroli wersji stworzony przez Linusa Torvaldsa (Wikipedia, 2016). Jest otwartym oprogramowaniem dost&#x119;pnym na licencji GNU GPL 2. Pozwala na zarz&#x105;dzanie i &#x15B;ledzenie zmian w plikach. Zazwyczaj s&#x105; to pliki z kodami, np. w j&#x119;zyku R lub innym j&#x119;zyku programowania, ale mog&#x105; by&#x107; to te&#x17C; inne pliki binarne.</p>
 <p>Git jest systemem, kt&#xF3;ry ka&#x17C;dy mo&#x17C;e pobra&#x107; i zainstalowa&#x107; na swoim serwerze. Jednak na potrzeby mniejszych projekt&#xF3;w wygodnie jest skorzysta&#x107; z serwisu GitHub <a href="http://github.com/" target="_blank">http://github.com/</a>, kt&#xF3;ry umo&#x17C;liwia korzystanie z systemu git bez konieczno&#x15B;ci samodzielnej instalacji.</p>
-<p>Dane i kody na serwisie GitHub mo&#x17C;na przechowywa&#x107; w publicznych repozytoriach (kazdy internauta widzi ich zawarto&#x15B;&#x107;), co jest bezp&#x142;atne, lub w prywatnych repozytoriach (mo&#x17C;emy okre&#x15B;la&#x107; kto co mo&#x17C;&#x119; widzie&#x107;), lecz ta us&#x142;uga jest ju&#x17C; p&#x142;atna. Poni&#x17C;ej opiszemy jak korzysta&#x107; z bezp&#x142;atnych repozytori&#xF3;w. </p>
+<p>Dane i kody na serwisie GitHub mo&#x17C;na przechowywa&#x107; w publicznych repozytoriach (ka&#x17C;dy internauta widzi ich zawarto&#x15B;&#x107;), co jest bezp&#x142;atne, lub w prywatnych repozytoriach (mo&#x17C;emy okre&#x15B;la&#x107; kto co mo&#x17C;e widzie&#x107;), lecz ta us&#x142;uga jest ju&#x17C; p&#x142;atna. Poni&#x17C;ej opiszemy jak korzysta&#x107; z bezp&#x142;atnych repozytori&#xF3;w. </p>
 <h2 id="struktura">Struktura</h2>
 <p>Struktura GitHuba jest nast&#x119;puj&#x105;ca.</p>
-<p>Na najwy&#x17C;szym poziomie organizacji s&#x105; konta, mog&#x105; by&#x107; to konta os&#xF3;b (np. moje konto <a href="http://github.com/pbiecek" target="_blank">http://github.com/pbiecek</a>) lub organizacji (np. konto grupy MI^2 <a href="http://github.com/mi2-warsaw" target="_blank">http://github.com/mi2-warsaw</a>).</p>
-<p>W ramach kont mo&#x17C;na tworzy&#x107; repozytoria. Repozytoria mog&#x105; by&#x107; publicze (widoczne dla wszystkich) lub prywatne. </p>
+<p>Na najwy&#x17C;szym poziomie organizacji znajduj&#x105; si&#x119; konta. Mog&#x105; by&#x107; to konta os&#xF3;b (np. moje konto <a href="http://github.com/pbiecek" target="_blank">http://github.com/pbiecek</a>) lub organizacji (np. konto grupy MI^2 <a href="http://github.com/mi2-warsaw" target="_blank">http://github.com/mi2-warsaw</a>).</p>
+<p>W ramach kont mo&#x17C;na tworzy&#x107; repozytoria. Repozytoria mog&#x105; by&#x107; publiczne (widoczne dla wszystkich) lub prywatne (widoczne dla okre&#x15B;lonych kont). </p>
+<p>W ramach repozytori&#xF3;w mo&#x17C;na sk&#x142;adowa&#x107; pliki i katalogi. Obecnie GitHub ma ograniczenie co do wielko&#x15B;ci plik&#xF3;w. Pojedynczy plik nie mo&#x17C;e przekracza&#x107; 100MB wielko&#x15B;ci.</p>
+<h2 id="praca-grupowa">Praca grupowa</h2>
+<p>Jedno repozytorium jest przypisane do jednego u&#x17C;ytkownika. Ten u&#x17C;ytkownik ma pe&#x142;nie praw do danego repozytorium, mo&#x17C;e je usun&#x105;&#x107;, zmieni&#x107;, doda&#x107; uprawnienia dla innych u&#x17C;ytkownik&#xF3;w. </p>
+<p>Istniej&#x105; dwa g&#x142;&#xF3;wne rozwi&#x105;zania, pozwalaj&#x105;ce na prac&#x119; grupow&#x105; na repozytorium. </p>
+<ol>
+<li><p>Mo&#x17C;na do repozytorium przypisa&#x107; wsp&#xF3;&#x142;pracownik&#xF3;w (opcje <code>Settings/Collaborators</code>). Wsp&#xF3;&#x142;pracownicy b&#x119;d&#x105; mogli dowolnie dodawa&#x107;, zmienia&#x107;, usuwa&#x107; pliki z repozytorium.</p>
+</li>
+<li><p>Mo&#x17C;na zrobi&#x107; kopi&#x119; repozytorium, tzw. <code>fork</code>a. Kopia repozytorium jest w rzeczywisto&#x15B;ci nowym repozytorium, przypisanym do u&#x17C;ytkownika, kt&#xF3;ry t&#x105; kopi&#x119; zbudowa&#x142;. Kopia jest inicjowana plikami z orygina&#x142;u, ale p&#xF3;&#x17A;niej mo&#x17C;e by&#x107; niezale&#x17C;nie rozwijana. Pomi&#x119;dzy kopi&#x105; a orygina&#x142;em mo&#x17C;na przesy&#x142;a&#x107; pliki (synchronizowa&#x107; pliki). S&#x142;u&#x17C;y do tego opcja <code>Pull Request</code> (patrz ni&#x17C;ej).</p>
+</li>
+</ol>
+<p>W pierwszym rozwi&#x105;zaniu, ka&#x17C;dy wsp&#xF3;&#x142;pracownik mo&#x17C;e zmienia&#x107; samodzielnie pliki. W drugim przypadku w&#x142;a&#x15B;ciciel kopii mo&#x17C;e zmienia&#x107; pliki w swoim repozytorium, gdy chce te zmiany wys&#x142;a&#x107; do orygina&#x142;u musi stworzy&#x107; zlecenie przes&#x142;ania zmian (<code>Pull Request</code>). To zlecenie musi zosta&#x107; zaakceptowane przez w&#x142;a&#x15B;ciciela orygina&#x142;u.</p>
 
                     
                     </section>
