@@ -5,7 +5,7 @@
    * [Jak korzystać z tej książki?](Programowanie/jak_korzystac_z_tej_ksiazki.md)
    * [Jak zainstalować R i RStudio?](Programowanie/jak_zainstalowac_r_i_rstudio.md)
    * [Jak wczytywać i zapisywać dane?](Programowanie/jak_wczytywac_i_zapisywac_dane.md)
-       * Jak wczytać dane z Excela?
+       * [Jak wczytać dane z Excela?](Programowanie/jak_wczytac_dane_z_excela.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
