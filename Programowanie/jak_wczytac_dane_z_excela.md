@@ -4,9 +4,10 @@ Jedną z najbardziej popularnych form przechowywania danych tabelarycznych sa pl
 
 Jako przykład wykorzystamy dane udostępniane przez Główny Urząd Statystyczny (GUS) w Danku Danych Lokalnych (BDL) https://bdl.stat.gov.pl/BDL/dane/wymiary. Przez intereface www można wyklikać jakie wskażnieki w jakich grupach chcemy pobrać, a następnei możemy pobrać je w formacie pliku Excela.
 
-!(resources/BDL1.png)
+![Druga zakładka z pliku Excela](resources/BDL1.png)
 
-!(resources/BDL2.png)
+![Trzecia zakładka z pliku Excela](resources/BDL2.png)
+
 
 
 ```r
