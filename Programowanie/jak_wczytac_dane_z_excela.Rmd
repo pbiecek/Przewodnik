@@ -8,28 +8,10 @@ Jako przykład wykorzystamy dane udostępniane przez Główny Urząd Statystyczn
 
 !(resources/BDL2.png)
 
-
-```r
+```{r}
 library(openxlsx)
 ludnosc <- read.xlsx("resources/LUDN_2137_20160225144358.xlsx", sheet = 2)
-```
-
-```
-## Error in read.xlsx.default("resources/LUDN_2137_20160225144358.xlsx", : Excel file does not exist.
-```
-
-```r
 head(ludnosc)
-```
-
-```
-##   TERYT_CODE TERYT_NAME   AGE   SEX YEAR MEASURE.UNIT    VALUE ATTRIBUTE
-## 1 0000000000     POLAND total total 1995       person 38609399          
-## 2 0000000000     POLAND total total 1996       person 38639341          
-## 3 0000000000     POLAND total total 1997       person 38659979          
-## 4 0000000000     POLAND total total 1998       person 38666983          
-## 5 0000000000     POLAND total total 1999       person 38263303          
-## 6 0000000000     POLAND total total 2000       person 38253955
 ```
 
 
