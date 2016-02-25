@@ -53,7 +53,7 @@
         data-chapter-title="Jak korzystać z serwisu Waffle?"
         data-filepath="Programowanie/jak_korzystac_z_serwisu_waffle.md"
         data-basepath=".."
-        data-revision="Thu Feb 25 2016 03:02:23 GMT+0100 (CET)"
+        data-revision="Thu Feb 25 2016 03:23:15 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -376,7 +376,7 @@ Umo&#x17C;liwia proste i wizualne zarz&#x105;dzanie zadaniami (ang. <code>issues
 <p>Zadania maj&#x105; numery (odwo&#x142;uj&#x119; si&#x119; do nich pisz&#x105;c <code>#numer_zadania</code>), tytu&#x142;y, tre&#x15B;ci, tagi oraz osoby odpowiedzialne za zadanie. Do zadania jest te&#x17C; przypisana lista komentarzy.</p>
 <p>System waffle korzysta z rozwi&#x105;za&#x144; zwinnych metodyk zarz&#x105;dzania projektami. Ka&#x17C;de zadanie mo&#x17C;e znajdowa&#x107; si&#x119; w jednym z kilku stan&#xF3;w. Domy&#x15B;lnie s&#x105; to:</p>
 <ul>
-<li><p><code>Backlog</code>, lu&#x17A;ne pomys&#x142;y co warto kiedy&#x15B; zrobi&#x107;.</p>
+<li><p><code>Backlog</code>, lu&#x17A;ne pomys&#x142;y co warto kiedy&#x15B; zrobi&#x107;. Tak zwana d&#x142;uga lista TODO.</p>
 </li>
 <li><p><code>Ready</code>, zadania gotowe do rozpocz&#x119;cia nad nimi pracy. Tak zwana kr&#xF3;tka lista TODO.</p>
 </li>
@@ -388,6 +388,20 @@ Umo&#x17C;liwia proste i wizualne zarz&#x105;dzanie zadaniami (ang. <code>issues
 <p>Modelowy przep&#x142;ywa zadania zaczyna si&#x119; w stanie <code>Backlog</code>. Uznajemy, &#x17C;e chcemy je realizowa&#x107;, przesuwamy je do <code>Ready</code>. Kto&#x15B; zaczyna prac&#x119; nad nim, przesuwa zadanie do stanu <code>In progress</code>. Ko&#x144;czymy prac&#x119; nad zadaniem, przesuwamy je do stanu <code>Done</code>.</p>
 <p>Mo&#x17C;e si&#x119; oczywi&#x15B;cie tak zdarzy&#x107;, &#x17C;e w zadaniu jest b&#x142;&#x105;d i trzeba je poprawi&#x107;. Wtedy z <code>Done</code> zadanie mo&#x17C;e trafi&#x107; do <code>In progress</code>. Lub te&#x17C; mo&#x17C;e si&#x119; wydarzy&#x107;, &#x17C;e zadanie musi poczeka&#x107; na zako&#x144;czenie czego&#x15B; innego, wtedy wraca do stanu <code>Ready</code>.</p>
 <p>Dost&#x119;p do tablicy z zadaniami ma ca&#x142;y zesp&#xF3;&#x142;. Dzi&#x119;ki temu &#x142;atwiej &#x15B;ledzi&#x107; post&#x119;pu prac i aktualnie rozwijane funkcjonalno&#x15B;ci.</p>
+<h2 id="jak-dobrze-definiowa&#x107;-zadania">Jak dobrze definiowa&#x107; zadania?</h2>
+<p>Jest jaki&#x15B; urok w kolorowej tablicy wype&#x142;nionej zadaniami. Jednak to nie liczba zada&#x144; determinuje, czy projekt si&#x119; dobrze rozwija czy nie. Kluczowe jest to, w jaki spos&#xF3;b zadania s&#x105; definiowane i realizowane. Poni&#x17C;ej znajduje si&#x119; lista  dobrych praktyk. </p>
+<ul>
+<li><p>Zadanie powinno by&#x107; tak opisane by wsp&#xF3;&#x142;pracownicy po przeczytaniu opisu wiedzieli o co chodzi. R&#xF3;wnie&#x17C; by &apos;przysz&#x142;e ja&apos;, kt&#xF3;re przeczyta tre&#x15B;&#x107; tego zadania za miesi&#x105;c lub rok, aby wiedzia&#x142; co w zadaniu chodzi&#x142;o.</p>
+</li>
+<li><p>Zadanie powinno by&#x107; konkretne, tak by da&#x142;o si&#x119; jednoznacznie okre&#x15B;li&#x107; co trzeba zrobi&#x107; by je zrealizowa&#x107; i by by&#x142;o wiadomo czy zadanie zosta&#x142;o zrealizowane. Z&#x142;e zadania s&#x105; ma&#x142;o konkretne, np. &apos;Poprawi&#x107; dokumentacj&#x119;&apos;. Dokumentacje zawsze mo&#x17C;na poprawi&#x107;, wi&#x119;c takiego zadania nigdy nie mo&#x17C;na zamkn&#x105;&#x107;. Lepsza tre&#x15B;&#x107; to <code>Dla ka&#x17C;dej funkcji przygotowa&#x107; przynajmniej dwa akapity opisu</code>. Takie zadanie mo&#x17C;na przynajmniej zweryfikowa&#x107;, czy zosta&#x142;o zrealizowane.</p>
+</li>
+<li><p>Zadanie powinno mie&#x107; przypisanego opiekuna. Jedn&#x105; osob&#x119;, kt&#xF3;ra troszczy si&#x119; o to by zosta&#x142;o zrealizowane.</p>
+</li>
+<li><p>Zadania powinny by&#x107; okresowo przegl&#x105;dane i je&#x17C;eli zajdzie taka potrzeba usuwane, zamykane. Nie ma nic gorszego ni&#x17C; stos kilkudziesi&#x119;ciu zada&#x144;, kt&#xF3;re nigdy nie zostan&#x105; zrealizowane, ale zabieraj&#x105; nam czas na ich przegl&#x105;danie jak r&#xF3;wnie&#x17C; zu&#x17C;ywaj&#x105; nasze zasoby na zastanawianie si&#x119; czy je realizowa&#x107; czy nie. </p>
+</li>
+<li><p>Zadania powinny by&#x107; wzgl&#x119;dnie ma&#x142;e, mo&#x17C;liwe do realizacji w jeden dzie&#x144;, maksymalnie tydzie&#x144;. Zadanie, kt&#xF3;rego realizacja mia&#x142;aby trwa&#x107; d&#x142;u&#x17C;ej powinni by&#x107; podzielone na mniejsze zadania. Inaczej trudniej nam b&#x119;dzie &#x15B;ledzi&#x107; post&#x119;p prac.</p>
+</li>
+</ul>
 
                     
                     </section>
