@@ -53,7 +53,7 @@
         data-chapter-title="Jak wczytać dane z Excela?"
         data-filepath="Programowanie/jak_wczytac_dane_z_excela.md"
         data-basepath=".."
-        data-revision="Thu Feb 25 2016 15:05:27 GMT+0100 (CET)"
+        data-revision="Fri Feb 26 2016 00:09:34 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -303,15 +303,7 @@
     
         <li class="chapter " data-level="2" data-path="Analiza/analiza_danych_z_programem_r.html">
             
-                
-                    <a href="../Analiza/analiza_danych_z_programem_r.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.</b>
-                        
-                        Analiza danych z programem R
-                    </a>
+            <span><b>2.</b> Analiza danych z programem R</span>
             
             
             <ul class="articles">
@@ -423,13 +415,16 @@
                         <h1 id="jak-wczyta&#x107;-dane-z-excela">Jak wczyta&#x107; dane z Excela?</h1>
 <p>Jedn&#x105; z najbardziej popularnych form przechowywania danych tabelarycznych s&#x105; pliki Excela. Poni&#x17C;ej poka&#x17C;emy jak takie dane odczyta&#x107; z pliku Excela bezpo&#x15B;rednio do programu R.</p>
 <p>Jako przyk&#x142;ad wykorzystamy dane udost&#x119;pniane przez G&#x142;&#xF3;wny Urz&#x105;d Statystyczny (GUS) w Danku Danych Lokalnych (BDL) <a href="https://bdl.stat.gov.pl/BDL/dane/wymiary" target="_blank">https://bdl.stat.gov.pl/BDL/dane/wymiary</a>. Przez interface www mo&#x17C;na wyklina&#x107; jakie wska&#x17A;niki w jakich grupach chcemy pobra&#x107;, a nast&#x119;pnie mo&#x17C;emy pobra&#x107; je w formacie pliku Excela.</p>
+<p>Za pomoc&#x105; strony www wybra&#x142;em dane dotycz&#x105;ce ludno&#x15B;ci Polsce w latach 1995:2015 w podziale na grupy wiekowe i p&#x142;e&#x107;. Te dane s&#x105; dost&#x119;pne na stronie <a href="https://github.com/pbiecek/Przewodnik/blob/master/resources/LUDN_2137_20160225144358.xlsx" target="_blank">https://github.com/pbiecek/Przewodnik/blob/master/resources/LUDN_2137_20160225144358.xlsx</a>.</p>
+<p>Pliki Excela pobrane z BDL maj&#x105; trzy zak&#x142;adki. W pierwszej opisane s&#x105; g&#x142;&#xF3;wne informacje dotycz&#x105;ce danych. Druga zak&#x142;adka to dane w ta zwanej w&#x105;skiej/d&#x142;ugiej postaci. Trzecia zak&#x142;adka to dane w postaci szerokiej, gdzie kolejne kolumny odpowiadaj&#x105; kolejnym latom.</p>
+<p>Poni&#x17C;ej umieszczone s&#x105; zrzuty ekranu dla obu zak&#x142;adek.</p>
 <p><img src="BDL1.png" alt="Druga zak&#x142;adka z pliku Excela"></p>
 <p><img src="BDL2.png" alt="Trzecia zak&#x142;adka z pliku Excela"></p>
+<p>W programie R dost&#x119;pnych jest kilka ro&#x17C;nych pakiet&#xF3;w pozwalaj&#x105;cych na wczytywanie danych z Excela. Na dzi&#x15B; dzie&#x144;, dla plik&#xF3;w w formacie <code>xlsx</code> najbardziej uniwersalnym rozwi&#x105;zaniem jest pakiet <code>openxlsx</code>. </p>
+<p>Funkcja <code>read.xlsx</code> pozwala na wczytanie danych z okre&#x15B;lonego pliku. Mo&#x17C;emy dodatkowo okre&#x15B;li&#x107; z kt&#xF3;rej zak&#x142;adki chcemy wczyta&#x107; dane. Zacznijmy od wczytania danych w postaci w&#x105;skiej z zak&#x142;adki drugiej.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(openxlsx)
-ludnosc &lt;- read.xlsx(<span class="hljs-string">&quot;resources/LUDN_2137_20160225144358.xlsx&quot;</span>, sheet = <span class="hljs-number">2</span>)
-</code></pre>
-<pre><code>## Error in read.xlsx.default(&quot;resources/LUDN_2137_20160225144358.xlsx&quot;, : Excel file does not exist.
-</code></pre><pre><code class="lang-r">head(ludnosc)
+ludnosc &lt;- read.xlsx(<span class="hljs-string">&quot;../resources/LUDN_2137_20160225144358.xlsx&quot;</span>, sheet = <span class="hljs-number">2</span>)
+head(ludnosc)
 </code></pre>
 <pre><code>##   TERYT_CODE TERYT_NAME   AGE   SEX YEAR MEASURE.UNIT    VALUE ATTRIBUTE
 ## 1 0000000000     POLAND total total 1995       person 38609399          
@@ -438,7 +433,97 @@ ludnosc &lt;- read.xlsx(<span class="hljs-string">&quot;resources/LUDN_2137_2016
 ## 4 0000000000     POLAND total total 1998       person 38666983          
 ## 5 0000000000     POLAND total total 1999       person 38263303          
 ## 6 0000000000     POLAND total total 2000       person 38253955
+</code></pre><p>W podobny spos&#xF3;b mo&#x17C;emy odczyta&#x107; dane z zak&#x142;adki 3.</p>
+<pre><code class="lang-r">ludnoscSzeroka &lt;- read.xlsx(<span class="hljs-string">&quot;../resources/LUDN_2137_20160225144358.xlsx&quot;</span>, sheet = <span class="hljs-number">3</span>)
+ludnoscSzeroka[<span class="hljs-number">3</span>:<span class="hljs-number">8</span>,<span class="hljs-number">1</span>:<span class="hljs-number">10</span>]
 </code></pre>
+<pre><code>##        VALUE              X2 Column.Labels       X4       X5       X6
+## 3 Row Labels      TERYT_NAME          1995     1996     1997     1998
+## 4 0000000000          POLAND      38609399 38639341 38659979 38666983
+## 5 1000000000  Central region       7747852  7741399  7737773  7730206
+## 6 1100000000         &#x141;&#xD3;DZKIE       2687761  2680350  2672823  2663608
+## 7 1140000000     MAZOWIECKIE       5060091  5061049  5064950  5066598
+## 8 2000000000 Southern region       8098116  8099977  8100860  8098333
+##         X7       X8       X9      X10
+## 3     1999     2000     2001     2002
+## 4 38263303 38253955 38242197 38218531
+## 5  7750090  7742834  7738999  7736003
+## 6  2637438  2627824  2617318  2607380
+## 7  5112652  5115010  5121681  5128623
+## 8  7994721  7988083  7978084  7968750
+</code></pre><h2 id="inne-pakiety-do-wczytywania-danych-z-excela">Inne pakiety do wczytywania danych z Excela</h2>
+<p>W programie R dost&#x119;pnych jest wi&#x119;cej pakiet&#xF3;w pozwalaj&#x105;cych na wczytywanie danych z plik&#xF3;w Excela. Zestawienie najpopularniejszych prezentuje poni&#x17C;sza tabela.</p>
+<table>
+<thead>
+<tr>
+<th>pakiet</th>
+<th>funkcja_odczyt</th>
+<th>funkcja_zapis</th>
+<th>formaty</th>
+<th>funkcjonalno&#x15B;&#x107;</th>
+<th>szybko&#x15B;&#x107;</th>
+<th>wymaga_programu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>readxl</td>
+<td>read_excel()</td>
+<td>---</td>
+<td>.xlsx, .xls</td>
+<td>&#x15B;rednia</td>
+<td>du&#x17C;a</td>
+<td></td>
+</tr>
+<tr>
+<td>openxlsx</td>
+<td>read.xlsx()</td>
+<td>write.xlsx()</td>
+<td>.xlsx</td>
+<td>&#x15B;rednia</td>
+<td>du&#x17C;a</td>
+<td></td>
+</tr>
+<tr>
+<td>xlsx</td>
+<td>read.xlsx()</td>
+<td>write.xlsx()</td>
+<td>.xlsx, .xls</td>
+<td>&#x15B;rednia</td>
+<td>ma&#x142;a</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>XLConnect</td>
+<td>readWorksheet()</td>
+<td>writeWorksheet()</td>
+<td>.xlsx, .xls</td>
+<td>du&#x17C;a</td>
+<td>ma&#x142;a</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>gdata</td>
+<td>read.xls()</td>
+<td>--</td>
+<td>.xlsx, .xls</td>
+<td>ma&#x142;a</td>
+<td>&#x15B;rednia</td>
+<td>Perl</td>
+</tr>
+<tr>
+<td>WriteXLS</td>
+<td>--</td>
+<td>WriteXLS()</td>
+<td>.xlsx, .xls</td>
+<td>ma&#x142;a</td>
+<td>&#x15B;rednia</td>
+<td>Perl</td>
+</tr>
+</tbody>
+</table>
+<p>Mo&#x17C;e si&#x119; zdarzy&#x107;, &#x17C;e z uwagi na dost&#x119;pno&#x15B;&#x107; zewn&#x119;trznych biblitek, na kt&#xF3;ry&#x15B; systemie operacyjnym pewne pakiety nie b&#x119;d&#x105; dzia&#x142;a&#x142;y, lub nie b&#x119;d&#x105; w stanie poprawnie wczyta&#x107; okre&#x15B;lonych typ&#xF3;w danych. W takim przypadku najlepiej spr&#xF3;bowa&#x107; innego pakietu z ww tabeli.</p>
+
                     
                     </section>
                 
