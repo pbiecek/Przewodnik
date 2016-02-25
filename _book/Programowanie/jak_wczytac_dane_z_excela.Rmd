@@ -1,0 +1,18 @@
+# Jak wczytać dane z Excela?
+
+Jedną z najbardziej popularnych form przechowywania danych tabelarycznych sa pliki Excela. Poniżęj pokażemy jak takie dane odczytać z pliku Excela bezpośrednio do programu R.
+
+Jako przykład wykorzystamy dane udostępniane przez Główny Urząd Statystyczny (GUS) w Danku Danych Lokalnych (BDL) https://bdl.stat.gov.pl/BDL/dane/wymiary. Przez intereface www można wyklikać jakie wskażnieki w jakich grupach chcemy pobrać, a następnei możemy pobrać je w formacie pliku Excela.
+
+!(resources/BDL1.png)
+
+!(resources/BDL2.png)
+
+```{r}
+library(openxlsx)
+ludnosc <- read.xlsx("resources/LUDN_2137_20160225144358.xlsx", sheet = 2)
+head(ludnosc)
+```
+
+
+

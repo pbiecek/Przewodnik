@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak zainstalować R i RStudio? | Przewodnik po pakiecie R 4.0</title>
+        <title>Jak wczytać dane z Excela? | Przewodnik po pakiecie R 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_wczytywac_i_zapisywac_dane.html" />
+    <link rel="next" href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" />
     
     
-    <link rel="prev" href="../Programowanie/jak_korzystac_z_tej_ksiazki.html" />
+    <link rel="prev" href="../Programowanie/jak_wczytywac_i_zapisywac_dane.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="1.2"
-        data-chapter-title="Jak zainstalować R i RStudio?"
-        data-filepath="Programowanie/jak_zainstalowac_r_i_rstudio.md"
+        data-level="1.3.1"
+        data-chapter-title="Jak wczytać dane z Excela?"
+        data-filepath="Programowanie/jak_wczytac_dane_z_excela.md"
         data-basepath=".."
         data-revision="Thu Feb 25 2016 14:53:23 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -113,7 +113,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="Programowanie/jak_zainstalowac_r_i_rstudio.html">
+        <li class="chapter " data-level="1.2" data-path="Programowanie/jak_zainstalowac_r_i_rstudio.html">
             
                 
                     <a href="../Programowanie/jak_zainstalowac_r_i_rstudio.html">
@@ -144,7 +144,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
+        <li class="chapter active" data-level="1.3.1" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
             
                 
                     <a href="../Programowanie/jak_wczytac_dane_z_excela.html">
@@ -420,8 +420,25 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jak-zainstalowa&#x107;-r-i-rstudio">Jak zainstalowa&#x107; R i RStudio?</h1>
-
+                        <h1 id="jak-wczyta&#x107;-dane-z-excela">Jak wczyta&#x107; dane z Excela?</h1>
+<p>Jedn&#x105; z najbardziej popularnych form przechowywania danych tabelarycznych sa pliki Excela. Poni&#x17C;&#x119;j poka&#x17C;emy jak takie dane odczyta&#x107; z pliku Excela bezpo&#x15B;rednio do programu R.</p>
+<p>Jako przyk&#x142;ad wykorzystamy dane udost&#x119;pniane przez G&#x142;&#xF3;wny Urz&#x105;d Statystyczny (GUS) w Danku Danych Lokalnych (BDL) <a href="https://bdl.stat.gov.pl/BDL/dane/wymiary" target="_blank">https://bdl.stat.gov.pl/BDL/dane/wymiary</a>. Przez intereface www mo&#x17C;na wyklika&#x107; jakie wska&#x17C;nieki w jakich grupach chcemy pobra&#x107;, a nast&#x119;pnei mo&#x17C;emy pobra&#x107; je w formacie pliku Excela.</p>
+<p>!(resources/BDL1.png)</p>
+<p>!(resources/BDL2.png)</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(openxlsx)
+ludnosc &lt;- read.xlsx(<span class="hljs-string">&quot;resources/LUDN_2137_20160225144358.xlsx&quot;</span>, sheet = <span class="hljs-number">2</span>)
+</code></pre>
+<pre><code>## Error in read.xlsx.default(&quot;resources/LUDN_2137_20160225144358.xlsx&quot;, : Excel file does not exist.
+</code></pre><pre><code class="lang-r">head(ludnosc)
+</code></pre>
+<pre><code>##   TERYT_CODE TERYT_NAME   AGE   SEX YEAR MEASURE.UNIT    VALUE ATTRIBUTE
+## 1 0000000000     POLAND total total 1995       person 38609399          
+## 2 0000000000     POLAND total total 1996       person 38639341          
+## 3 0000000000     POLAND total total 1997       person 38659979          
+## 4 0000000000     POLAND total total 1998       person 38666983          
+## 5 0000000000     POLAND total total 1999       person 38263303          
+## 6 0000000000     POLAND total total 2000       person 38253955
+</code></pre>
                     
                     </section>
                 
@@ -431,10 +448,10 @@
         </div>
 
         
-        <a href="../Programowanie/jak_korzystac_z_tej_ksiazki.html" class="navigation navigation-prev " aria-label="Previous page: Jak korzystać z tej książki?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/jak_wczytywac_i_zapisywac_dane.html" class="navigation navigation-prev " aria-label="Previous page: Jak wczytywać i zapisywać dane?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_wczytywac_i_zapisywac_dane.html" class="navigation navigation-next " aria-label="Next page: Jak wczytywać i zapisywać dane?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" class="navigation navigation-next " aria-label="Next page: Jak wczytywać tabele z formatu HTML?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
