@@ -32,5 +32,19 @@ ludnoscSzeroka[3:8,1:10]
 ```
 
 
+## Inne pakiety do wczytywania danych z Excela
 
+W programie R dostępnych jest więcej pakietów pozwalających na wczytywanie danych z plików Excela. Zestawienie najpopularniejszych prezentuje poniższa tabela.
+
+pakiet | funkcja_odczyt | funkcja_zapis  | formaty | funkcjonalność | szybkość | wymaga_programu
+---           | ---    | ---    | --- | --- | --- | ---
+readxl      | read_excel() | --- | .xlsx, .xls | średnia  | duża | 
+openxlsx      | read.xlsx() | write.xlsx() | .xlsx | średnia  |duża | 
+xlsx      | read.xlsx() | write.xlsx() | .xlsx, .xls | średnia  |mała | Java
+XLConnect     | readWorksheet() | writeWorksheet() | .xlsx, .xls | duża  | mała | Java
+gdata         | read.xls() | -- | .xlsx, .xls | mała | średnia | Perl
+WriteXLS      | -- | WriteXLS() | .xlsx, .xls | mała | średnia | Perl
+
+
+Może się zdarzyć, że z uwagi na dostępność zewnętrznych biblitek, na któryś systemie operacyjnym pewne pakiety nie będą działały, lub nie będą w stanie poprawnie wczytać określonych typów danych. W takim przypadku najlepiej spróbować innego pakietu z ww tabeli.
 
