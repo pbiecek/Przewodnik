@@ -1,5 +1,9 @@
 # Jak pobrać dane z...?
 
+Poniżej opiszemy kilka użytecznych źródeł danych dostępnych w Internecie.
+Liczba interesujących źródeł przyrasta w niesamowitym tempie. Poniższe bazy są najczęściej bardzo bogate i umożliwiają porównani pomiędzy krajami.
+
+
 ## Bazy danych Światowej Organizacji Zdrowia (World Health Organization, WHO)
 
 Światowa Organizacja Zdrowia, WHO, działa w ramach ONZ i zajmuje się ochroną zdrowia (http://www.who.int/en/). Udostępnia setki tabel przedstawiających jak różnorodne wskaźniki zdrowotne zmieniają się w różnych krajach, regionach.
@@ -109,5 +113,15 @@ ggplot(poland2013,
 
 ##
 
-##
+## Inne narzędzia
+
+Poza opisanymi powyżej źródłami, warto wiedzieć również o
+
+* Pakiet `FAOSTAT` pozwala na dostęp do danych Organizacji Narodów Zjednoczonych do spraw Wyżywienia i Rolnictwa (Food and Agricultural Organization of the United Nations). Pakiet jest dostępny na serwerze CRAN pod adresem 
+https://cran.r-project.org/web/packages/FAOSTAT/index.html
+
+* Pakiet `WDI` pozwala na dostęp do wskaźników zbieranych przez Bank Światowy (World Bank). Pakiet jest dostępny na serwerze CRAN pod adresem
+https://cran.r-project.org/web/packages/WDI/index.html
+
+
 
