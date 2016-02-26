@@ -19,10 +19,10 @@
    * Jak debugować kod R?
    * Jak zwiększyć wydajność kodu R?
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
-   * Jak pobrać dane z...?
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
        * Jak pobrać dane z...?
    * [Test?](Programowanie/test.md)
+* Jak pobrać dane z...?
 * [Analiza danych z programem R](Analiza/analiza_danych_z_programem_r.md)
    * [Eksploracja danych](Analiza/eksploracja_danych.md)
        * [Analiza Skupisk](Analiza/analiza_skupisk.md)
