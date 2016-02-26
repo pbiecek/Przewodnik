@@ -9,7 +9,7 @@
        * [Jak wczytywać tabele z formatu HTML?](Programowanie/jak_wczytywac_tabele_z_formatu_html.md)
        * [Jak zeskrobywać dane ze stron www używając pakietu rvest?](Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md)
        * [Jak wczytywać korpusy tekstu?](Programowanie/jak_wczytywac_korpusy_tekstu.md)
-       * Jak wczytać tabelę danych z pliku csv lub txt?
+       * [Jak wczytać tabelę danych z pliku csv lub txt?](Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
