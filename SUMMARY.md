@@ -10,6 +10,7 @@
        * [Jak wczytać tabele danych ze strony www?](Programowanie/jak_wczytywac_tabele_z_formatu_html.md)
        * [Jak zeskrobywać dane ze stron www?](Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md)
        * [Jak wczytywać korpusy tekstu?](Programowanie/jak_wczytywac_korpusy_tekstu.md)
+       * [Jak pobrać dane z...?](Programowanie/jak_pobrac_dane_z.md)
        * [Zadania](Programowanie/zadania.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
@@ -17,16 +18,13 @@
    * [Jak budować pakiety?](Programowanie/jak_budowac_pakiety.md)
    * Jak tworzyć reprodukowalne raporty?
    * Jak debugować kod R?
-   * [Jak pobrać dane z...?](Programowanie/jak_pobrac_dane_z.md)
    * Jak zwiększyć wydajność kodu R?
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
-       * Jak pobrać dane z...?
-   * [Test?](Programowanie/test.md)
 * [Analiza danych z programem R](Analiza/analiza_danych_z_programem_r.md)
    * [Eksploracja danych](Analiza/eksploracja_danych.md)
        * [Analiza Skupisk](Analiza/analiza_skupisk.md)
    * Modelowanie danych
    * Testy
 * [Bibliografia](references.md)
-
+* [Test?](Programowanie/test.md)
