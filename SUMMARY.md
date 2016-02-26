@@ -5,10 +5,10 @@
    * [Jak korzystać z tej książki?](Programowanie/jak_korzystac_z_tej_ksiazki.md)
    * [Jak zainstalować R i RStudio?](Programowanie/jak_zainstalowac_r_i_rstudio.md)
    * [Jak wczytywać i zapisywać dane?](Programowanie/jak_wczytywac_i_zapisywac_dane.md)
-       * [Jak wczytać tabelę danych z pliku csv lub txt?](Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md)
-       * [Jak wczytać dane z Excela?](Programowanie/jak_wczytac_dane_z_excela.md)
-       * [Jak wczytywać tabele z formatu HTML?](Programowanie/jak_wczytywac_tabele_z_formatu_html.md)
-       * [Jak zeskrobywać dane ze stron www używając pakietu rvest?](Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md)
+       * [Jak wczytać tabele danych z pliku csv lub txt?](Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md)
+       * [Jak wczytać tabele danych z Excela?](Programowanie/jak_wczytac_dane_z_excela.md)
+       * [Jak wczytać tabele danych ze strony www?](Programowanie/jak_wczytywac_tabele_z_formatu_html.md)
+       * [Jak zeskrobywać dane ze stron www?](Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md)
        * [Jak wczytywać korpusy tekstu?](Programowanie/jak_wczytywac_korpusy_tekstu.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?

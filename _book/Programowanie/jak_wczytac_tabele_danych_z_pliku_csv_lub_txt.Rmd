@@ -5,7 +5,7 @@ Jednym z bardziej uniwersalnych formatów przechowywania danych są pliki teksto
 Pliki tekstowe zawierajace tabele z danymi mająz azwyczaj rozszerzenie `csv` (od ang. *comma separated values*, wartości rozdzielane przecinkami) lub `txt`.
 
 Przyjrzymy się tabeli z danymi zapisanymi w pliku
-http://biecek.pl/MOOC/dane/koty_ptaki.csv
+http://biecek.pl/MOOC/dane/koty_ptaki.csv. Poniżej wklejam treść tego pliku.
 
 ```{}
 gatunek;waga;dlugosc;predkosc;habitat;zywotnosc;druzyna
@@ -23,7 +23,6 @@ Sokol wedrowny;0,7;0,5;110;Polnoc;15;Ptak
 Sokol norweski;2;0,7;100;Polnoc;20;Ptak
 Albatros;4;0,8;120;Poludnie;50;Ptak
 ```
----
 
 Jeżeli przyjrzymy się treści tego pliku, to zobaczymy, że zawiera on tabelę wartości, rozdzielanych średnikami. Pierwszy wiersz to nagłówek z nazwami kolumn (gatunek;waga;dlugosc;predkosc;habitat;zywotnosc;druzyna).
 
