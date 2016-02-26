@@ -72,3 +72,10 @@ head(sort(table(slowa), decreasing = TRUE), 50)
 ##          6          6
 ```
 
+
+## Inne przydatne narzędzia
+
+Pakiet Rpoppler https://cran.r-project.org/web/packages/Rpoppler/index.html umożliwia korzystanie z funkcjonalności biblioteki poppler http://poppler.freedesktop.org/ do pracy z dokumentami pdf. Między innymi umożliwia ekstrakcje tekstu z dokumentów pdf.
+
+
+
