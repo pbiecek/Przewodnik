@@ -53,7 +53,7 @@
         data-chapter-title="Jak pobrać dane z...?"
         data-filepath="Programowanie/jak_pobrac_dane_z.md"
         data-basepath=".."
-        data-revision="Fri Feb 26 2016 21:47:24 GMT+0100 (CET)"
+        data-revision="Fri Feb 26 2016 22:36:38 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -473,6 +473,67 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="jak-pobra&#x107;-dane-z">Jak pobra&#x107; dane z...?</h1>
+<h2 id="bazy-danych-&#x15B;wiatowej-organizacji-zdrowia-world-health-organization-who">Bazy danych &#x15A;wiatowej Organizacji Zdrowia (World Health Organization, WHO)</h2>
+<p>&#x15A;wiatowa Organizacja Zdrowia, WHO, dzia&#x142;a w ramach ONZ i zajmuje si&#x119; ochron&#x105; zdrowia (<a href="http://www.who.int/en/" target="_blank">http://www.who.int/en/</a>). Udost&#x119;pnia setki tabel przedstawiaj&#x105;cych jak r&#xF3;&#x17C;norodne wska&#x17A;niki zdrowotne zmieniaj&#x105; si&#x119; w r&#xF3;&#x17C;nych krajach, regionach.</p>
+<p>Aby pobra&#x107; dane bezpo&#x15B;rednio z serwer&#xF3;w WHO mo&#x17C;na wykorzysta&#x107; pakiet <code>WHO</code> dost&#x119;pny na serwerach CRAN (<a href="https://cran.r-project.org/web/packages/WHO/index.html" target="_blank">https://cran.r-project.org/web/packages/WHO/index.html</a>).</p>
+<p>Przedstawimy kluczowe funkcje pozwalaj&#x105;ce na podanie danych na przyk&#x142;adzie wsp&#xF3;&#x142;czynnika &#x15B;miertelno&#x15B;ci.</p>
+<p>Zaczniemy od pobrania s&#x142;ownika z list&#x105; wszystkich nazw i opis&#xF3;w tabel, mo&#x17C;na to wykona&#x107; funkcj&#x105; <code>get_codes()</code>. Nast&#x119;pnie wybierzemy tylko te, kt&#xF3;re w opisie maj&#x105; s&#x142;owo <code>dying</code>.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(WHO)
+codes &lt;- get_codes()
+codes[grep(codes$display, pattern=<span class="hljs-string">&quot;dying&quot;</span>), ]
+</code></pre>
+<pre><code>## Source: local data frame [8 x 3]
+## 
+##             label
+##             (chr)
+## 1  MDG_0000000001
+## 2  MDG_0000000007
+## 3 LIFE_0000000030
+## 4 LIFE_0000000032
+## 5   WHOSIS_000004
+## 6             cmr
+## 7            pnmr
+## 8     NCDMORT3070
+## Variables not shown: display (chr), url (chr)
+</code></pre><p>Interesuj&#x105;ca tabela ma identyfikator <code>LIFE_0000000030</code>. Pobierzemy j&#x105; do R (co mo&#x17C;e troch&#x119; potrwa&#x107; i wymaga po&#x142;&#x105;czenia z Internetem) a nast&#x119;pnie sprawdzimy jakie cechy s&#x105; w tej tabeli opisane.</p>
+<pre><code class="lang-r">df &lt;- get_data(<span class="hljs-string">&quot;LIFE_0000000030&quot;</span>)
+colnames(df)
+</code></pre>
+<pre><code>## [1] &quot;publishstate&quot;         &quot;year&quot;                 &quot;agegroup&quot;            
+## [4] &quot;gho&quot;                  &quot;region&quot;               &quot;sex&quot;                 
+## [7] &quot;country&quot;              &quot;worldbankincomegroup&quot; &quot;value&quot;
+</code></pre><p>Wykorzystujemy pakiet <code>dplyr</code> by wybra&#x107; tylko dane dla Polski z roku 2013.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(dplyr)
+df %&gt;% 
+  filter(year == <span class="hljs-number">2013</span>, country == <span class="hljs-string">&quot;Poland&quot;</span>) %&gt;%
+  select(agegroup, value, sex) -&gt;
+  poland2013
+head(poland2013)
+</code></pre>
+<pre><code>## Source: local data frame [6 x 3]
+## 
+##       agegroup    value    sex
+##          (chr)    (dbl)  (chr)
+## 1  60-64 years 0.039902 Female
+## 2  25-29 years 0.001294 Female
+## 3  95-99 years 0.754675 Female
+## 4    5-9 years 0.000628   Male
+## 5  85-89 years 0.527849   Male
+## 6 15-19  years 0.003145   Male
+</code></pre><p>Mo&#x17C;emy teraz narysowa&#x107; &#x15B;miertelno&#x15B;&#x107; dla obu p&#x142;ci. Dla m&#x119;&#x17C;czyzn jest znacznie wy&#x17C;sza ni&#x17C; dla kobiet.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ggplot2)
+poland2013$agegroup &lt;- factor(poland2013$agegroup,
+                              c(<span class="hljs-string">&quot;&lt;1 year&quot;</span>,<span class="hljs-string">&quot;1-4 years&quot;</span>,<span class="hljs-string">&quot;5-9 years&quot;</span>,  <span class="hljs-string">&quot;10-14 years&quot;</span>,<span class="hljs-string">&quot;15-19  years&quot;</span>, <span class="hljs-string">&quot;20-24 years&quot;</span>, <span class="hljs-string">&quot;25-29 years&quot;</span>, <span class="hljs-string">&quot;30-34 years&quot;</span>, <span class="hljs-string">&quot;35-39 years&quot;</span>, <span class="hljs-string">&quot;40-44 years&quot;</span>, <span class="hljs-string">&quot;45-49 years&quot;</span>, <span class="hljs-string">&quot;50-54 years&quot;</span>, <span class="hljs-string">&quot;55-59 years&quot;</span>, <span class="hljs-string">&quot;60-64 years&quot;</span>,  <span class="hljs-string">&quot;65-69 years&quot;</span>, <span class="hljs-string">&quot;70-74 years&quot;</span>, <span class="hljs-string">&quot;75-79 years&quot;</span>, <span class="hljs-string">&quot;80-84 years&quot;</span>, <span class="hljs-string">&quot;85-89 years&quot;</span>, <span class="hljs-string">&quot;90-94 years&quot;</span>, <span class="hljs-string">&quot;95-99 years&quot;</span>, <span class="hljs-string">&quot;100+ years&quot;</span>))
+
+ggplot(poland2013, 
+       aes(agegroup, value, color=sex, group=sex)) +
+  geom_point() + geom_line() + theme_classic() + 
+  scale_y_log10(breaks=c(<span class="hljs-number">0.001</span>,<span class="hljs-number">0.002</span>,<span class="hljs-number">0.005</span>, <span class="hljs-number">0.01</span>,<span class="hljs-number">0.02</span>,<span class="hljs-number">0.05</span>,<span class="hljs-number">0.1</span>,<span class="hljs-number">0.2</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">1</span>)) +
+  theme(axis.text.x = element_text(angle = <span class="hljs-number">90</span>, hjust = <span class="hljs-number">1</span>))
+</code></pre>
+<p><img src="figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
+<h1 id="">#</h1>
+<h1 id="">#</h1>
 
                     
                     </section>
