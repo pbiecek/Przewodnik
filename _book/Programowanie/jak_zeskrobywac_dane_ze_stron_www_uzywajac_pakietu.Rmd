@@ -24,57 +24,11 @@ Ostatnim krokiem jest wyłuskanie danych z zaznaczonej kolekcji uchwytów. Funkc
 
 Poniższy przykład wybiera z serwisu FilmWeb informacje o najbliższych premierach.
 
-
-```r
+```{r}
 library(rvest)
 premiery <- html("http://www.filmweb.pl/premiere")
-```
-
-```
-## Warning: 'html' is deprecated.
-## Use 'read_html' instead.
-## See help("Deprecated")
-```
-
-```r
 filmy <- html_nodes(premiery, ".gwt-filmPage")
 html_text(filmy)
-```
-
-```
-##  [1] "Spotlight"                              
-##  [2] "Planeta Singli"                         
-##  [3] "Gęsia skórka"                           
-##  [4] "Ardeny"                                 
-##  [5] "Misiek w Nowym Jorku"                   
-##  [6] "Umrika"                                 
-##  [7] "Śpiewający obrusik"                     
-##  [8] "Deadpool"                               
-##  [9] "Jak to robią single"                    
-## [10] "Widzę, widzę"                           
-## [11] "Ojcowie i córki"                        
-## [12] "Barany. Islandzka opowieść"             
-## [13] "Skala szarości"                         
-## [14] "Eisenstein w Meksyku"                   
-## [15] "Romeo i Julia"                          
-## [16] "Brooklyn"                               
-## [17] "Ave, Cezar!"                            
-## [18] "Zwierzogród"                            
-## [19] "Na granicy"                             
-## [20] "Oddychaj"                               
-## [21] "Fúsi"                                   
-## [22] "Sprawiedliwy"                           
-## [23] "Chłopiec i świat"                       
-## [24] "Cierń Boga"                             
-## [25] "Pokój"                                  
-## [26] "Lobster"                                
-## [27] "Bogowie Egiptu"                         
-## [28] "7 rzeczy, których nie wiecie o facetach"
-## [29] "Grimsby"                                
-## [30] "Yona"                                   
-## [31] "110%"                                   
-## [32] "Tysiąc i jedna noc – cz. 1, niespokojny"
-## [33] "Dyke Hard"
 ```
 
 ## Skrobanie HTMLa z użyciem pakietu `RSelenium`
@@ -82,8 +36,7 @@ html_text(filmy)
 Pakiet `rvest` jest bardzo prosty a jednocześnie pozwala na pobranie wielu danych ze strony. Nie pozwala jednak na utrzymanie sesji i praca ze stroną tak jakby obsługiwał ją interaktywnie człowiek. Do tego typu zadań można użyć biblioteki Selenium dostępnej poprzez pakiet `RSelenium`. 
 Biblioteka Selenium po inicjacji otwiera okno przeglądarki a następnie pozwala na wykonywanie określonych operacji na tym oknie.
 
-
-```r
+```{r, eval=FALSE}
 library(RSelenium)
 checkForServer()
 startServer()
@@ -93,8 +46,7 @@ przegladarka$open()
 
 Przykładowo funkcją `navigate()` możemy otworzyć w przeglądarce wskazaną stronę internetową. Funkcją `findElement()` możemy odwołać się do elementu na otwartej stornie internetowej. Funkcją `sendKeysToElement()` można zmienić wartość wskazanego elementu oraz wykonać wskazaną akcję, np. przesłać klawisz ENTER. 
 
-
-```r
+```{r, eval=FALSE}
 przegladarka$navigate("http://www.google.com")
 
 wyszukiwarka <- przegladarka$findElement(using = "name", value = "q")
