@@ -10,7 +10,7 @@
        * [Jak wczytać tabele danych ze strony www?](Programowanie/jak_wczytywac_tabele_z_formatu_html.md)
        * [Jak zeskrobywać dane ze stron www?](Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md)
        * [Jak wczytywać korpusy tekstu?](Programowanie/jak_wczytywac_korpusy_tekstu.md)
-       * Zadania
+       * [Zadania](Programowanie/zadania.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
