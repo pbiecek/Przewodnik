@@ -53,7 +53,7 @@
         data-chapter-title="Jak pobrać dane z...?"
         data-filepath="Programowanie/jak_pobrac_dane_z.md"
         data-basepath=".."
-        data-revision="Fri Feb 26 2016 22:36:38 GMT+0100 (CET)"
+        data-revision="Fri Feb 26 2016 22:41:40 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -480,12 +480,9 @@
 <p>Zaczniemy od pobrania s&#x142;ownika z list&#x105; wszystkich nazw i opis&#xF3;w tabel, mo&#x17C;na to wykona&#x107; funkcj&#x105; <code>get_codes()</code>. Nast&#x119;pnie wybierzemy tylko te, kt&#xF3;re w opisie maj&#x105; s&#x142;owo <code>dying</code>.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(WHO)
 codes &lt;- get_codes()
-codes[grep(codes$display, pattern=<span class="hljs-string">&quot;dying&quot;</span>), ]
+as.data.frame(codes[grep(codes$display, pattern=<span class="hljs-string">&quot;dying&quot;</span>), ])
 </code></pre>
-<pre><code>## Source: local data frame [8 x 3]
-## 
-##             label
-##             (chr)
+<pre><code>##             label
 ## 1  MDG_0000000001
 ## 2  MDG_0000000007
 ## 3 LIFE_0000000030
@@ -494,7 +491,24 @@ codes[grep(codes$display, pattern=<span class="hljs-string">&quot;dying&quot;</s
 ## 6             cmr
 ## 7            pnmr
 ## 8     NCDMORT3070
-## Variables not shown: display (chr), url (chr)
+##                                                                                                                                      display
+## 1                                                  Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)
+## 2                                                             Under-five mortality rate (probability of dying by age 5 per 1000 live births)
+## 3                                                                                          nqx - probability of dying between ages x and x+n
+## 4                                                                                        ndx - number of people dying between ages x and x+n
+## 5                                                    Adult mortality rate (probability of dying between 15 and 60 years per 1000 population)
+## 6                                                   Child mortality rate (probability of dying between age 1 and age 5 per 1000 live births)
+## 7                                  Postneonatal mortality rate (probability of dying between age 30 days and 11 months per 1000 live births)
+## 8 Probability (%) of dying between exact ages 30 and 70 from any of cardiovascular disease, cancer, diabetes, or chronic respiratory disease
+##                                                                               url
+## 1    http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=1
+## 2    http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=7
+## 3   http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=30
+## 4   http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=32
+## 5   http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=64
+## 6                                                                                
+## 7                                                                                
+## 8 http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=3354
 </code></pre><p>Interesuj&#x105;ca tabela ma identyfikator <code>LIFE_0000000030</code>. Pobierzemy j&#x105; do R (co mo&#x17C;e troch&#x119; potrwa&#x107; i wymaga po&#x142;&#x105;czenia z Internetem) a nast&#x119;pnie sprawdzimy jakie cechy s&#x105; w tej tabeli opisane.</p>
 <pre><code class="lang-r">df &lt;- get_data(<span class="hljs-string">&quot;LIFE_0000000030&quot;</span>)
 colnames(df)
@@ -523,7 +537,11 @@ head(poland2013)
 </code></pre><p>Mo&#x17C;emy teraz narysowa&#x107; &#x15B;miertelno&#x15B;&#x107; dla obu p&#x142;ci. Dla m&#x119;&#x17C;czyzn jest znacznie wy&#x17C;sza ni&#x17C; dla kobiet.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(ggplot2)
 poland2013$agegroup &lt;- factor(poland2013$agegroup,
-                              c(<span class="hljs-string">&quot;&lt;1 year&quot;</span>,<span class="hljs-string">&quot;1-4 years&quot;</span>,<span class="hljs-string">&quot;5-9 years&quot;</span>,  <span class="hljs-string">&quot;10-14 years&quot;</span>,<span class="hljs-string">&quot;15-19  years&quot;</span>, <span class="hljs-string">&quot;20-24 years&quot;</span>, <span class="hljs-string">&quot;25-29 years&quot;</span>, <span class="hljs-string">&quot;30-34 years&quot;</span>, <span class="hljs-string">&quot;35-39 years&quot;</span>, <span class="hljs-string">&quot;40-44 years&quot;</span>, <span class="hljs-string">&quot;45-49 years&quot;</span>, <span class="hljs-string">&quot;50-54 years&quot;</span>, <span class="hljs-string">&quot;55-59 years&quot;</span>, <span class="hljs-string">&quot;60-64 years&quot;</span>,  <span class="hljs-string">&quot;65-69 years&quot;</span>, <span class="hljs-string">&quot;70-74 years&quot;</span>, <span class="hljs-string">&quot;75-79 years&quot;</span>, <span class="hljs-string">&quot;80-84 years&quot;</span>, <span class="hljs-string">&quot;85-89 years&quot;</span>, <span class="hljs-string">&quot;90-94 years&quot;</span>, <span class="hljs-string">&quot;95-99 years&quot;</span>, <span class="hljs-string">&quot;100+ years&quot;</span>))
+            c(<span class="hljs-string">&quot;&lt;1 year&quot;</span>,<span class="hljs-string">&quot;1-4 years&quot;</span>,<span class="hljs-string">&quot;5-9 years&quot;</span>,  <span class="hljs-string">&quot;10-14 years&quot;</span>,<span class="hljs-string">&quot;15-19  years&quot;</span>, 
+              <span class="hljs-string">&quot;20-24 years&quot;</span>, <span class="hljs-string">&quot;25-29 years&quot;</span>, <span class="hljs-string">&quot;30-34 years&quot;</span>, <span class="hljs-string">&quot;35-39 years&quot;</span>, 
+              <span class="hljs-string">&quot;40-44 years&quot;</span>, <span class="hljs-string">&quot;45-49 years&quot;</span>, <span class="hljs-string">&quot;50-54 years&quot;</span>, <span class="hljs-string">&quot;55-59 years&quot;</span>, 
+              <span class="hljs-string">&quot;60-64 years&quot;</span>,  <span class="hljs-string">&quot;65-69 years&quot;</span>, <span class="hljs-string">&quot;70-74 years&quot;</span>, <span class="hljs-string">&quot;75-79 years&quot;</span>, 
+              <span class="hljs-string">&quot;80-84 years&quot;</span>, <span class="hljs-string">&quot;85-89 years&quot;</span>, <span class="hljs-string">&quot;90-94 years&quot;</span>, <span class="hljs-string">&quot;95-99 years&quot;</span>, <span class="hljs-string">&quot;100+ years&quot;</span>))
 
 ggplot(poland2013, 
        aes(agegroup, value, color=sex, group=sex)) +
