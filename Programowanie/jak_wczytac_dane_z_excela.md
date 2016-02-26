@@ -10,9 +10,9 @@ Pliki Excela pobrane z BDL mają trzy zakładki. W pierwszej opisane są główn
 
 Poniżej umieszczone są zrzuty ekranu dla obu zakładek.
 
-![Druga zakładka z pliku Excela](BDL1.png)
+![Druga zakładka z pliku Excela](rysunki/BDL1.png)
 
-![Trzecia zakładka z pliku Excela](BDL2.png)
+![Trzecia zakładka z pliku Excela](rysunki/BDL2.png)
 
 W programie R dostępnych jest kilka rożnych pakietów pozwalających na wczytywanie danych z Excela. Na dziś dzień, dla plików w formacie `xlsx` najbardziej uniwersalnym rozwiązaniem jest pakiet `openxlsx`. 
 

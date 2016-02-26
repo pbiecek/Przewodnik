@@ -18,7 +18,7 @@ Lista premier znajduje się na stornie http://www.filmweb.pl/premiere. Aby pozna
 
 Na poniższym zdjęciu przedstawiony jest przykład użycia wtyczki SelectorGadget. Zaznaczone na żółto elementy pasują do wzorca CSS `.gwt-filmPage`
 
-![SelectorGadget na stronie o premierach filmów](rvest2.png)
+![SelectorGadget na stronie o premierach filmów](rysunki/rvest2.png)
 
 Ostatnim krokiem jest wyłuskanie danych z zaznaczonej kolekcji uchwytów. Funkcja `html_text()` wyciąga treść z węzłów HTML.
 
@@ -56,25 +56,24 @@ html_text(filmy)
 ## [12] "Barany. Islandzka opowieść"             
 ## [13] "Skala szarości"                         
 ## [14] "Eisenstein w Meksyku"                   
-## [15] "Romeo i Julia"                          
-## [16] "Brooklyn"                               
-## [17] "Ave, Cezar!"                            
-## [18] "Zwierzogród"                            
-## [19] "Na granicy"                             
-## [20] "Oddychaj"                               
-## [21] "Fúsi"                                   
-## [22] "Sprawiedliwy"                           
-## [23] "Chłopiec i świat"                       
-## [24] "Cierń Boga"                             
-## [25] "Pokój"                                  
-## [26] "Lobster"                                
-## [27] "Bogowie Egiptu"                         
-## [28] "7 rzeczy, których nie wiecie o facetach"
-## [29] "Grimsby"                                
-## [30] "Yona"                                   
-## [31] "110%"                                   
-## [32] "Tysiąc i jedna noc – cz. 1, niespokojny"
-## [33] "Dyke Hard"
+## [15] "Brooklyn"                               
+## [16] "Ave, Cezar!"                            
+## [17] "Zwierzogród"                            
+## [18] "Na granicy"                             
+## [19] "Oddychaj"                               
+## [20] "Fúsi"                                   
+## [21] "Sprawiedliwy"                           
+## [22] "Chłopiec i świat"                       
+## [23] "Cierń Boga"                             
+## [24] "Pokój"                                  
+## [25] "Lobster"                                
+## [26] "Bogowie Egiptu"                         
+## [27] "7 rzeczy, których nie wiecie o facetach"
+## [28] "Grimsby"                                
+## [29] "Yona"                                   
+## [30] "110%"                                   
+## [31] "Tysiąc i jedna noc – cz. 1, niespokojny"
+## [32] "Dyke Hard"
 ```
 
 Pakiet `rvest` pozwala też na parsowanie tabel oraz na obsługę formularzy, sesji i śledzenie linków. W poniższym przykładzie otwieramy stronę z bazy danych o filmach IMDb (Internet Movie Database) a informacjami o filmie *Lego Przygoda*.

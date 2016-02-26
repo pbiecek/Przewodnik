@@ -40,7 +40,7 @@
     <link rel="next" href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" />
     
     
-    <link rel="prev" href="../Programowanie/jak_wczytywac_i_zapisywac_dane.html" />
+    <link rel="prev" href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html" />
     
 
         
@@ -49,11 +49,11 @@
         
         
     <div class="book"
-        data-level="1.3.1"
+        data-level="1.3.2"
         data-chapter-title="Jak wczytać dane z Excela?"
         data-filepath="Programowanie/jak_wczytac_dane_z_excela.md"
         data-basepath=".."
-        data-revision="Fri Feb 26 2016 10:30:40 GMT+0100 (CET)"
+        data-revision="Fri Feb 26 2016 10:58:35 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -144,14 +144,29 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.3.1" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
+        <li class="chapter " data-level="1.3.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.1.</b>
+                        
+                        Jak wczytać tabelę danych z pliku csv lub txt?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
             
                 
                     <a href="../Programowanie/jak_wczytac_dane_z_excela.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.3.1.</b>
+                            <b>1.3.2.</b>
                         
                         Jak wczytać dane z Excela?
                     </a>
@@ -159,14 +174,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+        <li class="chapter " data-level="1.3.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
             
                 
                     <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.3.2.</b>
+                            <b>1.3.3.</b>
                         
                         Jak wczytywać tabele z formatu HTML?
                     </a>
@@ -174,14 +189,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+        <li class="chapter " data-level="1.3.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
             
                 
                     <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.3.3.</b>
+                            <b>1.3.4.</b>
                         
                         Jak zeskrobywać dane ze stron www używając pakietu rvest?
                     </a>
@@ -189,14 +204,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
+        <li class="chapter " data-level="1.3.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
             
                 
                     <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.3.4.</b>
+                            <b>1.3.5.</b>
                         
                         Jak wczytywać korpusy tekstu?
                     </a>
@@ -433,8 +448,8 @@
 <p>Za pomoc&#x105; strony www wybra&#x142;em dane dotycz&#x105;ce ludno&#x15B;ci Polsce w latach 1995:2015 w podziale na grupy wiekowe i p&#x142;e&#x107;. Te dane s&#x105; dost&#x119;pne na stronie <a href="https://github.com/pbiecek/Przewodnik/blob/master/resources/LUDN_2137_20160225144358.xlsx" target="_blank">https://github.com/pbiecek/Przewodnik/blob/master/resources/LUDN_2137_20160225144358.xlsx</a>.</p>
 <p>Pliki Excela pobrane z BDL maj&#x105; trzy zak&#x142;adki. W pierwszej opisane s&#x105; g&#x142;&#xF3;wne informacje dotycz&#x105;ce danych. Druga zak&#x142;adka to dane w ta zwanej w&#x105;skiej/d&#x142;ugiej postaci. Trzecia zak&#x142;adka to dane w postaci szerokiej, gdzie kolejne kolumny odpowiadaj&#x105; kolejnym latom.</p>
 <p>Poni&#x17C;ej umieszczone s&#x105; zrzuty ekranu dla obu zak&#x142;adek.</p>
-<p><img src="BDL1.png" alt="Druga zak&#x142;adka z pliku Excela"></p>
-<p><img src="BDL2.png" alt="Trzecia zak&#x142;adka z pliku Excela"></p>
+<p><img src="rysunki/BDL1.png" alt="Druga zak&#x142;adka z pliku Excela"></p>
+<p><img src="rysunki/BDL2.png" alt="Trzecia zak&#x142;adka z pliku Excela"></p>
 <p>W programie R dost&#x119;pnych jest kilka ro&#x17C;nych pakiet&#xF3;w pozwalaj&#x105;cych na wczytywanie danych z Excela. Na dzi&#x15B; dzie&#x144;, dla plik&#xF3;w w formacie <code>xlsx</code> najbardziej uniwersalnym rozwi&#x105;zaniem jest pakiet <code>openxlsx</code>. </p>
 <p>Funkcja <code>read.xlsx</code> pozwala na wczytanie danych z okre&#x15B;lonego pliku. Mo&#x17C;emy dodatkowo okre&#x15B;li&#x107; z kt&#xF3;rej zak&#x142;adki chcemy wczyta&#x107; dane. Zacznijmy od wczytania danych w postaci w&#x105;skiej z zak&#x142;adki drugiej.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(openxlsx)
@@ -548,7 +563,7 @@ ludnoscSzeroka[<span class="hljs-number">3</span>:<span class="hljs-number">8</s
         </div>
 
         
-        <a href="../Programowanie/jak_wczytywac_i_zapisywac_dane.html" class="navigation navigation-prev " aria-label="Previous page: Jak wczytywać i zapisywać dane?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html" class="navigation navigation-prev " aria-label="Previous page: Jak wczytać tabelę danych z pliku csv lub txt?"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" class="navigation navigation-next " aria-label="Next page: Jak wczytywać tabele z formatu HTML?"><i class="fa fa-angle-right"></i></a>

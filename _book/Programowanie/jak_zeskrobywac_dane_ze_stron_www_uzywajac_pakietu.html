@@ -49,11 +49,11 @@
         
         
     <div class="book"
-        data-level="1.3.3"
+        data-level="1.3.4"
         data-chapter-title="Jak zeskrobywać dane ze stron www używając pakietu rvest?"
         data-filepath="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md"
         data-basepath=".."
-        data-revision="Fri Feb 26 2016 10:30:40 GMT+0100 (CET)"
+        data-revision="Fri Feb 26 2016 10:58:35 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -144,14 +144,29 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
+        <li class="chapter " data-level="1.3.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.1.</b>
+                        
+                        Jak wczytać tabelę danych z pliku csv lub txt?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
             
                 
                     <a href="../Programowanie/jak_wczytac_dane_z_excela.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.3.1.</b>
+                            <b>1.3.2.</b>
                         
                         Jak wczytać dane z Excela?
                     </a>
@@ -159,14 +174,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+        <li class="chapter " data-level="1.3.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
             
                 
                     <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.3.2.</b>
+                            <b>1.3.3.</b>
                         
                         Jak wczytywać tabele z formatu HTML?
                     </a>
@@ -174,14 +189,14 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.3" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+        <li class="chapter active" data-level="1.3.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
             
                 
                     <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.3.3.</b>
+                            <b>1.3.4.</b>
                         
                         Jak zeskrobywać dane ze stron www używając pakietu rvest?
                     </a>
@@ -189,14 +204,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
+        <li class="chapter " data-level="1.3.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
             
                 
                     <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>1.3.4.</b>
+                            <b>1.3.5.</b>
                         
                         Jak wczytywać korpusy tekstu?
                     </a>
@@ -440,7 +455,7 @@
 <p>Zobaczmy jak te kroki wygl&#x105;daj&#x105; na przyk&#x142;adzie pobierania danych o premierach film&#xF3;w w serwisie FilmWeb. </p>
 <p>Lista premier znajduje si&#x119; na stornie <a href="http://www.filmweb.pl/premiere" target="_blank">http://www.filmweb.pl/premiere</a>. Aby pozna&#x107; wzorce/selektory pozwalaj&#x105;ce na identyfikacje istotnej tre&#x15B;ci, naj&#x142;atwiej jest zainstalowa&#x107; wtyczk&#x119; do przegl&#x105;darki SelectorGadget <a href="http://selectorgadget.com/" target="_blank">http://selectorgadget.com/</a>. Umo&#x17C;liwia ona wybranie myszk&#x105; interesuj&#x105;cych element&#xF3;w oraz sprawdzenie jak&#x105; posta&#x107; ma selektor pasuj&#x105;cy do zaznaczonych opcji.</p>
 <p>Na poni&#x17C;szym zdj&#x119;ciu przedstawiony jest przyk&#x142;ad u&#x17C;ycia wtyczki SelectorGadget. Zaznaczone na &#x17C;&#xF3;&#x142;to elementy pasuj&#x105; do wzorca CSS <code>.gwt-filmPage</code></p>
-<p><img src="rvest2.png" alt="SelectorGadget na stronie o premierach film&#xF3;w"></p>
+<p><img src="rysunki/rvest2.png" alt="SelectorGadget na stronie o premierach film&#xF3;w"></p>
 <p>Ostatnim krokiem jest wy&#x142;uskanie danych z zaznaczonej kolekcji uchwyt&#xF3;w. Funkcja <code>html_text()</code> wyci&#x105;ga tre&#x15B;&#x107; z w&#x119;z&#x142;&#xF3;w HTML.</p>
 <p>Poni&#x17C;szy przyk&#x142;ad wybiera z serwisu FilmWeb informacje o najbli&#x17C;szych premierach.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(rvest)
@@ -466,25 +481,24 @@ html_text(filmy)
 ## [12] &quot;Barany. Islandzka opowie&#x15B;&#x107;&quot;             
 ## [13] &quot;Skala szaro&#x15B;ci&quot;                         
 ## [14] &quot;Eisenstein w Meksyku&quot;                   
-## [15] &quot;Romeo i Julia&quot;                          
-## [16] &quot;Brooklyn&quot;                               
-## [17] &quot;Ave, Cezar!&quot;                            
-## [18] &quot;Zwierzogr&#xF3;d&quot;                            
-## [19] &quot;Na granicy&quot;                             
-## [20] &quot;Oddychaj&quot;                               
-## [21] &quot;F&#xFA;si&quot;                                   
-## [22] &quot;Sprawiedliwy&quot;                           
-## [23] &quot;Ch&#x142;opiec i &#x15B;wiat&quot;                       
-## [24] &quot;Cier&#x144; Boga&quot;                             
-## [25] &quot;Pok&#xF3;j&quot;                                  
-## [26] &quot;Lobster&quot;                                
-## [27] &quot;Bogowie Egiptu&quot;                         
-## [28] &quot;7 rzeczy, kt&#xF3;rych nie wiecie o facetach&quot;
-## [29] &quot;Grimsby&quot;                                
-## [30] &quot;Yona&quot;                                   
-## [31] &quot;110%&quot;                                   
-## [32] &quot;Tysi&#x105;c i jedna noc &#x2013; cz. 1, niespokojny&quot;
-## [33] &quot;Dyke Hard&quot;
+## [15] &quot;Brooklyn&quot;                               
+## [16] &quot;Ave, Cezar!&quot;                            
+## [17] &quot;Zwierzogr&#xF3;d&quot;                            
+## [18] &quot;Na granicy&quot;                             
+## [19] &quot;Oddychaj&quot;                               
+## [20] &quot;F&#xFA;si&quot;                                   
+## [21] &quot;Sprawiedliwy&quot;                           
+## [22] &quot;Ch&#x142;opiec i &#x15B;wiat&quot;                       
+## [23] &quot;Cier&#x144; Boga&quot;                             
+## [24] &quot;Pok&#xF3;j&quot;                                  
+## [25] &quot;Lobster&quot;                                
+## [26] &quot;Bogowie Egiptu&quot;                         
+## [27] &quot;7 rzeczy, kt&#xF3;rych nie wiecie o facetach&quot;
+## [28] &quot;Grimsby&quot;                                
+## [29] &quot;Yona&quot;                                   
+## [30] &quot;110%&quot;                                   
+## [31] &quot;Tysi&#x105;c i jedna noc &#x2013; cz. 1, niespokojny&quot;
+## [32] &quot;Dyke Hard&quot;
 </code></pre><p>Pakiet <code>rvest</code> pozwala te&#x17C; na parsowanie tabel oraz na obs&#x142;ug&#x119; formularzy, sesji i &#x15B;ledzenie link&#xF3;w. W poni&#x17C;szym przyk&#x142;adzie otwieramy stron&#x119; z bazy danych o filmach IMDb (Internet Movie Database) a informacjami o filmie <em>Lego Przygoda</em>.</p>
 <p>Nast&#x119;pnie trzecia tabela jest wy&#x142;uskiwana i wypisywana na ekranie.</p>
 <pre><code class="lang-r">lego_movie &lt;- html(<span class="hljs-string">&quot;http://www.imdb.com/title/tt1490017/&quot;</span>)

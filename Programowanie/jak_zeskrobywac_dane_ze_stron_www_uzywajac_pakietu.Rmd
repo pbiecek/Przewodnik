@@ -18,7 +18,7 @@ Lista premier znajduje się na stornie http://www.filmweb.pl/premiere. Aby pozna
 
 Na poniższym zdjęciu przedstawiony jest przykład użycia wtyczki SelectorGadget. Zaznaczone na żółto elementy pasują do wzorca CSS `.gwt-filmPage`
 
-![SelectorGadget na stronie o premierach filmów](rvest2.png)
+![SelectorGadget na stronie o premierach filmów](rysunki/rvest2.png)
 
 Ostatnim krokiem jest wyłuskanie danych z zaznaczonej kolekcji uchwytów. Funkcja `html_text()` wyciąga treść z węzłów HTML.
 
