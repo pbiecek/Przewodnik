@@ -8,6 +8,7 @@
        * [Jak wczytać dane z Excela?](Programowanie/jak_wczytac_dane_z_excela.md)
        * [Jak wczytywać tabele z formatu HTML?](Programowanie/jak_wczytywac_tabele_z_formatu_html.md)
        * [Jak zeskrobywać dane ze stron www używając pakietu rvest?](Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md)
+       * Jak wczytywać korpusy tekstu?
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
