@@ -77,6 +77,53 @@ html_text(filmy)
 ## [33] "Dyke Hard"
 ```
 
+Pakiet `rvest` pozwala też na parsowanie tabel oraz na obsługę formularzy, sesji i śledzenie linków. W poniższym przykładzie otwieramy stronę z bazy danych o filmach IMDb (Internet Movie Database) a informacjami o filmie *Lego Przygoda*.
+
+Następnie trzecia tabela jest wyłuskiwana i wypisywana na ekranie.
+
+
+```r
+lego_movie <- html("http://www.imdb.com/title/tt1490017/")
+```
+
+```
+## Warning: 'html' is deprecated.
+## Use 'read_html' instead.
+## See help("Deprecated")
+```
+
+```r
+htab <- html_nodes(lego_movie, "table")[[3]]
+html_table(htab)
+```
+
+```
+##                                                      X1
+## 1                                     Amazon Affiliates
+## 2 Amazon Video\n                Watch Movies &TV Online
+##                                                               X2
+## 1                                                           <NA>
+## 2 Prime Video\n                Unlimited Streamingof Movies & TV
+##                                                           X3
+## 1                                                       <NA>
+## 2 Amazon Germany\n                Buy Movies onDVD & Blu-ray
+##                                                         X4
+## 1                                                     <NA>
+## 2 Amazon Italy\n                Buy Movies onDVD & Blu-ray
+##                                                          X5
+## 1                                                      <NA>
+## 2 Amazon France\n                Buy Movies onDVD & Blu-ray
+##                                                        X6
+## 1                                                    <NA>
+## 2 Amazon India\n                Buy Movie andTV Show DVDs
+##                                             X7
+## 1                                         <NA>
+## 2 DPReview\n                DigitalPhotography
+##                                             X8
+## 1                                         <NA>
+## 2 Audible\n                DownloadAudio Books
+```
+
 ## Skrobanie HTMLa z użyciem pakietu `RSelenium`
 
 Pakiet `rvest` jest bardzo prosty a jednocześnie pozwala na pobranie wielu danych ze strony. Nie pozwala jednak na utrzymanie sesji i praca ze stroną tak jakby obsługiwał ją interaktywnie człowiek. Do tego typu zadań można użyć biblioteki Selenium dostępnej poprzez pakiet `RSelenium`. 

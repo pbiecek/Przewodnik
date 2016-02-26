@@ -31,9 +31,9 @@ filmy <- html_nodes(premiery, ".gwt-filmPage")
 html_text(filmy)
 ```
 
-Pakiet `rvest` pozwala też na parsowanie tabel oraz na obsługę formularzy, sesji i śledzenie linków. W poniższym przykłądzie otwieramy stronę z bazy danych o filmach IMDb (Internet Movie Database) a informacjami o filmie *Lego Przygoda*.
+Pakiet `rvest` pozwala też na parsowanie tabel oraz na obsługę formularzy, sesji i śledzenie linków. W poniższym przykładzie otwieramy stronę z bazy danych o filmach IMDb (Internet Movie Database) a informacjami o filmie *Lego Przygoda*.
 
-Then the third table is extracted and printed.
+Następnie trzecia tabela jest wyłuskiwana i wypisywana na ekranie.
 
 ```{r}
 lego_movie <- html("http://www.imdb.com/title/tt1490017/")
