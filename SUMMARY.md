@@ -17,7 +17,7 @@
    * [Jak budować pakiety?](Programowanie/jak_budowac_pakiety.md)
    * Jak tworzyć reprodukowalne raporty?
    * Jak debugować kod R?
-   * Jak pobrać dane z...?
+   * [Jak pobrać dane z...?](Programowanie/jak_pobrac_dane_z.md)
    * Jak zwiększyć wydajność kodu R?
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
