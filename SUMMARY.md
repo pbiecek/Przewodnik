@@ -23,6 +23,7 @@
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
 * [Analiza danych z programem R](Analiza/analizadanych_z_programem_r_md.md)
+   * Jak badać rozkład jednej zmiennej?
    * [Eksploracja danych](Analiza/eksploracja_danych.md)
        * [Analiza Skupisk](Analiza/analiza_skupisk.md)
    * Modelowanie danych
