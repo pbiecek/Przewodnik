@@ -26,6 +26,7 @@
    * [Eksploracja danych](Analiza/eksploracja_danych.md)
        * [Analiza Skupisk](Analiza/analiza_skupisk.md)
    * Modelowanie danych
+       * Jak badać rozkład jednej zmiennej?
    * Testy
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
