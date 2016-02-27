@@ -29,6 +29,7 @@
    * Modelowanie danych
        * Jak badać rozkład jednej zmiennej?
    * Testy
+   * Jak badać rozkład dwóch zmiennych?
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
 
