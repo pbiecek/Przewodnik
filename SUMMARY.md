@@ -24,12 +24,12 @@
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
 * [Analiza danych z programem R](Analiza/analizadanych_z_programem_r_md.md)
    * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
+   * Jak badać rozkład dwóch zmiennych?
    * [Eksploracja danych](Analiza/eksploracja_danych.md)
        * [Analiza Skupisk](Analiza/analiza_skupisk.md)
    * Modelowanie danych
        * Jak badać rozkład jednej zmiennej?
    * Testy
-   * Jak badać rozkład dwóch zmiennych?
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
 
