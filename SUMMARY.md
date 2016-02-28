@@ -31,6 +31,7 @@
    * Modelowanie danych
        * Jak badać rozkład jednej zmiennej?
    * Testy
+   * Jak rozpoznać rodzaj zmiennej?
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
 
