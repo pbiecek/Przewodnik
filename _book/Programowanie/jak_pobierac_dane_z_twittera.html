@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak korzystać z tej książki? | Przewodnik po pakiecie R 4.0</title>
+        <title>Jak pobierać dane z Twittera? | Przewodnik po pakiecie R 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_zainstalowac_r_i_rstudio.html" />
+    <link rel="next" href="../Programowanie/jak_pobrac_dane_z.html" />
     
     
-    <link rel="prev" href="../Programowanie/programowanie_w_jezyku_r.html" />
+    <link rel="prev" href="../Programowanie/jak_wczytywac_korpusy_tekstu.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="2.1"
-        data-chapter-title="Jak korzystać z tej książki?"
-        data-filepath="Programowanie/jak_korzystac_z_tej_ksiazki.md"
+        data-level="2.3.6"
+        data-chapter-title="Jak pobierać dane z Twittera?"
+        data-filepath="Programowanie/jak_pobierac_dane_z_twittera.md"
         data-basepath=".."
         data-revision="Sun Feb 28 2016 02:19:38 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -113,7 +113,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="2.1" data-path="Programowanie/jak_korzystac_z_tej_ksiazki.html">
+        <li class="chapter " data-level="2.1" data-path="Programowanie/jak_korzystac_z_tej_ksiazki.html">
             
                 
                     <a href="../Programowanie/jak_korzystac_z_tej_ksiazki.html">
@@ -234,7 +234,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.6" data-path="Programowanie/jak_pobierac_dane_z_twittera.html">
+        <li class="chapter active" data-level="2.3.6" data-path="Programowanie/jak_pobierac_dane_z_twittera.html">
             
                 
                     <a href="../Programowanie/jak_pobierac_dane_z_twittera.html">
@@ -553,7 +553,107 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jak-korzysta&#x107;-z-tej-ksi&#x105;&#x17C;ki">Jak korzysta&#x107; z tej ksi&#x105;&#x17C;ki?</h1>
+                        <h1 id="jak-pobiera&#x107;-dane-z-twittera">Jak pobiera&#x107; dane z Twittera?</h1>
+<p>Twitter udost&#x119;pnia dwa API do pobierania danych.</p>
+<ul>
+<li>API do odczytywania historycznych wiadomo&#x15B;ci pasuj&#x105;cych do okre&#x15B;lonego wzorca,</li>
+<li>API do aktywnego nas&#x142;uchiwania strumienia wiadomo&#x15B;ci pasuj&#x105;cych do okre&#x15B;lonego wzorca (otrzymujemy zaledwie wycinek ca&#x142;ego API).</li>
+</ul>
+<p>Om&#xF3;wimy poni&#x17C;ej oba API.</p>
+<h2 id="autoryzacja-z-api-twittera">Autoryzacja z API Twittera</h2>
+<p>Aby m&#xF3;c automatycznie pobiera&#x107; dane z Twittera nale&#x17C;y ze strony <a href="https://apps.twitter.com" target="_blank">https://apps.twitter.com</a> pobra&#x107; klucze <code>Access Token</code> i <code>Access Token Secret</code>. </p>
+<p>Nast&#x119;pnie, u&#x17C;ywaj&#x105;c funkcji <code>setup_twitter_oauth()</code> nale&#x17C;y autoryzowa&#x107; program R do pobierania danych. Poni&#x17C;ej klucze s&#x105; wykropkowane, nale&#x17C;y pobra&#x107; w&#x142;asne klucze z www strony.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(twitteR)
+
+consumerKey &lt;- <span class="hljs-string">&quot;...................................&quot;</span>
+consumerSecret &lt;- <span class="hljs-string">&quot;...................................&quot;</span>
+access_token &lt;- <span class="hljs-string">&quot;...................................&quot;</span>
+access_secret &lt;- <span class="hljs-string">&quot;...................................&quot;</span>
+
+setup_twitter_oauth(consumerKey, consumerSecret, access_token, access_secret)
+</code></pre>
+<pre><code>## [1] &quot;Using direct authentication&quot;
+</code></pre><h2 id="czytanie-z-historii-twittera">Czytanie z historii Twittera</h2>
+<p>Po autoryzacji mo&#x17C;na dane pobra&#x107; u&#x17C;ywaj&#x105;c funkcji <code>searchTwitter()</code>. Pierwszy argument okre&#x15B;la s&#x142;owa kluczowe, kt&#xF3;re b&#x119;d&#x105; wyszukiwane. Drugi argument okre&#x15B;la ile wiadomo&#x15B;ci ma by&#x107; pobranych. Kolejne argumenty pozwalaj&#x105; na dookre&#x15B;lenie, czy wiadomo&#x15B;ci maj&#x105; by&#x107; pobierane z okre&#x15B;lonego okresu czasu, czy okre&#x15B;lonej lokalizacji.</p>
+<p>Wynikiem funkcji <code>searchTwitter()</code> jest lista obiekt&#xF3;w opisuj&#x105;cych wiadomo&#x15B;ci. Do analizy wygodniej jest t&#x105; list&#x119; zamieni&#x107; na tabel&#x119; danych. Mo&#x17C;na to zrobi&#x107; funkcj&#x105; <code>twListToDF</code>. </p>
+<p>Poni&#x17C;szy przyk&#x142;ad pobiera z Twittera 10 wiadomo&#x15B;ci zawieraj&#x105;cych s&#x142;owo <code>chopin</code>. Nast&#x119;pnie wynik zamienia na tabel&#x119; danych i wy&#x15B;wietla z tej tabeli trzy kolumny (numer, dat&#x119; utworzenia i tre&#x15B;&#x107; wiadomo&#x15B;ci).</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(twitteR)
+tweets &lt;- searchTwitter(<span class="hljs-string">&quot;chopin&quot;</span>, n=<span class="hljs-number">10</span>)
+
+dftweets &lt;- twListToDF(tweets)
+dftweets[,c(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;created&quot;</span>, <span class="hljs-string">&quot;text&quot;</span>)]
+</code></pre>
+<pre><code>##                    id             created
+## 1  703739618911502336 2016-02-28 00:32:54
+## 2  703739332004216832 2016-02-28 00:31:46
+## 3  703739324530081792 2016-02-28 00:31:44
+## 4  703739032912732161 2016-02-28 00:30:34
+## 5  703738659376373761 2016-02-28 00:29:05
+## 6  703738344790839296 2016-02-28 00:27:50
+## 7  703738246484914176 2016-02-28 00:27:27
+## 8  703737940330070016 2016-02-28 00:26:14
+## 9  703737600650059776 2016-02-28 00:24:53
+## 10 703737487211032577 2016-02-28 00:24:26
+##                                                                                                                                                                                                                                                                                     text
+## 1                                                                                                                                                             RT @PGENarodowy: Kings On Ice. Tribute to Chopin ju&#x17C; za nami! Dzi&#x119;kujemy Wam za wsp&#xF3;ln&#x105; zabaw&#x119; :-) https://t.co/W2qlCuMC7i
+## 2                                                                                                                                                                Rel&#xE1;jense con \xed\xae\xba\xed\xb0\x97\xed\xae\xba\xed\xb0\x99\xed\xa0\xbc\xed\xbc\xb3  #chopin https://t.co/dzBLYJONrG
+## 3  This Guy Perfectly Explains How to Recognize The Artist Of A Painting. He do indeed %%robert\xed\xa0\xbc\xed\xbe\x93\xed\xa0\xbd\xed\xb3\x9a\xed\xa0\xbc\xed\xbe\xb9\xed\xa0\xbc\xed\xbf\x9b\xed\xa0\xbc\xed\xbe\xa8\xed\xa0\xbc\xed\xbe\xa8 H/t @good_mewls  https://t.co/D4dmLgo9el
+## 4                                                                                                                                               Friday night spent sleeping with a sausage dog curled up under my bed. Saturday night and I&apos;m listening to Chopin on Myleen Klass&apos; show.
+## 5                                                                                                                                                                           #Chopin : Variations sur &quot;La ci darem la mano&quot; - N.Goerner / Orch du 18&#xE8; si&#xE8;cle / F.Br&#xFC;ggen .#classicalmusic
+## 6                                                                                                                                                                                &#x3084;&#x3063;&#x3071;&#x308A;&#x3001;&#x3082;&#x3046;&#x3061;&#x3087;&#x3044;&#x304A;&#x7D75;&#x63CF;&#x304D;&#xFF01;&#x30E2;&#x30A4;&#xFF01;iPhone&#x304B;&#x3089;&#x30AD;&#x30E3;&#x30B9;&#x914D;&#x4FE1;&#x4E2D; - / &#x5C11;&#x3057;&#x3060;&#x3051;&#x304A;&#x7D75;&#x63CF;&#x304D; https://t.co/ka3JGQmy75
+## 7                                                                                                                                                                                                                               #INTL Suggest me the classic(s) instrument? Chopin, etc.
+## 8                                                                                                                                                                                                           I liked a @YouTube video https://t.co/UkfHyvjzCb Chopin Sonata op.65 1st mvt
+## 9                                                                                                                                                                                                            Chopin Funeral March (Arr. for Organ) https://t.co/K4pr8QkL6f &#x4F86;&#x81EA; @YouTube
+## 10                                                                                                                                                                                                                     Pour travailler, se concentrer et tout, Chopin c&apos;grave un bon ami
+</code></pre><h2 id="strumie&#x144;-wiadomo&#x15B;ci">Strumie&#x144; wiadomo&#x15B;ci</h2>
+<p>Drugim sposobem pobierania danych z serwisu Twitter jest nas&#x142;uchiwanie przez okre&#x15B;lony okres czasu i zapisywanie wiadomo&#x15B;ci, kt&#xF3;re pasuj&#x105; do okre&#x15B;lonego wzorca. 
+Ten spos&#xF3;b pobierania danych jest mo&#x17C;liwy dzi&#x119;ki pakietowi <code>streamR</code>.</p>
+<p>Aby z niego skorzysta&#x107; musimy u&#x17C;y&#x107; innego sposobu autoryzacji OAuth.</p>
+<p>Funkcja <code>handshake()</code> wywo&#x142;ana z obiektu klasy <code>OAuth</code> otworzy stron&#x119; internetow&#x105; z kluczem, dzi&#x119;ki kt&#xF3;remu b&#x119;dzie mo&#x17C;na dokona&#x107; autoryzacji.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ROAuth)
+requestURL &lt;- <span class="hljs-string">&quot;https://api.twitter.com/oauth/request_token&quot;</span>
+accessURL &lt;- <span class="hljs-string">&quot;https://api.twitter.com/oauth/access_token&quot;</span>
+authURL &lt;- <span class="hljs-string">&quot;https://api.twitter.com/oauth/authorize&quot;</span>
+
+consumerKey &lt;- <span class="hljs-string">&quot;..............................&quot;</span>
+consumerSecret &lt;- <span class="hljs-string">&quot;..............................&quot;</span>
+
+my_oauth &lt;- OAuthFactory$new(consumerKey=consumerKey,
+                             consumerSecret=consumerSecret, 
+                             requestURL=requestURL, accessURL=accessURL, authURL=authURL)
+my_oauth$handshake(cainfo = system.file(<span class="hljs-string">&quot;CurlSSL&quot;</span>, <span class="hljs-string">&quot;cacert.pem&quot;</span>, package = <span class="hljs-string">&quot;RCurl&quot;</span>))
+</code></pre>
+<p>Po wykonaniu autoryzacji mo&#x17C;na pobiera&#x107; wiadomo&#x15B;ci korzystaj&#x105;c z funkcji <code>filterStream()</code> z pakietu <code>streamR</code>.</p>
+<p>Przez okres czasu okre&#x15B;lony w sekundach przez argument <code>timeout</code> zapisuje do pliku <code>file</code> wiadomo&#x15B;ci pasuj&#x105;ce do wzorca <code>track</code>.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(streamR)
+filterStream(file=<span class="hljs-string">&quot;chopin.json&quot;</span>,
+             track=<span class="hljs-string">&quot;chopin, konkurs&quot;</span>, 
+             timeout=<span class="hljs-number">5</span>*<span class="hljs-number">60</span>, oauth=my_oauth)
+</code></pre>
+<pre><code>Capturing tweets...
+Connection to Twitter stream was closed after 300 seconds with up to 41 tweets downloaded.
+</code></pre><p>Po zebraniu danych mo&#x17C;na je nast&#x119;pnie wczyta&#x107; z pliku json do programu R z u&#x17C;yciem funkcji <code>parseTweet()</code>. Wczytuje ona wiadomo&#x15B;ci ze wskazanego pliku a nast&#x119;pnie przekszta&#x142;ca je do formatu ramki danych.</p>
+<pre><code class="lang-r">parsedTwees &lt;- parseTweets(<span class="hljs-string">&quot;chopin.json&quot;</span>, simplify = <span class="hljs-literal">FALSE</span>, verbose = <span class="hljs-literal">TRUE</span>)
+parsedTwees[,c(<span class="hljs-string">&quot;id_str&quot;</span>, <span class="hljs-string">&quot;created_at&quot;</span>, <span class="hljs-string">&quot;text&quot;</span>)]
+</code></pre>
+<pre><code>              id_str                     created_at
+1 703746124276998145 Sun Feb 28 00:58:45 +0000 2016
+2 703746342280159232 Sun Feb 28 00:59:37 +0000 2016
+3 703746344213725185 Sun Feb 28 00:59:38 +0000 2016
+4 703746680345067521 Sun Feb 28 01:00:58 +0000 2016
+                                                                                                                                        text
+1                                                                 Fr&#xE9;d&#xE9;ric Chopin - Prelude in E-Minor (op.28 no. 4) https://t.co/EdwzCFZedd
+2                                                                    Abbey Simon / Chopin: 3 Waltzes, Op. 64: No. 1 in D-Flat Major &quot;Minute&quot;
+3 SprintAir to base Saab 340 in Radom from April - SprintAir (SRN, Warsaw Chopin) has announced another expansion... https://t.co/8mmHlDU9ry
+4                                       RT @Norah_min: &#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x898B;&#x305F;&#x611F;&#x3058;&#x3060;&#x3068;&#x3053;&#x306E;&#x30DE;&#x30FC;&#x30C8;&#x30F3;&#x306E;Chopin&#x3067;&#x6F14;&#x3063;&#x305F;&#x3063;&#x307D;&#x3044;&#x306D;&#xFF01;&#xFF1F;\nhttps://t.co/GlWT3zW11g
+</code></pre><h2 id="inne-u&#x17C;yteczne-funkcje">Inne u&#x17C;yteczne funkcje</h2>
+<p>Poza filtrowaniem twittera w poszukiwaniu wiadomo&#x15B;ci pasuj&#x105;cych do okre&#x15B;lonych s&#x142;&#xF3;w kluczowych, mo&#x17C;na r&#xF3;wnie&#x17C; pobiera&#x107; dane w inny spos&#xF3;b.</p>
+<ul>
+<li>Funkcja <code>userTimeline()</code> pozwala na pobieranie ostatnich wiadomo&#x15B;ci utworzonych przez okre&#x15B;lonego u&#x17C;ytkownika.</li>
+<li>Funkcja <code>homeTimeline()</code> pozwala na pobieranie wiadomo&#x15B;ci z linii aktualnego u&#x17C;ytkownik.</li>
+<li>Funkcja <code>mentions()</code> pozwala na pobieranie wiadomo&#x15B;ci, w kt&#xF3;rych okre&#x15B;lony u&#x17C;ytkownik zosta&#x142; mieniony.</li>
+<li>Funkcja <code>retweetsOfMe()</code> pozwala na zliczanie liczby retwitt&#xF3;w kolejnych wiadomo&#x15B;ci.</li>
+</ul>
 
                     
                     </section>
@@ -564,10 +664,10 @@
         </div>
 
         
-        <a href="../Programowanie/programowanie_w_jezyku_r.html" class="navigation navigation-prev " aria-label="Previous page: Programowanie w języku R"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html" class="navigation navigation-prev " aria-label="Previous page: Jak wczytywać korpusy tekstu?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_zainstalowac_r_i_rstudio.html" class="navigation navigation-next " aria-label="Next page: Jak zainstalować R i RStudio?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/jak_pobrac_dane_z.html" class="navigation navigation-next " aria-label="Next page: Jak pobrać dane z...?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
