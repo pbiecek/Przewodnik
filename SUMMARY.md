@@ -24,7 +24,7 @@
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
 * [Analiza danych z programem R](Analiza/analizadanych_z_programem_r_md.md)
-   * Jak rozpoznać rodzaj zmiennej?
+   * [Jak rozpoznać rodzaj zmiennej?](Analiza/jak_rozpoznac_rodzaj_zmiennej.md)
    * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
    * [Jak badać rozkład dwóch zmiennych?](Analiza/jak_badac_rozklad_dwoch_zmiennych.md)
    * [Eksploracja danych](Analiza/eksploracja_danych.md)
