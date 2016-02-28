@@ -35,6 +35,7 @@
        * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
        * Jak badać warunkowe zależności?
    * [Predykacja](Analiza/predykacja.md)
+       * Jak mierzyć błąd predykcji?
    * Modelowanie danych
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
