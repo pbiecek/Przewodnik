@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak wczytać tabele danych z pliku csv lub txt? | Przewodnik po pakiecie R 4.0</title>
+        <title>Jak rozpoznać rodzaj zmiennej? | Przewodnik po pakiecie R 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_wczytac_dane_z_excela.html" />
+    <link rel="next" href="../Analiza/jak_badac_rozklad_jednej_zmiennej.html" />
     
     
-    <link rel="prev" href="../Programowanie/jak_wczytywac_i_zapisywac_dane.html" />
+    <link rel="prev" href="../Analiza/analizadanych_z_programem_r_md.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="2.3.1"
-        data-chapter-title="Jak wczytać tabele danych z pliku csv lub txt?"
-        data-filepath="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md"
+        data-level="3.1"
+        data-chapter-title="Jak rozpoznać rodzaj zmiennej?"
+        data-filepath="Analiza/jak_rozpoznac_rodzaj_zmiennej.md"
         data-basepath=".."
         data-revision="Sun Feb 28 2016 21:57:30 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -159,7 +159,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="2.3.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+        <li class="chapter " data-level="2.3.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
             
                 
                     <a href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
@@ -392,7 +392,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+        <li class="chapter active" data-level="3.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
             
                 
                     <a href="../Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
@@ -568,56 +568,29 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jak-wczyta&#x107;-tabel&#x119;-danych-z-pliku-csv-lub-txt">Jak wczyta&#x107; tabel&#x119; danych z pliku csv lub txt?</h1>
-<p>Jednym z bardziej uniwersalnych format&#xF3;w przechowywania danych s&#x105; pliki tekstowe, a wi&#x119;c takie, kt&#xF3;re mo&#x17C;emy otworzy&#x107; w dowolnym edytorze, te&#x17C; w RStudio.</p>
-<p>Pliki tekstowe zawierajace tabele z danymi maj&#x105;z azwyczaj rozszerzenie <code>csv</code> (od ang. <em>comma separated values</em>, warto&#x15B;ci rozdzielane przecinkami) lub <code>txt</code>.</p>
-<p>Przyjrzymy si&#x119; tabeli z danymi zapisanymi w pliku
-<a href="http://biecek.pl/MOOC/dane/koty_ptaki.csv" target="_blank">http://biecek.pl/MOOC/dane/koty_ptaki.csv</a>. Poni&#x17C;ej wklejam tre&#x15B;&#x107; tego pliku.</p>
-<pre><code class="lang-{}">gatunek;waga;dlugosc;predkosc;habitat;zywotnosc;druzyna
-Tygrys;300;2,5;60;Azja;25;Kot
-Lew;200;2;80;Afryka;29;Kot
-Jaguar;100;1,7;90;Ameryka;15;Kot
-Puma;80;1,7;70;Ameryka;13;Kot
-Leopard;70;1,4;85;Azja;21;Kot
-Gepard;60;1,4;115;Afryka;12;Kot
-Irbis;50;1,3;65;Azja;18;Kot
-Jerzyk;0,05;0,2;170;Euroazja;20;Ptak
-Strus;150;2,5;70;Afryka;45;Ptak
-Orzel przedni;5;0,9;160;Polnoc;20;Ptak
-Sokol wedrowny;0,7;0,5;110;Polnoc;15;Ptak
-Sokol norweski;2;0,7;100;Polnoc;20;Ptak
-Albatros;4;0,8;120;Poludnie;50;Ptak
-</code></pre>
-<p>Je&#x17C;eli przyjrzymy si&#x119; tre&#x15B;ci tego pliku, to zobaczymy, &#x17C;e zawiera on tabel&#x119; warto&#x15B;ci, rozdzielanych &#x15B;rednikami. Pierwszy wiersz to nag&#x142;&#xF3;wek z nazwami kolumn (gatunek;waga;dlugosc;predkosc;habitat;zywotnosc;druzyna).</p>
-<p><img src="rysunki/koty_ptaki_ramka2.png" alt="Zbi&#xF3;r danych o kotach"></p>
-<p>Aby dane w tym formacie wczyta&#x107; do programu R, mo&#x17C;na wykorzysta&#x107; funkcj&#x119; <code>read.table()</code>.
-Na poni&#x17C;szym przyk&#x142;adzie wczytana tabela liczb jest przypisywana za pomoc&#x105; operatora <code>&lt;-</code> do symbolu <code>koty_ptaki</code>.</p>
-<p><img src="rysunki/wczytywanie.png" alt="Zbi&#xF3;r danych o kotach"></p>
-<p>Funkcja <code>read.table()</code> ma wiele argument&#xF3;w (ich list&#x119; mo&#x17C;na spradzi&#x107; w pliku pomocy pod has&#x142;em <code>?read.table</code>), ale nie musimy ich wszystkich okre&#x15B;la&#x107;. Wystarczy wskaza&#x107; nazw&#x119; pliku oraz te argumenty, kt&#xF3;re powinny mie&#x107; inne warto&#x15B;ci ni&#x17C; domy&#x15B;lne. </p>
-<p>W przypadku rozwa&#x17C;anego pliku musimy okre&#x15B;li&#x107; argumenty <code>file = &quot;http://biecek.pl/MOOC/dane/koty_ptaki.csv&quot;</code> (&#x15B;cie&#x17C;ka do pliku tekstowego, w tym przypadku czytamy dane bezpo&#x15B;rednio z internetowego adresu), <code>sep=&quot;;&quot;</code> (separatorem kolejnych p&#xF3;l b&#x119;dzie &#x15B;rednik), <code>dec=&quot;,&quot;</code> (separatorem dziesi&#x119;tnym jest przecinek), <code>header=TRUE</code> (pierwszy wiersz ma nag&#x142;&#xF3;wek). Poniewa&#x17C; wynik tej funkcji nie jest do niczego przypisany, dlatego wczytany zbi&#xF3;r danych jest wy&#x15B;wietlany na ekranie.</p>
-<pre><code class="lang-r">koty_ptaki &lt;- read.table(file = <span class="hljs-string">&quot;http://biecek.pl/MOOC/dane/koty_ptaki.csv&quot;</span>, 
-          sep=<span class="hljs-string">&quot;;&quot;</span>, dec=<span class="hljs-string">&quot;,&quot;</span>, header=<span class="hljs-literal">TRUE</span>)
-<span class="hljs-comment"># Wypiszmy zawarto&#x15B;&#x107; symbolu koty_ptaki</span>
-koty_ptaki
-</code></pre>
-<pre><code>##           gatunek   waga dlugosc predkosc  habitat zywotnosc druzyna
-## 1          Tygrys 300.00     2.5       60     Azja        25     Kot
-## 2             Lew 200.00     2.0       80   Afryka        29     Kot
-## 3          Jaguar 100.00     1.7       90  Ameryka        15     Kot
-## 4            Puma  80.00     1.7       70  Ameryka        13     Kot
-## 5         Leopard  70.00     1.4       85     Azja        21     Kot
-## 6          Gepard  60.00     1.4      115   Afryka        12     Kot
-## 7           Irbis  50.00     1.3       65     Azja        18     Kot
-## 8          Jerzyk   0.05     0.2      170 Euroazja        20    Ptak
-## 9           Strus 150.00     2.5       70   Afryka        45    Ptak
-## 10  Orzel przedni   5.00     0.9      160   Polnoc        20    Ptak
-## 11 Sokol wedrowny   0.70     0.5      110   Polnoc        15    Ptak
-## 12 Sokol norweski   2.00     0.7      100   Polnoc        20    Ptak
-## 13       Albatros   4.00     0.8      120 Poludnie        50    Ptak
-</code></pre><p>W programie R Studio w prawym g&#xF3;rnym oknie, zatytu&#x142;owanym <em>Environment</em> wy&#x15B;wietlane s&#x105; symbole widoczne w g&#x142;&#xF3;wnym &#x15B;rodowisku.  Dwukrotne klikni&#x119;cie na wskazany symbol spowoduje otwarcie okna prezentuj&#x105;cego zawarto&#x15B;&#x107; zmiennej. W ten spos&#xF3;b mo&#x17C;emy szybko podejrze&#x107; co wczyta&#x142;o si&#x119; do zmiennej <code>koty_ptaki</code>. Z przyczyn wydajno&#x15B;ciowych wy&#x15B;wietlanych jest tylko pierwsze 1000 wierszy i kilkaset kolumn. Tak wi&#x119;c dla du&#x17C;ych zbior&#xF3;w danych wy&#x15B;wietlony b&#x119;dzie tylko fragment ca&#x142;ego zbioru.</p>
-<p><img src="rysunki/koty2.png" alt="Zbi&#xF3;r danych o kotach"></p>
-<h2 id="inne-narz&#x119;dzia">Inne narz&#x119;dzia</h2>
-<p>Dla du&#x17C;ych plik&#xF3;w wczytywanie funkcj&#x105; <code>read.table()</code> mo&#x17C;e by&#x107; czasoch&#x142;onne, w takich sytuacjach warto rozwa&#x17C;y&#x107; r&#xF3;wnie&#x17C; funkcj&#x119;  <code>fread {data.table}</code>.</p>
+                        <h1 id="jak-rozpozna&#x107;-rodzaj-zmiennej">Jak rozpozna&#x107; rodzaj zmiennej?</h1>
+<p>W ca&#x142;ym poni&#x17C;szym rozdziale s&#x142;owo <code>zmienna</code> b&#x119;dzie wykorzystywane nie w kontek&#x15B;cie programistycznym (obiekt), ale w kontek&#x15B;cie statystycznym (obserwowana cecha). </p>
+<p>Zanim zaczniemy powa&#x17C;niejsze tematy musimy uzgodni&#x107; podstawy. Pierwsz&#x105;, by&#x107; mo&#x17C;e najwa&#x17C;niejsz&#x105; rzecz&#x105;, o kt&#xF3;rej nale&#x17C;y pami&#x119;ta&#x107; wykonuj&#x105;c jakiekolwiek analizy, jest to, &#x17C;e <em>dane liczbowe to nie tylko liczby!!!</em></p>
+<p>Je&#x17C;eli nie tylko liczby to co jeszcze? </p>
+<p>To liczby i ich znaczenie. Wydaje si&#x119; tak oczywiste, &#x17C;e cz&#x119;sto si&#x119; o tym zapomina, co niestety ma przykre konsekwencje. Przyk&#x142;adowo, je&#x17C;eli mamy zmienn&#x105; o nazwie wiek i jest w niej warto&#x15B;&#x107; 9, to mo&#x17C;e ona mie&#x107; wiele znacze&#x144;. Mo&#x17C;e jest to wiek w latach, mo&#x17C;e warto&#x15B;&#x107; 9 koduje pewien przedzia&#x142; wiekowy, np. 90+ lat, by&#x107; mo&#x17C;e warto&#x15B;&#x107; 9 koduje brak danych (czasem warto&#x15B;ciami 9, 99, 999 koduje si&#x119; braku danych), by&#x107; mo&#x17C;e to wiek ale w miesi&#x105;cach. W zale&#x17C;no&#x15B;ci od tego co znaczy okre&#x15B;lona warto&#x15B;&#x107; nale&#x17C;y j&#x105; inaczej traktowa&#x107;.</p>
+<p>Przyjmijmy nast&#x119;puj&#x105;cy podzia&#x142; zmiennych:</p>
+<ul>
+<li>Zmienne jako&#x15B;ciowe (nazywane r&#xF3;wnie&#x17C; wyliczeniowymi, czynnikowymi lub kategorycznymi), to zmienne przyjmuj&#x105;ce okre&#x15B;lon&#x105; liczb&#x119; warto&#x15B;ci (najcz&#x119;&#x15B;ciej nie liczbowych). Zmienne te mo&#x17C;na dalej podzieli&#x107; na: <ul>
+<li>binarne (nazywane r&#xF3;wnie&#x17C; dwumianowymi, dychotomicznymi) np. p&#x142;e&#x107; (poziomy: kobieta/m&#x119;&#x17C;czyzna),<ul>
+<li>nominalne (nazywane r&#xF3;wnie&#x17C; zmiennymi jako&#x15B;ciowymi nieuporz&#x105;dkowanymi) np. marka samochodu,</li>
+<li>uporz&#x105;dkowane, np. wykszta&#x142;cenie (poziomy: podstawowe/&#x15B;rednie/wy&#x17C;sze), ocena z przedmiotu.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Zmienne ilo&#x15B;ciowe, z kt&#xF3;rych mo&#x17C;na dodatkowo wyr&#xF3;&#x17C;ni&#x107;:<ul>
+<li>zliczenia (liczba wyst&#x105;pie&#x144; pewnego zjawiska, opisywana liczb&#x105; ca&#x142;kowit&#x105;), np. liczba lat nauki, liczba wypadk&#xF3;w,</li>
+<li>ilorazowe, czyli zmienne mierzone w skali, w kt&#xF3;rej mo&#x17C;na dzieli&#x107; warto&#x15B;ci (ilorazy maj&#x105; sens). Np. d&#x142;ugo&#x15B;&#x107; w metrach (co&#x15B; jest 2 razy d&#x142;u&#x17C;sze, 10 razy kr&#xF3;tsze itp.),</li>
+<li>przedzia&#x142;owe (nazywane te&#x17C; interwa&#x142;owymi), mierzone w skali, w kt&#xF3;rej mo&#x17C;na odejmowa&#x107; warto&#x15B;ci (wyznacza&#x107; d&#x142;ugo&#x15B;&#x107; przedzia&#x142;u). Np. daty, mo&#x17C;na liczy&#x107; czas pomi&#x119;dzy dwoma datami ale nie ma sensu ich dzieli&#x107;. Te&#x17C; temperatura, mo&#x17C;na liczy&#x107; r&#xF3;&#x17C;nice temperatur w stopniach Celsjusza, ale nie ma sensu liczy&#x107; ilorazu.</li>
+</ul>
+</li>
+</ul>
+<p>W zale&#x17C;no&#x15B;ci od tego co opisuje zmienna, mo&#x17C;na na niej wykonywa&#x107; inne operacje. Dla zmiennych w skali uporz&#x105;dkowanej mo&#x17C;na wyznacza&#x107; warto&#x15B;&#x107; minimaln&#x105;, maksymaln&#x105;, &#x15B;rodkow&#x105;. Ale mo&#x17C;e nie mie&#x107; sensu liczenie &#x15B;redniej.</p>
 
                     
                     </section>
@@ -628,10 +601,10 @@ koty_ptaki
         </div>
 
         
-        <a href="../Programowanie/jak_wczytywac_i_zapisywac_dane.html" class="navigation navigation-prev " aria-label="Previous page: Jak wczytywać i zapisywać dane?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Analiza/analizadanych_z_programem_r_md.html" class="navigation navigation-prev " aria-label="Previous page: Analiza danych z programem R"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_wczytac_dane_z_excela.html" class="navigation navigation-next " aria-label="Next page: Jak wczytać tabele danych z Excela?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Analiza/jak_badac_rozklad_jednej_zmiennej.html" class="navigation navigation-next " aria-label="Next page: Jak badać rozkład jednej zmiennej?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
