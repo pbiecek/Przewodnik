@@ -30,7 +30,7 @@
        * [Jak badać rozkład dwóch zmiennych?](Analiza/jak_badac_rozklad_dwoch_zmiennych.md)
        * Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)
        * [Jak znaleźć skupiska danych? (analiza Skupisk)](Analiza/analiza_skupisk.md)
-   * Weryfikacja
+   * [Weryfikacja](Analiza/weryfikacja.md)
    * Predykacja
    * Modelowanie danych
 * [Bibliografia](references.md)
