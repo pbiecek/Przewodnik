@@ -1,0 +1,2 @@
+# Jak rozpoznać rodzaj zmiennej?
+
