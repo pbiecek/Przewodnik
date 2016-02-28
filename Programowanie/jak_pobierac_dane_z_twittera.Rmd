@@ -71,6 +71,71 @@ dftweets[,c("id", "created", "text")]
 
 ## Strumień wiadomości
 
+Drugim sposobem pobierania danych z serwisu Twitter jest nasłuchiwanie przez określony okres czasu i zapisywanie wiadomości, które pasują do określonego wzorca. 
+Ten sposób pobierania danych jest możliwy dzięki pakietowi `streamR`.
+
+Aby z niego skorzystać musimy użyć innego sposobu autoryzacji OAuth.
+
+Funkcja `handshake()` wywołana z obiektu klasy `OAuth` otworzy stronę internetową z kluczem, dzięki któremu będzie można dokonać autoryzacji.
+
+```{r, eval=FALSE}
+library(ROAuth)
+requestURL <- "https://api.twitter.com/oauth/request_token"
+accessURL <- "https://api.twitter.com/oauth/access_token"
+authURL <- "https://api.twitter.com/oauth/authorize"
+
+consumerKey <- ".............................."
+consumerSecret <- ".............................."
+
+my_oauth <- OAuthFactory$new(consumerKey=consumerKey,
+                             consumerSecret=consumerSecret, 
+                             requestURL=requestURL, accessURL=accessURL, authURL=authURL)
+my_oauth$handshake(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))
+```
+
+Po wykonaniu autoryzacji można pobierać wiadomości korzystając z funkcji `filterStream()` z pakietu `streamR`.
+
+Przez okres czasu określony w sekundach przez argument `timeout` zapisuje do pliku `file` wiadomości pasujące do wzorca `track`.
+
+```{r, eval=FALSE}
+library(streamR)
+filterStream(file="chopin.json",
+             track="chopin, konkurs", 
+             timeout=5*60, oauth=my_oauth) 
+```
+
+```
+Capturing tweets...
+Connection to Twitter stream was closed after 300 seconds with up to 41 tweets downloaded.
+```
+
+Po zebraniu danych można je następnie wczytać z pliku json do programu R z użyciem funkcji `parseTweet()`. Wczytuje ona wiadomości ze wskazanego pliku a następnie przekształca je do formatu ramki danych.
 
 
+```{r, eval=FALSE}
+parsedTwees <- parseTweets("chopin.json", simplify = FALSE, verbose = TRUE)
+parsedTwees[,c("id_str", "created_at", "text")]
+```
+
+```
+              id_str                     created_at
+1 703746124276998145 Sun Feb 28 00:58:45 +0000 2016
+2 703746342280159232 Sun Feb 28 00:59:37 +0000 2016
+3 703746344213725185 Sun Feb 28 00:59:38 +0000 2016
+4 703746680345067521 Sun Feb 28 01:00:58 +0000 2016
+                                                                                                                                        text
+1                                                                 Frédéric Chopin - Prelude in E-Minor (op.28 no. 4) https://t.co/EdwzCFZedd
+2                                                                    Abbey Simon / Chopin: 3 Waltzes, Op. 64: No. 1 in D-Flat Major "Minute"
+3 SprintAir to base Saab 340 in Radom from April - SprintAir (SRN, Warsaw Chopin) has announced another expansion... https://t.co/8mmHlDU9ry
+4                                       RT @Norah_min: インスタ見た感じだとこのマートンのChopinで演ったっぽいね！？\nhttps://t.co/GlWT3zW11g
+```
+
+## Inne użyteczne funkcje
+
+Poza filtrowaniem twittera w poszukiwaniu wiadomości pasujących do określonych słów kluczowych, można również pobierać dane w inny sposób.
+
+* Funkcja `userTimeline()` pozwala na pobieranie ostatnich wiadomości utworzonych przez określonego użytkownika.
+* Funkcja `homeTimeline()` pozwala na pobieranie wiadomości z linii aktualnego użytkownik.
+* Funkcja `mentions()` pozwala na pobieranie wiadomości, w których określony użytkownik został mieniony.
+* Funkcja `retweetsOfMe()` pozwala na zliczanie liczby retwittów kolejnych wiadomości.
 
