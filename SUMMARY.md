@@ -32,7 +32,7 @@
        * [Jak znaleźć skupiska danych? (analiza Skupisk)](Analiza/analiza_skupisk.md)
    * [Weryfikacja](Analiza/weryfikacja.md)
        * [Jak badać właściwości jednej zmiennej?](Analiza/jak_badac_wlasciwosci_jednej_zmiennej.md)
-       * Jak badać zależności pomiędzy parą zmiennych?
+       * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
    * [Predykacja](Analiza/predykacja.md)
    * Modelowanie danych
 * [Bibliografia](references.md)
