@@ -36,6 +36,7 @@
        * Jak badać warunkowe zależności?
    * [Predykacja](Analiza/predykacja.md)
        * [Jak mierzyć błąd predykcji?](Analiza/jak_mierzyc_blad_predykcji.md)
+       * Jak konstruować komitety predyktorów?
    * Modelowanie danych
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
