@@ -13,6 +13,7 @@
        * [Jak wczytywać korpusy tekstu?](Programowanie/jak_wczytywac_korpusy_tekstu.md)
        * [Jak pobrać dane z...?](Programowanie/jak_pobrac_dane_z.md)
        * [Zadania](Programowanie/zadania.md)
+       * Jak pobierać dane z Twittera?
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
