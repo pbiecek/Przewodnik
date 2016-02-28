@@ -11,7 +11,7 @@
        * [Jak wczytać tabele danych ze strony www?](Programowanie/jak_wczytywac_tabele_z_formatu_html.md)
        * [Jak zeskrobywać dane ze stron www?](Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md)
        * [Jak wczytywać korpusy tekstu?](Programowanie/jak_wczytywac_korpusy_tekstu.md)
-       * Jak pobierać dane z Twittera?
+       * [Jak pobierać dane z Twittera?](Programowanie/jak_pobierac_dane_z_twittera.md)
        * [Jak pobrać dane z...?](Programowanie/jak_pobrac_dane_z.md)
        * [Zadania](Programowanie/zadania.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
