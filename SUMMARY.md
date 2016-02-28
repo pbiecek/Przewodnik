@@ -24,14 +24,15 @@
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
 * [Analiza danych z programem R](Analiza/analizadanych_z_programem_r_md.md)
-   * [Jak rozpoznać rodzaj zmiennej?](Analiza/jak_rozpoznac_rodzaj_zmiennej.md)
-   * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
-   * [Jak badać rozkład dwóch zmiennych?](Analiza/jak_badac_rozklad_dwoch_zmiennych.md)
-   * [Eksploracja danych](Analiza/eksploracja_danych.md)
-       * [Analiza Skupisk](Analiza/analiza_skupisk.md)
+   * [Eksploracja](Analiza/eksploracja_danych.md)
+       * [Jak rozpoznać rodzaj zmiennej?](Analiza/jak_rozpoznac_rodzaj_zmiennej.md)
+       * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
+       * [Jak badać rozkład dwóch zmiennych?](Analiza/jak_badac_rozklad_dwoch_zmiennych.md)
+       * Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)
+       * [Jak znaleźć skupiska danych? (analiza Skupisk)](Analiza/analiza_skupisk.md)
+   * Weryfikacja
+   * Predykacja
    * Modelowanie danych
-       * Jak badać rozkład jednej zmiennej?
-   * Testy
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
 
