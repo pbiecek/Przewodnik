@@ -31,7 +31,7 @@
        * Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)
        * [Jak znaleźć skupiska danych? (analiza Skupisk)](Analiza/analiza_skupisk.md)
    * [Weryfikacja](Analiza/weryfikacja.md)
-   * Predykacja
+   * [Predykacja](Analiza/predykacja.md)
    * Modelowanie danych
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
