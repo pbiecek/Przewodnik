@@ -34,7 +34,7 @@
        * [Jak badać właściwości jednej zmiennej?](Analiza/jak_badac_wlasciwosci_jednej_zmiennej.md)
        * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
        * Jak badać warunkowe zależności?
-   * [Predykacja](Analiza/predykacja.md)
+   * [Predykcja](Analiza/predykcja.md)
        * [Jak mierzyć błąd predykcji?](Analiza/jak_mierzyc_blad_predykcji.md)
        * [Jak konstruować komitety predyktorów?](Analiza/jak_konstruowac_komitety_predyktorow.md)
    * Modelowanie danych
