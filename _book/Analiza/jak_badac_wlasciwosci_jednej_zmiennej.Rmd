@@ -2,15 +2,15 @@
 
 ## Jak weryfikować właściwości zmiennej ilościowej?
 
-W rozdziale o eksploracji jednej zmiennej pokazaliśmy jak wyznaczać romzaite charakterystyki danych.
+W rozdziale o eksploracji jednej zmiennej pokazaliśmy jak wyznaczać rozmaite charakterystyki danych.
 
-Czasem jednak, nie interesuje nas ocena tych arakterystyk, ale chcemy sprawdzić czy istotnie różnią się one od zadanej wartości.
+Czasem jednak, nie interesuje nas ocena tych charakterystyk, ale chcemy sprawdzić czy istotnie różnią się one od zadanej wartości.
 
 Do weryfikacji służą testy statystyczne, poniżej przedstawimy kilka wybranych.
 
 ### Czy ta średnia jest różna od $\mu_0$?
 
-W próbie prostej z rozkładu normlnego, w której nieznana jest wariancja (najczęstsza sytuacja), do weryfikacji hipotezy zerowej dotyczącej parmetru średniej
+W próbie prostej z rozkładu normalnego, w której nieznana jest wariancja (najczęstsza sytuacja), do weryfikacji hipotezy zerowej dotyczącej parametru średniej
 
 $$
 H_0: \mu = \mu_0
@@ -42,7 +42,7 @@ $$
 H_0: m = m_0
 $$
 
-Za statystykę testową wykorzystuje częstosć obserwacji w próbie większych niż $$m_0$$. Zauwazmy, że jest on równoważny testowi weryfikującemu strukturę zmeinnej binarnej, czy $$P(x>m_0) \neq 0.5$$.
+Za statystykę testową wykorzystuje częstość obserwacji w próbie większych niż $$m_0$$. Zauważmy, że jest on równoważny testowi weryfikującemu strukturę zmiennej binarnej, czy $$P(x>m_0) \neq 0.5$$.
 
 Podobnie jak w poprzednim punkcie, sprawdzimy , czy średni wiek posłów różni się istotnie od średniego wieku w populacji osób, którym przysługuje bierne prawo wyborcze. 
 
@@ -55,13 +55,13 @@ prop.test( x = sum(poslowie$Wiek > 50),
 
 ### Czy wariancja jest różna od $\sigma^2$?
 
-Testowac można tez inne parametry, np. wariancje.
+Testować można też inne parametry rozkładu, np. wariancje.
 
 $$
 H_0: \sigma^2 = \sigma^2_0
 $$
 
-Za statystykę testową wykorzystuje się przeskalowany iloraz próbkowej i weryfiokwanej wariancji. 
+Za statystykę testową wykorzystuje się przeskalowany iloraz próbkowej i weryfikowanej wariancji. 
 $$
 t = (n-1) s^2/\sigma_0^2
 $$
@@ -76,5 +76,6 @@ var.test(poslowie$Wiek, ratio=100)
 ## Jak weryfikować wskaźniki struktury zmiennej jakościowej?
 
 ## Jak weryfikować zgodność z rozkładem?
+
 
 
