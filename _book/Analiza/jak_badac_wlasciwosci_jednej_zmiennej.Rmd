@@ -1,0 +1,80 @@
+# Jak badać właściwości jednej zmiennej?
+
+## Jak weryfikować właściwości zmiennej ilościowej?
+
+W rozdziale o eksploracji jednej zmiennej pokazaliśmy jak wyznaczać romzaite charakterystyki danych.
+
+Czasem jednak, nie interesuje nas ocena tych arakterystyk, ale chcemy sprawdzić czy istotnie różnią się one od zadanej wartości.
+
+Do weryfikacji służą testy statystyczne, poniżej przedstawimy kilka wybranych.
+
+### Czy ta średnia jest różna od $\mu_0$?
+
+W próbie prostej z rozkładu normlnego, w której nieznana jest wariancja (najczęstsza sytuacja), do weryfikacji hipotezy zerowej dotyczącej parmetru średniej
+
+$$
+H_0: \mu = \mu_0
+$$
+
+przeciwko alternatywie jedno, lub dwustronnej, wykorzystuje się najczęściej tzw. test t-studenta dla jednej próby (zobacz np. https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test).
+
+Statystyka testowa dla tego testu to 
+$$
+t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}},
+$$
+a rozkład statystyki dla prawdziwej hipotezy zerowej to rozkład t z n-1 stopniami swobody.
+
+Przykładowo, sprawdźmy, czy wiek posłów różni się od średniej w populacji. Bierne prawo wyborcze przysługuje w Polsce od 21 roku życia. Uwzględniając strukturę populacji średnia wiek osób w wieku powyżej 21 roku życia to około 50 lat (TODO: wylicz dokładniej).
+
+Sprawdzimy więc, czy średni wiek posłów różni się istotnie od średniego wieku w populacji osób, którym przysługuje bierne prawo wyborcze. Wykorzystamy do tego funkcję `t.test()` z argumentem `mu`. Argumentem `alternative` można określić alternatywę.
+
+```{r}
+poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")
+
+t.test(poslowie$Wiek, mu = 50)
+```
+
+### Czy ta mediana jest różna od $m_0$?
+
+Jeżeli założenie o rozkładzie normalnym jest nie do przyjęcia, to popularną alternatywą dla testu t jest test dla mediany.
+
+$$
+H_0: m = m_0
+$$
+
+Za statystykę testową wykorzystuje częstosć obserwacji w próbie większych niż $$m_0$$. Zauwazmy, że jest on równoważny testowi weryfikującemu strukturę zmeinnej binarnej, czy $$P(x>m_0) \neq 0.5$$.
+
+Podobnie jak w poprzednim punkcie, sprawdzimy , czy średni wiek posłów różni się istotnie od średniego wieku w populacji osób, którym przysługuje bierne prawo wyborcze. 
+
+```{r}
+prop.test( x = sum(poslowie$Wiek > 50),
+           n = length(poslowie$Wiek),
+           p = 0.5)
+```
+
+
+### Czy wariancja jest różna od $\sigma^2$?
+
+Testowac można tez inne parametry, np. wariancje.
+
+$$
+H_0: \sigma^2 = \sigma^2_0
+$$
+
+Za statystykę testową wykorzystuje się przeskalowany iloraz próbkowej i weryfiokwanej wariancji. 
+$$
+t = (n-1) s^2/\sigma_0^2
+$$
+Przy prawdziwej hipotezie zerowej ma on rozkład $$\chi^2$$ z n-1 stopniami swobody.
+
+```{r}
+library(PairedData)
+
+var.test(poslowie$Wiek, ratio=100)
+```
+
+## Jak weryfikować wskaźniki struktury zmiennej jakościowej?
+
+## Jak weryfikować zgodność z rozkładem?
+
+
