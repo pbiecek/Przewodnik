@@ -1,6 +1,6 @@
 # Podrasuj Przewodnik!
 
-Przewodnik jest zbiorem materiałów poświęconych językowi oraz bibliotekom programu R. Wykorzystuję je do prowadzenia zajęć na MIM Uniwersytet Warszawski i MiNI Politechnika Warszawska.
+Przewodnik jest zbiorem materiałów poświęconych językowi oraz bibliotekom programu R. Wykorzystuję je do prowadzenia zajęć na Wydziale Matematyki i Informatyki Uniwersytetu Warszawskiego oraz Matematyki i Nauk Informacyjnych Politechniki Warszawskiej.
 
 Wersja 4.0 jest dostępna na serwisie GitBook w postaci elektronicznej. Gdy będzie ukończona będzie też dostępna w postaci papierowej.
 
