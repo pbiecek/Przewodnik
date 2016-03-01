@@ -29,7 +29,7 @@ Jest jakiś urok w kolorowej tablicy wypełnionej zadaniami. Jednak to nie liczb
 
 * Zadanie powinno być tak opisane by współpracownicy po przeczytaniu opisu wiedzieli o co chodzi. Również by 'przyszłe ja', które przeczyta treść tego zadania za miesiąc lub rok, aby wiedział co w zadaniu chodziło.
 
-* Zadanie powinno być konkretne, tak by dało się jednoznacznie określić co trzeba zrobić by je zrealizować i by było wiadomo czy zadanie zostało zrealizowane. Złe zadania są mało konkretne, np. 'Poprawić dokumentację'. Dokumentacje zawsze można poprawić, więc takiego zadania nigdy nie można zamknąć. Lepsza treść to `Dla każdej funkcji przygotować przynajmniej dwa akapity opisu`. Takie zadanie można przynajmniej zweryfikować, czy zostało zrealizowane.
+* Zadanie powinno być konkretne, tak by dało się jednoznacznie określić co trzeba zrobić by je zrealizować i by było wiadomo czy zadanie zostało zrealizowane. Złe zadania są mało konkretne, np. `Poprawić dokumentację`. Dokumentacje zawsze można poprawić, więc takiego zadania nigdy nie można zamknąć. Lepsza treść to `Dla każdej funkcji przygotować przynajmniej dwa akapity opisu`. Takie zadanie można przynajmniej zweryfikować, czy zostało zrealizowane.
 
 * Zadanie powinno mieć przypisanego opiekuna. Jedną osobę, która troszczy się o to by zostało zrealizowane.
 

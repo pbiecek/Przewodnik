@@ -28,25 +28,10 @@ Przykładowo, sprawdźmy, czy wiek posłów różni się od średniej w populacj
 
 Sprawdzimy więc, czy średni wiek posłów różni się istotnie od średniego wieku w populacji osób, którym przysługuje bierne prawo wyborcze. Wykorzystamy do tego funkcję `t.test()` z argumentem `mu`. Argumentem `alternative` można określić alternatywę.
 
-
-```r
+```{r}
 poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")
 
 t.test(poslowie$Wiek, mu = 50)
-```
-
-```
-## 
-## 	One Sample t-test
-## 
-## data:  poslowie$Wiek
-## t = 0.71092, df = 453, p-value = 0.4775
-## alternative hypothesis: true mean is not equal to 50
-## 95 percent confidence interval:
-##  49.35051 51.38575
-## sample estimates:
-## mean of x 
-##  50.36813
 ```
 
 ### Czy ta mediana jest różna od $m_0$?
@@ -61,25 +46,10 @@ Za statystykę testową wykorzystuje częstosć obserwacji w próbie większych 
 
 Podobnie jak w poprzednim punkcie, sprawdzimy , czy średni wiek posłów różni się istotnie od średniego wieku w populacji osób, którym przysługuje bierne prawo wyborcze. 
 
-
-```r
+```{r}
 prop.test( x = sum(poslowie$Wiek > 50),
            n = length(poslowie$Wiek),
            p = 0.5)
-```
-
-```
-## 
-## 	1-sample proportions test with continuity correction
-## 
-## data:  sum(poslowie$Wiek > 50) out of length(poslowie$Wiek), null probability 0.5
-## X-squared = 4.4604, df = 1, p-value = 0.03469
-## alternative hypothesis: true p is not equal to 0.5
-## 95 percent confidence interval:
-##  0.5035678 0.5968833
-## sample estimates:
-##         p 
-## 0.5506608
 ```
 
 
@@ -97,25 +67,10 @@ t = (n-1) s^2/\sigma_0^2
 $$
 Przy prawdziwej hipotezie zerowej ma on rozkład $$\chi^2$$ z n-1 stopniami swobody.
 
-
-```r
+```{r}
 library(PairedData)
 
 var.test(poslowie$Wiek, ratio=100)
-```
-
-```
-## 
-## 	One-sample variance test
-## 
-## data:  x
-## X-squared = 551.45, df = 453, p-value = 0.002058
-## alternative hypothesis: true variance is not equal to 100
-## 95 percent confidence interval:
-##  107.3135 139.2817
-## sample estimates:
-## variance 
-## 121.7322
 ```
 
 ## Jak weryfikować wskaźniki struktury zmiennej jakościowej?
