@@ -129,19 +129,19 @@ Przyjmując $$m_r = \sum_i (x_i - mu)^r / n$$
 Typ: 1
 
 $$
-g_1 = m_3 / m_2^(3/2)
+g_1 = m_3 / m_2^{3/2}
 $$
 
 Typ: 2 (domyślny w SAS i SPSS),
 
 $$
-G_1 = g_1 * sqrt(n(n-1)) / (n-2).
+G_1 = g_1 * \sqrt(n(n-1)) / (n-2).
 $$
 
 Typ: 3 (domyślny w R)
 
 $$
-b_1 = m_3 / s^3 = g_1 ((n-1)/n)^(3/2).
+b_1 = m_3 / s^3 = g_1 \left((n-1)/n\right)^{3/2}.
 $$
 
 Wszystkie trzy estymatory są nieobciążone dla modelu normalnego.
@@ -252,7 +252,7 @@ boxplot(poslowie$Wiek, col="grey", horizontal = TRUE)
 ### Histogram
 
 Histogram jest bez wątpienia najpopularniejszą statystyką graficzną przedstawiającą rozkład jednej zmiennej. 
-Przedstawia liczeby wartości zmiennej w poszczególnych przedziałach (te przedziały nazywane są również klasami lub kubełkami). Deklaracja tej funkcji (pomijając argumenty graficzne) jest następująca:
+Przedstawia liczby wartości zmiennej w poszczególnych przedziałach (te przedziały nazywane są również klasami lub kubełkami). Deklaracja tej funkcji (pomijając argumenty graficzne) jest następująca:
 
 ```
 hist(x, breaks = "Sturges", freq = NULL, probability = !freq,
@@ -261,7 +261,7 @@ hist(x, breaks = "Sturges", freq = NULL, probability = !freq,
 
 Argument `x` określa wektor wartości, dla których histogram ma być wyznaczony, argument `breaks` określa podział zakresu zmienności wektora `x` na przedziały, argument `freq` określa, czy przy rysowaniu histogramu mają być zaznaczane frakcje, czy liczebności elementów w przedziałach. Argument `right` określa, czy przedziały mają być traktowane jako domknięte prawostronnie, czy lewostronnie, argument `plot` określa, czy histogram ma być rysowany, czy tylko wyznaczany ma być opis histogramu, argument `labels` pozwala na wskazanie wektora napisów, które będą naniesione na słupki odpowiadające kolejnym przedziałom.
 
-Jeżeli nie podamy liczby przedziałów, to zostanie ona dobrana w~zależności od liczby obserwacji oraz zmienności danej zmiennej. Do określania liczby i szerokości przedziałów służy argument `breaks`. Jeżeli podamy za wartość tego argumentu liczbę, to będzie ona potraktowana jako sugestia oczekiwanej liczby automatycznie wyznaczonych przedziałów (tylko sugestia ponieważ funkcja `hist()` może liczbę nieznacznie zwiększyć lub zmniejszyć). Jeżeli podany będzie wektor liczb, to będzie on uznany za wektor punktów rozdzielających przedziały (przedziały nie muszą mieć równych szerokości). Jeżeli argumentem będzie napis, to zostanie on zinterpretowany jako nazwa algorytmu do wyznaczenia liczby przedziałów (możliwe wartości to `"Sturges"`, `"Scott"`, `"FD"` i `"Freedman-Diaconis"`. 
+Jeżeli nie podamy liczby przedziałów, to zostanie ona dobrana w zależności od liczby obserwacji oraz zmienności danej zmiennej. Do określania liczby i szerokości przedziałów służy argument `breaks`. Jeżeli podamy za wartość tego argumentu liczbę, to będzie ona potraktowana jako sugestia oczekiwanej liczby automatycznie wyznaczonych przedziałów (tylko sugestia ponieważ funkcja `hist()` może liczbę nieznacznie zwiększyć lub zmniejszyć). Jeżeli podany będzie wektor liczb, to będzie on uznany za wektor punktów rozdzielających przedziały (przedziały nie muszą mieć równych szerokości). Jeżeli argumentem będzie napis, to zostanie on zinterpretowany jako nazwa algorytmu do wyznaczenia liczby przedziałów (możliwe wartości to `"Sturges"`, `"Scott"`, `"FD"` i `"Freedman-Diaconis"`. 
 
 
 ```r
@@ -270,7 +270,7 @@ hist(poslowie$Wiek, col="grey")
 
 ![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
 
-Domyślnie, funkcja `hist()` na osi poziomej zaznacza liczebności obserwacji w~poszczególnych klasach. Jeżeli chcemy wyznaczyć proporcje, to należy funkcji `hist()` podać argument `freq=FALSE` lub (równoważnie) `probability=TRUE`.
+Domyślnie, funkcja `hist()` na osi poziomej zaznacza liczebności obserwacji w poszczególnych klasach. Jeżeli chcemy wyznaczyć proporcje, to należy funkcji `hist()` podać argument `freq=FALSE` lub (równoważnie) `probability=TRUE`.
 
 ### Dystrybuanta empiryczna
 
@@ -296,11 +296,11 @@ density(x, bw = "nrd0", adjust = 1, kernel, weights = NULL,
 ```
 
 Argument `x` określa wektor wartości, dla których chcemy wyznaczyć ocenę gęstości. 
-Argumenty `from` i `to` określają początek i koniec przedziału, w którym wyznaczona ma być gęstość, argument \verb|n| określa liczbę punktów, w~których wartość gęstości ma być wyznaczona (gęstość wyliczana jest dla~regularnej siatki punktów). Parametry `kernel` i `bw` służą do określenia rodzaju jądra i szerokości okna. Wynikiem funkcji `density()` jest obiekt klasy `density`, którego składowe przechowują wartości ocen gęstości we wskazanych punktach. Obiekty tej klasy można przedstawiać graficznie przeciążoną funkcją `plot()`.
+Argumenty `from` i `to` określają początek i koniec przedziału, w którym wyznaczona ma być gęstość, argument \verb|n| określa liczbę punktów, w których wartość gęstości ma być wyznaczona (gęstość wyliczana jest dla regularnej siatki punktów). Parametry `kernel` i `bw` służą do określenia rodzaju jądra i szerokości okna. Wynikiem funkcji `density()` jest obiekt klasy `density`, którego składowe przechowują wartości ocen gęstości we wskazanych punktach. Obiekty tej klasy można przedstawiać graficznie przeciążoną funkcją `plot()`.
 
-Domyślnie, ocena gęstości wyznaczana jest z użyciem jądra gaussowskiego. Przeglądając plik pomocy dla funkcji `density()` zainteresowany czytelnik odkryje jak wykorzystywać inne jądra i~czym one się różnią. 
+Domyślnie, ocena gęstości wyznaczana jest z użyciem jądra gaussowskiego. Przeglądając plik pomocy dla funkcji `density()` zainteresowany czytelnik odkryje jak wykorzystywać inne jądra i czym one się różnią. 
 
-Szerokość pasma (szerokość okna) można ustalić ręcznie lub wskazać regułę wyboru szerokości okna, która automatycznie wybierze najodpowiedniejszą szerokość. W~pakiecie `stats` zaimplementowanych jest pięć różnych metod automatycznego wyboru szerokości pasma. 
+Szerokość pasma (szerokość okna) można ustalić ręcznie lub wskazać regułę wyboru szerokości okna, która automatycznie wybierze najodpowiedniejszą szerokość. W pakiecie `stats` zaimplementowanych jest pięć różnych metod automatycznego wyboru szerokości pasma. 
 
 Domyślnie stosowana jest ,,reguła kciuka'' (stosowana gdy `bw="nrd0"`) zaproponowana przez Silvermana. Zgodnie z tą regułą szerokość okna `h` wyznaczana jest ze wzoru
 
@@ -308,7 +308,7 @@ $$
 h_{bw.nrd0} = 0.9 \min(\hat \sigma, IQR/1.34) n^{-1/5},
 $$
 
-gdzie $$\hat \sigma$$ to ocena odchylenia standardowego, IQR to rozstęp kwartylowy z~próby a~$n$~to liczba obserwacji. Magiczna stała $1.34$ bierze się stąd, że dla rozkładu normalnego $$IQR/1.34 \approx \sigma$$. 
+gdzie $$\hat \sigma$$ to ocena odchylenia standardowego, IQR to rozstęp kwartylowy z próby a $n$ to liczba obserwacji. Magiczna stała $1.34$ bierze się stąd, że dla rozkładu normalnego $$IQR/1.34 \approx \sigma$$. 
 
 Inną popularną regułą kciuka jest reguła Scott'a, stosowana gdy `bw="nrd"`
 
@@ -316,8 +316,8 @@ $$
 h_{bw.nrd} = 1.06 \hat \sigma n^{-1/5}.
 $$
 
-Można wybrać też inne reguły wyboru szerokości pasma, np. oparte o~metodę walidacji krzyżowej (ang. *cross validation*), nieobciążoną dla argumentu `bw="ucv"` i~ bciążoną dla argumentu `bw="bcv"`, lub estymator typu `plug-in` Sheathera Jonesa (dla argumentu `bw="SJ"`). 
-W~większości przypadków~najlepsze wyniki dla oceny szerokości pasma otrzymuje się wykorzystując metodę Sheathera Jonesa.
+Można wybrać też inne reguły wyboru szerokości pasma, np. oparte o metodę walidacji krzyżowej (ang. *cross validation*), nieobciążoną dla argumentu `bw="ucv"` i  bciążoną dla argumentu `bw="bcv"`, lub estymator typu `plug-in` Sheathera Jonesa (dla argumentu `bw="SJ"`). 
+W większości przypadków najlepsze wyniki dla oceny szerokości pasma otrzymuje się wykorzystując metodę Sheathera Jonesa.
 
 
 
