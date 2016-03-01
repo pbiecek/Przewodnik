@@ -8,7 +8,7 @@ Czasem jednak, nie interesuje nas ocena tych charakterystyk, ale chcemy sprawdzi
 
 Do weryfikacji służą testy statystyczne, poniżej przedstawimy kilka wybranych.
 
-### Czy ta średnia jest różna od $\mu_0$?
+### Czy ta średnia jest różna od $$\mu_0$$?
 
 W próbie prostej z rozkładu normalnego, w której nieznana jest wariancja (najczęstsza sytuacja), do weryfikacji hipotezy zerowej dotyczącej parametru średniej
 
@@ -49,7 +49,7 @@ t.test(poslowie$Wiek, mu = 50)
 ##  50.36813
 ```
 
-### Czy ta mediana jest różna od $m_0$?
+### Czy ta mediana jest różna od $$m_0$$?
 
 Jeżeli założenie o rozkładzie normalnym jest nie do przyjęcia, to popularną alternatywą dla testu t jest test dla mediany.
 
@@ -83,7 +83,7 @@ prop.test( x = sum(poslowie$Wiek > 50),
 ```
 
 
-### Czy wariancja jest różna od $\sigma^2$?
+### Czy wariancja jest różna od $$\sigma^2$$?
 
 Testować można też inne parametry rozkładu, np. wariancje.
 
@@ -121,17 +121,17 @@ var.test(poslowie$Wiek, ratio=100)
 ## Jak weryfikować wskaźniki struktury zmiennej binarnej?
 
 
-### Czy ta częstość jest różna od $p_0$?
+### Czy ta częstość jest różna od $$p_0$$?
 
 Zmienne jakościowe charakteryzuje się za pomocą częstości występowania poszczególnych wartości.
 
-Również z punktu widzenia weryfikacji, interesujące są te częstości występowania. Typowa hipoteza zerowa, weryfikuje, czy częstość występowania wyróżnionego poziomu różni się od $p_0$.
+Również z punktu widzenia weryfikacji, interesujące są te częstości występowania. Typowa hipoteza zerowa, weryfikuje, czy częstość występowania wyróżnionego poziomu różni się od $$p_0$$.
 
 $$
 H_0: p = p_0
 $$
 
-Statystyką testową jest liczba wystąpień wyróżnionego poziomu, która przy prawdziwej hipotezie zerowej ma rozkład dwumianowy z parametrem $p_0$.
+Statystyką testową jest liczba wystąpień wyróżnionego poziomu, która przy prawdziwej hipotezie zerowej ma rozkład dwumianowy z parametrem $$p_0$$.
 
 Wykorzystajmy ten test aby zweryfikować, czy częstość kobiet w Sejmie istotnie odbiega od częstości kobiet w populacji (nieznacznie ponad 0.5). Wykorzystamy do tego funkcję `binom.test()`, wykonującą dokładny test dwumianowy (często wykorzystywana funkcja `prop.test()` wykorzystuje rozkład asymptotyczny).
 
