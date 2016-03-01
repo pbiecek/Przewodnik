@@ -36,10 +36,12 @@ Czy potrafisz je wskazać?
 
 Z pewnością należą do nich `Wiek` i `Glosow`. 
 
+### Średnia
+
 Jaki jest średni wiek posłów?
 
 $$
-\hat X = \sum_{i=1}^N x_i / N
+\bar x = \sum_{i=1}^n x_i / n.
 $$
 
 
@@ -50,6 +52,8 @@ mean(poslowie$Wiek)
 ```
 ## [1] 50.36813
 ```
+
+### Średnia Windsorowska
 
 A średnia obcięta, wyznaczona na podstawie 60\% środkowych obserwacji?
 
@@ -62,6 +66,8 @@ mean(poslowie$Wiek, trim=0.2)
 ## [1] 51.01785
 ```
 
+### Mediana
+
 Mediana bliska średniej, czyżby brak skośności?
 
 
@@ -73,7 +79,13 @@ median(poslowie$Wiek)
 ## [1] 51.87
 ```
 
+### Odchylenie standardowe
+
 Odchylenie standardowe zmiennej wiek.
+
+$$
+\bar \sigma = \sqrt{sum_{i=1}^n (x_i - \bar x)^2 / (n-1)}
+$$
 
 
 ```r
@@ -83,6 +95,8 @@ sd(poslowie$Wiek)
 ```
 ## [1] 11.03323
 ```
+
+### Rozstęp
 
 Jaka jest najmniejsza i największa wartość przyjmowana przez zmienną Wiek?
 
@@ -95,7 +109,9 @@ range(poslowie$Wiek)
 ## [1] 23.50 77.53
 ```
 
-Ile wynosi rozstęp kwartylowy?
+### Rozstęp kartylowy
+
+Ile wynosi rozstęp kwartylowy (różnica pomiędzy 3. a 1. kwartylem)?
 
 
 ```r
@@ -106,7 +122,31 @@ IQR(poslowie$Wiek)
 ## [1] 17.195
 ```
 
-Kurtoza / miara spłaszczenia. Aby ją wyznaczyć potrzebujemy pakietu `e1071`.
+### Kurtoza / miara spłaszczenia
+
+Aby ją wyznaczyć potrzebujemy pakietu `e1071`.
+
+Kurtozę można liczyć na kilka sposobów. 
+
+Typ: 1
+
+$$
+g_2 = m_4 / m_2^2 - 3.
+$$
+
+Typ: 2 (domyślny w SAS i SPSS), nieobciążony estymator kurtozy dla r. normalnego.
+
+$$
+G_2 = ((n+1) g_2 + 6) * (n-1) / ((n-2)(n-3))
+$$
+
+Typ: 3 (domyślny w R)
+
+$$
+b_2 = m_4 / s^4 - 3 = (g_2 + 3) (1 - 1/n)^2 - 3.
+$$
+
+Więcej o porównaniu tych estymatorów *D. N. Joanes and C. A. Gill (1998), Comparing measures of sample skewness and kurtosis. The Statistician, 47, 183–189.*
 
 
 ```r
@@ -118,7 +158,29 @@ kurtosis(poslowie$Wiek)
 ## [1] -0.7078222
 ```
 
-Skośność.
+### Skośność
+
+Przyjmując $$m_r = ∑_i (x_i - mu)^r / n$$
+
+Typ: 1
+
+$$
+g_1 = m_3 / m_2^(3/2)
+$$
+
+Typ: 2 (domyślny w SAS i SPSS),
+
+$$
+G_1 = g_1 * sqrt(n(n-1)) / (n-2).
+$$
+
+Typ: 3 (domyślny w R)
+
+$$
+b_1 = m_3 / s^3 = g_1 ((n-1)/n)^(3/2).
+$$
+
+Wszystkie trzy estymatory są nieobciążone dla modelu normalnego.
 
 
 ```r
@@ -130,7 +192,11 @@ skewness(poslowie$Wiek)
 ```
 
 
+### Kwantyle
+
 Wybrane kwantyle zmiennej wiek.
+
+W pakiecie R zaimplementowanych jest 9 różnych metod liczenia kwantyli, zobacz argument type.
 
 
 ```r
@@ -142,7 +208,15 @@ quantile(poslowie$Wiek, c(0.1, 0.25, 0.5, 0.75, 0.9))
 ## 34.586 42.025 51.870 59.220 63.864
 ```
 
-Odchylenie medianowe.
+### Odchylenie medianowe
+
+Odchylenie medianowe
+
+$$
+mad = 1.4826 * median(abs(x - median(x)))
+$$
+
+Stała $$1.4826 \approx 1/ \Phi^(-1)(3/4)$$ jest wybrana by wartość oczekiwana była równa odchyleniu standardowemu dla modelu normalnego.
 
 
 ```r
@@ -153,7 +227,7 @@ mad(poslowie$Wiek)
 ## [1] 12.39454
 ```
 
-Najwazniejsze statystyki
+### Najwazniejsze statystyki
 
 
 ```r
@@ -164,6 +238,39 @@ summary(poslowie$Wiek)
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   23.50   42.02   51.87   50.37   59.22   77.53
 ```
+
+### Histogram
+
+
+```r
+hist(poslowie$Wiek, col="grey")
+```
+
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png)
+
+### Dystrybuanta empiryczna
+
+
+```r
+plot(ecdf(poslowie$Wiek), las=1)
+```
+
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
+
+### Jądrowy estymator gęstości
+
+
+```r
+plot(density(poslowie$Wiek, bw=1), las=1)
+```
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
+
+```r
+plot(density(poslowie$Wiek, bw=3), las=1)
+```
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-2.png)
 
 ## Zmienna jakościowa
 
