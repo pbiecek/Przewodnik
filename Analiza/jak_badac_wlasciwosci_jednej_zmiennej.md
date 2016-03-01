@@ -118,7 +118,61 @@ var.test(poslowie$Wiek, ratio=100)
 ## 121.7322
 ```
 
-## Jak weryfikować wskaźniki struktury zmiennej jakościowej?
+## Jak weryfikować wskaźniki struktury zmiennej binarnej?
+
+
+### Czy ta częstość jest różna od $p_0$?
+
+Zmienne jakościowe charakteryzuje się za pomocą częstości występowania poszczególnych wartości.
+
+Również z punktu widzenia weryfikacji, interesujące są te częstości występowania. Typowa hipoteza zerowa, weryfikuje, czy częstość występowania wyróżnionego poziomu różni się od $p_0$.
+
+$$
+H_0: p = p_0
+$$
+
+Statystyką testową jest liczba wystąpień wyróżnionego poziomu, która przy prawdziwej hipotezye zerowej ma rozkład dwumianowy z parametrem $p_0$.
+
+Wykorzystajmy ten test aby zweryfikować, czy rczęstość kobiet w Sejmie istotnie odbiega od częśtości kobiet w populacji (nieznacznie ponad 0.5). Wykorzystamy do tego funkcję `binom.test()`, wykonującą dokładny test dwumianowy (często wykorzystywana funkcja `prop.test()` wykorzystuje rozkład asymptotyczny).
+
+Informacji o płci nie mamy, musimy ją wynzaczyć na podstawie ostatniej litery imienia.
+
+
+```r
+poslowie$Kobieta <- grepl(gsub(poslowie$ImieNazwisko, pattern=" .*$", replacement = ""), pattern = "a$")
+poslowie$Kobieta <- ifelse(poslowie$Kobieta, "Kobieta", "Mężczyzna")
+
+table(poslowie$Kobieta)
+```
+
+```
+## 
+##   Kobieta Mężczyzna 
+##       125       329
+```
+
+```r
+binom.test(x = sum(poslowie$Kobieta == "Kobieta"),
+           n = length(poslowie$Kobieta),
+          p = 0.5)
+```
+
+```
+## 
+## 	Exact binomial test
+## 
+## data:  sum(poslowie$Kobieta == "Kobieta") and length(poslowie$Kobieta)
+## number of successes = 125, number of trials = 454, p-value <
+## 2.2e-16
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.2347201 0.3188961
+## sample estimates:
+## probability of success 
+##              0.2753304
+```
+
+
 
 ## Jak weryfikować zgodność z rozkładem?
 
