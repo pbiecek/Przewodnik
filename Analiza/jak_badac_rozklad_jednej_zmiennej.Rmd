@@ -107,7 +107,7 @@ kurtosis(poslowie$Wiek)
 
 ### Skośność
 
-Przyjmując $$m_r = ∑_i (x_i - mu)^r / n$$
+Przyjmując $$m_r = \sum_i (x_i - mu)^r / n$$
 
 Typ: 1
 

@@ -160,7 +160,7 @@ kurtosis(poslowie$Wiek)
 
 ### Skośność
 
-Przyjmując $$m_r = ∑_i (x_i - mu)^r / n$$
+Przyjmując $$m_r = \sum_i (x_i - mu)^r / n$$
 
 Typ: 1
 
@@ -239,14 +239,37 @@ summary(poslowie$Wiek)
 ##   23.50   42.02   51.87   50.37   59.22   77.53
 ```
 
+### Wykres pudełkowy
+
+
+```r
+boxplot(poslowie$Wiek, col="grey", horizontal = TRUE)
+```
+
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png)
+
 ### Histogram
+
+Histogram jest bez wątpienia najpopularniejszą statystyką graficzną przedstawiającą rozkład jednej zmiennej. 
+Przedstawia liczeby wartości zmiennej w poszczególnych przedziałach (te przedziały nazywane są również klasami lub kubełkami). Deklaracja tej funkcji (pomijając argumenty graficzne) jest następująca:
+
+```
+hist(x, breaks = "Sturges", freq = NULL, probability = !freq,
+     right = TRUE, plot = TRUE, labels = FALSE, ...)
+```
+
+Argument `x` określa wektor wartości, dla których histogram ma być wyznaczony, argument `breaks` określa podział zakresu zmienności wektora `x` na przedziały, argument `freq` określa, czy przy rysowaniu histogramu mają być zaznaczane frakcje, czy liczebności elementów w przedziałach. Argument `right` określa, czy przedziały mają być traktowane jako domknięte prawostronnie, czy lewostronnie, argument `plot` określa, czy histogram ma być rysowany, czy tylko wyznaczany ma być opis histogramu, argument `labels` pozwala na wskazanie wektora napisów, które będą naniesione na słupki odpowiadające kolejnym przedziałom.
+
+Jeżeli nie podamy liczby przedziałów, to zostanie ona dobrana w~zależności od liczby obserwacji oraz zmienności danej zmiennej. Do określania liczby i szerokości przedziałów służy argument `breaks`. Jeżeli podamy za wartość tego argumentu liczbę, to będzie ona potraktowana jako sugestia oczekiwanej liczby automatycznie wyznaczonych przedziałów (tylko sugestia ponieważ funkcja `hist()` może liczbę nieznacznie zwiększyć lub zmniejszyć). Jeżeli podany będzie wektor liczb, to będzie on uznany za wektor punktów rozdzielających przedziały (przedziały nie muszą mieć równych szerokości). Jeżeli argumentem będzie napis, to zostanie on zinterpretowany jako nazwa algorytmu do wyznaczenia liczby przedziałów (możliwe wartości to `"Sturges"`, `"Scott"`, `"FD"` i `"Freedman-Diaconis"`. 
 
 
 ```r
 hist(poslowie$Wiek, col="grey")
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
+
+Domyślnie, funkcja `hist()` na osi poziomej zaznacza liczebności obserwacji w~poszczególnych klasach. Jeżeli chcemy wyznaczyć proporcje, to należy funkcji `hist()` podać argument `freq=FALSE` lub (równoważnie) `probability=TRUE`.
 
 ### Dystrybuanta empiryczna
 
@@ -255,7 +278,7 @@ hist(poslowie$Wiek, col="grey")
 plot(ecdf(poslowie$Wiek), las=1)
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
 
 ### Jądrowy estymator gęstości
 
@@ -264,13 +287,13 @@ plot(ecdf(poslowie$Wiek), las=1)
 plot(density(poslowie$Wiek, bw=1), las=1)
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png)
 
 ```r
 plot(density(poslowie$Wiek, bw=3), las=1)
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-2.png)
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-2.png)
 
 ## Zmienna jakościowa
 
