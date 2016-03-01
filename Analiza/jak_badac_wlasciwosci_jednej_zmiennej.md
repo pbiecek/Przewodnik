@@ -131,11 +131,11 @@ $$
 H_0: p = p_0
 $$
 
-Statystyką testową jest liczba wystąpień wyróżnionego poziomu, która przy prawdziwej hipotezye zerowej ma rozkład dwumianowy z parametrem $p_0$.
+Statystyką testową jest liczba wystąpień wyróżnionego poziomu, która przy prawdziwej hipotezie zerowej ma rozkład dwumianowy z parametrem $p_0$.
 
-Wykorzystajmy ten test aby zweryfikować, czy rczęstość kobiet w Sejmie istotnie odbiega od częśtości kobiet w populacji (nieznacznie ponad 0.5). Wykorzystamy do tego funkcję `binom.test()`, wykonującą dokładny test dwumianowy (często wykorzystywana funkcja `prop.test()` wykorzystuje rozkład asymptotyczny).
+Wykorzystajmy ten test aby zweryfikować, czy częstość kobiet w Sejmie istotnie odbiega od częstości kobiet w populacji (nieznacznie ponad 0.5). Wykorzystamy do tego funkcję `binom.test()`, wykonującą dokładny test dwumianowy (często wykorzystywana funkcja `prop.test()` wykorzystuje rozkład asymptotyczny).
 
-Informacji o płci nie mamy, musimy ją wynzaczyć na podstawie ostatniej litery imienia.
+Informacji o płci nie mamy, musimy ją wyznaczyć na podstawie ostatniej litery imienia.
 
 
 ```r
@@ -175,6 +175,7 @@ binom.test(x = sum(poslowie$Kobieta == "Kobieta"),
 
 
 ## Jak weryfikować zgodność z rozkładem?
+
 
 
 
