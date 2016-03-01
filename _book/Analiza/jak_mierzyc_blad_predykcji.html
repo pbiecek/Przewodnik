@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak wczytywać korpusy tekstu? | Przewodnik po pakiecie R 4.0</title>
+        <title>Jak mierzyć błąd predykcji? | Przewodnik po pakiecie R 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_pobierac_dane_z_twittera.html" />
+    <link rel="next" href="../Analiza/jak_konstruowac_komitety_predyktorow.html" />
     
     
-    <link rel="prev" href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html" />
+    <link rel="prev" href="../Analiza/predykcja.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="2.3.5"
-        data-chapter-title="Jak wczytywać korpusy tekstu?"
-        data-filepath="Programowanie/jak_wczytywac_korpusy_tekstu.md"
+        data-level="3.3.1"
+        data-chapter-title="Jak mierzyć błąd predykcji?"
+        data-filepath="Analiza/jak_mierzyc_blad_predykcji.md"
         data-basepath=".."
         data-revision="Tue Mar 01 2016 01:14:51 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -219,7 +219,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
+        <li class="chapter " data-level="2.3.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
             
                 
                     <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html">
@@ -554,7 +554,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.3.1" data-path="Analiza/jak_mierzyc_blad_predykcji.html">
+        <li class="chapter active" data-level="3.3.1" data-path="Analiza/jak_mierzyc_blad_predykcji.html">
             
                 
                     <a href="../Analiza/jak_mierzyc_blad_predykcji.html">
@@ -664,56 +664,10 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jak-wczytywa&#x107;-korpusy-tekstu">Jak wczytywa&#x107; korpusy tekstu?</h1>
-<p>Dane nie zawsze maj&#x105; struktur&#x119; tabeli. Czasem jedyn&#x105; opcj&#x105; jest wczytanie pliku jako wektora napis&#xF3;&#x2211; - linia po linii. Do tego celu mo&#x17C;na u&#x17C;yc funkcji <code>readLines()</code>, kt&#xF3;ra potrafi wczyta&#x107; dane zar&#xF3;wno z lokalnego pliku jaki bezpo&#x15B;rendnio z adresu URL w internecie.</p>
-<p>Wykorzystajmy t&#x119; funkcj&#x119;, aby z projektu Gutenberg www.gutenberg.org wczyta&#x107; tre&#x15B;&#x107; ksia&#x17C;ki Juliusza Verne, ,,W 80 dni dooko&#x142;a &#x15B;wiata&apos;&apos; (<a href="http://www.gutenberg.org/cache/epub/103/pg103.txt" target="_blank">http://www.gutenberg.org/cache/epub/103/pg103.txt</a>).</p>
-<pre><code class="lang-r"><span class="hljs-comment"># W 80 dni dooko&#x142;a &#x15B;wiata</span>
-w80dni &lt;- readLines(<span class="hljs-string">&quot;http://www.gutenberg.org/cache/epub/103/pg103.txt&quot;</span>)
-</code></pre>
-<pre><code>## Warning in readLines(&quot;http://www.gutenberg.org/cache/epub/103/pg103.txt&quot;):
-## incomplete final line found on &apos;http://www.gutenberg.org/cache/epub/103/
-## pg103.txt&apos;
-</code></pre><pre><code class="lang-r"><span class="hljs-comment"># Kilka pierwszych linii</span>
-head(w80dni)
-</code></pre>
-<pre><code>## [1] &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML+RDFa 1.0//EN\&quot; \&quot;http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd\&quot;&gt;&quot;
-## [2] &quot;&lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&quot;                                                              
-## [3] &quot;&quot;                                                                                                           
-## [4] &quot;&quot;                                                                                                           
-## [5] &quot;&lt;head&gt;&quot;                                                                                                     
-## [6] &quot;&lt;style type=\&quot;text/css\&quot;&gt;&quot;
-</code></pre><p>Zobaczmy jakie s&#x142;owa sa najcz&#x119;&#x15B;ciej uzywane w tej powie&#x15B;ci.</p>
-<pre><code class="lang-r"><span class="hljs-comment"># rozbicie linii na s&#x142;owa</span>
-slowa &lt;- unlist(strsplit(w80dni, split=<span class="hljs-string">&quot;[^A-Za-z0-9]+&quot;</span>))
-<span class="hljs-comment"># liczba s&#x142;&#xF3;w i charakterystyki</span>
-length(slowa)
-</code></pre>
-<pre><code>## [1] 1758
-</code></pre><pre><code class="lang-r"><span class="hljs-comment">## [1] 68460</span>
-<span class="hljs-comment"># Najcz&#x119;stsze s&#x142;owa</span>
-head(sort(table(slowa), decreasing = <span class="hljs-literal">TRUE</span>), <span class="hljs-number">50</span>)
-</code></pre>
-<pre><code>## slowa
-##                    td         tr         en       lang         id 
-##        254         84         52         50         48         33 
-##         th        div        xml      class       type      title 
-##         32         28         26         25         24         21 
-##          a    content       name       meta     button  Gutenberg 
-##         20         18         18         17         16         16 
-##  recaptcha    Project       href          p    captcha     search 
-##         16         15         14         14         13         13 
-##       icon      input        www  gutenberg        org       text 
-##         12         12         12         11         11         11 
-##        var     ebooks       http      table     dialog     jquery 
-##         11         10         10         10          8          8 
-##     script       span      value          w      audio       form 
-##          8          8          8          8          7          7 
-##         if      image javascript       only   property   question 
-##          7          7          7          7          7          7 
-##      badge         by 
-##          6          6
-</code></pre><h2 id="inne-przydatne-narz&#x119;dzia">Inne przydatne narz&#x119;dzia</h2>
-<p>Pakiet Rpoppler <a href="https://cran.r-project.org/web/packages/Rpoppler/index.html" target="_blank">https://cran.r-project.org/web/packages/Rpoppler/index.html</a> umo&#x17C;liwia korzystanie z funkcjonalno&#x15B;ci biblioteki poppler <a href="http://poppler.freedesktop.org/" target="_blank">http://poppler.freedesktop.org/</a> do pracy z dokumentami pdf. Mi&#x119;dzy innymi umo&#x17C;liwia ekstrakcje tekstu z dokument&#xF3;w pdf.</p>
+                        <h1 id="jak-mierzy&#x107;-b&#x142;&#x105;d-predykcji">Jak mierzy&#x107; b&#x142;&#x105;d predykcji?</h1>
+<p>zbi&#xF3;r ucz&#x105;cy / testowy
+10-fold cv
+oob</p>
 
                     
                     </section>
@@ -724,10 +678,10 @@ head(sort(table(slowa), decreasing = <span class="hljs-literal">TRUE</span>), <s
         </div>
 
         
-        <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html" class="navigation navigation-prev " aria-label="Previous page: Jak zeskrobywać dane ze stron www?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Analiza/predykcja.html" class="navigation navigation-prev " aria-label="Previous page: Predykcja"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_pobierac_dane_z_twittera.html" class="navigation navigation-next " aria-label="Next page: Jak pobierać dane z Twittera?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Analiza/jak_konstruowac_komitety_predyktorow.html" class="navigation navigation-next " aria-label="Next page: Jak konstruować komitety predyktorów?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

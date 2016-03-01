@@ -4,8 +4,7 @@ Korzystając z bazy danych serwisu Moje Państwo pobierzemy podstawowe dane pos�
 
 Dane dostępne są pod adresem `archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")`.
 
-
-```r
+```
 library(rvest)
 library(archivist)
 library(lubridate)
