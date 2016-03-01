@@ -53,7 +53,7 @@ mean(poslowie$Wiek)
 ## [1] 50.36813
 ```
 
-### Średnia Windsorowska
+### Średnia winsorowska
 
 A średnia obcięta, wyznaczona na podstawie 60\% środkowych obserwacji?
 
@@ -84,7 +84,7 @@ median(poslowie$Wiek)
 Odchylenie standardowe zmiennej wiek.
 
 $$
-\bar \sigma = \sqrt{sum_{i=1}^n (x_i - \bar x)^2 / (n-1)}
+\bar \sigma = \sqrt{\sum_{i=1}^n (x_i - \bar x)^2 / (n-1)}
 $$
 
 
@@ -122,6 +122,40 @@ IQR(poslowie$Wiek)
 ## [1] 17.195
 ```
 
+### Skośność
+
+Przyjmując $$m_r = \sum_i (x_i - mu)^r / n$$
+
+Typ: 1
+
+$$
+g_1 = m_3 / m_2^(3/2)
+$$
+
+Typ: 2 (domyślny w SAS i SPSS),
+
+$$
+G_1 = g_1 * sqrt(n(n-1)) / (n-2).
+$$
+
+Typ: 3 (domyślny w R)
+
+$$
+b_1 = m_3 / s^3 = g_1 ((n-1)/n)^(3/2).
+$$
+
+Wszystkie trzy estymatory są nieobciążone dla modelu normalnego.
+
+
+```r
+skewness(poslowie$Wiek)
+```
+
+```
+## [1] -0.2292414
+```
+
+
 ### Kurtoza / miara spłaszczenia
 
 Aby ją wyznaczyć potrzebujemy pakietu `e1071`.
@@ -156,39 +190,6 @@ kurtosis(poslowie$Wiek)
 
 ```
 ## [1] -0.7078222
-```
-
-### Skośność
-
-Przyjmując $$m_r = \sum_i (x_i - mu)^r / n$$
-
-Typ: 1
-
-$$
-g_1 = m_3 / m_2^(3/2)
-$$
-
-Typ: 2 (domyślny w SAS i SPSS),
-
-$$
-G_1 = g_1 * sqrt(n(n-1)) / (n-2).
-$$
-
-Typ: 3 (domyślny w R)
-
-$$
-b_1 = m_3 / s^3 = g_1 ((n-1)/n)^(3/2).
-$$
-
-Wszystkie trzy estymatory są nieobciążone dla modelu normalnego.
-
-
-```r
-skewness(poslowie$Wiek)
-```
-
-```
-## [1] -0.2292414
 ```
 
 
@@ -227,7 +228,7 @@ mad(poslowie$Wiek)
 ## [1] 12.39454
 ```
 
-### Najwazniejsze statystyki
+### Najważniejsze statystyki
 
 
 ```r
@@ -273,6 +274,9 @@ Domyślnie, funkcja `hist()` na osi poziomej zaznacza liczebności obserwacji w~
 
 ### Dystrybuanta empiryczna
 
+Inną przydatną statystyką do opisu rozkładu wektora obserwacji jest dystrybuanta empiryczna. 
+Do wyznaczania dystrybuanty empirycznej służy funkcja `ecdf()`, której wynikiem jest funkcja wyznaczająca dystrybuantę empiryczną. 
+
 
 ```r
 plot(ecdf(poslowie$Wiek), las=1)
@@ -281,6 +285,40 @@ plot(ecdf(poslowie$Wiek), las=1)
 ![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
 
 ### Jądrowy estymator gęstości
+
+Idea jądrowego estymatora gęstości polega na wyznaczeniu oceny gęstości w danym punkcie na podstawie koncentracji obserwacji w okolicy tego punktu. Obserwacje położone bliżej interesującego punktu wpływają na oceny gęstości z większą wagą niż obserwacje bardziej oddalone. Szablon tych wag określony jest przez parametr nazywany jądrem. Za to, które obserwacje są uznawane za bliskie odpowiada parametr nazywany szerokością okna, szerokością pasma lub też stopniem wygładzenia. 
+
+Deklaracja funkcji `density()` jest następująca:
+
+```
+density(x, bw = "nrd0", adjust = 1, kernel, weights = NULL, 
+		    window = kernel, n = 512, from, to, ...)
+```
+
+Argument `x` określa wektor wartości, dla których chcemy wyznaczyć ocenę gęstości. 
+Argumenty `from` i `to` określają początek i koniec przedziału, w którym wyznaczona ma być gęstość, argument \verb|n| określa liczbę punktów, w~których wartość gęstości ma być wyznaczona (gęstość wyliczana jest dla~regularnej siatki punktów). Parametry `kernel` i `bw` służą do określenia rodzaju jądra i szerokości okna. Wynikiem funkcji `density()` jest obiekt klasy `density`, którego składowe przechowują wartości ocen gęstości we wskazanych punktach. Obiekty tej klasy można przedstawiać graficznie przeciążoną funkcją `plot()`.
+
+Domyślnie, ocena gęstości wyznaczana jest z użyciem jądra gaussowskiego. Przeglądając plik pomocy dla funkcji `density()` zainteresowany czytelnik odkryje jak wykorzystywać inne jądra i~czym one się różnią. 
+
+Szerokość pasma (szerokość okna) można ustalić ręcznie lub wskazać regułę wyboru szerokości okna, która automatycznie wybierze najodpowiedniejszą szerokość. W~pakiecie `stats` zaimplementowanych jest pięć różnych metod automatycznego wyboru szerokości pasma. 
+
+Domyślnie stosowana jest ,,reguła kciuka'' (stosowana gdy `bw="nrd0"`) zaproponowana przez Silvermana. Zgodnie z tą regułą szerokość okna `h` wyznaczana jest ze wzoru
+
+$$
+h_{bw.nrd0} = 0.9 \min(\hat \sigma, IQR/1.34) n^{-1/5},
+$$
+
+gdzie $$\hat \sigma$$ to ocena odchylenia standardowego, IQR to rozstęp kwartylowy z~próby a~$n$~to liczba obserwacji. Magiczna stała $1.34$ bierze się stąd, że dla rozkładu normalnego $$IQR/1.34 \approx \sigma$$. 
+
+Inną popularną regułą kciuka jest reguła Scott'a, stosowana gdy `bw="nrd"`
+
+$$
+h_{bw.nrd} = 1.06 \hat \sigma n^{-1/5}.
+$$
+
+Można wybrać też inne reguły wyboru szerokości pasma, np. oparte o~metodę walidacji krzyżowej (ang. *cross validation*), nieobciążoną dla argumentu `bw="ucv"` i~ bciążoną dla argumentu `bw="bcv"`, lub estymator typu `plug-in` Sheathera Jonesa (dla argumentu `bw="SJ"`). 
+W~większości przypadków~najlepsze wyniki dla oceny szerokości pasma otrzymuje się wykorzystując metodę Sheathera Jonesa.
+
 
 
 ```r
@@ -295,11 +333,73 @@ plot(density(poslowie$Wiek, bw=3), las=1)
 
 ![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-2.png)
 
+### Współczynnik Giniego
+
+Krzywa Lorenza pokazuje jaki procent obserwacji ,,posiada'' skumulowany procent wartości.
+
+Dla wieku nie miałoby to sensu, ale możemy ten współczynnik wyznaczyć dla liczby zebranych głosów.
+
+
+```r
+library(ineq)
+
+ineq(poslowie$Glosow, type="Gini")
+```
+
+```
+## [1] 0.3917223
+```
+
+```r
+plot(Lc(poslowie$Glosow),col="darkred",lwd=2)
+```
+
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)
+
 ## Zmienna jakościowa
 
+W zbiorze danych `poslowie` mamy kilka zmiennych jakościowych 
+
+Z pewnością należą do nich `Klub`, `Wyksztalcenie`, `Zawod` itp. 
+
+### Tabele liczebności
 
 
-- dla zmiennych ciągłych, dyskretnych, ciągłych z atomem
-- estymator jądrowy gęstości (histogram)
-- ecdf
-- testy zgodności
+```r
+table(poslowie$Wyksztalcenie)
+```
+
+```
+## 
+##                 średnie ogólne średnie policelane/pomaturalne 
+##                             16                             12 
+##               średnie zawodowe                         wyższe 
+##                             10                            414 
+##            zasadnicze zawodowe 
+##                              2
+```
+
+```r
+prop.table(table(poslowie$Wyksztalcenie))
+```
+
+```
+## 
+##                 średnie ogólne średnie policelane/pomaturalne 
+##                    0.035242291                    0.026431718 
+##               średnie zawodowe                         wyższe 
+##                    0.022026432                    0.911894273 
+##            zasadnicze zawodowe 
+##                    0.004405286
+```
+
+### Wykres paskowy
+
+
+```r
+par(mar=c(2,10,2,1))
+barplot(table(poslowie$Wyksztalcenie), horiz = TRUE, las=1)
+```
+
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
+
