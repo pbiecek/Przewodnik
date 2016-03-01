@@ -84,7 +84,7 @@ median(poslowie$Wiek)
 Odchylenie standardowe zmiennej wiek.
 
 $$
-\bar \sigma = \sqrt{\sum_{i=1}^n (x_i - \bar x)^2 / (n-1)}
+\hat \sigma = \sqrt{\sum_{i=1}^n (x_i - \bar x)^2 / (n-1)}
 $$
 
 
@@ -135,7 +135,7 @@ $$
 Typ: 2 (domyślny w SAS i SPSS),
 
 $$
-G_1 = g_1 * \sqrt(n(n-1)) / (n-2).
+G_1 = g_1 \sqrt{n(n-1)} / (n-2).
 $$
 
 Typ: 3 (domyślny w R)
