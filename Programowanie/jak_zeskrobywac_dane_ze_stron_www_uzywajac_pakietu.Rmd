@@ -6,7 +6,7 @@ Uniwersalnym i wygodnym narzędziem do pobierania danych ze stron internetowych 
 
 Kluczowe funkcje z pakietu `rvest` podzielić można na trzy grupy:
 
-* `html` - wczytuje stronę internetową i tworzy strukturę drzewiastą strukturę html,
+* `read_html` - wczytuje stronę internetową i tworzy strukturę drzewiastą strukturę html,
 * `html_nodes` - wyszukuje węzły w drzewie pasujące do określonego wzorca (tzw. selectora),
 * `html_text`, `html_tag`, `html_attrs` - funkcje wyciągające treść lub atrybuty węzłów html.
 
@@ -26,7 +26,7 @@ Poniższy przykład wybiera z serwisu FilmWeb informacje o najbliższych premier
 
 ```{r}
 library(rvest)
-premiery <- html("http://www.filmweb.pl/premiere")
+premiery <- read_html("http://www.filmweb.pl/premiere")
 filmy <- html_nodes(premiery, ".gwt-filmPage")
 html_text(filmy)
 ```
@@ -36,7 +36,7 @@ Pakiet `rvest` pozwala też na parsowanie tabel oraz na obsługę formularzy, se
 Następnie trzecia tabela jest wyłuskiwana i wypisywana na ekranie.
 
 ```{r}
-lego_movie <- html("http://www.imdb.com/title/tt1490017/")
+lego_movie <- read_html("http://www.imdb.com/title/tt1490017/")
 
 htab <- html_nodes(lego_movie, "table")[[3]]
 html_table(htab)
