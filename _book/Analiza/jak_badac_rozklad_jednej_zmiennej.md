@@ -30,17 +30,10 @@ head(poslowie)
 
 ## Zmienna ilościowa
 
-W zbiorze danych `poslowie` mamy kilka zmiennych ilościowych. 
+W zbiorze danych `poslowie` mamy kilka zmiennych ilościowych. Czy potrafisz je wskazać? Z pewnoscią należy do nich `Wiek` i `Glosow`. 
 
-Czy potrafisz je wskazać? 
-
-Z pewnością należą do nich `Wiek` i `Glosow`. 
 
 Jaki jest średni wiek posłów?
-
-$$
-\hat X = \sum_{i=1}^N x_i / N
-$$
 
 
 ```r
@@ -51,8 +44,8 @@ mean(poslowie$Wiek)
 ## [1] 50.36813
 ```
 
-A średnia obcięta, wyznaczona na podstawie 60\% środkowych obserwacji?
 
+A średnia obcięta, wyznaczona na podstawie 60\% środkowych obserwacji?
 
 ```r
 mean(poslowie$Wiek, trim=0.2)
