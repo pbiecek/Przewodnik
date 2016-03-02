@@ -39,6 +39,7 @@
        * [Jak konstruować komitety predyktorów?](Analiza/jak_konstruowac_komitety_predyktorow.md)
    * Modelowanie danych
    * Wizualizacja
+       * Jak tworzyć interaktywne wykresy?
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
 
