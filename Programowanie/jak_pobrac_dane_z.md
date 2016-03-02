@@ -60,9 +60,9 @@ colnames(df)
 ```
 
 ```
-## [1] "publishstate"         "year"                 "agegroup"            
-## [4] "gho"                  "region"               "sex"                 
-## [7] "country"              "worldbankincomegroup" "value"
+## [1] "publishstate"         "year"                 "sex"                 
+## [4] "country"              "region"               "gho"                 
+## [7] "agegroup"             "worldbankincomegroup" "value"
 ```
 
 Wykorzystujemy pakiet `dplyr` by wybrać tylko dane dla Polski z roku 2013.
@@ -80,14 +80,14 @@ head(poland2013)
 ```
 ## Source: local data frame [6 x 3]
 ## 
-##       agegroup    value    sex
-##          (chr)    (dbl)  (chr)
-## 1  60-64 years 0.039902 Female
-## 2  25-29 years 0.001294 Female
-## 3  95-99 years 0.754675 Female
-## 4    5-9 years 0.000628   Male
-## 5  85-89 years 0.527849   Male
-## 6 15-19  years 0.003145   Male
+##      agegroup    value    sex
+##         (chr)    (dbl)  (chr)
+## 1 95-99 years 0.778775   Male
+## 2 25-29 years 0.005331   Male
+## 3 25-29 years 0.001294 Female
+## 4 20-24 years 0.001110 Female
+## 5 95-99 years 0.754675 Female
+## 6   5-9 years 0.000628   Male
 ```
 
 Możemy teraz narysować śmiertelność dla obu płci. Dla mężczyzn jest znacznie wyższa niż dla kobiet.
@@ -110,8 +110,6 @@ ggplot(poland2013,
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
-
-##
 
 ## Inne narzędzia
 
