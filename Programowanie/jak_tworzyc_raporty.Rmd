@@ -10,7 +10,7 @@ Filozofia stojąca za tymi pakietami określana jest terminem *literate programi
 
 Potrzebne jest więc narzędzie, które pozwala na proste łączenie kodów R oraz ich opisów. Takie połączenie może być wykorzystane zarówno do dokumentowania kodu, do zapewnienia powtarzalności analiz jak i do automatycznego generowania raportów. Takim narzędziem są pakiety `knitr` i `Sweave`.
 
-## Pierwszy raport
+## Pierwszy raport - plik Rmd
 
 Przedstawmy je na przykładzie pliku `raport.Rmd`. Rozszerzenie `Rmd` jest potrzebne i oznacza połączenie kodu R i języka markdown.
 Zawartość pliku `raport.Rmd` wygląda następująco.
@@ -23,12 +23,17 @@ Taki raport możemy przetworzyć na dwa sposoby
 * Druga opcja to użycie polecenia `knit("raport.Rmd")` w linii poleceń. 
 Przetwarzanie pliku `Rmd` składa się z dwóch etapów. W pierwszym `knitr` uruchamia kod R umieszczony we fragmentach oznaczonych potrójnym apostrofem. Kody wejściowe i ich wynik są umieszczane w pliku o rozszerzeniu `md`. W drugim etapie program [pandoc](http://pandoc.org/) przetwarza plik w formacie `markdown` na format `html`, `pdf`, `doc` lub inny wskazany.
 
-Dla powyższego przykładu, po pierwszym przykładzie powstaje plik `raport.md` o poniższej zawartości.
+## Plik markdown 'md'
+
+Dla powyższego przykładu, po pierwszym etapie przetwarzania powstaje plik `raport.md` o poniższej zawartości.
 
 ![Przykładowy raport w md](rysunki/knitr1.png)
 
 Jak widzimy, w plik `md` znajdują się dodatkowo wyniki kodu R.
-W kolejnym roku, ten plik jest konwertowany do pliku `html`, który wygląda następująco.
+
+## Plik wynikowy `html`
+
+W kolejnym roku, plik w formacie `md` jest konwertowany do pliku `html`, za pomocą programu `pandoc`. W naszym przypadku wynikowy plik wygląda następująco.
 
 ![Przykładowy raport w knitr](rysunki/knitr.png)
 
