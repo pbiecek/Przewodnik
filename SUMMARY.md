@@ -37,7 +37,6 @@
    * [Predykcja](Analiza/predykcja.md)
        * [Jak mierzyć błąd predykcji?](Analiza/jak_mierzyc_blad_predykcji.md)
        * [Jak konstruować komitety predyktorów?](Analiza/jak_konstruowac_komitety_predyktorow.md)
-   * Modelowanie danych
    * Wizualizacja
        * [Jak tworzyć interaktywne wykresy?](Wizualizacja/jak_tworzyc_interaktywne_wykresy.md)
 * [Bibliografia](references.md)
