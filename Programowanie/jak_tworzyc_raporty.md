@@ -15,34 +15,7 @@ Potrzebne jest więc narzędzie, które pozwala na proste łączenie kodów R or
 Przedstawmy je na przykładzie pliku `raport.Rmd`. Rozszerzenie `Rmd` jest potrzebne i oznacza połaczenie kodu R i jezyka markdown.
 Zawartość pliku `raport.Rmd` wygląda następująco.
 
-```
----
-title: "Przykładowy skrypt łączący markdown i R"
-author: "Przemyslaw Biecek"
-date: "2 March 2016"
-output: html_document
----
-
-**Wykres pudełkowy** jest bardzo popularną metodą prezentacji 
-zmienności pojedynczej zmiennej. Przedstawimy go na przykładzie 
-zbioru danych _iris_, który ma 150 wierszy.
-
- 
- ```r
- summary(iris$Petal.Length)
- ```
- 
- ```
- ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- ##   1.000   1.600   4.350   3.758   5.100   6.900
- ```
- 
- ```r
- boxplot(Petal.Length~Species, data = iris)
- ```
- 
- ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
-```
+![Przykładowy skrypt Rmd](rysunki/knitr0.png)
 
 Taki raport możemy przetworzyć na dwa sposoby
 
@@ -52,33 +25,7 @@ Przetwarzanie pliku `Rmd` składa się z dwóch etapów. W pierwszym `knitr` uru
 
 Dla powyższego przykładu, po pierwszym przykłądzie powstaje plik `raport.md` o poniższej zawartości.
 
-```
- ---
- title: "Przykładowy skrypt łączący markdown i R"
- author: "Przemyslaw Biecek"
- date: "2 March 2016"
- output: html_document
- ---
-
- **Wykres pudełkowy** jest bardzo popularną metodą prezentacji 
- zmienności pojedynczej zmiennej. Przedstawimy go na przykładzie 
- zbioru danych _iris_, który ma 150 wierszy.
-
- ```r
- summary(iris$Petal.Length)
- ```
-
- ```
- ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- ##   1.000   1.600   4.350   3.758   5.100   6.900
- ```
-
- ```r
- boxplot(Petal.Length~Species, data = iris)
- ```
-
- ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
-```
+![Przykłądowy raport w md](rysunki/knitr1.png)
 
 Jak widzimy, w plik `md` znajdują się dodatkowo wyniki kodu R.
 W kolejnym roku, ten plik jest konwertowany do pliku `html`, który wygląda następująco.
