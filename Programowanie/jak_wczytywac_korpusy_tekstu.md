@@ -8,26 +8,18 @@ Wykorzystajmy tę funkcję, aby z projektu Gutenberg www.gutenberg.org wczytać 
 ```r
 # W 80 dni dookoła świata
 w80dni <- readLines("http://www.gutenberg.org/cache/epub/103/pg103.txt")
-```
 
-```
-## Warning in readLines("http://www.gutenberg.org/cache/epub/103/pg103.txt"):
-## incomplete final line found on 'http://www.gutenberg.org/cache/epub/103/
-## pg103.txt'
-```
-
-```r
 # Kilka pierwszych linii
 head(w80dni)
 ```
 
 ```
-## [1] "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML+RDFa 1.0//EN\" \"http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd\">"
-## [2] "<html xmlns=\"http://www.w3.org/1999/xhtml\">"                                                              
-## [3] ""                                                                                                           
-## [4] ""                                                                                                           
-## [5] "<head>"                                                                                                     
-## [6] "<style type=\"text/css\">"
+## [1] "The Project Gutenberg EBook of Around the World in 80 Days, by Jules Verne"
+## [2] ""                                                                          
+## [3] "This eBook is for the use of anyone anywhere at no cost and with"          
+## [4] "almost no restrictions whatsoever.  You may copy it, give it away or"      
+## [5] "re-use it under the terms of the Project Gutenberg License included"       
+## [6] "with this eBook or online at www.gutenberg.net"
 ```
 
 Zobaczmy jakie słowa sa najczęściej uzywane w tej powieści.
@@ -41,7 +33,7 @@ length(slowa)
 ```
 
 ```
-## [1] 1758
+## [1] 68460
 ```
 
 ```r
@@ -52,24 +44,26 @@ head(sort(table(slowa), decreasing = TRUE), 50)
 
 ```
 ## slowa
-##                    td         tr         en       lang         id 
-##        254         84         52         50         48         33 
-##         th        div        xml      class       type      title 
-##         32         28         26         25         24         21 
-##          a    content       name       meta     button  Gutenberg 
-##         20         18         18         17         16         16 
-##  recaptcha    Project       href          p    captcha     search 
-##         16         15         14         14         13         13 
-##       icon      input        www  gutenberg        org       text 
-##         12         12         12         11         11         11 
-##        var     ebooks       http      table     dialog     jquery 
-##         11         10         10         10          8          8 
-##     script       span      value          w      audio       form 
-##          8          8          8          8          7          7 
-##         if      image javascript       only   property   question 
-##          7          7          7          7          7          7 
-##      badge         by 
-##          6          6
+##          the          and           of           to            a 
+##         4312         1896         1876         1720         1281 
+##           in          was                       his           he 
+##          997          995          966          807          773 
+##         Fogg           at         with          not          The 
+##          608          583          553          519          518 
+##         that           on          had        which          for 
+##          514          504          494          442          433 
+##           it           as Passepartout           Mr           by 
+##          418          403          398          389          377 
+##            I          him           is           be          you 
+##          368          321          320          316          308 
+##         were         from         this            s        would 
+##          307          304          300          283          270 
+##         have          but          Fix           an      Phileas 
+##          262          248          245          225          220 
+##           He          who           or         said         they 
+##          217          200          191          191          184 
+##          her           It          are         been          all 
+##          171          171          170          169          167
 ```
 
 

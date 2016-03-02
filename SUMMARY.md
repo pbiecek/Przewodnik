@@ -18,7 +18,7 @@
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
    * [Jak budować pakiety?](Programowanie/jak_budowac_pakiety.md)
-   * Jak tworzyć reprodukowalne raporty?
+   * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * Jak debugować kod R?
    * Jak zwiększyć wydajność kodu R?
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)

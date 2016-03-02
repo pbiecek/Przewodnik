@@ -6,7 +6,7 @@ Uniwersalnym i wygodnym narzędziem do pobierania danych ze stron internetowych 
 
 Kluczowe funkcje z pakietu `rvest` podzielić można na trzy grupy:
 
-* `html` - wczytuje stronę internetową i tworzy strukturę drzewiastą strukturę html,
+* `read_html` - wczytuje stronę internetową i tworzy strukturę drzewiastą strukturę html,
 * `html_nodes` - wyszukuje węzły w drzewie pasujące do określonego wzorca (tzw. selectora),
 * `html_text`, `html_tag`, `html_attrs` - funkcje wyciągające treść lub atrybuty węzłów html.
 
@@ -27,53 +27,41 @@ Poniższy przykład wybiera z serwisu FilmWeb informacje o najbliższych premier
 
 ```r
 library(rvest)
-premiery <- html("http://www.filmweb.pl/premiere")
-```
-
-```
-## Warning: 'html' is deprecated.
-## Use 'read_html' instead.
-## See help("Deprecated")
-```
-
-```r
+premiery <- read_html("http://www.filmweb.pl/premiere")
 filmy <- html_nodes(premiery, ".gwt-filmPage")
 html_text(filmy)
 ```
 
 ```
-##  [1] "Spotlight"                              
-##  [2] "Planeta Singli"                         
-##  [3] "Gęsia skórka"                           
-##  [4] "Ardeny"                                 
-##  [5] "Misiek w Nowym Jorku"                   
-##  [6] "Umrika"                                 
-##  [7] "Śpiewający obrusik"                     
-##  [8] "Deadpool"                               
-##  [9] "Jak to robią single"                    
-## [10] "Widzę, widzę"                           
-## [11] "Ojcowie i córki"                        
-## [12] "Barany. Islandzka opowieść"             
-## [13] "Skala szarości"                         
-## [14] "Eisenstein w Meksyku"                   
-## [15] "Brooklyn"                               
-## [16] "Ave, Cezar!"                            
-## [17] "Zwierzogród"                            
-## [18] "Na granicy"                             
-## [19] "Oddychaj"                               
-## [20] "Fúsi"                                   
-## [21] "Sprawiedliwy"                           
-## [22] "Chłopiec i świat"                       
-## [23] "Cierń Boga"                             
-## [24] "Pokój"                                  
-## [25] "Lobster"                                
-## [26] "Bogowie Egiptu"                         
-## [27] "7 rzeczy, których nie wiecie o facetach"
-## [28] "Grimsby"                                
-## [29] "Yona"                                   
-## [30] "110%"                                   
-## [31] "Tysiąc i jedna noc – cz. 1, niespokojny"
-## [32] "Dyke Hard"
+##  [1] "Carol"                                 
+##  [2] "Londyn w ogniu"                        
+##  [3] "Historia Roja"                         
+##  [4] "Zoolander 2 "                          
+##  [5] "Zmartwychwstały"                       
+##  [6] "Nawet góry przeminą"                   
+##  [7] "Robinson Crusoe"                       
+##  [8] "Tysiąc i jedna noc – cz. 2, opuszczony"
+##  [9] "Seria Niezgodna: Wierna"               
+## [10] "Wstrząs"                               
+## [11] "Siostry"                               
+## [12] "Bang Gang"                             
+## [13] "Niewinne"                              
+## [14] "Wszystko zostanie w rodzinie"          
+## [15] "Zdjęcie"                               
+## [16] "El Clan"                               
+## [17] "Na skrzyżowaniu wichrów"               
+## [18] "Tysiąc i jedna noc – cz. 3, oczarowany"
+## [19] "Nieobecność"                           
+## [20] "Psy mafii"                             
+## [21] "Zabójczyni"                            
+## [22] "Dama w vanie"                          
+## [23] "Tata kontra tata"                      
+## [24] "Powrót"                                
+## [25] "Cały ten cukier"                       
+## [26] "Złoty koń"                             
+## [27] "180 sekund"                            
+## [28] "Obsesja zemsty"                        
+## [29] "Cuda z nieba"
 ```
 
 Pakiet `rvest` pozwala też na parsowanie tabel oraz na obsługę formularzy, sesji i śledzenie linków. W poniższym przykładzie otwieramy stronę z bazy danych o filmach IMDb (Internet Movie Database) a informacjami o filmie *Lego Przygoda*.
@@ -82,16 +70,8 @@ Następnie trzecia tabela jest wyłuskiwana i wypisywana na ekranie.
 
 
 ```r
-lego_movie <- html("http://www.imdb.com/title/tt1490017/")
-```
+lego_movie <- read_html("http://www.imdb.com/title/tt1490017/")
 
-```
-## Warning: 'html' is deprecated.
-## Use 'read_html' instead.
-## See help("Deprecated")
-```
-
-```r
 htab <- html_nodes(lego_movie, "table")[[3]]
 html_table(htab)
 ```
