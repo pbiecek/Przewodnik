@@ -1,0 +1,73 @@
+# Jak tworzyć interaktywne wykresy?
+
+Najłatwiejszy sposób aby budować interaktywne wykresy w R, to skorzystanie z pakietu `rCharts` (http://rcharts.io/).
+
+Pakiet rCharts tworzy stronę HTML z osadzonymi bibliotekami JavaScript. Można korzystać z bibliotek `NVD3`, `Highcharts`, `Leaflet` i innych. Pełna lista znajduje się na stronie pakietu.
+
+Poniżej przedstawimy kilka wybranych przykładów.
+Szczegółowa lista dostępnych opcji znajduje się na [tej stronie](http://www.rpubs.com/dnchari/rcharts).
+
+## NVD3
+
+http://nvd3.org/
+
+<iframe src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
+<iframe>
+
+http://www.rpubs.com/dnchari/rcharts
+
+```{r}
+library(SmarterPoland)
+library(rCharts)
+
+przezycia <- archivist::aread("pbiecek/Przewodnik/arepo/609491e5ec491f240cbeafe377743e21")  
+
+przezycia2009 <- przezycia[przezycia$Year == 2009 &
+                             przezycia$Age != "110+",]
+
+```
+
+
+
+```{r}
+
+p1 <- nPlot(mx ~ Age, group = "Gender", data = przezycia2009, type = "lineChart")
+p1$chart(yScale = "#! d3.scale.log() !#")
+p1
+
+head(countries)
+rownames(countries) <- countries$country
+
+p1 = rPlot(death.rate ~ birth.rate, data = countries, color = 'continent', type = 'point')
+p1$xAxis(axisLabel = 'Wiek')
+p1$yAxis(axisLabel = 'Śmiertelność')
+p1$set(width = 800, height = 600)
+p1$save("rCharts1.html", standalone=TRUE)
+
+library(tidyr)
+eZycia <- przezycia %>%
+  filter(Age == 0) %>%
+  mutate(Year = as.character(Year)) %>%
+  select(Year, Gender, ex) %>%
+  spread(Gender, ex)
+
+m1 = mPlot(x = 'Year', y = c('Female', 'Male'), type = 'Line',
+  data = eZycia)
+m1$set(pointSize = 0, lineWidth = 1)
+m1
+
+
+
+p1 = nPlot(death.rate ~ birth.rate, group = "continent", data = countries, type = "scatterChart")
+p1$xAxis(axisLabel = 'death.rate')
+p1$yAxis(axisLabel = 'birth.rate')
+n1$chart(tooltipContent = "#! function(key, x, y){ 
+  return 'x: ' + x + '  y: ' + y 
+} !#")
+p1$print(include_assets=T)
+
+
+#n general, any chart method chart.x(y) translates to n1$chart(x = y) in rCharts, with y being decorated with tags if required.
+
+```
+
