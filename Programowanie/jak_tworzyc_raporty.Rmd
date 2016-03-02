@@ -59,4 +59,6 @@ Najczęściej wykorzystywane opcje to.
 * `echo=FALSE`, powoduje, że w raporcie pojawi się tylko wynik kodu R, ale nie zostaną umieszczone instrukcje źródłowe. Dzięki temu mamy w raporcie tylko wyniki i możemy wysłać raport osobom, którym kod R nic nei mówi a może przeszkadzać.
 * `fig.width=`, `fig.height=`, tymi parametrami można określić jak duży ma być rysunek wklejony do raportu.
 
+## Więcej
 
+Więcej informacji o pakiecie `knitr`, wraz z krótkim video-wprowadzeniem znaleźć można na stronie http://yihui.name/knitr/.
