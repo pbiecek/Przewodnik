@@ -23,7 +23,7 @@ Taki raport możemy przetworzyć na dwa sposoby
 * Druga opcja to użycie polecenia `knit("raport.Rmd")` w linii poleceń. 
 Przetwarzanie pliku `Rmd` składa się z dwóch etapów. W pierwszym `knitr` uruchamia kod R umieszczony we fragmentach oznaczonych potrójnym apostrofem. Kody wejściowe i ich wynik są umieszczane w pliku o rozszerzeniu `md`. W drugim etapie program [pandoc](http://pandoc.org/) przetwarza plik w formacie `markdown` na format `html`, `pdf`, `doc` lub inny wskazany.
 
-## Plik markdown 'md'
+## Plik markdown `md`
 
 Dla powyższego przykładu, po pierwszym etapie przetwarzania powstaje plik `raport.md` o poniższej zawartości.
 
