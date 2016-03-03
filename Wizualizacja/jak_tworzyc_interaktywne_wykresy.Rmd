@@ -2,12 +2,12 @@
 
 Najłatwiejszy sposób aby budować interaktywne wykresy w R, to skorzystanie z pakietu `rCharts` (http://rcharts.io/).
 
-Pakiet rCharts tworzy stronę HTML z osadzonymi bibliotekami JavaScript. Można korzystać z bibliotek `NVD3`, `Highcharts`, `Leaflet` i innych. Pełna lista znajduje się na stronie pakietu.
+Pakiet rCharts tworzy stronę HTML z osadzonymi bibliotekami JavaScript. Można korzystać z bibliotek `NVD3`, `Highcharts`, `Leaflet` i innych. Pełna lista znajduje się na stronie pakietu `rCharts`.
 
 Poniżej przedstawimy kilka wybranych przykładów.
 Szczegółowa lista dostępnych opcji znajduje się na [tej stronie](http://www.rpubs.com/dnchari/rcharts).
 
-## NVD3
+# Biblioteka `NVD3`
 
 Wykresy wykorzystujące bibliotekę NVD3 można wykonać używać funkcji `nPlot()`. 
 Szeroki opis dostępnych wykresów w tej bibliotece znajduje się tutaj http://nvd3.org/.
@@ -15,6 +15,9 @@ Szeroki opis dostępnych wykresów w tej bibliotece znajduje się tutaj http://n
 ## Wykres liniowy
 
 Przedstawmy wykres liniowy na bazie danych o śmiertelności osób w różnych wieku. 
+Dane pochodzą ze strony http://www.mortality.org/. Szcezgółowy opis co znajduje się w której kolumnie znajduje się na [na tej stronie](http://www.mortality.org/Public/ExplanatoryNotes.php#CompleteDataSeries).
+
+
 Wybierzemy tylko dane z roku 2009 i pokażemy wyniki dla obu płci.
 Zacznijmy od wczytania danych.
 
@@ -25,8 +28,9 @@ przezycia2009 <- przezycia[przezycia$Year == 2009 &
                              przezycia$Age != "110+",]
 ```
 
-Przystępujemy do tworzenia wykresu. Po zbudowaniu go funkcją `nPlot()`, należy dookreślić szerokość i wysokość wykresy oraz nazwy osi. 
-Następnie wykres jest gotowy do umieszczenia na stronie. Wykres sjest stroną html, można ją umieścić na innej stronie poleceniem `iframe`.
+Przystępujemy do tworzenia wykresu. 
+
+Po zbudowaniu wykresu funkcją `nPlot()`, należy dookreślić szerokość i wysokość wykresy oraz nazwy osi. 
 
 ```{r}
 library(rCharts)
@@ -34,22 +38,45 @@ p1 <- nPlot(mx ~ Age, group = "Gender", data = przezycia2009, type = "lineChart"
 p1$chart(yScale = "#! d3.scale.log() !#")
 p1$xAxis(axisLabel = 'Wiek')
 p1$yAxis(axisLabel = 'Śmiertelność')
-p1$set(width = 800, height = 600)
+p1$set(width = 750, height = 590)
 # p1$save("rCharts1.html", standalone=TRUE)
 ```
 
-<iframe style="width:810px; height=610px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
+Następnie wykres jest gotowy do umieszczenia na stronie www. 
+Wykres jest stroną html, można ją umieścić na innej stronie poleceniem `iframe`.
+
+<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
 <iframe>
 
-http://www.rpubs.com/dnchari/rcharts
+## Wykres punktowy
+
+Ta sama funkcja może być użyta do zbudowania wykresu punktowego. Wystarczy jako typ wskazać `type="scatterChart"`.
+
+Na poniższym przykładzie pracujemy z danymi o współczynniku liczby zgonów i urodzin na 1000 mieszkańców w różnych krajach. 
+Dodatkowo pokazane jest jak można modyfikować informację o etykiecie.
 
 ```{r}
 library(SmarterPoland)
-
 head(countries)
-rownames(countries) <- countries$country
+
+p2 <- nPlot(death.rate ~ birth.rate, group = "continent", data = countries, type = "scatterChart")
+p2$xAxis(axisLabel = 'Zgonów na 1000 osób')
+p2$yAxis(axisLabel = 'Urodzin na 1000 osób')
+p2$chart(tooltipContent = "#! function(key, x, y, e){ 
+  return 'Kraj: ' + e.point.country 
+} !#")
+p2$set(width = 750, height = 590)
+# p2$save("rCharts2.html", standalone=TRUE)
+```
+
+<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts2.html">
+<iframe>
+
+
+```{r}
 
 p1 = rPlot(death.rate ~ birth.rate, data = countries, color = 'continent', type = 'point')
+
 
 library(tidyr)
 eZycia <- przezycia %>%
@@ -65,17 +92,10 @@ m1
 
 
 
-p1 = nPlot(death.rate ~ birth.rate, group = "continent", data = countries, type = "scatterChart")
-p1$xAxis(axisLabel = 'death.rate')
-p1$yAxis(axisLabel = 'birth.rate')
-n1$chart(tooltipContent = "#! function(key, x, y){ 
-  return 'x: ' + x + '  y: ' + y 
-} !#")
-p1$print(include_assets=T)
-
 
 #n general, any chart method chart.x(y) translates to n1$chart(x = y) in rCharts, with y being decorated with tags if required.
 
 ```
+http://www.rpubs.com/dnchari/rcharts
 
 
