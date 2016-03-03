@@ -61,7 +61,7 @@ Następnie wykres jest gotowy do umieszczenia na stronie www.
 Wykres jest stroną html, można ją umieścić na innej stronie poleceniem `iframe`.
 
 <iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
-<iframe>
+</iframe>
 
 ## Wykres punktowy
 
@@ -98,7 +98,7 @@ p2$set(width = 750, height = 590)
 ```
 
 <iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts2.html">
-<iframe>
+</iframe>
 
 # Biblioteka `MorrisJS`
 
@@ -133,7 +133,7 @@ m1$set(width = 750, height = 590)
 ```
 
 <iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts3.html">
-<iframe>
+</iframe>
 
 
 
