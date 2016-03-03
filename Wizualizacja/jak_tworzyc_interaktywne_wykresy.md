@@ -9,9 +9,51 @@ Szczegółowa lista dostępnych opcji znajduje się na [tej stronie](http://www.
 
 ## NVD3
 
-http://nvd3.org/
+Wykresy wykorzystujące bibliotekę NVD3 można wykonać używać funkcji `nPlot()`. 
+Szeroki opis dostępnych wykresów w tej bibliotece znajduje się tutaj http://nvd3.org/.
 
-<iframe src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
+## Wykres liniowy
+
+Przedstawmy wykres liniowy na bazie danych o śmiertelności osób w różnych wieku. 
+Wybierzemy tylko dane z roku 2009 i pokażemy wyniki dla obu płci.
+Zacznijmy od wczytania danych.
+
+
+```r
+przezycia <- archivist::aread("pbiecek/Przewodnik/arepo/609491e5ec491f240cbeafe377743e21")  
+head(przezycia)
+```
+
+```
+##   Year Age      mx      qx   ax     lx   dx    Lx      Tx    ex Gender
+## 1 1958   0 0.06562 0.06249 0.24 100000 6249 95231 6863376 68.63 Female
+## 2 1958   1 0.00474 0.00472 0.50  93751  443 93530 6768146 72.19 Female
+## 3 1958   2 0.00173 0.00173 0.50  93308  162 93228 6674616 71.53 Female
+## 4 1958   3 0.00119 0.00119 0.50  93147  111 93091 6581388 70.66 Female
+## 5 1958   4 0.00085 0.00085 0.50  93036   79 92996 6488297 69.74 Female
+## 6 1958   5 0.00071 0.00071 0.50  92957   66 92924 6395301 68.80 Female
+```
+
+```r
+przezycia2009 <- przezycia[przezycia$Year == 2009 &
+                             przezycia$Age != "110+",]
+```
+
+Przystępujemy do tworzenia wykresu. Po zbudowaniu go funkcją `nPlot()`, należy dookreślić szerokość i wysokość wykresy oraz nazwy osi. 
+Następnie wykres jest gotowy do umieszczenia na stronie. Wykres sjest stroną html, można ją umieścić na innej stronie poleceniem `iframe`.
+
+
+```r
+library(rCharts)
+p1 <- nPlot(mx ~ Age, group = "Gender", data = przezycia2009, type = "lineChart")
+p1$chart(yScale = "#! d3.scale.log() !#")
+p1$xAxis(axisLabel = 'Wiek')
+p1$yAxis(axisLabel = 'Śmiertelność')
+p1$set(width = 800, height = 600)
+# p1$save("rCharts1.html", standalone=TRUE)
+```
+
+<iframe style="width:810px; height=610px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
 <iframe>
 
 http://www.rpubs.com/dnchari/rcharts
@@ -19,28 +61,7 @@ http://www.rpubs.com/dnchari/rcharts
 
 ```r
 library(SmarterPoland)
-library(rCharts)
 
-przezycia <- archivist::aread("pbiecek/Przewodnik/arepo/609491e5ec491f240cbeafe377743e21")  
-
-przezycia2009 <- przezycia[przezycia$Year == 2009 &
-                             przezycia$Age != "110+",]
-```
-
-
-
-
-```r
-p1 <- nPlot(mx ~ Age, group = "Gender", data = przezycia2009, type = "lineChart")
-p1$chart(yScale = "#! d3.scale.log() !#")
-p1
-```
-
-```
-## Error in object$show(): object 'opts_current' not found
-```
-
-```r
 head(countries)
 ```
 
@@ -72,11 +93,6 @@ p1 = rPlot(death.rate ~ birth.rate, data = countries, color = 'continent', type 
 ```
 
 ```r
-p1$xAxis(axisLabel = 'Wiek')
-p1$yAxis(axisLabel = 'Śmiertelność')
-p1$set(width = 800, height = 600)
-p1$save("rCharts1.html", standalone=TRUE)
-
 library(tidyr)
 eZycia <- przezycia %>%
   filter(Age == 0) %>%
@@ -154,21 +170,21 @@ p1$print(include_assets=T)
 ##     height: 600px;
 ##   }  
 ##   </style>
-## <div id = 'chart70327157b0fb' class = 'rChart nvd3'></div>
+## <div id = 'chart703260b0a7ed' class = 'rChart nvd3'></div>
 ## <script type='text/javascript'>
 ##  $(document).ready(function(){
-##       drawchart70327157b0fb()
+##       drawchart703260b0a7ed()
 ##     });
-##     function drawchart70327157b0fb(){  
+##     function drawchart703260b0a7ed(){  
 ##       var opts = {
-##  "dom": "chart70327157b0fb",
+##  "dom": "chart703260b0a7ed",
 ## "width":    800,
 ## "height":    600,
 ## "x": "Age",
 ## "y": "mx",
 ## "group": "Gender",
 ## "type": "lineChart",
-## "id": "chart70327157b0fb" 
+## "id": "chart703260b0a7ed" 
 ## },
 ##         data = [
 ##  {
@@ -3088,4 +3104,5 @@ p1$print(include_assets=T)
 ```r
 #n general, any chart method chart.x(y) translates to n1$chart(x = y) in rCharts, with y being decorated with tags if required.
 ```
+
 

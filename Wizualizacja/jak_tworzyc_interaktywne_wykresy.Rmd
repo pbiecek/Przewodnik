@@ -9,40 +9,47 @@ Szczegółowa lista dostępnych opcji znajduje się na [tej stronie](http://www.
 
 ## NVD3
 
-http://nvd3.org/
+Wykresy wykorzystujące bibliotekę NVD3 można wykonać używać funkcji `nPlot()`. 
+Szeroki opis dostępnych wykresów w tej bibliotece znajduje się tutaj http://nvd3.org/.
 
-<iframe src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
+## Wykres liniowy
+
+Przedstawmy wykres liniowy na bazie danych o śmiertelności osób w różnych wieku. 
+Wybierzemy tylko dane z roku 2009 i pokażemy wyniki dla obu płci.
+Zacznijmy od wczytania danych.
+
+```{r}
+przezycia <- archivist::aread("pbiecek/Przewodnik/arepo/609491e5ec491f240cbeafe377743e21")  
+head(przezycia)
+przezycia2009 <- przezycia[przezycia$Year == 2009 &
+                             przezycia$Age != "110+",]
+```
+
+Przystępujemy do tworzenia wykresu. Po zbudowaniu go funkcją `nPlot()`, należy dookreślić szerokość i wysokość wykresy oraz nazwy osi. 
+Następnie wykres jest gotowy do umieszczenia na stronie. Wykres sjest stroną html, można ją umieścić na innej stronie poleceniem `iframe`.
+
+```{r}
+library(rCharts)
+p1 <- nPlot(mx ~ Age, group = "Gender", data = przezycia2009, type = "lineChart")
+p1$chart(yScale = "#! d3.scale.log() !#")
+p1$xAxis(axisLabel = 'Wiek')
+p1$yAxis(axisLabel = 'Śmiertelność')
+p1$set(width = 800, height = 600)
+# p1$save("rCharts1.html", standalone=TRUE)
+```
+
+<iframe style="width:810px; height=610px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
 <iframe>
 
 http://www.rpubs.com/dnchari/rcharts
 
 ```{r}
 library(SmarterPoland)
-library(rCharts)
-
-przezycia <- archivist::aread("pbiecek/Przewodnik/arepo/609491e5ec491f240cbeafe377743e21")  
-
-przezycia2009 <- przezycia[przezycia$Year == 2009 &
-                             przezycia$Age != "110+",]
-
-```
-
-
-
-```{r}
-
-p1 <- nPlot(mx ~ Age, group = "Gender", data = przezycia2009, type = "lineChart")
-p1$chart(yScale = "#! d3.scale.log() !#")
-p1
 
 head(countries)
 rownames(countries) <- countries$country
 
 p1 = rPlot(death.rate ~ birth.rate, data = countries, color = 'continent', type = 'point')
-p1$xAxis(axisLabel = 'Wiek')
-p1$yAxis(axisLabel = 'Śmiertelność')
-p1$set(width = 800, height = 600)
-p1$save("rCharts1.html", standalone=TRUE)
 
 library(tidyr)
 eZycia <- przezycia %>%
@@ -70,4 +77,5 @@ p1$print(include_assets=T)
 #n general, any chart method chart.x(y) translates to n1$chart(x = y) in rCharts, with y being decorated with tags if required.
 
 ```
+
 
