@@ -15,7 +15,7 @@ Szeroki opis dostępnych wykresów w tej bibliotece znajduje się tutaj http://n
 ## Wykres liniowy
 
 Przedstawmy wykres liniowy na bazie danych o śmiertelności osób w różnych wieku. 
-Dane pochodzą ze strony http://www.mortality.org/. Szcezgółowy opis co znajduje się w której kolumnie znajduje się na [na tej stronie](http://www.mortality.org/Public/ExplanatoryNotes.php#CompleteDataSeries).
+Dane pochodzą ze strony http://www.mortality.org/. Szczegółowy opis co znajduje się w której kolumnie znajduje się na [na tej stronie](http://www.mortality.org/Public/ExplanatoryNotes.php#CompleteDataSeries).
 
 
 Wybierzemy tylko dane z roku 2009 i pokażemy wyniki dla obu płci.
@@ -102,7 +102,7 @@ p2$set(width = 750, height = 590)
 
 # Biblioteka `MorrisJS`
 
-Biblioteka MorrisJS udostępnia inne ciekawe wykresy, głównie liniowe i słupkowe. PRzegląd wykresów z tej biblioteki znajduje się na stronie http://morrisjs.github.io/morris.js/
+Biblioteka MorrisJS udostępnia inne ciekawe wykresy, głównie liniowe i słupkowe. Przegląd wykresów z tej biblioteki znajduje się na stronie http://morrisjs.github.io/morris.js/
 
 
 ```r
@@ -135,8 +135,26 @@ m1$set(width = 750, height = 590)
 <iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts3.html">
 </iframe>
 
+# Biblioteka `Leaflet`
 
+Biblioteka `Leaflet` jest świetnym narzędzie do przedstawiania danych na mapach. 
+
+Wystarczy skazać współrzędne początkowego widoku, dodać markery i można pokazywać interaktywną mapę.
+
+
+```r
+map1 = Leaflet$new()
+map1$setView(c(52.22, 21), zoom = 12)
+map1$marker(c(52.22223, 21.00728), bindPopup = "Politechnika Warszawska, MiNI")
+map1$marker(c(52.21167, 20.9815), bindPopup = "Uniwersytet Warszawski, MIM")
+map1$marker(c(52.23925, 21.01742), bindPopup = "Uniwersytet Warszawski, Centrala")
+# map1$save("rCharts4.html", standalone=TRUE)
+```
+
+<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts4.html">
+</iframe>
 
 # Więcej
 
-Kompletna lista wykresó∑ wspieranych przez pakiet rCharts znajduje się na stronie http://www.rpubs.com/dnchari/rcharts.
+Kompletna lista wykresów wspieranych przez pakiet rCharts znajduje się na stronie http://www.rpubs.com/dnchari/rcharts.
+
