@@ -72,30 +72,33 @@ p2$set(width = 750, height = 590)
 <iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts2.html">
 <iframe>
 
+# Biblioteka `MorrisJS`
+
+Biblioteka MorrisJS udostępnia inne ciekawe wykresy, głównie liniowe i słupkowe. PRzegląd wykresów z tej biblioteki znajduje się na stronie http://morrisjs.github.io/morris.js/
+
+```{r}
+library(tidyr)
+eZycia <- przezycia %>%
+  dplyr::filter(Age == 0) %>%
+  dplyr::mutate(Year = as.character(Year)) %>%
+  dplyr::select(Year, Gender, ex) %>%
+  spread(Gender, ex)
+head(eZycia)
+
+m1 <- mPlot(x = 'Year', y = c('Female', 'Male'), type = 'Line',
+  data = eZycia, pointSize = 0, lineWidth = 1)
+m1$set(width = 750, height = 590)
+# m1$save("rCharts3.html", standalone=TRUE)
+```
+
+<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts3.html">
+<iframe>
 
 ```{r}
 
-p1 = rPlot(death.rate ~ birth.rate, data = countries, color = 'continent', type = 'point')
-
-
-library(tidyr)
-eZycia <- przezycia %>%
-  filter(Age == 0) %>%
-  mutate(Year = as.character(Year)) %>%
-  select(Year, Gender, ex) %>%
-  spread(Gender, ex)
-
-m1 = mPlot(x = 'Year', y = c('Female', 'Male'), type = 'Line',
-  data = eZycia)
-m1$set(pointSize = 0, lineWidth = 1)
-m1
-
-
-
-
-#n general, any chart method chart.x(y) translates to n1$chart(x = y) in rCharts, with y being decorated with tags if required.
 
 ```
-http://www.rpubs.com/dnchari/rcharts
 
+# Więcej
 
+Kompletna lista wykresó∑ wspieranych przez pakiet rCharts znajduje się na stronie http://www.rpubs.com/dnchari/rcharts.

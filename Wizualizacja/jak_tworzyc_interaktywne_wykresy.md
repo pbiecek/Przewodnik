@@ -100,52 +100,43 @@ p2$set(width = 750, height = 590)
 <iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts2.html">
 <iframe>
 
+# Biblioteka `MorrisJS`
+
+Biblioteka MorrisJS udostępnia inne ciekawe wykresy, głównie liniowe i słupkowe. PRzegląd wykresów z tej biblioteki znajduje się na stronie http://morrisjs.github.io/morris.js/
 
 
 ```r
-p1 = rPlot(death.rate ~ birth.rate, data = countries, color = 'continent', type = 'point')
-
-
 library(tidyr)
 eZycia <- przezycia %>%
-  filter(Age == 0) %>%
-  mutate(Year = as.character(Year)) %>%
-  select(Year, Gender, ex) %>%
+  dplyr::filter(Age == 0) %>%
+  dplyr::mutate(Year = as.character(Year)) %>%
+  dplyr::select(Year, Gender, ex) %>%
   spread(Gender, ex)
+head(eZycia)
 ```
 
 ```
-## Error in filter(., Age == 0): object 'Age' not found
-```
-
-```r
-m1 = mPlot(x = 'Year', y = c('Female', 'Male'), type = 'Line',
-  data = eZycia)
-```
-
-```
-## Error in getLayer.default(...): object 'eZycia' not found
+##   Year Female  Male
+## 1 1958  68.63 63.03
+## 2 1959  68.34 62.62
+## 3 1960  70.63 64.81
+## 4 1961  70.81 64.86
+## 5 1962  70.54 64.55
+## 6 1963  71.52 65.41
 ```
 
 ```r
-m1$set(pointSize = 0, lineWidth = 1)
+m1 <- mPlot(x = 'Year', y = c('Female', 'Male'), type = 'Line',
+  data = eZycia, pointSize = 0, lineWidth = 1)
+m1$set(width = 750, height = 590)
+# m1$save("rCharts3.html", standalone=TRUE)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'm1' not found
-```
-
-```r
-m1
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'm1' not found
-```
-
-```r
-#n general, any chart method chart.x(y) translates to n1$chart(x = y) in rCharts, with y being decorated with tags if required.
-```
-http://www.rpubs.com/dnchari/rcharts
+<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts3.html">
+<iframe>
 
 
+
+# Więcej
+
+Kompletna lista wykresó∑ wspieranych przez pakiet rCharts znajduje się na stronie http://www.rpubs.com/dnchari/rcharts.
