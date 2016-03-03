@@ -151,7 +151,7 @@ map1$marker(c(52.23925, 21.01742), bindPopup = "Uniwersytet Warszawski, Centrala
 # map1$save("rCharts4.html", standalone=TRUE)
 ```
 
-<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts4.html">
+<iframe style="width:780px; height:420px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts4.html">
 </iframe>
 
 # Więcej
