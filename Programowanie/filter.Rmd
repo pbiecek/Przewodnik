@@ -1,10 +1,10 @@
-# Jak filrować wiersze?
+# Jak filtrować wiersze?
 
-Jedną z najczęstszych operacji na danych jest filtrowanie wierszy, które spełniają określony warunek.
+Jedną z najczęstszych operacji na danych jest filtrowanie wierszy, które spełniają określony warunek / warunki.
 
-Funkcja `filter()` pakietu `dplyr` wykonuje filtrowanie. Jej pierwszym argumentem jest zbiór danych na których ma pracować, a kolejen argumenty to warunki logiczne. 
+Funkcja `filter()` pakietu `dplyr` wykonuje filtrowanie. Jej pierwszym argumentem jest zbiór danych na których ma pracować, a kolejne argumenty to warunki logiczne. 
 
-Wynikiem tej funkcji są wiersze spełniające wszystkie określone warunki logiczne. Określając warunki można wykorzystywac nazwy kolumn ze zbioru danych bez podawania dodatkowych odnośników.
+Wynikiem tej funkcji są wiersze spełniające wszystkie określone warunki logiczne. Określając warunki można wykorzystywać nazwy kolumn ze zbioru danych bez podawania dodatkowych odnośników.
 
 Przykładowo, instrukcja które ze zbioru danych `auta2012` wybierze tylko oferty ze wskazanym polem `Marka == "Porsche"`.
 
@@ -14,7 +14,7 @@ tmp <- filter(auta2012,
 head(tmp)
 ```
 
-Możemy określać jednocześnie więcej warunków. Poniższy przykład jako wynik zbuduje zbiór danych marki `Porsche` z silnikami przekraczajacymi 300 KM.
+Możemy określać jednocześnie więcej warunków. Poniższy przykład jako wynik zbuduje zbiór danych marki `Porsche` z silnikami przekraczającymi 300 KM.
 
 ```{r, warning=FALSE}
 tylkoPorscheZDuzymSilnikiem <- filter(auta2012,
@@ -22,3 +22,4 @@ tylkoPorscheZDuzymSilnikiem <- filter(auta2012,
          KM > 300)
 head(tylkoPorscheZDuzymSilnikiem)
 ```
+
