@@ -14,6 +14,7 @@
        * [Jak pobierać dane z Twittera?](Programowanie/jak_pobierac_dane_z_twittera.md)
        * [Jak pobrać dane z...?](Programowanie/jak_pobrac_dane_z.md)
        * [Zadania](Programowanie/zadania.md)
+   * [Jak czyścić i przetwarzać dane?](Programowanie/czyscic_przetwarzac.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
