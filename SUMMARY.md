@@ -15,6 +15,14 @@
        * [Jak pobrać dane z...?](Programowanie/jak_pobrac_dane_z.md)
        * [Zadania](Programowanie/zadania.md)
    * [Jak czyścić i przetwarzać dane?](Programowanie/czyscic_przetwarzac.md)
+       * [Jak filtrować wiersze?](Programowanie/filter.md)
+       * [Jak dodawać kolumny?](Programowanie/mutate.md)
+       * [Jak wybierać kolumny?](Programowanie/select.md)
+       * [Jak sortować wiersze?](Programowanie/arrange.md)
+       * [Jak pracować z potokami?](Programowanie/potoki.md)
+       * [Jak wyznaczać agregaty w grupach?](Programowanie/groupby.md)
+       * [Jak czyścić dane?](Programowanie/tidyr.md)
+       * [Zadania](Programowanie/zadaniaDplyr.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
