@@ -10,7 +10,10 @@ Przedstawmy działanie tej funkcji na przykładzie danych `auta2012` o samochoda
 
 Kolejny przykład przekształca dwie kolumny w jedną. Na podstawie ceny w PLN oraz informacji czy jest to cena brutto czy netto policzymy odpowiednik ceny brutto dla wszystkich ofert.
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, warning=FALSE}
+library(dplyr)
+library(PogromcyDanych)
+
 autaZWiekiem <- mutate(auta2012,
                        Wiek.auta = 2013 - Rok.produkcji)
 head(autaZWiekiem[,c("Wiek.auta", "Rok.produkcji")])

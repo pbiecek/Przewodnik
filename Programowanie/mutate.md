@@ -12,6 +12,9 @@ Kolejny przykład przekształca dwie kolumny w jedną. Na podstawie ceny w PLN o
 
 
 ```r
+library(dplyr)
+library(PogromcyDanych)
+
 autaZWiekiem <- mutate(auta2012,
                        Wiek.auta = 2013 - Rok.produkcji)
 head(autaZWiekiem[,c("Wiek.auta", "Rok.produkcji")])
