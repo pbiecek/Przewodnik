@@ -1,6 +1,6 @@
 # Zadania z `dplyr` i `tidyr`
 
-Aby zweryfikować znajomość pakietów `dplyr` i `tidyr` spróbuj rozwiązać poniższe 20 zadań. Kolejnośc odpowiada stopniowi trudności. Pierwsze zadania można rozwiązać stosując pojedyncze operacje, ostatnie wymagają połaczenia większej liczby cegiełek.
+Aby zweryfikować znajomość pakietów `dplyr` i `tidyr` spróbuj rozwiązać poniższe 20 zadań. Kolejność odpowiada stopniowi trudności. Pierwsze zadania można rozwiązać stosując pojedyncze operacje, ostatnie wymagają połączenia większej liczby cegiełek.
 
 Wszystkie one dotyczą zbioru danych  `auta2012` dostępnego w pakiecie `PogromcyDanych`.
 
@@ -24,5 +24,4 @@ Wszystkie one dotyczą zbioru danych  `auta2012` dostępnego w pakiecie `Pogromc
 18. Spośród aut marki Toyota wyprodukowanych w 2007 roku, który model jest średnio najdroższy?
 19. Spośród aut z silnikiem diesla wyprodukowanych w 2007 roku który model jest najtańszy?
 20. Jakiego koloru auta mają największy medianowy przebieg?
-
 
