@@ -1,6 +1,8 @@
 # Zadania z `dplyr` i `tidyr`
 
-Poniższe operacje wykonaj na bazie zbioru danych `auta2012`
+Aby zweryfikować znajomość pakietów `dplyr` i `tidyr` spróbuj rozwiązać poniższe 20 zadań. Kolejnośc odpowiada stopniowi trudności. Pierwsze zadania można rozwiązać stosując pojedyncze operacje, ostatnie wymagają połaczenia większej liczby cegiełek.
+
+Wszystkie one dotyczą zbioru danych  `auta2012` dostępnego w pakiecie `PogromcyDanych`.
 
 1. Która Marka występuje najczęściej w zbiorze danych `auta2012`?
 2. Spośród aut marki Toyota, który model występuje najczęściej.
