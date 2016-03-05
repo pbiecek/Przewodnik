@@ -9,6 +9,9 @@ Wynikiem tej funkcji są wiersze spełniające wszystkie określone warunki logi
 Przykładowo, instrukcja które ze zbioru danych `auta2012` wybierze tylko oferty ze wskazanym polem `Marka == "Porsche"`.
 
 ```{r, warning=FALSE}
+library(dplyr)
+library(PogromcyDanych)
+
 tmp <- filter(auta2012,
         Marka == "Porsche")
 head(tmp)
