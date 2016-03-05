@@ -8,7 +8,7 @@ Wynikiem tej funkcji są wiersze spełniające wszystkie określone warunki logi
 
 Przykładowo, instrukcja które ze zbioru danych `auta2012` wybierze tylko oferty ze wskazanym polem `Marka == "Porsche"`.
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(dplyr)
 library(PogromcyDanych)
 

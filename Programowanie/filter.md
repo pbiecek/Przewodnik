@@ -11,46 +11,8 @@ Przykładowo, instrukcja które ze zbioru danych `auta2012` wybierze tylko ofert
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(PogromcyDanych)
-```
 
-```
-## Loading required package: SmarterPoland
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## Loading required package: httr
-```
-
-```
-## Loading required package: htmltools
-```
-
-```r
 tmp <- filter(auta2012,
         Marka == "Porsche")
 head(tmp)
