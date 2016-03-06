@@ -1,0 +1,79 @@
+# Jak pracować z potokami?
+
+Przetwarzanie danych składa się najczęściej z wielu kroków. 
+Wykonujemy operację A, póxniej B, później C itp.
+
+Ważne jest aby patrząc na kod R było łatwo zrozumieć
+jakie operacje są wykonywane. 
+
+Potoki to mechanizm wprowadzony niedawno do R,
+ale który szybko zrobył wielu zwolenników,
+ponieważ bardzo ułątwia pracę z przetwarzaniem danych.
+
+Aby przedstawić potoki rozpatrzy najpierw taką serię czterech instrukcji.
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(PogromcyDanych)
+
+# tylko volkswagen
+tylkoVolkswagen <- filter(auta2012, 
+                          Marka == "Volkswagen")
+# posortowane
+posortowaneVolkswagen <- arrange(tylkoVolkswagen, 
+                                 Cena.w.PLN)
+# tylko Golf VI
+tylkoGolfIV <- filter(posortowaneVolkswagen, 
+                      Model == "Golf", Wersja == "IV")
+# tylko z małym przebiegiem
+tylkoMalyPrzebieg <- filter(tylkoGolfIV, 
+                            Przebieg.w.km < 50000)
+```
+
+Przetwarzanie ,,na wielką cebulkę''.
+Powyższe instruckje można zamienić na jedno wywołanie.
+
+```{r, warning=FALSE}
+tylkoMalyPrzebieg <- 
+  filter(
+    filter(
+      arrange(
+        filter(
+          auta2012, 
+          Marka == "Volkswagen"), 
+        Cena.w.PLN), 
+      Model == "Golf", Wersja == "IV"), 
+    Przebieg.w.km < 50000)
+```
+
+
+Mało czytelny, choć częśto spotykany zapis.
+
+Rozwiązaniem problemu cebulki jest stosowanie specjalnego operatora do przetwarzania potokowego `%>%`. Ten operator pochodzi z pakietu `magrittr`  (cytując z jego dokumentacji: *to be pronounced with a sophisticated french accent*)  i jest dostępny po włączeniu pakietu `dplyr`.
+
+Jak działa ten operator?
+
+Przekazuje lewą stronę operatora jako pierwszy argument prawej strony tego operatora.
+
+Instrukcja ` a %>% f(b) ` jest równoważna instrukcji` f(a, b)`.
+
+```{r, warning=FALSE}
+tylkoMalyPrzebieg <- 
+  auta2012 %>%                                  # weź dane o autach
+  filter(Marka == "Volkswagen") %>%             # pozostaw tylko Volkswageny
+  arrange(Cena.w.PLN) %>%                       # posortuj malejąco po cenie
+  filter(Model == "Golf", Wersja == "IV") %>%   # pozostał tylko Golfy VI
+  filter(Przebieg.w.km < 50000)                 # pozostał tylko auta o małym przebiegu
+
+head(tylkoMalyPrzebieg)
+
+colnames(tylkoMalyPrzebieg)[4] <- "f"
+```
+
+Potoki można stosować nie tylko do funkcji `dplyr` ale też każdej innej.
+
+```{r, eval=FALSE}
+tylkoMalyPrzebieg %>% dim()
+tylkoMalyPrzebieg %>% head()
+```
+
