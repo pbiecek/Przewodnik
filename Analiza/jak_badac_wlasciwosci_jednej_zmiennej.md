@@ -30,7 +30,7 @@ Sprawdzimy więc, czy średni wiek posłów różni się istotnie od średniego 
 
 
 ```r
-poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")
+poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/2977e638f6d6b9d504c10fc29d779d42")
 
 t.test(poslowie$Wiek, mu = 50)
 ```
@@ -40,13 +40,13 @@ t.test(poslowie$Wiek, mu = 50)
 ## 	One Sample t-test
 ## 
 ## data:  poslowie$Wiek
-## t = 0.71092, df = 453, p-value = 0.4775
+## t = 0.92843, df = 459, p-value = 0.3537
 ## alternative hypothesis: true mean is not equal to 50
 ## 95 percent confidence interval:
-##  49.35051 51.38575
+##  49.46705 51.48751
 ## sample estimates:
 ## mean of x 
-##  50.36813
+##  50.47728
 ```
 
 ### Czy ta mediana jest różna od $$m_0$$?
@@ -73,13 +73,13 @@ prop.test( x = sum(poslowie$Wiek > 50),
 ## 	1-sample proportions test with continuity correction
 ## 
 ## data:  sum(poslowie$Wiek > 50) out of length(poslowie$Wiek), null probability 0.5
-## X-squared = 4.4604, df = 1, p-value = 0.03469
+## X-squared = 5.2196, df = 1, p-value = 0.02233
 ## alternative hypothesis: true p is not equal to 0.5
 ## 95 percent confidence interval:
-##  0.5035678 0.5968833
+##  0.5075742 0.6001998
 ## sample estimates:
 ##         p 
-## 0.5506608
+## 0.5543478
 ```
 
 
@@ -100,7 +100,44 @@ Przy prawdziwej hipotezie zerowej ma on rozkład $$\chi^2$$ z n-1 stopniami swob
 
 ```r
 library(PairedData)
+```
 
+```
+## Loading required package: MASS
+```
+
+```
+## Loading required package: gld
+```
+
+```
+## Loading required package: mvtnorm
+```
+
+```
+## Loading required package: lattice
+```
+
+```
+## Loading required package: ggplot2
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.2.4
+```
+
+```
+## 
+## Attaching package: 'PairedData'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     summary
+```
+
+```r
 var.test(poslowie$Wiek, ratio=100)
 ```
 
@@ -109,13 +146,13 @@ var.test(poslowie$Wiek, ratio=100)
 ## 	One-sample variance test
 ## 
 ## data:  x
-## X-squared = 551.45, df = 453, p-value = 0.002058
+## X-squared = 557.98, df = 459, p-value = 0.002074
 ## alternative hypothesis: true variance is not equal to 100
 ## 95 percent confidence interval:
-##  107.3135 139.2817
+##  107.2517 138.9632
 ## sample estimates:
 ## variance 
-## 121.7322
+## 121.5648
 ```
 
 ## Jak weryfikować wskaźniki struktury zmiennej binarnej?
@@ -148,7 +185,7 @@ table(poslowie$Kobieta)
 ```
 ## 
 ##   Kobieta Mężczyzna 
-##       125       329
+##       125       335
 ```
 
 ```r
@@ -162,14 +199,14 @@ binom.test(x = sum(poslowie$Kobieta == "Kobieta"),
 ## 	Exact binomial test
 ## 
 ## data:  sum(poslowie$Kobieta == "Kobieta") and length(poslowie$Kobieta)
-## number of successes = 125, number of trials = 454, p-value <
+## number of successes = 125, number of trials = 460, p-value <
 ## 2.2e-16
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
-##  0.2347201 0.3188961
+##  0.2315798 0.3148618
 ## sample estimates:
 ## probability of success 
-##              0.2753304
+##              0.2717391
 ```
 
 

@@ -6,7 +6,7 @@ Dane pobierane są bezpośrednio z Internetu z serwisu GitHub.
 
 
 ```r
-poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")
+poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/2977e638f6d6b9d504c10fc29d779d42")
 
 head(poslowie)
 ```
@@ -20,12 +20,12 @@ head(poslowie)
 ## 5  12021 Prawo i Sprawiedliwość         wyższe           poseł na Sejm RP
 ## 6   7935               Kukiz'15 średnie ogólne                dziennikarz
 ##          ImieNazwisko DataUrodzenia MiejsceUrodzenia  Wiek
-## 1     Adam Abramowicz    1961-03-10   Biała Podlaska 55.01
-## 2    Andrzej Adamczyk    1959-01-04      Krzeszowice 57.19
-## 3    Zbigniew Ajchler    1955-11-21        Szamotuły 60.32
-## 4 Adam Andruszkiewicz    1990-06-30          Grajewo 25.69
-## 5     Waldemar Andzel    1971-09-17          Czeladź 44.48
-## 6          Piotr Apel    1984-02-08         Warszawa 32.08
+## 1     Adam Abramowicz    1961-03-10   Biała Podlaska 55.03
+## 2    Andrzej Adamczyk    1959-01-04      Krzeszowice 57.21
+## 3    Zbigniew Ajchler    1955-11-21        Szamotuły 60.33
+## 4 Adam Andruszkiewicz    1990-06-30          Grajewo 25.70
+## 5     Waldemar Andzel    1971-09-17          Czeladź 44.50
+## 6          Piotr Apel    1984-02-08         Warszawa 32.10
 ```
 
 ## Zmienna ilościowa
@@ -50,7 +50,7 @@ mean(poslowie$Wiek)
 ```
 
 ```
-## [1] 50.36813
+## [1] 50.47728
 ```
 
 ### Średnia winsorowska
@@ -63,7 +63,7 @@ mean(poslowie$Wiek, trim=0.2)
 ```
 
 ```
-## [1] 51.01785
+## [1] 51.14928
 ```
 
 ### Mediana
@@ -76,7 +76,7 @@ median(poslowie$Wiek)
 ```
 
 ```
-## [1] 51.87
+## [1] 52.015
 ```
 
 ### Odchylenie standardowe
@@ -93,7 +93,7 @@ sd(poslowie$Wiek)
 ```
 
 ```
-## [1] 11.03323
+## [1] 11.02564
 ```
 
 ### Rozstęp
@@ -106,10 +106,10 @@ range(poslowie$Wiek)
 ```
 
 ```
-## [1] 23.50 77.53
+## [1] 23.52 77.54
 ```
 
-### Rozstęp kartylowy
+### Rozstęp kwartylowy
 
 Ile wynosi rozstęp kwartylowy (różnica pomiędzy 3. a 1. kwartylem)?
 
@@ -119,7 +119,7 @@ IQR(poslowie$Wiek)
 ```
 
 ```
-## [1] 17.195
+## [1] 17.0125
 ```
 
 ### Skośność
@@ -152,7 +152,7 @@ skewness(poslowie$Wiek)
 ```
 
 ```
-## [1] -0.2292414
+## Error in eval(expr, envir, enclos): could not find function "skewness"
 ```
 
 
@@ -189,7 +189,7 @@ kurtosis(poslowie$Wiek)
 ```
 
 ```
-## [1] -0.7078222
+## [1] -0.7027684
 ```
 
 
@@ -205,8 +205,8 @@ quantile(poslowie$Wiek, c(0.1, 0.25, 0.5, 0.75, 0.9))
 ```
 
 ```
-##    10%    25%    50%    75%    90% 
-## 34.586 42.025 51.870 59.220 63.864
+##     10%     25%     50%     75%     90% 
+## 34.6090 42.2375 52.0150 59.2500 63.9130
 ```
 
 ### Odchylenie medianowe
@@ -225,7 +225,7 @@ mad(poslowie$Wiek)
 ```
 
 ```
-## [1] 12.39454
+## [1] 12.32782
 ```
 
 ### Najważniejsze statystyki
@@ -237,7 +237,7 @@ summary(poslowie$Wiek)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   23.50   42.02   51.87   50.37   59.22   77.53
+##   23.52   42.24   52.02   50.48   59.25   77.54
 ```
 
 ### Wykres pudełkowy
@@ -347,7 +347,7 @@ ineq(poslowie$Glosow, type="Gini")
 ```
 
 ```
-## [1] 0.3917223
+## [1] 0.3905105
 ```
 
 ```r
@@ -371,12 +371,12 @@ table(poslowie$Wyksztalcenie)
 
 ```
 ## 
-##                 średnie ogólne średnie policelane/pomaturalne 
-##                             16                             12 
-##               średnie zawodowe                         wyższe 
-##                             10                            414 
-##            zasadnicze zawodowe 
-##                              2
+##                                                średnie ogólne 
+##                              1                             16 
+## średnie policelane/pomaturalne               średnie zawodowe 
+##                             12                             10 
+##                         wyższe            zasadnicze zawodowe 
+##                            419                              2
 ```
 
 ```r
@@ -385,12 +385,12 @@ prop.table(table(poslowie$Wyksztalcenie))
 
 ```
 ## 
-##                 średnie ogólne średnie policelane/pomaturalne 
-##                    0.035242291                    0.026431718 
-##               średnie zawodowe                         wyższe 
-##                    0.022026432                    0.911894273 
-##            zasadnicze zawodowe 
-##                    0.004405286
+##                                                średnie ogólne 
+##                    0.002173913                    0.034782609 
+## średnie policelane/pomaturalne               średnie zawodowe 
+##                    0.026086957                    0.021739130 
+##                         wyższe            zasadnicze zawodowe 
+##                    0.910869565                    0.004347826
 ```
 
 ### Wykres paskowy

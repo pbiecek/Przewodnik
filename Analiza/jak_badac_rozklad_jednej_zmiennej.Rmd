@@ -5,7 +5,7 @@ Wykorzystamy do tego bazę danych dotyczących posłów z 8 kadencji Sejmu.
 Dane pobierane są bezpośrednio z Internetu z serwisu GitHub.
 
 ```{r}
-poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")
+poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/2977e638f6d6b9d504c10fc29d779d42")
 
 head(poslowie)
 ```

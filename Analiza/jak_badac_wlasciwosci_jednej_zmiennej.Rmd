@@ -29,7 +29,7 @@ Przykładowo, sprawdźmy, czy wiek posłów różni się od średniej w populacj
 Sprawdzimy więc, czy średni wiek posłów różni się istotnie od średniego wieku w populacji osób, którym przysługuje bierne prawo wyborcze. Wykorzystamy do tego funkcję `t.test()` z argumentem `mu`. Argumentem `alternative` można określić alternatywę.
 
 ```{r}
-poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")
+poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/2977e638f6d6b9d504c10fc29d779d42")
 
 t.test(poslowie$Wiek, mu = 50)
 ```
