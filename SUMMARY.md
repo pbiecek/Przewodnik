@@ -16,7 +16,7 @@
        * [Zadania](Programowanie/zadania.md)
    * [Jak czyścić i przetwarzać dane?](Programowanie/czyscic_przetwarzac.md)
        * [Jak filtrować wiersze?](Programowanie/filter.md)
-       * [Jak dodawać kolumny?](Programowanie/mutate.md)
+       * [Jak tworzyć nowe kolumny?](Programowanie/mutate.md)
        * [Jak wybierać kolumny?](Programowanie/select.md)
        * [Jak sortować wiersze?](Programowanie/arrange.md)
        * [Jak pracować z potokami?](Programowanie/potoki.md)
