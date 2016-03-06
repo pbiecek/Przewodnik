@@ -37,7 +37,11 @@ auta2012 %>%
 
 ## Grupowanie
 
-Funkcja `group_by()` pozwala na operacje na agregatach w grupach opisanych przez zmienną jakościową.
+Funkcja `group_by()` pozwala okreslić w jakich grupach mają być liczone agregaty wyznaczane przez funkcję `summarise()`.
+
+Sama funkcja nie powoduje żadnego przetwarzania, a jedynie dodaje znacznik określający co jest teraz zmienną grupującą. Kolejne funkcje w potoku (tj. `summarise()`) będą dzięki temu znacznikowi wiedziały, że statystyki należy wyznaczać w grupach.
+
+Poniższy przykład liczby trzy statystyki (medianę ceny, przebiegu i liczbę wierszy) dla poszczególnych typów paliwa.
 
 ```{r, warning=FALSE}
 auta2012 %>%
@@ -60,11 +64,12 @@ auta2012 %>%
   arrange(liczba)
 ```
 
----
+## Grupowanie po dwóch zmiennych
 
-# Grupowanie po dwóch zmiennych
+Grupować można po dwóch lub większej licznie zmiennych.
+W tym przypadku agregaty liczone są dla każdej występującej w danych kombinacji zmiennych grupujących.
 
-Grupować można po kilku zmiennych, w tym przypadku agregaty liczone są w każdym podzbiorze zmiennych.
+Jeżeli jakaś kombinacja grup w danych nie występuje (np. `Model = Beetle` i `Rodzaj.paliwa = benzyna+LPG`) to nei pojawi się też w agregatach.
 
 ```{r, warning=FALSE}
 auta2012 %>%
