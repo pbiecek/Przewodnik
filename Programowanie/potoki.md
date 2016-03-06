@@ -75,8 +75,8 @@ Dla takich potoków, dodatkowo można zastosować operator przypisania `->` dzi�
 auta2012 %>%                                    # weź dane o autach
   filter(Marka == "Volkswagen") %>%             # pozostaw tylko Volkswageny
   arrange(Cena.w.PLN) %>%                       # posortuj malejąco po cenie
-  filter(Model == "Golf", Wersja == "IV") %>%   # pozostał tylko Golfy VI
-  filter(Przebieg.w.km < 50000) ->              # pozostał tylko auta o małym przebiegu
+  filter(Model == "Golf", Wersja == "IV") %>%   # pozostaw tylko Golfy VI
+  filter(Przebieg.w.km < 50000) ->              # pozostaw tylko auta o małym przebiegu
   tylkoMalyPrzebieg
 
 head(tylkoMalyPrzebieg[,1:9])
