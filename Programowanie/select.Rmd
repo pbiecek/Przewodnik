@@ -11,7 +11,7 @@ Przykładowo, poniższa instrukcja wybiera jedynie wiek auta i rok produkcji.
 library(dplyr)
 library(PogromcyDanych)
 
-tmp <- select(auta2012, Wiek.auta, Rok.produkcji)
+tmp <- select(auta2012, Rodzaj.paliwa, Rok.produkcji)
 head(tmp)
 ```
 
