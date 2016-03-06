@@ -1,11 +1,11 @@
 # Jak sortować wiersze?
 
-Sortowanie danych po okrełsonej kolumnie znacznie ułątwia analizę wartości w tej kolumnie. 
+Sortowanie danych po określonej kolumnie znacznie ułatwia analizę wartości w tej kolumnie. 
 Przede wszystkim natychmiast widać wartości skrajne, sortowanie jest więc wygodne podczas eksploracji danych.
 
-Funkcją `arrange()` z pakietu `dplyr` możemy wykonać sortowanie po jednej lub większej liczbie zmiennych. W przypadku remisów ze względu na pierwsze keyteria, porządek rozsrzygają kolejne kryteria.
+Funkcją `arrange()` z pakietu `dplyr` możemy wykonać sortowanie po jednej lub większej liczbie zmiennych. W przypadku remisów ze względu na pierwsze kryteria, porządek rozstrzygają kolejne kryteria.
 
-W przykładzie poniżej w pierwszej kolejności dane sa sortowane po wartościach z kolumny `Model`. Dopeiro w przypadku, gdy w tej kolumnie znajdują sie takie same wartości, ich kolejność jest rozstrzygana przez kolejną zmienną, cena w PLN.
+W przykładzie poniżej w pierwszej kolejności dane są sortowane po wartościach z kolumny `Model`. Dopiero w przypadku, gdy w tej kolumnie znajdują się takie same wartości, ich kolejność jest rozstrzygana przez kolejną zmienną, cena w PLN.
 
 ```{r, warning=FALSE, message=FALSE}
 library(dplyr)
@@ -16,3 +16,4 @@ posortowaneAuta <-
         Model, 
         Cena.w.PLN)
 ```
+
