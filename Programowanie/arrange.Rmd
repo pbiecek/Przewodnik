@@ -11,9 +11,8 @@ W przykładzie poniżej w pierwszej kolejności dane są sortowane po wartościa
 library(dplyr)
 library(PogromcyDanych)
 
-posortowaneAuta <-
-  arrange(auta2012, 
-        Model, 
-        Cena.w.PLN)
+posortowaneAuta <- arrange(auta2012, Model, Cena.w.PLN)
+
+head(select(posortowaneAuta, Model, Marka, Cena.w.PLN, Cena, Waluta))
 ```
 
