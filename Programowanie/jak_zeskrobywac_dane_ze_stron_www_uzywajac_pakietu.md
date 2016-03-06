@@ -6,7 +6,7 @@ Uniwersalnym i wygodnym narzędziem do pobierania danych ze stron internetowych 
 
 Kluczowe funkcje z pakietu `rvest` podzielić można na trzy grupy:
 
-* `read_html` - wczytuje stronę internetową i tworzy strukturę drzewiastą strukturę html,
+* `read_html` - wczytuje stronę internetową i tworzy drzewiastą strukturę html,
 * `html_nodes` - wyszukuje węzły w drzewie pasujące do określonego wzorca (tzw. selectora),
 * `html_text`, `html_tag`, `html_attrs` - funkcje wyciągające treść lub atrybuty węzłów html.
 
@@ -53,8 +53,8 @@ html_text(filmy)
 ## [18] "Tysiąc i jedna noc – cz. 3, oczarowany"
 ## [19] "Nieobecność"                           
 ## [20] "Psy mafii"                             
-## [21] "Zabójczyni"                            
-## [22] "Dama w vanie"                          
+## [21] "Dama w vanie"                          
+## [22] "Zabójczyni"                            
 ## [23] "Tata kontra tata"                      
 ## [24] "Powrót"                                
 ## [25] "Cały ten cukier"                       
