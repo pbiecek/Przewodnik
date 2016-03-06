@@ -5,6 +5,8 @@ Efektywna praca zespołowa jest najczęściej oparta o system dobrze zdefiniowan
 Serwis Waffle jest dostępny na stronie http://waffle.io.
 Umożliwia proste i wizualne zarządzanie zadaniami (ang. `issues`) przypisanymi do repozytorium GitHuba.
 
+![Przykładowy wygląd panelu Waffle dla projektu Przewodnik](rysunki/waffle.png)
+
 Zadania mają numery (odwołuję się do nich pisząc `#numer_zadania`), tytuły, treści, tagi oraz osoby odpowiedzialne za zadanie. Do zadania jest też przypisana lista komentarzy.
 
 System waffle korzysta z rozwiązań zwinnych metodyk zarządzania projektami. Każde zadanie może znajdować się w jednym z kilku stanów. Domyślnie są to:
@@ -36,4 +38,6 @@ Jest jakiś urok w kolorowej tablicy wypełnionej zadaniami. Jednak to nie liczb
 * Zadania powinny być okresowo przeglądane i jeżeli zajdzie taka potrzeba usuwane, zamykane. Nie ma nic gorszego niż stos kilkudziesięciu zadań, które nigdy nie zostaną zrealizowane, ale zabierają nam czas na ich przeglądanie jak również zużywają nasze zasoby na zastanawianie się czy je realizować czy nie. 
 
 * Zadania powinny być względnie małe, możliwe do realizacji w jeden dzień, maksymalnie tydzień. Zadanie, którego realizacja miałaby trwać dłużej powinni być podzielone na mniejsze zadania. Inaczej trudniej nam będzie śledzić postęp prac.
+
+![Przykładowe zadanie](rysunki/waffle2.png)
 
