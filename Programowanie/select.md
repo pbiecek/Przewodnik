@@ -5,7 +5,7 @@ Dane potrafią zawierać dużą liczbę kolumn. Ale często pracujemy tylko na k
 Inną zaletą wybierania jedynie potrzebnych kolumn jest łatwiejsze wyświetlanie danych. Zamiast pokazywać wszystkie, nawet nieistotne kolumny, często lepiej pokazać jedynie te istotne.
 
 Funkcja `select()` z pakietu `dplyr` pozwala na wybór jednej lub wielu zmiennych ze źródła danych. Pierwszym argumentem jest źródło danych a kolejnymi są nazwy kolumn, które mają być wybrane.
-Przykładowo, poniższa instrukcja wybiera jedynie wiek auta i rok produkcji.
+Przykładowo, poniższa instrukcja wybiera jedynie rodzaj paliwa i rok produkcji.
 
 
 ```r
