@@ -64,6 +64,8 @@ Instrukcja ` a %>% f(b) ` jest równoważna instrukcji` f(a, b)`.
 
 Można też opisać go następująco: Operator przekazuje lewą stronę jako pierwszy argument funkcji wskazanej z prawej strony.
 
+## Potoki w akcji
+
 Cebulka, którą powyżej opisaliśmy powyżej może być zapisana równoważnie w następujący, znacznie bardziej czytelny, sposób.
 
 Dla takich potoków, dodatkowo można zastosować operator przypisania `->` dzięki czemu kolejność czytania takiego potoku jest konsekwentnie od lewej do prawej.
