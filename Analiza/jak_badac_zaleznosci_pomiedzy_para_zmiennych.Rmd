@@ -1,18 +1,18 @@
 # Jak badać zależności pomiędzy parą zmiennych?
 
 Testów weryfikujących strukturę zależności pomiędzy parą zmiennych jest co niemiara. 
-W języku polskim całkiem bogata kolekcja testów jest przedstawiona w ksiązce Ryszarda Magiery ,,Modele i metody statystyki Matematycznej''.
+W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery ,,Modele i metody statystyki Matematycznej''.
 
-Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardzie polularnych / najbardziej istotnych.
+Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych / najbardziej istotnych.
 
 ## Jak weryfikować niezależność dwóch zmiennych jakościowych?
 
 **Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$. $$X$$ przyjmuje wartości ze zbioru $$(x_1, ..., x_r)$$ a $$Y$$ przyjmuje wartości ze zbioru $$(y_1, ..., y_s)$$. 
 
 Brzegowy rozkład zmiennej X określmy jako $$P(X = x_i) = p_{i.}$$ a zmiennej $$Y$$ jako $$P(Y = Y_j) = p_{.j}$$.
-Łączny rozkład zmiennych $$(X,Y)$$ określimiy jako $$P(X=x_i, Y=y_j) = p_{ij}$$.
+Łączny rozkład zmiennych $$(X,Y)$$ określimy jako $$P(X=x_i, Y=y_j) = p_{ij}$$.
 
-**Hipoteza**: Określy hipotezę zerową (niezależności), dla każdego $$i,j$$
+**Hipoteza**: Określmy hipotezę zerową (niezależności), dla każdego $$i,j$$
 
 $$
 H_0: p_{ij} = p_{i.}p_{.j}
@@ -32,7 +32,7 @@ Statystyka testowa jest oparta o tablicę kontyngencji
 | $$y_r$$ | $$n_{r1}$$ | $$n_{r2}$$ | ... | $$n_{rs}$$ |
 
 
-Ta tablica opisuje obserwowane w danych liczebnosci wystąpienia poszczególnych kombinacji wartości. Statystyka testowa porównuje te wartości z wartościami oczekiwanymi, przy założeniu prawdziwej hipotezy zerowej.
+Ta tablica opisuje obserwowane w danych liczebności wystąpienia poszczególnych kombinacji wartości. Statystyka testowa porównuje te wartości z wartościami oczekiwanymi, przy założeniu prawdziwej hipotezy zerowej.
 
 Zazwyczaj statystyka testowa w teście $$\chi^2$$ ma postać
 
@@ -40,9 +40,9 @@ $$
 T = \sum_i \frac{(O_i - E_i)^2}{E_i}
 $$
 
-gdzie $$O$$ oznacza obserwowane liczbenosci, $$E$$ oczekiwan liczebności. 
+gdzie $$O$$ oznacza obserwowane liczebności, $$E$$ oczekiwane liczebności. 
 
-Ta generyczna postać statystyki testowej, w tym konkjretym przypadku przyjmuje postać
+Ta generyczna postać statystyki testowej, w tym konkretnym przypadku przyjmuje postać
 
 $$
 T = \sum_{i=1}^r \sum_{j=1}^s \frac{(n_{ij} - n_{i.}n_{.j}/n)^2}{n_{i.}n_{.j}/n}
@@ -51,13 +51,139 @@ $$
 
 Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
 
+Obszar odrzucenia jest najczęściej postaci $$[c, \infy]$$.
 
-## Jak weryfikować niezależność dwóch zmiennych ilościowych?
+### Przykład
 
-korelacja spearmana
-korelacja persona
+Rozważmy następującą tabelę liczebności. Opisuje ona występowanie różnych klas słów w róznych kadencjach Sejmu i Senatu.
+
+```{r, warning=FALSE, message=FALSE}
+tab <- archivist::aread("pbiecek/Przewodnik/arepo/a3666b4084daa5db9251dc36e3286298")
+
+tab
+```
+
+Aby przeprowadzić test $$\chi^2$$ można wykorzustać funkcję `chisq.test()`. Wyznacza ona zarówno macierz oczekiwanych częstości, statystykę testową jak i wartość p.
+
+```{r, warning=FALSE}
+wynik <- chisq.test(tab)
+
+wynik$p.value
+
+wynik$statistic
+
+wynik$expected
+
+wynik$observed
+```
 
 ## Jak weryfikować niezależność dwóch zmiennych binarnych?
 
-test fishera
+Specyficzną wersją testu na niezależność dwóch zmeinnych jakościowych jest test dla dwóch zmiennych binarnych. 
+Zamiast wykorzystywać w tym przypadku asymptotyczny rozklład statystyki testowej można badań dokłądny rozkłąd statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
+
+Statystyka testowa jest oparta o tablicę kontyngencji
+
+|   | $$x_1$$ | $$x_2$$ |
+|---|---|---|
+| $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | 
+| $$y_2$$ | $$n_{21}$$ | $$n_{22}$$ | 
+
+o rozkładzie hipotergeoemtrycznym.
+
+### Przykład
+
+Sprawdźmy czy jest zależność pomiędzy marką aua (Audi / Volkswagen) a kolorem auta (metallic / nie metallic).
+
+```{r, warning=FALSE}
+library(SmaterPoland)
+library(dplyr)
+
+av <- auta2012 %>% 
+  filter(Marka %in% c("Audi", "Volkswagen")) %>%
+  mutate(metallic = grepl(Kolor, pattern="metallic"))
+
+
+tab <- table(factor(av$Marka), av$metallic)
+  
+fisher.test(tab)
+```
+
+## Jak weryfikować niezależność dwóch zmiennych ilościowych?
+
+### Dwuwymiarowy rozkład normalny
+
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkłądu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. 
+
+**Hipoteza**: 
+
+$$
+H_0: \sigma_{12} = 0.
+$$
+$$
+H_A: \sigma_{12} <> 0.
+$$
+
+**Statystyka testowa**:
+
+Statystyka testowa oparta jest o współczynnik korelacji 
+
+$$
+\rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar(y))}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
+$$
+
+Stosowane jest następujące przekształcenie
+
+$$
+T = \sqrt{n-2}\frac{\rho}{\sqrt{1 = \rho^2}},
+$$
+
+po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego kontruowany jest obszar krytyczny.
+
+
+Czasem weryfikowana jest też inna hipoteza zerowa.
+
+**Hipoteza**: 
+
+$$
+H_0: \sigma_{12} = \rho_0.
+$$
+$$
+H_A: \sigma_{12} <> \rho_0.
+$$
+
+**Statystyka testowa**:
+
+W tym przypadku stosuje się inną transformację, tzw. transformację Fishera.
+
+$$
+U = 1/2 \ln(\frac{1+\rho}{1-\rho}).
+$$
+
+Przy prawdziwej hipotezie zerowej ta statystyka ma asymtotycznie rozkłąd normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$
+
+### Korelacja rang
+
+Założenie o dwuwymiaorywm rozkładzie normalnym jest silnie ograniczające. 
+Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana.
+
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkłądu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. 
+
+**Hipoteza**: 
+
+$$
+H_0: \sigma_{12} = 0.
+$$
+$$
+H_A: \sigma_{12} <> 0.
+$$
+
+**Statystyka testowa**:
+
+
+korelacja persona
+
+korelacja spearmana
+
+
 
