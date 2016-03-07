@@ -1,0 +1,45 @@
+# Jak badać rozkład dwóch zmiennych?
+
+- korelacja
+- test dla korelacji
+- analiza korespondencji
+- test $\chi^2$
+
+
+
+
+
+
+Correspondence analysis (CA) is a multivariate statistical technique proposed[1] by Hirschfeld[2] and later developed by Jean-Paul Benzécri.[3] It is conceptually similar to principal component analysis, but applies to categorical rather than continuous data. In a similar manner to principal component analysis, it provides a means of displaying or summarising a set of data in two-dimensional graphical form.
+
+
+CA decomposes the chi-squared statistic associated with this table into orthogonal factors. Because CA is a descriptive technique, it can be applied to tables whether or not the χ² statistic is appropriate.[4][5]
+
+
+JSS
+
+v20i03.pdf
+
+
+https://en.wikipedia.org/wiki/Correspondence_analysis
+
+https://en.wikipedia.org/wiki/Generalized_singular_value_decomposition
+
+https://cran.r-project.org/web/packages/ExPosition/ExPosition.pdf
+
+
+
+Algorithm
+
+http://forrest.psych.unc.edu/research/vista-frames/pdf/chap11.pdf
+
+http://www.mathematica-journal.com/2010/09/an-introduction-to-correspondence-analysis/
+
+inne wyprowadznie
+
+http://marketing-bulletin.massey.ac.nz/v14/mb_v14_t2_bendixen.pdf
+
+krótkie wprowadzeni strona 52
+
+http://www.biecek.pl/NaPrzelajPrzezDataMining/NaPrzelajPrzezDataMining.pdf
+
