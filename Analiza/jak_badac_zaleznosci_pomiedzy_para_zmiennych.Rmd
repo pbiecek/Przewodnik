@@ -1,0 +1,63 @@
+# Jak badać zależności pomiędzy parą zmiennych?
+
+Testów weryfikujących strukturę zależności pomiędzy parą zmiennych jest co niemiara. 
+W języku polskim całkiem bogata kolekcja testów jest przedstawiona w ksiązce Ryszarda Magiery ,,Modele i metody statystyki Matematycznej''.
+
+Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardzie polularnych / najbardziej istotnych.
+
+## Jak weryfikować niezależność dwóch zmiennych jakościowych?
+
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$. $$X$$ przyjmuje wartości ze zbioru $$(x_1, ..., x_r)$$ a $$Y$$ przyjmuje wartości ze zbioru $$(y_1, ..., y_s)$$. 
+
+Brzegowy rozkład zmiennej X określmy jako $$P(X = x_i) = p_{i.}$$ a zmiennej $$Y$$ jako $$P(Y = Y_j) = p_{.j}$$.
+Łączny rozkład zmiennych $$(X,Y)$$ określimiy jako $$P(X=x_i, Y=y_j) = p_{ij}$$.
+
+**Hipoteza**: Określy hipotezę zerową (niezależności), dla każdego $$i,j$$
+
+$$
+H_0: p_{ij} = p_{i.}p_{.j}
+$$
+
+Hipoteza alternatywna jest taka, że dla dowolnego $$i,j$$ ta równość nie zachodzi.
+
+
+**Statystyka testowa**:
+
+Statystyka testowa jest oparta o tablicę kontyngencji
+
+|   | $$x_1$$ | $$x_2$$ |   | $$x_s$$ |
+|---|---|---|---|---|
+| $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | ... | $$n_{1s}$$ |
+|   |  ... |   |   | ...  |
+| $$y_r$$ | $$n_{r1}$$ | $$n_{r2}$$ | ... | $$n_{rs}$$ |
+
+
+Ta tablica opisuje obserwowane w danych liczebnosci wystąpienia poszczególnych kombinacji wartości. Statystyka testowa porównuje te wartości z wartościami oczekiwanymi, przy założeniu prawdziwej hipotezy zerowej.
+
+Zazwyczaj statystyka testowa w teście $$\chi^2$$ ma postać
+
+$$
+T = \sum_i \frac{(O_i - E_i)^2}{E_i}
+$$
+
+gdzie $$O$$ oznacza obserwowane liczbenosci, $$E$$ oczekiwan liczebności. 
+
+Ta generyczna postać statystyki testowej, w tym konkjretym przypadku przyjmuje postać
+
+$$
+T = \sum_{i=1}^r \sum_{j=1}^s \frac{(n_{ij} - n_{i.}n_{.j}/n)^2}{n_{i.}n_{.j}/n}
+$$
+
+
+Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
+
+
+## Jak weryfikować niezależność dwóch zmiennych ilościowych?
+
+korelacja spearmana
+korelacja persona
+
+## Jak weryfikować niezależność dwóch zmiennych binarnych?
+
+test fishera
+
