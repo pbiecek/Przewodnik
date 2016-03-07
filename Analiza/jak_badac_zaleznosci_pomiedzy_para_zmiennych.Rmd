@@ -167,23 +167,38 @@ Przy prawdziwej hipotezie zerowej ta statystyka ma asymtotycznie rozkłąd norma
 Założenie o dwuwymiaorywm rozkładzie normalnym jest silnie ograniczające. 
 Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana.
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkłądu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. 
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$. 
+
+Oznaczmy dodatkowo $$r_i = rank(X_i)$$, $$s_i = rank(Y_i)$$.
 
 **Hipoteza**: 
 
 $$
-H_0: \sigma_{12} = 0.
+H_0: cor(r_i, s_i) = 0.
 $$
 $$
-H_A: \sigma_{12} <> 0.
+H_A: cor(r_i, s_i) <> 0.
 $$
 
 **Statystyka testowa**:
 
+Statystyą testowa jest korelacja Pearsona ale liczona dla rang a nie oryginalnych obserwacji. 
 
-korelacja persona
+$$
+\rho = \frac{\sum_i (r_{i} - (n+1)/2)(s_i - (n+1)/2)}{\sqrt{\sum_i (r_{i} - (n+1)/2)^2\sum_i (s_{i} - (n+1)/2)^2}}
+$$
 
-korelacja spearmana
+Po prostych przekształceniach otrzymujemy
 
+$$
+\rho = 1 - \frac{6 \sum(r_i - s_i)^2}{n(n^2-1)}.
+$$
 
+Rozkład tej statystyki mozna tablicowac dla małych n. Asymptotycznie ma ona rozkłąd normalny z wariancją $$1/(n-1)$$.
+Ale w implementacji nakczęściej stosuje się podobną transformację co w przypadku testu Pearsona, czyli
 
+$$
+T = \sqrt{n-2}\frac{\rho}{\sqrt{1-\rho^2}}.
+$$
+
+Asymptotycznie ta statystyka ma rozkład $$t_{n-2}$$.
