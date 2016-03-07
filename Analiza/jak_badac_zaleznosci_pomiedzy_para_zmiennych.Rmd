@@ -55,7 +55,7 @@ Obszar odrzucenia jest najczęściej postaci $$[c, \infy]$$.
 
 ### Przykład
 
-Rozważmy następującą tabelę liczebności. Opisuje ona występowanie różnych klas słów w róznych kadencjach Sejmu i Senatu.
+Rozważmy następującą tabelę liczebności. Opisuje ona występowanie różnych klas słów w różnych kadencjach Sejmu i Senatu.
 
 ```{r, warning=FALSE, message=FALSE}
 tab <- archivist::aread("pbiecek/Przewodnik/arepo/a3666b4084daa5db9251dc36e3286298")
@@ -63,7 +63,7 @@ tab <- archivist::aread("pbiecek/Przewodnik/arepo/a3666b4084daa5db9251dc36e32862
 tab
 ```
 
-Aby przeprowadzić test $$\chi^2$$ można wykorzustać funkcję `chisq.test()`. Wyznacza ona zarówno macierz oczekiwanych częstości, statystykę testową jak i wartość p.
+Aby przeprowadzić test $$\chi^2$$ można wykorzystać funkcję `chisq.test()`. Wyznacza ona zarówno macierz oczekiwanych częstości, statystykę testową jak i wartość p.
 
 ```{r, warning=FALSE}
 wynik <- chisq.test(tab)
@@ -79,8 +79,8 @@ wynik$observed
 
 ## Jak weryfikować niezależność dwóch zmiennych binarnych?
 
-Specyficzną wersją testu na niezależność dwóch zmeinnych jakościowych jest test dla dwóch zmiennych binarnych. 
-Zamiast wykorzystywać w tym przypadku asymptotyczny rozklład statystyki testowej można badań dokłądny rozkłąd statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
+Specyficzną wersją testu na niezależność dwóch zmiennych jakościowych jest test dla dwóch zmiennych binarnych. 
+Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowej można badań dokładny rozkład statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
 
 Statystyka testowa jest oparta o tablicę kontyngencji
 
@@ -89,11 +89,11 @@ Statystyka testowa jest oparta o tablicę kontyngencji
 | $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | 
 | $$y_2$$ | $$n_{21}$$ | $$n_{22}$$ | 
 
-o rozkładzie hipotergeoemtrycznym.
+o rozkładzie hipotergeometrycznym.
 
 ### Przykład
 
-Sprawdźmy czy jest zależność pomiędzy marką aua (Audi / Volkswagen) a kolorem auta (metallic / nie metallic).
+Sprawdźmy czy jest zależność pomiędzy marką auta (Audi / Volkswagen) a kolorem auta (metalik / nie metalik).
 
 ```{r, warning=FALSE}
 library(SmaterPoland)
@@ -113,7 +113,7 @@ fisher.test(tab)
 
 ### Dwuwymiarowy rozkład normalny
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkłądu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. 
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. 
 
 **Hipoteza**: 
 
@@ -138,7 +138,7 @@ $$
 T = \sqrt{n-2}\frac{\rho}{\sqrt{1 = \rho^2}},
 $$
 
-po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego kontruowany jest obszar krytyczny.
+po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny.
 
 
 Czasem weryfikowana jest też inna hipoteza zerowa.
@@ -160,11 +160,11 @@ $$
 U = 1/2 \ln(\frac{1+\rho}{1-\rho}).
 $$
 
-Przy prawdziwej hipotezie zerowej ta statystyka ma asymtotycznie rozkłąd normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$
+Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$
 
 ### Korelacja rang
 
-Założenie o dwuwymiaorywm rozkładzie normalnym jest silnie ograniczające. 
+Założenie o dwuwymiarowym rozkładzie normalnym jest silnie ograniczające. 
 Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana.
 
 **Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$. 
@@ -182,7 +182,7 @@ $$
 
 **Statystyka testowa**:
 
-Statystyą testowa jest korelacja Pearsona ale liczona dla rang a nie oryginalnych obserwacji. 
+Statystyką testowa jest korelacja Pearsona ale liczona dla rang a nie oryginalnych obserwacji. 
 
 $$
 \rho = \frac{\sum_i (r_{i} - (n+1)/2)(s_i - (n+1)/2)}{\sqrt{\sum_i (r_{i} - (n+1)/2)^2\sum_i (s_{i} - (n+1)/2)^2}}
@@ -194,11 +194,12 @@ $$
 \rho = 1 - \frac{6 \sum(r_i - s_i)^2}{n(n^2-1)}.
 $$
 
-Rozkład tej statystyki mozna tablicowac dla małych n. Asymptotycznie ma ona rozkłąd normalny z wariancją $$1/(n-1)$$.
-Ale w implementacji nakczęściej stosuje się podobną transformację co w przypadku testu Pearsona, czyli
+Rozkład tej statystyki można tablicować dla małych n. Asymptotycznie ma ona rozkład normalny z wariancją $$1/(n-1)$$.
+Ale w implementacji najczęściej stosuje się podobną transformację co w przypadku testu Pearsona, czyli
 
 $$
 T = \sqrt{n-2}\frac{\rho}{\sqrt{1-\rho^2}}.
 $$
 
 Asymptotycznie ta statystyka ma rozkład $$t_{n-2}$$.
+
