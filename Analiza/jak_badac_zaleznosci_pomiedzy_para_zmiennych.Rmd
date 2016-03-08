@@ -120,7 +120,7 @@ Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują n
 
 ### Dwuwymiarowy rozkład normalny
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczny przez $$\sigma_{12}$$.
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczmy przez $$\sigma_{12}$$.
 
 **Hipoteza**: 
 
