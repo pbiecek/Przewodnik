@@ -1,7 +1,7 @@
 # Jak badać zależności pomiędzy parą zmiennych?
 
 Testów weryfikujących strukturę zależności pomiędzy parą zmiennych jest co niemiara. 
-W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery [],,Modele i metody statystyki Matematycznej''](https://www.google.pl/search?newwindow=1&q=modele+i+metody+statystyki+matematycznej&oq=modele+i+metody+statystyki+matematycznej).
+W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery [,,Modele i metody statystyki Matematycznej''](https://www.google.pl/search?newwindow=1&q=modele+i+metody+statystyki+matematycznej&oq=modele+i+metody+statystyki+matematycznej).
 
 Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, swego rodzaju szkielet który można rozbudowywać w różnych kierunkach.
 
@@ -53,7 +53,7 @@ $$
 Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
 
 Za obszar odrzucenia przyjmuje się przedział postaci $$[c, \infty]$$.
-Przykłądowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwartylem rzędu $$0.95$$.
+Przykładowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwantylem rzędu $$0.95$$.
 
 
 ```r
@@ -146,7 +146,7 @@ wynik$observed
 ## Jak weryfikować niezależność dwóch zmiennych binarnych?
 
 Specyficzną wersją testu na niezależność dwóch zmiennych jakościowych jest test dla dwóch zmiennych binarnych. 
-Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowej można badań dokładny rozkład statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
+Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowej można badać dokładny rozkład statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
 
 Statystyka testowa jest oparta o tablicę kontyngencji
 
@@ -155,13 +155,13 @@ Statystyka testowa jest oparta o tablicę kontyngencji
 | $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | 
 | $$y_2$$ | $$n_{21}$$ | $$n_{22}$$ | 
 
-o rozkładzie hipotergeometrycznym.
+o rozkładzie hipergeometrycznym.
 
 Jeżeli badamy zależnośc pomiędzy parą zmiennych binarnych to zalecane jest użycie tego testu. Umożliwia on również weryfikowanie hipotez kierunkowych (a więc częstsze/rzadsze niż przypadkowe współwystępowanie $$x_2y_2$$).
 
 ### Przykład
 
-Ograniczmy nadanie kolorów oczy do niebieskie/brązowe a włosów do czarne / blond.
+Ograniczmy nadanie kolorów oczu do niebieskie/brązowe a włosów do czarne / blond.
 
 
 ```r
@@ -186,13 +186,13 @@ fisher.test(tab22)
 
 ## Jak weryfikować niezależność dwóch zmiennych ilościowych?
 
-Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach zmiennych, uwikłądnie zmiennych, wiele możliwych odstępst od niezalezności.
+Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach zmiennych, uwikłanie zmiennych, wiele możliwych odstępstw od niezalezności.
 
-Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują nas dwa rodzaje zależności: liniowa oraz monotoniczna. Do ich badania najczęściej wykorzystuje się testy na współczynnik kolrelacji Pearsona i Spearmana.
+Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują nas dwa rodzaje zależności: liniowa oraz monotoniczna. Do ich badania najczęściej wykorzystuje się testy na współczynnik korelacji Pearsona i Spearmana.
 
 ### Dwuwymiarowy rozkład normalny
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczny przez $$\sigma_{12}$$.
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczmy przez $$\sigma_{12}$$.
 
 **Hipoteza**: 
 
@@ -211,13 +211,13 @@ $$
 \hat \rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar y)}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
 $$
 
-Ta zmienna losowa jest określona na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
+Rozkład statystyki $$\hat \rho$$ jest określony na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
 
 $$
 T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1 - \hat \rho^2}}.
 $$
 
-Po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny. Dla dwustronnej hipotezy alternatywnej jest to obszar $$(-\infty, -c] \cup [, \infty)$$.
+Po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny. Dla dwustronnej hipotezy alternatywnej jest to obszar $$(-\infty, -c] \cup [c, \infty)$$.
 
 
 ```r
@@ -257,7 +257,7 @@ $$
 
 Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$.
 
-Znając rozkład możemy zbudować już w prosty sposób test statystyczny. Również korzystając z tej transformacji i jej rozkłądu asymtotycznego można zbudowac test dla równości dwóch współczynników korelacji.
+Znając rozkład możemy zbudować już w prosty sposób test statystyczny. Również korzystając z tej transformacji i jej rozkładu asymptotycznego można zbudować test dla równości dwóch współczynników korelacji.
 
 
 ### Korelacja rang
@@ -381,7 +381,7 @@ cor.test(koty_ptaki$waga, koty_ptaki$dlugosc, method="spearman")
 ## 0.9875947
 ```
 
-Po dystretyzacji badalibyśmy np. następującą tabelę (widzimy silną zależność nawet bez testu).
+Po dyskretyzacji badalibyśmy np. następującą tabelę (widzimy silną zależność nawet bez testu).
 
 
 ```r

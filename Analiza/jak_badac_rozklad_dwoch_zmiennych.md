@@ -16,19 +16,25 @@ attach(anscombe)
 ```
 
 ```
-## The following objects are masked from anscombe (pos = 3):
+## The following objects are masked from anscombe (pos = 7):
 ## 
 ##     x1, x2, x3, x4, y1, y2, y3, y4
 ```
 
 ```
-## The following objects are masked from anscombe (pos = 4):
+## The following objects are masked from anscombe (pos = 8):
 ## 
 ##     x1, x2, x3, x4, y1, y2, y3, y4
 ```
 
 ```
-## The following objects are masked from anscombe (pos = 5):
+## The following objects are masked from anscombe (pos = 9):
+## 
+##     x1, x2, x3, x4, y1, y2, y3, y4
+```
+
+```
+## The following objects are masked from anscombe (pos = 10):
 ## 
 ##     x1, x2, x3, x4, y1, y2, y3, y4
 ```
