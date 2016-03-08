@@ -9,7 +9,7 @@ Jednak **zawsze** o ile czas i miejsce na to pozwala należy uzupełnić taką a
 Pokażmy przykłady kiedy i jak poradzą sobie te współczynniki.
 Wykorzystamy do tego kwartet Francisa Anscombe'a.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ggplot2)
 attach(anscombe)
 
@@ -19,21 +19,21 @@ cor(x1, y1, method="spearman")
 ggplot(anscombe, aes(x1, y1)) + geom_point() + geom_smooth(method="lm", color="grey", se=FALSE)
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 cor(x2, y2)
 cor(x2, y2, method="spearman")
 
 ggplot(anscombe, aes(x2, y2)) + geom_point() + geom_smooth(method="lm", color="grey", se=FALSE)
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 cor(x3, y3)
 cor(x3, y3, method="spearman")
 
 ggplot(anscombe, aes(x3, y3)) + geom_point() + geom_smooth(method="lm", color="grey", se=FALSE)
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 cor(x4, y4)
 cor(x4, y4, method="spearman")
 
@@ -110,7 +110,7 @@ Na wykresie zazwyczaj przedstawia się ładunki odpowiadające dwóm największy
 
 Przeprowadźmy graficzną analizę korespondencji dla danych o kolorach oczu i włosów.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ca)
 
 (tab <- HairEyeColor[,,1])
