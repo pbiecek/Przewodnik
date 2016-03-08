@@ -1,9 +1,9 @@
 # Jak badać zależności pomiędzy parą zmiennych?
 
 Testów weryfikujących strukturę zależności pomiędzy parą zmiennych jest co niemiara. 
-W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery [],,Modele i metody statystyki Matematycznej''](https://www.google.pl/search?newwindow=1&q=modele+i+metody+statystyki+matematycznej&oq=modele+i+metody+statystyki+matematycznej).
+W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery [,,Modele i metody statystyki Matematycznej''](https://www.google.pl/search?newwindow=1&q=modele+i+metody+statystyki+matematycznej&oq=modele+i+metody+statystyki+matematycznej).
 
-Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, swego rodzaju szkielet który można rozbudowywać w różnych kierunkach.
+Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, tworzących swego rodzaju szkielet, który można rozbudowywać w różnych kierunkach.
 
 ## Jak weryfikować niezależność dwóch zmiennych jakościowych?
 
@@ -53,7 +53,7 @@ $$
 Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
 
 Za obszar odrzucenia przyjmuje się przedział postaci $$[c, \infty]$$.
-Przykłądowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwartylem rzędu $$0.95$$.
+Przykładowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwartylem rzędu $$0.95$$.
 
 ```{r}
 library(ggplot2)
@@ -89,40 +89,38 @@ wynik$observed
 ## Jak weryfikować niezależność dwóch zmiennych binarnych?
 
 Specyficzną wersją testu na niezależność dwóch zmiennych jakościowych jest test dla dwóch zmiennych binarnych. 
-Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowej można badań dokładny rozkład statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
+Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowej można badać dokładny rozkład statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
 
 Statystyka testowa jest oparta o tablicę kontyngencji
 
-|   | $$x_1$$ | $$x_2$$ |
+| Y \ X | $$x_1$$ | $$x_2$$ |
 |---|---|---|
 | $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | 
 | $$y_2$$ | $$n_{21}$$ | $$n_{22}$$ | 
 
 o rozkładzie hipotergeometrycznym.
 
+Jeżeli badamy zależnośc pomiędzy parą zmiennych binarnych to zalecane jest użycie tego testu. Umożliwia on również weryfikowanie hipotez kierunkowych (a więc częstsze/rzadsze niż przypadkowe współwystępowanie $$x_2y_2$$).
+
 ### Przykład
 
-Sprawdźmy czy jest zależność pomiędzy marką auta (Audi / Volkswagen) a kolorem auta (metalik / nie metalik).
+Ograniczmy nadanie kolorów oczu do niebieskie/brązowe a włosów do czarne / blond.
 
 ```{r, warning=FALSE}
-library(SmaterPoland)
-library(dplyr)
-
-av <- auta2012 %>% 
-  filter(Marka %in% c("Audi", "Volkswagen")) %>%
-  mutate(metallic = grepl(Kolor, pattern="metallic"))
-
-
-tab <- table(factor(av$Marka), av$metallic)
+tab22 <- tab[c(1,4),c(1,2)]
   
-fisher.test(tab)
+fisher.test(tab22)
 ```
 
 ## Jak weryfikować niezależność dwóch zmiennych ilościowych?
 
+Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach zmiennych, uwikłądnie zmiennych, wiele możliwych odstępst od niezalezności.
+
+Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują nas dwa rodzaje zależności: liniowa oraz monotoniczna. Do ich badania najczęściej wykorzystuje się testy na współczynnik kolrelacji Pearsona i Spearmana.
+
 ### Dwuwymiarowy rozkład normalny
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. 
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczny przez $$\sigma_{12}$$.
 
 **Hipoteza**: 
 
@@ -135,22 +133,28 @@ $$
 
 **Statystyka testowa**:
 
-Statystyka testowa oparta jest o współczynnik korelacji 
+Statystyka testowa oparta jest o współczynnik korelacji Pearsona
 
 $$
-\rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar(y))}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
+\hat \rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar y)}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
 $$
 
-Stosowane jest następujące przekształcenie
+Rozkład statystyki $$\hat \rho$$ jest określony na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
 
 $$
-T = \sqrt{n-2}\frac{\rho}{\sqrt{1 = \rho^2}},
+T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1 - \hat \rho^2}}.
 $$
 
-po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny.
+Po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny. Dla dwustronnej hipotezy alternatywnej jest to obszar $$(-\infty, -c] \cup [c, \infty)$$.
 
+```{r}
+x <- seq(-5,5, .01)
+(q <- qt(0.975, 5))
+df <- data.frame(x, d = dt(x,5), rejection = abs(x)>q )
+ggplot(df, aes(x, y=d, fill=rejection)) + geom_bar(stat="identity") + theme(legend.position="none") + scale_fill_manual(values=c("grey","red3"))
+```
 
-Czasem weryfikowana jest też inna hipoteza zerowa.
+Czasem weryfikowana jest też inna hipoteza zerowa. Jeżeli chceny zbadać, czy korelacja jest istotnie różna (np. istotnie większa) od określonej wartości $$\rho_0$$ to interesuje nas raczej hipoteza.
 
 **Hipoteza**: 
 
@@ -166,35 +170,40 @@ $$
 W tym przypadku stosuje się inną transformację, tzw. transformację Fishera.
 
 $$
-U = 1/2 \ln(\frac{1+\rho}{1-\rho}).
+U = 1/2 \ln(\frac{1+\hat \rho}{1-\hat \rho}).
 $$
 
-Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$
+Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$.
+
+Znając rozkład możemy zbudować już w prosty sposób test statystyczny. Również korzystając z tej transformacji i jej rozkłądu asymtotycznego można zbudowac test dla równości dwóch współczynników korelacji.
+
 
 ### Korelacja rang
 
 Założenie o dwuwymiarowym rozkładzie normalnym jest silnie ograniczające. 
-Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana.
+Co prawda test Pearsona stosuje się nawet jeżeli zmienna nie ma rozkładu normalnego, ale jedynie do niego zbliżony. Wciąż jednak tego typu test wykrywa jedynie liniowe zależnosci.
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$. 
+Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana. Jest ona w stanie identyfikować zależności monotoniczne. Ideę testu Spearmana można streścić w określeniu: badanie korelacji rang.
+
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$ o rozkładzie ciągłym. 
 
 Oznaczmy dodatkowo $$r_i = rank(X_i)$$, $$s_i = rank(Y_i)$$.
 
 **Hipoteza**: 
 
 $$
-H_0: cor(r_i, s_i) = 0.
+H_0: \rho(r_i, s_i) = 0.
 $$
 $$
-H_A: cor(r_i, s_i) <> 0.
+H_A: \rho(r_i, s_i) <> 0.
 $$
 
 **Statystyka testowa**:
 
-Statystyką testowa jest korelacja Pearsona ale liczona dla rang a nie oryginalnych obserwacji. 
+Statystyką testową jest korelacja Pearsona ale liczona dla rang, a nie oryginalnych obserwacji. Ponieważ średnia ranga to $$(n+1)/2$$ więc otrzymujemy
 
 $$
-\rho = \frac{\sum_i (r_{i} - (n+1)/2)(s_i - (n+1)/2)}{\sqrt{\sum_i (r_{i} - (n+1)/2)^2\sum_i (s_{i} - (n+1)/2)^2}}
+\rho = \frac{\sum_i (r_{i} - (n+1)/2)(s_i - (n+1)/2)}{\sqrt{\sum_i (r_{i} - (n+1)/2)^2\sum_i (s_{i} - (n+1)/2)^2}}.
 $$
 
 Po prostych przekształceniach otrzymujemy
@@ -203,12 +212,47 @@ $$
 \rho = 1 - \frac{6 \sum(r_i - s_i)^2}{n(n^2-1)}.
 $$
 
-Rozkład tej statystyki można tablicować dla małych n. Asymptotycznie ma ona rozkład normalny z wariancją $$1/(n-1)$$.
+Rozkład tej statystyki można tablicować dla małych $n$. Asymptotycznie ma ona rozkład normalny z wariancją $$1/(n-1)$$.
 Ale w implementacji najczęściej stosuje się podobną transformację co w przypadku testu Pearsona, czyli
 
 $$
-T = \sqrt{n-2}\frac{\rho}{\sqrt{1-\rho^2}}.
+T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1-\hat \rho^2}}.
 $$
 
 Asymptotycznie ta statystyka ma rozkład $$t_{n-2}$$.
 
+### A co jeżeli interesuje mnie inna zależność?
+
+Opisane powyżej testy badają dwa rodzaje zależności - liniowy i monotoniczny.
+
+Jeżeli interesuje nas inna klasa zależności to możliwy wybór jest albo przez badanie funkcji łączących (tzw. kopule) albo przez badanie zmiennych jakościowych. Każdą zmienną ilosciową możemy zdyskretyzować, dzieląc ją na pewną liczbę podprzedziałów i analizując zależność pomiedzy przedziałami (testem $$\chi^2$$ lub analizą korespondencji).
+
+
+### Przykład
+
+Korzystając ze zbioru danych `koty_ptaki` sprawdzimy czy jest zależność pomiędzy długością kota a jego wagą.
+
+```{r}
+library(PogromcyDanych)
+head(koty_ptaki[,1:3])
+ggplot(koty_ptaki, aes(waga, dlugosc)) + geom_point(size=3) + geom_smooth(method="lm", color="grey", se=FALSE)
+```
+
+Korelację Pearsona (liniową) badalibyśmy testem `cor.test()`
+
+```{r}
+cor.test(koty_ptaki$waga, koty_ptaki$dlugosc)
+```
+
+Korelację Spearmana (monotoniczną) badalibyśmy testem `cor.test()`. Współczynnik korelacji rang jest prawie równy 1.
+
+```{r}
+cor.test(koty_ptaki$waga, koty_ptaki$dlugosc, method="spearman")
+```
+
+Po dyskretyzacji badalibyśmy np. następującą tabelę (widzimy silną zależność nawet bez testu).
+
+```{r}
+table(cut(koty_ptaki$waga, c(0,20,110,400)), 
+      cut(koty_ptaki$dlugosc, c(0, 1, 1.9, 3)))
+```

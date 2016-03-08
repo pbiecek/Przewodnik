@@ -30,6 +30,7 @@
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * Jak debugować kod R?
    * Jak zwiększyć wydajność kodu R?
+   * [Jak generować liczby losowe?](Programowanie/generatory_llosowych.md)
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
 * [Analiza danych z programem R](Analiza/analizadanych_z_programem_r_md.md)
