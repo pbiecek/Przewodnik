@@ -3,7 +3,7 @@
 Testów weryfikujących strukturę zależności pomiędzy parą zmiennych jest co niemiara. 
 W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery [,,Modele i metody statystyki Matematycznej''](https://www.google.pl/search?newwindow=1&q=modele+i+metody+statystyki+matematycznej&oq=modele+i+metody+statystyki+matematycznej).
 
-Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, swego rodzaju szkielet który można rozbudowywać w różnych kierunkach.
+Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, tworzących swego rodzaju szkielet, który można rozbudowywać w różnych kierunkach.
 
 ## Jak weryfikować niezależność dwóch zmiennych jakościowych?
 
