@@ -170,32 +170,37 @@ $$
 W tym przypadku stosuje się inną transformację, tzw. transformację Fishera.
 
 $$
-U = 1/2 \ln(\frac{1+\rho}{1-\rho}).
+U = 1/2 \ln(\frac{1+\hat \rho}{1-\hat \rho}).
 $$
 
-Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$
+Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$.
+
+Znając rozkład możemy zbudować już w prosty sposób test statystyczny. Również korzystając z tej transformacji i jej rozkłądu asymtotycznego można zbudowac test dla równości dwóch współczynników korelacji.
+
 
 ### Korelacja rang
 
 Założenie o dwuwymiarowym rozkładzie normalnym jest silnie ograniczające. 
-Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana.
+Co prawda test Pearsona stosuje się nawet jeżeli zmienna nie ma rozkąłdu normalnego, ale jedynie do neigo zbliżony. Wciąż jednak tego typu test wykrywa jedynie liniowe zależnosci.
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$. 
+Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana. Jest ona w stanie identyfikowac zależności monotoniczne. Ideę testu Spearmana można streścić w określeniu: badanie korelacji rang.
+
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$ o rozkładzie ciągłym. 
 
 Oznaczmy dodatkowo $$r_i = rank(X_i)$$, $$s_i = rank(Y_i)$$.
 
 **Hipoteza**: 
 
 $$
-H_0: cor(r_i, s_i) = 0.
+H_0: \rho(r_i, s_i) = 0.
 $$
 $$
-H_A: cor(r_i, s_i) <> 0.
+H_A: \rho(r_i, s_i) <> 0.
 $$
 
 **Statystyka testowa**:
 
-Statystyką testowa jest korelacja Pearsona ale liczona dla rang a nie oryginalnych obserwacji. 
+Statystyką testowa jest korelacja Pearsona ale liczona dla rang a nie oryginalnych obserwacji. Ponieważ średnia ranga to $$(n+1)/2$$ więc otrzymujemy.
 
 $$
 \rho = \frac{\sum_i (r_{i} - (n+1)/2)(s_i - (n+1)/2)}{\sqrt{\sum_i (r_{i} - (n+1)/2)^2\sum_i (s_{i} - (n+1)/2)^2}}
@@ -211,8 +216,43 @@ Rozkład tej statystyki można tablicować dla małych n. Asymptotycznie ma ona 
 Ale w implementacji najczęściej stosuje się podobną transformację co w przypadku testu Pearsona, czyli
 
 $$
-T = \sqrt{n-2}\frac{\rho}{\sqrt{1-\rho^2}}.
+T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1-\hat \rho^2}}.
 $$
 
 Asymptotycznie ta statystyka ma rozkład $$t_{n-2}$$.
 
+### A co jeżeli interesuje mnie inna zależność?
+
+Opisane powyżej testy badają dwa rodzaje zależności - liniowy i monotoniczny.
+
+Jeżeli interesuje nas inna klasa zależności to możliwy wybór jest albo przez badanie funkcji łączących (tzw. kopule) albo przez badanie zemiennych jakościowych. Każdą zmienną ilosciową możemy zdyskretyzować, dzieląc ją na pewną liczbę podprzedziałów i analizując zależnośc pomiedzy przedziałami (testem $$\chi^2$$ lub analizą korespondencji).
+
+
+### Przykład
+
+Korzystając ze zbioru danych `koty_ptaki` sprawdzimy czy jest zależność pomiędzy długością kota a jego wagą.
+
+```{r}
+library(PogromcyDanych)
+head(koty_ptaki[,1:3])
+ggplot(koty_ptaki, aes(waga, dlugosc)) + geom_point(size=3) + geom_smooth(method="lm", color="grey", se=FALSE)
+```
+
+Korelację Pearsona (liniową) badalibyśmy testem `cor.test()`
+
+```{r}
+cor.test(koty_ptaki$waga, koty_ptaki$dlugosc)
+```
+
+Korelację Spearmana (monotoniczną) badalibyśmy testem `cor.test()`. Współczynnik korelacji rang jest prawie równy 1.
+
+```{r}
+cor.test(koty_ptaki$waga, koty_ptaki$dlugosc, method="spearman")
+```
+
+Po dystretyzacji badalibyśmy np. następującą tabelę (widzimy silną zależność nawet bez testu).
+
+```{r}
+table(cut(koty_ptaki$waga, c(0,20,110,400)), 
+      cut(koty_ptaki$dlugosc, c(0, 1, 1.9, 3)))
+```
