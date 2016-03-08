@@ -1,6 +1,6 @@
 # Summary
 
-* [Wprowadzenie](README.md)
+* [Co nowego?](co_nowego.md)
 * [Podrasuj Przewodnik!](contribute.md)
 * [Programowanie w języku R](Programowanie/programowanie_w_jezyku_r.md)
    * [Jak korzystać z tej książki?](Programowanie/jak_korzystac_z_tej_ksiazki.md)
