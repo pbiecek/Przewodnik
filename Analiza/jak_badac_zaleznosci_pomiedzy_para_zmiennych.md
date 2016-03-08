@@ -150,58 +150,49 @@ Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowe
 
 Statystyka testowa jest oparta o tablicę kontyngencji
 
-|   | $$x_1$$ | $$x_2$$ |
+| Y \ X | $$x_1$$ | $$x_2$$ |
 |---|---|---|
 | $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | 
 | $$y_2$$ | $$n_{21}$$ | $$n_{22}$$ | 
 
 o rozkładzie hipotergeometrycznym.
 
+Jeżeli badamy zależnośc pomiędzy parą zmiennych binarnych to zalecane jest użycie tego testu. Umożliwia on również weryfikowanie hipotez kierunkowych (a więc częstsze/rzadsze niż przypadkowe współwystępowanie $$x_2y_2$$).
+
 ### Przykład
 
-Sprawdźmy czy jest zależność pomiędzy marką auta (Audi / Volkswagen) a kolorem auta (metalik / nie metalik).
+Ograniczmy nadanie kolorów oczy do niebieskie/brązowe a włosów do czarne / blond.
 
 
 ```r
-library(SmaterPoland)
-```
-
-```
-## Error in library(SmaterPoland): there is no package called 'SmaterPoland'
-```
-
-```r
-library(dplyr)
-
-av <- auta2012 %>% 
-  filter(Marka %in% c("Audi", "Volkswagen")) %>%
-  mutate(metallic = grepl(Kolor, pattern="metallic"))
-
-
-tab <- table(factor(av$Marka), av$metallic)
+tab22 <- tab[c(1,4),c(1,2)]
   
-fisher.test(tab)
+fisher.test(tab22)
 ```
 
 ```
 ## 
 ## 	Fisher's Exact Test for Count Data
 ## 
-## data:  tab
-## p-value < 2.2e-16
+## data:  tab22
+## p-value = 7.391e-09
 ## alternative hypothesis: true odds ratio is not equal to 1
 ## 95 percent confidence interval:
-##  0.6849883 0.7543595
+##    6.673302 168.168624
 ## sample estimates:
 ## odds ratio 
-##  0.7188752
+##   27.39659
 ```
 
 ## Jak weryfikować niezależność dwóch zmiennych ilościowych?
 
+Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach zmiennych, uwikłądnie zmiennych, wiele możliwych odstępst od niezalezności.
+
+Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują nas dwa rodzaje zależności: liniowa oraz monotoniczna. Do ich badania najczęściej wykorzystuje się testy na współczynnik kolrelacji Pearsona i Spearmana.
+
 ### Dwuwymiarowy rozkład normalny
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. 
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczny przez $$\sigma_{12}$$.
 
 **Hipoteza**: 
 
@@ -214,22 +205,38 @@ $$
 
 **Statystyka testowa**:
 
-Statystyka testowa oparta jest o współczynnik korelacji 
+Statystyka testowa oparta jest o współczynnik korelacji Pearsona
 
 $$
-\rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar(y))}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
+\hat \rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar y)}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
 $$
 
-Stosowane jest następujące przekształcenie
+Ta zmienna losowa jest określona na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
 
 $$
-T = \sqrt{n-2}\frac{\rho}{\sqrt{1 = \rho^2}},
+T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1 - \hat \rho^2}}.
 $$
 
-po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny.
+Po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny. Dla dwustronnej hipotezy alternatywnej jest to obszar $$(-\infty, -c] \cup [, \infty)$$.
 
 
-Czasem weryfikowana jest też inna hipoteza zerowa.
+```r
+x <- seq(-5,5, .01)
+(q <- qt(0.975, 5))
+```
+
+```
+## [1] 2.570582
+```
+
+```r
+df <- data.frame(x, d = dt(x,5), rejection = abs(x)>q )
+ggplot(df, aes(x, y=d, fill=rejection)) + geom_bar(stat="identity") + theme(legend.position="none") + scale_fill_manual(values=c("grey","red3"))
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+
+Czasem weryfikowana jest też inna hipoteza zerowa. Jeżeli chceny zbadać, czy korelacja jest istotnie różna (np. istotnie większa) od określonej wartości $$\rho_0$$ to interesuje nas raczej hipoteza.
 
 **Hipoteza**: 
 
