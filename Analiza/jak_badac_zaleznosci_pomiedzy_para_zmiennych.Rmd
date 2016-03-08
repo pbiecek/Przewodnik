@@ -53,7 +53,7 @@ $$
 Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
 
 Za obszar odrzucenia przyjmuje się przedział postaci $$[c, \infty]$$.
-Przykłądowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwartylem rzędu $$0.95$$.
+Przykładowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwartylem rzędu $$0.95$$.
 
 ```{r}
 library(ggplot2)
