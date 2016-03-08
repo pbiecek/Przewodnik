@@ -139,7 +139,7 @@ $$
 \hat \rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar y)}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
 $$
 
-Rozkład statystyki $$\hat \rho$$ jest określony na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
+Ta zmienna losowa jest określona na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
 
 $$
 T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1 - \hat \rho^2}}.
