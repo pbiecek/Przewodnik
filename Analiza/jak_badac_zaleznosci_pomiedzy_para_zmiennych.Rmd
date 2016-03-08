@@ -250,7 +250,7 @@ Korelację Spearmana (monotoniczną) badalibyśmy testem `cor.test()`. Współcz
 cor.test(koty_ptaki$waga, koty_ptaki$dlugosc, method="spearman")
 ```
 
-Po dystretyzacji badalibyśmy np. następującą tabelę (widzimy silną zależność nawet bez testu).
+Po dyskretyzacji badalibyśmy np. następującą tabelę (widzimy silną zależność nawet bez testu).
 
 ```{r}
 table(cut(koty_ptaki$waga, c(0,20,110,400)), 
