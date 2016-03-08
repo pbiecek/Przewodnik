@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak znaleźć skupiska danych? (analiza Skupisk) | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak ustawiać ziarno generatora? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -41,10 +41,10 @@
         
     
     
-    <link rel="next" href="../Analiza/weryfikacja.html" />
+    <link rel="next" href="../Programowanie/generatory_2.html" />
     
     
-    <link rel="prev" href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html" />
+    <link rel="prev" href="../Programowanie/generatory_llosowych.html" />
     
 
         
@@ -53,9 +53,9 @@
         
         
     <div class="book"
-        data-level="4.1.5"
-        data-chapter-title="Jak znaleźć skupiska danych? (analiza Skupisk)"
-        data-filepath="Analiza/analiza_skupisk.md"
+        data-level="3.12.1"
+        data-chapter-title="Jak ustawiać ziarno generatora?"
+        data-filepath="Programowanie/generatory_1.md"
         data-basepath=".."
         data-revision="Wed Mar 09 2016 00:51:19 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -525,7 +525,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.12.1" data-path="Programowanie/generatory_1.html">
+        <li class="chapter active" data-level="3.12.1" data-path="Programowanie/generatory_1.html">
             
                 
                     <a href="../Programowanie/generatory_1.html">
@@ -724,7 +724,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.1.5" data-path="Analiza/analiza_skupisk.html">
+        <li class="chapter " data-level="4.1.5" data-path="Analiza/analiza_skupisk.html">
             
                 
                     <a href="../Analiza/analiza_skupisk.html">
@@ -949,8 +949,57 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="analiza-skupisk">Analiza Skupisk</h1>
-
+                        <h2 id="wprowadzenie-do-generator&#xF3;w-liczb-pseudolosowych">Wprowadzenie do generator&#xF3;w liczb pseudolosowych</h2>
+<p>Generowane przez komputer liczby nazywane s&#x105; pseudolosowymi, poniewa&#x17C; maj&#x105; emulowa&#x107; losowo&#x15B;&#x107;, ale s&#x105; wyznaczane  w deterministyczny, cho&#x107; cz&#x119;sto bardzo skomplikowany, spos&#xF3;b. Z uwagi na nieustannie rosn&#x105;ce zapotrzebowanie na dobre liczby pseudolosowe w literaturze opisanych jest wiele metod ich generowania, a nad nowymi metodami wci&#x105;&#x17C; pracuje wiele os&#xF3;b.</p>
+<p>W programie R mamy mo&#x17C;liwo&#x15B;&#x107; wyboru jednego z ju&#x17C; zaimplementowanych algorytm&#xF3;w generuj&#x105;cych liczby losowe lub napisania w&#x142;asnej funkcji do generowania tych liczb. Aktualnie w pakiecie <code>base</code> zaimplementowanych jest sze&#x15B;&#x107; algorytm&#xF3;w generowania liczb losowych. </p>
+<p>Zmieni&#x107; generator liczb losowych mo&#x17C;na wywo&#x142;uj&#x105;c funkcj&#x119; <code>RNGkind()</code> oraz podaj&#x105;c za jej argumenty nazwy dw&#xF3;ch wybranych generator&#xF3;w, odpowiednio dla rozk&#x142;adu jednostajnego i dla rozk&#x142;adu normalnego. Wynikiem tej funkcji s&#x105; nazwy uprzednio u&#x17C;ywanych generator&#xF3;w.</p>
+<p>Do generowania liczb z rozk&#x142;adu jednostajnego dost&#x119;pne s&#x105; nast&#x119;puj&#x105;ce nazwy algorytm&#xF3;w: <code>&quot;Wichmann-Hill&quot;</code>, <code>&quot;Marsaglia-Multicarry&quot;</code>, <code>&quot;Super-Duper&quot;</code>, <code>&quot;Mersenne-Twister&quot;</code>, <code>&quot;Knuth-TAOCP&quot;</code>, <code>&quot;Knuth-TAOCP-2002&quot;</code>, <code>&quot;user-supplied&quot;</code>. Domy&#x15B;lnie stosowany jest <code>&quot;Mersenne-Twister&quot;</code>. </p>
+<p>Liczby losowe dla innych rozk&#x142;ad&#xF3;w mo&#x17C;na otrzyma&#x107; z liczb losowych dla rozk&#x142;adu jednostajnego wykorzystuj&#x105;c np. metod&#x119; odwrotnej dystrybuanty. Nie ma wi&#x119;c potrzeby okre&#x15B;lania generatora dla ka&#x17C;dego rozk&#x142;adu oddzielnie. Wyj&#x105;tkiem jest rozk&#x142;ad normalny, dla kt&#xF3;rego mamy mo&#x17C;liwo&#x15B;&#x107; wybrania metody generowania liczb losowych. Dost&#x119;pne metody oznaczone s&#x105; nazwami: 
+<code>&quot;Kinderman-Ramage&quot;</code>, <code>&quot;Buggy Kinderman-Ramage&quot;</code>, <code>&quot;Ahrens-Dieter&quot;</code>, <code>&quot;Box-Muller&quot;</code>, <code>&quot;Inversion&quot;</code>, <code>&quot;user-supplied&quot;</code>. Domy&#x15B;lnie wykorzystywana jest metoda odwrotnej dystrybuanty <code>&quot;Inversion&quot;</code>. </p>
+<p>Poniewa&#x17C; dystrybuanta rozk&#x142;adu normalnego nie ma prostej postaci analitycznej, wi&#x119;c aby u&#x17C;y&#x107; metody odwrotnej dystrybuanty trzeba wykorzysta&#x107; zaawansowane i wymagaj&#x105;ce obliczeniowo aproksymacje numeryczne, kt&#xF3;rych opis mo&#x17C;na znale&#x17A;&#x107; w opisie funkcji <code>qnorm()</code>. Innym popularnym algorytmem generowania liczb z rozk&#x142;adu normalnego, znacznie szybszym od metody odwrotnej dystrybuanty, jest algorytm Boxa-Mullera (<code>&quot;Box-Muller&quot;</code>). </p>
+<p>Wi&#x119;cej informacji o tym i innych generatorach przeczyta&#x107; mo&#x17C;na w dokumentacji do funkcji <code>RNGkind()</code>.
+Osoby zainteresowane tym tematem znajd&#x105; wi&#x119;cej informacji o generatorach w ksi&#x105;&#x17C;ce \cite{Zielinski}. Poni&#x17C;ej przedstawiamy przyk&#x142;ad u&#x17C;ycia funkcji <code>RNGkind()</code> do zmiany generatora.</p>
+<p>Wybieramy generator &quot;Super-Duper&quot; dla generowania liczb z rozk&#x142;adu jednostajnego i metod&#x119; &quot;Box-Muller&quot; do generowania liczb z rozk&#x142;adu normalnego, wynikiem funkcji RNGkind() s&#x105; poprzednio stosowane generatory.</p>
+<pre><code class="lang-r">(RNGkind(<span class="hljs-string">&quot;Super&quot;</span>, <span class="hljs-string">&quot;Box&quot;</span>))
+</code></pre>
+<pre><code>## [1] &quot;Super-Duper&quot;   &quot;Ahrens-Dieter&quot;
+</code></pre><p>Mo&#x17C;na wybiera&#x107; generatory podaj&#x105;c tylko pierwsze znaki nazw.</p>
+<pre><code class="lang-r">(RNGkind(<span class="hljs-string">&quot;Super&quot;</span>, <span class="hljs-string">&quot;Ahr&quot;</span>))
+</code></pre>
+<pre><code>## [1] &quot;Super-Duper&quot; &quot;Box-Muller&quot;
+</code></pre><p>Generator to funkcja deterministyczna. Do losowania kolejnych liczb wykorzystuje tzw. ziarno (ang. <em>seed</em>), ca&#x142;kowicie determinuj&#x105;ce warto&#x15B;ci kolejnych liczb pseudolosowych. Ziarno to warto&#x15B;&#x107; na podstawie kt&#xF3;rej konstruowane b&#x119;d&#x105; kolejne liczby losowe.</p>
+<p>Dla ustalonego generatora i ziarna generowane b&#x119;d&#x105; identyczne liczby losowe bez wzgl&#x119;du na system operacyjny, nazw&#x119; komputera, ras&#x119; u&#x17C;ytkownika, czy temperatur&#x119; w pokoju. </p>
+<p>T&#x119; w&#x142;a&#x15B;ciwo&#x15B;&#x107; programowych generator&#xF3;w liczb pseudolosowych (istniej&#x105; te&#x17C; sprz&#x119;towe generatory, ale to osobny temat) mo&#x17C;na &#x142;atwo wykorzysta&#x107;! Steruj&#x105;c wyborem ziarna umo&#x17C;liwiamy otrzymywanie identycznych ci&#x105;g&#xF3;w liczb losowych na r&#xF3;&#x17C;nych komputerach. W ten spos&#xF3;b mo&#x17C;emy powtarza&#x107; wyniki symulacji, odtwarza&#x107; te wyniki na innych komputerach lub kontynuowa&#x107; obliczenia przerwane w wyniku wyst&#x105;pienia jakiego&#x15B; b&#x142;&#x119;du. </p>
+<p>Ciekawe informacje dotycz&#x105;ce jako&#x15B;ci generator&#xF3;w liczb pseudolosowych znale&#x17A;&#x107; mo&#x17C;na w dokumentacji pakietu <code>RDieHarder</code> lub na stronie <code>http://dirk.eddelbuettel.com/code/rdieharder.html</code>.</p>
+<p>Informacje o ziarnie i generatorze liczb losowych przechowywana jest w wektorze <code>.Random.seed</code>. Pierwszym elementem tego wektora jest informacja, kt&#xF3;ry generator jest wykorzystywany, pozosta&#x142;e elementy przechowuj&#x105; ziarno generatora. Dla generatora <code>Mersenne-Twister</code> ziarno jest wektorem 625 liczb ca&#x142;kowitych, dla pozosta&#x142;ych generator&#xF3;w ziarno ma inn&#x105;, zwykle kr&#xF3;tsz&#x105;, d&#x142;ugo&#x15B;&#x107;. Poni&#x17C;ej przyk&#x142;ad zapisywania i odtwarzania ziarna generatora.</p>
+<pre><code class="lang-r">.Random.seed[<span class="hljs-number">1</span>:<span class="hljs-number">7</span>]
+</code></pre>
+<pre><code>## [1]       102 150245597 672152059        NA        NA        NA        NA
+</code></pre><p>Zapisujemy ziarno generatora, losujemy 10 liczb losowych.</p>
+<pre><code class="lang-r">save.seed &lt;- .Random.seed
+rnorm(<span class="hljs-number">9</span>)
+</code></pre>
+<pre><code>## [1]  0.3965513  1.1664325 -0.4613190 -1.5723750  0.5507826  1.8767068
+## [7]  0.2104542 -0.3085643 -0.9558250
+</code></pre><p>Odtwarzamy ziarno i losujemy 10 kolejnych liczb.</p>
+<pre><code class="lang-r">.Random.seed &lt;- save.seed 
+rnorm(<span class="hljs-number">9</span>)
+</code></pre>
+<pre><code>## [1] -0.1022967 -1.1790798  1.0988424  1.0630586 -1.9116259  1.1782023
+## [7] -1.9595778 -0.2884178  1.0447500
+</code></pre><p>Pami&#x119;tanie ziarna z&#x142;o&#x17C;onego z 625 liczb nie jest specjalnie wygodne. Do &#x142;atwej inicjacji ziarna zalecane jest korzystanie z funkcji <code>set.seed()</code>. Argumentem tej funkcji jest jedna liczba, kt&#xF3;ra jest zamieniana na ziarno odpowiedniej d&#x142;ugo&#x15B;ci. Poni&#x17C;ej przyk&#x142;ad wywo&#x142;ania tej funkcji. Ustawiamy ziarno i generujemy liczby losowe.</p>
+<pre><code class="lang-r">set.seed(<span class="hljs-number">1313</span>)
+runif(<span class="hljs-number">10</span>)
+</code></pre>
+<pre><code>##  [1] 0.27578588 0.06637362 0.82379757 0.52979504 0.91424061 0.51159113
+##  [7] 0.94690240 0.56341309 0.61462777 0.54047574
+</code></pre><p>Inicjujemy to samo ziarno.</p>
+<pre><code class="lang-r">set.seed(<span class="hljs-number">1313</span>)
+runif(<span class="hljs-number">10</span>)
+</code></pre>
+<pre><code>##  [1] 0.27578588 0.06637362 0.82379757 0.52979504 0.91424061 0.51159113
+##  [7] 0.94690240 0.56341309 0.61462777 0.54047574
+</code></pre>
                     
                     </section>
                 
@@ -960,10 +1009,10 @@
         </div>
 
         
-        <a href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html" class="navigation navigation-prev " aria-label="Previous page: Jak badać rozkład dwóch zmiennych?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/generatory_llosowych.html" class="navigation navigation-prev " aria-label="Previous page: Jak generować liczby losowe?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Analiza/weryfikacja.html" class="navigation navigation-next " aria-label="Next page: Weryfikacja"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/generatory_2.html" class="navigation navigation-next " aria-label="Next page: Jak losować z prostych rozkładów?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

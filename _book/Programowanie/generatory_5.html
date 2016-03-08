@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak znaleźć skupiska danych? (analiza Skupisk) | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak estymować parametry rozkładu? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -41,10 +41,10 @@
         
     
     
-    <link rel="next" href="../Analiza/weryfikacja.html" />
+    <link rel="next" href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" />
     
     
-    <link rel="prev" href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html" />
+    <link rel="prev" href="../Programowanie/generatory_4.html" />
     
 
         
@@ -53,9 +53,9 @@
         
         
     <div class="book"
-        data-level="4.1.5"
-        data-chapter-title="Jak znaleźć skupiska danych? (analiza Skupisk)"
-        data-filepath="Analiza/analiza_skupisk.md"
+        data-level="3.12.5"
+        data-chapter-title="Jak estymować parametry rozkładu?"
+        data-filepath="Programowanie/generatory_5.md"
         data-basepath=".."
         data-revision="Wed Mar 09 2016 00:51:19 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -585,7 +585,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.12.5" data-path="Programowanie/generatory_5.html">
+        <li class="chapter active" data-level="3.12.5" data-path="Programowanie/generatory_5.html">
             
                 
                     <a href="../Programowanie/generatory_5.html">
@@ -724,7 +724,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.1.5" data-path="Analiza/analiza_skupisk.html">
+        <li class="chapter " data-level="4.1.5" data-path="Analiza/analiza_skupisk.html">
             
                 
                     <a href="../Analiza/analiza_skupisk.html">
@@ -949,8 +949,26 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="analiza-skupisk">Analiza Skupisk</h1>
-
+                        <h2 id="estymacja-parametr&#xF3;w-rozk&#x142;adu">Estymacja parametr&#xF3;w rozk&#x142;adu</h2>
+<p>Do oceny parametr&#xF3;w metod&#x105; najwi&#x119;kszej funkcji wiarogodno&#x15B;ci w okre&#x15B;lonej rodzinie rozk&#x142;ad&#xF3;w s&#x142;u&#x17C;y funkcja <code>MASS::fitdistr()</code>. 
+Estymowane mog&#x105; by&#x107; parametry dla szerokiej klasy rozk&#x142;ad&#xF3;w, praktycznie wszystkich wymienionych w tabeli powy&#x17C;ej. Pierwszym argumentem funkcji <code>fitdistr()</code> jest wektor obserwacji, na bazie kt&#xF3;rego wykonana b&#x119;dzie estymacja. Drugim argumentem powinna by&#x107; nazwa rozk&#x142;adu, a trzecim argumentem lista z pocz&#x105;tkowymi ocenami parametr&#xF3;w rozk&#x142;adu. Trzeci argument nie jest wymagany dla rozk&#x142;adu wyk&#x142;adniczego, normalnego, log-normalnego i Poissona, dla tych rozk&#x142;ad&#xF3;w funkcja <code>fitdistr()</code> ma wbudowane metody inicjalizacji.
+Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza ocenami parametr&#xF3;w wyznaczany jest te&#x17C; b&#x142;&#x105;d standardowy tych ocen (przedstawiony w nawiasach).</p>
+<p>Wylosujmy 100 obserwacji z rozk&#x142;adu log-normalnego.</p>
+<pre><code class="lang-r">wek &lt;- rlnorm(<span class="hljs-number">100</span>)
+</code></pre>
+<p>Sprawdzamy jak wygl&#x105;daj&#x105; oceny parametr&#xF3;w w rodzinie rozk&#x142;ad&#xF3;w normalnych (tu nie ma dobrych odpowiedzi, ale to tylko &#x107;wiczenie).</p>
+<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;normal&quot;</span>)
+</code></pre>
+<pre><code>##      mean         sd    
+##   1.6698846   2.1792353 
+##  (0.2179235) (0.1540952)
+</code></pre><p>A teraz wyznaczamy oceny w rodzinie rozk&#x142;ad&#xF3;w gamma.</p>
+<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;gamma&quot;</span>, list(shape=<span class="hljs-number">3</span>, rate=<span class="hljs-number">3</span>))
+</code></pre>
+<pre><code>##      shape       rate   
+##   1.0846942   0.6495628 
+##  (0.1360306) (0.1025949)
+</code></pre>
                     
                     </section>
                 
@@ -960,10 +978,10 @@
         </div>
 
         
-        <a href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html" class="navigation navigation-prev " aria-label="Previous page: Jak badać rozkład dwóch zmiennych?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/generatory_4.html" class="navigation navigation-prev " aria-label="Previous page: Jak losować z użyciem kopuli?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Analiza/weryfikacja.html" class="navigation navigation-next " aria-label="Next page: Weryfikacja"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" class="navigation navigation-next " aria-label="Next page: Jak korzystać z serwisu GitHub?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

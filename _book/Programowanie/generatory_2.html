@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak znaleźć skupiska danych? (analiza Skupisk) | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak losować z prostych rozkładów? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -41,10 +41,10 @@
         
     
     
-    <link rel="next" href="../Analiza/weryfikacja.html" />
+    <link rel="next" href="../Programowanie/generatory_3.html" />
     
     
-    <link rel="prev" href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html" />
+    <link rel="prev" href="../Programowanie/generatory_1.html" />
     
 
         
@@ -53,9 +53,9 @@
         
         
     <div class="book"
-        data-level="4.1.5"
-        data-chapter-title="Jak znaleźć skupiska danych? (analiza Skupisk)"
-        data-filepath="Analiza/analiza_skupisk.md"
+        data-level="3.12.2"
+        data-chapter-title="Jak losować z prostych rozkładów?"
+        data-filepath="Programowanie/generatory_2.md"
         data-basepath=".."
         data-revision="Wed Mar 09 2016 00:51:19 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -540,7 +540,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.12.2" data-path="Programowanie/generatory_2.html">
+        <li class="chapter active" data-level="3.12.2" data-path="Programowanie/generatory_2.html">
             
                 
                     <a href="../Programowanie/generatory_2.html">
@@ -724,7 +724,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.1.5" data-path="Analiza/analiza_skupisk.html">
+        <li class="chapter " data-level="4.1.5" data-path="Analiza/analiza_skupisk.html">
             
                 
                     <a href="../Analiza/analiza_skupisk.html">
@@ -949,7 +949,91 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="analiza-skupisk">Analiza Skupisk</h1>
+                        <h2 id="popularne-rozk&#x142;ady-zmiennych-losowych">Popularne rozk&#x142;ady zmiennych losowych</h2>
+<p>W programie R dost&#x119;pnych jest wiele funkcji do obs&#x142;ugi wi&#x119;kszo&#x15B;ci popularnych i wielu mniej popularnych rozk&#x142;ad&#xF3;w zmiennych losowych. W tym podrozdziale skupimy si&#x119; na jednowymiarowych zmiennych losowych. Osoby poszukuj&#x105;ce generator&#xF3;w zmiennych wielowymiarowych z pewno&#x15B;ci&#x105; zainteresuje pakiet <code>copula</code>.
+Nazewnictwo funkcji zwi&#x105;zanych ze zmiennymi losowymi jest zestandaryzowane. Nazwy funkcji sk&#x142;adaj&#x105; si&#x119; z dw&#xF3;ch cz&#x142;on&#xF3;w, opisanych na poni&#x17C;szym schemacie.</p>
+<p>Schemat nazw funkcji zwi&#x105;zanych z rozk&#x142;adami zmiennych losowych.</p>
+<pre><code>[prefix][nazwa.rodziny.rozk&#x142;ad&#xF3;w]()
+</code></pre><p>Poni&#x17C;ej w kolejnych liniach losujemy pi&#x119;&#x107; liczb z rozk&#x142;adu jednostajnego. Wyznaczamy warto&#x15B;&#x107; dystrybuanty rozk&#x142;adu jednostajnego w punkcie 0.5. Wyznaczamy warto&#x15B;&#x107; g&#x119;sto&#x15B;ci rozk&#x142;adu jednostajnego w punkcie 0.5. Wyznaczamy warto&#x15B;&#x107; kwantyla rozk&#x142;adu jednostajnego rz&#x119;du 0.1.</p>
+<pre><code class="lang-r">runif(<span class="hljs-number">5</span>)
+</code></pre>
+<pre><code>## [1] 0.7338347 0.1627882 0.1364178 0.4895255 0.6499082
+</code></pre><pre><code class="lang-r">punif(<span class="hljs-number">0.5</span>)
+</code></pre>
+<pre><code>## [1] 0.5
+</code></pre><pre><code class="lang-r">dunif(<span class="hljs-number">0.5</span>)
+</code></pre>
+<pre><code>## [1] 1
+</code></pre><pre><code class="lang-r">qunif(<span class="hljs-number">0.1</span>)
+</code></pre>
+<pre><code>## [1] 0.1
+</code></pre><p>Suffix <code>nazwa.rodziny.rozk&#x142;ad&#xF3;w</code> okre&#x15B;la jakiej rodziny rozk&#x142;ad&#xF3;w dana funkcja dotyczy. Wszystkich rodzin rozk&#x142;ad&#xF3;w dost&#x119;pnych w programie R jest wiele, przegl&#x105;d popularniejszych znajduje si&#x119; w poni&#x17C;szej tabeli. <code>Prefix</code> jest jednoliterowym markerem, okre&#x15B;laj&#x105;cym co chcemy z tym rozk&#x142;adem zrobi&#x107;. <code>Prefix</code> mo&#x17C;e by&#x107; jedn&#x105; z liter:</p>
+<ul>
+<li>Litera <code>r</code> (jak <strong>r</strong>andom) rozpoczyna nazw&#x119; funkcji - generatora liczb losowych. Taka funkcja generuje pr&#xF3;b&#x119; prost&#x105; o liczebno&#x15B;ci <code>n</code> (pierwszy argument funkcji) z okre&#x15B;lonego rozk&#x142;adu. </li>
+<li>Litera <code>p</code> (jak <strong>p</strong>robability) rozpoczyna nazw&#x119; funkcji wyznaczaj&#x105;cej warto&#x15B;ci dystrybuanty danego rozk&#x142;adu w punktach okre&#x15B;lonych przez wektor <code>x</code> (pierwszy argument tych funkcji).</li>
+<li>Litera <code>d</code> (jak <strong>d</strong>ensity) rozpoczyna nazw&#x119; funkcji wyznaczaj&#x105;cej warto&#x15B;ci g&#x119;sto&#x15B;ci (dla rozk&#x142;ad&#xF3;w ci&#x105;g&#x142;ych) lub prawdopodobie&#x144;stwa (dla rozk&#x142;ad&#xF3;w dyskretnych) danego rozk&#x142;adu w punktach okre&#x15B;lonych przez wektor <code>x</code> (pierwszy argument tych funkcji).</li>
+<li>Litera <code>q</code> (jak <strong>q</strong>uantile) rozpoczyna nazw&#x119; funkcji wyznaczaj&#x105;cej warto&#x15B;ci kwantyli danego rozk&#x142;adu w punktach <code>q</code> (pierwszy argument tych funkcji). </li>
+</ul>
+<p>Pozosta&#x142;e argumenty tych funkcji okre&#x15B;laj&#x105; parametry rozk&#x142;adu w wybranej rodzinie rozk&#x142;ad&#xF3;w. Dla funkcji wyznaczaj&#x105;cych g&#x119;sto&#x15B;&#x107; lub dystrybuant&#x119; mo&#x17C;na okre&#x15B;li&#x107; argument  <code>log.p</code>. Je&#x17C;eli argumentem jest <code>log.p=TRUE</code>, to wynikiem funkcji s&#x105; logarytmy zamiast oryginalnych warto&#x15B;ci. Operowanie na logarytmach z g&#x119;sto&#x15B;ci w pewnych sytuacjach mo&#x17C;ne zmniejszy&#x107; b&#x142;&#x119;dy numeryczne. </p>
+<p><img src="rysunki/generatory1.png" alt="Zale&#x17C;no&#x15B;ci pomi&#x119;dzy wybranymi rodzinami rozk&#x142;ad&#xF3;w zmiennych losowych. Strza&#x142;ki pomi&#x119;dzy rozk&#x142;adami opisuj&#x105; jak przekszta&#x142;ci&#x107; zmienn&#x105; jednego rozk&#x142;adu na zmienn&#x105; innego rozk&#x142;adu. Dla ka&#x17C;dego rozk&#x142;adu podana jest funkcja g&#x119;sto&#x15B;ci oraz parametryzacja w R"></p>
+<p><strong>Zale&#x17C;no&#x15B;ci pomi&#x119;dzy wybranymi rodzinami rozk&#x142;ad&#xF3;w zmiennych losowych. Strza&#x142;ki pomi&#x119;dzy rozk&#x142;adami opisuj&#x105; jak przekszta&#x142;ci&#x107; zmienn&#x105; jednego rozk&#x142;adu na zmienn&#x105; innego rozk&#x142;adu. Dla ka&#x17C;dego rozk&#x142;adu podana jest funkcja g&#x119;sto&#x15B;ci oraz parametryzacja w R</strong></p>
+<p><img src="rysunki/generatory2.png" alt="Lista funkcji dla wybranych rozk&#x142;ad&#xF3;w prawdopodobie&#x144;stwa ci&#x105;g&#x142;e - powy&#x17C;ej poziomej linii i dyskretne - poni&#x17C;ej"></p>
+<p><strong>Lista funkcji dla wybranych rozk&#x142;ad&#xF3;w prawdopodobie&#x144;stwa ci&#x105;g&#x142;e - powy&#x17C;ej poziomej linii i dyskretne - poni&#x17C;ej</strong></p>
+<p><img src="rysunki/generatory3.png" alt="G&#x119;sto&#x15B;ci dla przyk&#x142;adowych parametr&#xF3;w wybranych rozk&#x142;ad&#xF3;w ci&#x105;g&#x142;ych. Nag&#x142;&#xF3;wki wskazuj&#x105; parametry g&#x119;sto&#x15B;ci rysowanych kolejno: lini&#x105; ci&#x105;g&#x142;&#x105;, szeroko kreskowan&#x105;, w&#x105;sko kreskowan&#x105; i mieszan&#x105;"></p>
+<p><strong>G&#x119;sto&#x15B;ci dla przyk&#x142;adowych parametr&#xF3;w wybranych rozk&#x142;ad&#xF3;w ci&#x105;g&#x142;ych. Nag&#x142;&#xF3;wki wskazuj&#x105; parametry g&#x119;sto&#x15B;ci rysowanych kolejno: lini&#x105; ci&#x105;g&#x142;&#x105;, szeroko kreskowan&#x105;, w&#x105;sko kreskowan&#x105; i mieszan&#x105;</strong></p>
+<p>Przyk&#x142;adowo licz&#x105;c logarytm funkcji wiarygodno&#x15B;ci zamiast liczy&#x107; logarytm z iloczynu g&#x119;sto&#x15B;ci, bardziej dok&#x142;adne wyniki otrzymamy dodaj&#x105;c logarytmy z poszczeg&#xF3;lnych warto&#x15B;ci g&#x119;sto&#x15B;ci. </p>
+<p>List&#x119; funkcji stowarzyszonych do najpopularniejszych rozk&#x142;ad&#xF3;w zmiennych losowych znale&#x17A;&#x107; mo&#x17C;na w powy&#x17C;szej tabeli.
+Jednym z najbardziej znanych rozk&#x142;ad&#xF3;w zmiennych losowych jest rozk&#x142;ad normalny, nazywany te&#x17C; rozk&#x142;adem Gaussa. Na powy&#x17C;szym rysunku  przedstawiona jest g&#x119;sto&#x15B;&#x107; i dystrybuanta standardowego rozk&#x142;adu normalnego. Wykres zosta&#x142; wygenerowany przez nast&#x119;puj&#x105;ce polecenia (zwr&#xF3;&#x107; uwag&#x119; jak uzyskano podw&#xF3;jne osie Y).</p>
+<p>W poni&#x17C;szym przyk&#x142;adzie w pierwszej linii wybieramy punkty, w kt&#xF3;rych wyznaczymy g&#x119;sto&#x15B;&#x107; i dystrybuant&#x119;. Nast&#x119;pnie rysujemy g&#x119;sto&#x15B;&#x107;. </p>
+<pre><code class="lang-r">x &lt;- seq(-<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,by=<span class="hljs-number">0.01</span>)
+plot(x, dnorm(x), type=<span class="hljs-string">&quot;l&quot;</span>, lwd=<span class="hljs-number">3</span>, cex.axis=<span class="hljs-number">1.5</span>, cex.lab=<span class="hljs-number">1.5</span>)
+</code></pre>
+<p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+<p>Na tym samym rysunku chcemy narysowa&#x107; dystrybuant&#x119;. Wymaga to u&#x17C;ycia innej osi OY, dlatego zmieniamy wsp&#xF3;&#x142;rz&#x119;dne w wy&#x15B;wietlanym oknie graficznym. Teraz o&#x15B; Y ma przyjmowa&#x107; warto&#x15B;ci od -0.04 do 1.04. </p>
+<pre><code class="lang-r">par(usr=c(-<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,-<span class="hljs-number">0.04</span>,<span class="hljs-number">1.04</span>))
+</code></pre>
+<p>Dorysowujemy dystrybuant&#x119;, teraz wsp&#xF3;&#x142;rz&#x119;dne s&#x105; ju&#x17C; w nowym uk&#x142;adzie. </p>
+<pre><code class="lang-r">lines(x, pnorm(x), lty=<span class="hljs-number">2</span>, lwd=<span class="hljs-number">3</span>, cex.axis=<span class="hljs-number">1.5</span>, cex.lab=<span class="hljs-number">1.5</span>)
+</code></pre>
+<pre><code>## Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
+</code></pre><p>Dodajemy o&#x15B; OY po prawej stronie, wsp&#xF3;&#x142;rz&#x119;dne w nowym uk&#x142;adzie.</p>
+<pre><code class="lang-r">axis(side=<span class="hljs-number">4</span>, cex.axis=<span class="hljs-number">1.5</span>, cex.lab=<span class="hljs-number">1.5</span>)
+</code></pre>
+<pre><code>## Error in axis(side = 4, cex.axis = 1.5, cex.lab = 1.5): plot.new has not been called yet
+</code></pre><pre><code class="lang-r">mtext(side=<span class="hljs-number">4</span>, <span class="hljs-string">&quot;pnorm()&quot;</span>, line=<span class="hljs-number">2.5</span>, cex.axis=<span class="hljs-number">1.5</span>, cex=<span class="hljs-number">1.5</span>)
+</code></pre>
+<pre><code>## Error in mtext(side = 4, &quot;pnorm()&quot;, line = 2.5, cex.axis = 1.5, cex = 1.5): plot.new has not been called yet
+</code></pre><p>Funkcje z pakietu <code>stats</code> do generowania liczb i wyznaczania charakterystyk z rozk&#x142;adu normalnego to <code>pnorm()</code>, <code>dnorm()</code>, <code>qnorm()</code> i <code>rnorm()</code>. Poni&#x17C;ej przedstawiamy ich deklaracje. Funkcje dla innych rozk&#x142;ad&#xF3;w maj&#x105; bardzo podobne deklaracje z dok&#x142;adno&#x15B;ci&#x105; do nazwy parametr&#xF3;w rozk&#x142;ad&#xF3;w.</p>
+<pre><code>dnorm(x, mean=0, sd=1, log = FALSE)
+pnorm(q, mean=0, sd=1, lower.tail = TRUE, log.p = FALSE)
+qnorm(p, mean=0, sd=1, lower.tail = TRUE, log.p = FALSE)
+rnorm(n, mean=0, sd=1)
+</code></pre><p>Rozk&#x142;ad normalny opisywany jest dwoma parametrami: &#x15B;redni&#x105; i odchyleniem standardowym. Standardowy rozk&#x142;ad normalny ma &#x15B;redni&#x105; r&#xF3;wn&#x105; 0 i odchylenie standardowe r&#xF3;wne 1, s&#x105; to te&#x17C; domy&#x15B;lne warto&#x15B;ci argument&#xF3;w <code>mean</code> i <code>sd</code>. Zmiana argumentu <code>lower.tail=TRUE</code> powoduje, &#x17C;e dystrybuanta liczona jest jako <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>&#x2264;</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">P(X \leq x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mrel">&#x2264;</span><span class="mord mathit">x</span><span class="mclose">)</span></span></span></span>, gdy argument <code>lower.tail=FALSE</code>, to wyznaczana jest warto&#x15B;&#x107; $P(X &gt; x)$, czyli dope&#x142;nienie dystrybuanty. </p>
+<p>Zgodnie z regu&#x142;&#x105; ,,trzy sigma&apos;&apos; prawdopodobie&#x144;stwo, &#x17C;e zmienna losowa o standardowym rozk&#x142;adzie normalnym przyjmie warto&#x15B;&#x107; mniejsz&#x105; od -3 lub wi&#x119;ksz&#x105; od 3 jest bardzo ma&#x142;e. Je&#x17C;eli pami&#x119;tamy czym jest dystrybuanta oraz wiemy, &#x17C;e warto&#x15B;ci dystrybuanty w programie R wyznaczy&#x107; mo&#x17C;na funkcj&#x105; <code>pnorm()</code>, to z &#x142;atwo&#x15B;ci&#x105; wyznaczymy ww. prawdopodobie&#x144;stwo.</p>
+<p>Prawdopodobie&#x144;stwo wylosowania normalnego warto&#x15B;ci <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&gt;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">&gt; 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&gt;</span><span class="mord mathrm">3</span></span></span></span> lub <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo><mo>&#x2212;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">&lt; -3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span><span class="mord">&#x2212;</span><span class="mord mathrm">3</span></span></span></span>.</p>
+<pre><code class="lang-r">pnorm(-<span class="hljs-number">3</span>) + (<span class="hljs-number">1</span> - pnorm(<span class="hljs-number">3</span>))
+</code></pre>
+<pre><code>## [1] 0.002699796
+</code></pre><p>Warto&#x15B;&#x107; g&#x119;sto&#x15B;ci rozk&#x142;adu normalnego w punktach <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&#x2212;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord">&#x2212;</span><span class="mord mathrm">1</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.64444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">0</span></span></span></span> i <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.64444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span></span></span></span>.</p>
+<pre><code class="lang-r">dnorm(-<span class="hljs-number">1</span>:<span class="hljs-number">1</span>, mean=<span class="hljs-number">0</span>, sd=<span class="hljs-number">1</span>)
+</code></pre>
+<pre><code>## [1] 0.2419707 0.3989423 0.2419707
+</code></pre><p>Najpopularniejsze kwantyle rozk&#x142;adu normalnego.</p>
+<pre><code class="lang-r">qnorm(c(<span class="hljs-number">0.001</span>, <span class="hljs-number">0.025</span>, <span class="hljs-number">0.05</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.95</span>, <span class="hljs-number">0.975</span>, <span class="hljs-number">0.999</span>))
+</code></pre>
+<pre><code>## [1] -3.090232 -1.959964 -1.644854  0.000000  1.644854  1.959964  3.090232
+</code></pre><p>Poni&#x17C;ej poka&#x17C;emy jak wylosowa&#x107; dziesi&#x119;&#x107; liczb z rozk&#x142;adu normalnego o &#x15B;redniej 2 i odchyleniu stndardowym r&#xF3;wnym 1.</p>
+<pre><code class="lang-r">rnorm(<span class="hljs-number">10</span>, mean = <span class="hljs-number">2</span>, sd = <span class="hljs-number">1</span>)
+</code></pre>
+<pre><code>##  [1]  1.36302924  1.63030216 -0.02528017  3.19469911  0.91553561
+##  [6]  2.07589592  1.68723109  2.52672495  1.45562343  3.24331153
+</code></pre><p>Oba argumenty, zar&#xF3;wno &#x15B;rednia jak i odchylenie standardowe mog&#x105; by&#x107; wektorami.</p>
+<pre><code class="lang-r">rnorm(<span class="hljs-number">10</span>, mean = <span class="hljs-number">1</span>:<span class="hljs-number">10</span>, sd=<span class="hljs-number">1</span>:<span class="hljs-number">10</span>)
+</code></pre>
+<pre><code>##  [1]  1.0029785  0.2818232  2.5886568  5.0915514  1.5614802  9.7741237
+##  [7] 12.2775071 -7.7713310 13.8131033  5.7068155
+</code></pre><p>Z pozosta&#x142;ych rozk&#x142;ad&#xF3;w korzysta si&#x119; r&#xF3;wnie prosto.
+Na powy&#x17C;szym rysunku przedstawiono przyk&#x142;adowy rozk&#x142;ad ci&#x105;g&#x142;ej zmiennej losowej okre&#x15B;lonej na przedziale <code>[0,1]</code>. Na tym rysunku zaznaczono podstawowe charakterystyki rozk&#x142;adu ci&#x105;g&#x142;ej zmiennej losowej, takie jak warto&#x15B;&#x107; &#x15B;rednia, mediana, moda (dominanta), kwartyl g&#xF3;rny i dolny oraz kwantyl rz&#x119;du 0.9 (nazywany te&#x17C; 90. percentylem lub 9. decylem).</p>
 
                     
                     </section>
@@ -960,10 +1044,10 @@
         </div>
 
         
-        <a href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html" class="navigation navigation-prev " aria-label="Previous page: Jak badać rozkład dwóch zmiennych?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/generatory_1.html" class="navigation navigation-prev " aria-label="Previous page: Jak ustawiać ziarno generatora?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Analiza/weryfikacja.html" class="navigation navigation-next " aria-label="Next page: Weryfikacja"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/generatory_3.html" class="navigation navigation-next " aria-label="Next page: Jak losowac ze złożonych rozkładów?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
