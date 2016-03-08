@@ -31,11 +31,11 @@
    * Jak debugować kod R?
    * Jak zwiększyć wydajność kodu R?
    * [Jak generować liczby losowe?](Programowanie/generatory_llosowych.md)
-     * [Jak ustawiać ziarno generatora?](generatory_1.md)
-     * [Jak losować z prostych rozkładów?](generatory_2.md)
-     * [Jak losowac ze złożonych rozkładów?](generatory_3.md)
-     * [Jak losować z użyciem kopuli?](generatory_4.md)
-     * [Jak estymować parametry rozkładu?](generatory_5.md)
+     * [Jak ustawiać ziarno generatora?](Programowanie/generatory_1.md)
+     * [Jak losować z prostych rozkładów?](Programowanie/generatory_2.md)
+     * [Jak losowac ze złożonych rozkładów?](Programowanie/generatory_3.md)
+     * [Jak losować z użyciem kopuli?](Programowanie/generatory_4.md)
+     * [Jak estymować parametry rozkładu?](Programowanie/generatory_5.md)
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
 * [Analiza danych z programem R](Analiza/analizadanych_z_programem_r_md.md)
