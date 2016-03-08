@@ -1,10 +1,10 @@
 # Jak badać rozkład dwóch zmiennych?
 
-## Jak badać łaczny rozkład dwóch zmiennych ilościowych?
+## Jak badać łączny rozkład dwóch zmiennych ilościowych?
 
-Do analizy zależnosci dwóch zmiennych ilościowych najcześciej  stosuje się współczynniki korelacji liniowej (Pearsona) i monotonicznej (Spearmana).
+Do analizy zależności dwóch zmiennych ilościowych najczęściej  stosuje się współczynniki korelacji liniowej (Pearsona) i monotonicznej (Spearmana).
 
-Jednak **zawsze** o ile czas i miejsce na to pozwala należy uzupełnić taką analizę analizą graficzną (kiedy możę nie pozwalać? Jeżeli badać chcemy korelacje dla 1000 zmiennych, każdej z każdą nie narysujemy). 
+Jednak **zawsze** o ile czas i miejsce na to pozwala należy uzupełnić taką analizę analizą graficzną (kiedy może nie pozwalać? Jeżeli badać chcemy korelacje dla 1000 zmiennych, każdej z każdą nie narysujemy). 
 
 Pokażmy przykłady kiedy i jak poradzą sobie te współczynniki.
 Wykorzystamy do tego kwartet Francisa Anscombe'a.
@@ -43,7 +43,7 @@ ggplot(anscombe, aes(x4, y4)) + geom_point() + geom_smooth(method="lm", color="g
 
 ## Jak badać łaczny rozkład dwóch zmiennych jakościowych?
 
-Łączny rozkład pary zmiennych jest często przedstawioany za pomocą tablicy kontyngencji, macierzy liczb.
+Łączny rozkład pary zmiennych jest często przedstawiony za pomocą tablicy kontyngencji, macierzy liczb.
 
 Jednak nawet małe macierze jest często trudno zrozumieć. Analiza korespondencji jest techniką, która może to umożliwić / ułatwić.
 
@@ -84,7 +84,7 @@ $$
 
 ### Dekompozycja
 
-Z macierzy $$W$$ można odczytać, które komórki występują częściej niż wynikałoby to z przypadku. JEdnak wciąż tych liczb jest tak dużo, że trudno je wszystkie zauważyć.
+Z macierzy $$W$$ można odczytać, które komórki występują częściej niż wynikałoby to z przypadku. Jednak wciąż tych liczb jest tak dużo, że trudno je wszystkie zauważyć.
 
 W celu prezentacji całej macierzy stosuje się uogólnioną dekompozycje SVD na trzy macierze
 
@@ -103,7 +103,7 @@ Diagonalna macierz $$\Sigma$$ określa wkład kolejnych wektorów w wyjaśnienie
 
 Jeżeli elementy w odpowiadających sobie kolumnach macierzy $$U$$ i $$V$$ mają ten sam znak to przełożą się one na wartość dodatnią w odpowiadającej im komórce macierzy $$W$$. 
 
-Na wykresie zazwyczaj przedstawia się łądunki odpowiadające dwóm największym wartościom z macierzy $$\Sigma$$. Im bliżej siebie i dalej od początku ukłądu współrzędnych są poszczególne wartości tym częstsze ich współwystępowanie.
+Na wykresie zazwyczaj przedstawia się ładunki odpowiadające dwóm największym wartościom z macierzy $$\Sigma$$. Im bliżej siebie i dalej od początku układu współrzędnych są poszczególne wartości tym częstsze ich współwystępowanie.
 
 
 ### Przykład
@@ -125,4 +125,5 @@ summary(anacor)
 
 Symulacyjnie zbadaj moce testów Spearmana i Pearsona jako funkcje wielkości próby.
 Porównaj wyniki dla różnych rozkładów korelowanych zmiennych.
+
 
