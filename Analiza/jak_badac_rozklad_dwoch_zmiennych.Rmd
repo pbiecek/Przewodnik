@@ -1,7 +1,120 @@
 # Jak badać rozkład dwóch zmiennych?
 
-- korelacja
-- test dla korelacji
-- analiza korespondencji
-- test $\chi^2$
+## Jak badać łaczny rozkład dwóch zmiennych ilościowych?
+
+Do analizy zależnosci dwóch zmiennych ilościowych najcześciej  stosuje się współczynniki korelacji liniowej (Pearsona) i monotonicznej (Spearmana).
+
+Jednak **zawsze** o ile czas i miejsce na to pozwala należy uzupełnić taką analizę analizą graficzną (kiedy możę nie pozwalać? Jeżeli badać chcemy korelacje dla 1000 zmiennych, każdej z każdą nie narysujemy). 
+
+Pokażmy przykłady kiedy i jak poradzą sobie te współczynniki.
+Wykorzystamy do tego kwartet Francisa Anscombe'a.
+
+```{r}
+library(ggplot2)
+attach(anscombe)
+
+cor(x1, y1)
+cor(x1, y1, method="spearman")
+
+ggplot(anscombe, aes(x1, y1)) + geom_point() + geom_smooth(method="lm", color="grey", se=FALSE)
+```
+
+```{r}
+cor(x2, y2)
+cor(x2, y2, method="spearman")
+
+ggplot(anscombe, aes(x2, y2)) + geom_point() + geom_smooth(method="lm", color="grey", se=FALSE)
+```
+
+```{r}
+cor(x3, y3)
+cor(x3, y3, method="spearman")
+
+ggplot(anscombe, aes(x3, y3)) + geom_point() + geom_smooth(method="lm", color="grey", se=FALSE)
+```
+
+```{r}
+cor(x4, y4)
+cor(x4, y4, method="spearman")
+
+ggplot(anscombe, aes(x4, y4)) + geom_point() + geom_smooth(method="lm", color="grey", se=FALSE)
+```
+
+
+## Jak badać łaczny rozkład dwóch zmiennych jakościowych?
+
+Łączny rozkład pary zmiennych jest często przedstawioany za pomocą tablicy kontyngencji, macierzy liczb.
+
+Jednak nawet małe macierze jest często trudno zrozumieć. Analiza korespondencji jest techniką, która może to umożliwić / ułatwić.
+
+### Tabela kontyngencji
+
+Rozważmy macierz zliczeń dla pary zmiennych, oznaczmy ją przez $$M$$
+
+| Y \ X | $$x_1$$ | $$x_2$$ |   | $$x_c$$ |
+|---|---|---|---|---|
+| $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | ... | $$n_{1c}$$ |
+| ...  |  ... |   |   | ...  |
+| $$y_r$$ | $$n_{r1}$$ | $$n_{r2}$$ | ... | $$n_{rc}$$ |
+
+
+Aby zbadać współwystępowanie poziomów wygodniej jest pracować na macierzy znormalizowanej, oznaczy ją przez $$S$$
+
+$$
+S = (1^T_r M 1_c)^{-1}M,
+$$
+
+gdzie $$1_c$$ oznacza kolumnowy wektor jedynek o długości $$c$$.
+
+W kolejnym kroku wyznaczmy brzegowe częstości, oznaczmy je jako wektory $$w$$
+
+$$
+w_r = (1^T_r M 1_c)^{-1}M1_c
+$$
+
+$$
+w_c = (1^T_r M 1_c)^{-1}1^T_{r}M
+$$
+
+Możemy teraz wyznaczyć różnicę pomiędzy obserwowaną macierzą częstości a oczekiwaną przy założeniu niezależności.
+
+$$
+W = S - w_r w_c
+$$
+
+### Dekompozycja
+
+Z macierzy $$W$$ można odczytać, które komórki występują częściej niż wynikałoby to z przypadku. JEdnak wciąż tych liczb jest tak dużo, że trudno je wszystkie zauważyć.
+
+W celu prezentacji całej macierzy stosuje się uogólnioną dekompozycje SVD na trzy macierze
+
+$$
+W = U \Sigma V^T,
+$$
+takie, że $$U$$ i $$V$$ są ortonormlane względem wektorów $$w_r$$ i $$w_c$$ a $$\Sigma$$ jest macierzą diagonalną. Czyli
+
+$$
+U^T diag(w_r) U = V^T diag(w_c) V = I.
+$$
+
+Czasem wyprowadza się ten rozkład jako zwykłe SVD z normalizowanej macierzy $$(O-E)/sqrt(E)$$.
+
+
+### Przykład
+
+```{r}
+library(ca)
+
+(tab <- HairEyeColor[,,1])
+anacor <- ca(tab)
+
+plot(anacor)
+summary(anacor)
+```
+
+
+## Zadania
+
+Symulacyjnie zbadaj moce testów Spearmana i Pearsona jako funkcje wielkości próby.
+Porównaj wyniki dla różnych rozkładów korelowanych zmiennych.
 
