@@ -89,7 +89,7 @@ wynik$observed
 ## Jak weryfikować niezależność dwóch zmiennych binarnych?
 
 Specyficzną wersją testu na niezależność dwóch zmiennych jakościowych jest test dla dwóch zmiennych binarnych. 
-Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowej można badań dokładny rozkład statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
+Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowej można badać dokładny rozkład statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
 
 Statystyka testowa jest oparta o tablicę kontyngencji
 
