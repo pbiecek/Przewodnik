@@ -41,7 +41,7 @@ ggplot(anscombe, aes(x4, y4)) + geom_point() + geom_smooth(method="lm", color="g
 ```
 
 
-## Jak badać łaczny rozkład dwóch zmiennych jakościowych?
+## Jak badać łączny rozkład dwóch zmiennych jakościowych?
 
 Łączny rozkład pary zmiennych jest często przedstawiony za pomocą tablicy kontyngencji, macierzy liczb.
 
@@ -58,7 +58,7 @@ Rozważmy macierz zliczeń dla pary zmiennych, oznaczmy ją przez $$M$$
 | $$y_r$$ | $$n_{r1}$$ | $$n_{r2}$$ | ... | $$n_{rc}$$ |
 
 
-Aby zbadać współwystępowanie poziomów wygodniej jest pracować na macierzy znormalizowanej, oznaczy ją przez $$S$$
+Aby zbadać współwystępowanie poziomów, wygodniej jest pracować na macierzy znormalizowanej, oznaczmy ją przez $$S$$
 
 $$
 S = (1^T_r M 1_c)^{-1}M,
@@ -76,7 +76,7 @@ $$
 w_c = (1^T_r M 1_c)^{-1}1^T_{r}M
 $$
 
-Możemy teraz wyznaczyć różnicę pomiędzy obserwowaną macierzą częstości a oczekiwaną przy założeniu niezależności.
+Możemy teraz wyznaczyć różnicę pomiędzy obserwowaną macierzą częstości a oczekiwaną, przy założeniu niezależności.
 
 $$
 W = S - w_r w_c
@@ -86,24 +86,24 @@ $$
 
 Z macierzy $$W$$ można odczytać, które komórki występują częściej niż wynikałoby to z przypadku. Jednak wciąż tych liczb jest tak dużo, że trudno je wszystkie zauważyć.
 
-W celu prezentacji całej macierzy stosuje się uogólnioną dekompozycje SVD na trzy macierze
+W celu prezentacji całej macierzy stosuje się uogólnioną dekompozycję SVD na trzy macierze
 
 $$
 W = U \Sigma V^T,
 $$
-takie, że $$U$$ i $$V$$ są ortonormlane względem wektorów $$w_r$$ i $$w_c$$ a $$\Sigma$$ jest macierzą diagonalną. Czyli
+takie, że $$U$$ i $$V$$ są ortonormalne względem wektorów $$w_r$$ i $$w_c$$ a $$\Sigma$$ jest macierzą diagonalną. Czyli
 
 $$
 U^T diag(w_r) U = V^T diag(w_c) V = I.
 $$
 
-Czasem wyprowadza się ten rozkład jako zwykłe SVD z normalizowanej macierzy $$(O-E)/sqrt(E)$$.
+Czasem wyprowadza się ten rozkład jako zwykłe SVD ze znormalizowanej macierzy $$(O-E)/sqrt(E)$$.
 
 Diagonalna macierz $$\Sigma$$ określa wkład kolejnych wektorów w wyjaśnienie macierzy $$W$$.
 
-Jeżeli elementy w odpowiadających sobie kolumnach macierzy $$U$$ i $$V$$ mają ten sam znak to przełożą się one na wartość dodatnią w odpowiadającej im komórce macierzy $$W$$. 
+Jeżeli elementy w odpowiadających sobie kolumnach macierzy $$U$$ i $$V$$ mają ten sam znak, to przełożą się one na wartość dodatnią w odpowiadającej im komórce macierzy $$W$$. 
 
-Na wykresie zazwyczaj przedstawia się ładunki odpowiadające dwóm największym wartościom z macierzy $$\Sigma$$. Im bliżej siebie i dalej od początku układu współrzędnych są poszczególne wartości tym częstsze ich współwystępowanie.
+Na wykresie zazwyczaj przedstawia się ładunki odpowiadające dwóm największym wartościom z macierzy $$\Sigma$$. Im bliżej siebie i dalej od początku układu współrzędnych są poszczególne wartości, tym częstsze ich współwystępowanie.
 
 
 ### Przykład
