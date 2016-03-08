@@ -104,7 +104,7 @@ Jeżeli badamy zależnośc pomiędzy parą zmiennych binarnych to zalecane jest 
 
 ### Przykład
 
-Ograniczmy nadanie kolorów oczy do niebieskie/brązowe a włosów do czarne / blond.
+Ograniczmy nadanie kolorów oczu do niebieskie/brązowe a włosów do czarne / blond.
 
 ```{r, warning=FALSE}
 tab22 <- tab[c(1,4),c(1,2)]
