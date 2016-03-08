@@ -51,7 +51,7 @@ $$
 
 Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
 
-Obszar odrzucenia jest najczęściej postaci $$[c, \infy]$$.
+Obszar odrzucenia jest najczęściej postaci $$[c, \infty]$$.
 
 ### Przykład
 

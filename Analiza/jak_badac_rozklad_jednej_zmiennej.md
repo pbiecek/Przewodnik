@@ -152,7 +152,7 @@ skewness(poslowie$Wiek)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "skewness"
+## [1] -0.2378142
 ```
 
 

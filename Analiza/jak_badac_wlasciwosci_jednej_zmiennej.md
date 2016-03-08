@@ -100,44 +100,7 @@ Przy prawdziwej hipotezie zerowej ma on rozkład $$\chi^2$$ z n-1 stopniami swob
 
 ```r
 library(PairedData)
-```
 
-```
-## Loading required package: MASS
-```
-
-```
-## Loading required package: gld
-```
-
-```
-## Loading required package: mvtnorm
-```
-
-```
-## Loading required package: lattice
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.2.4
-```
-
-```
-## 
-## Attaching package: 'PairedData'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     summary
-```
-
-```r
 var.test(poslowie$Wiek, ratio=100)
 ```
 

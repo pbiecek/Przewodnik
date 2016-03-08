@@ -4,3 +4,4 @@
 - test dla korelacji
 - analiza korespondencji
 - test $\chi^2$
+

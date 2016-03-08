@@ -2,7 +2,7 @@
 
 Korzystając z bazy danych serwisu Moje Państwo pobierzemy podstawowe dane posłów. Posłużą nam one do wyznaczania różnych podstawowych statystyk.
 
-Dane dostępne są pod adresem `archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")`.
+Dane dostępne są pod adresem `archivist::aread("pbiecek/Przewodnik/arepo/2977e638f6d6b9d504c10fc29d779d42")`.
 
 ```
 library(rvest)
@@ -15,13 +15,17 @@ for (posel in 1:460) {
   nazwisko <- html_text(html_nodes(strona, "h1"))
   
   pola <- html_text(html_nodes(strona, ".data p"))
-  if (!any(pola == "Wygaśnięcie mandatu:")) {
-    wartosci <- pola[seq(2, length(pola), 2)]
-    names(wartosci) <- pola[seq(1, length(pola), 2)]
-    wartosci[["Nazwisko:"]] <- nazwisko
-    id <- as.character(posel)
-    poslowie[[id]] <- wartosci
+  if (any(pola == "Wygaśnięcie mandatu:")) {
+    ind <- which(pola == "Wygaśnięcie mandatu:")
+    pola <- pola[-ind+c(0,-1)]
+    if (!grepl(pola[ind], pattern=":$"))
+      pola <- pola[-ind]
   }
+  wartosci <- pola[seq(2, length(pola), 2)]
+  names(wartosci) <- pola[seq(1, length(pola), 2)]
+  wartosci[["Nazwisko:"]] <- nazwisko
+  id <- as.character(posel)
+  poslowie[[id]] <- wartosci
 }
 
 pola <- c("Liczba głosów:", "Klub/koło:", "Data i miejsce urodzenia:", "Wykształcenie:", "Zawód:", "Nazwisko:")

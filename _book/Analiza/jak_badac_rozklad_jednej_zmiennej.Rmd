@@ -5,7 +5,7 @@ Wykorzystamy do tego bazę danych dotyczących posłów z 8 kadencji Sejmu.
 Dane pobierane są bezpośrednio z Internetu z serwisu GitHub.
 
 ```{r}
-poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/07088eb35cc2c9d2a2a856a36b3253ad")
+poslowie <- archivist::aread("pbiecek/Przewodnik/arepo/2977e638f6d6b9d504c10fc29d779d42")
 
 head(poslowie)
 ```
@@ -51,7 +51,7 @@ median(poslowie$Wiek)
 Odchylenie standardowe zmiennej wiek.
 
 $$
-\bar \sigma = \sqrt{\sum_{i=1}^n (x_i - \bar x)^2 / (n-1)}
+\hat \sigma = \sqrt{\sum_{i=1}^n (x_i - \bar x)^2 / (n-1)}
 $$
 
 ```{r}
@@ -66,7 +66,7 @@ Jaka jest najmniejsza i największa wartość przyjmowana przez zmienną Wiek?
 range(poslowie$Wiek)
 ```
 
-### Rozstęp kartylowy
+### Rozstęp kwartylowy
 
 Ile wynosi rozstęp kwartylowy (różnica pomiędzy 3. a 1. kwartylem)?
 
@@ -87,7 +87,7 @@ $$
 Typ: 2 (domyślny w SAS i SPSS),
 
 $$
-G_1 = g_1 * \sqrt(n(n-1)) / (n-2).
+G_1 = g_1 \sqrt{n(n-1)} / (n-2).
 $$
 
 Typ: 3 (domyślny w R)
