@@ -99,8 +99,16 @@ $$
 
 Czasem wyprowadza się ten rozkład jako zwykłe SVD z normalizowanej macierzy $$(O-E)/sqrt(E)$$.
 
+Diagonalna macierz $$\Sigma$$ określa wkład kolejnych wektorów w wyjaśnienie macierzy $$W$$.
+
+Jeżeli elementy w odpowiadających sobie kolumnach macierzy $$U$$ i $$V$$ mają ten sam znak to przełożą się one na wartość dodatnią w odpowiadającej im komórce macierzy $$W$$. 
+
+Na wykresie zazwyczaj przedstawia się łądunki odpowiadające dwóm największym wartościom z macierzy $$\Sigma$$. Im bliżej siebie i dalej od początku ukłądu współrzędnych są poszczególne wartości tym częstsze ich współwystępowanie.
+
 
 ### Przykład
+
+Przeprowadźmy graficzną analizę korespondencji dla danych o kolorach oczu i włosów.
 
 ```{r}
 library(ca)

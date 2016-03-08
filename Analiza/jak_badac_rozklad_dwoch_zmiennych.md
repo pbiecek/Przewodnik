@@ -21,6 +21,12 @@ attach(anscombe)
 ##     x1, x2, x3, x4, y1, y2, y3, y4
 ```
 
+```
+## The following objects are masked from anscombe (pos = 4):
+## 
+##     x1, x2, x3, x4, y1, y2, y3, y4
+```
+
 ```r
 cor(x1, y1)
 ```
@@ -171,8 +177,16 @@ $$
 
 Czasem wyprowadza się ten rozkład jako zwykłe SVD z normalizowanej macierzy $$(O-E)/sqrt(E)$$.
 
+Diagonalna macierz $$\Sigma$$ określa wkład kolejnych wektorów w wyjaśnienie macierzy $$W$$.
+
+Jeżeli elementy w odpowiadających sobie kolumnach macierzy $$U$$ i $$V$$ mają ten sam znak to przełożą się one na wartość dodatnią w odpowiadającej im komórce macierzy $$W$$. 
+
+Na wykresie zazwyczaj przedstawia się łądunki odpowiadające dwóm największym wartościom z macierzy $$\Sigma$$. Im bliżej siebie i dalej od początku ukłądu współrzędnych są poszczególne wartości tym częstsze ich współwystępowanie.
+
 
 ### Przykład
+
+Przeprowadźmy graficzną analizę korespondencji dla danych o kolorach oczu i włosów.
 
 
 ```r
