@@ -3,7 +3,7 @@
 Testów weryfikujących strukturę zależności pomiędzy parą zmiennych jest co niemiara. 
 W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery [,,Modele i metody statystyki Matematycznej''](https://www.google.pl/search?newwindow=1&q=modele+i+metody+statystyki+matematycznej&oq=modele+i+metody+statystyki+matematycznej).
 
-Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, swego rodzaju szkielet który można rozbudowywać w różnych kierunkach.
+Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, tworzących swego rodzaju szkielet, który można rozbudowywać w różnych kierunkach.
 
 ## Jak weryfikować niezależność dwóch zmiennych jakościowych?
 
@@ -139,7 +139,7 @@ $$
 \hat \rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar y)}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
 $$
 
-Rozkład statystyki $$\hat \rho$$ jest określony na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
+Ta zmienna losowa jest określona na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
 
 $$
 T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1 - \hat \rho^2}}.
