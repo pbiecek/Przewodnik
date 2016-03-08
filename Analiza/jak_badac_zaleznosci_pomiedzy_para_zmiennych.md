@@ -3,7 +3,7 @@
 Testów weryfikujących strukturę zależności pomiędzy parą zmiennych jest co niemiara. 
 W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery [,,Modele i metody statystyki Matematycznej''](https://www.google.pl/search?newwindow=1&q=modele+i+metody+statystyki+matematycznej&oq=modele+i+metody+statystyki+matematycznej).
 
-Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, swego rodzaju szkielet który można rozbudowywać w różnych kierunkach.
+Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, tworzących swego rodzaju szkielet, który można rozbudowywać w różnych kierunkach.
 
 ## Jak weryfikować niezależność dwóch zmiennych jakościowych?
 
@@ -53,7 +53,7 @@ $$
 Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
 
 Za obszar odrzucenia przyjmuje się przedział postaci $$[c, \infty]$$.
-Przykładowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwantylem rzędu $$0.95$$.
+Przykładowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwartylem rzędu $$0.95$$.
 
 
 ```r
@@ -155,7 +155,7 @@ Statystyka testowa jest oparta o tablicę kontyngencji
 | $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | 
 | $$y_2$$ | $$n_{21}$$ | $$n_{22}$$ | 
 
-o rozkładzie hipergeometrycznym.
+o rozkładzie hipotergeometrycznym.
 
 Jeżeli badamy zależnośc pomiędzy parą zmiennych binarnych to zalecane jest użycie tego testu. Umożliwia on również weryfikowanie hipotez kierunkowych (a więc częstsze/rzadsze niż przypadkowe współwystępowanie $$x_2y_2$$).
 
@@ -186,13 +186,13 @@ fisher.test(tab22)
 
 ## Jak weryfikować niezależność dwóch zmiennych ilościowych?
 
-Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach zmiennych, uwikłanie zmiennych, wiele możliwych odstępstw od niezalezności.
+Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach zmiennych, uwikłądnie zmiennych, wiele możliwych odstępst od niezalezności.
 
-Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują nas dwa rodzaje zależności: liniowa oraz monotoniczna. Do ich badania najczęściej wykorzystuje się testy na współczynnik korelacji Pearsona i Spearmana.
+Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują nas dwa rodzaje zależności: liniowa oraz monotoniczna. Do ich badania najczęściej wykorzystuje się testy na współczynnik kolrelacji Pearsona i Spearmana.
 
 ### Dwuwymiarowy rozkład normalny
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczmy przez $$\sigma_{12}$$.
+**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczny przez $$\sigma_{12}$$.
 
 **Hipoteza**: 
 
@@ -217,7 +217,7 @@ $$
 T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1 - \hat \rho^2}}.
 $$
 
-Po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny. Dla dwustronnej hipotezy alternatywnej jest to obszar $$(-\infty, -c] \cup [c, \infty)$$.
+Po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny. Dla dwustronnej hipotezy alternatywnej jest to obszar $$(-\infty, -c] \cup [, \infty)$$.
 
 
 ```r
@@ -257,15 +257,15 @@ $$
 
 Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-2))$$.
 
-Znając rozkład możemy zbudować już w prosty sposób test statystyczny. Również korzystając z tej transformacji i jej rozkładu asymptotycznego można zbudować test dla równości dwóch współczynników korelacji.
+Znając rozkład możemy zbudować już w prosty sposób test statystyczny. Również korzystając z tej transformacji i jej rozkłądu asymtotycznego można zbudowac test dla równości dwóch współczynników korelacji.
 
 
 ### Korelacja rang
 
 Założenie o dwuwymiarowym rozkładzie normalnym jest silnie ograniczające. 
-Co prawda test Pearsona stosuje się nawet jeżeli zmienna nie ma rozkąłdu normalnego, ale jedynie do neigo zbliżony. Wciąż jednak tego typu test wykrywa jedynie liniowe zależnosci.
+Co prawda test Pearsona stosuje się nawet jeżeli zmienna nie ma rozkładu normalnego, ale jedynie do niego zbliżony. Wciąż jednak tego typu test wykrywa jedynie liniowe zależnosci.
 
-Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana. Jest ona w stanie identyfikowac zależności monotoniczne. Ideę testu Spearmana można streścić w określeniu: badanie korelacji rang.
+Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana. Jest ona w stanie identyfikować zależności monotoniczne. Ideę testu Spearmana można streścić w określeniu: badanie korelacji rang.
 
 **Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$ o rozkładzie ciągłym. 
 
@@ -282,10 +282,10 @@ $$
 
 **Statystyka testowa**:
 
-Statystyką testowa jest korelacja Pearsona ale liczona dla rang a nie oryginalnych obserwacji. Ponieważ średnia ranga to $$(n+1)/2$$ więc otrzymujemy.
+Statystyką testową jest korelacja Pearsona ale liczona dla rang, a nie oryginalnych obserwacji. Ponieważ średnia ranga to $$(n+1)/2$$ więc otrzymujemy
 
 $$
-\rho = \frac{\sum_i (r_{i} - (n+1)/2)(s_i - (n+1)/2)}{\sqrt{\sum_i (r_{i} - (n+1)/2)^2\sum_i (s_{i} - (n+1)/2)^2}}
+\rho = \frac{\sum_i (r_{i} - (n+1)/2)(s_i - (n+1)/2)}{\sqrt{\sum_i (r_{i} - (n+1)/2)^2\sum_i (s_{i} - (n+1)/2)^2}}.
 $$
 
 Po prostych przekształceniach otrzymujemy
@@ -294,7 +294,7 @@ $$
 \rho = 1 - \frac{6 \sum(r_i - s_i)^2}{n(n^2-1)}.
 $$
 
-Rozkład tej statystyki można tablicować dla małych n. Asymptotycznie ma ona rozkład normalny z wariancją $$1/(n-1)$$.
+Rozkład tej statystyki można tablicować dla małych $n$. Asymptotycznie ma ona rozkład normalny z wariancją $$1/(n-1)$$.
 Ale w implementacji najczęściej stosuje się podobną transformację co w przypadku testu Pearsona, czyli
 
 $$
@@ -307,7 +307,7 @@ Asymptotycznie ta statystyka ma rozkład $$t_{n-2}$$.
 
 Opisane powyżej testy badają dwa rodzaje zależności - liniowy i monotoniczny.
 
-Jeżeli interesuje nas inna klasa zależności to możliwy wybór jest albo przez badanie funkcji łączących (tzw. kopule) albo przez badanie zemiennych jakościowych. Każdą zmienną ilosciową możemy zdyskretyzować, dzieląc ją na pewną liczbę podprzedziałów i analizując zależnośc pomiedzy przedziałami (testem $$\chi^2$$ lub analizą korespondencji).
+Jeżeli interesuje nas inna klasa zależności to możliwy wybór jest albo przez badanie funkcji łączących (tzw. kopule) albo przez badanie zmiennych jakościowych. Każdą zmienną ilosciową możemy zdyskretyzować, dzieląc ją na pewną liczbę podprzedziałów i analizując zależność pomiedzy przedziałami (testem $$\chi^2$$ lub analizą korespondencji).
 
 
 ### Przykład
