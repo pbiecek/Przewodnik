@@ -55,7 +55,7 @@ Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
 Za obszar odrzucenia przyjmuje się przedział postaci $$[c, \infty]$$.
 Przykładowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwartylem rzędu $$0.95$$.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ggplot2)
 x <- seq(0,15,0.01)
 (q <- qchisq(0.95, 4))
@@ -232,7 +232,7 @@ Jeżeli interesuje nas inna klasa zależności to możliwy wybór jest albo prze
 
 Korzystając ze zbioru danych `koty_ptaki` sprawdzimy czy jest zależność pomiędzy długością kota a jego wagą.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(PogromcyDanych)
 head(koty_ptaki[,1:3])
 ggplot(koty_ptaki, aes(waga, dlugosc)) + geom_point(size=3) + geom_smooth(method="lm", color="grey", se=FALSE)
