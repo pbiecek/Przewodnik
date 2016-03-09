@@ -1,10 +1,12 @@
 # Jak tworzyć wykresy z pakietem ggplot2?
 
-Pakiet `ggplot2` jest jednym z najbardziej zaawansowanych narzędzi do tworzenia wykresów statystycznych. Zaawansowanie nie oznacza, że można w nim wykres zrobić szybko, ani też że dostępnych jest wiele cukierkowych wykresów, ale że konstrukcja pakietu jest na tyle elastyczna, że można z nim wykonać praktycznie każdą grafikę statystyczną.
+Pakiet `ggplot2` jest jednym z najbardziej zaawansowanych narzędzi do tworzenia wykresów statystycznych. Zaawansowanie nie oznacza, że można szybko zrobić w nim wykres, ani też, że dostępnych jest wiele szablonów wykresów. Oznacza, że konstrukcja pakietu jest na tyle elastyczna, że można z nim wykonać praktycznie każdą grafikę statystyczną.
 
-Tą elastyczność uzyskuje się opierając opis wykresu na sposobie w jaki myślimy i czytamy wykresy. Patrząc na wykres nie widzimy w nim zbioru odcinków i kółek, ale kolekcje obiektów na swój sposób podobnych lub różnych. Gramatyka grafiki jest szerzej opisana [w tym eseju](http://biecek.pl/Eseje/indexGramatyka.html).
+Tę elastyczność uzyskuje się opierając strukturę wykresu na sposobie w jaki myślimy i czytamy wykresy. Patrząc na wykres nie widzimy w nim zbioru odcinków i kółek, ale kolekcje obiektów na swój sposób podobnych lub różnych. Tworząc wykres nie powinniśmy więc myśleć o tym gdzie i jak narysować odcinek, ale o tym jak elementy wykresu mają reprezentować dane.
 
-Poniższe przykłady oparte są o dwa zbiory danych. Zbiór `countries` ze współczynnikami dzietności / umieralności dla różnych krajów oraz zbiór `maturaExam` z wynikami matur w kolejnych latach.
+Gramatyka grafiki jest szerzej opisana [w tym eseju](http://biecek.pl/Eseje/indexGramatyka.html).
+
+Poniższe przykłady oparte są o dwa zbiory danych. Zbiór `countries` ze współczynnikami dzietności / umieralności dla różnych krajów oraz zbiór `maturaExam` z wynikami matur poszcezgólnych uczniów.
 
 
 ```r
@@ -38,21 +40,19 @@ head(maturaExam)
 
 ## Jak zrobić pierwszy wykres?
 
-Minimalny wykres z pakietem `ggplot2` składa się przynajmniej z trzech elementów. 
+Minimalna definicja wykresu w pakiecie `ggplot2` składa się przynajmniej z trzech elementów. 
 
 * Funkcja `ggplot()` tworzy zrąb wykresu. W tym miejscu deklaruje się parametry wspólne dla pozostałych elementów wykresu. Deklaracja może być pusta, ale zazwyczaj wskazuje się tutaj zbiór danych (poniżej `countries`) i mapowania (poniżej funkcja `aes()`).
-* Funkcje `geom_`/`stat_` tworzą kolejne warstwy prezentacji danych. Poniżej wykorzystywana jest funkcja `geom_point()` tworząca warstwę wykresu prezentującą dane. 
-* Operator `+` łączy opisu kolejnych elementów wykresu.
+* Funkcje `geom_`/`stat_` tworzą kolejne warstwy prezentacji danych. Poniżej wykorzystywana jest funkcja `geom_point()` tworząca warstwę z punktami. 
+* Operator `+` łączy opisy kolejnych elementów wykresu.
 
-Zbudujmy więc wykres, przedstawiający za pomocą punktów informacje o częstości narodzin i zgonów dla różnych krajów.
+Zbudujmy wykres, przedstawiający za pomocą punktów informacje o częstości narodzin i zgonów dla różnych krajów.
 
 
 ```r
 library(ggplot2)
-library(tidyr)
 
-ggplot(countries, aes(x=birth.rate, y=death.rate)) +
-  geom_point()
+ggplot(countries, aes(x=birth.rate, y=death.rate)) + geom_point()
 ```
 
 ![plot of chunk w1](figure/w1-1.png)
@@ -97,7 +97,7 @@ ggplot(countries, aes(x=birth.rate, y=death.rate,
   geom_point()
 ```
 
-![plot of chunk mapowania2](figure/mapowania2-1.png)
+![plot of chunk mapowania2](figure/mapowania2-1.svg)
 
 ## Jak określać geometrię?
 
@@ -124,6 +124,8 @@ ggplot(countries, aes(x = continent, y = birth.rate, color=continent,fill=contin
 ![plot of chunk mapowania3](figure/mapowania3-2.png)
 
 ```r
+library(tidyr)
+
 countries %>% 
   gather(rate, values, birth.rate, death.rate) %>%
   group_by(continent, rate) %>%
