@@ -99,9 +99,9 @@ ggplot(countries, aes(x=birth.rate, y=death.rate, color=population, size=populat
 ## Jak określać geometrię?
 
 Geometria określa kolekcje kształtów, które prezentują dane.
-Mogą to być punkty (patrz `geom_point()`), linie, prostokąty, obszary, różne kształty.
+Mogą to być punkty (patrz `geom_point()`), linie, prostokąty, obszary, praktycznie dowolne kształty.
 
-Lista dostępnych obecnie geometrii dostępnych jest na stronie  http://docs.ggplot2.org/current/. Pakiet `ggplot2` ma również mechanizmy pozwalające na tworzenie nowych geometrii, np. [przedstawianie danych za pomocą małych choinek](http://smarterpoland.pl/index.php/2015/12/geom_christmas_tree-a-new-geom-for-ggplot2-v2-0/).
+Lista dostępnych obecnie geometrii dostępna jest na stronie  http://docs.ggplot2.org/current/. Pakiet `ggplot2` ma również mechanizmy pozwalające na tworzenie dowolnych nowych geometrii, np. [przedstawianie danych za pomocą małych choinek](http://smarterpoland.pl/index.php/2015/12/geom_christmas_tree-a-new-geom-for-ggplot2-v2-0/).
 
 Poniżej przedstawiamy przykłady geometrii `geom_dotplot` (ułożone na sobie punkty), `geom_violin` (skrzypce), `geom_line` (linie).
 
@@ -114,7 +114,7 @@ ggplot(countries, aes(x = continent, y = birth.rate)) +
 ![plot of chunk mapowania3](figure/mapowania3-1.svg)
 
 ```r
-ggplot(countries, aes(x = continent, y = birth.rate, color=continent,fill=continent)) +
+ggplot(countries, aes(x = continent, y = birth.rate, color=continent, fill=continent)) +
   geom_violin()
 ```
 
@@ -122,7 +122,6 @@ ggplot(countries, aes(x = continent, y = birth.rate, color=continent,fill=contin
 
 ```r
 library(tidyr)
-
 countries %>% 
   gather(rate, values, birth.rate, death.rate) %>%
   group_by(continent, rate) %>%
@@ -134,21 +133,20 @@ countries %>%
 
 ![plot of chunk mapowania3](figure/mapowania3-3.svg)
 
-## Jak składać kilka geometrii?
+## Jak składać wykres z kilku warstw?
 
 Tworzenie złożonych i bogatych w treść grafik jest w `ggplot2` możliwe dzięki składaniu warstw. 
-Wszystkie warstwy istnieją we wspólnych ramach układu współrzędnych, przez to można łatwiej porównywać obiekty pomiędzy nimi. 
+Wszystkie warstwy istnieją we wspólnych ramach układu współrzędnych wykresu, przez to można łatwiej porównywać obiekty pomiędzy warstwami 
 Daje to duże możliwości budowy wielowarstwowych grafik o uzupełniających się treściach.
 
 Dodanie kolejnej warstwy odbywa się przez dodanie operatorem `+` kolejnej geometrii.
-Poniżej przedstawiam przykład wykresu z trzema warstwami. Są to kolejno warstwa z punktami, krzywą trendu i nazwami wybranych krajów.
+Poniżej znajduje się przykład wykresu z trzema warstwami. Są to kolejno warstwa z punktami, krzywą trendu i nazwami wybranych krajów.
 
-Warstwy te uzupełniają się. W głównym planie jest linia z trendem, punkty pełnią rolę uzupełniającą w drugim planie. Napisami zaznaczono najbardziej skrajne kraje.
+Warstwy te uzupełniają się. W głównym planie jest linia z trendem, punkty pełnią rolę uzupełniającą na drugim planie. Napisami zaznaczono najbardziej skrajne kraje.
 
 
 ```r
 library(ggrepel)
-
 ggplot(countries, aes(x=birth.rate, y=death.rate, label=country)) +
   geom_point() + 
   geom_smooth(se=FALSE, size=3) + 
