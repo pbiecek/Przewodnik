@@ -43,7 +43,7 @@ head(maturaExam)
 Minimalna definicja wykresu w pakiecie `ggplot2` składa się przynajmniej z trzech elementów. 
 
 * Funkcja `ggplot()` tworzy zrąb wykresu. W tym miejscu deklaruje się parametry wspólne dla pozostałych elementów wykresu. Deklaracja może być pusta, ale zazwyczaj wskazuje się tutaj zbiór danych (poniżej `countries`) i mapowania (poniżej funkcja `aes()`).
-* Funkcje `geom_`/`stat_` tworzą kolejne warstwy prezentacji danych. Poniżej wykorzystywana jest funkcja `geom_point()` tworząca warstwę z punktami. 
+* Funkcje `geom_`/`stat_` tworzą kolejne warstwy prezentacji danych, nazywane dalej geometriami. Poniżej wykorzystywana jest funkcja `geom_point()` tworząca warstwę z punktami. 
 * Operator `+` łączy opisy kolejnych elementów wykresu.
 
 Zbudujmy wykres, przedstawiający za pomocą punktów informacje o częstości narodzin i zgonów dla różnych krajów.
@@ -55,10 +55,9 @@ library(ggplot2)
 ggplot(countries, aes(x=birth.rate, y=death.rate)) + geom_point()
 ```
 
-![plot of chunk w1](figure/w1-1.png)
+![plot of chunk w1](figure/w1-1.svg)
 
 Gramatyka zaimplementowana w pakiecie `ggplot2` pozwala na budowę wykresów o strukturze przedstawionej na poniższej grafice. 
-
 Składa się na z wielu elementów.
 Omówimy je jeden po drugim.
 
@@ -66,25 +65,24 @@ Omówimy je jeden po drugim.
 
 ## Jak określać mapowania?
 
-Wykresy przedstawiają kolekcje obiektów, które są opisane przez atrybuty graficzne. Geometrie określają co to za kolekcje, a mapowania określają które atrybuty wykresów kodują dane.
+Wykresy przedstawiają kolekcje obiektów, które są opisane przez atrybuty graficzne. Mapowania określają, które atrybuty wykresów kodują któ®e zmienne ze zbioru z danymi.
 
-Mapowania są opisane wewnątrz funkcji `aes()` (od *aesthetic*). Są to pary *atrybut graficzny* - *nazwa zmiennej*.
+Mapowania są opisane wewnątrz funkcji `aes()` (od *aesthetic*). Są to pary postaci *atrybut graficzny* = *nazwa zmiennej*.
 
-Dla każdej geometrii określone jest jakie atrybuty graficzne mogą przedstawiać dane. Lista dla geometrii `geom_point` znajduje się pod adresem http://docs.ggplot2.org/current/geom_point.html. Obowiązkowe atrybuty to `x` i `y` - współrzędne punktów. Na poniższym wykresie określamy mapowania też też dla atrybutu kolor (`color`) i kształt (`shape`). 
+Dla każdego typu geometrii (warstwy wykresu) określone jest, jakie atrybuty graficzne mogą przedstawiać dane. Lista aktrybutów, któ®e można wykorzystać dla geometrii `geom_point` znajduje się pod adresem http://docs.ggplot2.org/current/geom_point.html. W tym przypadku obowiązkowe atrybuty to `x` i `y` - współrzędne punktów. Na poniższym wykresie określamy mapowania również dla atrybutu kolor (`color`) i kształt (`shape`). 
 
 
 
 ```r
-ggplot(countries, aes(x=birth.rate, y=death.rate, 
-                      color=continent, shape=continent)) +
+ggplot(countries, aes(x=birth.rate, y=death.rate, color=continent, shape=continent)) +
   geom_point()
 ```
 
-![plot of chunk mapowania1](figure/mapowania1-1.png)
+![plot of chunk mapowania1](figure/mapowania1-1.svg)
 
-Określając mapowanie *kształt* - *kontynent* żądamy by kształty punktów odpowiadały kontynentom, ale nie określamy jaki kształt ma określać który kontynent.  
+W tym przykłądzie, określając mapowanie *kształt* = *kontynent* żądamy by kształty punktów odpowiadały kontynentom. Nie określamy jednak jaki kształt ma określać który kontynent.  
 
-Sposób mapowania wybiera biblioteka `gpglot2` na podstawie typu zmiennej do przedstawienia i liczby poziomów, które mają być przedstawione.
+Sposób mapowania wybiera biblioteka `gglot2` na podstawie typu zmiennej i liczby poziomów, które mają być przedstawione.
 
 Przykładowo, na poprzednim wykresie przedstawialiśmy kontynent za pomocą kolorów. Kolory są tak dobierane by możliwie ułatwić rozróżnienie poszczególnych kontynentów. Nie ma jednak żadnego założonego porządku pomiędzy kontynentami.
 
@@ -92,8 +90,7 @@ Na poniższym przykładzie kolor mapujemy na zmienną ilościową - populacja. T
 
 
 ```r
-ggplot(countries, aes(x=birth.rate, y=death.rate, 
-                      color=population, size=population)) +
+ggplot(countries, aes(x=birth.rate, y=death.rate, color=population, size=population)) +
   geom_point()
 ```
 
@@ -114,14 +111,14 @@ ggplot(countries, aes(x = continent, y = birth.rate)) +
   geom_dotplot(binaxis = "y", stackdir = "center")
 ```
 
-![plot of chunk mapowania3](figure/mapowania3-1.png)
+![plot of chunk mapowania3](figure/mapowania3-1.svg)
 
 ```r
 ggplot(countries, aes(x = continent, y = birth.rate, color=continent,fill=continent)) +
   geom_violin()
 ```
 
-![plot of chunk mapowania3](figure/mapowania3-2.png)
+![plot of chunk mapowania3](figure/mapowania3-2.svg)
 
 ```r
 library(tidyr)
@@ -135,7 +132,7 @@ countries %>%
   geom_point(size=4) 
 ```
 
-![plot of chunk mapowania3](figure/mapowania3-3.png)
+![plot of chunk mapowania3](figure/mapowania3-3.svg)
 
 ## Jak składać kilka geometrii?
 
@@ -158,7 +155,7 @@ ggplot(countries, aes(x=birth.rate, y=death.rate, label=country)) +
   geom_text_repel(data=countries[c(108,120,176,148),], color="red")
 ```
 
-![plot of chunk mapowania4](figure/mapowania4-1.png)
+![plot of chunk mapowania4](figure/mapowania4-1.svg)
 
 ## Jak określać statystyki?
 
