@@ -53,7 +53,7 @@
        * [Jak mierzyć błąd predykcji?](Analiza/jak_mierzyc_blad_predykcji.md)
        * [Jak konstruować komitety predyktorów?](Analiza/jak_konstruowac_komitety_predyktorow.md)
    * [Wizualizacja](Analiza/wizualizacja.md)
-       * [Jak tworzyć wykresy z pakietem ggplot2?](Wizualizacja/jak_tworzyc_wykresy_ggplot2.md)
+       * [Jak tworzyć wykresy z pakietem ggplot2?](Analiza/jak_tworzyc_wykresy_ggplot2.md)
        * [Jak tworzyć interaktywne wykresy?](Wizualizacja/jak_tworzyc_interaktywne_wykresy.md)
 * [Bibliografia](references.md)
 * [Test?](Programowanie/test.md)
