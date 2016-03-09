@@ -1,3 +1,51 @@
 # Jak tworzyć wykresy z pakietem ggplot2?
 
+Pakiet `ggplot2` jest jednym z najbardziej zaawansowanych narzędzi do tworzenia wykresów statystycznych. Zaawansowanie nie oznacza, że można w nim wykres zrobić szybko, ani też że dostępnych jest wiele cukierkowych wykresów, ale że konstrukcja pakietu jest na tyle elastyczna, że można z nim wykonać praktycznie każdą grafikę statystyczną.
+
+Tą elastyczność uzyskuje się opierając opis wykresu na sposobie w jaki myślimy i czytamy wykresy. Patrząc na wykres nie widzimy w nim zbioru odcinków i kółek, ale kolekcje obiektów na swój sposób podobnych lub różnych. Gramatyka grafiki jest szerzej opisana [w tym eseju](http://biecek.pl/Eseje/indexGramatyka.html).
+
+Poniższe przykłady oparte są o dwa zbiory danych. Zbiór `countries` ze współczynnikami dzietności / umieralności dla różnych krajów oraz zbiór `maturaExam` z wynikami matur w kolejnych latach.
+
+```{r, warning=FALSE, message=FALSE}
+library(SmarterPoland)
+head(countries)
+head(maturaExam)
+```
+
+## Jak zrobić pierwszy wykres?
+
+```{r, warning=FALSE, message=FALSE}
+
+
+```
+
+
+![Szkielet gramatyki ggplot2](rysunki/ggplot2.png)
+
+## Jak określać mapowania?
+
+
+## Jak określać geometrię?
+
+
+## Jak składać kilka geometrii?
+
+
+## Jak określać statystyki?
+
+
+## Jak tworzyć panele?
+
+
+## Jak modyfikować położenie elementów?
+
+
+## Jak modyfikować skale?
+
+
+## Jak modyfikować układ współrzędnych?
+
+
+## Jak modyfikować styl wykresu?
+
 
