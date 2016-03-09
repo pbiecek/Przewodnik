@@ -54,9 +54,12 @@ ggplot(countries, aes(x=birth.rate, y=death.rate)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+![plot of chunk w1](figure/w1-1.png)
 
-Gramatyka zaimplementowana w pakiecie `ggplot2` pozwala na budowę wykresów o strukturze przedstawionej na poniższej grafice. Składa się na z wielu elementów, omówimy je jeden po drugim.
+Gramatyka zaimplementowana w pakiecie `ggplot2` pozwala na budowę wykresów o strukturze przedstawionej na poniższej grafice. 
+
+Składa się na z wielu elementów.
+Omówimy je jeden po drugim.
 
 ![Szkielet gramatyki ggplot2](rysunki/ggplot2.png)
 

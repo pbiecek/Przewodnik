@@ -22,14 +22,17 @@ Minimalny wykres z pakietem `ggplot2` składa się przynajmniej z trzech element
 
 Zbudujmy więc wykres, przedstawiający za pomocą punktów informacje o częstości narodzin i zgonów dla różnych krajów.
 
-```{r, warning=FALSE, message=FALSE}
+```{r w1, warning=FALSE, message=FALSE}
 library(ggplot2)
 
 ggplot(countries, aes(x=birth.rate, y=death.rate)) +
   geom_point()
 ```
 
-Gramatyka zaimplementowana w pakiecie `ggplot2` pozwala na budowę wykresów o strukturze przedstawionej na poniższej grafice. Składa się na z wielu elementów, omówimy je jeden po drugim.
+Gramatyka zaimplementowana w pakiecie `ggplot2` pozwala na budowę wykresów o strukturze przedstawionej na poniższej grafice. 
+
+Składa się na z wielu elementów.
+Omówimy je jeden po drugim.
 
 ![Szkielet gramatyki ggplot2](rysunki/ggplot2.png)
 
