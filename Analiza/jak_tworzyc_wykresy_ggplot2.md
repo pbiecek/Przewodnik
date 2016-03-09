@@ -65,6 +65,38 @@ Omówimy je jeden po drugim.
 
 ## Jak określać mapowania?
 
+Wykresy przedstawiają kolekcje obiektów, które są opisane przez atrybuty graficzne. Geometrie określają co to za kolekcje, a mapowania określają które atrybuty wykresów kodują dane.
+
+Mapowania są opisane wewnątrz funkcji `aes()` (od *aesthetic*). Są to pary *atrybut graficzny* - *nazwa zmiennej*.
+
+Dla każdej geometrii określone jest jakie atrybuty graficzne mogą przedstawiać dane. Lista dla geometrii `geom_point` znajduje się pod adresem http://docs.ggplot2.org/current/geom_point.html. Obowiązkowe atrybuty to `x` i `y` - współrzędne punktów. Na poniższym wykresie określamy mapowania też też dla atrybutu kolor (`color`) i kształt (`shape`). 
+
+
+
+```r
+ggplot(countries, aes(x=birth.rate, y=death.rate, 
+                      color=continent, shape=continent)) +
+  geom_point()
+```
+
+![plot of chunk mapowania1](figure/mapowania1-1.png)
+
+Określając mapowanie *kształt* - *kontynent* żądamy by kształty punktów odpowiadały kontynentom, ale nie określamy jaki kształt ma określać który kontynent.  
+
+Sposób mapowania wybiera biblioteka `gpglot2` na podstawie typu zmiennej do przedstawienia i liczby poziomów, które mają być przedstawione.
+
+Przykładowo, na poprzednim wykresie przedstawialiśmy kontynent za pomocą kolorów. Kolory są tak dobierane by możliwie ułatwić rozróżnienie poszczególnych kontynentów. Nie ma jednak żadnego założonego porządku pomiędzy kontynentami.
+
+Na poniższym przykładzie kolor mapujemy na zmienną ilościową - populacja. Tutaj jest już porządek i jest on odzwierciedlony przez skalę kolorów rozpinającą się od niebieskiego po czerń.
+
+
+```r
+ggplot(countries, aes(x=birth.rate, y=death.rate, 
+                      color=population, size=population)) +
+  geom_point()
+```
+
+![plot of chunk mapowania2](figure/mapowania2-1.png)
 
 ## Jak określać geometrię?
 
@@ -88,6 +120,7 @@ Omówimy je jeden po drugim.
 
 
 ## Jak modyfikować styl wykresu?
+
 
 
 

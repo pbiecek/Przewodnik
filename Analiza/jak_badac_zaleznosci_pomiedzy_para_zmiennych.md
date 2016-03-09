@@ -334,7 +334,7 @@ head(koty_ptaki[,1:3])
 ggplot(koty_ptaki, aes(waga, dlugosc)) + geom_point(size=3) + geom_smooth(method="lm", color="grey", se=FALSE)
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk z1](figure/z1-1.png)
 
 Korelację Pearsona (liniową) badalibyśmy testem `cor.test()`
 
