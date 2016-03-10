@@ -5,5 +5,18 @@
       "ga": {
           "token": "UA-5650686-13"
       }
-  }
+  },
+  "links": {
+        "home": null,
+
+        "about": "http://biecek.pl",
+        "issues": "https://github.com/pbiecek/Przewodnik/issues",
+        "edit": null,
+
+        "sharing": {
+            "google": null,
+            "facebook": null,
+            "twitter": null
+        }
+    }
 }
