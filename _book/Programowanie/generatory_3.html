@@ -1,1072 +1,258 @@
-<!DOCTYPE HTML>
-<html lang="en" >
-    
-    <head>
+XX<!DOCTYPE HTML>
+<html lang="en-US">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak losowac ze złożonych rozkładów? | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Przewodnik po pakiecie R v. 4.0</title>
+
+        <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="">
+        <meta name="description" content="Strona główna na serwerze GitBookhttps://www.gitbook.com/book/pbiecek/przewodnik/details">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="../Programowanie/generatory_4.md" />
         
         
-        <meta name="HandheldFriendly" content="true"/>
+        <link rel="prev" href="../Programowanie/generatory_2.md" />
+        
+
+        <meta property="og:title" content="Przewodnik po pakiecie R v. 4.0">
+        <meta property="og:site_name" content="Przewodnik po pakiecie R v. 4.0">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="">
+        <meta property="book:tag" content="GitBook">
+
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
         
-    <link rel="stylesheet" href="../gitbook/style.css">
-    
-        
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
-        
-    
-        
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
-        
-    
-        
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
-        
-    
-        
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
-        
-    
-    
-
-        
-    
-    
-    <link rel="next" href="../Programowanie/generatory_4.html" />
-    
-    
-    <link rel="prev" href="../Programowanie/generatory_2.html" />
-    
-
         
     </head>
     <body>
         
+    
+    <section id="cover">
+        <h1>Przewodnik po pakiecie R v. 4.0</h1>
         
-    <div class="book"
-        data-level="3.12.3"
-        data-chapter-title="Jak losowac ze złożonych rozkładów?"
-        data-filepath="Programowanie/generatory_3.md"
-        data-basepath=".."
-        data-revision="Thu Mar 10 2016 22:41:14 GMT+0100 (CET)"
-        data-innerlanguage="">
-    
+    </section>
 
-<div class="book-summary">
-    <nav role="navigation">
+    
+    <section id="summary">
+        <h1>Summary</h1>
+
         <ul class="summary">
-            
-            
-            
-            
-
-            
-
-            
-    
-        <li class="chapter " data-level="0" data-path="index.html">
-            
-                
-                    <a href="../index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                        Introduction
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="1" data-path="contribute.html">
-            
-                
-                    <a href="../contribute.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                        Podrasuj Przewodnik!
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="2" data-path="co_nowego.html">
-            
-                
-                    <a href="../co_nowego.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.</b>
-                        
-                        Co nowego?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3" >
-            
-            <span><b>3.</b> Programowanie w języku R</span>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1" >
-            
-            <span><b>3.1.</b> Jak korzystać z tej książki?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" >
-            
-            <span><b>3.2.</b> Jak zainstalować R i RStudio?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" >
-            
-            <span><b>3.3.</b> Jak wczytywać i zapisywać dane?</span>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.3.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
-            
-                
-                    <a href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.1.</b>
-                        
-                        Jak wczytać tabele danych z pliku csv lub txt?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
-            
-                
-                    <a href="../Programowanie/jak_wczytac_dane_z_excela.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.2.</b>
-                        
-                        Jak wczytać tabele danych z Excela?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
-            
-                
-                    <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.3.</b>
-                        
-                        Jak wczytać tabele danych ze strony www?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
-            
-                
-                    <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.4.</b>
-                        
-                        Jak zeskrobywać dane ze stron www?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
-            
-                
-                    <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.5.</b>
-                        
-                        Jak wczytywać korpusy tekstu?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3.6" data-path="Programowanie/jak_pobierac_dane_z_twittera.html">
-            
-                
-                    <a href="../Programowanie/jak_pobierac_dane_z_twittera.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.6.</b>
-                        
-                        Jak pobierać dane z Twittera?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3.7" data-path="Programowanie/jak_pobrac_dane_z.html">
-            
-                
-                    <a href="../Programowanie/jak_pobrac_dane_z.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.7.</b>
-                        
-                        Jak pobrać dane z...?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3.8" data-path="Programowanie/zadania.html">
-            
-                
-                    <a href="../Programowanie/zadania.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.3.8.</b>
-                        
-                        Zadania
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4" data-path="Programowanie/czyscic_przetwarzac.html">
-            
-                
-                    <a href="../Programowanie/czyscic_przetwarzac.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.</b>
-                        
-                        Jak czyścić i przetwarzać dane?
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.4.1" data-path="Programowanie/filter.html">
-            
-                
-                    <a href="../Programowanie/filter.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.1.</b>
-                        
-                        Jak filtrować wiersze?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4.2" data-path="Programowanie/mutate.html">
-            
-                
-                    <a href="../Programowanie/mutate.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.2.</b>
-                        
-                        Jak tworzyć nowe kolumny?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4.3" data-path="Programowanie/select.html">
-            
-                
-                    <a href="../Programowanie/select.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.3.</b>
-                        
-                        Jak wybierać kolumny?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4.4" data-path="Programowanie/arrange.html">
-            
-                
-                    <a href="../Programowanie/arrange.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.4.</b>
-                        
-                        Jak sortować wiersze?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4.5" data-path="Programowanie/potoki.html">
-            
-                
-                    <a href="../Programowanie/potoki.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.5.</b>
-                        
-                        Jak pracować z potokami?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4.6" data-path="Programowanie/groupby.html">
-            
-                
-                    <a href="../Programowanie/groupby.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.6.</b>
-                        
-                        Jak wyznaczać agregaty w grupach?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4.7" data-path="Programowanie/tidyr.html">
-            
-                
-                    <a href="../Programowanie/tidyr.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.7.</b>
-                        
-                        Jak czyścić dane?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4.8" data-path="Programowanie/zadaniaDplyr.html">
-            
-                
-                    <a href="../Programowanie/zadaniaDplyr.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.4.8.</b>
-                        
-                        Zadania
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.5" >
-            
-            <span><b>3.5.</b> Jak tworzyć pętle i instrukcje warunkowe?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.6" >
-            
-            <span><b>3.6.</b> Jak tworzyć funkcje?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.7" >
-            
-            <span><b>3.7.</b> Jak pracować z typami w R?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.8" >
-            
-            <span><b>3.8.</b> Jak budować pakiety?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.9" data-path="Programowanie/jak_tworzyc_raporty.html">
-            
-                
-                    <a href="../Programowanie/jak_tworzyc_raporty.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.9.</b>
-                        
-                        Jak tworzyć raporty z pakietem knitr?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.10" >
-            
-            <span><b>3.10.</b> Jak debugować kod R?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.11" >
-            
-            <span><b>3.11.</b> Jak zwiększyć wydajność kodu R?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.12" data-path="Programowanie/generatory_llosowych.html">
-            
-                
-                    <a href="../Programowanie/generatory_llosowych.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.12.</b>
-                        
-                        Jak generować liczby losowe?
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.12.1" data-path="Programowanie/generatory_1.html">
-            
-                
-                    <a href="../Programowanie/generatory_1.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.12.1.</b>
-                        
-                        Jak ustawiać ziarno generatora?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.12.2" data-path="Programowanie/generatory_2.html">
-            
-                
-                    <a href="../Programowanie/generatory_2.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.12.2.</b>
-                        
-                        Jak losować z prostych rozkładów?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter active" data-level="3.12.3" data-path="Programowanie/generatory_3.html">
-            
-                
-                    <a href="../Programowanie/generatory_3.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.12.3.</b>
-                        
-                        Jak losowac ze złożonych rozkładów?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.12.4" data-path="Programowanie/generatory_4.html">
-            
-                
-                    <a href="../Programowanie/generatory_4.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.12.4.</b>
-                        
-                        Jak losować z użyciem kopuli?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.12.5" data-path="Programowanie/generatory_5.html">
-            
-                
-                    <a href="../Programowanie/generatory_5.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.12.5.</b>
-                        
-                        Jak estymować parametry rozkładu?
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.13" data-path="Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
-            
-                
-                    <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.13.</b>
-                        
-                        Jak korzystać z serwisu GitHub?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.14" data-path="Programowanie/jak_korzystac_z_serwisu_waffle.html">
-            
-                
-                    <a href="../Programowanie/jak_korzystac_z_serwisu_waffle.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.14.</b>
-                        
-                        Jak korzystać z serwisu Waffle?
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="4" data-path="Analiza/analizadanych_z_programem_r_md.html">
-            
-                
-                    <a href="../Analiza/analizadanych_z_programem_r_md.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.</b>
-                        
-                        Analiza danych z programem R
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.1" >
-            
-            <span><b>4.1.</b> Eksploracja</span>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.1.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
-            
-                
-                    <a href="../Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.1.1.</b>
-                        
-                        Jak rozpoznać rodzaj zmiennej?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.1.2" data-path="Analiza/jak_badac_rozklad_jednej_zmiennej.html">
-            
-                
-                    <a href="../Analiza/jak_badac_rozklad_jednej_zmiennej.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.1.2.</b>
-                        
-                        Jak badać rozkład jednej zmiennej?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.1.3" data-path="Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
-            
-                
-                    <a href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.1.3.</b>
-                        
-                        Jak badać rozkład dwóch zmiennych?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.1.4" >
-            
-            <span><b>4.1.4.</b> Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.1.5" >
-            
-            <span><b>4.1.5.</b> Jak znaleźć skupiska danych?</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" >
-            
-            <span><b>4.2.</b> Weryfikacja</span>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.2.1" data-path="Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
-            
-                
-                    <a href="../Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.2.1.</b>
-                        
-                        Jak badać właściwości jednej zmiennej?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2.2" data-path="Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
-            
-                
-                    <a href="../Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.2.2.</b>
-                        
-                        Jak badać zależności pomiędzy parą zmiennych?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2.3" >
-            
-            <span><b>4.2.3.</b> Jak badać warunkowe zależności?</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" >
-            
-            <span><b>4.3.</b> Predykcja</span>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.1" >
-            
-            <span><b>4.3.1.</b> Jak mierzyć błąd predykcji?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.2" >
-            
-            <span><b>4.3.2.</b> Jak konstruować komitety? predyktorów?</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="4.4" data-path="Analiza/wizualizacja.html">
-            
-                
-                    <a href="../Analiza/wizualizacja.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.4.</b>
-                        
-                        Wizualizacja
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.4.1" data-path="Analiza/jak_tworzyc_wykresy_ggplot2.html">
-            
-                
-                    <a href="../Analiza/jak_tworzyc_wykresy_ggplot2.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.4.1.</b>
-                        
-                        Jak tworzyć wykresy z pakietem ggplot2?
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.4.2" data-path="Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
-            
-                
-                    <a href="../Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.4.2.</b>
-                        
-                        Jak tworzyć interaktywne wykresy?
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="5" data-path="references.html">
-            
-                
-                    <a href="../references.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.</b>
-                        
-                        Bibliografia
-                    </a>
-            
-            
-        </li>
-    
-
-
-            
-            <li class="divider"></li>
             <li>
-                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-                    Published with GitBook
-                </a>
+                <a href="#README.md">Introduction</a>
             </li>
             
+                <li>
+                    <a href="#README.md">0) Introduction</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="#contribute.md">1) Podrasuj Przewodnik!</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="#co_nowego.md">2) Co nowego?</a>
+                    
+                </li>
+            
+                <li>
+                    <a href="#">3) Programowanie w języku R</a>
+                    
+                    <ul>
+                        
+                            <li>
+                                <a href="#">3.1) Jak korzystać z tej książki?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">3.2) Jak zainstalować R i RStudio?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">3.3) Jak wczytywać i zapisywać dane?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#Programowanie/czyscic_przetwarzac.md">3.4) Jak czyścić i przetwarzać dane?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">3.5) Jak tworzyć pętle i instrukcje warunkowe?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">3.6) Jak tworzyć funkcje?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">3.7) Jak pracować z typami w R?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">3.8) Jak budować pakiety?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#Programowanie/jak_tworzyc_raporty.md">3.9) Jak tworzyć raporty z pakietem knitr?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">3.10) Jak debugować kod R?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">3.11) Jak zwiększyć wydajność kodu R?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#Programowanie/generatory_llosowych.md">3.12) Jak generować liczby losowe?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md">3.13) Jak korzystać z serwisu GitHub?</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#Programowanie/jak_korzystac_z_serwisu_waffle.md">3.14) Jak korzystać z serwisu Waffle?</a>
+                            </li>
+                        
+                    </ul>
+                    
+                </li>
+            
+                <li>
+                    <a href="#Analiza/analizadanych_z_programem_r_md.md">4) Analiza danych z programem R</a>
+                    
+                    <ul>
+                        
+                            <li>
+                                <a href="#">4.1) Eksploracja</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">4.2) Weryfikacja</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#">4.3) Predykcja</a>
+                            </li>
+                        
+                            <li>
+                                <a href="#Analiza/wizualizacja.md">4.4) Wizualizacja</a>
+                            </li>
+                        
+                    </ul>
+                    
+                </li>
+            
+                <li>
+                    <a href="#references.md">5) Bibliografia</a>
+                    
+                </li>
+            
         </ul>
-    </nav>
-</div>
+    </section>
 
-    <div class="book-body">
-        <div class="body-inner">
-            <div class="book-header" role="navigation">
-    <!-- Actions Left -->
     
+    
+    <section>
+        <article id="README.md">
+        
+        </article>
+    </section>
+    
+        
+    
+        
+    
+        
+    
+        
+        <section>
+            <article id="" class="new-chapter">
+                <h1>Programowanie w języku R</h1>
+            </article>
 
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Przewodnik po pakiecie R v. 4.0</a>
-    </h1>
-</div>
-
-            <div class="page-wrapper" tabindex="-1" role="main">
-                <div class="page-inner">
+            
                 
+            
                 
-                    <section class="normal" id="section-">
-                    
-                        <h2 id="wybrane-metody-generowania-zmiennych-losowych">Wybrane metody generowania zmiennych losowych</h2>
-<p>Poni&#x17C;ej przedstawimy algorytmy losowania zmiennych losowych z r&#xF3;&#x17C;nych popularnych i przydatnych rozk&#x142;ad&#xF3;w, kt&#xF3;rych nie ma w tabeli \ref{funkcjeLosowe}.</p>
-<h3 id="proces-poissona">Proces Poissona</h3>
-<p>Jednorodny proces Poissona <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>{</mo><mi>N</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo separator="true">,</mo><mi>t</mi><mo>&#x2265;</mo><mn>0</mn><mo>}</mo></mrow><annotation encoding="application/x-tex">\{N(t), t \geq 0\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">{</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathit">t</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mord mathit">t</span><span class="mrel">&#x2265;</span><span class="mord mathrm">0</span><span class="mclose">}</span></span></span></span> z cz&#x119;sto&#x15B;ci&#x105; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>&#x3BB;</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">&#x3BB;</span></span></span></span>, to proces zliczaj&#x105;cy z niezale&#x17C;nymi przyrostami, spe&#x142;niaj&#x105;cy warunki:
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtable><mtr><mtd><mrow><mi>N</mi><mo>(</mo><mn>0</mn><mo>)</mo></mrow></mtd><mtd><mrow><mo>=</mo></mrow></mtd><mtd><mrow><mn>0</mn><mo separator="true">,</mo></mrow></mtd></mtr><mtr><mtd><mrow><mi>P</mi><mrow><mo fence="true">(</mo><mi>N</mi><mo>(</mo><mi>s</mi><mo>+</mo><mi>t</mi><mo>)</mo><mo>&#x2212;</mo><mi>N</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mi>n</mi><mo fence="true">)</mo></mrow></mrow></mtd><mtd><mrow><mo>=</mo></mrow></mtd><mtd><mrow><mfrac><mrow><msup><mi>e</mi><mrow><mi>&#x3BB;</mi><mi>t</mi></mrow></msup><mo>(</mo><mi>&#x3BB;</mi><mi>t</mi><msup><mo>)</mo><mi>n</mi></msup></mrow><mrow><mi>n</mi><mo>!</mo></mrow></mfrac><mo separator="true">,</mo><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mi>n</mi><mo>&#x2265;</mo><mn>0</mn><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>s</mi><mo>&gt;</mo><mn>0</mn><mi mathvariant="normal">.</mi></mrow></mtd></mtr><mtr><mtd><mrow></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
-\begin{array}{rcl}
-N(0)&amp;=&amp;0,\\
-P\left(N(s+t) -N(s) = n\right)&amp; = &amp; \frac{e^{\lambda t}(\lambda t)^n}{n!},\ \ \ \ \  n \geq 0, t, s &gt;0.\\
-\end{array}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:2.556054em;"></span><span class="strut bottom" style="height:4.612107999999999em;vertical-align:-2.0560539999999996em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-r"><span class="vlist"><span style="top:-1.716054em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathrm">0</span><span class="mclose">)</span></span></span><span style="top:0.17005399999999982em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathit">s</span><span class="mbin">+</span><span class="mord mathit">t</span><span class="mclose">)</span><span class="mbin">&#x2212;</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathit">s</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit">n</span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">)</span></span></span></span><span style="top:1.6960539999999995em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-1.716054em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mrel">=</span></span></span><span style="top:0.17005399999999982em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mrel">=</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-l"><span class="vlist"><span style="top:-1.716054em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">0</span><span class="mpunct">,</span></span></span><span style="top:0.17005399999999982em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathit">n</span><span class="mclose">!</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">e</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">&#x3BB;</span><span class="mord mathit">t</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord mathit">&#x3BB;</span><span class="mord mathit">t</span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mpunct">,</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mathit">n</span><span class="mrel">&#x2265;</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mord mathit">t</span><span class="mpunct">,</span><span class="mord mathit">s</span><span class="mrel">&gt;</span><span class="mord mathrm">0</span><span class="mord mathrm">.</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span>
-Czas oczekiwania <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">T_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span> pomi&#x119;dzy kolejnymi skokami procesu Poissona ma rozk&#x142;ad wyk&#x142;adniczy <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>(</mo><mi>&#x3BB;</mi><mo>)</mo></mrow><annotation encoding="application/x-tex"> E(\lambda)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathit">&#x3BB;</span><span class="mclose">)</span></span></span></span>.</p>
-<p>Do generowania trajektorii jednorodnego procesu Poissona cz&#x119;sto wykorzystuje si&#x119; jeden z poni&#x17C;szych sposob&#xF3;w. Ka&#x17C;dy wykorzystuje inn&#x105; w&#x142;a&#x15B;ciwo&#x15B;&#x107; procesu Poissona.</p>
-<p><strong>Spos&#xF3;b 1</strong></p>
-<ul>
-<li>Losujemy wektor czas&#xF3;w oczekiwania na kolejne zdarzenie $T_i$ z rozk&#x142;adu wyk&#x142;adniczego.</li>
-<li>Wyznaczamy czasy pojawiania si&#x119; kolejnych skok&#xF3;w procesu, jako kumulowane sumy $T_i$ 
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>S</mi><mi>k</mi></msub><mo>=</mo><msubsup><mo>&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></msubsup><msub><mi>T</mi><mi>i</mi></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">S_k = \sum_{i=1}^k T_i.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8501079999999999em;"></span><span class="strut bottom" style="height:1.150118em;vertical-align:-0.30001em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">&#x2211;</span><span class="vlist"><span style="top:0.30001em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">i</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.364em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">.</span></span></span></span></li>
-<li>Wyznaczamy liczb&#x119; skok&#xF3;w do czasu $t$
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">#</mi><mo>{</mo><mi>k</mi><mo>:</mo><msub><mi>S</mi><mi>k</mi></msub><mo>&#x2264;</mo><mi>t</mi><mo>}</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
-N(t) = \#\{k : S_k \leq t\}.
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathit">t</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathrm">#</span><span class="mopen">{</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">:</span><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">&#x2264;</span><span class="mord mathit">t</span><span class="mclose">}</span><span class="mord mathrm">.</span></span></span></span></span></li>
-</ul>
-<p><strong>Spos&#xF3;b 2</strong></p>
-<ul>
-<li>Losujemy liczb&#x119; skok&#xF3;w procesu do czasu $t$, liczba skok&#xF3;w ma rozk&#x142;ad Poissona z parametrem $\lambda t$
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mi>P</mi><mi>o</mi><mi>i</mi><mi>s</mi><mi>s</mi><mo>(</mo><mi>&#x3BB;</mi><mi>t</mi><mo>)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
-N(t) = Poiss(\lambda t).
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathit">t</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit">o</span><span class="mord mathit">i</span><span class="mord mathit">s</span><span class="mord mathit">s</span><span class="mopen">(</span><span class="mord mathit">&#x3BB;</span><span class="mord mathit">t</span><span class="mclose">)</span><span class="mord mathrm">.</span></span></span></span></span></li>
-<li>Na odcinku $[0,t]$ losujemy $N(t)$ skok&#xF3;w z rozk&#x142;adu jednostajnego
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>S</mi><mi>i</mi><mrow><mi mathvariant="normal">&#x2032;</mi></mrow></msubsup><mo>=</mo><mi>U</mi><mo>[</mo><mn>0</mn><mo separator="true">,</mo><mi>t</mi><mo>]</mo><mo separator="true">,</mo><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mtext>&#xA0;</mtext><mi>i</mi><mo>&#x2264;</mo><mi>N</mi><mo>(</mo><mi>t</mi><mo>)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
-S&apos;_i =  U[0,t], \ \ \ \ \ \ \ \ i\leq N(t).
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8018919999999999em;"></span><span class="strut bottom" style="height:1.051892em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="vlist"><span style="top:0.247em;margin-left:-0.05764em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">&#x2032;</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.10903em;">U</span><span class="mopen">[</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mord mathit">t</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mspace">&#xA0;</span><span class="mord mathit">i</span><span class="mrel">&#x2264;</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord mathit">t</span><span class="mclose">)</span><span class="mord mathrm">.</span></span></span></span></span></li>
-</ul>
-<p>Drugi spos&#xF3;b jest szybszy, poniewa&#x17C; po pierwszym losowaniu wiemy ju&#x17C; ile warto&#x15B;ci z rozk&#x142;adu jednostajnego musimy wylosowa&#x107;. Losowanie z rozk&#x142;adu jednostajnego jest te&#x17C; szybsze ni&#x17C; losowanie z rozk&#x142;adu wyk&#x142;adniczego. Poni&#x17C;ej przedstawimy przyk&#x142;adow&#x105; implementacj&#x119; drugiego sposobu.</p>
-<pre><code class="lang-r">rPoisProcess &lt;- <span class="hljs-keyword">function</span> (<span class="hljs-literal">T</span>=<span class="hljs-number">1</span>, lambda=<span class="hljs-number">1</span>) {
-    N &lt;- rpois(<span class="hljs-number">1</span>, <span class="hljs-literal">T</span>*lambda)
-    sort(runif(N,<span class="hljs-number">0</span>,<span class="hljs-literal">T</span>))
-}
-</code></pre>
-<p>Przyk&#x142;adowe wywo&#x142;anie powy&#x17C;szej funkcji.</p>
-<pre><code class="lang-r">rPoisProcess(<span class="hljs-literal">T</span>=<span class="hljs-number">10</span>, lambda=<span class="hljs-number">0.2</span>)
-</code></pre>
-<pre><code>## [1] 3.692069
-</code></pre><p>W podobny spos&#xF3;b mo&#x17C;emy generowa&#x107; zmienne z jednorodnego pola losowego, czyli z dwuwymiarowego procesu Poissona.</p>
-<p>Polem losowym Poissona nazwiemy proces zliczaj&#x105;cy $N$ z niezale&#x17C;nymi przyrostami, okre&#x15B;lony na p&#x142;aszczy&#x17A;nie, spe&#x142;niaj&#x105;cy warunek:
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mrow><mo fence="true">(</mo><mi>N</mi><mo>(</mo><msub><mi>s</mi><mn>1</mn></msub><mo>+</mo><msub><mi>t</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub><mo>+</mo><msub><mi>t</mi><mn>2</mn></msub><mo>)</mo><mo>&#x2212;</mo><mi>N</mi><mo>(</mo><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub><mo>)</mo><mo>=</mo><mi>n</mi><mo fence="true">)</mo></mrow><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mrow><mi>&#x3BB;</mi><msub><mi>t</mi><mn>1</mn></msub><msub><mi>t</mi><mn>2</mn></msub></mrow></msup><mo>(</mo><mi>&#x3BB;</mi><msub><mi>t</mi><mn>1</mn></msub><msub><mi>t</mi><mn>2</mn></msub><msup><mo>)</mo><mi>n</mi></msup></mrow><mrow><mi>n</mi><mo>!</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
-P\left(N(s_1+t_1,s_2+t_2) -N(s_1,s_2) = n\right) = \frac{e^{\lambda t_1 t_2}(\lambda t_1 t_2)^n}{n!}.
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.526108em;"></span><span class="strut bottom" style="height:2.212108em;vertical-align:-0.686em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">s</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">s</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span><span class="mbin">&#x2212;</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">s</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">s</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit">n</span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">)</span></span><span class="mrel">=</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathit">n</span><span class="mclose">!</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">e</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">&#x3BB;</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord mathit">&#x3BB;</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mord mathrm">.</span></span></span></span></span>
-Liczba zdarze&#x144; w prostok&#x105;cie o polu $S$ ma rozk&#x142;ad Poissona o cz&#x119;sto&#x15B;ci $\lambda S$.
-Punkty skok&#xF3;w takiego procesu mo&#x17C;emy wyznaczy&#x107; nast&#x119;puj&#x105;co</p>
-<ul>
-<li>Losujemy liczb&#x119; skok&#xF3;w procesu na prostok&#x105;cie $[0,t_1] \times [0, t_2]$
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>(</mo><msub><mi>t</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>t</mi><mn>2</mn></msub><mo>)</mo><mo>=</mo><mi>P</mi><mi>o</mi><mi>i</mi><mi>s</mi><mi>s</mi><mo>(</mo><mi>&#x3BB;</mi><msub><mi>t</mi><mn>1</mn></msub><msub><mi>t</mi><mn>2</mn></msub><mo>)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
-N(t_1, t_2) = Poiss(\lambda t_1 t_2).
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit">o</span><span class="mord mathit">i</span><span class="mord mathit">s</span><span class="mord mathit">s</span><span class="mopen">(</span><span class="mord mathit">&#x3BB;</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span><span class="mord mathrm">.</span></span></span></span></span></li>
-<li>Na prostok&#x105;cie $[0,t_1] \times [0, t_2]$ generujemy $N(t_1, t_2)$ punkt&#xF3;w z rozk&#x142;adu jednostajnego.</li>
-</ul>
-<p>I implementacja tego algorytmu w programie R.</p>
-<pre><code class="lang-r">rRandomField &lt;- <span class="hljs-keyword">function</span> (T1=<span class="hljs-number">1</span>, T2=<span class="hljs-number">1</span>, lambda=<span class="hljs-number">1</span>) {
-     N = rpois(<span class="hljs-number">1</span>, T1*T2*lambda)
-     data.frame(x=runif(N,<span class="hljs-number">0</span>,T1), y=runif(N,<span class="hljs-number">0</span>,T2))
-}
-</code></pre>
-<p>Przyk&#x142;adowe wywo&#x142;anie powy&#x17C;szej funkcji.</p>
-<pre><code class="lang-r">rRandomField(T1=<span class="hljs-number">10</span>, T2=<span class="hljs-number">10</span>, lambda=<span class="hljs-number">0.02</span>)
-</code></pre>
-<pre><code>## [1] x y
-## &lt;0 rows&gt; (or 0-length row.names)
-</code></pre><p>Rozwa&#x17C;my teraz proces Poissona, kt&#xF3;rego cz&#x119;sto&#x15B;&#x107; skok&#xF3;w nie jest sta&#x142;a, ale wynosi $\lambda(t)$. Taki proces nazywamy niejednorodnym procesem Poissona. Jest to bardzo cz&#x119;sto wykorzystywany proces w modelowaniu liczby szk&#xF3;d, cz&#x119;sto&#x15B;&#x107; wyst&#x119;powania szk&#xF3;d najcz&#x119;&#x15B;ciej zmienia si&#x119; z czasem (liczba oszustw bankomatowych zale&#x17C;y od liczby bankomat&#xF3;w i najcz&#x119;&#x15B;ciej ro&#x15B;nie z czasem, liczba szk&#xF3;d OC zale&#x17C;y od liczby ubezpieczonych samochod&#xF3;w i od szkodowo&#x15B;ci, oba parametry zmieniaj&#x105; si&#x119; w czasie itp.).</p>
-<p>Za&#x142;&#xF3;&#x17C;my, &#x17C;e istnieje jakie&#x15B; maksymalne $\lambda<em>{max}$, takie &#x17C;e $\forall_t \lambda(t) \leq \lambda</em>{max}$. W takim przypadku trajektorie procesu jednorodnego mo&#x17C;na przetransformowa&#x107; w trajektorie procesu niejednorodnego.</p>
-<p>Tak&#x105; transformacj&#x119; mo&#x17C;na wykona&#x107; na dwa sposoby.</p>
-<p><strong>Spos&#xF3;b 1</strong></p>
-<ul>
-<li>Wygenerowa&#x107; jednorodny proces Poissona $N<em>1$ o cz&#x119;sto&#x15B;ci $\lambda</em>{max}$.</li>
-<li>Ka&#x17C;dy punkt $S<em>i$ skoku procesu $N_1$ z prawdopodobie&#x144;stwem $\lambda(S_i)/\lambda</em>{max}$ uzna&#x107; za punkt skoku procesu $N<em>2$. Czyli dla ka&#x17C;dego punktu z wyj&#x15B;ciowego procesu losuje si&#x119; z prawdopodobie&#x144;stwem  $\lambda(S_i)/\lambda</em>{max}$ czy pozostawi&#x107; ten punkt w nowym procesie. Metoda ta nosi nazw&#x119; metody odsiewania. Odrzucaj&#x105;c/odsiewaj&#x105;c niekt&#xF3;re punkty skok&#xF3;w redukujemy cz&#x119;sto&#x15B;&#x107; procesu jednorodnego do niejednorodnego.</li>
-</ul>
-<p><strong>Spos&#xF3;b 2</strong></p>
-<ul>
-<li>Wygenerowa&#x107; jednorodny proces Poissona $N_1$ o cz&#x119;sto&#x15B;ci $\lambda_0$.\marginal{Zaimplementowanie obu tych sposob&#xF3;w pozostawiamy jako prac&#x119; domow&#x105;.}</li>
-<li>Przekszta&#x142;ci&#x107; czasy skok&#xF3;w $S_k$ procesu $N_1$ na czasy $S_k&apos;$ procesu $N_2$ tak by 
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>&#x222B;</mo><mn>0</mn><mrow><msubsup><mi>S</mi><mi>k</mi><mrow><mi mathvariant="normal">&#x2032;</mi></mrow></msubsup></mrow></msubsup><mi>&#x3BB;</mi><mo>(</mo><mi>t</mi><mo>)</mo><mi>d</mi><mi>t</mi><mo>=</mo><msubsup><mo>&#x222B;</mo><mn>0</mn><mrow><msub><mi>S</mi><mi>k</mi></msub></mrow></msubsup><msub><mi>&#x3BB;</mi><mn>0</mn></msub><mi>d</mi><mi>t</mi><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">\int_0^{S&apos;_k} \lambda(t)dt = \int_0^{S_k} \lambda_0 dt, </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.0817999999999999em;"></span><span class="strut bottom" style="height:1.4379199999999999em;vertical-align:-0.35612em;"></span><span class="base textstyle uncramped"><span class="mop"><span class="op-symbol small-op mop" style="margin-right:0.19445em;top:-0.0005599999999999772em;">&#x222B;</span><span class="vlist"><span style="top:0.266308em;margin-left:-0.19445em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span style="top:-0.54992em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="vlist"><span style="top:0.2930285714285714em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span style="top:-0.363em;margin-right:0.07142857142857144em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle uncramped"><span class="mord scriptscriptstyle uncramped"><span class="mord mathrm">&#x2032;</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit">&#x3BB;</span><span class="mopen">(</span><span class="mord mathit">t</span><span class="mclose">)</span><span class="mord mathit">d</span><span class="mord mathit">t</span><span class="mrel">=</span><span class="mop"><span class="op-symbol small-op mop" style="margin-right:0.19445em;top:-0.0005599999999999772em;">&#x222B;</span><span class="vlist"><span style="top:0.35612em;margin-left:-0.19445em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span style="top:-0.41900000000000004em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="vlist"><span style="top:0.15122857142857138em;margin-right:0.07142857142857144em;margin-left:-0.05764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathit">&#x3BB;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit">d</span><span class="mord mathit">t</span><span class="mpunct">,</span></span></span></span>
-czyli $S&apos;_k = \Lambda^{-1}(\lambda_0 S_k)$, gdzie $\Lambda(x) = \int_0^x \lambda(t)dt$. Ta metoda nazywana jest metod&#x105; zmiany czasu.</li>
-</ul>
-<h3 id="wielowymiarowy-rozk&#x142;ad-normalny">Wielowymiarowy rozk&#x142;ad normalny</h3>
-<p>G&#x119;sto&#x15B;&#x107; wielowymiarowego rozk&#x142;adu normalnego $ N_d(\mu, \Sigma)$ jest postaci
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mo>(</mo><mn>2</mn><mi>&#x3C0;</mi><msup><mo>)</mo><mrow><mi>k</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup><mi mathvariant="normal">&#x2018;</mi><mi mathvariant="normal">&#x3A3;</mi><msup><mi mathvariant="normal">&#x2018;</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow></mfrac><mi>exp</mi><mo fence="false">(</mo><mrow><mo>&#x2212;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow><mo>(</mo><mi>x</mi><mo>&#x2212;</mo><mi>&#x3BC;</mi><msup><mo>)</mo><mrow><mi mathvariant="normal">&#x2032;</mi></mrow></msup><msup><mi mathvariant="normal">&#x3A3;</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup><mo>(</mo><mi>x</mi><mo>&#x2212;</mo><mi>&#x3BC;</mi><mo>)</mo><mo fence="false">)</mo><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">
-f(x) = \frac{1}{ (2\pi)^{k/2}`\Sigma`^{1/2} }
-             \exp\Big( {-\tfrac{1}{2}}(x-\mu)&apos;\Sigma^{-1}(x-\mu) \Big),
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.32144em;"></span><span class="strut bottom" style="height:2.2754399999999997em;vertical-align:-0.954em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.704em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mopen">(</span><span class="mord mathrm">2</span><span class="mord mathit" style="margin-right:0.03588em;">&#x3C0;</span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.289em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">&#x2018;</span><span class="mord mathrm">&#x3A3;</span><span class="mord"><span class="mord mathrm">&#x2018;</span><span class="vlist"><span style="top:-0.289em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mop">exp</span><span class="mord"><span class="style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing size2">(</span></span></span><span class="mord displaystyle textstyle uncramped"><span class="mord">&#x2212;</span><span class="mord reset-textstyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.394em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mbin">&#x2212;</span><span class="mord mathit">&#x3BC;</span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">&#x2032;</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathrm">&#x3A3;</span><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">&#x2212;</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mbin">&#x2212;</span><span class="mord mathit">&#x3BC;</span><span class="mclose">)</span><span class="mord"><span class="style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing size2">)</span></span></span><span class="mpunct">,</span></span></span></span></span>
-gdzie $\Sigma$ to macierz kowariancji, symetryczna dodatnio okre&#x15B;lona o wymiarach $d \times d$ a $\mu$ to wektor &#x15B;rednich o d&#x142;ugo&#x15B;ci $d$.</p>
-<p>Zmienne z rozk&#x142;adu wielowymiarowego normalnego generuje si&#x119; w dw&#xF3;ch krokach</p>
-<ul>
-<li>W pierwszym kroku generuje si&#x119; $d$ niezale&#x17C;nych zmiennych o rozk&#x142;adzie normalnym,</li>
-<li>W drugim kroku przekszta&#x142;ca si&#x119; te zmienne by otrzyma&#x107; &#x15B;redni&#x105; $\mu$ i macierz kowariancji $\Sigma$. Korzysta si&#x119; z faktu, &#x17C;e je&#x17C;eli $Z\sim  N(0, I)$, to
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>Z</mi><mo>+</mo><mi>&#x3BC;</mi><mo>=</mo><msub><mi>N</mi><mi>d</mi></msub><mo>(</mo><mi>&#x3BC;</mi><mo separator="true">,</mo><mi>C</mi><msup><mi>C</mi><mi>T</mi></msup><mo>)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
-C Z + \mu =  N_d(\mu, CC^T).
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8913309999999999em;"></span><span class="strut bottom" style="height:1.1413309999999999em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mord mathit" style="margin-right:0.07153em;">Z</span><span class="mbin">+</span><span class="mord mathit">&#x3BC;</span><span class="mrel">=</span><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord mathit">&#x3BC;</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span><span class="mord mathrm">.</span></span></span></span></span></li>
-</ul>
-<p><img src="rysunki/generatory4.png" alt="Wybrane charakterystyki rozk&#x142;adu ci&#x105;g&#x142;ej zmiennej losowej, na przyk&#x142;adzie rozk&#x142;adu B(2,5)"></p>
-<p>W takim razie aby wylosowa&#x107; po&#x17C;&#x105;dane zmienne wystarczy wylosowa&#x107; wektor niezale&#x17C;nych zmiennych $Z$ z nast&#x119;pnie przekszta&#x142;ci&#x107; je liniowo $X = C Z + \mu$. W tym celu macierz $\Sigma$ musimy roz&#x142;o&#x17C;y&#x107; na iloczyn $CC^T$. Mo&#x17C;na to zrobi&#x107; u&#x17C;ywaj&#x105;c r&#xF3;&#x17C;nych faktoryzacji macierzy $\Sigma$. Wymie&#x144;my trzy</p>
-<ul>
-<li>Dekompozycja spektralna
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>=</mo><msup><mi mathvariant="normal">&#x3A3;</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup><mo>=</mo><mi>P</mi><msup><mi mathvariant="normal">&#x393;</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup><msup><mi>P</mi><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">
-C = \Sigma^{1/2} = P \Gamma^{1/2}P^{-1},
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.938em;"></span><span class="strut bottom" style="height:1.13244em;vertical-align:-0.19444em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mrel">=</span><span class="mord"><span class="mord mathrm">&#x3A3;</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathrm">&#x393;</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="vlist"><span style="top:-0.41300000000000003em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">&#x2212;</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span></span></span></span></span>
-gdzie $\Gamma$ to macierz diagonalna warto&#x15B;ci w&#x142;asnych na przek&#x105;tnej a $P$ to macierz wektor&#xF3;w w&#x142;asnych $P^{-1}=P^T$. Macierze $P$ i $\Gamma$ dla macierzy $\Sigma$ mo&#x17C;na znale&#x17A;&#x107; z u&#x17C;yciem funkcji <code>eigen()</code>\index{funkcja!base!eigen}\index{funkcja!alfabetycznie!eigen}.
-\item Dekompozycja SVD, czyli uog&#xF3;lnienie dekompozycji spektralnej na macierze prostok&#x105;tne,</li>
-</ul>
-<p>Je&#x17C;eli $\Sigma$ jest symetryczna i dodatnio okre&#x15B;lona, to $U=V=P$, wi&#x119;c 
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>=</mo><msup><mi mathvariant="normal">&#x3A3;</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup><mo>=</mo><mi>U</mi><msup><mi>D</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup><msup><mi>V</mi><mi>T</mi></msup><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">
-C = \Sigma^{1/2} = U D^{1/2} V^T,
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.938em;"></span><span class="strut bottom" style="height:1.13244em;vertical-align:-0.19444em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mrel">=</span><span class="mord"><span class="mord mathrm">&#x3A3;</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.10903em;">U</span><span class="mord"><span class="mord mathit" style="margin-right:0.02778em;">D</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.22222em;">V</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span></span></span></span></span>
-Funkcje fortranowe dla bibliotek LAPACK pozwalaj&#x105; na uwzgl&#x119;dnienie faktu, &#x17C;e rozk&#x142;adana macierz jest symetryczna i dodatnio okre&#x15B;lona, ale wrappery R ju&#x17C; tego nie uwzgl&#x119;dniaj&#x105;, wi&#x119;c ta transformacja jest mniej efektywna. Macierze $U$, $V$ i $D$ dla macierzy $\Sigma$ mo&#x17C;na znale&#x17A;&#x107; z u&#x17C;yciem funkcji <code>svd()</code>\index{funkcja!base!svd}\index{funkcja!alfabetycznie!svd}.
-\item Dekompozycja Choleskiego, tzw. pierwiastek Choleskiego, 
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">&#x3A3;</mi><mo>=</mo><msup><mi>Q</mi><mi>T</mi></msup><mi>Q</mi><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">
-\Sigma = Q^T Q,
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8913309999999999em;"></span><span class="strut bottom" style="height:1.0857709999999998em;vertical-align:-0.19444em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathrm">&#x3A3;</span><span class="mrel">=</span><span class="mord"><span class="mord mathit">Q</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit">Q</span><span class="mpunct">,</span></span></span></span></span>
-gdzie $Q$ to macierz g&#xF3;rna tr&#xF3;jk&#x105;tna. Macierz $Q$ dla macierzy $\Sigma$ mo&#x17C;na znale&#x17A;&#x107; z u&#x17C;yciem funkcji <code>chol()</code>\index{funkcja!base!chol}\index{funkcja!alfabetycznie!chol}.</p>
-<p>Kt&#xF3;ry z tych algorytm&#xF3;w najlepiej wybra&#x107;? Szybszy i numerycznie bardziej stabilny! Por&#xF3;wnajmy czasy dzia&#x142;ania r&#xF3;&#x17C;nych faktoryzacji.</p>
-<ul>
-<li>Faktoryzacja (rozk&#x142;ad) Choleskiego.</li>
-</ul>
-<pre><code class="lang-r">n &lt;- <span class="hljs-number">100</span>; d &lt;- <span class="hljs-number">100</span>; N &lt;- <span class="hljs-number">10000</span>
-Sigma &lt;- cov(matrix(rnorm(n*d),n,d))
-X &lt;- matrix(rnorm(n*d),n,d)
-system.time(replicate(N, {Q &lt;- chol(Sigma)
-      X %*%  Q} ))
-</code></pre>
-<pre><code>## Error in chol.default(Sigma): the leading minor of order 100 is not positive definite
-</code></pre><pre><code>## Timing stopped at: 0 0 0
-</code></pre><ul>
-<li>Faktoryzacja  SVD</li>
-</ul>
-<pre><code class="lang-r">system.time(replicate(N, {tmp &lt;- svd(Sigma)
-      X %*% (tmp$u %*% diag(sqrt(tmp$d)) %*% t(tmp$v))}))
-</code></pre>
-<pre><code>##    user  system elapsed 
-##  81.929   3.918  86.885
-</code></pre><ul>
-<li>Rozk&#x142;ad spektralny / na warto&#x15B;ci w&#x142;asne.</li>
-</ul>
-<pre><code class="lang-r">system.time(replicate(N, {tmp &lt;- eigen(Sigma, symmetric=<span class="hljs-literal">T</span>)
-      X %*% (tmp$vectors %*% diag(sqrt(tmp$values)) %*% t(tmp$vectors))
-            }))
-</code></pre>
-<pre><code>##    user  system elapsed 
-##  53.900   2.257  56.387
-</code></pre><p>Powy&#x17C;sze czasy zosta&#x142;y policzone dla pewnych przyk&#x142;adowych danych i mog&#x105; r&#xF3;&#x17C;ni&#x107; si&#x119; w zale&#x17C;no&#x15B;ci od zainstalowanych bibliotek. Og&#xF3;lnie jednak najszybsz&#x105; procedur&#x105; jest faktoryzacja Choleskiego i to ona najcz&#x119;&#x15B;ciej jest wykorzystywana do generowania zmiennych o wielowymiarowym rozk&#x142;adzie normalnym. </p>
-<p>W programie R nie musimy do generacji zmiennych z rozk&#x142;adu normalnego wielowymiarowego r&#x119;cznie wykonywa&#x107; dekompozycji macierzy $\Sigma$, wystarczy u&#x17C;y&#x107; funkcji <code>rmvnorm(mvtnorm)</code>. Pozwala ona wskaza&#x107; metod&#x119; faktoryzacji argumentem <code>method=c(&quot;eigen&quot;, &quot;svd&quot;, &quot;chol&quot;)</code>. Domy&#x15B;lnie wykorzystywana jest dekompozycja na warto&#x15B;ci spektralne (na wypadek gdyby macierz $\Sigma$ by&#x142;a niepe&#x142;nego rz&#x119;du), ale je&#x17C;eli zale&#x17C;y nam na szybko&#x15B;ci i mamy pewno&#x15B;&#x107; &#x17C;e macierz $\Sigma$ jest dodatnio okre&#x15B;lona to lepiej u&#x17C;y&#x107; pierwiastka Choleskiego.</p>
-
-                    
-                    </section>
+            
                 
+            
                 
-                </div>
-            </div>
-        </div>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </section>
+        
+    
+        
+        <section>
+            <article id="Analiza/analizadanych_z_programem_r_md.md" class="new-chapter">
+                <h1>Analiza danych z programem R</h1>
+            </article>
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </section>
+        
+    
+        
+    
+
+
+    
+    
 
         
-        <a href="../Programowanie/generatory_2.html" class="navigation navigation-prev " aria-label="Previous page: Jak losować z prostych rozkładów?"><i class="fa fa-angle-left"></i></a>
+
+        <link rel="stylesheet" href="../gitbook/style.css">
         
-        
-        <a href="../Programowanie/generatory_4.html" class="navigation navigation-next " aria-label="Next page: Jak losować z użyciem kopuli?"><i class="fa fa-angle-right"></i></a>
-        
-    </div>
-</div>
-
-        
-<script src="../gitbook/app.js"></script>
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
-    
-
-<script>
-require(["gitbook"], function(gitbook) {
-    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
-    gitbook.start(config);
-});
-</script>
+<link rel="stylesheet" href="../gitbook/print.css">
 
         
     </body>
-    
 </html>

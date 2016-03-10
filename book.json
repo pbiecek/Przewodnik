@@ -1,6 +1,7 @@
 { 
   "title": "Przewodnik po pakiecie R v. 4.0",
-  "plugins": ["katex", "ga"],
+  "plugins": ["katex", "ga", "expandable-chapters"],
+  "theme" : "mytheme",
   "pluginsConfig": {
       "ga": {
           "token": "UA-5650686-13"
