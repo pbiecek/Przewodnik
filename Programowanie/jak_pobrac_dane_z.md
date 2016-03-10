@@ -60,9 +60,9 @@ colnames(df)
 ```
 
 ```
-## [1] "publishstate"         "year"                 "sex"                 
-## [4] "country"              "region"               "gho"                 
-## [7] "agegroup"             "worldbankincomegroup" "value"
+## [1] "publishstate"         "gho"                  "sex"                 
+## [4] "worldbankincomegroup" "agegroup"             "country"             
+## [7] "region"               "year"                 "value"
 ```
 
 Wykorzystujemy pakiet `dplyr` by wybrać tylko dane dla Polski z roku 2013.
@@ -82,12 +82,12 @@ head(poland2013)
 ## 
 ##      agegroup    value    sex
 ##         (chr)    (dbl)  (chr)
-## 1 95-99 years 0.778775   Male
-## 2 25-29 years 0.005331   Male
-## 3 25-29 years 0.001294 Female
-## 4 20-24 years 0.001110 Female
-## 5 95-99 years 0.754675 Female
-## 6   5-9 years 0.000628   Male
+## 1 95-99 years 0.754675 Female
+## 2   5-9 years 0.000628   Male
+## 3 60-64 years 0.039902 Female
+## 4 85-89 years 0.527849   Male
+## 5 25-29 years 0.001294 Female
+## 6 50-54 years 0.049180   Male
 ```
 
 Możemy teraz narysować śmiertelność dla obu płci. Dla mężczyzn jest znacznie wyższa niż dla kobiet.
