@@ -190,9 +190,9 @@ Jedną z ciekawych możliwości pakietu `ggplot2` jest przedstawianie wyników d
 
 Panele mają taki sam układ współrzędnych, przez co łatwiej jest porównywać zależności pomiędzy nimi.
 
-Panele tworzy się funkcją `facet_grid()` lub `facet_wrap()`. Poniżej przedstawiamy przykład w którym każdy panel przedstawia inny kontynent, ale też do każdego panelu dodano w tle punkty przedstawiające wszystkie dane. Jeszcze bardziej ułatwia to orientacje jak dla różnych kontynentów zachowują się poszczególne współczynniki.
+Panele tworzy się funkcją `facet_grid()` lub `facet_wrap()`. Poniżej przedstawiamy przykład w którym każdy panel przedstawia inny kontynent, ale też do każdego panelu dodano w tle punkty przedstawiające wszystkie dane. Ułatwia to orientacje jak dla różnych kontynentów wyglądają współczynniki narodzin i zgonów na tle pozostałych krajów.
 
-Grupy można wyróżniać też kolorami korzystając z tylko jednego wykresu (drugi przykład poniżej). Ale taki wykres jest czytelny tylko jeżeli grup jest niewiele. Dla dużej liczby grup panele są zdecydowanie lepszym rozwiązaniem.
+Grupy można wyróżniać też kolorami korzystając z tylko jednego panelu (drugi przykład poniżej). Ale taki wykres jest czytelny tylko, jeżeli grup jest niewiele. Dla dużej liczby grup panele są zdecydowanie lepszym rozwiązaniem.
 
 
 ```r
@@ -215,9 +215,9 @@ ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate, color=continent))
 
 ## Jak modyfikować skale?
 
-Opisując mapowania napisaliśmy, że wystarczy określić jaka zmienna ma być zamapowana na jaki atrybut i pakiet `ggplot2` już będzie wiedział jak dobrać kolory / kształty.
+Opisując mechanizm mapowania napisaliśmy, że wystarczy określić jaka zmienna ma być zamapowana na jaki atrybut i pakiet `ggplot2` już będzie wiedział jak dobrać kolory / kształty.
 
-Co jednak zrobić jeżeli nie podoba nam się zaproponowana skala kolorów / kształtów? Rozwiązaniem może być nadpisanie skali.
+Co jednak zrobić jeżeli nie podoba nam się zaproponowana skala kolorów / kształtów? Rozwiązaniem może być nadpisanie skali dla mapowania.
 
 Funkcje z klasy `sale_atrybut_wartosc` pozwalają na określenie jak ma wyglądać mapowanie na określony atrybut. Możemy ręcznie wskazać kształty / koloru lub możemy wskazać funkcję, która za nas wyznaczy kolory / kształty. 
 
@@ -263,7 +263,7 @@ pl + scale_shape_manual(values=LETTERS)
 Na wykresach dane są prezentowane w układzie współrzędnych. 
 Układ jest ramą dla całego wykresu, domyślnie jest to rama kartezjańska.
 
-Są jednak sytuacje, w których możemy chcieć tę ramę zmienić. Jeżeli przedstawiamy mapy to możemy chcieć wykorzystać inną projekcje. Możemy chcieć zamienić osie miejscami. Lub spowodować, że jedna z osi jest logarytmiczna lub pierwiastkowa. 
+Są jednak sytuacje, w których możemy chcieć tę ramę zmienić. Jeżeli przedstawiamy mapy to możemy chcieć wykorzystać inną projekcję. Możemy chcieć zamienić osie miejscami. Lub spowodować, że jedna z osi jest logarytmiczna lub pierwiastkowa. 
 Jeżeli na osiach prezentowana jest ta sama jednostka to możemy zażyczyć sobie by zachowane były proporcje pomiędzy osią pionową a poziomą.
 
 Wszystkie te rzeczy są możliwe przy odpowiednim określeniu układu współrzędnych.
@@ -288,13 +288,13 @@ pl + coord_flip()
 
 ## Jak modyfikować styl wykresu?
 
-Poza elementami związanymi z danymi, wykres zawiera również wiele elementów graficznych, które z danymi nie są zwiazane ale są ważne. Np. tytuł wykresu, wielkość opisów osi, położęnie legendy, kolor linii pomocnicznych itp.
+Poza elementami związanymi z danymi, wykres zawiera również wiele elementów graficznych, które z danymi nie są zwiazane ale są ważne. Np. tytuł wykresu, wielkość opisów osi, położenie legendy, kolor linii pomocnicznych itp.
 
-W pakiecie `ggplot2` można takie elementy zmieniać na dwa sposoby. Można skorzystac z gotowego zestawu ustawień graficznych, swoistej skórki. Takie skórki są dostępne przez funkcje `theme_`. 
+W pakiecie `ggplot2` można takie elementy dookreślać na dwa sposoby. Można skorzystać z gotowego zestawu ustawień graficznych, swoistej skórki. Takie skórki są dostępne przez funkcje `theme_`. 
 
-Na poniższym przykładzie, dodanie do wykresu funkcji `theme_excel()` powoduje, żę wykres wygląda jak z pakietu Excel.
+Na poniższym przykładzie, dodanie do wykresu funkcji `theme_excel()` powoduje, że wykres wygląda jak z pakietu Excel.
 
-Druga możliwość to zmiana poszcezgólnych elementów przez funkcję `theme()`. W ten sposób można przesunąć legendę, zmienić kolory osi, zwiększyć opisy osi i zmodyfikować podobne elementy wykresu.
+Druga możliwość to zmiana poszczególnych elementów przez funkcję `theme()`. W ten sposób można przesunąć legendę, zmienić kolory osi, zwiększyć opisy osi i zmodyfikować podobne elementy wykresu.
 
 Poniżej przedstawiamy ten sam wykres z zastosowaniem czterech różnych zestawów parametrów graficznych.
 
@@ -327,5 +327,4 @@ pl + theme_classic() +  theme(legend.position="none") +
 ```
 
 ![plot of chunk mapowania9](figure/mapowania9-4.svg)
-
 
