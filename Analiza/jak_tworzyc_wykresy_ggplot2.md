@@ -6,7 +6,7 @@ Tę elastyczność uzyskuje się opierając strukturę wykresu na sposobie w jak
 
 Gramatyka grafiki jest szerzej opisana [w tym eseju](http://biecek.pl/Eseje/indexGramatyka.html).
 
-Poniższe przykłady oparte są o dwa zbiory danych. Zbiór `countries` ze współczynnikami dzietności / umieralności dla różnych krajów oraz zbiór `maturaExam` z wynikami matur poszcezgólnych uczniów.
+Poniższe przykłady oparte są o zbiór danych `countries` ze współczynnikami dzietności / umieralności dla różnych krajów.
 
 
 ```r
@@ -22,20 +22,6 @@ head(countries)
 ## 4             Andorra        8.9        8.4         79    Europe
 ## 5              Angola       44.1       13.9      21472    Africa
 ## 6 Antigua and Barbuda       16.5        6.8         90  Americas
-```
-
-```r
-head(maturaExam)
-```
-
-```
-##   id_ucznia punkty  przedmiot  rok
-## 1         4     14 matematyka 2011
-## 2         4     31  j. polski 2011
-## 3         5     19 matematyka 2010
-## 4         5     35  j. polski 2010
-## 5         7     16 matematyka 2010
-## 6         7     43  j. polski 2010
 ```
 
 ## Jak zrobić pierwszy wykres?
@@ -200,6 +186,33 @@ ggplot(countries, aes(x=continent, fill=continent)) +
 
 ## Jak tworzyć panele?
 
+Jedną z ciekawych możliwości pakietu `ggplot2` jest przedstawianie wyników dotyczących podgrup danych na sąsiednich panelach.
+
+Panele mają taki sam układ współrzędnych, przez co łatwiej jest porównywać zależności pomiędzy nimi.
+
+Panele tworzy się funkcją `facet_grid()` lub `facet_wrap()`. Poniżej przedstawiamy przykład w którym każdy panel przedstawia inny kontynent, ale też do każdego panelu dodano w tle punkty przedstawiające wszystkie dane. Jeszcze bardziej ułatwia to orientacje jak dla różnych kontynentów zachowują się poszczególne współczynniki.
+
+Grupy można wyróżniać też kolorami korzystając z tylko jednego wykresu (drugi przykład poniżej). Ale taki wykres jest czytelny tylko jeżeli grup jest niewiele. Dla dużej liczby grup panele są zdecydowanie lepszym rozwiązaniem.
+
+
+
+```r
+ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate)) +
+  stat_ellipse(color="red4")+
+  geom_point(data=countries[,-5],size=1,color="grey") +
+  geom_point(size=2, color="red") + 
+  facet_wrap(~continent)
+```
+
+![plot of chunk mapowania6](figure/mapowania6-1.svg)
+
+```r
+ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate, color=continent)) +
+  stat_ellipse()+
+  geom_point(size=2)
+```
+
+![plot of chunk mapowania6](figure/mapowania6-2.svg)
 
 ## Jak modyfikować położenie elementów?
 
