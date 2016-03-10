@@ -5,5 +5,8 @@
       "ga": {
           "token": "UA-5650686-13"
       }
+  },
+  "structure": {
+    "readme": "contribute.md"
   }
 }
