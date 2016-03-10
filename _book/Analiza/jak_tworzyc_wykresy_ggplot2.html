@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Predykcja | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak tworzyć wykresy z pakietem ggplot2? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -41,10 +41,10 @@
         
     
     
-    <link rel="next" href="../Analiza/jak_mierzyc_blad_predykcji.html" />
+    <link rel="next" href="../Wizualizacja/jak_tworzyc_interaktywne_wykresy.html" />
     
     
-    <link rel="prev" href="../Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html" />
+    <link rel="prev" href="../Analiza/wizualizacja.html" />
     
 
         
@@ -53,9 +53,9 @@
         
         
     <div class="book"
-        data-level="4.3"
-        data-chapter-title="Predykcja"
-        data-filepath="Analiza/predykcja.md"
+        data-level="4.4.1"
+        data-chapter-title="Jak tworzyć wykresy z pakietem ggplot2?"
+        data-filepath="Analiza/jak_tworzyc_wykresy_ggplot2.md"
         data-basepath=".."
         data-revision="Thu Mar 10 2016 01:10:09 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -802,7 +802,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3" data-path="Analiza/predykcja.html">
+        <li class="chapter " data-level="4.3" data-path="Analiza/predykcja.html">
             
                 
                     <a href="../Analiza/predykcja.html">
@@ -869,7 +869,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.4.1" data-path="Analiza/jak_tworzyc_wykresy_ggplot2.html">
+        <li class="chapter active" data-level="4.4.1" data-path="Analiza/jak_tworzyc_wykresy_ggplot2.html">
             
                 
                     <a href="../Analiza/jak_tworzyc_wykresy_ggplot2.html">
@@ -972,7 +972,135 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="predykacja">Predykacja</h1>
+                        <h1 id="jak-tworzy&#x107;-wykresy-z-pakietem-ggplot2">Jak tworzy&#x107; wykresy z pakietem ggplot2?</h1>
+<p>Pakiet <code>ggplot2</code> jest jednym z najbardziej zaawansowanych narz&#x119;dzi do tworzenia wykres&#xF3;w statystycznych. Zaawansowanie nie oznacza, &#x17C;e mo&#x17C;na szybko zrobi&#x107; w nim wykres, ani te&#x17C;, &#x17C;e dost&#x119;pnych jest wiele szablon&#xF3;w wykres&#xF3;w. Oznacza, &#x17C;e konstrukcja pakietu jest na tyle elastyczna, &#x17C;e mo&#x17C;na z nim wykona&#x107; praktycznie ka&#x17C;d&#x105; grafik&#x119; statystyczn&#x105;.</p>
+<p>T&#x119; elastyczno&#x15B;&#x107; uzyskuje si&#x119; opieraj&#x105;c struktur&#x119; wykresu na sposobie w jaki my&#x15B;limy i czytamy wykresy. Patrz&#x105;c na wykres nie widzimy w nim zbioru odcink&#xF3;w i k&#xF3;&#x142;ek, ale kolekcje obiekt&#xF3;w na sw&#xF3;j spos&#xF3;b podobnych lub r&#xF3;&#x17C;nych. Tworz&#x105;c wykres nie powinni&#x15B;my wi&#x119;c my&#x15B;le&#x107; o tym gdzie i jak narysowa&#x107; odcinek, ale o tym jak elementy wykresu maj&#x105; reprezentowa&#x107; dane.</p>
+<p>Gramatyka grafiki jest szerzej opisana <a href="http://biecek.pl/Eseje/indexGramatyka.html" target="_blank">w tym eseju</a>.</p>
+<p>Poni&#x17C;sze przyk&#x142;ady oparte s&#x105; o zbi&#xF3;r danych <code>countries</code> ze wsp&#xF3;&#x142;czynnikami dzietno&#x15B;ci / umieralno&#x15B;ci dla r&#xF3;&#x17C;nych kraj&#xF3;w.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(SmarterPoland)
+head(countries)
+</code></pre>
+<pre><code>##               country birth.rate death.rate population continent
+## 1         Afghanistan       34.1        7.7      30552      Asia
+## 2             Albania       12.9        9.4       3173    Europe
+## 3             Algeria       24.3        5.7      39208    Africa
+## 4             Andorra        8.9        8.4         79    Europe
+## 5              Angola       44.1       13.9      21472    Africa
+## 6 Antigua and Barbuda       16.5        6.8         90  Americas
+</code></pre><h2 id="jak-zrobi&#x107;-pierwszy-wykres">Jak zrobi&#x107; pierwszy wykres?</h2>
+<p>Minimalna definicja wykresu w pakiecie <code>ggplot2</code> sk&#x142;ada si&#x119; przynajmniej z trzech element&#xF3;w. </p>
+<ul>
+<li>Funkcja <code>ggplot()</code> tworzy zr&#x105;b wykresu. W tym miejscu deklaruje si&#x119; parametry wsp&#xF3;lne dla pozosta&#x142;ych element&#xF3;w wykresu. Deklaracja mo&#x17C;e by&#x107; pusta, ale zazwyczaj wskazuje si&#x119; tutaj zbi&#xF3;r danych (poni&#x17C;ej <code>countries</code>) i mapowania (poni&#x17C;ej funkcja <code>aes()</code>).</li>
+<li>Funkcje <code>geom_</code>/<code>stat_</code> tworz&#x105; kolejne warstwy prezentacji danych, nazywane dalej geometriami. Poni&#x17C;ej wykorzystywana jest funkcja <code>geom_point()</code> tworz&#x105;ca warstw&#x119; z punktami. </li>
+<li>Operator <code>+</code> &#x142;&#x105;czy opisy kolejnych element&#xF3;w wykresu.</li>
+</ul>
+<p>Zbudujmy wykres, przedstawiaj&#x105;cy za pomoc&#x105; punkt&#xF3;w informacje o cz&#x119;sto&#x15B;ci narodzin i zgon&#xF3;w dla r&#xF3;&#x17C;nych kraj&#xF3;w.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ggplot2)
+
+ggplot(countries, aes(x=birth.rate, y=death.rate)) + geom_point()
+</code></pre>
+<p><img src="figure/w1-1.svg" alt="plot of chunk w1"></p>
+<p>Gramatyka zaimplementowana w pakiecie <code>ggplot2</code> pozwala na budow&#x119; wykres&#xF3;w o strukturze przedstawionej na poni&#x17C;szej grafice. 
+Sk&#x142;ada si&#x119; na z wielu element&#xF3;w.
+Om&#xF3;wimy je jeden po drugim.</p>
+<p><img src="rysunki/ggplot2.png" alt="Szkielet gramatyki ggplot2"></p>
+<h2 id="jak-okre&#x15B;la&#x107;-mapowania">Jak okre&#x15B;la&#x107; mapowania?</h2>
+<p>Wykresy przedstawiaj&#x105; kolekcje obiekt&#xF3;w, kt&#xF3;re s&#x105; opisane przez atrybuty graficzne. Mapowania okre&#x15B;laj&#x105;, kt&#xF3;re atrybuty wykres&#xF3;w koduj&#x105; kt&#xF3;&#xAE;e zmienne ze zbioru z danymi.</p>
+<p>Mapowania s&#x105; opisane wewn&#x105;trz funkcji <code>aes()</code> (od <em>aesthetic</em>). S&#x105; to pary postaci <em>atrybut graficzny</em> = <em>nazwa zmiennej</em>.</p>
+<p>Dla ka&#x17C;dego typu geometrii (warstwy wykresu) okre&#x15B;lone jest, jakie atrybuty graficzne mog&#x105; przedstawia&#x107; dane. Lista aktrybut&#xF3;w, kt&#xF3;&#xAE;e mo&#x17C;na wykorzysta&#x107; dla geometrii <code>geom_point</code> znajduje si&#x119; pod adresem <a href="http://docs.ggplot2.org/current/geom_point.html" target="_blank">http://docs.ggplot2.org/current/geom_point.html</a>. W tym przypadku obowi&#x105;zkowe atrybuty to <code>x</code> i <code>y</code> - wsp&#xF3;&#x142;rz&#x119;dne punkt&#xF3;w. Na poni&#x17C;szym wykresie okre&#x15B;lamy mapowania r&#xF3;wnie&#x17C; dla atrybutu kolor (<code>color</code>) i kszta&#x142;t (<code>shape</code>). </p>
+<pre><code class="lang-r">ggplot(countries, aes(x=birth.rate, y=death.rate, color=continent, shape=continent)) +
+  geom_point()
+</code></pre>
+<p><img src="figure/mapowania1-1.svg" alt="plot of chunk mapowania1"></p>
+<p>W tym przyk&#x142;&#x105;dzie, okre&#x15B;laj&#x105;c mapowanie <em>kszta&#x142;t</em> = <em>kontynent</em> &#x17C;&#x105;damy by kszta&#x142;ty punkt&#xF3;w odpowiada&#x142;y kontynentom. Nie okre&#x15B;lamy jednak jaki kszta&#x142;t ma okre&#x15B;la&#x107; kt&#xF3;ry kontynent.  </p>
+<p>Spos&#xF3;b mapowania wybiera biblioteka <code>gglot2</code> na podstawie typu zmiennej i liczby poziom&#xF3;w, kt&#xF3;re maj&#x105; by&#x107; przedstawione.</p>
+<p>Przyk&#x142;adowo, na poprzednim wykresie przedstawiali&#x15B;my kontynent za pomoc&#x105; kolor&#xF3;w. Kolory s&#x105; tak dobierane by mo&#x17C;liwie u&#x142;atwi&#x107; rozr&#xF3;&#x17C;nienie poszczeg&#xF3;lnych kontynent&#xF3;w. Nie ma jednak &#x17C;adnego za&#x142;o&#x17C;onego porz&#x105;dku pomi&#x119;dzy kontynentami.</p>
+<p>Na poni&#x17C;szym przyk&#x142;adzie kolor mapujemy na zmienn&#x105; ilo&#x15B;ciow&#x105; - populacja. Tutaj jest ju&#x17C; porz&#x105;dek i jest on odzwierciedlony przez skal&#x119; kolor&#xF3;w rozpinaj&#x105;c&#x105; si&#x119; od niebieskiego po czer&#x144;.</p>
+<pre><code class="lang-r">ggplot(countries, aes(x=birth.rate, y=death.rate, color=population, size=population)) +
+  geom_point()
+</code></pre>
+<p><img src="figure/mapowania2-1.svg" alt="plot of chunk mapowania2"></p>
+<h2 id="jak-okre&#x15B;la&#x107;-geometri&#x119;">Jak okre&#x15B;la&#x107; geometri&#x119;?</h2>
+<p>Geometria okre&#x15B;la kolekcje kszta&#x142;t&#xF3;w, kt&#xF3;re prezentuj&#x105; dane.
+Mog&#x105; to by&#x107; punkty (patrz <code>geom_point()</code>), linie, prostok&#x105;ty, obszary, praktycznie dowolne kszta&#x142;ty.</p>
+<p>Lista dost&#x119;pnych obecnie geometrii dost&#x119;pna jest na stronie  <a href="http://docs.ggplot2.org/current/" target="_blank">http://docs.ggplot2.org/current/</a>. Pakiet <code>ggplot2</code> ma r&#xF3;wnie&#x17C; mechanizmy pozwalaj&#x105;ce na tworzenie dowolnych nowych geometrii, np. <a href="http://smarterpoland.pl/index.php/2015/12/geom_christmas_tree-a-new-geom-for-ggplot2-v2-0/" target="_blank">przedstawianie danych za pomoc&#x105; ma&#x142;ych choinek</a>.</p>
+<p>Poni&#x17C;ej przedstawiamy przyk&#x142;ady geometrii <code>geom_dotplot</code> (u&#x142;o&#x17C;one na sobie punkty), <code>geom_violin</code> (skrzypce), <code>geom_line</code> (linie).</p>
+<pre><code class="lang-r">ggplot(countries, aes(x = continent, y = birth.rate)) +
+  geom_dotplot(binaxis = <span class="hljs-string">&quot;y&quot;</span>, stackdir = <span class="hljs-string">&quot;center&quot;</span>)
+</code></pre>
+<p><img src="figure/mapowania3-1.svg" alt="plot of chunk mapowania3"></p>
+<pre><code class="lang-r">ggplot(countries, aes(x = continent, y = birth.rate, color=continent, fill=continent)) +
+  geom_violin()
+</code></pre>
+<p><img src="figure/mapowania3-2.svg" alt="plot of chunk mapowania3"></p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(tidyr)
+countries %&gt;% 
+  gather(rate, values, birth.rate, death.rate) %&gt;%
+  group_by(continent, rate) %&gt;%
+  summarise(values = mean(values, na.rm=<span class="hljs-literal">TRUE</span>)) %&gt;%
+  ggplot(aes(x = rate, y = values, group=continent, color=continent)) +
+  geom_line(size=<span class="hljs-number">2</span>) +
+  geom_point(size=<span class="hljs-number">4</span>)
+</code></pre>
+<p><img src="figure/mapowania3-3.svg" alt="plot of chunk mapowania3"></p>
+<h2 id="jak-sk&#x142;ada&#x107;-wykres-z-kilku-warstw">Jak sk&#x142;ada&#x107; wykres z kilku warstw?</h2>
+<p>Tworzenie z&#x142;o&#x17C;onych i bogatych w tre&#x15B;&#x107; grafik jest w <code>ggplot2</code> mo&#x17C;liwe dzi&#x119;ki sk&#x142;adaniu warstw. 
+Wszystkie warstwy istniej&#x105; we wsp&#xF3;lnych ramach uk&#x142;adu wsp&#xF3;&#x142;rz&#x119;dnych wykresu, przez to mo&#x17C;na &#x142;atwiej por&#xF3;wnywa&#x107; obiekty pomi&#x119;dzy warstwami 
+Daje to du&#x17C;e mo&#x17C;liwo&#x15B;ci budowy wielowarstwowych grafik o uzupe&#x142;niaj&#x105;cych si&#x119; tre&#x15B;ciach.</p>
+<p>Dodanie kolejnej warstwy odbywa si&#x119; przez dodanie operatorem <code>+</code> kolejnej geometrii.
+Poni&#x17C;ej znajduje si&#x119; przyk&#x142;ad wykresu z trzema warstwami. S&#x105; to kolejno warstwa z punktami, krzyw&#x105; trendu i nazwami wybranych kraj&#xF3;w.</p>
+<p>Warstwy te uzupe&#x142;niaj&#x105; si&#x119;. W g&#x142;&#xF3;wnym planie jest linia z trendem, punkty pe&#x142;ni&#x105; rol&#x119; uzupe&#x142;niaj&#x105;c&#x105; na drugim planie. Napisami zaznaczono najbardziej skrajne kraje.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ggrepel)
+ggplot(countries, aes(x=birth.rate, y=death.rate, label=country)) +
+  geom_point() + 
+  geom_smooth(se=<span class="hljs-literal">FALSE</span>, size=<span class="hljs-number">3</span>) + 
+  geom_text_repel(data=countries[c(<span class="hljs-number">108</span>,<span class="hljs-number">120</span>,<span class="hljs-number">176</span>,<span class="hljs-number">148</span>),], color=<span class="hljs-string">&quot;red&quot;</span>)
+</code></pre>
+<p><img src="figure/mapowania4-1.svg" alt="plot of chunk mapowania4"></p>
+<h2 id="jak-okre&#x15B;la&#x107;-statystyki">Jak okre&#x15B;la&#x107; statystyki?</h2>
+<p>Zazwyczaj pracujemy z danymi tabelarycznymi, ze zmiennymi w kolumnach i obserwacjami w wierszach.</p>
+<p>Nie zawsze jednak chcemy by ka&#x17C;dy wiersz by&#x142; przedstawiony na wykresie. W okre&#x15B;lonych sytuacjach zamiast przedstawia&#x107; wiersze osobno, lepiej jest wyliczy&#x107; na nich jak&#x105;&#x15B; statystyk&#x119; i to j&#x105; przedstawi&#x107; na wykresie.</p>
+<p>Taka statystyka mo&#x17C;e scharakteryzowa&#x107; zale&#x17C;no&#x15B;&#x107; w danych i by&#x107; dobrym uzupe&#x142;nieniem prezentacji poszczeg&#xF3;lnych punkt&#xF3;w.</p>
+<p>Warstwy ze statystykami mo&#x17C;na tworzy&#x107; u&#x17C;ywaj&#x105;c funkcji <code>stat_</code> (ich lista jest tutaj <a href="http://docs.ggplot2.org/current/" target="_blank">http://docs.ggplot2.org/current/</a>) lub funkcji <code>geom_</code> w kt&#xF3;rych okre&#x15B;li si&#x119; argument <code>stat</code>.</p>
+<p>Statystyki mo&#x17C;na parametryzowa&#x107;. Przyk&#x142;adowo, statystyka <code>stat_smooth()</code> ma argument <code>method</code> pozwalaj&#x105;cy na okre&#x15B;lenie w jaki spos&#xF3;b ma by&#x107; wyznaczany trend w danych, statystyka <code>stat_density2d()</code> pozwala na okre&#x15B;lenie parametr&#xF3;w g&#x119;sto&#x15B;ci j&#x105;drowej, w tym szeroko&#x15B;ci okna.</p>
+<p>Poni&#x17C;ej przedstawiamy cztery wybrane statystyki. Ka&#x17C;da z nich tworzy osobn&#x105; warstw&#x119; na wykresie.</p>
+<pre><code class="lang-r">ggplot(countries, aes(x = birth.rate, y = death.rate)) +
+  stat_smooth() + geom_point()
+</code></pre>
+<p><img src="figure/mapowania5-1.svg" alt="plot of chunk mapowania5"></p>
+<pre><code class="lang-r">ggplot(countries, aes(x=birth.rate, y=death.rate)) +
+  stat_density2d(h=c(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>), color=<span class="hljs-string">&quot;grey&quot;</span>)  + geom_point()
+</code></pre>
+<p><img src="figure/mapowania5-2.svg" alt="plot of chunk mapowania5"></p>
+<pre><code class="lang-r">ggplot(countries, aes(x = continent, y = birth.rate)) +
+  stat_boxplot(fill=<span class="hljs-string">&quot;grey&quot;</span>, coef = <span class="hljs-number">3</span>) + geom_jitter(width = <span class="hljs-number">0.3</span>)
+</code></pre>
+<p><img src="figure/mapowania5-3.svg" alt="plot of chunk mapowania5"></p>
+<pre><code class="lang-r">ggplot(countries, aes(x=continent, fill=continent)) +
+  geom_bar()
+</code></pre>
+<p><img src="figure/mapowania5-4.svg" alt="plot of chunk mapowania5"></p>
+<h2 id="jak-tworzy&#x107;-panele">Jak tworzy&#x107; panele?</h2>
+<p>Jedn&#x105; z ciekawych mo&#x17C;liwo&#x15B;ci pakietu <code>ggplot2</code> jest przedstawianie wynik&#xF3;w dotycz&#x105;cych podgrup danych na s&#x105;siednich panelach.</p>
+<p>Panele maj&#x105; taki sam uk&#x142;ad wsp&#xF3;&#x142;rz&#x119;dnych, przez co &#x142;atwiej jest por&#xF3;wnywa&#x107; zale&#x17C;no&#x15B;ci pomi&#x119;dzy nimi.</p>
+<p>Panele tworzy si&#x119; funkcj&#x105; <code>facet_grid()</code> lub <code>facet_wrap()</code>. Poni&#x17C;ej przedstawiamy przyk&#x142;ad w kt&#xF3;rym ka&#x17C;dy panel przedstawia inny kontynent, ale te&#x17C; do ka&#x17C;dego panelu dodano w tle punkty przedstawiaj&#x105;ce wszystkie dane. Jeszcze bardziej u&#x142;atwia to orientacje jak dla r&#xF3;&#x17C;nych kontynent&#xF3;w zachowuj&#x105; si&#x119; poszczeg&#xF3;lne wsp&#xF3;&#x142;czynniki.</p>
+<p>Grupy mo&#x17C;na wyr&#xF3;&#x17C;nia&#x107; te&#x17C; kolorami korzystaj&#x105;c z tylko jednego wykresu (drugi przyk&#x142;ad poni&#x17C;ej). Ale taki wykres jest czytelny tylko je&#x17C;eli grup jest niewiele. Dla du&#x17C;ej liczby grup panele s&#x105; zdecydowanie lepszym rozwi&#x105;zaniem.</p>
+<pre><code class="lang-r">ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate)) +
+  stat_ellipse(color=<span class="hljs-string">&quot;red4&quot;</span>)+
+  geom_point(data=countries[,-<span class="hljs-number">5</span>],size=<span class="hljs-number">1</span>,color=<span class="hljs-string">&quot;grey&quot;</span>) +
+  geom_point(size=<span class="hljs-number">2</span>, color=<span class="hljs-string">&quot;red&quot;</span>) + 
+  facet_wrap(~continent)
+</code></pre>
+<p><img src="figure/mapowania6-1.svg" alt="plot of chunk mapowania6"></p>
+<pre><code class="lang-r">ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate, color=continent)) +
+  stat_ellipse()+
+  geom_point(size=<span class="hljs-number">2</span>)
+</code></pre>
+<p><img src="figure/mapowania6-2.svg" alt="plot of chunk mapowania6"></p>
+<h2 id="jak-modyfikowa&#x107;-po&#x142;o&#x17C;enie-element&#xF3;w">Jak modyfikowa&#x107; po&#x142;o&#x17C;enie element&#xF3;w?</h2>
+<h2 id="jak-modyfikowa&#x107;-skale">Jak modyfikowa&#x107; skale?</h2>
+<h2 id="jak-modyfikowa&#x107;-uk&#x142;ad-wsp&#xF3;&#x142;rz&#x119;dnych">Jak modyfikowa&#x107; uk&#x142;ad wsp&#xF3;&#x142;rz&#x119;dnych?</h2>
+<h2 id="jak-modyfikowa&#x107;-styl-wykresu">Jak modyfikowa&#x107; styl wykresu?</h2>
 
                     
                     </section>
@@ -983,10 +1111,10 @@
         </div>
 
         
-        <a href="../Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html" class="navigation navigation-prev " aria-label="Previous page: Jak badać zależności pomiędzy parą zmiennych?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Analiza/wizualizacja.html" class="navigation navigation-prev " aria-label="Previous page: Wizualizacja"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Analiza/jak_mierzyc_blad_predykcji.html" class="navigation navigation-next " aria-label="Next page: Jak mierzyć błąd predykcji?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Wizualizacja/jak_tworzyc_interaktywne_wykresy.html" class="navigation navigation-next " aria-label="Next page: Jak tworzyć interaktywne wykresy?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

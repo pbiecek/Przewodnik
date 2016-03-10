@@ -195,7 +195,6 @@ Panele tworzy się funkcją `facet_grid()` lub `facet_wrap()`. Poniżej przedsta
 Grupy można wyróżniać też kolorami korzystając z tylko jednego wykresu (drugi przykład poniżej). Ale taki wykres jest czytelny tylko jeżeli grup jest niewiele. Dla dużej liczby grup panele są zdecydowanie lepszym rozwiązaniem.
 
 
-
 ```r
 ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate)) +
   stat_ellipse(color="red4")+
