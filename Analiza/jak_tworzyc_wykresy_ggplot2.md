@@ -213,16 +213,119 @@ ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate, color=continent))
 
 ![plot of chunk mapowania6](figure/mapowania6-2.svg)
 
-## Jak modyfikować położenie elementów?
-
-
 ## Jak modyfikować skale?
 
+Opisując mapowania napisaliśmy, że wystarczy określić jaka zmienna ma być zamapowana na jaki atrybut i pakiet `ggplot2` już będzie wiedział jak dobrać kolory / kształty.
+
+Co jednak zrobić jeżeli nie podoba nam się zaproponowana skala kolorów / kształtów? Rozwiązaniem może być nadpisanie skali.
+
+Funkcje z klasy `sale_atrybut_wartosc` pozwalają na określenie jak ma wyglądać mapowanie na określony atrybut. Możemy ręcznie wskazać kształty / koloru lub możemy wskazać funkcję, która za nas wyznaczy kolory / kształty. 
+
+Poniżej przedstawiamy trzy przykłady skali dla kształtów i kolorów. Pierwsza to domyślna skala, druga jest wybierana zgodnie z określonym schematem a trzecia określa wprost jakie wartości mają odpowiadać kolejnym kontynentom.
+
+
+```r
+library(ggthemes)
+pl <- ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate, shape=continent, color=continent)) +
+  geom_point(size=5) 
+
+pl
+```
+
+![plot of chunk mapowania7](figure/mapowania7-1.svg)
+
+```r
+pl + scale_color_brewer(type="qual", palette = 3)
+```
+
+![plot of chunk mapowania7](figure/mapowania7-2.svg)
+
+```r
+pl + scale_color_manual(values = c("red4", "red1", "green4", "green1", "grey"))
+```
+
+![plot of chunk mapowania7](figure/mapowania7-3.svg)
+
+```r
+pl + scale_shape_cleveland()
+```
+
+![plot of chunk mapowania7](figure/mapowania7-4.svg)
+
+```r
+pl + scale_shape_manual(values=LETTERS) 
+```
+
+![plot of chunk mapowania7](figure/mapowania7-5.svg)
 
 ## Jak modyfikować układ współrzędnych?
 
+Na wykresach dane są prezentowane w układzie współrzędnych. 
+Układ jest ramą dla całego wykresu, domyślnie jest to rama kartezjańska.
+
+Są jednak sytuacje, w których możemy chcieć tę ramę zmienić. Jeżeli przedstawiamy mapy to możemy chcieć wykorzystać inną projekcje. Możemy chcieć zamienić osie miejscami. Lub spowodować, że jedna z osi jest logarytmiczna lub pierwiastkowa. 
+Jeżeli na osiach prezentowana jest ta sama jednostka to możemy zażyczyć sobie by zachowane były proporcje pomiędzy osią pionową a poziomą.
+
+Wszystkie te rzeczy są możliwe przy odpowiednim określeniu układu współrzędnych.
+
+Dla pakietu `ggplot` układ współrzędnych można określić funkcją `coord_`. Dla jednego wykresu określić można tyko jeden układ współrzędnych.
+
+
+```r
+pl <- ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate)) +
+  geom_point(size=2, color="black") 
+
+pl + coord_fixed()
+```
+
+![plot of chunk mapowania8](figure/mapowania8-1.svg)
+
+```r
+pl + coord_flip()
+```
+
+![plot of chunk mapowania8](figure/mapowania8-2.svg)
 
 ## Jak modyfikować styl wykresu?
 
+Poza elementami związanymi z danymi, wykres zawiera również wiele elementów graficznych, które z danymi nie są zwiazane ale są ważne. Np. tytuł wykresu, wielkość opisów osi, położęnie legendy, kolor linii pomocnicznych itp.
+
+W pakiecie `ggplot2` można takie elementy zmieniać na dwa sposoby. Można skorzystac z gotowego zestawu ustawień graficznych, swoistej skórki. Takie skórki są dostępne przez funkcje `theme_`. 
+
+Na poniższym przykładzie, dodanie do wykresu funkcji `theme_excel()` powoduje, żę wykres wygląda jak z pakietu Excel.
+
+Druga możliwość to zmiana poszcezgólnych elementów przez funkcję `theme()`. W ten sposób można przesunąć legendę, zmienić kolory osi, zwiększyć opisy osi i zmodyfikować podobne elementy wykresu.
+
+Poniżej przedstawiamy ten sam wykres z zastosowaniem czterech różnych zestawów parametrów graficznych.
+
+
+```r
+pl <- ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate)) +
+  geom_point(size=2, color="black") 
+
+pl
+```
+
+![plot of chunk mapowania9](figure/mapowania9-1.svg)
+
+```r
+pl + theme_excel()
+```
+
+![plot of chunk mapowania9](figure/mapowania9-2.svg)
+
+```r
+pl + theme_bw() +  theme(legend.position="none") +
+  theme(text=element_text(size=20)) + ggtitle("theme_bw")
+```
+
+![plot of chunk mapowania9](figure/mapowania9-3.svg)
+
+```r
+pl + theme_classic() +  theme(legend.position="none") +
+  theme(text=element_text(size=20)) + ggtitle("theme_classic")
+```
+
+![plot of chunk mapowania9](figure/mapowania9-4.svg)
 
 
