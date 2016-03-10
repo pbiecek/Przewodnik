@@ -1,143 +1,149 @@
-{% extends "layout.html" %}
+{% extends "./layout.html" %}
 
-{% block title %}{{ title }}{% endblock %}
-
-{% block style %}
-{{ super() }}
-<link rel="stylesheet" href="{{ staticBase }}/print.css">
-{% endblock %}
-
-{% set exercise = 1 %}
-{% block content %}
-    {# Cover #}
-    <section id="cover">
-        <h1>{{ title }}</h1>
-        {% if githubId %}
-        <h2>By <a href="{{ githubHost }}{{ githubAuthor }}">@{{ githubAuthor }}</a></h2>
-        {% endif %}
-    </section>
-
-    {# Summary #}
-    <section id="summary">
-        <h1>Summary</h1>
-
-        <ul class="summary">
-            <li>
-                <a href="#README.md">Introduction</a>
-            </li>
-            {% for item in summary.chapters %}
-                <li>
-                    <a href="#{{ item.path }}">{{ item.level }}) {{ item.title }}</a>
-                    {% if item.articles.length > 0 %}
-                    <ul>
-                        {% for article in item.articles %}
-                            <li>
-                                <a href="#{{ article.path }}">{{ article.level }}) {{ article.title }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    </section>
-
-    {# Pages content #}
-    
-    <section>
-        <article id="README.md">
-        {% for section in pages["README.md"].content %}
-            {% if section.type == "normal" %}
-                {% autoescape false %}{{ section.content }}{% endautoescape %}
-            {% elif section.type == "exercise" %}
-                <div class="exercise">
-                    <div class="exercise-header">Exercise #{{ exercise }}</div>
-                    {% autoescape false %}{{ section.content }}{% endautoescape %}
-                    <pre><code>{% autoescape false %}{{ section.code.base|code }}{% endautoescape %}</code></pre>
-                    {% set exercise = exercise + 1 %}
-                </div>
-            {% elif section.type == "quiz" %}
-            <div class="quiz">
-              <div class="exercise-header">Exercise #{{ exercise }}</div>
-              {% autoescape false %}{{ section.content }}{% endautoescape %}
-              {% autoescape false %}{{ section.quiz.base }}{% endautoescape %}
-              {% set exercise = exercise + 1 %}
-            </div>
-            {% endif %}
-        {% endfor %}
-        </article>
-    </section>
-    {% for item in summary.chapters %}
-        {% if item.articles.length > 0 %}
-        <section>
-            <article id="{{ item.path }}" class="new-chapter">
-                <h1>{{ item.title }}</h1>
-            </article>
-
-            {% for article in item.articles %}
-                {% if pages[article.path] %}
-                    <article id="{{ article.path }}">
-                    {% for section in pages[article.path].content %}
-                            {% if section.type == "normal" %}
-                                {% autoescape false %}{{ section.content }}{% endautoescape %}
-                            {% elif section.type == "exercise" %}
-                                <div class="exercise">
-                                    <div class="exercise-header">Exercise #{{ exercise }}</div>
-                                    {% autoescape false %}{{ section.content }}{% endautoescape %}
-                                    <pre><code>{% autoescape false %}{{ section.code.base|code }}{% endautoescape %}</code></pre>
-                                    {% set exercise = exercise + 1 %}
-                                </div>
-                            {% elif section.type == "quiz" %}
-                                <div class="quiz">
-                                    <div class="exercise-header">Exercise #{{ exercise }}</div>
-                                    {% autoescape false %}{{ section.content }}{% endautoescape %}
-                                    {% autoescape false %}{{ section.quiz.base }}{% endautoescape %}
-                                    {% set exercise = exercise + 1 %}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </article>
-                {% endif %}
-            {% endfor %}
-        </section>
-        {% endif %}
-    {% endfor %}
-
-
-    {# Exercise solutions #}
-    {% if exercise > 1 %}
-        {% set exercise = 1 %}
-        <section>
-            <article class="new-chapter">
-                <h1>Exercise Solutions</h1>
-            </article>
-            <article>
-            {% for item in summary.chapters %}
-                {% for article in item.articles %}
-                    {% if pages[article.path] %}
-                        {% for section in pages[article.path].content %}
-                            {% if section.type == "exercise" %}
-                                <div class="exercise">
-                                    <div class="exercise-header">Exercise #{{ exercise }}</div>
-                                    {% autoescape false %}{{ section.content }}{% endautoescape %}
-                                    <pre><code>{% autoescape false %}{{ section.code.solution|code }}{% endautoescape %}</code></pre>
-                                    {% set exercise = exercise + 1 %}
-                                </div>
-                            {% elif section.type == "quiz" %}
-                                <div class="quiz">
-                                    <div class="exercise-header">Exercise #{{ exercise }}</div>
-                                    {% autoescape false %}{{ section.content }}{% endautoescape %}
-                                    {% autoescape false %}{{ section.quiz.solution }}{% endautoescape %}
-                                    {% set exercise = exercise + 1 %}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-            </article>
-        </section>
+{% block head %}
+    {{ super() }}
+    {% if progress.current.next and progress.current.next.path %}
+    <link rel="next" href="{{ basePath }}/{{ progress.current.next.path|contentLink }}" />
+    {% endif %}
+    {% if progress.current.prev and progress.current.prev.path %}
+    <link rel="prev" href="{{ basePath }}/{{ progress.current.prev.path|contentLink }}" />
     {% endif %}
 {% endblock %}
 
-{% block javascript %}{% endblock %}
+{% block title %}{{ progress.current.title }} | {{ title }}{% endblock %}
+{% block description %}{% if progress.current.level == "0" %}{{ description }}{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="book"
+        data-level="{{ progress.current.level }}"
+        data-chapter-title="{{ progress.current.title }}"
+        data-filepath="{{ progress.current.path }}"
+        data-basepath="{{ basePath }}"
+        data-revision="{{ revision }}"
+        data-innerlanguage="{{ innerlanguage }}">
+{% macro articles(_articles) %}
+    {% for item in _articles %}
+        <li class="chapter {% if item.path == _input %}active{% endif %}" data-level="{{ item.level }}" {% if item.path and not item.external %}data-path="{{ item.path|contentLink }}"{% endif %}>
+            {% if item.path and item.exists %}
+                {% if not item.external %}
+                    <a href="{{ basePath }}/{{ item.path|contentLink }}">
+                {% else %}
+                    <a target="_blank" href="{{ item.path }}">
+                {% endif %}
+                        <i class="fa fa-check"></i>
+                        {% if item.level != "0" %}
+                            <b>{{ item.level }}.</b>
+                        {% endif %}
+                        {{ item.title }}
+                    </a>
+            {% else %}
+            <span><b>{{ item.level }}.</b> {{ item.title }}</span>
+            {% endif %}
+            {% if item.articles.length > 0 %}
+            <ul class="articles">
+                {{ articles(item.articles) }}
+            </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            {% set _divider = false %}
+            {% if options.links.sidebar %}
+            {% for linkTitle, link in options.links.sidebar %}
+                {% set _divider = true %}
+                <li>
+                    <a href="{{ link }}" target="blank" class="custom-link">{{ linkTitle }}</a>
+                </li>
+            {% endfor %}
+            {% endif %}
+
+            {% if _divider %}
+            <li class="divider"></li>
+            {% endif %}
+
+            {{ articles(summary.chapters) }}
+
+            {% if options.links.gitbook != false %}
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    {{ __("GITBOOK_LINK") }}
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+    <div class="book-body">
+        <div class="body-inner">
+<div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    {% if glossary.length > 0 %}
+    <a href="{{ basePath }}/GLOSSARY.html" class="btn pull-left" aria-label="{{ __("GLOSSARY_OPEN") }}"><i class="fa fa-sort-alpha-asc"></i></a>
+    {% endif %}
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="{{ basePath }}/" >{{ title }}</a>
+    </h1>
+</div>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                {% block page_inner %}
+                {% for section in content %}
+                    <section class="{{ section.type }}" id="section-{{ section.id }}">
+                    {% if section.type == "normal" %}
+                        {% autoescape false %}{{ section.content }}{% endautoescape %}
+                    {% endif %}
+                    </section>
+                {% endfor %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+
+        {% if progress.current.prev and progress.current.prev.path %}
+        <a href="{{ basePath }}/{{ progress.current.prev.path|contentLink }}" class="navigation navigation-prev {% if not (progress.current.next and progress.current.next.path) %}navigation-unique{% endif %}" aria-label="Previous page: {{ progress.current.prev.title }}"><i class="fa fa-angle-left"></i></a>
+        {% endif %}
+        {% if progress.current.next and progress.current.next.path %}
+        <a href="{{ basePath }}/{{ progress.current.next.path|contentLink }}" class="navigation navigation-next {% if not (progress.current.prev or progress.current.prev.path) %}navigation-unique{% endif %}" aria-label="Next page: {{ progress.current.next.title }}"><i class="fa fa-angle-right"></i></a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ staticBase }}/app.js"></script>
+{% for resource in plugins.resources.js %}
+    {% if resource.url %}
+    <script src="{{ resource.url }}"></script>
+    {% else %}
+    <script src="{{ staticBase }}/plugins/{{ resource.path }}"></script>
+    {% endif %}
+{% endfor %}
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {% autoescape false %}{{ pluginsConfig }}{% endautoescape %};
+    gitbook.start(config);
+});
+</script>
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ staticBase }}/style.css">
+    {% for resource in plugins.resources.css %}
+        {% if resource.url %}
+        <link rel="stylesheet" href="{{ resource.url }}">
+        {% else %}
+        <link rel="stylesheet" href="{{ staticBase }}/plugins/{{ resource.path }}">
+        {% endif %}
+    {% endfor %}
+    {% for type, style in styles %}
+        <link rel="stylesheet" href="{{ basePath }}/{{ style }}">
+    {% endfor %}
+{% endblock %}
