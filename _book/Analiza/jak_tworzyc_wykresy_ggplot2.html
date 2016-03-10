@@ -57,7 +57,7 @@
         data-chapter-title="Jak tworzyć wykresy z pakietem ggplot2?"
         data-filepath="Analiza/jak_tworzyc_wykresy_ggplot2.md"
         data-basepath=".."
-        data-revision="Thu Mar 10 2016 01:10:09 GMT+0100 (CET)"
+        data-revision="Thu Mar 10 2016 10:19:35 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -1083,8 +1083,8 @@ ggplot(countries, aes(x=birth.rate, y=death.rate, label=country)) +
 <h2 id="jak-tworzy&#x107;-panele">Jak tworzy&#x107; panele?</h2>
 <p>Jedn&#x105; z ciekawych mo&#x17C;liwo&#x15B;ci pakietu <code>ggplot2</code> jest przedstawianie wynik&#xF3;w dotycz&#x105;cych podgrup danych na s&#x105;siednich panelach.</p>
 <p>Panele maj&#x105; taki sam uk&#x142;ad wsp&#xF3;&#x142;rz&#x119;dnych, przez co &#x142;atwiej jest por&#xF3;wnywa&#x107; zale&#x17C;no&#x15B;ci pomi&#x119;dzy nimi.</p>
-<p>Panele tworzy si&#x119; funkcj&#x105; <code>facet_grid()</code> lub <code>facet_wrap()</code>. Poni&#x17C;ej przedstawiamy przyk&#x142;ad w kt&#xF3;rym ka&#x17C;dy panel przedstawia inny kontynent, ale te&#x17C; do ka&#x17C;dego panelu dodano w tle punkty przedstawiaj&#x105;ce wszystkie dane. Jeszcze bardziej u&#x142;atwia to orientacje jak dla r&#xF3;&#x17C;nych kontynent&#xF3;w zachowuj&#x105; si&#x119; poszczeg&#xF3;lne wsp&#xF3;&#x142;czynniki.</p>
-<p>Grupy mo&#x17C;na wyr&#xF3;&#x17C;nia&#x107; te&#x17C; kolorami korzystaj&#x105;c z tylko jednego wykresu (drugi przyk&#x142;ad poni&#x17C;ej). Ale taki wykres jest czytelny tylko je&#x17C;eli grup jest niewiele. Dla du&#x17C;ej liczby grup panele s&#x105; zdecydowanie lepszym rozwi&#x105;zaniem.</p>
+<p>Panele tworzy si&#x119; funkcj&#x105; <code>facet_grid()</code> lub <code>facet_wrap()</code>. Poni&#x17C;ej przedstawiamy przyk&#x142;ad w kt&#xF3;rym ka&#x17C;dy panel przedstawia inny kontynent, ale te&#x17C; do ka&#x17C;dego panelu dodano w tle punkty przedstawiaj&#x105;ce wszystkie dane. U&#x142;atwia to orientacje jak dla r&#xF3;&#x17C;nych kontynent&#xF3;w wygl&#x105;daj&#x105; wsp&#xF3;&#x142;czynniki narodzin i zgon&#xF3;w na tle pozosta&#x142;ych kraj&#xF3;w.</p>
+<p>Grupy mo&#x17C;na wyr&#xF3;&#x17C;nia&#x107; te&#x17C; kolorami korzystaj&#x105;c z tylko jednego panelu (drugi przyk&#x142;ad poni&#x17C;ej). Ale taki wykres jest czytelny tylko, je&#x17C;eli grup jest niewiele. Dla du&#x17C;ej liczby grup panele s&#x105; zdecydowanie lepszym rozwi&#x105;zaniem.</p>
 <pre><code class="lang-r">ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate)) +
   stat_ellipse(color=<span class="hljs-string">&quot;red4&quot;</span>)+
   geom_point(data=countries[,-<span class="hljs-number">5</span>],size=<span class="hljs-number">1</span>,color=<span class="hljs-string">&quot;grey&quot;</span>) +
@@ -1097,10 +1097,69 @@ ggplot(countries, aes(x=birth.rate, y=death.rate, label=country)) +
   geom_point(size=<span class="hljs-number">2</span>)
 </code></pre>
 <p><img src="figure/mapowania6-2.svg" alt="plot of chunk mapowania6"></p>
-<h2 id="jak-modyfikowa&#x107;-po&#x142;o&#x17C;enie-element&#xF3;w">Jak modyfikowa&#x107; po&#x142;o&#x17C;enie element&#xF3;w?</h2>
 <h2 id="jak-modyfikowa&#x107;-skale">Jak modyfikowa&#x107; skale?</h2>
+<p>Opisuj&#x105;c mechanizm mapowania napisali&#x15B;my, &#x17C;e wystarczy okre&#x15B;li&#x107; jaka zmienna ma by&#x107; zamapowana na jaki atrybut i pakiet <code>ggplot2</code> ju&#x17C; b&#x119;dzie wiedzia&#x142; jak dobra&#x107; kolory / kszta&#x142;ty.</p>
+<p>Co jednak zrobi&#x107; je&#x17C;eli nie podoba nam si&#x119; zaproponowana skala kolor&#xF3;w / kszta&#x142;t&#xF3;w? Rozwi&#x105;zaniem mo&#x17C;e by&#x107; nadpisanie skali dla mapowania.</p>
+<p>Funkcje z klasy <code>sale_atrybut_wartosc</code> pozwalaj&#x105; na okre&#x15B;lenie jak ma wygl&#x105;da&#x107; mapowanie na okre&#x15B;lony atrybut. Mo&#x17C;emy r&#x119;cznie wskaza&#x107; kszta&#x142;ty / koloru lub mo&#x17C;emy wskaza&#x107; funkcj&#x119;, kt&#xF3;ra za nas wyznaczy kolory / kszta&#x142;ty. </p>
+<p>Poni&#x17C;ej przedstawiamy trzy przyk&#x142;ady skali dla kszta&#x142;t&#xF3;w i kolor&#xF3;w. Pierwsza to domy&#x15B;lna skala, druga jest wybierana zgodnie z okre&#x15B;lonym schematem a trzecia okre&#x15B;la wprost jakie warto&#x15B;ci maj&#x105; odpowiada&#x107; kolejnym kontynentom.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ggthemes)
+pl &lt;- ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate, shape=continent, color=continent)) +
+  geom_point(size=<span class="hljs-number">5</span>) 
+
+pl
+</code></pre>
+<p><img src="figure/mapowania7-1.svg" alt="plot of chunk mapowania7"></p>
+<pre><code class="lang-r">pl + scale_color_brewer(type=<span class="hljs-string">&quot;qual&quot;</span>, palette = <span class="hljs-number">3</span>)
+</code></pre>
+<p><img src="figure/mapowania7-2.svg" alt="plot of chunk mapowania7"></p>
+<pre><code class="lang-r">pl + scale_color_manual(values = c(<span class="hljs-string">&quot;red4&quot;</span>, <span class="hljs-string">&quot;red1&quot;</span>, <span class="hljs-string">&quot;green4&quot;</span>, <span class="hljs-string">&quot;green1&quot;</span>, <span class="hljs-string">&quot;grey&quot;</span>))
+</code></pre>
+<p><img src="figure/mapowania7-3.svg" alt="plot of chunk mapowania7"></p>
+<pre><code class="lang-r">pl + scale_shape_cleveland()
+</code></pre>
+<p><img src="figure/mapowania7-4.svg" alt="plot of chunk mapowania7"></p>
+<pre><code class="lang-r">pl + scale_shape_manual(values=LETTERS)
+</code></pre>
+<p><img src="figure/mapowania7-5.svg" alt="plot of chunk mapowania7"></p>
 <h2 id="jak-modyfikowa&#x107;-uk&#x142;ad-wsp&#xF3;&#x142;rz&#x119;dnych">Jak modyfikowa&#x107; uk&#x142;ad wsp&#xF3;&#x142;rz&#x119;dnych?</h2>
+<p>Na wykresach dane s&#x105; prezentowane w uk&#x142;adzie wsp&#xF3;&#x142;rz&#x119;dnych. 
+Uk&#x142;ad jest ram&#x105; dla ca&#x142;ego wykresu, domy&#x15B;lnie jest to rama kartezja&#x144;ska.</p>
+<p>S&#x105; jednak sytuacje, w kt&#xF3;rych mo&#x17C;emy chcie&#x107; t&#x119; ram&#x119; zmieni&#x107;. Je&#x17C;eli przedstawiamy mapy to mo&#x17C;emy chcie&#x107; wykorzysta&#x107; inn&#x105; projekcj&#x119;. Mo&#x17C;emy chcie&#x107; zamieni&#x107; osie miejscami. Lub spowodowa&#x107;, &#x17C;e jedna z osi jest logarytmiczna lub pierwiastkowa. 
+Je&#x17C;eli na osiach prezentowana jest ta sama jednostka to mo&#x17C;emy za&#x17C;yczy&#x107; sobie by zachowane by&#x142;y proporcje pomi&#x119;dzy osi&#x105; pionow&#x105; a poziom&#x105;.</p>
+<p>Wszystkie te rzeczy s&#x105; mo&#x17C;liwe przy odpowiednim okre&#x15B;leniu uk&#x142;adu wsp&#xF3;&#x142;rz&#x119;dnych.</p>
+<p>Dla pakietu <code>ggplot</code> uk&#x142;ad wsp&#xF3;&#x142;rz&#x119;dnych mo&#x17C;na okre&#x15B;li&#x107; funkcj&#x105; <code>coord_</code>. Dla jednego wykresu okre&#x15B;li&#x107; mo&#x17C;na tyko jeden uk&#x142;ad wsp&#xF3;&#x142;rz&#x119;dnych.</p>
+<pre><code class="lang-r">pl &lt;- ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate)) +
+  geom_point(size=<span class="hljs-number">2</span>, color=<span class="hljs-string">&quot;black&quot;</span>) 
+
+pl + coord_fixed()
+</code></pre>
+<p><img src="figure/mapowania8-1.svg" alt="plot of chunk mapowania8"></p>
+<pre><code class="lang-r">pl + coord_flip()
+</code></pre>
+<p><img src="figure/mapowania8-2.svg" alt="plot of chunk mapowania8"></p>
 <h2 id="jak-modyfikowa&#x107;-styl-wykresu">Jak modyfikowa&#x107; styl wykresu?</h2>
+<p>Poza elementami zwi&#x105;zanymi z danymi, wykres zawiera r&#xF3;wnie&#x17C; wiele element&#xF3;w graficznych, kt&#xF3;re z danymi nie s&#x105; zwiazane ale s&#x105; wa&#x17C;ne. Np. tytu&#x142; wykresu, wielko&#x15B;&#x107; opis&#xF3;w osi, po&#x142;o&#x17C;enie legendy, kolor linii pomocnicznych itp.</p>
+<p>W pakiecie <code>ggplot2</code> mo&#x17C;na takie elementy dookre&#x15B;la&#x107; na dwa sposoby. Mo&#x17C;na skorzysta&#x107; z gotowego zestawu ustawie&#x144; graficznych, swoistej sk&#xF3;rki. Takie sk&#xF3;rki s&#x105; dost&#x119;pne przez funkcje <code>theme_</code>. </p>
+<p>Na poni&#x17C;szym przyk&#x142;adzie, dodanie do wykresu funkcji <code>theme_excel()</code> powoduje, &#x17C;e wykres wygl&#x105;da jak z pakietu Excel.</p>
+<p>Druga mo&#x17C;liwo&#x15B;&#x107; to zmiana poszczeg&#xF3;lnych element&#xF3;w przez funkcj&#x119; <code>theme()</code>. W ten spos&#xF3;b mo&#x17C;na przesun&#x105;&#x107; legend&#x119;, zmieni&#x107; kolory osi, zwi&#x119;kszy&#x107; opisy osi i zmodyfikowa&#x107; podobne elementy wykresu.</p>
+<p>Poni&#x17C;ej przedstawiamy ten sam wykres z zastosowaniem czterech r&#xF3;&#x17C;nych zestaw&#xF3;w parametr&#xF3;w graficznych.</p>
+<pre><code class="lang-r">pl &lt;- ggplot(na.omit(countries), aes(x = birth.rate, y = death.rate)) +
+  geom_point(size=<span class="hljs-number">2</span>, color=<span class="hljs-string">&quot;black&quot;</span>) 
+
+pl
+</code></pre>
+<p><img src="figure/mapowania9-1.svg" alt="plot of chunk mapowania9"></p>
+<pre><code class="lang-r">pl + theme_excel()
+</code></pre>
+<p><img src="figure/mapowania9-2.svg" alt="plot of chunk mapowania9"></p>
+<pre><code class="lang-r">pl + theme_bw() +  theme(legend.position=<span class="hljs-string">&quot;none&quot;</span>) +
+  theme(text=element_text(size=<span class="hljs-number">20</span>)) + ggtitle(<span class="hljs-string">&quot;theme_bw&quot;</span>)
+</code></pre>
+<p><img src="figure/mapowania9-3.svg" alt="plot of chunk mapowania9"></p>
+<pre><code class="lang-r">pl + theme_classic() +  theme(legend.position=<span class="hljs-string">&quot;none&quot;</span>) +
+  theme(text=element_text(size=<span class="hljs-number">20</span>)) + ggtitle(<span class="hljs-string">&quot;theme_classic&quot;</span>)
+</code></pre>
+<p><img src="figure/mapowania9-4.svg" alt="plot of chunk mapowania9"></p>
 
                     
                     </section>
@@ -1144,7 +1203,7 @@ ggplot(countries, aes(x=birth.rate, y=death.rate, label=country)) +
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"ga":{"token":"UA-5650686-2","configuration":"auto"},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

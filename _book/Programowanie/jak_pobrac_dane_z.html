@@ -57,7 +57,7 @@
         data-chapter-title="Jak pobrać dane z...?"
         data-filepath="Programowanie/jak_pobrac_dane_z.md"
         data-basepath=".."
-        data-revision="Thu Mar 10 2016 01:10:09 GMT+0100 (CET)"
+        data-revision="Thu Mar 10 2016 10:19:35 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -982,7 +982,9 @@ Liczba interesuj&#x105;cych &#x17A;r&#xF3;de&#x142; przyrasta w niesamowitym tem
 <p>Zaczniemy od pobrania s&#x142;ownika z list&#x105; wszystkich nazw i opis&#xF3;w tabel, mo&#x17C;na to wykona&#x107; funkcj&#x105; <code>get_codes()</code>. Nast&#x119;pnie wybierzemy tylko te, kt&#xF3;re w opisie maj&#x105; s&#x142;owo <code>dying</code>.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(WHO)
 codes &lt;- get_codes()
-as.data.frame(codes[grep(codes$display, pattern=<span class="hljs-string">&quot;dying&quot;</span>), ])
+</code></pre>
+<pre><code>## Error in curl::curl_fetch_memory(url, handle = handle): Couldn&apos;t resolve host name
+</code></pre><pre><code class="lang-r">as.data.frame(codes[grep(codes$display, pattern=<span class="hljs-string">&quot;dying&quot;</span>), ])
 </code></pre>
 <pre><code>##             label
 ## 1  MDG_0000000001
@@ -1014,7 +1016,7 @@ as.data.frame(codes[grep(codes$display, pattern=<span class="hljs-string">&quot;
 </code></pre><p>Interesuj&#x105;ca tabela ma identyfikator <code>LIFE_0000000030</code>. Pobierzemy j&#x105; do R (co mo&#x17C;e troch&#x119; potrwa&#x107; i wymaga po&#x142;&#x105;czenia z Internetem) a nast&#x119;pnie sprawdzimy jakie cechy s&#x105; w tej tabeli opisane.</p>
 <pre><code class="lang-r">df &lt;- get_data(<span class="hljs-string">&quot;LIFE_0000000030&quot;</span>)
 </code></pre>
-<pre><code>## Error in get_result(url): Internal Server Error (HTTP 500).
+<pre><code>## Error in curl::curl_fetch_memory(url, handle = handle): Couldn&apos;t resolve host name
 </code></pre><pre><code class="lang-r">colnames(df)
 </code></pre>
 <pre><code>## [1] &quot;daty&quot; &quot;id&quot;
@@ -1025,7 +1027,7 @@ df %&gt;%
   select(agegroup, value, sex) -&gt;
   poland2013
 </code></pre>
-<pre><code>## Error: comparison (1) is possible only for atomic and list types
+<pre><code>## Error: object &apos;year&apos; not found
 </code></pre><pre><code class="lang-r">head(poland2013)
 </code></pre>
 <pre><code>## Error in head(poland2013): object &apos;poland2013&apos; not found
@@ -1099,7 +1101,7 @@ poland2013$agegroup &lt;- factor(poland2013$agegroup,
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"ga":{"token":"UA-5650686-2","configuration":"auto"},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>
