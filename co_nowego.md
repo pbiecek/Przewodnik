@@ -1,6 +1,11 @@
 # Co nowego zostało ostatnio dodane?
 
 
+* 10 marca 2016
+
+W rozdziale *Analiza* podrozdział 
+[Jak tworzyć wykresy z pakietem ggplot2?](https://pbiecek.gitbooks.io/przewodnik/content/Analiza/jak_tworzyc_wykresy_ggplot2.html)
+
 * 8 marca 2016
 
 W rozdziale *Analiza* podrozdziały 
