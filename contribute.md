@@ -1,9 +1,5 @@
 # Podrasuj Przewodnik!
 
-Przewodnik jest zbiorem materiałów poświęconych językowi oraz bibliotekom programu R. Wykorzystuję je do prowadzenia zajęć na Wydziale Matematyki i Informatyki Uniwersytetu Warszawskiego oraz Matematyki i Nauk Informacyjnych Politechniki Warszawskiej.
-
-Wersja 4.0 jest dostępna na serwisie GitBook w postaci elektronicznej. Gdy będzie ukończona będzie też dostępna w postaci papierowej.
-
 Dzięki Tobie, Przewodnik może być jeszcze lepszy!
 
 * Jeżeli jakieś wyjasnienie jest niezrozumiałe lub uważasz, że jest niepoprawne, proszę daj o tym znać. Do każdej linii na stronie GitBooka możesz dodać komentarz (mały plus po prawej stronie). Zaznacz co jest niezrozumiałe i postaram się to poprawić.

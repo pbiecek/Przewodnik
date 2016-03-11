@@ -1,10 +1,13 @@
 { 
   "title": "Przewodnik po pakiecie R v. 4.0",
-  "plugins": ["katex", "ga", "expandable-chapters"],
+  "plugins": ["katex", "ga", "expandable-chapters", "github"],
   "pluginsConfig": {
       "ga": {
           "token": "UA-5650686-13"
-      }
+      },
+      "github": {
+            "url": "https://github.com/pbiecek/Przewodnik"
+        }
   },
   "links": {
         "home": "TUTAJ HOME",
