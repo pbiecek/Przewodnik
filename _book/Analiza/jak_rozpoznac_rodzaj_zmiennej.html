@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak estymować parametry rozkładu? | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak rozpoznać rodzaj zmiennej? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" />
+    <link rel="next" href="../Analiza/jak_badac_rozklad_jednej_zmiennej.html" />
     
     
-    <link rel="prev" href="../Programowanie/generatory_4.html" />
+    <link rel="prev" href="../Analiza/eksploracja.html" />
     
 
         
@@ -57,9 +57,9 @@
         
         
     <div class="book"
-        data-level="2.12.5"
-        data-chapter-title="Jak estymować parametry rozkładu?"
-        data-filepath="Programowanie/generatory_5.md"
+        data-level="3.1.1"
+        data-chapter-title="Jak rozpoznać rodzaj zmiennej?"
+        data-filepath="Analiza/jak_rozpoznac_rodzaj_zmiennej.md"
         data-basepath=".."
         data-revision="Fri Mar 11 2016 01:46:57 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -571,7 +571,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.12.5" data-path="Programowanie/generatory_5.html">
+        <li class="chapter " data-level="2.12.5" data-path="Programowanie/generatory_5.html">
             
                 
                     <a href="../Programowanie/generatory_5.html">
@@ -658,7 +658,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+        <li class="chapter active" data-level="3.1.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
             
                 
                     <a href="../Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
@@ -911,26 +911,30 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="estymacja-parametr&#xF3;w-rozk&#x142;adu">Estymacja parametr&#xF3;w rozk&#x142;adu</h2>
-<p>Do oceny parametr&#xF3;w metod&#x105; najwi&#x119;kszej funkcji wiarogodno&#x15B;ci w okre&#x15B;lonej rodzinie rozk&#x142;ad&#xF3;w s&#x142;u&#x17C;y funkcja <code>MASS::fitdistr()</code>. 
-Estymowane mog&#x105; by&#x107; parametry dla szerokiej klasy rozk&#x142;ad&#xF3;w, praktycznie wszystkich wymienionych w tabeli powy&#x17C;ej. Pierwszym argumentem funkcji <code>fitdistr()</code> jest wektor obserwacji, na bazie kt&#xF3;rego wykonana b&#x119;dzie estymacja. Drugim argumentem powinna by&#x107; nazwa rozk&#x142;adu, a trzecim argumentem lista z pocz&#x105;tkowymi ocenami parametr&#xF3;w rozk&#x142;adu. Trzeci argument nie jest wymagany dla rozk&#x142;adu wyk&#x142;adniczego, normalnego, log-normalnego i Poissona, dla tych rozk&#x142;ad&#xF3;w funkcja <code>fitdistr()</code> ma wbudowane metody inicjalizacji.
-Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza ocenami parametr&#xF3;w wyznaczany jest te&#x17C; b&#x142;&#x105;d standardowy tych ocen (przedstawiony w nawiasach).</p>
-<p>Wylosujmy 100 obserwacji z rozk&#x142;adu log-normalnego.</p>
-<pre><code class="lang-r">wek &lt;- rlnorm(<span class="hljs-number">100</span>)
-</code></pre>
-<p>Sprawdzamy jak wygl&#x105;daj&#x105; oceny parametr&#xF3;w w rodzinie rozk&#x142;ad&#xF3;w normalnych (tu nie ma dobrych odpowiedzi, ale to tylko &#x107;wiczenie).</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;normal&quot;</span>)
-</code></pre>
-<pre><code>##      mean         sd    
-##   1.6698846   2.1792353 
-##  (0.2179235) (0.1540952)
-</code></pre><p>A teraz wyznaczamy oceny w rodzinie rozk&#x142;ad&#xF3;w gamma.</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;gamma&quot;</span>, list(shape=<span class="hljs-number">3</span>, rate=<span class="hljs-number">3</span>))
-</code></pre>
-<pre><code>##      shape       rate   
-##   1.0846942   0.6495628 
-##  (0.1360306) (0.1025949)
-</code></pre>
+                        <h1 id="jak-rozpozna&#x107;-rodzaj-zmiennej">Jak rozpozna&#x107; rodzaj zmiennej?</h1>
+<p>W ca&#x142;ym poni&#x17C;szym rozdziale s&#x142;owo <code>zmienna</code> b&#x119;dzie wykorzystywane nie w kontek&#x15B;cie programistycznym (obiekt), ale w kontek&#x15B;cie statystycznym (obserwowana cecha). </p>
+<p>Zanim zaczniemy powa&#x17C;niejsze tematy musimy uzgodni&#x107; podstawy. Pierwsz&#x105;, by&#x107; mo&#x17C;e najwa&#x17C;niejsz&#x105; rzecz&#x105;, o kt&#xF3;rej nale&#x17C;y pami&#x119;ta&#x107; wykonuj&#x105;c jakiekolwiek analizy, jest to, &#x17C;e <em>dane liczbowe to nie tylko liczby!!!</em></p>
+<p>Je&#x17C;eli nie tylko liczby to co jeszcze? </p>
+<p>To liczby i ich znaczenie. Wydaje si&#x119; tak oczywiste, &#x17C;e cz&#x119;sto si&#x119; o tym zapomina, co niestety ma przykre konsekwencje. Przyk&#x142;adowo, je&#x17C;eli mamy zmienn&#x105; o nazwie wiek i jest w niej warto&#x15B;&#x107; 9, to mo&#x17C;e ona mie&#x107; wiele znacze&#x144;. Mo&#x17C;e jest to wiek w latach, mo&#x17C;e warto&#x15B;&#x107; 9 koduje pewien przedzia&#x142; wiekowy, np. 90+ lat, by&#x107; mo&#x17C;e warto&#x15B;&#x107; 9 koduje brak danych (czasem warto&#x15B;ciami 9, 99, 999 koduje si&#x119; braku danych), by&#x107; mo&#x17C;e to wiek ale w miesi&#x105;cach. W zale&#x17C;no&#x15B;ci od tego co znaczy okre&#x15B;lona warto&#x15B;&#x107; nale&#x17C;y j&#x105; inaczej traktowa&#x107;.</p>
+<p>Przyjmijmy nast&#x119;puj&#x105;cy podzia&#x142; zmiennych:</p>
+<ul>
+<li>Zmienne jako&#x15B;ciowe (nazywane r&#xF3;wnie&#x17C; wyliczeniowymi, czynnikowymi lub kategorycznymi), to zmienne przyjmuj&#x105;ce okre&#x15B;lon&#x105; liczb&#x119; warto&#x15B;ci (najcz&#x119;&#x15B;ciej nie liczbowych). Zmienne te mo&#x17C;na dalej podzieli&#x107; na: <ul>
+<li>binarne (nazywane r&#xF3;wnie&#x17C; dwumianowymi, dychotomicznymi) np. p&#x142;e&#x107; (poziomy: kobieta/m&#x119;&#x17C;czyzna),<ul>
+<li>nominalne (nazywane r&#xF3;wnie&#x17C; zmiennymi jako&#x15B;ciowymi nieuporz&#x105;dkowanymi) np. marka samochodu,</li>
+<li>uporz&#x105;dkowane, np. wykszta&#x142;cenie (poziomy: podstawowe/&#x15B;rednie/wy&#x17C;sze), ocena z przedmiotu.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Zmienne ilo&#x15B;ciowe, z kt&#xF3;rych mo&#x17C;na dodatkowo wyr&#xF3;&#x17C;ni&#x107;:<ul>
+<li>zliczenia (liczba wyst&#x105;pie&#x144; pewnego zjawiska, opisywana liczb&#x105; ca&#x142;kowit&#x105;), np. liczba lat nauki, liczba wypadk&#xF3;w,</li>
+<li>ilorazowe, czyli zmienne mierzone w skali, w kt&#xF3;rej mo&#x17C;na dzieli&#x107; warto&#x15B;ci (ilorazy maj&#x105; sens). Np. d&#x142;ugo&#x15B;&#x107; w metrach (co&#x15B; jest 2 razy d&#x142;u&#x17C;sze, 10 razy kr&#xF3;tsze itp.),</li>
+<li>przedzia&#x142;owe (nazywane te&#x17C; interwa&#x142;owymi), mierzone w skali, w kt&#xF3;rej mo&#x17C;na odejmowa&#x107; warto&#x15B;ci (wyznacza&#x107; d&#x142;ugo&#x15B;&#x107; przedzia&#x142;u). Np. daty, mo&#x17C;na liczy&#x107; czas pomi&#x119;dzy dwoma datami ale nie ma sensu ich dzieli&#x107;. Te&#x17C; temperatura, mo&#x17C;na liczy&#x107; r&#xF3;&#x17C;nice temperatur w stopniach Celsjusza, ale nie ma sensu liczy&#x107; ilorazu.</li>
+</ul>
+</li>
+</ul>
+<p>W zale&#x17C;no&#x15B;ci od tego co opisuje zmienna, mo&#x17C;na na niej wykonywa&#x107; inne operacje. Dla zmiennych w skali uporz&#x105;dkowanej mo&#x17C;na wyznacza&#x107; warto&#x15B;&#x107; minimaln&#x105;, maksymaln&#x105;, &#x15B;rodkow&#x105;. Ale mo&#x17C;e nie mie&#x107; sensu liczenie &#x15B;redniej.</p>
+
                     
                     </section>
                 
@@ -940,10 +944,10 @@ Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza oce
         </div>
 
         
-        <a href="../Programowanie/generatory_4.html" class="navigation navigation-prev " aria-label="Previous page: Jak losować z użyciem kopuli?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Analiza/eksploracja.html" class="navigation navigation-prev " aria-label="Previous page: Eksploracja"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" class="navigation navigation-next " aria-label="Next page: Jak korzystać z serwisu GitHub?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Analiza/jak_badac_rozklad_jednej_zmiennej.html" class="navigation navigation-next " aria-label="Next page: Jak badać rozkład jednej zmiennej?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak estymować parametry rozkładu? | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak pobrać dane z...? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" />
+    <link rel="next" href="../Programowanie/zadania.html" />
     
     
-    <link rel="prev" href="../Programowanie/generatory_4.html" />
+    <link rel="prev" href="../Programowanie/jak_pobierac_dane_z_twittera.html" />
     
 
         
@@ -57,9 +57,9 @@
         
         
     <div class="book"
-        data-level="2.12.5"
-        data-chapter-title="Jak estymować parametry rozkładu?"
-        data-filepath="Programowanie/generatory_5.md"
+        data-level="2.3.7"
+        data-chapter-title="Jak pobrać dane z...?"
+        data-filepath="Programowanie/jak_pobrac_dane_z.md"
         data-basepath=".."
         data-revision="Fri Mar 11 2016 01:46:57 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -262,7 +262,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.7" data-path="Programowanie/jak_pobrac_dane_z.html">
+        <li class="chapter active" data-level="2.3.7" data-path="Programowanie/jak_pobrac_dane_z.html">
             
                 
                     <a href="../Programowanie/jak_pobrac_dane_z.html">
@@ -571,7 +571,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.12.5" data-path="Programowanie/generatory_5.html">
+        <li class="chapter " data-level="2.12.5" data-path="Programowanie/generatory_5.html">
             
                 
                     <a href="../Programowanie/generatory_5.html">
@@ -911,26 +911,97 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="estymacja-parametr&#xF3;w-rozk&#x142;adu">Estymacja parametr&#xF3;w rozk&#x142;adu</h2>
-<p>Do oceny parametr&#xF3;w metod&#x105; najwi&#x119;kszej funkcji wiarogodno&#x15B;ci w okre&#x15B;lonej rodzinie rozk&#x142;ad&#xF3;w s&#x142;u&#x17C;y funkcja <code>MASS::fitdistr()</code>. 
-Estymowane mog&#x105; by&#x107; parametry dla szerokiej klasy rozk&#x142;ad&#xF3;w, praktycznie wszystkich wymienionych w tabeli powy&#x17C;ej. Pierwszym argumentem funkcji <code>fitdistr()</code> jest wektor obserwacji, na bazie kt&#xF3;rego wykonana b&#x119;dzie estymacja. Drugim argumentem powinna by&#x107; nazwa rozk&#x142;adu, a trzecim argumentem lista z pocz&#x105;tkowymi ocenami parametr&#xF3;w rozk&#x142;adu. Trzeci argument nie jest wymagany dla rozk&#x142;adu wyk&#x142;adniczego, normalnego, log-normalnego i Poissona, dla tych rozk&#x142;ad&#xF3;w funkcja <code>fitdistr()</code> ma wbudowane metody inicjalizacji.
-Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza ocenami parametr&#xF3;w wyznaczany jest te&#x17C; b&#x142;&#x105;d standardowy tych ocen (przedstawiony w nawiasach).</p>
-<p>Wylosujmy 100 obserwacji z rozk&#x142;adu log-normalnego.</p>
-<pre><code class="lang-r">wek &lt;- rlnorm(<span class="hljs-number">100</span>)
+                        <h1 id="jak-pobra&#x107;-dane-z">Jak pobra&#x107; dane z...?</h1>
+<p>Poni&#x17C;ej opiszemy kilka u&#x17C;ytecznych &#x17A;r&#xF3;de&#x142; danych dost&#x119;pnych w Internecie.
+Liczba interesuj&#x105;cych &#x17A;r&#xF3;de&#x142; przyrasta w niesamowitym tempie. Poni&#x17C;sze bazy s&#x105; najcz&#x119;&#x15B;ciej bardzo bogate i umo&#x17C;liwiaj&#x105; por&#xF3;wnani pomi&#x119;dzy krajami.</p>
+<h2 id="bazy-danych-&#x15B;wiatowej-organizacji-zdrowia-world-health-organization-who">Bazy danych &#x15A;wiatowej Organizacji Zdrowia (World Health Organization, WHO)</h2>
+<p>&#x15A;wiatowa Organizacja Zdrowia, WHO, dzia&#x142;a w ramach ONZ i zajmuje si&#x119; ochron&#x105; zdrowia (<a href="http://www.who.int/en/" target="_blank">http://www.who.int/en/</a>). Udost&#x119;pnia setki tabel przedstawiaj&#x105;cych jak r&#xF3;&#x17C;norodne wska&#x17A;niki zdrowotne zmieniaj&#x105; si&#x119; w r&#xF3;&#x17C;nych krajach, regionach.</p>
+<p>Aby pobra&#x107; dane bezpo&#x15B;rednio z serwer&#xF3;w WHO mo&#x17C;na wykorzysta&#x107; pakiet <code>WHO</code> dost&#x119;pny na serwerach CRAN (<a href="https://cran.r-project.org/web/packages/WHO/index.html" target="_blank">https://cran.r-project.org/web/packages/WHO/index.html</a>).</p>
+<p>Przedstawimy kluczowe funkcje pozwalaj&#x105;ce na podanie danych na przyk&#x142;adzie wsp&#xF3;&#x142;czynnika &#x15B;miertelno&#x15B;ci.</p>
+<p>Zaczniemy od pobrania s&#x142;ownika z list&#x105; wszystkich nazw i opis&#xF3;w tabel, mo&#x17C;na to wykona&#x107; funkcj&#x105; <code>get_codes()</code>. Nast&#x119;pnie wybierzemy tylko te, kt&#xF3;re w opisie maj&#x105; s&#x142;owo <code>dying</code>.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(WHO)
+codes &lt;- get_codes()
+as.data.frame(codes[grep(codes$display, pattern=<span class="hljs-string">&quot;dying&quot;</span>), ])
 </code></pre>
-<p>Sprawdzamy jak wygl&#x105;daj&#x105; oceny parametr&#xF3;w w rodzinie rozk&#x142;ad&#xF3;w normalnych (tu nie ma dobrych odpowiedzi, ale to tylko &#x107;wiczenie).</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;normal&quot;</span>)
+<pre><code>##             label
+## 1  MDG_0000000001
+## 2  MDG_0000000007
+## 3 LIFE_0000000030
+## 4 LIFE_0000000032
+## 5   WHOSIS_000004
+## 6             cmr
+## 7            pnmr
+## 8     NCDMORT3070
+##                                                                                                                                      display
+## 1                                                  Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)
+## 2                                                             Under-five mortality rate (probability of dying by age 5 per 1000 live births)
+## 3                                                                                          nqx - probability of dying between ages x and x+n
+## 4                                                                                        ndx - number of people dying between ages x and x+n
+## 5                                                    Adult mortality rate (probability of dying between 15 and 60 years per 1000 population)
+## 6                                                   Child mortality rate (probability of dying between age 1 and age 5 per 1000 live births)
+## 7                                  Postneonatal mortality rate (probability of dying between age 30 days and 11 months per 1000 live births)
+## 8 Probability (%) of dying between exact ages 30 and 70 from any of cardiovascular disease, cancer, diabetes, or chronic respiratory disease
+##                                                                               url
+## 1    http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=1
+## 2    http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=7
+## 3   http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=30
+## 4   http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=32
+## 5   http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=64
+## 6                                                                                
+## 7                                                                                
+## 8 http://apps.who.int/gho/indicatorregistry/App_Main/view_indicator.aspx?iid=3354
+</code></pre><p>Interesuj&#x105;ca tabela ma identyfikator <code>LIFE_0000000030</code>. Pobierzemy j&#x105; do R (co mo&#x17C;e troch&#x119; potrwa&#x107; i wymaga po&#x142;&#x105;czenia z Internetem) a nast&#x119;pnie sprawdzimy jakie cechy s&#x105; w tej tabeli opisane.</p>
+<pre><code class="lang-r">df &lt;- get_data(<span class="hljs-string">&quot;LIFE_0000000030&quot;</span>)
+colnames(df)
 </code></pre>
-<pre><code>##      mean         sd    
-##   1.6698846   2.1792353 
-##  (0.2179235) (0.1540952)
-</code></pre><p>A teraz wyznaczamy oceny w rodzinie rozk&#x142;ad&#xF3;w gamma.</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;gamma&quot;</span>, list(shape=<span class="hljs-number">3</span>, rate=<span class="hljs-number">3</span>))
+<pre><code>## [1] &quot;publishstate&quot;         &quot;gho&quot;                  &quot;sex&quot;                 
+## [4] &quot;worldbankincomegroup&quot; &quot;agegroup&quot;             &quot;country&quot;             
+## [7] &quot;region&quot;               &quot;year&quot;                 &quot;value&quot;
+</code></pre><p>Wykorzystujemy pakiet <code>dplyr</code> by wybra&#x107; tylko dane dla Polski z roku 2013.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(dplyr)
+df %&gt;% 
+  filter(year == <span class="hljs-number">2013</span>, country == <span class="hljs-string">&quot;Poland&quot;</span>) %&gt;%
+  select(agegroup, value, sex) -&gt;
+  poland2013
+head(poland2013)
 </code></pre>
-<pre><code>##      shape       rate   
-##   1.0846942   0.6495628 
-##  (0.1360306) (0.1025949)
+<pre><code>## Source: local data frame [6 x 3]
+## 
+##      agegroup    value    sex
+##         (chr)    (dbl)  (chr)
+## 1 95-99 years 0.754675 Female
+## 2   5-9 years 0.000628   Male
+## 3 60-64 years 0.039902 Female
+## 4 85-89 years 0.527849   Male
+## 5 25-29 years 0.001294 Female
+## 6 50-54 years 0.049180   Male
+</code></pre><p>Mo&#x17C;emy teraz narysowa&#x107; &#x15B;miertelno&#x15B;&#x107; dla obu p&#x142;ci. Dla m&#x119;&#x17C;czyzn jest znacznie wy&#x17C;sza ni&#x17C; dla kobiet.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ggplot2)
+poland2013$agegroup &lt;- factor(poland2013$agegroup,
+            c(<span class="hljs-string">&quot;&lt;1 year&quot;</span>,<span class="hljs-string">&quot;1-4 years&quot;</span>,<span class="hljs-string">&quot;5-9 years&quot;</span>,  <span class="hljs-string">&quot;10-14 years&quot;</span>,<span class="hljs-string">&quot;15-19  years&quot;</span>, 
+              <span class="hljs-string">&quot;20-24 years&quot;</span>, <span class="hljs-string">&quot;25-29 years&quot;</span>, <span class="hljs-string">&quot;30-34 years&quot;</span>, <span class="hljs-string">&quot;35-39 years&quot;</span>, 
+              <span class="hljs-string">&quot;40-44 years&quot;</span>, <span class="hljs-string">&quot;45-49 years&quot;</span>, <span class="hljs-string">&quot;50-54 years&quot;</span>, <span class="hljs-string">&quot;55-59 years&quot;</span>, 
+              <span class="hljs-string">&quot;60-64 years&quot;</span>,  <span class="hljs-string">&quot;65-69 years&quot;</span>, <span class="hljs-string">&quot;70-74 years&quot;</span>, <span class="hljs-string">&quot;75-79 years&quot;</span>, 
+              <span class="hljs-string">&quot;80-84 years&quot;</span>, <span class="hljs-string">&quot;85-89 years&quot;</span>, <span class="hljs-string">&quot;90-94 years&quot;</span>, <span class="hljs-string">&quot;95-99 years&quot;</span>, <span class="hljs-string">&quot;100+ years&quot;</span>))
+
+ggplot(poland2013, 
+       aes(agegroup, value, color=sex, group=sex)) +
+  geom_point() + geom_line() + theme_classic() + 
+  scale_y_log10(breaks=c(<span class="hljs-number">0.001</span>,<span class="hljs-number">0.002</span>,<span class="hljs-number">0.005</span>, <span class="hljs-number">0.01</span>,<span class="hljs-number">0.02</span>,<span class="hljs-number">0.05</span>,<span class="hljs-number">0.1</span>,<span class="hljs-number">0.2</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">1</span>)) +
+  theme(axis.text.x = element_text(angle = <span class="hljs-number">90</span>, hjust = <span class="hljs-number">1</span>))
 </code></pre>
+<p><img src="figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
+<h2 id="inne-narz&#x119;dzia">Inne narz&#x119;dzia</h2>
+<p>Poza opisanymi powy&#x17C;ej &#x17A;r&#xF3;d&#x142;ami, warto wiedzie&#x107; r&#xF3;wnie&#x17C; o</p>
+<ul>
+<li><p>Pakiet <code>FAOSTAT</code> pozwala na dost&#x119;p do danych Organizacji Narod&#xF3;w Zjednoczonych do spraw Wy&#x17C;ywienia i Rolnictwa (Food and Agricultural Organization of the United Nations). Pakiet jest dost&#x119;pny na serwerze CRAN pod adresem 
+<a href="https://cran.r-project.org/web/packages/FAOSTAT/index.html" target="_blank">https://cran.r-project.org/web/packages/FAOSTAT/index.html</a></p>
+</li>
+<li><p>Pakiet <code>WDI</code> pozwala na dost&#x119;p do wska&#x17A;nik&#xF3;w zbieranych przez Bank &#x15A;wiatowy (World Bank). Pakiet jest dost&#x119;pny na serwerze CRAN pod adresem
+<a href="https://cran.r-project.org/web/packages/WDI/index.html" target="_blank">https://cran.r-project.org/web/packages/WDI/index.html</a></p>
+</li>
+</ul>
+
                     
                     </section>
                 
@@ -940,10 +1011,10 @@ Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza oce
         </div>
 
         
-        <a href="../Programowanie/generatory_4.html" class="navigation navigation-prev " aria-label="Previous page: Jak losować z użyciem kopuli?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/jak_pobierac_dane_z_twittera.html" class="navigation navigation-prev " aria-label="Previous page: Jak pobierać dane z Twittera?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" class="navigation navigation-next " aria-label="Next page: Jak korzystać z serwisu GitHub?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/zadania.html" class="navigation navigation-next " aria-label="Next page: Zadania"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

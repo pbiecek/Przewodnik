@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak estymować parametry rozkładu? | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak zeskrobywać dane ze stron www? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" />
+    <link rel="next" href="../Programowanie/jak_wczytywac_korpusy_tekstu.html" />
     
     
-    <link rel="prev" href="../Programowanie/generatory_4.html" />
+    <link rel="prev" href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" />
     
 
         
@@ -57,9 +57,9 @@
         
         
     <div class="book"
-        data-level="2.12.5"
-        data-chapter-title="Jak estymować parametry rozkładu?"
-        data-filepath="Programowanie/generatory_5.md"
+        data-level="2.3.4"
+        data-chapter-title="Jak zeskrobywać dane ze stron www?"
+        data-filepath="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md"
         data-basepath=".."
         data-revision="Fri Mar 11 2016 01:46:57 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -217,7 +217,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+        <li class="chapter active" data-level="2.3.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
             
                 
                     <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
@@ -571,7 +571,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.12.5" data-path="Programowanie/generatory_5.html">
+        <li class="chapter " data-level="2.12.5" data-path="Programowanie/generatory_5.html">
             
                 
                     <a href="../Programowanie/generatory_5.html">
@@ -911,26 +911,105 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="estymacja-parametr&#xF3;w-rozk&#x142;adu">Estymacja parametr&#xF3;w rozk&#x142;adu</h2>
-<p>Do oceny parametr&#xF3;w metod&#x105; najwi&#x119;kszej funkcji wiarogodno&#x15B;ci w okre&#x15B;lonej rodzinie rozk&#x142;ad&#xF3;w s&#x142;u&#x17C;y funkcja <code>MASS::fitdistr()</code>. 
-Estymowane mog&#x105; by&#x107; parametry dla szerokiej klasy rozk&#x142;ad&#xF3;w, praktycznie wszystkich wymienionych w tabeli powy&#x17C;ej. Pierwszym argumentem funkcji <code>fitdistr()</code> jest wektor obserwacji, na bazie kt&#xF3;rego wykonana b&#x119;dzie estymacja. Drugim argumentem powinna by&#x107; nazwa rozk&#x142;adu, a trzecim argumentem lista z pocz&#x105;tkowymi ocenami parametr&#xF3;w rozk&#x142;adu. Trzeci argument nie jest wymagany dla rozk&#x142;adu wyk&#x142;adniczego, normalnego, log-normalnego i Poissona, dla tych rozk&#x142;ad&#xF3;w funkcja <code>fitdistr()</code> ma wbudowane metody inicjalizacji.
-Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza ocenami parametr&#xF3;w wyznaczany jest te&#x17C; b&#x142;&#x105;d standardowy tych ocen (przedstawiony w nawiasach).</p>
-<p>Wylosujmy 100 obserwacji z rozk&#x142;adu log-normalnego.</p>
-<pre><code class="lang-r">wek &lt;- rlnorm(<span class="hljs-number">100</span>)
+                        <h1 id="jak-zeskrobywa&#x107;-dane-ze-stron-www">Jak zeskrobywa&#x107; dane ze stron www?</h1>
+<p>Uniwersalnym i wygodnym narz&#x119;dziem do pobierania danych ze stron internetowych s&#x105; pakiety <code>rvest</code> i <code>RSelenium</code>. Przedstawmy je na przyk&#x142;adach.</p>
+<h2 id="skrobanie-htmla-z-u&#x17C;yciem-pakietu-rvest">Skrobanie HTMLa z u&#x17C;yciem pakietu <code>rvest</code></h2>
+<p>Kluczowe funkcje z pakietu <code>rvest</code> podzieli&#x107; mo&#x17C;na na trzy grupy:</p>
+<ul>
+<li><code>read_html</code> - wczytuje stron&#x119; internetow&#x105; i tworzy drzewiast&#x105; struktur&#x119; html,</li>
+<li><code>html_nodes</code> - wyszukuje w&#x119;z&#x142;y w drzewie pasuj&#x105;ce do okre&#x15B;lonego wzorca (tzw. selectora),</li>
+<li><code>html_text</code>, <code>html_tag</code>, <code>html_attrs</code> - funkcje wyci&#x105;gaj&#x105;ce tre&#x15B;&#x107; lub atrybuty w&#x119;z&#x142;&#xF3;w html.</li>
+</ul>
+<p>Zazwyczaj praca z pakietem <code>rvest</code> rozpoczyna si&#x119; od wczytania strony HTML, nst&#x119;pnei wyszukania w tej stornie interesuj&#x105;cych fragment&#xF3;w i wy&#x142;uskanie z tych fragment&#xF3;w tekstu.</p>
+<p>Zobaczmy jak te kroki wygl&#x105;daj&#x105; na przyk&#x142;adzie pobierania danych o premierach film&#xF3;w w serwisie FilmWeb. </p>
+<p>Lista premier znajduje si&#x119; na stornie <a href="http://www.filmweb.pl/premiere" target="_blank">http://www.filmweb.pl/premiere</a>. Aby pozna&#x107; wzorce/selektory pozwalaj&#x105;ce na identyfikacje istotnej tre&#x15B;ci, naj&#x142;atwiej jest zainstalowa&#x107; wtyczk&#x119; do przegl&#x105;darki SelectorGadget <a href="http://selectorgadget.com/" target="_blank">http://selectorgadget.com/</a>. Umo&#x17C;liwia ona wybranie myszk&#x105; interesuj&#x105;cych element&#xF3;w oraz sprawdzenie jak&#x105; posta&#x107; ma selektor pasuj&#x105;cy do zaznaczonych opcji.</p>
+<p>Na poni&#x17C;szym zdj&#x119;ciu przedstawiony jest przyk&#x142;ad u&#x17C;ycia wtyczki SelectorGadget. Zaznaczone na &#x17C;&#xF3;&#x142;to elementy pasuj&#x105; do wzorca CSS <code>.gwt-filmPage</code></p>
+<p><img src="rysunki/rvest2.png" alt="SelectorGadget na stronie o premierach film&#xF3;w"></p>
+<p>Ostatnim krokiem jest wy&#x142;uskanie danych z zaznaczonej kolekcji uchwyt&#xF3;w. Funkcja <code>html_text()</code> wyci&#x105;ga tre&#x15B;&#x107; z w&#x119;z&#x142;&#xF3;w HTML.</p>
+<p>Poni&#x17C;szy przyk&#x142;ad wybiera z serwisu FilmWeb informacje o najbli&#x17C;szych premierach.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(rvest)
+premiery &lt;- read_html(<span class="hljs-string">&quot;http://www.filmweb.pl/premiere&quot;</span>)
+filmy &lt;- html_nodes(premiery, <span class="hljs-string">&quot;.gwt-filmPage&quot;</span>)
+html_text(filmy)
 </code></pre>
-<p>Sprawdzamy jak wygl&#x105;daj&#x105; oceny parametr&#xF3;w w rodzinie rozk&#x142;ad&#xF3;w normalnych (tu nie ma dobrych odpowiedzi, ale to tylko &#x107;wiczenie).</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;normal&quot;</span>)
+<pre><code>##  [1] &quot;Carol&quot;                                 
+##  [2] &quot;Londyn w ogniu&quot;                        
+##  [3] &quot;Historia Roja&quot;                         
+##  [4] &quot;Zoolander 2 &quot;                          
+##  [5] &quot;Zmartwychwsta&#x142;y&quot;                       
+##  [6] &quot;Nawet g&#xF3;ry przemin&#x105;&quot;                   
+##  [7] &quot;Robinson Crusoe&quot;                       
+##  [8] &quot;Tysi&#x105;c i jedna noc &#x2013; cz. 2, opuszczony&quot;
+##  [9] &quot;Seria Niezgodna: Wierna&quot;               
+## [10] &quot;Wstrz&#x105;s&quot;                               
+## [11] &quot;Siostry&quot;                               
+## [12] &quot;Bang Gang&quot;                             
+## [13] &quot;Niewinne&quot;                              
+## [14] &quot;Wszystko zostanie w rodzinie&quot;          
+## [15] &quot;Zdj&#x119;cie&quot;                               
+## [16] &quot;El Clan&quot;                               
+## [17] &quot;Na skrzy&#x17C;owaniu wichr&#xF3;w&quot;               
+## [18] &quot;Tysi&#x105;c i jedna noc &#x2013; cz. 3, oczarowany&quot;
+## [19] &quot;Nieobecno&#x15B;&#x107;&quot;                           
+## [20] &quot;Psy mafii&quot;                             
+## [21] &quot;Dama w vanie&quot;                          
+## [22] &quot;Zab&#xF3;jczyni&quot;                            
+## [23] &quot;Tata kontra tata&quot;                      
+## [24] &quot;Powr&#xF3;t&quot;                                
+## [25] &quot;Ca&#x142;y ten cukier&quot;                       
+## [26] &quot;Z&#x142;oty ko&#x144;&quot;                             
+## [27] &quot;180 sekund&quot;                            
+## [28] &quot;Obsesja zemsty&quot;                        
+## [29] &quot;Cuda z nieba&quot;
+</code></pre><p>Pakiet <code>rvest</code> pozwala te&#x17C; na parsowanie tabel oraz na obs&#x142;ug&#x119; formularzy, sesji i &#x15B;ledzenie link&#xF3;w. W poni&#x17C;szym przyk&#x142;adzie otwieramy stron&#x119; z bazy danych o filmach IMDb (Internet Movie Database) a informacjami o filmie <em>Lego Przygoda</em>.</p>
+<p>Nast&#x119;pnie trzecia tabela jest wy&#x142;uskiwana i wypisywana na ekranie.</p>
+<pre><code class="lang-r">lego_movie &lt;- read_html(<span class="hljs-string">&quot;http://www.imdb.com/title/tt1490017/&quot;</span>)
+
+htab &lt;- html_nodes(lego_movie, <span class="hljs-string">&quot;table&quot;</span>)[[<span class="hljs-number">3</span>]]
+html_table(htab)
 </code></pre>
-<pre><code>##      mean         sd    
-##   1.6698846   2.1792353 
-##  (0.2179235) (0.1540952)
-</code></pre><p>A teraz wyznaczamy oceny w rodzinie rozk&#x142;ad&#xF3;w gamma.</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;gamma&quot;</span>, list(shape=<span class="hljs-number">3</span>, rate=<span class="hljs-number">3</span>))
+<pre><code>##                                                      X1
+## 1                                     Amazon Affiliates
+## 2 Amazon Video\n                Watch Movies &amp;TV Online
+##                                                               X2
+## 1                                                           &lt;NA&gt;
+## 2 Prime Video\n                Unlimited Streamingof Movies &amp; TV
+##                                                           X3
+## 1                                                       &lt;NA&gt;
+## 2 Amazon Germany\n                Buy Movies onDVD &amp; Blu-ray
+##                                                         X4
+## 1                                                     &lt;NA&gt;
+## 2 Amazon Italy\n                Buy Movies onDVD &amp; Blu-ray
+##                                                          X5
+## 1                                                      &lt;NA&gt;
+## 2 Amazon France\n                Buy Movies onDVD &amp; Blu-ray
+##                                                        X6
+## 1                                                    &lt;NA&gt;
+## 2 Amazon India\n                Buy Movie andTV Show DVDs
+##                                             X7
+## 1                                         &lt;NA&gt;
+## 2 DPReview\n                DigitalPhotography
+##                                             X8
+## 1                                         &lt;NA&gt;
+## 2 Audible\n                DownloadAudio Books
+</code></pre><h2 id="skrobanie-htmla-z-u&#x17C;yciem-pakietu-rselenium">Skrobanie HTMLa z u&#x17C;yciem pakietu <code>RSelenium</code></h2>
+<p>Pakiet <code>rvest</code> jest bardzo prosty a jednocze&#x15B;nie pozwala na pobranie wielu danych ze strony. Nie pozwala jednak na utrzymanie sesji i praca ze stron&#x105; tak jakby obs&#x142;ugiwa&#x142; j&#x105; interaktywnie cz&#x142;owiek. Do tego typu zada&#x144; mo&#x17C;na u&#x17C;y&#x107; biblioteki Selenium dost&#x119;pnej poprzez pakiet <code>RSelenium</code>. 
+Biblioteka Selenium po inicjacji otwiera okno przegl&#x105;darki a nast&#x119;pnie pozwala na wykonywanie okre&#x15B;lonych operacji na tym oknie.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(RSelenium)
+checkForServer()
+startServer()
+przegladarka &lt;- remoteDriver$new()
+przegladarka$open()
 </code></pre>
-<pre><code>##      shape       rate   
-##   1.0846942   0.6495628 
-##  (0.1360306) (0.1025949)
+<p>Przyk&#x142;adowo funkcj&#x105; <code>navigate()</code> mo&#x17C;emy otworzy&#x107; w przegl&#x105;darce wskazan&#x105; stron&#x119; internetow&#x105;. Funkcj&#x105; <code>findElement()</code> mo&#x17C;emy odwo&#x142;a&#x107; si&#x119; do elementu na otwartej stornie internetowej. Funkcj&#x105; <code>sendKeysToElement()</code> mo&#x17C;na zmieni&#x107; warto&#x15B;&#x107; wskazanego elementu oraz wykona&#x107; wskazan&#x105; akcj&#x119;, np. przes&#x142;a&#x107; klawisz ENTER. </p>
+<pre><code class="lang-r">przegladarka$navigate(<span class="hljs-string">&quot;http://www.google.com&quot;</span>)
+
+wyszukiwarka &lt;- przegladarka$findElement(using = <span class="hljs-string">&quot;name&quot;</span>, value = <span class="hljs-string">&quot;q&quot;</span>)
+wyszukiwarka$sendKeysToElement(list(<span class="hljs-string">&quot;Przewodnik po pakiecie R&quot;</span>, key=<span class="hljs-string">&quot;enter&quot;</span>))
+
+przegladarka$goBack()
 </code></pre>
+
                     
                     </section>
                 
@@ -940,10 +1019,10 @@ Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza oce
         </div>
 
         
-        <a href="../Programowanie/generatory_4.html" class="navigation navigation-prev " aria-label="Previous page: Jak losować z użyciem kopuli?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" class="navigation navigation-prev " aria-label="Previous page: Jak wczytać tabele danych ze strony www?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" class="navigation navigation-next " aria-label="Next page: Jak korzystać z serwisu GitHub?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html" class="navigation navigation-next " aria-label="Next page: Jak wczytywać korpusy tekstu?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

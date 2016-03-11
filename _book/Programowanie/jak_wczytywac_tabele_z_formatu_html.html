@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak estymować parametry rozkładu? | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak wczytać tabele danych ze strony www? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" />
+    <link rel="next" href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html" />
     
     
-    <link rel="prev" href="../Programowanie/generatory_4.html" />
+    <link rel="prev" href="../Programowanie/jak_wczytac_dane_z_excela.html" />
     
 
         
@@ -57,9 +57,9 @@
         
         
     <div class="book"
-        data-level="2.12.5"
-        data-chapter-title="Jak estymować parametry rozkładu?"
-        data-filepath="Programowanie/generatory_5.md"
+        data-level="2.3.3"
+        data-chapter-title="Jak wczytać tabele danych ze strony www?"
+        data-filepath="Programowanie/jak_wczytywac_tabele_z_formatu_html.md"
         data-basepath=".."
         data-revision="Fri Mar 11 2016 01:46:57 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -202,7 +202,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+        <li class="chapter active" data-level="2.3.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
             
                 
                     <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
@@ -571,7 +571,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.12.5" data-path="Programowanie/generatory_5.html">
+        <li class="chapter " data-level="2.12.5" data-path="Programowanie/generatory_5.html">
             
                 
                     <a href="../Programowanie/generatory_5.html">
@@ -911,25 +911,70 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="estymacja-parametr&#xF3;w-rozk&#x142;adu">Estymacja parametr&#xF3;w rozk&#x142;adu</h2>
-<p>Do oceny parametr&#xF3;w metod&#x105; najwi&#x119;kszej funkcji wiarogodno&#x15B;ci w okre&#x15B;lonej rodzinie rozk&#x142;ad&#xF3;w s&#x142;u&#x17C;y funkcja <code>MASS::fitdistr()</code>. 
-Estymowane mog&#x105; by&#x107; parametry dla szerokiej klasy rozk&#x142;ad&#xF3;w, praktycznie wszystkich wymienionych w tabeli powy&#x17C;ej. Pierwszym argumentem funkcji <code>fitdistr()</code> jest wektor obserwacji, na bazie kt&#xF3;rego wykonana b&#x119;dzie estymacja. Drugim argumentem powinna by&#x107; nazwa rozk&#x142;adu, a trzecim argumentem lista z pocz&#x105;tkowymi ocenami parametr&#xF3;w rozk&#x142;adu. Trzeci argument nie jest wymagany dla rozk&#x142;adu wyk&#x142;adniczego, normalnego, log-normalnego i Poissona, dla tych rozk&#x142;ad&#xF3;w funkcja <code>fitdistr()</code> ma wbudowane metody inicjalizacji.
-Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza ocenami parametr&#xF3;w wyznaczany jest te&#x17C; b&#x142;&#x105;d standardowy tych ocen (przedstawiony w nawiasach).</p>
-<p>Wylosujmy 100 obserwacji z rozk&#x142;adu log-normalnego.</p>
-<pre><code class="lang-r">wek &lt;- rlnorm(<span class="hljs-number">100</span>)
+                        <h1 id="jak-wczytywa&#x107;-tabele-z-formatu-html">Jak wczytywa&#x107; tabele z formatu HTML?</h1>
+<p>Badzo cz&#x119;sto, dane kt&#xF3;re chcemy wczyta&#x107; do R s&#x105; dost&#x119;pne w postaci tabeli na stronie HTML.</p>
+<p>Takie dane mo&#x17C;na odczyta&#x107; na r&#xF3;&#x17C;ne sposoby. Poni&#x17C;ej przedstawimy dwa najcz&#x119;stsze.</p>
+<h2 id="poprawnie-sformatowana-tabela-html">Poprawnie sformatowana tabela HTML</h2>
+<p>Je&#x17C;eli tabela HTML jest poprawnie sformatowana, to najwygodniej jest wykorzysta&#x107; funkcj&#x119; <code>readHTMLTable</code> z pakietu <code>XML</code>. Wczytuje ona ca&#x142;&#x105; stron&#x119; internetow&#x105; do R, nast&#x119;pnie j&#x105; analizuje tak by wy&#x142;uska&#x107; z niej tabele. Wynikiem dzia&#x142;ania tej funkcji jest lista z tabelami znalezionymi na stronie.</p>
+<p>Prze&#x15B;led&#x17A;my dzia&#x142;anie tej funkcji na bazie strony Wikipedii o li&#x15B;cie mecz&#xF3;w reprezentacji Polski w pi&#x142;ce no&#x17C;nej
+<a href="https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej" target="_blank">https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej</a>. 
+Stron&#x119; HTML odczytujemy i pobrieramy funckj&#x105; <code>getURL()</code>. Na ten stronie znajduje si&#x119; wiele tabel. Funkcja <code>readHTMLTable</code> wczytuje je wszystkie.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(XML)
+<span class="hljs-keyword">library</span>(RCurl)
+link &lt;- <span class="hljs-string">&quot;https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej&quot;</span>
+xData &lt;- getURL(link)
+tabele &lt;- readHTMLTable(xData, stringsAsFactors = <span class="hljs-literal">FALSE</span>)
+length(tabele)
 </code></pre>
-<p>Sprawdzamy jak wygl&#x105;daj&#x105; oceny parametr&#xF3;w w rodzinie rozk&#x142;ad&#xF3;w normalnych (tu nie ma dobrych odpowiedzi, ale to tylko &#x107;wiczenie).</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;normal&quot;</span>)
+<pre><code>## [1] 9
+</code></pre><p>Wszystkich tabel jest 9. </p>
+<p>Pierwsza z nich to tabela ze statystykami mecz&#xF3;w.</p>
+<pre><code class="lang-r">statystyki &lt;- tabele[[<span class="hljs-number">1</span>]]
+head(statystyki)
 </code></pre>
-<pre><code>##      mean         sd    
-##   1.6698846   2.1792353 
-##  (0.2179235) (0.1540952)
-</code></pre><p>A teraz wyznaczamy oceny w rodzinie rozk&#x142;ad&#xF3;w gamma.</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;gamma&quot;</span>, list(shape=<span class="hljs-number">3</span>, rate=<span class="hljs-number">3</span>))
+<pre><code>##    Lp.  Data         Miejsce  Gospodarz    &#x2013;    Go&#x15B;&#x107;     Wynik
+## 1 2001  &lt;NA&gt;            &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt;    &lt;NA&gt;      &lt;NA&gt;
+## 2 594. 28.02 *Larnaka (Cypr) Szwajcaria    &#x2013;  Polska 0:4 (0:2)
+## 3 595. 24.03            Oslo   Norwegia    &#x2013;  Polska 2:3 (0:2)
+## 4 596. 28.03        Warszawa     Polska    &#x2013; Armenia 4:0 (2:0)
+## 5 597. 25.04       Bydgoszcz     Polska    &#x2013; Szkocja 1:1 (0:0)
+## 6 598. 02.06         Cardiff      Walia    &#x2013;  Polska 1:2 (1:1)
+##                                                           Bramki dla Polski
+## 1                                                                      &lt;NA&gt;
+## 2         Emmanuel Olisadebe, Bartosz Karwan, Tomasz Hajto, Jacek Krzyn&#xF3;wek
+## 3                                 eM&#x15A;, Emmanuel Olisadebe 2, Bartosz Karwan
+## 4 eM&#x15A;, Micha&#x142; &#x17B;ew&#x142;akow, Emmanuel Olisadebe, Marcin &#x17B;ew&#x142;akow, Bartosz Karwan
+## 5                                                          Rados&#x142;aw Ka&#x142;u&#x17C;ny
+## 6                               eM&#x15A;, Emmanuel Olisadebe, Pawe&#x142; Krysza&#x142;owicz
+</code></pre><h2 id="skubanie-strony-html">Skubanie strony HTML</h2>
+<p>Je&#x17C;eli dane nie s&#x105; w poprawnej tabeli HTML, ale s&#x105; formatowane np. jako elmenty <code>div</code>, to alternatywny spos&#xF3;b pobierania danych polega na wczytaniu ca&#x142;ej strony HTML a nast&#x119;pnie wyra&#x17C;eniami regularnymi wydzieraniu poszczeg&#xF3;lnych element&#xF3;w strony.</p>
+<p>W poni&#x17C;szym przyk&#x142;adzie to skubanie jest roz&#x142;o&#x17C;one na kilka etap&#xF3;w. Najpierw odczytujemy tre&#x15B;&#x107; strony internetowej.</p>
+<pre><code class="lang-r">link &lt;- <span class="hljs-string">&quot;https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej&quot;</span>
+html &lt;- readLines(link)
+html &lt;- paste(html, collapse=<span class="hljs-string">&quot;&quot;</span>)
 </code></pre>
-<pre><code>##      shape       rate   
-##   1.0846942   0.6495628 
-##  (0.1360306) (0.1025949)
+<p>Nast&#x119;pnie wyra&#x17C;eniem regularnym wycinamy fragment z interesuj&#x105;c&#x105; nas tabel&#x105;.</p>
+<pre><code class="lang-r">tmp1 &lt;- strsplit(html, split=<span class="hljs-string">&quot;Lata 2001&#x2013;2010&quot;</span>)[[<span class="hljs-number">1</span>]][<span class="hljs-number">5</span>]
+tabelaZeStatystykami &lt;- strsplit(tmp1, split=<span class="hljs-string">&quot;Uwagi&quot;</span>)[[<span class="hljs-number">1</span>]][<span class="hljs-number">1</span>]
+</code></pre>
+<p>Tabele dzielimy na wiersze (znaczniki tr) a wiersze na kom&#xF3;rki (znaczniki td)</p>
+<pre><code class="lang-r">tmp3 &lt;- strsplit(tabelaZeStatystykami, split=<span class="hljs-string">&quot;&lt;tr&gt;&quot;</span>)[[<span class="hljs-number">1</span>]]
+komorki &lt;- strsplit(tmp3, split=<span class="hljs-string">&quot;&lt;.?td&gt;&quot;</span>)
+</code></pre>
+<p>Nast&#x119;pnie z ka&#x17C;dego wiersza wy&#x142;uskujemy warto&#x15B;ci z 7 kolumny, czyli wynik meczu.</p>
+<pre><code class="lang-r">mecze &lt;- sapply(komorki, <span class="hljs-keyword">function</span>(x) x[<span class="hljs-number">14</span>])
+mecze &lt;- gsub(mecze, pattern=<span class="hljs-string">&quot; .*$&quot;</span>, replacement=<span class="hljs-string">&quot;&quot;</span>)
+</code></pre>
+<p>I tak po kilku krokach mo&#x17C;emy wykonywa&#x107; kolejne analizy na tak wy&#x142;uskanych statystykach.</p>
+<pre><code class="lang-r">table(mecze)
+</code></pre>
+<pre><code>## mecze
+##       0:0  0:1  0:2  0:3  0:4  0:6  0:7  1:0  1:1  1:2  1:3  1:4  1:5  1:6 
+##   17   13   23   10    7    4    1    1   17   23   10    9    3    2    1 
+## 10:0  2:0  2:1  2:2  2:3  2:5  3:0  3:1  3:2  4:0  4:1  4:2  4:3  5:0  6:0 
+##    1   17    8   13    5    1    4    9    4    5    1    1    1    3    1 
+##  8:0  8:1 
+##    1    1
 </code></pre>
                     
                     </section>
@@ -940,10 +985,10 @@ Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza oce
         </div>
 
         
-        <a href="../Programowanie/generatory_4.html" class="navigation navigation-prev " aria-label="Previous page: Jak losować z użyciem kopuli?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/jak_wczytac_dane_z_excela.html" class="navigation navigation-prev " aria-label="Previous page: Jak wczytać tabele danych z Excela?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" class="navigation navigation-next " aria-label="Next page: Jak korzystać z serwisu GitHub?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html" class="navigation navigation-next " aria-label="Next page: Jak zeskrobywać dane ze stron www?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

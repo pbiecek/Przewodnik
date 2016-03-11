@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak estymować parametry rozkładu? | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak wczytać tabele danych z Excela? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" />
+    <link rel="next" href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" />
     
     
-    <link rel="prev" href="../Programowanie/generatory_4.html" />
+    <link rel="prev" href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html" />
     
 
         
@@ -57,9 +57,9 @@
         
         
     <div class="book"
-        data-level="2.12.5"
-        data-chapter-title="Jak estymować parametry rozkładu?"
-        data-filepath="Programowanie/generatory_5.md"
+        data-level="2.3.2"
+        data-chapter-title="Jak wczytać tabele danych z Excela?"
+        data-filepath="Programowanie/jak_wczytac_dane_z_excela.md"
         data-basepath=".."
         data-revision="Fri Mar 11 2016 01:46:57 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -187,7 +187,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
+        <li class="chapter active" data-level="2.3.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
             
                 
                     <a href="../Programowanie/jak_wczytac_dane_z_excela.html">
@@ -571,7 +571,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.12.5" data-path="Programowanie/generatory_5.html">
+        <li class="chapter " data-level="2.12.5" data-path="Programowanie/generatory_5.html">
             
                 
                     <a href="../Programowanie/generatory_5.html">
@@ -911,26 +911,118 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="estymacja-parametr&#xF3;w-rozk&#x142;adu">Estymacja parametr&#xF3;w rozk&#x142;adu</h2>
-<p>Do oceny parametr&#xF3;w metod&#x105; najwi&#x119;kszej funkcji wiarogodno&#x15B;ci w okre&#x15B;lonej rodzinie rozk&#x142;ad&#xF3;w s&#x142;u&#x17C;y funkcja <code>MASS::fitdistr()</code>. 
-Estymowane mog&#x105; by&#x107; parametry dla szerokiej klasy rozk&#x142;ad&#xF3;w, praktycznie wszystkich wymienionych w tabeli powy&#x17C;ej. Pierwszym argumentem funkcji <code>fitdistr()</code> jest wektor obserwacji, na bazie kt&#xF3;rego wykonana b&#x119;dzie estymacja. Drugim argumentem powinna by&#x107; nazwa rozk&#x142;adu, a trzecim argumentem lista z pocz&#x105;tkowymi ocenami parametr&#xF3;w rozk&#x142;adu. Trzeci argument nie jest wymagany dla rozk&#x142;adu wyk&#x142;adniczego, normalnego, log-normalnego i Poissona, dla tych rozk&#x142;ad&#xF3;w funkcja <code>fitdistr()</code> ma wbudowane metody inicjalizacji.
-Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza ocenami parametr&#xF3;w wyznaczany jest te&#x17C; b&#x142;&#x105;d standardowy tych ocen (przedstawiony w nawiasach).</p>
-<p>Wylosujmy 100 obserwacji z rozk&#x142;adu log-normalnego.</p>
-<pre><code class="lang-r">wek &lt;- rlnorm(<span class="hljs-number">100</span>)
+                        <h1 id="jak-wczyta&#x107;-dane-z-excela">Jak wczyta&#x107; dane z Excela?</h1>
+<p>Jedn&#x105; z najbardziej popularnych form przechowywania danych tabelarycznych s&#x105; pliki Excela. Poni&#x17C;ej poka&#x17C;emy jak takie dane odczyta&#x107; z pliku Excela bezpo&#x15B;rednio do programu R.</p>
+<p>Jako przyk&#x142;ad wykorzystamy dane udost&#x119;pniane przez G&#x142;&#xF3;wny Urz&#x105;d Statystyczny (GUS) w Danku Danych Lokalnych (BDL) <a href="https://bdl.stat.gov.pl/BDL/dane/wymiary" target="_blank">https://bdl.stat.gov.pl/BDL/dane/wymiary</a>. Przez interface www mo&#x17C;na wyklina&#x107; jakie wska&#x17A;niki w jakich grupach chcemy pobra&#x107;, a nast&#x119;pnie mo&#x17C;emy pobra&#x107; je w formacie pliku Excela.</p>
+<p>Za pomoc&#x105; strony www wybra&#x142;em dane dotycz&#x105;ce ludno&#x15B;ci Polsce w latach 1995:2015 w podziale na grupy wiekowe i p&#x142;e&#x107;. Te dane s&#x105; dost&#x119;pne na stronie <a href="https://github.com/pbiecek/Przewodnik/blob/master/resources/LUDN_2137_20160225144358.xlsx" target="_blank">https://github.com/pbiecek/Przewodnik/blob/master/resources/LUDN_2137_20160225144358.xlsx</a>.</p>
+<p>Pliki Excela pobrane z BDL maj&#x105; trzy zak&#x142;adki. W pierwszej opisane s&#x105; g&#x142;&#xF3;wne informacje dotycz&#x105;ce danych. Druga zak&#x142;adka to dane w ta zwanej w&#x105;skiej/d&#x142;ugiej postaci. Trzecia zak&#x142;adka to dane w postaci szerokiej, gdzie kolejne kolumny odpowiadaj&#x105; kolejnym latom.</p>
+<p>Poni&#x17C;ej umieszczone s&#x105; zrzuty ekranu dla obu zak&#x142;adek.</p>
+<p><img src="rysunki/BDL1.png" alt="Druga zak&#x142;adka z pliku Excela"></p>
+<p><img src="rysunki/BDL2.png" alt="Trzecia zak&#x142;adka z pliku Excela"></p>
+<p>W programie R dost&#x119;pnych jest kilka ro&#x17C;nych pakiet&#xF3;w pozwalaj&#x105;cych na wczytywanie danych z Excela. Na dzi&#x15B; dzie&#x144;, dla plik&#xF3;w w formacie <code>xlsx</code> najbardziej uniwersalnym rozwi&#x105;zaniem jest pakiet <code>openxlsx</code>. </p>
+<p>Funkcja <code>read.xlsx</code> pozwala na wczytanie danych z okre&#x15B;lonego pliku. Mo&#x17C;emy dodatkowo okre&#x15B;li&#x107; z kt&#xF3;rej zak&#x142;adki chcemy wczyta&#x107; dane. Zacznijmy od wczytania danych w postaci w&#x105;skiej z zak&#x142;adki drugiej.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(openxlsx)
+ludnosc &lt;- read.xlsx(<span class="hljs-string">&quot;../resources/LUDN_2137_20160225144358.xlsx&quot;</span>, sheet = <span class="hljs-number">2</span>)
+head(ludnosc)
 </code></pre>
-<p>Sprawdzamy jak wygl&#x105;daj&#x105; oceny parametr&#xF3;w w rodzinie rozk&#x142;ad&#xF3;w normalnych (tu nie ma dobrych odpowiedzi, ale to tylko &#x107;wiczenie).</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;normal&quot;</span>)
+<pre><code>##   TERYT_CODE TERYT_NAME   AGE   SEX YEAR MEASURE.UNIT    VALUE ATTRIBUTE
+## 1 0000000000     POLAND total total 1995       person 38609399          
+## 2 0000000000     POLAND total total 1996       person 38639341          
+## 3 0000000000     POLAND total total 1997       person 38659979          
+## 4 0000000000     POLAND total total 1998       person 38666983          
+## 5 0000000000     POLAND total total 1999       person 38263303          
+## 6 0000000000     POLAND total total 2000       person 38253955
+</code></pre><p>W podobny spos&#xF3;b mo&#x17C;emy odczyta&#x107; dane z zak&#x142;adki 3.</p>
+<pre><code class="lang-r">ludnoscSzeroka &lt;- read.xlsx(<span class="hljs-string">&quot;../resources/LUDN_2137_20160225144358.xlsx&quot;</span>, sheet = <span class="hljs-number">3</span>)
+ludnoscSzeroka[<span class="hljs-number">3</span>:<span class="hljs-number">8</span>,<span class="hljs-number">1</span>:<span class="hljs-number">10</span>]
 </code></pre>
-<pre><code>##      mean         sd    
-##   1.6698846   2.1792353 
-##  (0.2179235) (0.1540952)
-</code></pre><p>A teraz wyznaczamy oceny w rodzinie rozk&#x142;ad&#xF3;w gamma.</p>
-<pre><code class="lang-r">fitdistr(wek, <span class="hljs-string">&quot;gamma&quot;</span>, list(shape=<span class="hljs-number">3</span>, rate=<span class="hljs-number">3</span>))
-</code></pre>
-<pre><code>##      shape       rate   
-##   1.0846942   0.6495628 
-##  (0.1360306) (0.1025949)
-</code></pre>
+<pre><code>##        VALUE              X2 Column.Labels       X4       X5       X6
+## 3 Row Labels      TERYT_NAME          1995     1996     1997     1998
+## 4 0000000000          POLAND      38609399 38639341 38659979 38666983
+## 5 1000000000  Central region       7747852  7741399  7737773  7730206
+## 6 1100000000         &#x141;&#xD3;DZKIE       2687761  2680350  2672823  2663608
+## 7 1140000000     MAZOWIECKIE       5060091  5061049  5064950  5066598
+## 8 2000000000 Southern region       8098116  8099977  8100860  8098333
+##         X7       X8       X9      X10
+## 3     1999     2000     2001     2002
+## 4 38263303 38253955 38242197 38218531
+## 5  7750090  7742834  7738999  7736003
+## 6  2637438  2627824  2617318  2607380
+## 7  5112652  5115010  5121681  5128623
+## 8  7994721  7988083  7978084  7968750
+</code></pre><h2 id="inne-pakiety-do-wczytywania-danych-z-excela">Inne pakiety do wczytywania danych z Excela</h2>
+<p>W programie R dost&#x119;pnych jest wi&#x119;cej pakiet&#xF3;w pozwalaj&#x105;cych na wczytywanie danych z plik&#xF3;w Excela. Zestawienie najpopularniejszych prezentuje poni&#x17C;sza tabela.</p>
+<table>
+<thead>
+<tr>
+<th>pakiet</th>
+<th>funkcja_odczyt</th>
+<th>funkcja_zapis</th>
+<th>formaty</th>
+<th>funkcjonalno&#x15B;&#x107;</th>
+<th>szybko&#x15B;&#x107;</th>
+<th>wymaga_programu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>readxl</td>
+<td>read_excel()</td>
+<td>---</td>
+<td>.xlsx, .xls</td>
+<td>&#x15B;rednia</td>
+<td>du&#x17C;a</td>
+<td></td>
+</tr>
+<tr>
+<td>openxlsx</td>
+<td>read.xlsx()</td>
+<td>write.xlsx()</td>
+<td>.xlsx</td>
+<td>&#x15B;rednia</td>
+<td>du&#x17C;a</td>
+<td></td>
+</tr>
+<tr>
+<td>xlsx</td>
+<td>read.xlsx()</td>
+<td>write.xlsx()</td>
+<td>.xlsx, .xls</td>
+<td>&#x15B;rednia</td>
+<td>ma&#x142;a</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>XLConnect</td>
+<td>readWorksheet()</td>
+<td>writeWorksheet()</td>
+<td>.xlsx, .xls</td>
+<td>du&#x17C;a</td>
+<td>ma&#x142;a</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>gdata</td>
+<td>read.xls()</td>
+<td>--</td>
+<td>.xlsx, .xls</td>
+<td>ma&#x142;a</td>
+<td>&#x15B;rednia</td>
+<td>Perl</td>
+</tr>
+<tr>
+<td>WriteXLS</td>
+<td>--</td>
+<td>WriteXLS()</td>
+<td>.xlsx, .xls</td>
+<td>ma&#x142;a</td>
+<td>&#x15B;rednia</td>
+<td>Perl</td>
+</tr>
+</tbody>
+</table>
+<p>Mo&#x17C;e si&#x119; zdarzy&#x107;, &#x17C;e z uwagi na dost&#x119;pno&#x15B;&#x107; zewn&#x119;trznych biblitek, na kt&#xF3;ry&#x15B; systemie operacyjnym pewne pakiety nie b&#x119;d&#x105; dzia&#x142;a&#x142;y, lub nie b&#x119;d&#x105; w stanie poprawnie wczyta&#x107; okre&#x15B;lonych typ&#xF3;w danych. W takim przypadku najlepiej spr&#xF3;bowa&#x107; innego pakietu z ww tabeli.</p>
+
                     
                     </section>
                 
@@ -940,10 +1032,10 @@ Poni&#x17C;ej przedstawiamy przyk&#x142;ad wywo&#x142;ania tej funkcji. Poza oce
         </div>
 
         
-        <a href="../Programowanie/generatory_4.html" class="navigation navigation-prev " aria-label="Previous page: Jak losować z użyciem kopuli?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html" class="navigation navigation-prev " aria-label="Previous page: Jak wczytać tabele danych z pliku csv lub txt?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html" class="navigation navigation-next " aria-label="Next page: Jak korzystać z serwisu GitHub?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" class="navigation navigation-next " aria-label="Next page: Jak wczytać tabele danych ze strony www?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

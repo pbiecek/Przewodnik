@@ -1,7 +1,7 @@
 # Summary
 
 * [Podrasuj Przewodnik!](contribute.md)
-* [Co nowego?](co_nowego.md)
+  * [Co nowego?](co_nowego.md)
 * [Programowanie w języku R](puste.md)
    * Jak korzystać z tej książki?
    * Jak zainstalować R i RStudio?
