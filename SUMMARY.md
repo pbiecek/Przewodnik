@@ -5,7 +5,7 @@
 * [Programowanie w języku R](puste.md)
    * Jak korzystać z tej książki?
    * Jak zainstalować R i RStudio?
-   * [Jak wczytywać i zapisywać dane?](puste.md)
+   * [Jak wczytywać i zapisywać dane?](Programowanie/zapisywac.md)
        * [Jak wczytać tabele danych z pliku csv lub txt?](Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md)
        * [Jak wczytać tabele danych z Excela?](Programowanie/jak_wczytac_dane_z_excela.md)
        * [Jak wczytać tabele danych ze strony www?](Programowanie/jak_wczytywac_tabele_z_formatu_html.md)
@@ -39,13 +39,13 @@
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
    * [Jak korzystać z serwisu Waffle?](Programowanie/jak_korzystac_z_serwisu_waffle.md)
 * [Analiza danych z programem R](Analiza/analizadanych_z_programem_r_md.md)
-   * [Eksploracja](puste.md)
+   * [Eksploracja](Analiza/eksploracja.md)
        * [Jak rozpoznać rodzaj zmiennej?](Analiza/jak_rozpoznac_rodzaj_zmiennej.md)
        * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
        * [Jak badać rozkład dwóch zmiennych?](Analiza/jak_badac_rozklad_dwoch_zmiennych.md)
        * Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)
        * Jak znaleźć skupiska danych?
-   * [Weryfikacja](puste.md)
+   * [Weryfikacja](Analiza/weryfikacja.md)
        * [Jak badać właściwości jednej zmiennej?](Analiza/jak_badac_wlasciwosci_jednej_zmiennej.md)
        * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
        * Jak badać warunkowe zależności?
