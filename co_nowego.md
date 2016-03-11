@@ -1,6 +1,10 @@
 # Co nowego zostało ostatnio dodane?
 
 
+* 11 marca 2016
+
+Zmiana spisu treści. Nowy krój pisma.
+
 * 10 marca 2016
 
 W rozdziale *Analiza* podrozdział 
