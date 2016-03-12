@@ -21,6 +21,8 @@ codes <- get_codes()
 as.data.frame(codes[grep(codes$display, pattern="dying"), ])
 ```
 
+
+
 ```
 ##             label
 ## 1  MDG_0000000001

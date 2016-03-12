@@ -108,8 +108,7 @@ html_table(htab)
 Pakiet `rvest` jest bardzo prosty a jednocześnie pozwala na pobranie wielu danych ze strony. Nie pozwala jednak na utrzymanie sesji i praca ze stroną tak jakby obsługiwał ją interaktywnie człowiek. Do tego typu zadań można użyć biblioteki Selenium dostępnej poprzez pakiet `RSelenium`. 
 Biblioteka Selenium po inicjacji otwiera okno przeglądarki a następnie pozwala na wykonywanie określonych operacji na tym oknie.
 
-
-```r
+```
 library(RSelenium)
 checkForServer()
 startServer()
@@ -119,8 +118,7 @@ przegladarka$open()
 
 Przykładowo funkcją `navigate()` możemy otworzyć w przeglądarce wskazaną stronę internetową. Funkcją `findElement()` możemy odwołać się do elementu na otwartej stronie internetowej. Funkcją `sendKeysToElement()` można zmienić wartość wskazanego elementu oraz wykonać wskazaną akcję, np. przesłać klawisz ENTER. 
 
-
-```r
+```
 przegladarka$navigate("http://www.google.com")
 
 wyszukiwarka <- przegladarka$findElement(using = "name", value = "q")
