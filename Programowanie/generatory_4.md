@@ -5,32 +5,32 @@ Angielskie słowo copula, używane w kontekście generowania wielowymiarowych zm
 Powyżej opisaliśmy jak generować zależne zmienne losowe o łącznym rozkładzie normalnym. W wielu zastosowaniach przydatna jest możliwość generowania zmiennych o zadanej strukturze zależności i o dowolnych rozkładach brzegowych. Do tego celu można wykorzystać kopule, czyli funkcje łączące.
 Za tym narzędziem stoi bardzo ciekawa teoria, jak również wiele zastosowań, szczególnie w finansach i ubezpieczeniach. Poniżej przedstawimy kilka przykładów użycia kopuli do generowania zależnych zmiennych.
 
-Kopula to wielowymiarowy rozkład określony na kostce $[0,1]^n$, taki, że rozkłady brzegowe dla każdej współrzędnej są jednostajne na odcinku $[0,1]$. Poniżej przez $C(u):[0,1]^n\rightarrow [0,1]$ będziemy oznaczać dystrybuantę tego rozkładu. 
+Kopula to wielowymiarowy rozkład określony na kostce $$[0,1]^n$$, taki, że rozkłady brzegowe dla każdej współrzędnej są jednostajne na odcinku $$[0,1]$$. Poniżej przez $$C(u):[0,1]^n\rightarrow [0,1]$$ będziemy oznaczać dystrybuantę tego rozkładu. 
 Poniższe twierdzenie wyjaśnia dlaczego kopule są ciekawe.
 
 **Twierdzenie Sklara**
 
-*Dla zadanego rozkładu $H$ określonego na $p$ wymiarowej przestrzeni i odpowiadających mu rozkładów brzegowych $F_1, ..., F_p$ istnieje kopula $C$, taka że $C(F_1, ..., F_p) = H$. Oznacza to, że każdy rodzaj zależności można opisać pewną kopulą.*
+*Dla zadanego rozkładu $$H$$ określonego na $$p$$ wymiarowej przestrzeni i odpowiadających mu rozkładów brzegowych $$F_1, ..., F_p$$ istnieje kopula $$C$$, taka że $$C(F_1, ..., F_p) = H$$. Oznacza to, że każdy rodzaj zależności można opisać pewną kopulą.*
 
-Rozważmy przypadek dwuwymiarowy. Dla zmiennej dwuwymiarowej o rozkładzie $H$ o brzegowych rozkładach $F_1, F_2$ istnieje kopula $C$ taka, że 
+Rozważmy przypadek dwuwymiarowy. Dla zmiennej dwuwymiarowej o rozkładzie $$H$$ o brzegowych rozkładach $$F_1, F_2$$ istnieje kopula $$C$$ taka, że 
 $$
 H(x, y) = C\left(F_1(x), F_2(y)\right).
 $$
-Co więcej, jeżeli brzegowe dystrybuanty są ciągłe, to $C$ jest wyznaczona jednoznacznie.
+Co więcej, jeżeli brzegowe dystrybuanty są ciągłe, to $$C$$ jest wyznaczona jednoznacznie.
 
-Jeżeli chcemy generować obserwacje z rozkładu $H$, to wystarczy, że potrafimy generować obserwacje z kopuli $C$ i znamy rozkłady $F_1$, $F_2$. Wszystkich możliwych kopuli jest nieskończenie wiele, ale w zastosowaniach najczęściej pojawiają się następujące klasy kopul. 
+Jeżeli chcemy generować obserwacje z rozkładu $$H$$, to wystarczy, że potrafimy generować obserwacje z kopuli $$C$$ i znamy rozkłady $$F_1$$, $$F_2$$. Wszystkich możliwych kopuli jest nieskończenie wiele, ale w zastosowaniach najczęściej pojawiają się następujące klasy kopul. 
 
 * Kopula Gaussowska. W przypadku dwuwymiarowym kopuła Gaussowska wyrażona jest następującym wzorem
 $$
 C_\rho (u, v) = \Phi_\rho\left(\Phi^{-1}(u), \Phi^{-1}(v)\right),
 $$
-gdzie $\rho$ jest parametrem. Ta kopula odpowiada zależności pomiędzy zmiennymi o łącznym rozkładzie normalnym z korelacją $\rho$. Podobnie definiuje się kopule Gausowskie dla wyższych wymiarów.
+gdzie $$\rho$$ jest parametrem. Ta kopula odpowiada zależności pomiędzy zmiennymi o łącznym rozkładzie normalnym z korelacją $$\rho$$. Podobnie definiuje się kopule Gausowskie dla wyższych wymiarów.
 
-* Kopula Archimedesowska. Dla $p$ wymiarów kopuła Archimedesowska wyraża się wzorem
+* Kopula Archimedesowska. Dla $$p$$ wymiarów kopuła Archimedesowska wyraża się wzorem
 $$
 C(x_1, x_2, ..., x_p)=\Psi^{-1}\left(\sum_{i=1}^n \Psi\left(F_i\left(x_i\right)\right) \right),
 $$
-gdzie $\Psi$ to tzw. funkcja generująca, spełniająca warunki: (1) $\Psi(1) = 0$, \linebrak(2) $\lim_{x\rightarrow 0}\Psi(x) = \infty$,  (3)  $\Psi'(x) < 0$ i (4) $\Psi''(x) > 0$.
+gdzie $$\Psi$$ to tzw. funkcja generująca, spełniająca warunki: (1) $$\Psi(1) = 0$$, \linebrak(2) $$\lim_{x\rightarrow 0}\Psi(x) = \infty$$,  (3)  $$\Psi'(x) < 0$$ i (4) $$\Psi''(x) > 0$$.
 Wybierając odpowiednie funkcje generujące, otrzymujemy następujące podklasy kopuli.
 
   * Kopula produktowa, w tym przypadku funkcja generująca zadana jest wzorem
@@ -122,15 +122,15 @@ head(x)
 
 ```
 ##           [,1]      [,2]
-## [1,] 0.7892178 0.7622003
-## [2,] 0.5113559 0.4526442
-## [3,] 0.6735006 0.5095953
-## [4,] 0.5976700 0.4564920
-## [5,] 0.3663243 0.3037546
-## [6,] 0.0834867 0.6397357
+## [1,] 0.4860968 0.1358707
+## [2,] 0.8408333 0.9868042
+## [3,] 0.3345477 0.2190720
+## [4,] 0.8356767 0.2442984
+## [5,] 0.0325834 0.1490084
+## [6,] 0.8728207 0.5397124
 ```
 
-Na poniższym przykładzie wygenerujemy 40 obserwacji z rozkładu, którego rozkładami brzegowymi są rozkłady wykładnicze o parametrze $\lambda =2$, a struktura zależności opisana jest kopulą Claytona.
+Na poniższym przykładzie wygenerujemy 40 obserwacji z rozkładu, którego rozkładami brzegowymi są rozkłady wykładnicze o parametrze $$\lambda =2$$, a struktura zależności opisana jest kopulą Claytona.
 
 Poniżej najpierw tworzymy obiekt z definicją kopuli Claytona, następnie generujemy 40 obserwacji z zadanej kopuli. Nakładamy na wygenerowane obserwacje odwrotne dystrybuanty, by otrzymać zmienne o żadnych rozkładach brzegowych, poniżej nałożono odwrotną dla rozkładu wykładniczego z `rate=2`.
 
@@ -153,13 +153,13 @@ head(y)
 ```
 
 ```
-##           [,1]       [,2]
-## [1,] 0.4473419 0.11922377
-## [2,] 0.1938003 0.04241290
-## [3,] 0.2359333 0.03640599
-## [4,] 0.1956664 0.09829819
-## [5,] 0.6608805 0.56785365
-## [6,] 0.8069660 1.38667204
+##            [,1]       [,2]
+## [1,] 0.07104723 0.05233955
+## [2,] 0.17520012 0.09739043
+## [3,] 1.07950534 0.84292465
+## [4,] 0.29648552 0.58920433
+## [5,] 1.45837161 0.54667654
+## [6,] 0.79109751 0.27144035
 ```
 
 Kopule stosowane są w wielu zagadnieniach. Poniżej przedstawimy przykład badania mocy dwóch testów korelacji, gdy dwuwymiarowa zmienna ma brzegowe rozkłady wykładnicze i zależność opisaną przez kopulę Claytona.
@@ -4200,7 +4200,7 @@ rowMeans(pv < 0.05)
 
 ```
 ##  Pearson Spearman 
-##    0.461    0.878
+##    0.482    0.869
 ```
 
 W zagadnieniach praktycznych, często nie wiemy z jakiej rodziny wybrać rozkłady brzegowe. W takich sytuacjach dobrym pomysłem jest użycie empirycznej dystrybuanty. Funkcję odwrotną do dystrybuanty empirycznej (która nie jest monotoniczna, ale to tzw. szczegół techniczny) jest funkcja `quantile()`. 
