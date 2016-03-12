@@ -10,11 +10,11 @@ Kluczowe funkcje z pakietu `rvest` podzielić można na trzy grupy:
 * `html_nodes` - wyszukuje węzły w drzewie pasujące do określonego wzorca (tzw. selectora),
 * `html_text`, `html_tag`, `html_attrs` - funkcje wyciągające treść lub atrybuty węzłów html.
 
-Zazwyczaj praca z pakietem `rvest` rozpoczyna się od wczytania strony HTML, nstępnei wyszukania w tej stornie interesujących fragmentów i wyłuskanie z tych fragmentów tekstu.
+Zazwyczaj praca z pakietem `rvest` rozpoczyna się od wczytania strony HTML, następnie wyszukania w tej stronie interesujących fragmentów i wyłuskanie z tych fragmentów tekstu.
 
 Zobaczmy jak te kroki wyglądają na przykładzie pobierania danych o premierach filmów w serwisie FilmWeb. 
 
-Lista premier znajduje się na stornie http://www.filmweb.pl/premiere. Aby poznać wzorce/selektory pozwalające na identyfikacje istotnej treści, najłatwiej jest zainstalować wtyczkę do przeglądarki SelectorGadget http://selectorgadget.com/. Umożliwia ona wybranie myszką interesujących elementów oraz sprawdzenie jaką postać ma selektor pasujący do zaznaczonych opcji.
+Lista premier znajduje się na stronie http://www.filmweb.pl/premiere. Aby poznać wzorce/selektory pozwalające na identyfikacje istotnej treści, najłatwiej jest zainstalować wtyczkę do przeglądarki SelectorGadget http://selectorgadget.com/. Umożliwia ona wybranie myszką interesujących elementów oraz sprawdzenie jaką postać ma selektor pasujący do zaznaczonych opcji.
 
 Na poniższym zdjęciu przedstawiony jest przykład użycia wtyczki SelectorGadget. Zaznaczone na żółto elementy pasują do wzorca CSS `.gwt-filmPage`
 
@@ -55,7 +55,7 @@ przegladarka <- remoteDriver$new()
 przegladarka$open()
 ```
 
-Przykładowo funkcją `navigate()` możemy otworzyć w przeglądarce wskazaną stronę internetową. Funkcją `findElement()` możemy odwołać się do elementu na otwartej stornie internetowej. Funkcją `sendKeysToElement()` można zmienić wartość wskazanego elementu oraz wykonać wskazaną akcję, np. przesłać klawisz ENTER. 
+Przykładowo funkcją `navigate()` możemy otworzyć w przeglądarce wskazaną stronę internetową. Funkcją `findElement()` możemy odwołać się do elementu na otwartej stronie internetowej. Funkcją `sendKeysToElement()` można zmienić wartość wskazanego elementu oraz wykonać wskazaną akcję, np. przesłać klawisz ENTER. 
 
 ```{r, eval=FALSE}
 przegladarka$navigate("http://www.google.com")
