@@ -1,6 +1,6 @@
 # Jak wczytywać korpusy tekstu?
 
-Dane nie zawsze mają strukturę tabeli. Czasem jedyną opcją jest wczytanie pliku jako wektora napisó∑ - linia po linii. Do tego celu można użyc funkcji `readLines()`, która potrafi wczytać dane zarówno z lokalnego pliku jaki bezpośrendnio z adresu URL w internecie.
+Dane nie zawsze mają strukturę tabeli. Czasem jedyną opcją jest wczytanie pliku jako wektora napisów - linia po linii. Do tego celu można użyc funkcji `readLines()`, która potrafi wczytać dane zarówno z lokalnego pliku jaki bezpośrendnio z adresu URL w internecie.
 
 Wykorzystajmy tę funkcję, aby z projektu Gutenberg www.gutenberg.org wczytać treść ksiażki Juliusza Verne, ,,W 80 dni dookoła świata'' (http://www.gutenberg.org/cache/epub/103/pg103.txt).
 
