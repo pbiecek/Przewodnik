@@ -28,12 +28,9 @@ Zobaczmy jakie słowa sa najczęściej uzywane w tej powieści.
 slowa <- unlist(strsplit(w80dni, split="[^A-Za-z0-9]+"))
 # liczba słów i charakterystyki
 length(slowa)
-```
 
-```
 ## [1] 68460
 
-```
 # Najczęstsze słowa
 head(sort(table(slowa), decreasing = TRUE), 50)
 ```

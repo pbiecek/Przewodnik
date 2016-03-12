@@ -61,7 +61,7 @@
         data-chapter-title="Jak wczytywać korpusy tekstu?"
         data-filepath="Programowanie/jak_wczytywac_korpusy_tekstu.md"
         data-basepath=".."
-        data-revision="Sat Mar 12 2016 18:21:59 GMT+0100 (CET)"
+        data-revision="Sat Mar 12 2016 18:26:59 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -930,34 +930,33 @@ head(w80dni)
 slowa &lt;- unlist(strsplit(w80dni, split=&quot;[^A-Za-z0-9]+&quot;))
 # liczba s&#x142;&#xF3;w i charakterystyki
 length(slowa)
-</code></pre><pre><code>## [1] 68460
-</code></pre><h1 id="najcz&#x119;stsze-s&#x142;owa">Najcz&#x119;stsze s&#x142;owa</h1>
-<p>head(sort(table(slowa), decreasing = TRUE), 50)</p>
-<pre><code>
 
-</code></pre><h2 id="slowa">slowa</h2>
-<h2 id="the----------and-----------of-----------to------------a">the          and           of           to            a</h2>
-<h2 id="4312---------1896---------1876---------1720---------1281">4312         1896         1876         1720         1281</h2>
-<h2 id="in----------was-----------------------his-----------he">in          was                       his           he</h2>
-<h2 id="997----------995----------966----------807----------773">997          995          966          807          773</h2>
-<h2 id="fogg-----------at---------with----------not----------the">Fogg           at         with          not          The</h2>
-<h2 id="608----------583----------553----------519----------518">608          583          553          519          518</h2>
-<h2 id="that-----------on----------had--------which----------for">that           on          had        which          for</h2>
-<h2 id="514----------504----------494----------442----------433">514          504          494          442          433</h2>
-<h2 id="it-----------as-passepartout-----------mr-----------by">it           as Passepartout           Mr           by</h2>
-<h2 id="418----------403----------398----------389----------377">418          403          398          389          377</h2>
-<h2 id="i----------him-----------is-----------be----------you">I          him           is           be          you</h2>
-<h2 id="368----------321----------320----------316----------308">368          321          320          316          308</h2>
-<h2 id="were---------from---------this------------s--------would">were         from         this            s        would</h2>
-<h2 id="307----------304----------300----------283----------270">307          304          300          283          270</h2>
-<h2 id="have----------but----------fix-----------an------phileas">have          but          Fix           an      Phileas</h2>
-<h2 id="262----------248----------245----------225----------220">262          248          245          225          220</h2>
-<h2 id="he----------who-----------or---------said---------they">He          who           or         said         they</h2>
-<h2 id="217----------200----------191----------191----------184">217          200          191          191          184</h2>
-<h2 id="her-----------it----------are---------been----------all">her           It          are         been          all</h2>
-<h2 id="171----------171----------170----------169----------167">171          171          170          169          167</h2>
-<p>```</p>
-<h2 id="inne-przydatne-narz&#x119;dzia">Inne przydatne narz&#x119;dzia</h2>
+## [1] 68460
+
+# Najcz&#x119;stsze s&#x142;owa
+head(sort(table(slowa), decreasing = TRUE), 50)
+</code></pre><pre><code>## slowa
+##          the          and           of           to            a 
+##         4312         1896         1876         1720         1281 
+##           in          was                       his           he 
+##          997          995          966          807          773 
+##         Fogg           at         with          not          The 
+##          608          583          553          519          518 
+##         that           on          had        which          for 
+##          514          504          494          442          433 
+##           it           as Passepartout           Mr           by 
+##          418          403          398          389          377 
+##            I          him           is           be          you 
+##          368          321          320          316          308 
+##         were         from         this            s        would 
+##          307          304          300          283          270 
+##         have          but          Fix           an      Phileas 
+##          262          248          245          225          220 
+##           He          who           or         said         they 
+##          217          200          191          191          184 
+##          her           It          are         been          all 
+##          171          171          170          169          167
+</code></pre><h2 id="inne-przydatne-narz&#x119;dzia">Inne przydatne narz&#x119;dzia</h2>
 <p>Pakiet Rpoppler <a href="https://cran.r-project.org/web/packages/Rpoppler/index.html" target="_blank">https://cran.r-project.org/web/packages/Rpoppler/index.html</a> umo&#x17C;liwia korzystanie z funkcjonalno&#x15B;ci biblioteki poppler <a href="http://poppler.freedesktop.org/" target="_blank">http://poppler.freedesktop.org/</a> do pracy z dokumentami pdf. Mi&#x119;dzy innymi umo&#x17C;liwia ekstrakcje tekstu z dokument&#xF3;w pdf.</p>
 
                     
