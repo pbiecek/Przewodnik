@@ -174,7 +174,7 @@ system.time(replicate(N, {Q <- chol(Sigma)
 ```
 
 ```
-## Timing stopped at: 0.001 0.001 0.006
+## Timing stopped at: 0 0 0
 ```
 
 * Faktoryzacja  SVD
@@ -187,7 +187,7 @@ system.time(replicate(N, {tmp <- svd(Sigma)
 
 ```
 ##    user  system elapsed 
-##  84.469   3.925  89.776
+##  81.146   3.977  85.201
 ```
 
 * Rozkład spektralny / na wartości własne.
@@ -200,7 +200,7 @@ system.time(replicate(N, {tmp <- eigen(Sigma, symmetric=T)
 
 ```
 ##    user  system elapsed 
-##  55.058   2.019  57.189
+##  51.157   2.206  53.583
 ```
 
 Powyższe czasy zostały policzone dla pewnych przykładowych danych i mogą różnić się w zależności od zainstalowanych bibliotek. Ogólnie jednak najszybszą procedurą jest faktoryzacja Choleskiego i to ona najczęściej jest wykorzystywana do generowania zmiennych o wielowymiarowym rozkładzie normalnym. 

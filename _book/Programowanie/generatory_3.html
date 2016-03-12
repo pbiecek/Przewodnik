@@ -51,7 +51,7 @@
     <link rel="prev" href="../Programowanie/generatory_2.html" />
     
 
-        <script>window["gitbook-plugin-github-buttons"] = {"repo":"pbiecek/Przewodnik","types":["star","watch"]};</script>
+        <script>window["gitbook-plugin-github-buttons"] = {"repo":"pbiecek/Przewodnik","types":["star"]};</script>
     </head>
     <body>
         
@@ -61,7 +61,7 @@
         data-chapter-title="Jak losowac ze złożonych rozkładów?"
         data-filepath="Programowanie/generatory_3.md"
         data-basepath=".."
-        data-revision="Sat Mar 12 2016 18:37:31 GMT+0100 (CET)"
+        data-revision="Sat Mar 12 2016 21:52:50 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -1040,7 +1040,7 @@ system.time(replicate(N, {Q &lt;- chol(Sigma)
       X %*%  Q} ))
 </code></pre>
 <pre><code>## Error in chol.default(Sigma): the leading minor of order 100 is not positive definite
-</code></pre><pre><code>## Timing stopped at: 0.001 0.001 0.006
+</code></pre><pre><code>## Timing stopped at: 0 0 0
 </code></pre><ul>
 <li>Faktoryzacja  SVD</li>
 </ul>
@@ -1048,7 +1048,7 @@ system.time(replicate(N, {Q &lt;- chol(Sigma)
       X %*% (tmp$u %*% diag(sqrt(tmp$d)) %*% t(tmp$v))}))
 </code></pre>
 <pre><code>##    user  system elapsed 
-##  84.469   3.925  89.776
+##  81.146   3.977  85.201
 </code></pre><ul>
 <li>Rozk&#x142;ad spektralny / na warto&#x15B;ci w&#x142;asne.</li>
 </ul>
@@ -1057,7 +1057,7 @@ system.time(replicate(N, {Q &lt;- chol(Sigma)
             }))
 </code></pre>
 <pre><code>##    user  system elapsed 
-##  55.058   2.019  57.189
+##  51.157   2.206  53.583
 </code></pre><p>Powy&#x17C;sze czasy zosta&#x142;y policzone dla pewnych przyk&#x142;adowych danych i mog&#x105; r&#xF3;&#x17C;ni&#x107; si&#x119; w zale&#x17C;no&#x15B;ci od zainstalowanych bibliotek. Og&#xF3;lnie jednak najszybsz&#x105; procedur&#x105; jest faktoryzacja Choleskiego i to ona najcz&#x119;&#x15B;ciej jest wykorzystywana do generowania zmiennych o wielowymiarowym rozk&#x142;adzie normalnym. </p>
 <p>W programie R nie musimy do generacji zmiennych z rozk&#x142;adu normalnego wielowymiarowego r&#x119;cznie wykonywa&#x107; dekompozycji macierzy $\Sigma$, wystarczy u&#x17C;y&#x107; funkcji <code>rmvnorm(mvtnorm)</code>. Pozwala ona wskaza&#x107; metod&#x119; faktoryzacji argumentem <code>method=c(&quot;eigen&quot;, &quot;svd&quot;, &quot;chol&quot;)</code>. Domy&#x15B;lnie wykorzystywana jest dekompozycja na warto&#x15B;ci spektralne (na wypadek gdyby macierz $\Sigma$ by&#x142;a niepe&#x142;nego rz&#x119;du), ale je&#x17C;eli zale&#x17C;y nam na szybko&#x15B;ci i mamy pewno&#x15B;&#x107; &#x17C;e macierz $\Sigma$ jest dodatnio okre&#x15B;lona to lepiej u&#x17C;y&#x107; pierwiastka Choleskiego.</p>
 
@@ -1115,7 +1115,7 @@ system.time(replicate(N, {Q &lt;- chol(Sigma)
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"github-buttons":{"repo":"pbiecek/Przewodnik","types":["star","watch"]},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"github-buttons":{"repo":"pbiecek/Przewodnik","types":["star"]},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

@@ -7,21 +7,10 @@
       },
       "github": {
             "url": "https://github.com/pbiecek/Przewodnik"
-        },
-        "github-buttons": {
-      "repo": "pbiecek/Przewodnik",
-      "types": [
-        "star"
-      ]
-    },
-      "sharing": {
-            "facebook": true,
-            "twitter": true,
-            "google": false,
-            "weibo": false,
-            "instapaper": false,
-            "vk": false,
-            "all": false
+      },
+      "github-buttons": {
+        "repo": "pbiecek/Przewodnik",
+        "types": [ "star" ]
       }
   },
   "links": {
@@ -29,5 +18,5 @@
         "about": "http://biecek.pl",
         "issues": "https://github.com/pbiecek/Przewodnik/issues",
         "edit": "TUTAJ"
-    },
+    }
 }

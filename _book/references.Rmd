@@ -1,5 +1,5 @@
 # References
 
 ```{r bibliography, echo=FALSE, results='asis'}
-bibliography()
+knitcitations::bibliography()
 ```

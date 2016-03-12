@@ -1,7 +1,0 @@
-# Wizualizacja
-
-Wizualizacja danych to dalece więcej niż zbiór technik do rysowania wykresów. To sposób myślenia. Więcej o tym sposobie myślenia przeczytać można w zbiorze esejów [Odkrywać! Ujawniać! Objaśniać!](http://biecek.pl/Eseje/). 
-
-Aby rozwijać ten sposób myślenia potrzebne są narzędzia, pozwalające na eksperymentowanie z danymi. W tym rozdziale przedstawimy dobre narzędzia, takie jak pakiet `ggplot2` oparty o gramatykę języka wizualizacji danych, pakiet `rCharts` do tworzenia interaktywnych wykresów czy kilka innych przydatnych rozwiązań.
-
-
