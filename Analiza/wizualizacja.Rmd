@@ -5,3 +5,7 @@ Wizualizacja danych to dalece więcej niż zbiór technik do rysowania wykresów
 Aby rozwijać ten sposób myślenia potrzebne są narzędzia, pozwalające na eksperymentowanie z danymi. W tym rozdziale przedstawimy dobre narzędzia, takie jak pakiet `ggplot2` oparty o gramatykę języka wizualizacji danych, pakiet `rCharts` do tworzenia interaktywnych wykresów czy kilka innych przydatnych rozwiązań.
 
 
+## Węcej źródeł
+
+* *Graphical Data Analysis with R*, Antony Unwin http://www.gradaanwr.net/
+

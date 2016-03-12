@@ -1,6 +1,6 @@
 ## Wybrane metody generowania zmiennych losowych
 
-Poniżej przedstawimy algorytmy losowania zmiennych losowych z różnych popularnych i przydatnych rozkładów, których nie ma w tabeli \ref{funkcjeLosowe}.
+Poniżej przedstawimy algorytmy losowania zmiennych losowych z różnych popularnych i przydatnych rozkładów, których nie omówiliśmy w poprzednim rozdziale.
 
 ### Proces Poissona
 
@@ -96,7 +96,7 @@ Taką transformację można wykonać na dwa sposoby.
 
 **Sposób 2**
 
-* Wygenerować jednorodny proces Poissona $$N_1$$ o częstości $$\lambda_0$$.\marginal{Zaimplementowanie obu tych sposobów pozostawiamy jako pracę domową.}
+* Wygenerować jednorodny proces Poissona $$N_1$$ o częstości $$\lambda_0$$.
 * Przekształcić czasy skoków $$S_k$$ procesu $$N_1$$ na czasy $$S_k'$$ procesu $$N_2$$ tak by 
 $$\int_0^{S'_k} \lambda(t)dt = \int_0^{S_k} \lambda_0 dt, $$
 czyli $$S'_k = \Lambda^{-1}(\lambda_0 S_k)$$, gdzie $$\Lambda(x) = \int_0^x \lambda(t)dt$$. Ta metoda nazywana jest metodą zmiany czasu.
@@ -106,7 +106,7 @@ czyli $$S'_k = \Lambda^{-1}(\lambda_0 S_k)$$, gdzie $$\Lambda(x) = \int_0^x \lam
 
 Gęstość wielowymiarowego rozkładu normalnego $$ N_d(\mu, \Sigma)$$ jest postaci
 $$
-f(x) = \frac{1}{ (2\pi)^{k/2}`\Sigma`^{1/2} }
+f(x) = \frac{1}{ (2\pi)^{k/2}|\Sigma|^{1/2} }
              \exp\Big( {-\tfrac{1}{2}}(x-\mu)'\Sigma^{-1}(x-\mu) \Big),
 $$
 gdzie $$\Sigma$$ to macierz kowariancji, symetryczna dodatnio określona o wymiarach $$d \times d$$ a $$\mu$$ to wektor średnich o długości $$d$$.
@@ -129,19 +129,21 @@ W takim razie aby wylosować pożądane zmienne wystarczy wylosować wektor niez
 $$
 C = \Sigma^{1/2} = P \Gamma^{1/2}P^{-1},
 $$
-gdzie $$\Gamma$$ to macierz diagonalna wartości własnych na przekątnej a $$P$$ to macierz wektorów własnych $$P^{-1}=P^T$$. Macierze $$P$$ i $$\Gamma$$ dla macierzy $$\Sigma$$ można znaleźć z użyciem funkcji `eigen()`\index{funkcja!base!eigen}\index{funkcja!alfabetycznie!eigen}.
-\item Dekompozycja SVD, czyli uogólnienie dekompozycji spektralnej na macierze prostokątne,
+gdzie $$\Gamma$$ to macierz diagonalna wartości własnych na przekątnej a $$P$$ to macierz wektorów własnych $$P^{-1}=P^T$$. Macierze $$P$$ i $$\Gamma$$ dla macierzy $$\Sigma$$ można znaleźć z użyciem funkcji `eigen()`.
+
+* Dekompozycja SVD, czyli uogólnienie dekompozycji spektralnej na macierze prostokątne,
 
 Jeżeli $$\Sigma$$ jest symetryczna i dodatnio określona, to $$U=V=P$$, więc 
 $$
 C = \Sigma^{1/2} = U D^{1/2} V^T,
 $$
-Funkcje fortranowe dla bibliotek LAPACK pozwalają na uwzględnienie faktu, że rozkładana macierz jest symetryczna i dodatnio określona, ale wrappery R już tego nie uwzględniają, więc ta transformacja jest mniej efektywna. Macierze $$U$$, $$V$$ i $$D$$ dla macierzy $$\Sigma$$ można znaleźć z użyciem funkcji `svd()`\index{funkcja!base!svd}\index{funkcja!alfabetycznie!svd}.
-\item Dekompozycja Choleskiego, tzw. pierwiastek Choleskiego, 
+Funkcje fortranowe dla bibliotek LAPACK pozwalają na uwzględnienie faktu, że rozkładana macierz jest symetryczna i dodatnio określona, ale wrappery R już tego nie uwzględniają, więc ta transformacja jest mniej efektywna. Macierze $$U$$, $$V$$ i $$D$$ dla macierzy $$\Sigma$$ można znaleźć z użyciem funkcji `svd()`.
+
+* Dekompozycja Choleskiego, tzw. pierwiastek Choleskiego, 
 $$
 \Sigma = Q^T Q,
 $$
-gdzie $$Q$$ to macierz górna trójkątna. Macierz $$Q$$ dla macierzy $$\Sigma$$ można znaleźć z użyciem funkcji `chol()`\index{funkcja!base!chol}\index{funkcja!alfabetycznie!chol}.
+gdzie $$Q$$ to macierz górna trójkątna. Macierz $$Q$$ dla macierzy $$\Sigma$$ można znaleźć z użyciem funkcji `chol()`.
 
 Który z tych algorytmów najlepiej wybrać? Szybszy i numerycznie bardziej stabilny! Porównajmy czasy działania różnych faktoryzacji.
 
@@ -163,6 +165,7 @@ system.time(replicate(N, {tmp <- svd(Sigma)
 ```
 
 * Rozkład spektralny / na wartości własne.
+
 ```{r}
 system.time(replicate(N, {tmp <- eigen(Sigma, symmetric=T)
       X %*% (tmp$vectors %*% diag(sqrt(tmp$values)) %*% t(tmp$vectors))
