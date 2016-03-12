@@ -1,11 +1,10 @@
 # Jak wczytywać korpusy tekstu?
 
-Dane nie zawsze mają strukturę tabeli. Czasem jedyną opcją jest wczytanie pliku jako wektora napisó∑ - linia po linii. Do tego celu można użyc funkcji `readLines()`, która potrafi wczytać dane zarówno z lokalnego pliku jaki bezpośrendnio z adresu URL w internecie.
+Dane nie zawsze mają strukturę tabeli. Czasem jedyną opcją jest wczytanie pliku jako wektora napisów - linia po linii. Do tego celu można użyc funkcji `readLines()`, która potrafi wczytać dane zarówno z lokalnego pliku jaki bezpośrendnio z adresu URL w internecie.
 
 Wykorzystajmy tę funkcję, aby z projektu Gutenberg www.gutenberg.org wczytać treść ksiażki Juliusza Verne, ,,W 80 dni dookoła świata'' (http://www.gutenberg.org/cache/epub/103/pg103.txt).
 
-
-```r
+```
 # W 80 dni dookoła świata
 w80dni <- readLines("http://www.gutenberg.org/cache/epub/103/pg103.txt")
 
@@ -24,8 +23,7 @@ head(w80dni)
 
 Zobaczmy jakie słowa sa najczęściej uzywane w tej powieści.
 
-
-```r
+```
 # rozbicie linii na słowa
 slowa <- unlist(strsplit(w80dni, split="[^A-Za-z0-9]+"))
 # liczba słów i charakterystyki
@@ -34,10 +32,8 @@ length(slowa)
 
 ```
 ## [1] 68460
-```
 
-```r
-## [1] 68460
+```
 # Najczęstsze słowa
 head(sort(table(slowa), decreasing = TRUE), 50)
 ```
@@ -65,7 +61,6 @@ head(sort(table(slowa), decreasing = TRUE), 50)
 ##          her           It          are         been          all 
 ##          171          171          170          169          167
 ```
-
 
 ## Inne przydatne narzędzia
 
