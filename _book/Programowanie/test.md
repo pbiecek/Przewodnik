@@ -10,5 +10,5 @@ sqrt(2)
 ```
 
 
-The devtools  package makes it easy to develop R packages.
+The devtools (Wickham and Chang, 2013) package makes it easy to develop R packages.
 

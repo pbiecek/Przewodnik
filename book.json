@@ -11,15 +11,23 @@
         "github-buttons": {
       "repo": "pbiecek/Przewodnik",
       "types": [
-        "star",
-        "watch"
+        "star"
       ]
-    }
+    },
+      "sharing": {
+            "facebook": true,
+            "twitter": true,
+            "google": false,
+            "weibo": false,
+            "instapaper": false,
+            "vk": false,
+            "all": false
+      }
   },
   "links": {
         "home": "TUTAJ HOME",
         "about": "http://biecek.pl",
         "issues": "https://github.com/pbiecek/Przewodnik/issues",
         "edit": "TUTAJ"
-    }
+    },
 }
