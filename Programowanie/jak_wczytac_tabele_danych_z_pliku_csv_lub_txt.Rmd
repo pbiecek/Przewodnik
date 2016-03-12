@@ -2,7 +2,7 @@
 
 Jednym z bardziej uniwersalnych formatów przechowywania danych są pliki tekstowe, a więc takie, które możemy otworzyć w dowolnym edytorze, też w RStudio.
 
-Pliki tekstowe zawierajace tabele z danymi mająz azwyczaj rozszerzenie `csv` (od ang. *comma separated values*, wartości rozdzielane przecinkami) lub `txt`.
+Pliki tekstowe zawierajace tabele z danymi mają zazwyczaj rozszerzenie `csv` (od ang. *comma separated values*, wartości rozdzielane przecinkami) lub `txt`.
 
 Przyjrzymy się tabeli z danymi zapisanymi w pliku
 http://biecek.pl/MOOC/dane/koty_ptaki.csv. Poniżej wklejam treść tego pliku.
