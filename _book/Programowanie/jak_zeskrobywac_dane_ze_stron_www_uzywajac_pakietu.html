@@ -51,7 +51,7 @@
     <link rel="prev" href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html" />
     
 
-        
+        <script>window["gitbook-plugin-github-buttons"] = {"repo":"pbiecek/Przewodnik","types":["star","watch"]};</script>
     </head>
     <body>
         
@@ -61,7 +61,7 @@
         data-chapter-title="Jak zeskrobywać dane ze stron www?"
         data-filepath="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.md"
         data-basepath=".."
-        data-revision="Sat Mar 12 2016 17:52:34 GMT+0100 (CET)"
+        data-revision="Sat Mar 12 2016 18:37:31 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -995,21 +995,19 @@ html_table(htab)
 </code></pre><h2 id="skrobanie-htmla-z-u&#x17C;yciem-pakietu-rselenium">Skrobanie HTMLa z u&#x17C;yciem pakietu <code>RSelenium</code></h2>
 <p>Pakiet <code>rvest</code> jest bardzo prosty a jednocze&#x15B;nie pozwala na pobranie wielu danych ze strony. Nie pozwala jednak na utrzymanie sesji i praca ze stron&#x105; tak jakby obs&#x142;ugiwa&#x142; j&#x105; interaktywnie cz&#x142;owiek. Do tego typu zada&#x144; mo&#x17C;na u&#x17C;y&#x107; biblioteki Selenium dost&#x119;pnej poprzez pakiet <code>RSelenium</code>. 
 Biblioteka Selenium po inicjacji otwiera okno przegl&#x105;darki a nast&#x119;pnie pozwala na wykonywanie okre&#x15B;lonych operacji na tym oknie.</p>
-<pre><code class="lang-r"><span class="hljs-keyword">library</span>(RSelenium)
+<pre><code>library(RSelenium)
 checkForServer()
 startServer()
 przegladarka &lt;- remoteDriver$new()
 przegladarka$open()
-</code></pre>
-<p>Przyk&#x142;adowo funkcj&#x105; <code>navigate()</code> mo&#x17C;emy otworzy&#x107; w przegl&#x105;darce wskazan&#x105; stron&#x119; internetow&#x105;. Funkcj&#x105; <code>findElement()</code> mo&#x17C;emy odwo&#x142;a&#x107; si&#x119; do elementu na otwartej stronie internetowej. Funkcj&#x105; <code>sendKeysToElement()</code> mo&#x17C;na zmieni&#x107; warto&#x15B;&#x107; wskazanego elementu oraz wykona&#x107; wskazan&#x105; akcj&#x119;, np. przes&#x142;a&#x107; klawisz ENTER. </p>
-<pre><code class="lang-r">przegladarka$navigate(<span class="hljs-string">&quot;http://www.google.com&quot;</span>)
+</code></pre><p>Przyk&#x142;adowo funkcj&#x105; <code>navigate()</code> mo&#x17C;emy otworzy&#x107; w przegl&#x105;darce wskazan&#x105; stron&#x119; internetow&#x105;. Funkcj&#x105; <code>findElement()</code> mo&#x17C;emy odwo&#x142;a&#x107; si&#x119; do elementu na otwartej stronie internetowej. Funkcj&#x105; <code>sendKeysToElement()</code> mo&#x17C;na zmieni&#x107; warto&#x15B;&#x107; wskazanego elementu oraz wykona&#x107; wskazan&#x105; akcj&#x119;, np. przes&#x142;a&#x107; klawisz ENTER. </p>
+<pre><code>przegladarka$navigate(&quot;http://www.google.com&quot;)
 
-wyszukiwarka &lt;- przegladarka$findElement(using = <span class="hljs-string">&quot;name&quot;</span>, value = <span class="hljs-string">&quot;q&quot;</span>)
-wyszukiwarka$sendKeysToElement(list(<span class="hljs-string">&quot;Przewodnik po pakiecie R&quot;</span>, key=<span class="hljs-string">&quot;enter&quot;</span>))
+wyszukiwarka &lt;- przegladarka$findElement(using = &quot;name&quot;, value = &quot;q&quot;)
+wyszukiwarka$sendKeysToElement(list(&quot;Przewodnik po pakiecie R&quot;, key=&quot;enter&quot;))
 
 przegladarka$goBack()
 </code></pre>
-
                     
                     </section>
                 
@@ -1043,6 +1041,10 @@ przegladarka$goBack()
     
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-github-buttons/plugin.js"></script>
+    
+
+    
     <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
     
 
@@ -1060,7 +1062,7 @@ przegladarka$goBack()
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"github-buttons":{"repo":"pbiecek/Przewodnik","types":["star","watch"]},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

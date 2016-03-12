@@ -26,10 +26,3 @@
 .book .book-summary .expanded > span .exc-trigger:before {
 	content: "\f078";
 }
-
-p {
-	font-family: 'Noto Serif', serif!important;
-}
-h1 {
-	font-family: 'Noto Serif', serif!important;
-}
