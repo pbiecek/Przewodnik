@@ -63,9 +63,9 @@ $$
 
 W pakiecie `copula` do operacji na kopulach służą funkcje:
 
-*`dcopula(copula,u)`, wylicza gęstość kopuli `copula` w punkcie `u`,
-* `pcopula(copula,u)`, wylicza dystrybuantę kopuli w punkcie `u`,
-* `rcopula(copula,n)`, generuje `n` wartości z kopuli `copula`.
+* `dCopula(copula,u)`, wylicza gęstość kopuli `copula` w punkcie `u`,
+* `pCopula(copula,u)`, wylicza dystrybuantę kopuli w punkcie `u`,
+* `rCopula(copula,n)`, generuje `n` wartości z kopuli `copula`.
 
 Pierwszym argumentem tych funkcji jest obiekt klasy `copula`, opisujący wielowymiarowy rozkład na kostce jednostkowej. Taki obiekt możemy zainicjować używając jednej z funkcji wymienionych w kolejnej tabeli.  Gęstości i przykładowe próby wylosowane z wybranych kopuli przedstawione są na kolejnym rysunku.
 
@@ -85,7 +85,7 @@ str(norm.cop)
 Używając funkcji rcopula generujemy 1000 obserwacji.
 
 ```{r}
-x <- rcopula(norm.cop, 1000)
+x <- rCopula(1000, norm.cop)
 head(x)
 ```
 
@@ -96,8 +96,8 @@ Poniżej najpierw tworzymy obiekt z definicją kopuli Claytona, następnie gener
 ```{r}
 N <- 40
 clayton.cop <- claytonCopula(1, dim = 2)
-x <- rcopula(clayton.cop, N)
-y <- cbind(qexp(x[,1],rate=2), qexp(x[,2],rate=2))
+x <- rCopula(N, clayton.cop)
+y <- cbind(qexp(x[,1], rate=2), qexp(x[,2], rate=2))
 head(y)
 ```
 
@@ -119,7 +119,7 @@ Losujemy dwa wektory o zadanej strukturze zależności. Następnie dwoma testami
 
 ```{r}
 for (i in 1:1000) {
-       x <- rcopula(clayton.cop, N)
+       x <- rCopula(N, clayton.cop)
        y <- cbind(qexp(x[,1],2), qexp(x[,2],2))
        pv[1, i] <- cor.test(y[,1], y[,2], method="pearson")$p.value
        pv[2, i] <- cor.test(y[,1], y[,2], method="spearman")$p.value
