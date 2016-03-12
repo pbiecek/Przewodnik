@@ -15,7 +15,7 @@ Liczby losowe dla innych rozkładów można otrzymać z liczb losowych dla rozk�
 Ponieważ dystrybuanta rozkładu normalnego nie ma prostej postaci analitycznej, więc aby użyć metody odwrotnej dystrybuanty trzeba wykorzystać zaawansowane i wymagające obliczeniowo aproksymacje numeryczne, których opis można znaleźć w opisie funkcji `qnorm()`. Innym popularnym algorytmem generowania liczb z rozkładu normalnego, znacznie szybszym od metody odwrotnej dystrybuanty, jest algorytm Boxa-Mullera (`"Box-Muller"`). 
 
 Więcej informacji o tym i innych generatorach przeczytać można w dokumentacji do funkcji `RNGkind()`.
-Osoby zainteresowane tym tematem znajdą więcej informacji o generatorach w książce \cite{Zielinski}. Poniżej przedstawiamy przykład użycia funkcji `RNGkind()` do zmiany generatora.
+Osoby zainteresowane tym tematem znajdą więcej informacji o generatorach w książce Roberta Wieczorkowskiego i Ryszarda Zielińskiego *Komputerowe generatory liczb losowych*. Poniżej przedstawiamy przykład użycia funkcji `RNGkind()` do zmiany generatora.
 
 Wybieramy generator "Super-Duper" dla generowania liczb z rozkładu jednostajnego i metodę "Box-Muller" do generowania liczb z rozkładu normalnego, wynikiem funkcji RNGkind() są poprzednio stosowane generatory.
 
@@ -69,8 +69,8 @@ rnorm(9)
 ```
 
 ```
-## [1]  0.8078557 -0.6409557 -1.1562194 -0.5063363  0.9481198 -1.8247021
-## [7] -0.1932493 -0.6629940  1.6807519
+## [1]  0.3965513  1.1664325 -0.4613190 -1.5723750  0.5507826  1.8767068
+## [7]  0.2104542 -0.3085643 -0.9558250
 ```
 
 Odtwarzamy ziarno i losujemy 10 kolejnych liczb.
@@ -82,8 +82,8 @@ rnorm(9)
 ```
 
 ```
-## [1] -0.54672297 -1.29554508  0.03613173 -0.64436439 -1.00143901  1.72349553
-## [7] -0.09401723 -1.45383033  0.55930865
+## [1] -0.1022967 -1.1790798  1.0988424  1.0630586 -1.9116259  1.1782023
+## [7] -1.9595778 -0.2884178  1.0447500
 ```
 
 Pamiętanie ziarna złożonego z 625 liczb nie jest specjalnie wygodne. Do łatwej inicjacji ziarna zalecane jest korzystanie z funkcji `set.seed()`. Argumentem tej funkcji jest jedna liczba, która jest zamieniana na ziarno odpowiedniej długości. Poniżej przykład wywołania tej funkcji. Ustawiamy ziarno i generujemy liczby losowe.

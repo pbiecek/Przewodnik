@@ -21,7 +21,7 @@ Pobrane dane są w postaci wąskiej. Kolumna `geo` określa kraj, kolumna `time`
 
 ## Rozsmaruj na kolumny
 
-Aby przejść z postaci wąskiej do postaci szerokie, można użyć funkcji `spread()`.
+Aby przejść z postaci wąskiej do postaci szerokiej, można użyć funkcji `spread()`.
 Ta funkcja poza pierwszym argumentem - zbiorem danych - oczekuje jeszcze dwóch innych argumentów. Jeden będzie kluczem odpowiadającym nazwom kolumn a drugi będzie wartościami, które zostaną wpisane do poszczególnych kolumn. Wiersze nowej tabeli z danymi są wybierane jako unikalne wartości w pozostałych kolumnach (tutaj wiersze będą opisywały unikalne kombinacje jednostki, typu transportu i kraju).
 
 ```{r, warning=FALSE, message=FALSE}

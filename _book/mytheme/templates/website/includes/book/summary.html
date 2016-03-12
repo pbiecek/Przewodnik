@@ -16,7 +16,7 @@
         <li class="divider"></li>
         {% endif %}
         <li data-level="0" data-path="index.html">
-            <a href="{{ basePath }}/"><i class="fa fa-check"></i> Introduction</a>
+            <a href="{{ basePath }./index.html"><i class="fa fa-check"></i> Introduction</a>
         </li>
         {% for item in summary.chapters %}
             <li {% if item._path == _input %}class="active"{% endif %} data-level="{{ item.level }}" {% if item.path %}data-path="{{ item.path|mdLink }}"{% endif %}>

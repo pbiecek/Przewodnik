@@ -15,7 +15,7 @@ Liczby losowe dla innych rozkładów można otrzymać z liczb losowych dla rozk�
 Ponieważ dystrybuanta rozkładu normalnego nie ma prostej postaci analitycznej, więc aby użyć metody odwrotnej dystrybuanty trzeba wykorzystać zaawansowane i wymagające obliczeniowo aproksymacje numeryczne, których opis można znaleźć w opisie funkcji `qnorm()`. Innym popularnym algorytmem generowania liczb z rozkładu normalnego, znacznie szybszym od metody odwrotnej dystrybuanty, jest algorytm Boxa-Mullera (`"Box-Muller"`). 
 
 Więcej informacji o tym i innych generatorach przeczytać można w dokumentacji do funkcji `RNGkind()`.
-Osoby zainteresowane tym tematem znajdą więcej informacji o generatorach w książce \cite{Zielinski}. Poniżej przedstawiamy przykład użycia funkcji `RNGkind()` do zmiany generatora.
+Osoby zainteresowane tym tematem znajdą więcej informacji o generatorach w książce Roberta Wieczorkowskiego i Ryszarda Zielińskiego *Komputerowe generatory liczb losowych*. Poniżej przedstawiamy przykład użycia funkcji `RNGkind()` do zmiany generatora.
 
 Wybieramy generator "Super-Duper" dla generowania liczb z rozkładu jednostajnego i metodę "Box-Muller" do generowania liczb z rozkładu normalnego, wynikiem funkcji RNGkind() są poprzednio stosowane generatory.
 

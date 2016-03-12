@@ -51,7 +51,7 @@
     <link rel="prev" href="../Programowanie/generatory_llosowych.html" />
     
 
-        <script>window["gitbook-plugin-github-buttons"] = {"repo":"pbiecek/Przewodnik","types":["star"]};</script>
+        
     </head>
     <body>
         
@@ -61,7 +61,7 @@
         data-chapter-title="Jak ustawiać ziarno generatora?"
         data-filepath="Programowanie/generatory_1.md"
         data-basepath=".."
-        data-revision="Sat Mar 12 2016 21:52:50 GMT+0100 (CET)"
+        data-revision="Sat Mar 12 2016 22:15:26 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -920,7 +920,7 @@
 <code>&quot;Kinderman-Ramage&quot;</code>, <code>&quot;Buggy Kinderman-Ramage&quot;</code>, <code>&quot;Ahrens-Dieter&quot;</code>, <code>&quot;Box-Muller&quot;</code>, <code>&quot;Inversion&quot;</code>, <code>&quot;user-supplied&quot;</code>. Domy&#x15B;lnie wykorzystywana jest metoda odwrotnej dystrybuanty <code>&quot;Inversion&quot;</code>. </p>
 <p>Poniewa&#x17C; dystrybuanta rozk&#x142;adu normalnego nie ma prostej postaci analitycznej, wi&#x119;c aby u&#x17C;y&#x107; metody odwrotnej dystrybuanty trzeba wykorzysta&#x107; zaawansowane i wymagaj&#x105;ce obliczeniowo aproksymacje numeryczne, kt&#xF3;rych opis mo&#x17C;na znale&#x17A;&#x107; w opisie funkcji <code>qnorm()</code>. Innym popularnym algorytmem generowania liczb z rozk&#x142;adu normalnego, znacznie szybszym od metody odwrotnej dystrybuanty, jest algorytm Boxa-Mullera (<code>&quot;Box-Muller&quot;</code>). </p>
 <p>Wi&#x119;cej informacji o tym i innych generatorach przeczyta&#x107; mo&#x17C;na w dokumentacji do funkcji <code>RNGkind()</code>.
-Osoby zainteresowane tym tematem znajd&#x105; wi&#x119;cej informacji o generatorach w ksi&#x105;&#x17C;ce \cite{Zielinski}. Poni&#x17C;ej przedstawiamy przyk&#x142;ad u&#x17C;ycia funkcji <code>RNGkind()</code> do zmiany generatora.</p>
+Osoby zainteresowane tym tematem znajd&#x105; wi&#x119;cej informacji o generatorach w ksi&#x105;&#x17C;ce Roberta Wieczorkowskiego i Ryszarda Zieli&#x144;skiego <em>Komputerowe generatory liczb losowych</em>. Poni&#x17C;ej przedstawiamy przyk&#x142;ad u&#x17C;ycia funkcji <code>RNGkind()</code> do zmiany generatora.</p>
 <p>Wybieramy generator &quot;Super-Duper&quot; dla generowania liczb z rozk&#x142;adu jednostajnego i metod&#x119; &quot;Box-Muller&quot; do generowania liczb z rozk&#x142;adu normalnego, wynikiem funkcji RNGkind() s&#x105; poprzednio stosowane generatory.</p>
 <pre><code class="lang-r">(RNGkind(<span class="hljs-string">&quot;Super&quot;</span>, <span class="hljs-string">&quot;Box&quot;</span>))
 </code></pre>
@@ -942,14 +942,14 @@ Osoby zainteresowane tym tematem znajd&#x105; wi&#x119;cej informacji o generato
 <pre><code class="lang-r">save.seed &lt;- .Random.seed
 rnorm(<span class="hljs-number">9</span>)
 </code></pre>
-<pre><code>## [1]  0.8078557 -0.6409557 -1.1562194 -0.5063363  0.9481198 -1.8247021
-## [7] -0.1932493 -0.6629940  1.6807519
+<pre><code>## [1]  0.3965513  1.1664325 -0.4613190 -1.5723750  0.5507826  1.8767068
+## [7]  0.2104542 -0.3085643 -0.9558250
 </code></pre><p>Odtwarzamy ziarno i losujemy 10 kolejnych liczb.</p>
 <pre><code class="lang-r">.Random.seed &lt;- save.seed 
 rnorm(<span class="hljs-number">9</span>)
 </code></pre>
-<pre><code>## [1] -0.54672297 -1.29554508  0.03613173 -0.64436439 -1.00143901  1.72349553
-## [7] -0.09401723 -1.45383033  0.55930865
+<pre><code>## [1] -0.1022967 -1.1790798  1.0988424  1.0630586 -1.9116259  1.1782023
+## [7] -1.9595778 -0.2884178  1.0447500
 </code></pre><p>Pami&#x119;tanie ziarna z&#x142;o&#x17C;onego z 625 liczb nie jest specjalnie wygodne. Do &#x142;atwej inicjacji ziarna zalecane jest korzystanie z funkcji <code>set.seed()</code>. Argumentem tej funkcji jest jedna liczba, kt&#xF3;ra jest zamieniana na ziarno odpowiedniej d&#x142;ugo&#x15B;ci. Poni&#x17C;ej przyk&#x142;ad wywo&#x142;ania tej funkcji. Ustawiamy ziarno i generujemy liczby losowe.</p>
 <pre><code class="lang-r">set.seed(<span class="hljs-number">1313</span>)
 runif(<span class="hljs-number">10</span>)
@@ -996,10 +996,6 @@ runif(<span class="hljs-number">10</span>)
     
 
     
-    <script src="../gitbook/plugins/gitbook-plugin-github-buttons/plugin.js"></script>
-    
-
-    
     <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
     
 
@@ -1017,7 +1013,7 @@ runif(<span class="hljs-number">10</span>)
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"github-buttons":{"repo":"pbiecek/Przewodnik","types":["star"]},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

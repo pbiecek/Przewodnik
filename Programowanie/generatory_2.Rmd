@@ -84,7 +84,7 @@ rnorm(n, mean=0, sd=1)
 ```
 
 
-Rozkład normalny opisywany jest dwoma parametrami: średnią i odchyleniem standardowym. Standardowy rozkład normalny ma średnią równą 0 i odchylenie standardowe równe 1, są to też domyślne wartości argumentów `mean` i `sd`. Zmiana argumentu `lower.tail=TRUE` powoduje, że dystrybuanta liczona jest jako $$P(X \leq x)$$, gdy argument `lower.tail=FALSE`, to wyznaczana jest wartość $P(X > x)$, czyli dopełnienie dystrybuanty. 
+Rozkład normalny opisywany jest dwoma parametrami: średnią i odchyleniem standardowym. Standardowy rozkład normalny ma średnią równą 0 i odchylenie standardowe równe 1, są to też domyślne wartości argumentów `mean` i `sd`. Zmiana argumentu `lower.tail=TRUE` powoduje, że dystrybuanta liczona jest jako $$P(X \leq x)$$, gdy argument `lower.tail=FALSE`, to wyznaczana jest wartość $$P(X > x)$$, czyli dopełnienie dystrybuanty. 
 
 Zgodnie z regułą ,,trzy sigma'' prawdopodobieństwo, że zmienna losowa o standardowym rozkładzie normalnym przyjmie wartość mniejszą od -3 lub większą od 3 jest bardzo małe. Jeżeli pamiętamy czym jest dystrybuanta oraz wiemy, że wartości dystrybuanty w programie R wyznaczyć można funkcją `pnorm()`, to z łatwością wyznaczymy ww. prawdopodobieństwo.
 

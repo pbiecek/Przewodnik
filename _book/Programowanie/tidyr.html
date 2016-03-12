@@ -51,7 +51,7 @@
     <link rel="prev" href="../Programowanie/groupby.html" />
     
 
-        <script>window["gitbook-plugin-github-buttons"] = {"repo":"pbiecek/Przewodnik","types":["star"]};</script>
+        
     </head>
     <body>
         
@@ -61,7 +61,7 @@
         data-chapter-title="Jak czyścić dane?"
         data-filepath="Programowanie/tidyr.md"
         data-basepath=".."
-        data-revision="Sat Mar 12 2016 21:52:50 GMT+0100 (CET)"
+        data-revision="Sat Mar 12 2016 22:15:26 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -931,7 +931,7 @@ head(tsdtr210)
 ## PC_BUS_TOT_CZ_1990   PC BUS_TOT  CZ 1990    NA
 </code></pre><p>Pobrane dane s&#x105; w postaci w&#x105;skiej. Kolumna <code>geo</code> okre&#x15B;la kraj, kolumna <code>time</code> okre&#x15B;la rok, kolumna <code>vehicle</code> rodzaj transportu, a kolumna <code>value</code> popularno&#x15B;&#x107; danego rodzaju transportu w okre&#x15B;lonym kraju, w okre&#x15B;lonym roku.</p>
 <h2 id="rozsmaruj-na-kolumny">Rozsmaruj na kolumny</h2>
-<p>Aby przej&#x15B;&#x107; z postaci w&#x105;skiej do postaci szerokie, mo&#x17C;na u&#x17C;y&#x107; funkcji <code>spread()</code>.
+<p>Aby przej&#x15B;&#x107; z postaci w&#x105;skiej do postaci szerokiej, mo&#x17C;na u&#x17C;y&#x107; funkcji <code>spread()</code>.
 Ta funkcja poza pierwszym argumentem - zbiorem danych - oczekuje jeszcze dw&#xF3;ch innych argument&#xF3;w. Jeden b&#x119;dzie kluczem odpowiadaj&#x105;cym nazwom kolumn a drugi b&#x119;dzie warto&#x15B;ciami, kt&#xF3;re zostan&#x105; wpisane do poszczeg&#xF3;lnych kolumn. Wiersze nowej tabeli z danymi s&#x105; wybierane jako unikalne warto&#x15B;ci w pozosta&#x142;ych kolumnach (tutaj wiersze b&#x119;d&#x105; opisywa&#x142;y unikalne kombinacje jednostki, typu transportu i kraju).</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(tidyr)
 
@@ -1050,10 +1050,6 @@ Dodatkowymi argumentami <code>extra=</code> i <code>fill=</code> mo&#x17C;na okr
     
 
     
-    <script src="../gitbook/plugins/gitbook-plugin-github-buttons/plugin.js"></script>
-    
-
-    
     <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
     
 
@@ -1071,7 +1067,7 @@ Dodatkowymi argumentami <code>extra=</code> i <code>fill=</code> mo&#x17C;na okr
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"github-buttons":{"repo":"pbiecek/Przewodnik","types":["star"]},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>

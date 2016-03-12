@@ -51,7 +51,7 @@
     <link rel="prev" href="../Programowanie/generatory_1.html" />
     
 
-        <script>window["gitbook-plugin-github-buttons"] = {"repo":"pbiecek/Przewodnik","types":["star"]};</script>
+        
     </head>
     <body>
         
@@ -61,7 +61,7 @@
         data-chapter-title="Jak losować z prostych rozkładów?"
         data-filepath="Programowanie/generatory_2.md"
         data-basepath=".."
-        data-revision="Sat Mar 12 2016 21:52:50 GMT+0100 (CET)"
+        data-revision="Sat Mar 12 2016 22:15:26 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -970,7 +970,7 @@ plot(x, dnorm(x), type=<span class="hljs-string">&quot;l&quot;</span>, lwd=<span
 pnorm(q, mean=0, sd=1, lower.tail = TRUE, log.p = FALSE)
 qnorm(p, mean=0, sd=1, lower.tail = TRUE, log.p = FALSE)
 rnorm(n, mean=0, sd=1)
-</code></pre><p>Rozk&#x142;ad normalny opisywany jest dwoma parametrami: &#x15B;redni&#x105; i odchyleniem standardowym. Standardowy rozk&#x142;ad normalny ma &#x15B;redni&#x105; r&#xF3;wn&#x105; 0 i odchylenie standardowe r&#xF3;wne 1, s&#x105; to te&#x17C; domy&#x15B;lne warto&#x15B;ci argument&#xF3;w <code>mean</code> i <code>sd</code>. Zmiana argumentu <code>lower.tail=TRUE</code> powoduje, &#x17C;e dystrybuanta liczona jest jako <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>&#x2264;</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">P(X \leq x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mrel">&#x2264;</span><span class="mord mathit">x</span><span class="mclose">)</span></span></span></span>, gdy argument <code>lower.tail=FALSE</code>, to wyznaczana jest warto&#x15B;&#x107; $P(X &gt; x)$, czyli dope&#x142;nienie dystrybuanty. </p>
+</code></pre><p>Rozk&#x142;ad normalny opisywany jest dwoma parametrami: &#x15B;redni&#x105; i odchyleniem standardowym. Standardowy rozk&#x142;ad normalny ma &#x15B;redni&#x105; r&#xF3;wn&#x105; 0 i odchylenie standardowe r&#xF3;wne 1, s&#x105; to te&#x17C; domy&#x15B;lne warto&#x15B;ci argument&#xF3;w <code>mean</code> i <code>sd</code>. Zmiana argumentu <code>lower.tail=TRUE</code> powoduje, &#x17C;e dystrybuanta liczona jest jako <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>&#x2264;</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">P(X \leq x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mrel">&#x2264;</span><span class="mord mathit">x</span><span class="mclose">)</span></span></span></span>, gdy argument <code>lower.tail=FALSE</code>, to wyznaczana jest warto&#x15B;&#x107; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>&gt;</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">P(X &gt; x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mrel">&gt;</span><span class="mord mathit">x</span><span class="mclose">)</span></span></span></span>, czyli dope&#x142;nienie dystrybuanty. </p>
 <p>Zgodnie z regu&#x142;&#x105; ,,trzy sigma&apos;&apos; prawdopodobie&#x144;stwo, &#x17C;e zmienna losowa o standardowym rozk&#x142;adzie normalnym przyjmie warto&#x15B;&#x107; mniejsz&#x105; od -3 lub wi&#x119;ksz&#x105; od 3 jest bardzo ma&#x142;e. Je&#x17C;eli pami&#x119;tamy czym jest dystrybuanta oraz wiemy, &#x17C;e warto&#x15B;ci dystrybuanty w programie R wyznaczy&#x107; mo&#x17C;na funkcj&#x105; <code>pnorm()</code>, to z &#x142;atwo&#x15B;ci&#x105; wyznaczymy ww. prawdopodobie&#x144;stwo.</p>
 <p>Prawdopodobie&#x144;stwo wylosowania normalnego warto&#x15B;ci <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&gt;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">&gt; 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">&gt;</span><span class="mord mathrm">3</span></span></span></span> lub <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>&lt;</mo><mo>&#x2212;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">&lt; -3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mrel">&lt;</span><span class="mord">&#x2212;</span><span class="mord mathrm">3</span></span></span></span>.</p>
 <pre><code class="lang-r">pnorm(-<span class="hljs-number">3</span>) + (<span class="hljs-number">1</span> - pnorm(<span class="hljs-number">3</span>))
@@ -1030,10 +1030,6 @@ Na powy&#x17C;szym rysunku przedstawiono przyk&#x142;adowy rozk&#x142;ad ci&#x10
     
 
     
-    <script src="../gitbook/plugins/gitbook-plugin-github-buttons/plugin.js"></script>
-    
-
-    
     <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
     
 
@@ -1051,7 +1047,7 @@ Na powy&#x17C;szym rysunku przedstawiono przyk&#x142;adowy rozk&#x142;ad ci&#x10
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"github-buttons":{"repo":"pbiecek/Przewodnik","types":["star"]},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>
