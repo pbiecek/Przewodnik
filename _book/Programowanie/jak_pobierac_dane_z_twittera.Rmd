@@ -139,3 +139,4 @@ Poza filtrowaniem twittera w poszukiwaniu wiadomości pasujących do określonyc
 * Funkcja `mentions()` pozwala na pobieranie wiadomości, w których określony użytkownik został mieniony.
 * Funkcja `retweetsOfMe()` pozwala na zliczanie liczby retwittów kolejnych wiadomości.
 
+Aby korzystać z powyżej opisanych pakietów należy pobrać z konta odpowiednie klucze. Szczegółowa instrukacj jak to zrobić, krok po kroku po stronie Twittera, znajduje się na stronie http://bigcomputing.blogspot.com/2016/02/the-twitter-r-package-by-jeff-gentry-is.html.

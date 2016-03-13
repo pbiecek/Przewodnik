@@ -7,4 +7,5 @@ Aby rozwijać ten sposób myślenia potrzebne są narzędzia, pozwalające na ek
 
 ## Węcej źródeł
 
-*  http://www.gradaanwr.net/
+* *Graphical Data Analysis with R*, Antony Unwin http://www.gradaanwr.net/
+
