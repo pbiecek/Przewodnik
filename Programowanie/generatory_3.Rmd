@@ -49,6 +49,8 @@ rPoisProcess <- function (T=1, lambda=1) {
 Przykładowe wywołanie powyższej funkcji.
 
 ```{r}
+set.seed(1313)
+
 rPoisProcess(T=10, lambda=0.2)
 ```
 
@@ -150,7 +152,7 @@ Który z tych algorytmów najlepiej wybrać? Szybszy i numerycznie bardziej stab
 * Faktoryzacja (rozkład) Choleskiego.
 
 ```{r}
-n <- 100; d <- 100; N <- 10000
+n <- 200; d <- 100; N <- 10000
 Sigma <- cov(matrix(rnorm(n*d),n,d))
 X <- matrix(rnorm(n*d),n,d)
 system.time(replicate(N, {Q <- chol(Sigma)

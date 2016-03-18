@@ -9,4 +9,3 @@ Galeria interesujących przykładów aplikacji wykonanych z użyciem biblioteki 
 Poniższe przykłady będą inspirowane aplikacją dostępną na stronie http://mi2.mini.pw.edu.pl:8080/SmarterPoland/IMDB/. Pozwala ona wybrać nazwę serialu i wyświetlić dla wskazanego serialy o popularności kolejnych odcinków i sezonów. Dane przedstawiane na tym wykresie pochodzą ze zbioru danych `serialeIMDB` w pakietu `PogromcyDanych`.
 
 ![Aplikacja Shiny z informacjami o serialach](shiny/shiny01.png)
-

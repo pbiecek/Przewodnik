@@ -51,11 +51,13 @@ Przykładowe wywołanie powyższej funkcji.
 
 
 ```r
+set.seed(1313)
+
 rPoisProcess(T=10, lambda=0.2)
 ```
 
 ```
-## numeric(0)
+## [1] 0.6637362
 ```
 
 W podobny sposób możemy generować zmienne z jednorodnego pola losowego, czyli z dwuwymiarowego procesu Poissona.
@@ -93,7 +95,9 @@ rRandomField(T1=10, T2=10, lambda=0.02)
 
 ```
 ##          x        y
-## 1 8.891797 8.832264
+## 1 5.297950 9.469024
+## 2 9.142406 5.634131
+## 3 5.115911 6.146278
 ```
 
 Rozważmy teraz proces Poissona, którego częstość skoków nie jest stała, ale wynosi $$\lambda(t)$$. Taki proces nazywamy niejednorodnym procesem Poissona. Jest to bardzo często wykorzystywany proces w modelowaniu liczby szkód, częstość występowania szkód najczęściej zmienia się z czasem (liczba oszustw bankomatowych zależy od liczby bankomatów i najczęściej rośnie z czasem, liczba szkód OC zależy od liczby ubezpieczonych samochodów i od szkodowości, oba parametry zmieniają się w czasie itp.).
@@ -164,7 +168,7 @@ Który z tych algorytmów najlepiej wybrać? Szybszy i numerycznie bardziej stab
 
 
 ```r
-n <- 100; d <- 100; N <- 10000
+n <- 200; d <- 100; N <- 10000
 Sigma <- cov(matrix(rnorm(n*d),n,d))
 X <- matrix(rnorm(n*d),n,d)
 system.time(replicate(N, {Q <- chol(Sigma)
@@ -173,7 +177,7 @@ system.time(replicate(N, {Q <- chol(Sigma)
 
 ```
 ##    user  system elapsed 
-##  10.504   1.036  11.543
+##  20.557   2.025  23.770
 ```
 
 * Faktoryzacja  SVD
@@ -186,7 +190,7 @@ system.time(replicate(N, {tmp <- svd(Sigma)
 
 ```
 ##    user  system elapsed 
-##  85.000   4.160  89.342
+## 101.648   8.117 119.463
 ```
 
 * Rozkład spektralny / na wartości własne.
@@ -200,7 +204,7 @@ system.time(replicate(N, {tmp <- eigen(Sigma, symmetric=T)
 
 ```
 ##    user  system elapsed 
-##  51.007   2.543  53.545
+##  66.521   5.227  78.655
 ```
 
 Powyższe czasy zostały policzone dla pewnych przykładowych danych i mogą różnić się w zależności od zainstalowanych bibliotek. Ogólnie jednak najszybszą procedurą jest faktoryzacja Choleskiego i to ona najczęściej jest wykorzystywana do generowania zmiennych o wielowymiarowym rozkładzie normalnym. 
