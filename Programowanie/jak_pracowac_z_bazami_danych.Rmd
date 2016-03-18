@@ -115,7 +115,7 @@ Poniżej skorzystamy z funkcji `src_sqlite()` i `src_postgres()`.
 
 Zainicjujmy połączenie z bazą SQLite i pobierzmy kilka pierwszych wierszy z tabeli `auta2012`.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
  library(dplyr)
 polaczenie <- src_sqlite(path = 'zabawka.db')
 auta1 <- tbl(polaczenie, "auta2012")

@@ -175,8 +175,8 @@ glosy
 ## 8    niez.            Za  27274
 ## 9     KPSP Wstrzymał się   2699
 ## 10 Kukiz15     Nieobecny    893
-## 11     PiS Wstrzymał się 111698
-## 12     PSL       Przeciw 120436
+## 11     PSL       Przeciw 120436
+## 12     PiS Wstrzymał się 111698
 ```
 
 Na koniec pracy należy rozłączyć się z bazą danych i zwolnić połączenie. 
@@ -249,7 +249,7 @@ src_tbls(polaczenie)
 ```
 ## [1] "votes"            "counter"          "statements"      
 ## [4] "deputies"         "votings"          "votes_copy_27_08"
-## [7] "test_statements"
+## [7] "db"               "test_statements"
 ```
 
 ```r
@@ -283,8 +283,8 @@ liczba_glosow$query
 ## <Query> SELECT "club", "vote", "liczba"
 ## FROM (SELECT "club", "vote", count(*) AS "liczba"
 ## FROM "votes"
-## GROUP BY "club", "vote") AS "zzz8"
-## <PostgreSQLConnection:(24090,11)>
+## GROUP BY "club", "vote") AS "zzz2"
+## <PostgreSQLConnection:(5252,3)>
 ```
 
 ```r
@@ -296,7 +296,7 @@ explain(liczba_glosow)
 ## SELECT "club", "vote", "liczba"
 ## FROM (SELECT "club", "vote", count(*) AS "liczba"
 ## FROM "votes"
-## GROUP BY "club", "vote") AS "zzz8"
+## GROUP BY "club", "vote") AS "zzz2"
 ```
 
 ```
