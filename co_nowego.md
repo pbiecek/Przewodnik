@@ -1,6 +1,11 @@
 # Co nowego zostało ostatnio dodane?
 
 
+* 18 marca 2016
+
+W rozdziale *Programowanie* podrozdział 
+[Jak tworzyć interaktywne aplikacje z pakietem Shiny?](https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/jak_tworzyc_aplikajce.html)
+
 * 11 marca 2016
 
 Zmiana spisu treści. Nowy krój pisma.
