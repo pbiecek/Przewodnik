@@ -4,9 +4,11 @@ W poprzedniej części zobaczyliśmy jak wygląda struktura aplikacji. Jednak ap
 
 Zbudujmy teraz aplikację, która coś liczy i wyświetla to coś na ekranie. W przypadku poniższej aplikacji wynikiem będą dwa elementy: wykres i opis modelu liniowego. 
 
+Opisaną poniżej aplikację można zobaczyć pod adresem http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny1/. Kody źródłowe dostępne są pod adresem https://github.com/pbiecek/Przewodnik/tree/master/Programowanie/shiny/shiny1/.
+
 Dodanie wyników do aplikacji wymaga zmiany obu części deklaracji aplikacji. W pliku `ui.R` należy określić gdzie ma zostać umieszczony określony wynik, a w pliku `server.R` należy określić jak ma być liczony.
 
-Zacznijmy od deklaracji pliku `ui.R`. 
+Zacznijmy od pliku `ui.R`. 
 
 Poniżej wklejamy uaktualnioną treść tego pliku. W miejscu gdzie tworzony jest prawy panel znalazły się wywołania dwóch funkcji 
 
