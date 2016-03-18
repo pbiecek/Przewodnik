@@ -6,6 +6,11 @@
 W rozdziale *Programowanie* podrozdział 
 [Jak tworzyć interaktywne aplikacje z pakietem Shiny?](https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/jak_tworzyc_aplikajce.html)
 
+* 13 marca 2016
+
+W rozdziale *Programowanie* podrozdział 
+[Jak pracować z bazami danych?](https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/jak_pracowac_z_bazami_danych.html)
+
 * 11 marca 2016
 
 Zmiana spisu treści. Nowy krój pisma.
