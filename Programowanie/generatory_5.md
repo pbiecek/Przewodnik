@@ -8,6 +8,7 @@ Poniżej przedstawiamy przykład wywołania tej funkcji. Poza ocenami parametró
 Wylosujmy 100 obserwacji z rozkładu log-normalnego.
 
 ```r
+set.seed(1313)
 wek <- rlnorm(100)
 ```
 
@@ -15,13 +16,14 @@ Sprawdzamy jak wyglądają oceny parametrów w rodzinie rozkładów normalnych (
 
 
 ```r
+library(MASS)
 fitdistr(wek, "normal")
 ```
 
 ```
 ##      mean         sd    
-##   1.6698846   2.1792353 
-##  (0.2179235) (0.1540952)
+##   1.5056770   1.4301718 
+##  (0.1430172) (0.1011284)
 ```
 
 A teraz wyznaczamy oceny w rodzinie rozkładów gamma.
@@ -33,7 +35,7 @@ fitdistr(wek, "gamma", list(shape=3, rate=3))
 
 ```
 ##      shape       rate   
-##   1.0846942   0.6495628 
-##  (0.1360306) (0.1025949)
+##   1.4257013   0.9468890 
+##  (0.1828441) (0.1450370)
 ```
 
