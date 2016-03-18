@@ -52,12 +52,11 @@ Informacje o ziarnie i generatorze liczb losowych przechowywana jest w wektorze 
 
 
 ```r
-.Random.seed[1:7]
+.Random.seed[1:3]
 ```
 
 ```
-## [1]         102  1592882403 -1087561527          NA          NA          NA
-## [7]          NA
+## [1]        102 1573937927  401450909
 ```
 
 Zapisujemy ziarno generatora, losujemy 10 liczb losowych.
@@ -69,8 +68,8 @@ rnorm(9)
 ```
 
 ```
-## [1]  0.3965513  1.1664325 -0.4613190 -1.5723750  0.5507826  1.8767068
-## [7]  0.2104542 -0.3085643 -0.9558250
+## [1]  0.107348745 -0.697036834 -0.062469772  0.009149777 -0.827356321
+## [6] -1.052308528 -1.071339333  0.494668306 -0.672775887
 ```
 
 Odtwarzamy ziarno i losujemy 10 kolejnych liczb.
@@ -82,8 +81,8 @@ rnorm(9)
 ```
 
 ```
-## [1] -0.1022967 -1.1790798  1.0988424  1.0630586 -1.9116259  1.1782023
-## [7] -1.9595778 -0.2884178  1.0447500
+## [1] -1.9162432  0.1533060 -1.0742517 -0.6073451 -0.7227752 -1.3373099
+## [7]  0.7520163 -0.9695565  0.4539077
 ```
 
 Pamiętanie ziarna złożonego z 625 liczb nie jest specjalnie wygodne. Do łatwej inicjacji ziarna zalecane jest korzystanie z funkcji `set.seed()`. Argumentem tej funkcji jest jedna liczba, która jest zamieniana na ziarno odpowiedniej długości. Poniżej przykład wywołania tej funkcji. Ustawiamy ziarno i generujemy liczby losowe.

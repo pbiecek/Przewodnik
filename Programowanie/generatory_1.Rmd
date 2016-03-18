@@ -41,7 +41,7 @@ Informacje o ziarnie i generatorze liczb losowych przechowywana jest w wektorze 
 
 
 ```{r}
-.Random.seed[1:7]
+.Random.seed[1:3]
 ```
 
 Zapisujemy ziarno generatora, losujemy 10 liczb losowych.

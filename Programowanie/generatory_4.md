@@ -73,6 +73,7 @@ Zobaczmy jak w programie R zainicjować obiekt typu `copula` i wygenerować wekt
 
 
 ```r
+set.seed(1313)
 library(copula)
 (norm.cop <- normalCopula(0.5))
 ```
@@ -112,13 +113,13 @@ head(x)
 ```
 
 ```
-##            [,1]       [,2]
-## [1,] 0.63846340 0.66187564
-## [2,] 0.08194772 0.08522898
-## [3,] 0.22515301 0.02128006
-## [4,] 0.15612973 0.04239270
-## [5,] 0.39041294 0.02196285
-## [6,] 0.77334882 0.93627859
+##            [,1]      [,2]
+## [1,] 0.76278595 0.6201576
+## [2,] 0.19761065 0.3975638
+## [3,] 0.03463103 0.0056668
+## [4,] 0.42832732 0.3924189
+## [5,] 0.41696909 0.2829983
+## [6,] 0.67150691 0.6534556
 ```
 
 Na poniższym przykładzie wygenerujemy 40 obserwacji z rozkładu, którego rozkładami brzegowymi są rozkłady wykładnicze o parametrze $$\lambda =2$$, a struktura zależności opisana jest kopulą Claytona.
@@ -135,13 +136,13 @@ head(y)
 ```
 
 ```
-##            [,1]      [,2]
-## [1,] 0.57580849 1.3437370
-## [2,] 0.06652461 0.3500947
-## [3,] 0.66959486 1.4078255
-## [4,] 0.28861590 0.2248515
-## [5,] 0.11994718 0.4805602
-## [6,] 0.20945548 0.2317555
+##            [,1]       [,2]
+## [1,] 0.03265682 0.22427019
+## [2,] 0.49260632 1.07684759
+## [3,] 0.02174317 0.02954191
+## [4,] 0.47358973 0.45462670
+## [5,] 0.15770206 0.88460214
+## [6,] 0.17701264 0.07611893
 ```
 
 Kopule stosowane są w wielu zagadnieniach. Poniżej przedstawimy przykład badania mocy dwóch testów korelacji, gdy dwuwymiarowa zmienna ma brzegowe rozkłady wykładnicze i zależność opisaną przez kopulę Claytona.
@@ -180,7 +181,7 @@ rowMeans(pv < 0.05)
 
 ```
 ##  Pearson Spearman 
-##    0.483    0.854
+##    0.485    0.866
 ```
 
 W zagadnieniach praktycznych, często nie wiemy z jakiej rodziny wybrać rozkłady brzegowe. W takich sytuacjach dobrym pomysłem jest użycie empirycznej dystrybuanty. Funkcję odwrotną do dystrybuanty empirycznej (która nie jest monotoniczna, ale to tzw. szczegół techniczny) jest funkcja `quantile()`. 
