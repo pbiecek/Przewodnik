@@ -6,6 +6,7 @@ Ale aplikacje Shiny mogą zawierać też rozmaite inne rozwiązania, takie jak p
 
 Poniżej przedstawimy wybrane ciekawsze rozwiązania oferowane przez Shiny, które wykraczały zakresem poza aplikację przedstawioną w poprzednim rozdziale.
 
+Opisaną poniżej aplikację można zobaczyć pod adresem [Przewodnik/shiny3](http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny3). Kody źródłowe dostępne są pod adresem [github/shiny3](https://github.com/pbiecek/Przewodnik/tree/master/Programowanie/shiny/shiny3/).
 
 Poniższy plik `ui.R` zawiera następujące rozszerzenia.
 

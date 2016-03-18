@@ -61,7 +61,7 @@
         data-chapter-title="Jak umieszczać wyniki analiz w aplikacji?"
         data-filepath="Programowanie/jak_tworzyc_aplikajce1.md"
         data-basepath=".."
-        data-revision="Fri Mar 18 2016 23:26:04 GMT+0100 (CET)"
+        data-revision="Sat Mar 19 2016 00:26:13 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -542,6 +542,21 @@
             
         </li>
     
+        <li class="chapter " data-level="2.9.5" data-path="Programowanie/jak_tworzyc_aplikajce4.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.5.</b>
+                        
+                        I co dalej?
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -1010,8 +1025,9 @@
                         <h2 id="jak-umieszcza&#x107;-wyniki-analiz-w-aplikacji">Jak umieszcza&#x107; wyniki analiz w aplikacji?</h2>
 <p>W poprzedniej cz&#x119;&#x15B;ci zobaczyli&#x15B;my jak wygl&#x105;da struktura aplikacji. Jednak aplikacja, kt&#xF3;r&#x105; zbudowali&#x15B;my nie nic ciekawego. </p>
 <p>Zbudujmy teraz aplikacj&#x119;, kt&#xF3;ra co&#x15B; liczy i wy&#x15B;wietla to co&#x15B; na ekranie. W przypadku poni&#x17C;szej aplikacji wynikiem b&#x119;d&#x105; dwa elementy: wykres i opis modelu liniowego. </p>
+<p>Opisan&#x105; poni&#x17C;ej aplikacj&#x119; mo&#x17C;na zobaczy&#x107; pod adresem <a href="http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny1" target="_blank">Przewodnik/shiny1</a>. Kody &#x17A;r&#xF3;d&#x142;owe dost&#x119;pne s&#x105; pod adresem <a href="https://github.com/pbiecek/Przewodnik/tree/master/Programowanie/shiny/shiny1/" target="_blank">github/shiny1</a>.</p>
 <p>Dodanie wynik&#xF3;w do aplikacji wymaga zmiany obu cz&#x119;&#x15B;ci deklaracji aplikacji. W pliku <code>ui.R</code> nale&#x17C;y okre&#x15B;li&#x107; gdzie ma zosta&#x107; umieszczony okre&#x15B;lony wynik, a w pliku <code>server.R</code> nale&#x17C;y okre&#x15B;li&#x107; jak ma by&#x107; liczony.</p>
-<p>Zacznijmy od deklaracji pliku <code>ui.R</code>. </p>
+<p>Zacznijmy od pliku <code>ui.R</code>. </p>
 <p>Poni&#x17C;ej wklejamy uaktualnion&#x105; tre&#x15B;&#x107; tego pliku. W miejscu gdzie tworzony jest prawy panel znalaz&#x142;y si&#x119; wywo&#x142;ania dw&#xF3;ch funkcji </p>
 <ul>
 <li><code>plotOutput()</code>, wskazuj&#x105;cej gdzie ma zosta&#x107; umieszczony wykres o nazwie <code>trend</code>,</li>

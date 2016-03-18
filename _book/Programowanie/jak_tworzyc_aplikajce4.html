@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak zbudować pierwszą aplikację? | Przewodnik po pakiecie R v. 4.0</title>
+        <title>I co dalej? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_tworzyc_aplikajce1.html" />
+    <link rel="next" href="../Programowanie/jak_tworzyc_raporty.html" />
     
     
-    <link rel="prev" href="../Programowanie/jak_tworzyc_aplikajce.html" />
+    <link rel="prev" href="../Programowanie/jak_tworzyc_aplikajce3.html" />
     
 
         
@@ -57,9 +57,9 @@
         
         
     <div class="book"
-        data-level="2.9.1"
-        data-chapter-title="Jak zbudować pierwszą aplikację?"
-        data-filepath="Programowanie/jak_tworzyc_aplikajce0.md"
+        data-level="2.9.5"
+        data-chapter-title="I co dalej?"
+        data-filepath="Programowanie/jak_tworzyc_aplikajce4.md"
         data-basepath=".."
         data-revision="Sat Mar 19 2016 00:26:13 GMT+0100 (CET)"
         data-innerlanguage="">
@@ -482,7 +482,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="2.9.1" data-path="Programowanie/jak_tworzyc_aplikajce0.html">
+        <li class="chapter " data-level="2.9.1" data-path="Programowanie/jak_tworzyc_aplikajce0.html">
             
                 
                     <a href="../Programowanie/jak_tworzyc_aplikajce0.html">
@@ -542,7 +542,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.9.5" data-path="Programowanie/jak_tworzyc_aplikajce4.html">
+        <li class="chapter active" data-level="2.9.5" data-path="Programowanie/jak_tworzyc_aplikajce4.html">
             
                 
                     <a href="../Programowanie/jak_tworzyc_aplikajce4.html">
@@ -1022,32 +1022,15 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="jak-zbudowa&#x107;-pierwsz&#x105;-aplikacj&#x119;">Jak zbudowa&#x107; pierwsz&#x105; aplikacj&#x119;</h2>
-<p>Aplikacja Shiny sk&#x142;adaj&#x105; si&#x119; z dw&#xF3;ch cz&#x119;&#x15B;ci, kt&#xF3;re zazwyczaj opisuje si&#x119; w dw&#xF3;ch osobnych plikach. Jedna cz&#x119;&#x15B;&#x107; opisuje interface u&#x17C;ytkownika (plik <code>ui.R</code>), druga opisuje spos&#xF3;b przetwarzania danych (plik <code>server.R</code>). </p>
-<p>Zacznijmy od okre&#x15B;lenia pierwszej prostej aplikacji. Jej dzia&#x142;anie mo&#x17C;na zobaczy&#x107; na stronie <a href="http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny0/" target="_blank">Przewodnik/shiny0</a>. Nie robi ona nic poza wy&#x15B;wietleniem tytu&#x142;u i dw&#xF3;ch napis&#xF3;w.</p>
-<p>&#x179;r&#xF3;d&#x142;a tej aplikacji s&#x105; dost&#x119;pne pod adresem  <a href="https://github.com/pbiecek/Przewodnik/tree/master/Programowanie/shiny/shiny0" target="_blank">github/shiny0</a> oraz przedstawione s&#x105; poni&#x17C;ej.</p>
-<p>Plik <code>ui.R</code> wygl&#x105;da nast&#x119;puj&#x105;co. Zagnie&#x17C;d&#x17C;ona struktura funkcji odpowiada zagnie&#x17C;d&#x17C;eniu element&#xF3;w HTML w aplikacji. Funkcja <code>titlePanel()</code> odpowiada za okre&#x15B;lenie tytu&#x142;u. Funkcja <code>sidebarLayout()</code> odpowiada za stworzenie podzia&#x142;u strony na lewy i prawy panel. Funkcja <code>p()</code> i <code>br()</code> tworz&#x105; nast&#x119;pnie HTMLowe tagi <code>&lt;p&gt;&lt;/p&gt;</code> oraz <code>&lt;br/&gt;</code>.</p>
-<pre><code>library(shiny)
-
-shinyUI(fluidPage(
-  titlePanel(&quot;Moja pierwsza aplikacja&quot;),
-  sidebarLayout(
-    sidebarPanel(
-      p(&quot;Tutaj jest lewy panel&quot;)
-    ),
-    mainPanel(
-      br(),
-      p(&quot;Tutaj jest prawy panel&quot;)
-    )
-  )
-))
-</code></pre><p>Ta aplikacja nie wymaga przetwarzana &#x17C;adnych danych, dlatego te&#x17C; tre&#x15B;&#x107; pliku <code>server.R</code> jest kr&#xF3;tka, zawiera tylko pust&#x105; deklaracje utworzenia serwera Shiny.</p>
-<pre><code>shinyServer(function(input, output) {
-})
-</code></pre><p>Aby odtworzy&#x107; t&#x119; aplikacje na w&#x142;asnym komputerze nale&#x17C;y w katalogu stworzy&#x107; dwa pliki <code>ui.R</code> i <code>server.R</code> a nast&#x119;pnie przekopiowa&#x107; do nich powy&#x17C;ej przedstawione tre&#x15B;ci. Po otwarciu tych plik&#xF3;w w programie RStudio w prawym g&#xF3;rnym rogu powinna pojawi&#x107; si&#x119; ikonka <code>Run App</code>, kt&#xF3;rej klikni&#x119;cie uruchomi aplikacj&#x119;. Inn&#x105; mo&#x17C;liwo&#x15B;ci&#x105; uruchomienia aplikacji jest wywo&#x142;anie funkcji <code>shiny::runApp()</code> ze wskazaniem katalogu w kt&#xF3;rym znajduj&#x105; si&#x119; oba pliki.</p>
-<p>Uruchomienie aplikacji przez program RStudio spowoduje, &#x17C;e dzia&#x142;a ona na lokalnym komputerze. Wgranie obu plik&#xF3;w na serwer, na kt&#xF3;rym zainstalowana jest aplikacja <a href="https://www.rstudio.com/products/shiny/shiny-server2/" target="_blank">Shiny Server</a> spowoduje, &#x17C;e b&#x119;dziemy mogli t&#x119; aplikacj&#x119; udost&#x119;pni&#x107; r&#xF3;wnie&#x17C; innym u&#x17C;ytkownikom.</p>
-<p>Wi&#x119;cej o podstawowej strukturze aplikacji Shiny, oraz o tym jas stowrzy&#x107; i uruchomi&#x107; pierwsz&#x105; aplikacj&#x119;, przeczyta&#x107; mo&#x17C;na na stronie 
-<a href="http://shiny.rstudio.com/tutorial/lesson1/" target="_blank">http://shiny.rstudio.com/tutorial/lesson1/</a>.</p>
+                        <h2 id="i-co-dalej">I co dalej?</h2>
+<p>Aplikacje Shiny maj&#x105; znacznie wi&#x119;cej mo&#x17C;liwo&#x15B;ci ni&#x17C; te, kt&#xF3;re przedstawili&#x15B;my w powy&#x17C;szych rozdzia&#x142;ach.</p>
+<p>Lista interesuj&#x105;cych rozszerze&#x144; jest przedstawiona na stronie <a href="http://shiny.rstudio.com/articles/" target="_blank">http://shiny.rstudio.com/articles/</a>.</p>
+<p>Odpowiedzi na wi&#x119;kszo&#x15B;c problem&#xF3;w zwi&#x105;znaych z Shiny mo&#x17C;na znale&#x17A;&#x107; na StackOverflow <a href="http://stackoverflow.com" target="_blank">http://stackoverflow.com</a>.</p>
+<p>A na stronie 
+<a href="http://www.rstudio.com/wp-content/uploads/2016/01/shiny-cheatsheet.pdf" target="_blank">http://www.rstudio.com/wp-content/uploads/2016/01/shiny-cheatsheet.pdf</a>
+mo&#x17C;na znale&#x17A;&#x107; dwustronicowe streszczenie najwa&#x17C;niejszych element&#xF3;w aplikacji Shiny.</p>
+<p><img src="shiny/shinyc1.png" alt="Pierwsza strona &#x15B;ci&#x105;gawki"></p>
+<p><img src="shiny/shinyc2.png" alt="Druga strona &#x15B;ci&#x105;gawki"></p>
 
                     
                     </section>
@@ -1058,10 +1041,10 @@ shinyUI(fluidPage(
         </div>
 
         
-        <a href="../Programowanie/jak_tworzyc_aplikajce.html" class="navigation navigation-prev " aria-label="Previous page: Jak budować aplikacje z pakietem Shiny?"><i class="fa fa-angle-left"></i></a>
+        <a href="../Programowanie/jak_tworzyc_aplikajce3.html" class="navigation navigation-prev " aria-label="Previous page: Jak tworzyć reaktywne elementy w aplikacji?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_tworzyc_aplikajce1.html" class="navigation navigation-next " aria-label="Next page: Jak umieszczać wyniki analiz w aplikacji?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/jak_tworzyc_raporty.html" class="navigation navigation-next " aria-label="Next page: Jak tworzyć raporty z pakietem knitr?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
