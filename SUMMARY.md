@@ -27,6 +27,7 @@
    * Jak tworzyć funkcje?
    * Jak pracować z typami w R?
    * Jak budować pakiety?
+   * [Jak budować aplikacje z pakietem Shiny?](Programowanie/jak_tworzyc_aplikajce.md)
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * Jak debugować kod R?
    * Jak zwiększyć wydajność kodu R?
