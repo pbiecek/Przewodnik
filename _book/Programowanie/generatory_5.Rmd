@@ -7,12 +7,14 @@ Poniżej przedstawiamy przykład wywołania tej funkcji. Poza ocenami parametró
 
 Wylosujmy 100 obserwacji z rozkładu log-normalnego.
 ```{r}
+set.seed(1313)
 wek <- rlnorm(100)
 ```
 
 Sprawdzamy jak wyglądają oceny parametrów w rodzinie rozkładów normalnych (tu nie ma dobrych odpowiedzi, ale to tylko ćwiczenie).
 
 ```{r}
+library(MASS)
 fitdistr(wek, "normal")
 ```
 

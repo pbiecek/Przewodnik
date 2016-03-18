@@ -24,7 +24,7 @@ Ostatnim krokiem jest wyłuskanie danych z zaznaczonej kolekcji uchwytów. Funkc
 
 Poniższy przykład wybiera z serwisu FilmWeb informacje o najbliższych premierach.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(rvest)
 premiery <- read_html("http://www.filmweb.pl/premiere")
 filmy <- html_nodes(premiery, ".gwt-filmPage")

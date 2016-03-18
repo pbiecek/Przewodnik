@@ -72,6 +72,7 @@ Pierwszym argumentem tych funkcji jest obiekt klasy `copula`, opisujący wielowy
 Zobaczmy jak w programie R zainicjować obiekt typu `copula` i wygenerować wektor zmiennych o zadanej strukturze zależności.
 
 ```{r}
+set.seed(1313)
 library(copula)
 (norm.cop <- normalCopula(0.5))
 ```
