@@ -2,11 +2,9 @@
 
 Aplikacja Shiny składają się z dwóch części, które zazwyczaj opisuje się w dwóch osobnych plikach. Jedna część opisuje interface użytkownika (plik `ui.R`), druga opisuje sposób przetwarzania danych (plik `server.R`). 
 
-Zacznijmy od określenia pierwszej prostej aplikacji. Jej działanie można zobaczyć na stronie http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny0/. Nie robi ona nic poza wyświetleniem tytułu i dwóch napisów.
+Zacznijmy od określenia pierwszej prostej aplikacji. Jej działanie można zobaczyć na stronie [Przewodnik/shiny0](http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny0/). Nie robi ona nic poza wyświetleniem tytułu i dwóch napisów.
 
-Źródła tej aplikacji są dostępne pod adresem 
-https://github.com/pbiecek/Przewodnik/tree/master/Programowanie/shiny/shiny0
-oraz przedstawione są poniżej.
+Źródła tej aplikacji są dostępne pod adresem  [github/shiny0](https://github.com/pbiecek/Przewodnik/tree/master/Programowanie/shiny/shiny0) oraz przedstawione są poniżej.
 
 Plik `ui.R` wygląda następująco. Zagnieżdżona struktura funkcji odpowiada zagnieżdżeniu elementów HTML w aplikacji. Funkcja `titlePanel()` odpowiada za określenie tytułu. Funkcja `sidebarLayout()` odpowiada za stworzenie podziału strony na lewy i prawy panel. Funkcja `p()` i `br()` tworzą następnie HTMLowe tagi `<p></p>` oraz `<br/>`.
 
