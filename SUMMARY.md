@@ -51,7 +51,12 @@
        * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
        * [Jak badać rozkład dwóch zmiennych?](Analiza/jak_badac_rozklad_dwoch_zmiennych.md)
        * Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)
-       * Jak znaleźć skupiska danych?
+       * [Jak znaleźć skupiska w danych?](Analiza/beznadzoru/skupiska.md)
+         * [Jak wyznaczać odległosć pomiędzy obserwacjami?](Analiza/beznadzoru/dist.md)
+         * [Jak szukać partycji w oparciu o metodę k-średnich?](Analiza/beznadzoru/kmeans.md)
+         * [Jak szukać partycji w oparciu o metodę k-medoidów?](Analiza/beznadzoru/pam.md)
+         * [Jak szukać partycji w oparciu o mieszaniny rozkładów?](Analiza/beznadzoru/mclust.md)
+         * [Jak wykonać analizę hierarchiczną?](Analiza/beznadzoru/agnes.md)
    * [Weryfikacja](Analiza/weryfikacja.md)
        * [Jak badać właściwości jednej zmiennej?](Analiza/jak_badac_wlasciwosci_jednej_zmiennej.md)
        * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
