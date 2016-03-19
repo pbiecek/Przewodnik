@@ -1,6 +1,10 @@
 # Co nowego zostało ostatnio dodane?
 
 
+* 19 marca 2016
+
+Rozdział o ggplot2 *Jak tworzyć wykresy z pakietem ggplot2?* został podzielony na części i przeniesiony na stronę https://pbiecek.gitbooks.io/przewodnik/content/Wizualizacja/jak_tworzyc_wykresy_ggplot2.html.
+
 * 18 marca 2016
 
 W rozdziale *Programowanie* podrozdział 
