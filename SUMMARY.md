@@ -60,7 +60,16 @@
        * Jak mierzyć błąd predykcji?
        * Jak konstruować komitety? predyktorów?
    * [Wizualizacja](Analiza/wizualizacja.md)
-       * [Jak tworzyć wykresy z pakietem ggplot2?](Analiza/jak_tworzyc_wykresy_ggplot2.md)
+       * [Jak tworzyć wykresy z pakietem ggplot2?](Wizualizacja/jak_tworzyc_wykresy_ggplot2.md)
+         * [Jak zrobić pierwszy wykres?](Wizualizacja/ggplot2/01_pierwszy_wykres.md)
+         * [Jak określać mapowania?](Wizualizacja/ggplot2/02_mapowania.md)
+         * [Jak określać geometrię?](Wizualizacja/ggplot2/03_geometrie.md)
+         * [Jak składać wykres z kilku warstw?](Wizualizacja/ggplot2/04_warstwy.md)
+         * [Jak określać statystyki?](Wizualizacja/ggplot2/05_statystyki.md)
+         * [Jak tworzyć panele?](Wizualizacja/ggplot2/06_panele.md)
+         * [Jak modyfikować skale?](Wizualizacja/ggplot2/07_skale.md)
+         * [Jak modyfikować układ współrzędnych?](Wizualizacja/ggplot2/08_wspolrzedne.md)
+         * [Jak modyfikować styl wykresu?](Wizualizacja/ggplot2/09_styl.md)
        * [Jak tworzyć interaktywne wykresy?](Wizualizacja/jak_tworzyc_interaktywne_wykresy.md)
 * [Bibliografia](references.md)
 
