@@ -1,0 +1,4 @@
+# Jak wykonać analizę hierarchiczną?
+
+
+
