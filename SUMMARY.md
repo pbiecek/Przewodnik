@@ -59,7 +59,7 @@
    * Predykcja
        * Jak mierzyć błąd predykcji?
        * Jak konstruować komitety? predyktorów?
-   * [Wizualizacja](Analiza/wizualizacja.md)
+   * [Wizualizacja](Wizualizacja/wizualizacja.md)
        * [Jak tworzyć wykresy z pakietem ggplot2?](Wizualizacja/jak_tworzyc_wykresy_ggplot2.md)
          * [Jak zrobić pierwszy wykres?](Wizualizacja/ggplot2/01_pierwszy_wykres.md)
          * [Jak określać mapowania?](Wizualizacja/ggplot2/02_mapowania.md)
