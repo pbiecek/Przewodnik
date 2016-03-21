@@ -11,13 +11,39 @@ Schemat nazw funkcji związanych z rozkładami zmiennych losowych.
 
 Poniżej w kolejnych liniach losujemy pięć liczb z rozkładu jednostajnego. Wyznaczamy wartość dystrybuanty rozkładu jednostajnego w punkcie 0.5. Wyznaczamy wartość gęstości rozkładu jednostajnego w punkcie 0.5. Wyznaczamy wartość kwantyla rozkładu jednostajnego rzędu 0.1.
 
-```{r}
+
+```r
 set.seed(1313)
 
 runif(5)        
+```
+
+```
+## [1] 0.27578588 0.06637362 0.82379757 0.52979504 0.91424061
+```
+
+```r
 punif(0.5)        
+```
+
+```
+## [1] 0.5
+```
+
+```r
 dunif(0.5)         
+```
+
+```
+## [1] 1
+```
+
+```r
 qunif(0.1)
+```
+
+```
+## [1] 0.1
 ```
 
 Suffix `nazwa.rodziny.rozkładów` określa jakiej rodziny rozkładów dana funkcja dotyczy. Wszystkich rodzin rozkładów dostępnych w programie R jest wiele, przegląd popularniejszych znajduje się w poniższej tabeli. `Prefix` jest jednoliterowym markerem, określającym co chcemy z tym rozkładem zrobić. `Prefix` może być jedną z liter:
@@ -51,28 +77,49 @@ Jednym z najbardziej znanych rozkładów zmiennych losowych jest rozkład normal
 
 W poniższym przykładzie w pierwszej linii wybieramy punkty, w których wyznaczymy gęstość i dystrybuantę. Następnie rysujemy gęstość. 
 
-```{r}
+
+```r
 x <- seq(-4,4,by=0.01)
 plot(x, dnorm(x), type="l", lwd=3, cex.axis=1.5, cex.lab=1.5) 
 ```
 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+
 Na tym samym rysunku chcemy narysować dystrybuantę. Wymaga to użycia innej osi OY, dlatego zmieniamy współrzędne w wyświetlanym oknie graficznym. Teraz oś Y ma przyjmować wartości od -0.04 do 1.04. 
 
-```{r}
+
+```r
 par(usr=c(-4,4,-0.04,1.04))
 ```
 
 Dorysowujemy dystrybuantę, teraz współrzędne są już w nowym układzie. 
 
-```{r}
+
+```r
 lines(x, pnorm(x), lty=2, lwd=3, cex.axis=1.5, cex.lab=1.5)   
+```
+
+```
+## Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet
 ```
 
 Dodajemy oś OY po prawej stronie, współrzędne w nowym układzie.
 
-```{r}
+
+```r
 axis(side=4, cex.axis=1.5, cex.lab=1.5)                    
+```
+
+```
+## Error in axis(side = 4, cex.axis = 1.5, cex.lab = 1.5): plot.new has not been called yet
+```
+
+```r
 mtext(side=4, "pnorm()", line=2.5, cex.axis=1.5, cex=1.5)
+```
+
+```
+## Error in mtext(side = 4, "pnorm()", line = 2.5, cex.axis = 1.5, cex = 1.5): plot.new has not been called yet
 ```
 
 
@@ -92,33 +139,60 @@ Zgodnie z regułą ,,trzy sigma'' prawdopodobieństwo, że zmienna losowa o stan
 
 Prawdopodobieństwo wylosowania normalnego wartości $$> 3$$ lub $$< -3$$.
 
-```{r}
+
+```r
 pnorm(-3) + (1 - pnorm(3))  
+```
+
+```
+## [1] 0.002699796
 ```
 
 Wartość gęstości rozkładu normalnego w punktach $$-1$$, $$0$$ i $$1$$.
 
-```{r}
+
+```r
 dnorm(-1:1, mean=0, sd=1)
+```
+
+```
+## [1] 0.2419707 0.3989423 0.2419707
 ```
 
 
 Najpopularniejsze kwantyle rozkładu normalnego.
 
-```{r}
+
+```r
 qnorm(c(0.001, 0.025, 0.05, 0.5, 0.95, 0.975, 0.999))
+```
+
+```
+## [1] -3.090232 -1.959964 -1.644854  0.000000  1.644854  1.959964  3.090232
 ```
 
 Poniżej pokażemy jak wylosować dziesięć liczb z rozkładu normalnego o średniej 2 i odchyleniu stndardowym równym 1.
 
-```{r}
+
+```r
 rnorm(10, mean = 2, sd = 1)
+```
+
+```
+##  [1] -0.28140986  1.88012302  1.74946975  1.93769408  1.42249021
+##  [6]  2.37735514  2.30747717  3.91551395 -0.02528017  3.19469911
 ```
 
 Oba argumenty, zarówno średnia jak i odchylenie standardowe mogą być wektorami.
 
-```{r}
+
+```r
 rnorm(10, mean = 1:10, sd=1:10)
+```
+
+```
+##  [1] -0.08446439  2.15179185  2.06169327  6.10689980  2.27811716
+##  [6] 13.45986916  7.02084979  1.12729296  7.76597042 12.72887850
 ```
 
 Z pozostałych rozkładów korzysta się równie prosto.
