@@ -88,7 +88,8 @@ as.matrix(dist(kwiatkow5, method = "max"))
 ```
 
 Łatwość jej użycia niesie ryzyko stosowania jej bez głębszej refleksji jakie odległości mają sens. 
-Powtórzmy więc **w analizie skupisk kluczowy jest wybór odległości**.
+
+Powtórzmy więc jeszcze raz **w analizie skupisk kluczowy jest wybór odległości**.
 
 ## Pokaż ją!
 
