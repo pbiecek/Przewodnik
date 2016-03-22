@@ -79,44 +79,12 @@ Ale:
 
 Najprostszy sposób by policzyć odległość w R jest przez użycie wynkcji `dist()`. Są w niej zaimplementowane powyżej opisane odległości.
 
-
-```r
+```{r}
 kwiatkow5 <- iris[1:5,1:4]
 
 dist(kwiatkow5)
-```
-
-```
-##           1         2         3         4
-## 2 0.5385165                              
-## 3 0.5099020 0.3000000                    
-## 4 0.6480741 0.3316625 0.2449490          
-## 5 0.1414214 0.6082763 0.5099020 0.6480741
-```
-
-```r
 dist(kwiatkow5, method = "manhattan")
-```
-
-```
-##     1   2   3   4
-## 2 0.7            
-## 3 0.8 0.5        
-## 4 1.0 0.5 0.4    
-## 5 0.2 0.7 0.8 1.0
-```
-
-```r
 as.matrix(dist(kwiatkow5, method = "max"))
-```
-
-```
-##     1   2   3   4   5
-## 1 0.0 0.5 0.4 0.5 0.1
-## 2 0.5 0.0 0.2 0.3 0.6
-## 3 0.4 0.2 0.0 0.2 0.4
-## 4 0.5 0.3 0.2 0.0 0.5
-## 5 0.1 0.6 0.4 0.5 0.0
 ```
 
 Łatwość jej użycia niesie ryzyko stosowania jej bez głębszej reflekcji jakie odległości mają sens. 
@@ -126,12 +94,9 @@ Powtórzmy więc **w analizie skupisk kluczowy jest wybór odległości**.
 
 Macierz odległości (o ile nei jest duża) można przedstawiać graficznie z użyciem tzw. mapy ciepła. Więcej o tym jak jest konstruowana w kolejnych rozdziałach.
 
-
-```r
+```{r}
 d <- as.matrix(dist(kwiatkow5, method = "max"))
 
 heatmap(d, symm = TRUE)
 ```
-
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
