@@ -125,3 +125,11 @@ Z pozostałych rozkładów korzysta się równie prosto.
 Na powyższym rysunku przedstawiono przykładowy rozkład ciągłej zmiennej losowej określonej na przedziale `[0,1]`. Na tym rysunku zaznaczono podstawowe charakterystyki rozkładu ciągłej zmiennej losowej, takie jak wartość średnia, mediana, moda (dominanta), kwartyl górny i dolny oraz kwantyl rzędu 0.9 (nazywany też 90. percentylem lub 9. decylem).
 
 
+## Inne materiały
+
+Na stronie http://www.math.wm.edu/~leemis/chart/UDR/UDR.html znaleźć można bogatą listę 76 rozkładów oraz zależności pomiędzy rozkładami. Dla każdego rozkładu znajduje się też opis oraz charakterystyka.
+
+Z nazwy, czy postaci gęstości trudno jest określić co charakteryzuje rozkład. Przydatne mogą być w tym celu diagramy, przedstawiające różne rodziny rozkładów w przestrzeni ilorazów momentów 
+http://www.math.wm.edu/~leemis/2010jqt.pdf, http://www.math.wm.edu/~leemis/2010jqt.Plot3.pdf, http://www.math.wm.edu/~leemis/2010jqt.Plot4.pdf.
+
+
