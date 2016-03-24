@@ -2,7 +2,7 @@
 
 Największą zaletą algorytmu k-średnich jest efektywność obliczeniowa. Wyznaczanie średnich i przypisywanie do najbliższej średniej jest algebraicznie szybkie, łatwo się zrównolegla, przez co można stosować te algorytm do dużych baz danych. 
 
-Niestety jak widzieliśmy, opiera się on o kwadrat odległości Euklidesowej. Nie zawsze akurat taka miara podobieństwa nas interesuje. Taka miara jest też bardzo wrażliwa na duże oedległości i pojedyncza wartość odstająca może znaczącu wpłynąć na sumę kwadratów odległości.
+Niestety jak widzieliśmy, opiera się on o kwadrat odległości Euklidesowej. Nie zawsze akurat taka miara podobieństwa nas interesuje. Taka miara jest też bardzo wrażliwa na duże odległości i pojedyncza wartość odstająca może znacząco wpłynąć na sumę kwadratów odległości.
 
 Algorytm k-medoidów pozwoli nam wykorzystywać inne miary odległości za cenę wyższej złożoności obliczeniowej.
 
@@ -20,7 +20,7 @@ C(i) = arg\min_k d(x_i, m_k),
 $$
 gdzie $$m_k$$ to medoid grupy $$k$$.
 
-2. Dla każej grupy, sprawdź czy inny obiekt z tej grupy nie ma mniejszej sumy odległości od wszystkich pozostałych w tej grupie. Jeżeżeli tak, to on opowinien być nowym medoidem.
+2. Dla każdej grupy, sprawdź czy inny obiekt z tej grupy nie ma mniejszej sumy odległości od wszystkich pozostałych w tej grupie. Jeżeli tak, to to on powinien być nowym medoidem.
 
 $$
 m'_k = x_{r(k)}
@@ -47,7 +47,7 @@ odleglosci <- dist(auta[,c("Cena_norm", "KM_norm")], method = "manhattan")
 as.matrix(odleglosci)[1:5,1:5]
 ```
 
-Przypomnijemy wykres przedstawoający wybrane parametry dla wybranych marek.
+Przypomnijmy wykres przedstawiający wybrane parametry dla wybranych marek.
 
 ```{r pam_bezgrup, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
 library(ggrepel)
@@ -74,7 +74,7 @@ grupy$medoids
 grupy$id.med
 ```
 
-Wykorzystajmy obie te wartości aby narysować auta po podzieleniu na grupy. Dodatkowo wyróżnimy średoki grup.
+Wykorzystajmy obie te wartości aby narysować auta po podzieleniu na grupy. Dodatkowo wyróżnimy środki grup.
 
 ```{r pam_grupy, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
 centra <- auta[grupy$id.med,]
@@ -105,7 +105,7 @@ $$
 b(i) = \min_{k \neq C(x_i)} \frac{1}{\#{j: C(x_j) = k}}\sum_{j: C(x_j) = k} d(x_j, x_j)
 $$
 
-Im bliższa $$s(i)$$ wartości 1, tym bardziej dany obiekt pasuje do swojej grupy, im bliższa wartości -1, tyb bliżej temu obiektowi do grupy sąsiedniej.
+Im bliższa $$s(i)$$ wartości 1, tym bardziej dany obiekt pasuje do swojej grupy, im bliższa wartości -1, tym bliżej temu obiektowi do grupy sąsiedniej.
 
 
 ```{r pam_sylwetka}
