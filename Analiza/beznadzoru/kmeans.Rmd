@@ -33,7 +33,7 @@ $$
 
 2. Dla określonych średnich wartość $$W(C)$$ jest minimalizowana, jeżeli każda obserwacja jest przypisana du grupy wyznaczonej przez najbliższą średnią
 $$
-C(i) = \argmin_k ||x_i - \bar x_k||^2,
+C(i) = arg\min_k ||x_i - \bar x_k||^2,
 $$
 
 3. Powtarzaj kroki 1-2 tak długo póki zmienia się przypisanie do grup $$C(i)$$. 

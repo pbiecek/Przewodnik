@@ -33,7 +33,7 @@ $$
 
 2. Dla określonych średnich wartość $$W(C)$$ jest minimalizowana, jeżeli każda obserwacja jest przypisana du grupy wyznaczonej przez najbliższą średnią
 $$
-C(i) = \argmin_k ||x_i - \bar x_k||^2,
+C(i) = arg\min_k ||x_i - \bar x_k||^2,
 $$
 
 3. Powtarzaj kroki 1-2 tak długo póki zmienia się przypisanie do grup $$C(i)$$. 
@@ -105,7 +105,7 @@ head(grupy$cluster)
 
 ```
 ## Audi A3 Audi A4 Audi A6 Audi A8 Audi Q7 BMW 316 
-##       3       4       4       2       2       1
+##       4       2       2       3       3       1
 ```
 
 ```r
@@ -115,9 +115,9 @@ grupy$centers
 ```
 ##    Cena_norm    KM_norm
 ## 1 -0.6445280 -1.0066262
-## 2  3.4400810  2.8222961
-## 3 -0.2142881 -0.1830422
-## 4  0.2846520  0.7662755
+## 2  0.2846520  0.7662755
+## 3  3.4400810  2.8222961
+## 4 -0.2142881 -0.1830422
 ```
 
 
@@ -142,7 +142,7 @@ grupy$withinss
 ```
 
 ```
-## [1] 2.509780 1.733690 6.235331 5.545342
+## [1] 2.509780 5.545342 1.733690 6.235331
 ```
 
 ```r
@@ -179,8 +179,8 @@ WC
 ```
 
 ```
-## [1] 38.930412 21.885048 16.024143 11.355036  8.883000  7.469044  6.547251
-## [8]  5.785218  5.417387
+## [1] 38.930412 21.885048 16.024143 11.355036  8.891668  7.469044  6.547251
+## [8]  5.295325  4.336605
 ```
 
 ```r
