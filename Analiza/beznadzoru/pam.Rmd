@@ -38,8 +38,7 @@ Podobnie jak dla algorytmu k-średnich poniższą analizę grup przeprowadzimy n
 
 Algorytm k-medoidów może działać na uprzednio wyznaczonej macierzy odległości, wyznaczmy więc ją w oparciu o odległość Manhattan.
 
-
-```r
+```{r}
 auta <- archivist::aread("pbiecek/Przewodnik/arepo/bf2846de03bc8434d234b08fd2e31694")
 auta$nazwa <- rownames(auta)
 auta$Cena_norm <- scale(sqrt(auta$Cena))
@@ -48,19 +47,9 @@ odleglosci <- dist(auta[,c("Cena_norm", "KM_norm")], method = "manhattan")
 as.matrix(odleglosci)[1:5,1:5]
 ```
 
-```
-##           Audi A3   Audi A4  Audi A6  Audi A8  Audi Q7
-## Audi A3 0.0000000 0.7184849 1.888609 6.550862 6.980737
-## Audi A4 0.7184849 0.0000000 1.170124 5.832377 6.262252
-## Audi A6 1.8886091 1.1701242 0.000000 4.662253 5.092128
-## Audi A8 6.5508616 5.8323767 4.662253 0.000000 2.415564
-## Audi Q7 6.9807367 6.2622518 5.092128 2.415564 0.000000
-```
-
 Przypomnijemy wykres przedstawoający wybrane parametry dla wybranych marek.
 
-
-```r
+```{r pam_bezgrup, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
 library(ggrepel)
 ggplot(auta, aes(Cena, KM, label=nazwa)) +
   geom_point(size=3, color="red") +
@@ -68,50 +57,26 @@ ggplot(auta, aes(Cena, KM, label=nazwa)) +
   coord_trans("sqrt", "sqrt")
 ```
 
-![plot of chunk pam_bezgrup](figure/pam_bezgrup-1.svg)
-
 Przyjmijmy, że chcemy znaleźć 4 grupy. 
 
 Do znalezienia podziału wykorzystajmy funkcję `pam()` z pakietu `cluster`.
 
-
-```r
+```{r}
 library(cluster)
 grupy <- pam(odleglosci, k=4)
 ```
 
 Wynikiem jest lista, zawierająca między innymi pole `clustering` z informacją o przypisaniach kolejnych obserwacji oraz `centers` z informacją o zidentyfikowanych środkach grup.
 
-
-```r
+```{r}
 head(grupy$clustering)
-```
-
-```
-## Audi A3 Audi A4 Audi A6 Audi A8 Audi Q7 BMW 316 
-##       1       2       2       3       3       1
-```
-
-```r
 grupy$medoids
-```
-
-```
-## [1] "Peugeot 307" "Mazda 6"     "BMW X5"      "Opel Corsa"
-```
-
-```r
 grupy$id.med
-```
-
-```
-## [1] 31 22 12 24
 ```
 
 Wykorzystajmy obie te wartości aby narysować auta po podzieleniu na grupy. Dodatkowo wyróżnimy średoki grup.
 
-
-```r
+```{r pam_grupy, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
 centra <- auta[grupy$id.med,]
 
 ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
@@ -120,12 +85,6 @@ ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
   geom_text_repel(data=centra, color="black", size=7) + 
   coord_trans("sqrt", "sqrt")
 ```
-
-```
-## Error in eval(expr, envir, enclos): object 'grupa' not found
-```
-
-![plot of chunk pam_grupy](figure/pam_grupy-1.svg)
 
 ## Sylwetki grup
 
@@ -149,38 +108,10 @@ $$
 Im bliższa $$s(i)$$ wartości 1, tym bardziej dany obiekt pasuje do swojej grupy, im bliższa wartości -1, tyb bliżej temu obiektowi do grupy sąsiedniej.
 
 
-
-```r
+```{r pam_sylwetka}
 library(factoextra)
 sylwetka <- silhouette(grupy$clustering, odleglosci)
 sylwetka[1:6,]
-```
-
-```
-##      cluster neighbor sil_width
-## [1,]       1        2 0.5544012
-## [2,]       2        1 0.2354746
-## [3,]       2        1 0.4535087
-## [4,]       3        2 0.6164420
-## [5,]       3        2 0.7226221
-## [6,]       1        4 0.1658866
-```
-
-```r
 fviz_silhouette(sylwetka)
 ```
-
-```
-##   cluster size ave.sil.width
-## 1       1   26          0.37
-## 2       2   15          0.26
-## 3       3    3          0.69
-## 4       4    9          0.58
-```
-
-```
-## Warning: Stacking not well defined when ymin != 0
-```
-
-![plot of chunk pam_sylwetka](figure/pam_sylwetka-1.png)
 
