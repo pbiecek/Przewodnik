@@ -1,0 +1,121 @@
+# Jak szukać partycji w oparciu o metodę k-średnich?
+
+Algorytm k-średnich dzieli zbiór obserwacji na $$k$$ rozłącznych grup, skupisk, takich że *suma odległości obiektów wewnątrz tej samej grupy jest możliwie mała a pomiędzy grupami możliwie duża*.
+
+Jest to dosyć mglisty cel, który można realizować na różne sposoby, zobaczmy więc co to znaczy w przypadku algorytmy k-średnich.
+
+Niech $$C()$$ oznacza przypisanie do grup, przyjmijmy, że przypisujemy do $$K$$ grup indeksowanych liczbami $$1, ..., K$$. Dodatkowo wprowadźmy dwa oznaczenia, $$W(C)$$ to suma odległości wewnątrz grup (*within*), a $$B(C)$$ to suma odległości pomiędzy grupami (*between*).
+
+$$
+W(C) = \frac 12 \sum_{k=1}^K \sum_{i, C(i) = k} \sum_{j, C(j) = k} d(x_i, x_j),
+$$
+
+$$
+B(C) = \frac 12 \sum_{k=1}^K \sum_{i, C(i) = k} \sum_{j, C(j) \neq k} d(x_i, x_j)
+$$
+
+Suma obu tych wartości jest stała i równa sumarycznej odległości pomiędzy wszystkimi punktami. Skoro suma jest stała, to minimalizacja czy to $$W(C)/B(C)$$ czy $$W(C) - B(C)$$ jest równoważna minimalizacji $$W(C)$$. Jeżeli dodatkowo za odległość wybierzemy kwadrat odległości Euklidesowej, to otrzymamy (więcej informacji w rozdziale 14.3.5 *The Elements of Statistical Learning* Trevor Hastie, Robert Tibshirani, Jerome Friedman)
+
+$$
+W(C) = \sum_{k=1}^K \#{j: C(j) = k} \sum_{i, C(i) = k} || x_i - \bar x_k ||^2.
+$$
+
+Jeżeli obserwacji jest niebanalna liczba, niesposób przejrzeć wszystkich możliwych podziałów na $$K$$ grup, więc siłowo wartości $$W(C)$$ nie możemy zminimalizować. Zazwyczaj robi się to poprzez algorytm iteracyjnej poprawy przypisania do grup.
+
+## Algorytm k-średnich
+
+0. Wybierz losowe przypisanie do grup
+
+1. Dla określonego przypisania do grup wartość $$W(C)$$ jest minimalizowana, jeżeli środki grup opisane są przez średnie w grupach. Wyznacz środki poszczególnych grup jako średnie 
+$$
+\bar x_k = \frac{1}{\#{j: C(j) = k}} \sum_{i, C(i) = k} x_i,
+$$
+
+2. Dla określonych średnich wartość $$W(C)$$ jest minimalizowana, jeżeli każda obserwacja jest przypisana du grupy wyznaczonej przez najbliższą średnią
+$$
+C(i) = arg\min_k ||x_i - \bar x_k||^2,
+$$
+
+3. Powtarzaj kroki 1-2 tak długo póki zmienia się przypisanie do grup $$C(i)$$. 
+
+
+Powyższy algorytm z kroku na krok minimalizuje funkcję $$W(C)$$, ale może utknąć w lokalnym minimum tej funkcji. Dlatego zaleca się wystartowanie go z kilku różnych losowych konfiguracji początkowych
+
+
+## Przykład
+
+Analizę grup przeprowadzimy na wybranych 57 modelach aut. Policzyliśmy wcześniej na podstawie dwuletnich ofert średnią cenę, przebieg, pojemność silnika, liczbę koni mechanicznych i frakcję aut z silnikiem diesla. 
+
+Wyznaczmy podział na grupy bazując na dwóch cechach - cenie i liczbie koni mechanicznych. Ponieważ są to skońe zmienne na bardzo różnych skalach więc najpeirw obie zmienne unormujemy by odległość Euklidesowa miała jakikolwiek sens. Normalizacja polega na ustandaryzowaniu pierwiastaka z każdej z tych cech. 
+
+```{r}
+auta <- archivist::aread("pbiecek/Przewodnik/arepo/bf2846de03bc8434d234b08fd2e31694")
+auta$nazwa <- rownames(auta)
+auta$Cena_norm <- scale(sqrt(auta$Cena))
+auta$KM_norm <- scale(sqrt(auta$KM))
+head(auta)
+```
+
+Zobacmzy jak wyglądają modele na tych dwóch wystandaryzowanych skalach.
+
+```{r auta_bezgrup}
+library(ggrepel)
+ggplot(auta, aes(Cena_norm, KM_norm, label=nazwa)) +
+  geom_point(size=3, color="red") +
+  geom_text_repel(color="darkgrey") + theme_bw()
+```
+
+Przyjmijmy, że chcemy znaleźć 4 grupy. Liczba wszyskich możliwych przypisań rośnie jak funkcja rzędu $$O(N^K)$$ (dokładna liczba podana jest we wzorze 14.30 ww. źródła) a więc raczej szybko. Z tego powodu, do znalezienia podziału na grupy pozostają nam heurystyki.
+
+Do znalezienia podziału wykorzystajmy funkcję `kmeans()`.
+
+```{r}
+grupy <- kmeans(auta[,c("Cena_norm", "KM_norm")], 
+                centers = 4, nstart = 10)
+```
+
+Wynikiem jest lista, zawierająca między innymi pole `cluster` z informacją o przypisaniach kolejncyh obserwacji oraz `centers` z informacją o zidentyfikowanych środkach grup.
+
+```{r}
+head(grupy$cluster)
+grupy$centers
+```
+
+```{r auta_grupy}
+auta$grupa <- factor(grupy$cluster)
+centra <- data.frame(grupy$centers)
+centra$nazwa <- centra$grupy <- factor(1:nrow(centra))
+
+ggplot(auta, aes(Cena_norm, KM_norm, color=grupa, label=nazwa)) +
+  geom_text_repel(color="darkgrey") + 
+  geom_point(size=3) + 
+  geom_text(data=centra, size=8, color="black") +  theme_bw()
+```
+
+Z wyznaczonego podziału ne grupy mozna wyłuskać takie statystyki jak $$W(C)$$, $$B(C)$$ i ich sumę, łączną sumę kwadratów.
+
+```{r}
+grupy$withinss
+grupy$betweenss
+grupy$totss
+```
+
+## Jak wybrać liczbę grup?
+
+Najlepiej mieć oczekiwania dotyczące liczby grup wynikające z analizowanego problemu.
+
+Jeżeli nie mamy takiego komfortu, to często analizuje się wartości funkcji $$W(C)$$ dla różnych liczb grup. A następnie organoleptycznie określa się gdzie spadek miary $$W(C)$$ jest wystarczająco duży by dodać kolejną grupę.
+
+```{r osypisko}
+Kmax <- 10
+WC <- sapply(2:Kmax, function(k) {
+  grupy <- kmeans(auta[,c("Cena_norm", "KM_norm")], 
+                  centers = k, nstart = 10)
+  sum(grupy$withinss)
+})
+WC
+
+ggplot(data.frame(K=factor(2:Kmax), WC), aes(K, WC)) +
+  geom_bar(stat="identity")
+```
+
