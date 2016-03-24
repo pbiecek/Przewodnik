@@ -78,7 +78,7 @@ grupy <- kmeans(auta[,c("Cena_norm", "KM_norm")],
                 centers = 4, nstart = 10)
 ```
 
-Wynikiem jest lista, zawierająca między innymi pole `cluster` z informacją o przypasaniach kolejnych obserwacji oraz `centers` z informacją o zidentyfikowanych środkach grup.
+Wynikiem jest lista, zawierająca między innymi pole `cluster` z informacją o przypisaniach kolejnych obserwacji oraz `centers` z informacją o zidentyfikowanych środkach grup.
 
 ```{r}
 head(grupy$cluster)

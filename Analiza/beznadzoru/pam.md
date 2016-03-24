@@ -14,16 +14,14 @@ Algorytm PAM (*Partitioning Around Medoids*, nazywany dalej algorytmem k-medoid�
 0. Zainicjuj algorytm wybierając losowe obiekty jako medoidy/centra/reprezentantów grup.
 
 1. Dla wszystkich obiektów wyznacz ich przypisanie na zasadzie odległości od najbliższego medoidu. 
-
 $$
 C(i) = arg\min_k d(x_i, m_k),
 $$
 gdzie $$m_k$$ to medoid grupy $$k$$.
 
 2. Dla każdej grupy, sprawdź czy inny obiekt z tej grupy nie ma mniejszej sumy odległości od wszystkich pozostałych w tej grupie. Jeżeli tak, to to on powinien być nowym medoidem.
-
 $$
-m'_k = x_{r(k)}
+m'_k = x_{r(k)},
 $$
 $$
 r(k) = arg\min_{i: C(x_i) = k} \sum_{j: C(x_j) = k} d(x_i, x_j).
@@ -140,10 +138,10 @@ $$
 gdzie $$a(i)$$ to średnia odległość obserwacji $$x_i$$ od pozostałych z jej grupy, a $$b(i)$$ to najmniejsza ze średnich odległości do pozostałych grup.
 
 $$
-a(i) = \frac{1}{\#{j: C(x_j) = C(x_i)}}\sum_{j: C(x_j) = C(x_i)} d(x_j, x_j)
+a(i) = \frac{1}{\#\{j: C(x_j) = C(x_i)\}}\sum_{j: C(x_j) = C(x_i)} d(x_i, x_j)
 $$
 $$
-b(i) = \min_{k \neq C(x_i)} \frac{1}{\#{j: C(x_j) = k}}\sum_{j: C(x_j) = k} d(x_j, x_j)
+b(i) = \min_{k \neq C(x_i)} \frac{1}{\#\{j: C(x_j) = k\}}\sum_{j: C(x_j) = k} d(x_i, x_j)
 $$
 
 Im bliższa $$s(i)$$ wartości 1, tym bardziej dany obiekt pasuje do swojej grupy, im bliższa wartości -1, tym bliżej temu obiektowi do grupy sąsiedniej.
@@ -178,9 +176,5 @@ fviz_silhouette(sylwetka)
 ## 4       4    9          0.58
 ```
 
-```
-## Warning: Stacking not well defined when ymin != 0
-```
-
-![plot of chunk pam_sylwetka](figure/pam_sylwetka-1.png)
+![plot of chunk pam_sylwetka](figure/pam_sylwetka-1.svg)
 

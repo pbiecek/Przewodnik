@@ -100,7 +100,7 @@ grupy <- kmeans(auta[,c("Cena_norm", "KM_norm")],
                 centers = 4, nstart = 10)
 ```
 
-Wynikiem jest lista, zawierająca między innymi pole `cluster` z informacją o przypasaniach kolejnych obserwacji oraz `centers` z informacją o zidentyfikowanych środkach grup.
+Wynikiem jest lista, zawierająca między innymi pole `cluster` z informacją o przypisaniach kolejnych obserwacji oraz `centers` z informacją o zidentyfikowanych środkach grup.
 
 
 ```r
@@ -109,7 +109,7 @@ head(grupy$cluster)
 
 ```
 ## Audi A3 Audi A4 Audi A6 Audi A8 Audi Q7 BMW 316 
-##       1       2       2       3       3       4
+##       3       4       4       2       2       1
 ```
 
 ```r
@@ -118,10 +118,10 @@ grupy$centers
 
 ```
 ##    Cena_norm    KM_norm
-## 1 -0.2142881 -0.1830422
-## 2  0.2846520  0.7662755
-## 3  3.4400810  2.8222961
-## 4 -0.6445280 -1.0066262
+## 1 -0.6445280 -1.0066262
+## 2  3.4400810  2.8222961
+## 3 -0.2142881 -0.1830422
+## 4  0.2846520  0.7662755
 ```
 
 Wykorzystajmy obie te wartości aby narysować auta po podzieleniu na grupy. Dodatkowo dodaliśmy numery grup zaczepione w środkach grup.
@@ -148,7 +148,7 @@ grupy$withinss
 ```
 
 ```
-## [1] 6.235331 5.545342 1.733690 2.509780
+## [1] 2.509780 1.733690 6.235331 5.545342
 ```
 
 ```r
@@ -189,8 +189,8 @@ WC
 ```
 
 ```
-## [1] 38.930412 21.885048 16.024143 12.543156  8.891668  7.469044  6.572802
-## [8]  5.239436  5.345649
+## [1] 38.930412 21.885048 16.070026 11.355036  8.883000  7.467007  6.024751
+## [8]  5.235116  5.359783
 ```
 
 ```r
