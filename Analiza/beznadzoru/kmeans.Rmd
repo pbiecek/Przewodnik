@@ -48,8 +48,7 @@ Analizę grup przeprowadzimy na wybranych 57 modelach aut. Policzyliśmy wcześn
 
 Wyznaczmy podział na grupy bazując na dwóch cechach - cenie i liczbie koni mechanicznych. Ponieważ są to skońe zmienne na bardzo różnych skalach więc najpeirw obie zmienne unormujemy by odległość Euklidesowa miała jakikolwiek sens. Normalizacja polega na ustandaryzowaniu pierwiastaka z każdej z tych cech. 
 
-
-```r
+```{r}
 auta <- archivist::aread("pbiecek/Przewodnik/arepo/bf2846de03bc8434d234b08fd2e31694")
 auta$nazwa <- rownames(auta)
 auta$Cena_norm <- scale(sqrt(auta$Cena))
@@ -57,71 +56,32 @@ auta$KM_norm <- scale(sqrt(auta$KM))
 head(auta)
 ```
 
-```
-##             Cena Przebieg Pojemnosc  KM diesle   nazwa  Cena_norm
-## Audi A3  20900.0   164450      1896 110   66.9 Audi A3 -0.0995477
-## Audi A4  25311.4   182000      1900 130   75.7 Audi A4  0.1228525
-## Audi A6  31500.0   185000      2496 170   82.5 Audi A6  0.4043397
-## Audi A8 109000.0   129380      4134 300   68.1 Audi A8  2.7415782
-## Audi Q7 179000.0    72000      3000 240   89.1 Audi Q7  4.1642976
-## BMW 316   6150.0   186000      1600 105    1.7 BMW 316 -1.1121946
-##            KM_norm
-## Audi A3 -0.1961830
-## Audi A4  0.2999017
-## Audi A6  1.1885387
-## Audi A8  3.5135527
-## Audi Q7  2.5207084
-## BMW 316 -0.3271113
-```
-
 Zobacmzy jak wyglądają modele na tych dwóch wystandaryzowanych skalach.
 
-
-```r
+```{r auta_bezgrup}
 library(ggrepel)
 ggplot(auta, aes(Cena_norm, KM_norm, label=nazwa)) +
   geom_point(size=3, color="red") +
   geom_text_repel(color="darkgrey") + theme_bw()
 ```
 
-![plot of chunk auta_bezgrup](figure/auta_bezgrup-1.png)
-
 Przyjmijmy, że chcemy znaleźć 4 grupy. Liczba wszyskich możliwych przypisań rośnie jak funkcja rzędu $$O(N^K)$$ (dokładna liczba podana jest we wzorze 14.30 ww. źródła) a więc raczej szybko. Z tego powodu, do znalezienia podziału na grupy pozostają nam heurystyki.
 
 Do znalezienia podziału wykorzystajmy funkcję `kmeans()`.
 
-
-```r
+```{r}
 grupy <- kmeans(auta[,c("Cena_norm", "KM_norm")], 
                 centers = 4, nstart = 10)
 ```
 
 Wynikiem jest lista, zawierająca między innymi pole `cluster` z informacją o przypisaniach kolejncyh obserwacji oraz `centers` z informacją o zidentyfikowanych środkach grup.
 
-
-```r
+```{r}
 head(grupy$cluster)
-```
-
-```
-## Audi A3 Audi A4 Audi A6 Audi A8 Audi Q7 BMW 316 
-##       3       4       4       2       2       1
-```
-
-```r
 grupy$centers
 ```
 
-```
-##    Cena_norm    KM_norm
-## 1 -0.6445280 -1.0066262
-## 2  3.4400810  2.8222961
-## 3 -0.2142881 -0.1830422
-## 4  0.2846520  0.7662755
-```
-
-
-```r
+```{r auta_grupy}
 auta$grupa <- factor(grupy$cluster)
 centra <- data.frame(grupy$centers)
 centra$nazwa <- centra$grupy <- factor(1:nrow(centra))
@@ -132,33 +92,12 @@ ggplot(auta, aes(Cena_norm, KM_norm, color=grupa, label=nazwa)) +
   geom_text(data=centra, size=8, color="black") +  theme_bw()
 ```
 
-![plot of chunk auta_grupy](figure/auta_grupy-1.png)
-
 Z wyznaczonego podziału ne grupy mozna wyłuskać takie statystyki jak $$W(C)$$, $$B(C)$$ i ich sumę, łączną sumę kwadratów.
 
-
-```r
+```{r}
 grupy$withinss
-```
-
-```
-## [1] 2.509780 1.733690 6.235331 5.545342
-```
-
-```r
 grupy$betweenss
-```
-
-```
-## [1] 87.97586
-```
-
-```r
 grupy$totss
-```
-
-```
-## [1] 104
 ```
 
 ## Jak wybrać liczbę grup?
@@ -167,8 +106,7 @@ Najlepiej mieć oczekiwania dotyczące liczby grup wynikające z analizowanego p
 
 Jeżeli nie mamy takiego komfortu, to często analizuje się wartości funkcji $$W(C)$$ dla różnych liczb grup. A następnie organoleptycznie określa się gdzie spadek miary $$W(C)$$ jest wystarczająco duży by dodać kolejną grupę.
 
-
-```r
+```{r osypisko}
 Kmax <- 10
 WC <- sapply(2:Kmax, function(k) {
   grupy <- kmeans(auta[,c("Cena_norm", "KM_norm")], 
@@ -176,17 +114,8 @@ WC <- sapply(2:Kmax, function(k) {
   sum(grupy$withinss)
 })
 WC
-```
 
-```
-## [1] 38.930412 21.885048 16.024143 11.355036  8.883000  7.469044  6.547251
-## [8]  5.785218  5.417387
-```
-
-```r
 ggplot(data.frame(K=factor(2:Kmax), WC), aes(K, WC)) +
   geom_bar(stat="identity")
 ```
-
-![plot of chunk osypisko](figure/osypisko-1.png)
 
