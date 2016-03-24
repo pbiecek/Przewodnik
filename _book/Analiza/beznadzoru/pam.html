@@ -63,7 +63,7 @@
         data-chapter-title="Jak szukać partycji w oparciu o metodę k-medoidów?"
         data-filepath="Analiza/beznadzoru/pam.md"
         data-basepath="../.."
-        data-revision="Thu Mar 24 2016 11:18:48 GMT+0100 (CET)"
+        data-revision="Thu Mar 24 2016 11:23:41 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -1313,7 +1313,8 @@ grupy &lt;- pam(odleglosci, k=<span class="hljs-number">4</span>)
 </code></pre>
 <pre><code>## [1] 31 22 12 24
 </code></pre><p>Wykorzystajmy obie te warto&#x15B;ci aby narysowa&#x107; auta po podzieleniu na grupy. Dodatkowo wyr&#xF3;&#x17C;nimy &#x15B;rodki grup.</p>
-<pre><code class="lang-r">centra &lt;- auta[grupy$id.med,]
+<pre><code class="lang-r">auta$grupa = factor(grupy$clustering)
+centra &lt;- auta[grupy$id.med,]
 
 ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
   geom_point(size=<span class="hljs-number">3</span>) + theme_bw() +
@@ -1321,8 +1322,7 @@ ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
   geom_text_repel(data=centra, color=<span class="hljs-string">&quot;black&quot;</span>, size=<span class="hljs-number">7</span>) + 
   coord_trans(<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-string">&quot;sqrt&quot;</span>)
 </code></pre>
-<pre><code>## Error in eval(expr, envir, enclos): object &apos;grupa&apos; not found
-</code></pre><p><img src="figure/pam_grupy-1.svg" alt="plot of chunk pam_grupy"></p>
+<p><img src="figure/pam_grupy-1.svg" alt="plot of chunk pam_grupy"></p>
 <h2 id="sylwetki-grup">Sylwetki grup</h2>
 <p>Do diagnostyki pogrupowania wykorzystuje si&#x119; cz&#x119;sto tzw. sylwetki (ang. <em>silhouette</em>).<br>S&#x105; to wykresu, przedstawiaj&#x105;ce dla ka&#x17C;dego obiektu informacj&#x119; na ile blisko temu obiektowi do wszystkich pozosta&#x142;ych z jego grupy w stosunku do wszystkich pozosta&#x142;ych z innej, najbli&#x17C;szej grupy.</p>
 <p>Formalnie, mo&#x17C;emy t&#x119; warto&#x15B;&#x107; zapisa&#x107; jako </p>

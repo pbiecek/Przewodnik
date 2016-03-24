@@ -110,6 +110,7 @@ Wykorzystajmy obie te wartości aby narysować auta po podzieleniu na grupy. Dod
 
 
 ```r
+auta$grupa = factor(grupy$clustering)
 centra <- auta[grupy$id.med,]
 
 ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
@@ -117,10 +118,6 @@ ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
   geom_point(data=centra, size=6) +
   geom_text_repel(data=centra, color="black", size=7) + 
   coord_trans("sqrt", "sqrt")
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'grupa' not found
 ```
 
 ![plot of chunk pam_grupy](figure/pam_grupy-1.svg)

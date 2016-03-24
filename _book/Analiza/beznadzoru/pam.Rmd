@@ -75,6 +75,7 @@ grupy$id.med
 Wykorzystajmy obie te wartości aby narysować auta po podzieleniu na grupy. Dodatkowo wyróżnimy środki grup.
 
 ```{r pam_grupy, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
+auta$grupa = factor(grupy$clustering)
 centra <- auta[grupy$id.med,]
 
 ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
