@@ -1,0 +1,151 @@
+# Jak wykonać analizę hierarchiczną?
+
+
+There are two common approaches to build such hierarchy of clusters (also referred as a dendrogram):
+
+- bottom up (agglomerative) - from small clusters to larger and larger,
+- top down (divisive) - from large clusters to small ones.
+
+First one is implemented in the function `diana{cluster}`, while the second one is implemented in the function `agnes{cluster}`. 
+
+
+
+## The linkage 
+
+In the distance matrix one will find distances between particular observations. The linkage defines how to update distances after merging two clusters.
+
+The commons choices are:
+
+* `complete` 	 $\max \{\, d(a,b) : a \in A,\, b \in B \}$. 
+* `single` 	$\min \{\, d(a,b) : a \in A,\, b \in B \}$. 
+* `average`	 $\frac{1}{|A| |B|} \sum_{a \in A }\sum_{ b \in B} d(a,b)$. 
+* `ward`, i.e. the minimum variance criterion (the preferred method).
+
+
+
+```{r}
+
+library(ggplot2)
+library(MASS)
+library(cluster)
+
+ggplot(Cars93, aes(Length, Weight, label=Make)) +
+  geom_text(size=3) + 
+  theme_bw()
+
+
+# euclidian distances for original dataset
+mat1 <- dist(Cars93[,c("Length","Weight")])
+as.matrix(mat1)[1:5,1:5]
+##          1         2         3         4         5
+## 1   0.0000 855.18945 670.00672 700.18283 935.04331
+## 2 855.1895   0.00000 185.60711 155.01290  80.50466
+## 3 670.0067 185.60711   0.00000  32.69557 265.06792
+## 4 700.1828 155.01290  32.69557   0.00000 235.10423
+## 5 935.0433  80.50466 265.06792 235.10423   0.00000
+# euclidian distances for scaled dataset
+mat2 <- dist(scale(Cars93[,c("Length","Weight")]))
+as.matrix(mat2)[1:5,1:5]
+
+
+##          1         2         3         4         5
+## 1 0.000000 1.9027005 1.1542238 1.6151531 1.7006389
+## 2 1.902701 0.0000000 1.0740367 0.2963121 0.6310818
+## 3 1.154224 1.0740367 0.0000000 0.8917171 0.6088029
+## 4 1.615153 0.2963121 0.8917171 0.0000000 0.6232992
+## 5 1.700639 0.6310818 0.6088029 0.6232992 0.0000000
+# manhattan distances for scaled dataset
+mat3 <- dist(scale(Cars93[,c("Length","Weight")]), method="manhattan")
+as.matrix(mat3)[1:5,1:5]
+##          1         2         3         4         5
+## 1 0.000000 2.6820824 1.3412384 2.2823605 2.2013616
+## 2 2.682082 0.0000000 1.3408440 0.3997219 0.7519548
+## 3 1.341238 1.3408440 0.0000000 0.9411221 0.8601232
+## 4 2.282361 0.3997219 0.9411221 0.0000000 0.8777488
+## 5 2.201362 0.7519548 0.8601232 0.8777488 0.0000000
+
+
+rownames(Cars93) <- Cars93$Make
+dat <- scale(Cars93[,c("Length","Weight")])
+
+hc <- agnes(dat, method="complete")
+plot(hc, which.plots=2, cex=0.5, main="")
+
+hc <- agnes(dat, method="single")
+plot(hc, which.plots=2, cex=0.5, main="")
+
+hc <- agnes(dat, method="average")
+plot(hc, which.plots=2, cex=0.5, main="")
+
+hc <- agnes(dat, method="ward")
+plot(hc, which.plots=2, cex=0.5, main="")
+
+
+
+
+hc <- agnes(dat, method="ward")
+Cars93$labels = factor(cutree(hc, k=4))
+ggplot(Cars93, aes(Length, Weight, label=Make, color=labels)) +
+  geom_text(size=3) + 
+  theme_bw()
+
+
+hc <- agnes(dat, method="average")
+Cars93$labels = factor(cutree(hc, k=4))
+ggplot(Cars93, aes(Length, Weight, label=Make, color=labels)) +
+  geom_text(size=3) + 
+  theme_bw()
+
+
+hc <- agnes(dat, method="single")
+Cars93$labels = factor(cutree(hc, k=4))
+ggplot(Cars93, aes(Length, Weight, label=Make, color=labels)) +
+  geom_text(size=3) + 
+  theme_bw()
+
+
+
+library(pvclust)
+dat <- scale(Cars93[Cars93$Origin == "non-USA",
+                    c("Length","Weight","Width","Horsepower","Price")])
+pv <- pvclust(t(dat))
+
+
+plot(pv)
+pvrect(pv, alpha=0.9)
+
+
+
+library(ape)
+rownames(Cars93) <- Cars93$Make
+dat <- scale(Cars93[,c("Length","Weight")])
+
+library(RColorBrewer)
+cols <- brewer.pal(3,"Set1")
+
+hc <- as.phylo(as.hclust(agnes(dat, method="complete")))
+
+par(mar=c(1,1,2,1), xpd=NA)
+
+plot(hc, type = "fan", cex = 0.8,
+     tip.color = cols[Cars93$Origin])
+
+
+
+plot(as.phylo(hc), type = "unrooted", cex = 0.8,
+     tip.color = cols[Cars93$Origin])
+
+
+plot(as.phylo(hc), type = "radial", cex = 0.8,
+     tip.color = cols[Cars93$Origin])
+
+plot(as.phylo(hc), type = "phylogram", cex = 0.8,
+     tip.color = cols[Cars93$Origin])
+
+plot(as.phylo(hc), type = "cladogram", cex = 0.8,
+     tip.color = cols[Cars93$Origin])
+
+
+
+```
+
