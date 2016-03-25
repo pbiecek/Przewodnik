@@ -63,7 +63,7 @@
         data-chapter-title="Jak wykonać analizę hierarchiczną?"
         data-filepath="Analiza/beznadzoru/agnes.md"
         data-basepath="../.."
-        data-revision="Fri Mar 25 2016 21:03:09 GMT+0100 (CET)"
+        data-revision="Fri Mar 25 2016 21:17:04 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -1348,17 +1348,16 @@ ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
 <p><img src="figure/hclust_cutree-1.svg" alt="plot of chunk hclust_cutree"></p>
 <p>Na jakiej wysoko&#x15B;ci podzieli&#x107; drzewo? </p>
 <p>Do wyboru liczby grup (i dla analizy hierarchicznej i dla k-&#x15B;rednich, k-medoid&#xF3;w) wykorzysta&#x107; mo&#x17C;emy statystyk&#x119; <em>gap-statistic</em>.</p>
-<pre><code class="lang-r">grupy_eclust &lt;- eclust(auta[,c(<span class="hljs-string">&quot;Cena_norm&quot;</span>, <span class="hljs-string">&quot;KM_norm&quot;</span>)], <span class="hljs-string">&quot;hclust&quot;</span>)
+<pre><code class="lang-r">grupy_eclust &lt;- eclust(auta[,c(<span class="hljs-string">&quot;Cena_norm&quot;</span>, <span class="hljs-string">&quot;KM_norm&quot;</span>)], <span class="hljs-string">&quot;hclust&quot;</span>, graph = <span class="hljs-literal">FALSE</span>)
 </code></pre>
 <pre><code>## Clustering k = 1,2,..., K.max (= 10): .. done
 ## Bootstrapping, b = 1,2,..., B (= 100)  [one &quot;.&quot; per sample]:
 ## .................................................. 50 
 ## .................................................. 100
-</code></pre><p><img src="figure/hclust_gap-1.svg" alt="plot of chunk hclust_gap"></p>
-<pre><code class="lang-r">fviz_gap_stat(grupy_eclust$gap_stat)
+</code></pre><pre><code class="lang-r">fviz_gap_stat(grupy_eclust$gap_stat)
 </code></pre>
-<p><img src="figure/hclust_gap-2.svg" alt="plot of chunk hclust_gap"></p>
-<p>I jak wygl&#x105;daj&#x105; te cztery grupy?</p>
+<p><img src="figure/hclust_gap-1.svg" alt="plot of chunk hclust_gap"></p>
+<p>Wygl&#x105;da na to, &#x17C;e warto&#x15B;&#x107; 4 nie jest taka z&#x142;a. Jak wygl&#x105;daj&#x105; te cztery grupy?</p>
 <pre><code class="lang-r">grupy_eclust &lt;- eclust(auta[,c(<span class="hljs-string">&quot;Cena_norm&quot;</span>, <span class="hljs-string">&quot;KM_norm&quot;</span>)], <span class="hljs-string">&quot;hclust&quot;</span>, k = <span class="hljs-number">4</span>)
 </code></pre>
 <p><img src="figure/hclust_klastrowanie-1.svg" alt="plot of chunk hclust_klastrowanie"></p>

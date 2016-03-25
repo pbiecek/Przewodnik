@@ -116,11 +116,11 @@ Na jakiej wysokości podzielić drzewo?
 Do wyboru liczby grup (i dla analizy hierarchicznej i dla k-średnich, k-medoidów) wykorzystać możemy statystykę *gap-statistic*.
 
 ```{r hclust_gap, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
-grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust") 
+grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust", graph = FALSE) 
 fviz_gap_stat(grupy_eclust$gap_stat)
 ```
 
-I jak wyglądają te cztery grupy?
+Wygląda na to, że wartość 4 nie jest taka zła. Jak wyglądają te cztery grupy?
 
 ```{r hclust_klastrowanie, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
 grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust", k = 4) 
