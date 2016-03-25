@@ -6,8 +6,8 @@ Innym podejściem do analizy grup jest budowa grup w sposób hierarchiczny, tak 
 
 Hierarchię grup można budować na różne sposoby, trzy najbardziej naturalne to:
 
-- podejście z dołu do góry hierarchii (aglomeracyjne, ang. *bottom up*, *agglomerative*), rozpoczyna się od pojedynczych obserwacji a następnie łączy się je w coraz większe grupy,
-- podejście z góry do dołu (ang. *top down*, *divisive*), rozpoczyna się od jednej grupy zawierającej wszystkie obiekty i dzieli się ją na podgrupy,
+- podejście ,,z dołu do góry'' hierarchii (aglomeracyjne, ang. *bottom up*, *agglomerative*), rozpoczyna się od pojedynczych obserwacji a następnie łączy się je w coraz większe grupy,
+- podejście ,,z góry do dołu'' (ang. *top down*, *divisive*), rozpoczyna się od jednej grupy zawierającej wszystkie obiekty i dzieli się ją na podgrupy,
 - podejście rozpoczynające od ,,środka'' - określonej liczby grup, a następnie postępowanie w obie strony, dzielenie tych grup na mniejsze i łączenie startowych grup w większe.
 
 Najczęściej stosowaną strategią jest strategia z dołu do góry i to tę opiszemy poniżej szerzej.
@@ -47,7 +47,7 @@ $$
 d(A, B) = \frac{|C| + |B|}{|C| + |D| + |B|} d(C, B) + \frac{|D| + |B|}{|C| + |D| + |B|} d(D, B) - 
 \frac{|B|}{|C| + |D| + |B|} d(C, D).
 $$
-Ta metoda jest często wykorzystywana z odległością opartą o kwadrat odległości Euklidesowej, co prowadzi do tworzenia grup minimalizujących wewnątrzgrupową wariancję. Często te grupy mają bardziej zrównoważone wielkości, co z kolei powoduje, że ta metoda jest często wykorzystywana.
+Ta metoda jest często wykorzystywana w oparciu o kwadrat odległości Euklidesowej, co prowadzi do tworzenia grup minimalizujących wewnątrzgrupową wariancję. Często te grupy mają bardziej zrównoważone wielkości (pożądana cecha), co z kolei powoduje, że ta metoda jest często wykorzystywana.
 
 ## Przykład
 
@@ -202,28 +202,28 @@ plot(hc, type = "fan", cex = 0.8,
      tip.color = cols[auta$grupa])
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk hclust_ape](figure/hclust_ape-1.svg)
 
 ```r
 plot(as.phylo(hc), type = "unrooted", cex = 0.8,
      tip.color = cols[auta$grupa])
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png)
+![plot of chunk hclust_ape](figure/hclust_ape-2.svg)
 
 ```r
 plot(as.phylo(hc), type = "radial", cex = 0.8,
      tip.color = cols[auta$grupa])
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-3.png)
+![plot of chunk hclust_ape](figure/hclust_ape-3.svg)
 
 ```r
 plot(as.phylo(hc), type = "cladogram", cex = 0.8,
      tip.color = cols[auta$grupa])
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-4.png)
+![plot of chunk hclust_ape](figure/hclust_ape-4.svg)
 
 ## I co dalej?
 
