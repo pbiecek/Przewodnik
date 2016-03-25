@@ -6,8 +6,8 @@ Innym podejściem do analizy grup jest budowa grup w sposób hierarchiczny, tak 
 
 Hierarchię grup można budować na różne sposoby, trzy najbardziej naturalne to:
 
-- podejście z dołu do góry hierarchii (aglomeracyjne, ang. *bottom up*, *agglomerative*), rozpoczyna się od pojedynczych obserwacji a następnie łączy się je w coraz większe grupy,
-- podejście z góry do dołu (ang. *top down*, *divisive*), rozpoczyna się od jednej grupy zawierającej wszystkie obiekty i dzieli się ją na podgrupy,
+- podejście ,,z dołu do góry'' hierarchii (aglomeracyjne, ang. *bottom up*, *agglomerative*), rozpoczyna się od pojedynczych obserwacji a następnie łączy się je w coraz większe grupy,
+- podejście ,,z góry do dołu'' (ang. *top down*, *divisive*), rozpoczyna się od jednej grupy zawierającej wszystkie obiekty i dzieli się ją na podgrupy,
 - podejście rozpoczynające od ,,środka'' - określonej liczby grup, a następnie postępowanie w obie strony, dzielenie tych grup na mniejsze i łączenie startowych grup w większe.
 
 Najczęściej stosowaną strategią jest strategia z dołu do góry i to tę opiszemy poniżej szerzej.
@@ -47,7 +47,7 @@ $$
 d(A, B) = \frac{|C| + |B|}{|C| + |D| + |B|} d(C, B) + \frac{|D| + |B|}{|C| + |D| + |B|} d(D, B) - 
 \frac{|B|}{|C| + |D| + |B|} d(C, D).
 $$
-Ta metoda jest często wykorzystywana z odległością opartą o kwadrat odległości Euklidesowej, co prowadzi do tworzenia grup minimalizujących wewnątrzgrupową wariancję. Często te grupy mają bardziej zrównoważone wielkości, co z kolei powoduje, że ta metoda jest często wykorzystywana.
+Ta metoda jest często wykorzystywana w oparciu o kwadrat odległości Euklidesowej, co prowadzi do tworzenia grup minimalizujących wewnątrzgrupową wariancję. Często te grupy mają bardziej zrównoważone wielkości (pożądana cecha), co z kolei powoduje, że ta metoda jest często wykorzystywana.
 
 ## Przykład
 
@@ -83,7 +83,7 @@ fviz_dend(grupy, k = 4, rect = TRUE, main = "Metoda Ward")
 
 A jak wyglądałyby te dendrogramy dla innych metod łączenia?
 
-```{r hclust_complete, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=6}
+```{r hclust_complete, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=5.5}
 grupy_complete <- agnes(odleglosci, method = "complete")
 fviz_dend(grupy_complete, k = 4, rect = TRUE, main = "Metoda complete")
 grupy_single <- agnes(odleglosci, method = "single")
@@ -103,7 +103,7 @@ cutree(grupy, k = 4)
 
 Jak wyglądają te cztery grupy na wykresie?
 
-```{r hclust_cutree, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
+```{r hclust_cutree, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
 auta$grupa = factor(cutree(grupy, k = 4))
 
 ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
@@ -115,14 +115,14 @@ Na jakiej wysokości podzielić drzewo?
 
 Do wyboru liczby grup (i dla analizy hierarchicznej i dla k-średnich, k-medoidów) wykorzystać możemy statystykę *gap-statistic*.
 
-```{r hclust_gap, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
+```{r hclust_gap, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
 grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust") 
 fviz_gap_stat(grupy_eclust$gap_stat)
 ```
 
 I jak wyglądają te cztery grupy?
 
-```{r hclust_klastrowanie, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
+```{r hclust_klastrowanie, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
 grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust", k = 4) 
 fviz_cluster(grupy_eclust)
 ```
@@ -131,7 +131,7 @@ fviz_cluster(grupy_eclust)
 
 Używając pakietu `ape` można wykorzystać przeciążoną funkcję `plot()` dla obiektu klasy `phylo`, aby na różne sposoby przedstawiać dendrogramy.
 
-```{r}
+```{r hclust_ape, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=7}
 library(RColorBrewer)
 library(ape)
 cols <- brewer.pal(4,"Set1")
