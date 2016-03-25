@@ -1,151 +1,156 @@
-# Jak wykonać analizę hierarchiczną?
+# Jak przeprowadzić grupowanie/partycjonowanie hierarchiczne?
 
+Metoda k-średnich i k-mediodów wyznaczała podział zbioru obiektów na $$k$$ rozłącznych grup. Wybór $$k$$ jest istotny a wyniki dla $$k$$ i $$k+1$$ mogą być bardzo różne.
 
-There are two common approaches to build such hierarchy of clusters (also referred as a dendrogram):
+Innym podejściem do analizy grup jest budowa grup w sposób hierarchiczny, tak by nowe grupy brały się z podziały już wybranych grup. Taki sposób konstrukcji grup prowadzi do hierarchicznej reprezentacji grup, która z reguły jest przedstawiana graficznie za pomocą drzewa.
 
-- bottom up (agglomerative) - from small clusters to larger and larger,
-- top down (divisive) - from large clusters to small ones.
+Hierarchię grup można budować na różne sposoby, trzy najbardziej naturalne to:
 
-First one is implemented in the function `diana{cluster}`, while the second one is implemented in the function `agnes{cluster}`. 
+- podejście z dołu do góry hierarchii (aglomeracyjne, ang. *bottom up*, *agglomerative*), rozpoczyna się od pojedynczych obserwacji a następnie łączy się je w coraz większe grupy,
+- podejście z góry do dołu (ang. *top down*, *divisive*), rozpoczyna się od jednej grupy zawierającej wszystkie obiekty i dzieli się ją na podgrupy,
+- podejście rozpoczynające od ,,środka'' - określonej liczby grup, a następnie postępowanie w obie strony, dzielenie tych grup na mniejsze i łączenie startowych grup w większe.
 
+Najczęściej stosowaną strategią jest strategia z dołu do góry i to tę opiszemy poniżej szerzej.
 
+Algorytm budowania hierarchicznej struktury grup jest następujący:
 
-## The linkage 
+1. Rozpocznij od zbioru jednoelementowych grup - każdy obiekt jest osobną grupą.
+2. Znajdź dwie najbliższe grupy, połącz je w jedną grupę.
+3. Wyznacz odległości pomiędzy nową grupą a wszystkimi pozostałymi.
+4. Powtarzaj kroki 2-3 dopóki nie pozostanie tylko jedna grupa.
 
-In the distance matrix one will find distances between particular observations. The linkage defines how to update distances after merging two clusters.
+Kluczowe są w tym algorytmie dwa kroki. 
 
-The commons choices are:
+- Pierwszy - wymaga on określenia macierzy odległości pomiędzy wszystkimi parami obiektów. Do wyznaczania tej macierzy odległości można użyć dowonej odległości. Wybór odległości jest bardzo ważny więc warto poświęcić mu więcej uwagi.
+- Trzeci - wymaga on określenia reguły wyznaczania odległości pomiędzy nową grupą a pozostałymi.
 
-* `complete` 	 $\max \{\, d(a,b) : a \in A,\, b \in B \}$. 
-* `single` 	$\min \{\, d(a,b) : a \in A,\, b \in B \}$. 
-* `average`	 $\frac{1}{|A| |B|} \sum_{a \in A }\sum_{ b \in B} d(a,b)$. 
-* `ward`, i.e. the minimum variance criterion (the preferred method).
+## Metoda łączenia grup, ang. *linkage*
 
+W jaki sposób wyznaczyć odległość pomiędzy grupą $$B$$ a nowo utworzoną grupą $$A$$ (otrzymaną przez połączenie grup $$C$$ i $$D$$)?
 
+Częste wybory to:
+
+* pełne łączenie (ang. *complete*) 
+$$
+d(A, B) = \max \{\, d(a,b) : a \in A,\, b \in B \}
+$$
+* pojedyncze łączenie (ang. *single*) 
+$$
+d(A, B) = \min \{\, d(a,b) : a \in A,\, b \in B \}
+$$
+* średnie łączenie (ang. *average*) 
+$$
+d(A, B) = \frac{1}{|A| |B|} \sum_{a \in A }\sum_{ b \in B} d(a,b)
+$$
+* łączenie Warda (od nazwiska konstruktora: Joe Warda, ang. *the minimum variance criterion*), pamiętajmy, że $$A= C \cup D$$,
+$$
+d(A, B) = \frac{|C| + |B|}{|C| + |D| + |B|} d(C, B) + \frac{|D| + |B|}{|C| + |D| + |B|} d(D, B) - 
+\frac{|B|}{|C| + |D| + |B|} d(C, D).
+$$
+Ta metoda jest często wykorzystywana z odległością opartą o kwadrat odległości Euklidesowej, co prowadzi do tworzenia grup minimalizujących wewnątrzgrupową wariancję. Często te grupy mają bardziej zrównoważone wielkości, co z kolei powoduje, że ta metoda jest często wykorzystywana.
+
+## Przykład
+
+Podobnie jak dla algorytmu k-średnich i k-medoidów poniższą analizę grup przeprowadzimy na wybranych 57 modelach aut, opierając się na zbiorze danych `auta2012` z pakietu `PogromcyDanych`. Policzyliśmy wcześniej na podstawie dwuletnich ofert, średnią cenę, przebieg, pojemność silnika, liczbę koni mechanicznych i frakcję aut z silnikiem diesla. 
+
+Przedstawione poniżej wyniki będą oparte o odległość Euklidesową dla standaryzowanych wartości pierwiastka z ceny i mocy silnika.
 
 ```{r}
-
-library(ggplot2)
-library(MASS)
-library(cluster)
-
-ggplot(Cars93, aes(Length, Weight, label=Make)) +
-  geom_text(size=3) + 
-  theme_bw()
-
-
-# euclidian distances for original dataset
-mat1 <- dist(Cars93[,c("Length","Weight")])
-as.matrix(mat1)[1:5,1:5]
-##          1         2         3         4         5
-## 1   0.0000 855.18945 670.00672 700.18283 935.04331
-## 2 855.1895   0.00000 185.60711 155.01290  80.50466
-## 3 670.0067 185.60711   0.00000  32.69557 265.06792
-## 4 700.1828 155.01290  32.69557   0.00000 235.10423
-## 5 935.0433  80.50466 265.06792 235.10423   0.00000
-# euclidian distances for scaled dataset
-mat2 <- dist(scale(Cars93[,c("Length","Weight")]))
-as.matrix(mat2)[1:5,1:5]
-
-
-##          1         2         3         4         5
-## 1 0.000000 1.9027005 1.1542238 1.6151531 1.7006389
-## 2 1.902701 0.0000000 1.0740367 0.2963121 0.6310818
-## 3 1.154224 1.0740367 0.0000000 0.8917171 0.6088029
-## 4 1.615153 0.2963121 0.8917171 0.0000000 0.6232992
-## 5 1.700639 0.6310818 0.6088029 0.6232992 0.0000000
-# manhattan distances for scaled dataset
-mat3 <- dist(scale(Cars93[,c("Length","Weight")]), method="manhattan")
-as.matrix(mat3)[1:5,1:5]
-##          1         2         3         4         5
-## 1 0.000000 2.6820824 1.3412384 2.2823605 2.2013616
-## 2 2.682082 0.0000000 1.3408440 0.3997219 0.7519548
-## 3 1.341238 1.3408440 0.0000000 0.9411221 0.8601232
-## 4 2.282361 0.3997219 0.9411221 0.0000000 0.8777488
-## 5 2.201362 0.7519548 0.8601232 0.8777488 0.0000000
-
-
-rownames(Cars93) <- Cars93$Make
-dat <- scale(Cars93[,c("Length","Weight")])
-
-hc <- agnes(dat, method="complete")
-plot(hc, which.plots=2, cex=0.5, main="")
-
-hc <- agnes(dat, method="single")
-plot(hc, which.plots=2, cex=0.5, main="")
-
-hc <- agnes(dat, method="average")
-plot(hc, which.plots=2, cex=0.5, main="")
-
-hc <- agnes(dat, method="ward")
-plot(hc, which.plots=2, cex=0.5, main="")
-
-
-
-
-hc <- agnes(dat, method="ward")
-Cars93$labels = factor(cutree(hc, k=4))
-ggplot(Cars93, aes(Length, Weight, label=Make, color=labels)) +
-  geom_text(size=3) + 
-  theme_bw()
-
-
-hc <- agnes(dat, method="average")
-Cars93$labels = factor(cutree(hc, k=4))
-ggplot(Cars93, aes(Length, Weight, label=Make, color=labels)) +
-  geom_text(size=3) + 
-  theme_bw()
-
-
-hc <- agnes(dat, method="single")
-Cars93$labels = factor(cutree(hc, k=4))
-ggplot(Cars93, aes(Length, Weight, label=Make, color=labels)) +
-  geom_text(size=3) + 
-  theme_bw()
-
-
-
-library(pvclust)
-dat <- scale(Cars93[Cars93$Origin == "non-USA",
-                    c("Length","Weight","Width","Horsepower","Price")])
-pv <- pvclust(t(dat))
-
-
-plot(pv)
-pvrect(pv, alpha=0.9)
-
-
-
-library(ape)
-rownames(Cars93) <- Cars93$Make
-dat <- scale(Cars93[,c("Length","Weight")])
-
-library(RColorBrewer)
-cols <- brewer.pal(3,"Set1")
-
-hc <- as.phylo(as.hclust(agnes(dat, method="complete")))
-
-par(mar=c(1,1,2,1), xpd=NA)
-
-plot(hc, type = "fan", cex = 0.8,
-     tip.color = cols[Cars93$Origin])
-
-
-
-plot(as.phylo(hc), type = "unrooted", cex = 0.8,
-     tip.color = cols[Cars93$Origin])
-
-
-plot(as.phylo(hc), type = "radial", cex = 0.8,
-     tip.color = cols[Cars93$Origin])
-
-plot(as.phylo(hc), type = "phylogram", cex = 0.8,
-     tip.color = cols[Cars93$Origin])
-
-plot(as.phylo(hc), type = "cladogram", cex = 0.8,
-     tip.color = cols[Cars93$Origin])
-
-
-
+auta <- archivist::aread("pbiecek/Przewodnik/arepo/bf2846de03bc8434d234b08fd2e31694")
+auta$nazwa <- rownames(auta)
+auta$Cena_norm <- scale(sqrt(auta$Cena))
+auta$KM_norm <- scale(sqrt(auta$KM))
+odleglosci <- dist(auta[,c("Cena_norm", "KM_norm")], method = "manhattan")
+as.matrix(odleglosci)[1:5,1:5]
 ```
 
+Przedstawmy analizę hierarchii w oparciu o metodę łączenia Warda.
+Wykonamy ją funkcją `agnes()` z pakietu `cluster`.
+
+```{r}
+library(cluster)
+grupy <- agnes(odleglosci, method = "ward")
+```
+
+Wynikiem jest obiekt klasy `agnes`, który można przedstawić graficznie w postaci dendrogramu. Wykorzystamy w tym celu funkcję `fviz_dend()` z pakietu `factoextra`, która ma kilka zalet w stosunku do standardowej funkcji `plot()`, mianowicie umożliwia zaznaczenie graficzne wybranej liczby grup (poniżej 4).
+
+Z dendrogramu możemy odczytać jak podobne są poszczególne obserwacje / grupy do innych obserwacji / grup.
+
+```{r hclust_auta, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=6}
+library(factoextra)
+fviz_dend(grupy, k = 4, rect = TRUE, main = "Metoda Ward")
+```
+
+A jak wyglądałyby te dendrogramy dla innych metod łączenia?
+
+```{r hclust_complete, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=6}
+grupy_complete <- agnes(odleglosci, method = "complete")
+fviz_dend(grupy_complete, k = 4, rect = TRUE, main = "Metoda complete")
+grupy_single <- agnes(odleglosci, method = "single")
+fviz_dend(grupy_single, k = 4, rect = TRUE, main = "Metoda single")
+grupy_average <- agnes(odleglosci, method = "average")
+fviz_dend(grupy_average, k = 4, rect = TRUE, main = "Metoda average")
+```
+
+Jak widzimy wyglądają bardzo różnie. Grupy znalezione metodą Warda mają zbliżone wielkości co czasem jest zaletą. 
+
+Funkcja `agnes()` wyznacza dendrogram, gdybyśmy chcieli z niego wydobyć informację jak wygląda przyporządkowanie do grup na określonym poziomie drzewa, możemy je wyłuskać stosując funkcję `cutree()`. 
+
+```{r}
+# określona liczba grup
+cutree(grupy, k = 4)
+```
+
+Jak wyglądają te cztery grupy na wykresie?
+
+```{r hclust_cutree, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
+auta$grupa = factor(cutree(grupy, k = 4))
+
+ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
+  geom_point(size=3) + theme_bw() +
+  coord_trans("sqrt", "sqrt")
+```
+
+Na jakiej wysokości podzielić drzewo? 
+
+Do wyboru liczby grup (i dla analizy hierarchicznej i dla k-średnich, k-medoidów) wykorzystać możemy statystykę *gap-statistic*.
+
+```{r hclust_gap, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
+grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust") 
+fviz_gap_stat(grupy_eclust$gap_stat)
+```
+
+I jak wyglądają te cztery grupy?
+
+```{r hclust_klastrowanie, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
+grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust", k = 4) 
+fviz_cluster(grupy_eclust)
+```
+
+## Nie tylko drzewo
+
+Używając pakietu `ape` można wykorzystać przeciążoną funkcję `plot()` dla obiektu klasy `phylo`, aby na różne sposoby przedstawiać dendrogramy.
+
+```{r}
+library(RColorBrewer)
+library(ape)
+cols <- brewer.pal(4,"Set1")
+hc <- as.phylo(as.hclust(grupy))
+
+par(mar=c(1,1,2,1), xpd=NA)
+plot(hc, type = "fan", cex = 0.8,
+     tip.color = cols[auta$grupa])
+
+plot(as.phylo(hc), type = "unrooted", cex = 0.8,
+     tip.color = cols[auta$grupa])
+
+plot(as.phylo(hc), type = "radial", cex = 0.8,
+     tip.color = cols[auta$grupa])
+
+plot(as.phylo(hc), type = "cladogram", cex = 0.8,
+     tip.color = cols[auta$grupa])
+```
+
+## I co dalej?
+
+* Aby wykonać grupowanie hierarchiczne strategią z góry do dołu, można wykorzystać funkcję `diana()`  z pakietu `cluster` (nazwa pochodzi od *DIvisive ANAlysis Clustering*).
