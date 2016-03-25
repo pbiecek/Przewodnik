@@ -7,12 +7,12 @@ Innym podejściem do analizy grup jest budowa grup w sposób hierarchiczny, tak 
 Hierarchię grup można budować na różne sposoby, trzy najbardziej naturalne to:
 
 - podejście z dołu do góry hierarchii (aglomeracyjne, ang. *bottom up*, *agglomerative*), rozpoczyna się od pojedynczych obserwacji a następnie łączy się je w coraz większe grupy,
-- podejście z góry do dołu (ang. *top down*, *divisive*), rozpoczyna się od jegnej grupy zawierającej wszystkie obiekty i dzieli się ją na podgrupy,
+- podejście z góry do dołu (ang. *top down*, *divisive*), rozpoczyna się od jednej grupy zawierającej wszystkie obiekty i dzieli się ją na podgrupy,
 - podejście rozpoczynające od ,,środka'' - określonej liczby grup, a następnie postępowanie w obie strony, dzielenie tych grup na mniejsze i łączenie startowych grup w większe.
 
 Najczęściej stosowaną strategią jest strategia z dołu do góry i to tę opiszemy poniżej szerzej.
 
-Algorym budowania hierarchicznej struktury grup jest następujący:
+Algorytm budowania hierarchicznej struktury grup jest następujący:
 
 1. Rozpocznij od zbioru jednoelementowych grup - każdy obiekt jest osobną grupą.
 2. Znajdź dwie najbliższe grupy, połącz je w jedną grupę.
@@ -26,7 +26,7 @@ Kluczowe są w tym algorytmie dwa kroki.
 
 ## Metoda łączenia grup, ang. *linkage*
 
-W jaki sposób wyznaczyć ogległość pomiędzy grupą $$B$$ a nowo utworzoną grupą $$A$$ (otrzymaną przez połączenie grup $$C$$ i $$D$$)?
+W jaki sposób wyznaczyć odległość pomiędzy grupą $$B$$ a nowo utworzoną grupą $$A$$ (otrzymaną przez połączenie grup $$C$$ i $$D$$)?
 
 Częste wybory to:
 
@@ -47,7 +47,7 @@ $$
 d(A, B) = \frac{|C| + |B|}{|C| + |D| + |B|} d(C, B) + \frac{|D| + |B|}{|C| + |D| + |B|} d(D, B) - 
 \frac{|B|}{|C| + |D| + |B|} d(C, D).
 $$
-Ta metoda jest często wykorzystywana z odległością opartą o kwadrat odległości Euklidesowej, co prowadzi do tworzenia grup minimalizujących wewnątrzgupową wariancję. Często te grupy mają bardziej zrównowazoną wielkość, co z kolei powoduje, że ta metoda jest często wykorzystywana.
+Ta metoda jest często wykorzystywana z odległością opartą o kwadrat odległości Euklidesowej, co prowadzi do tworzenia grup minimalizujących wewnątrzgrupową wariancję. Często te grupy mają bardziej zrównoważone wielkości, co z kolei powoduje, że ta metoda jest często wykorzystywana.
 
 ## Przykład
 
@@ -85,7 +85,7 @@ grupy <- agnes(odleglosci, method = "ward")
 
 Wynikiem jest obiekt klasy `agnes`, który można przedstawić graficznie w postaci dendrogramu. Wykorzystamy w tym celu funkcję `fviz_dend()` z pakietu `factoextra`, która ma kilka zalet w stosunku do standardowej funkcji `plot()`, mianowicie umożliwia zaznaczenie graficzne wybranej liczby grup (poniżej 4).
 
-Z dendrogramu możemy odczytać jak podobne są poszcezgólne obserwacje / grupy do innych obserwacji / grup.
+Z dendrogramu możemy odczytać jak podobne są poszczególne obserwacje / grupy do innych obserwacji / grup.
 
 
 ```r
@@ -95,7 +95,7 @@ fviz_dend(grupy, k = 4, rect = TRUE, main = "Metoda Ward")
 
 ![plot of chunk hclust_auta](figure/hclust_auta-1.svg)
 
-A jak wyglądałyby te dendrogramy dla innych metod łaczenia?
+A jak wyglądałyby te dendrogramy dla innych metod łączenia?
 
 
 ```r
@@ -121,7 +121,7 @@ fviz_dend(grupy_average, k = 4, rect = TRUE, main = "Metoda average")
 
 Jak widzimy wyglądają bardzo różnie. Grupy znalezione metodą Warda mają zbliżone wielkości co czasem jest zaletą. 
 
-Funkcja `agnes()` wyznacza dendrogram, gdybyśmy chceieli z neigo wydobyć informację jak wygląda przyporządkowanie do grup na okreslonym poziomie drzewa, możemy je wyłuskać stosując funckję `cutree()`. 
+Funkcja `agnes()` wyznacza dendrogram, gdybyśmy chcieli z niego wydobyć informację jak wygląda przyporządkowanie do grup na określonym poziomie drzewa, możemy je wyłuskać stosując funkcję `cutree()`. 
 
 
 ```r
@@ -188,7 +188,7 @@ fviz_cluster(grupy_eclust)
 
 ## Nie tylko drzewo
 
-Używając pakietu `ape` można wykorzystać przeciążoną funkcję `plot()` dla obiektu klasy `phylo`, aby na rózne sposoby przedstawiać dendrogramy.
+Używając pakietu `ape` można wykorzystać przeciążoną funkcję `plot()` dla obiektu klasy `phylo`, aby na różne sposoby przedstawiać dendrogramy.
 
 
 ```r
@@ -228,4 +228,3 @@ plot(as.phylo(hc), type = "cladogram", cex = 0.8,
 ## I co dalej?
 
 * Aby wykonać grupowanie hierarchiczne strategią z góry do dołu, można wykorzystać funkcję `diana()`  z pakietu `cluster` (nazwa pochodzi od *DIvisive ANAlysis Clustering*).
-
