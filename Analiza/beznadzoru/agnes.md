@@ -153,7 +153,7 @@ Do wyboru liczby grup (i dla analizy hierarchicznej i dla k-średnich, k-medoid�
 
 
 ```r
-grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust") 
+grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust", graph = FALSE) 
 ```
 
 ```
@@ -163,15 +163,13 @@ grupy_eclust <- eclust(auta[,c("Cena_norm", "KM_norm")], "hclust")
 ## .................................................. 100
 ```
 
-![plot of chunk hclust_gap](figure/hclust_gap-1.svg)
-
 ```r
 fviz_gap_stat(grupy_eclust$gap_stat)
 ```
 
-![plot of chunk hclust_gap](figure/hclust_gap-2.svg)
+![plot of chunk hclust_gap](figure/hclust_gap-1.svg)
 
-I jak wyglądają te cztery grupy?
+Wygląda na to, że wartość 4 nie jest taka zła. Jak wyglądają te cztery grupy?
 
 
 ```r
