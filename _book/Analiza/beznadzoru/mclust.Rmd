@@ -1,24 +1,24 @@
 # Jak szukać partycji w oparciu o mieszaniny rozkładów?
 
-Omawiane dotąd metody (grupowanie hierarchiczne, k-średniehc, k-medoidów) nie bazowały na żadnym probabilistycznym modelu. Ot, dzieliły obserwacje na grupy obiektów bliskich sobie.
+Omawiane dotąd metody (grupowanie hierarchiczne, k-średnich, k-medoidów) nie bazowały na żadnym probabilistycznym modelu. Ot, dzieliły obserwacje na grupy obiektów bliskich sobie.
 
 W pewnych zastosowaniach praktyczne jest założenie, że obiekty, które obserwujemy pochodzą z mieszaniny rozkładów. Rozłożenie tej mieszaniny na części niekoniecznie oznacza, że możemy każdą obserwację przypisać do jednej grupy, ale raczej, że lepiej rozumiemy jakie grupy w tej mieszaninie się znajdują.
 
 Poniżej skupimy się na mieszaninie rozkładów normalnych, ale w podobny sposób można rozkładać rozkłady również na inne składowe (trudniej jedynie opisać strukturę zależności).
 
-Przyjmijmy, że mamy $$k$$ rozkładów normalnych o gęstości $$f(x, \theta_i)$$, dla $$i = 1, ..., k$$, rozkłądy mogą różnić się średnią lub macierzą kowariancji $$\theta_i = (\mu_i, \Sigma_i)$$. Rozkłady te są zmieszane z prawdopodobieństwami $$\pi_i$$, brzegowa gęstość wynosi więc
+Przyjmijmy, że mamy $$k$$ rozkładów normalnych o gęstości $$f(x, \theta_i)$$, dla $$i = 1, ..., k$$, rozkłady mogą różnić się średnią lub macierzą kowariancji $$\theta_i = (\mu_i, \Sigma_i)$$. Rozkłady te są zmieszane z prawdopodobieństwami $$\pi_i$$, brzegowa gęstość wynosi więc
 
 $$
 f(x) = \sum_{i=1}^k \pi_i f(x, \theta_i).
 $$
 
-Standardowo, parametry takiej mieszaniny estymuje sie w oparciu o metodę największej wiargodności. Maksimum funkcji wiarogodnosci znajduje się algorytmem *expectation–maximization* (w skrócie EM, Więcej o tym modelu i algorytmie EM przeczytać można w *The R Package bgmm: Mixture Modeling with Uncertain Knowledge* https://www.jstatsoft.org/article/view/v047i03).
+Standardowo, parametry takiej mieszaniny estymuje się w oparciu o metodę największej wiarygodności. Maksimum funkcji wiarogodności znajduje się algorytmem *expectation–maximization* (w skrócie EM, Więcej o tym modelu i algorytmie EM przeczytać można w *The R Package bgmm: Mixture Modeling with Uncertain Knowledge* https://www.jstatsoft.org/article/view/v047i03).
 
-Zauważmy jeszcze, że dla $$p$$ wymiarowych obserwacji, jedna składowa gaussowska opisana jest przez $$p$$ liczb opisujących średnią i $$p(p+1)/2$$ opisujących macierz kowariancji. Cały model z $$k$$ składowymi opisany jest przez $$k p(p+3)/2 + k - 1$$ parametrów. Liczba parametrów szybko rośnie z wymiarem danych, przez co potrzeba jest dużo obserwacji aby je wszystkie dobrze estymować. Jeżeli obserwacji nie ma zbyt dużo, to dobrym rozwiązaniem może być założenie pewnych ograniczeń na postać macierzy kowariancji $$\Sigma_i$$. Jeżeli założymy, że rozkłądy mają taką samą wariancję na każdej składowej, lub nie są skorelowane - znacząco obniżymy liczbę parametrów. 
+Zauważmy jeszcze, że dla $$p$$ wymiarowych obserwacji, jedna składowa gaussowska opisana jest przez $$p$$ liczb opisujących średnią i $$p(p+1)/2$$ opisujących macierz kowariancji. Cały model z $$k$$ składowymi opisany jest przez $$k p(p+3)/2 + k - 1$$ parametrów. Liczba parametrów szybko rośnie z wymiarem danych, przez co potrzeba jest dużo obserwacji aby je wszystkie dobrze estymować. Jeżeli obserwacji nie ma zbyt dużo, to dobrym rozwiązaniem może być założenie pewnych ograniczeń na postać macierzy kowariancji $$\Sigma_i$$. Jeżeli założymy, że rozkłady mają taką samą wariancję na każdej składowej, lub nie są skorelowane - znacząco obniżymy liczbę parametrów. 
 
 ## Przykład
 
-Standardowym przykładem ilustrującym składowe są dane o czasach trwania erupcji i czasach pomiędzy erupcjami gajzera Old Faithful w parku Yellowstone. Już sama wstępna eksploracja tych danych pokazuje zasadność założenia o istnieniu dwóch lub większej liczy grup.
+Standardowym przykładem ilustrującym składowe są dane o czasach trwania erupcji i czasach pomiędzy erupcjami gejzera Old Faithful w parku Yellowstone. Już sama wstępna eksploracja tych danych pokazuje zasadność założenia o istnieniu dwóch lub większej liczy grup.
  
 ```{r mclust_plot, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=7}
 head(faithful)
@@ -27,9 +27,9 @@ ggplot(faithful, aes(waiting, eruptions)) +
   geom_point()
 ```
 
-Wykorzstajmy funkcję `unsupervised()` z pakietu `bgmm` do oszacowania parametrów mieszaniny rozkładów normalnych. Założmy dwie składowe.
+Wykorzystajmy funkcję `unsupervised()` z pakietu `bgmm` do oszacowania parametrów mieszaniny rozkładów normalnych. Załóżmy dwie składowe.
 
-Funkcja `plot()` narysuje elipsy określające kształt gęstości rozkłądów normalnych. Wynikiem jest lista, której elementy `pi`, `mu` i `cvar` przedstawiają wyestymowane parametry.
+Funkcja `plot()` narysuje elipsy określające kształt gęstości rozkładów normalnych. Wynikiem jest lista, której elementy `pi`, `mu` i `cvar` przedstawiają wyestymowane parametry.
 
 ```{r mclust_unsup, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=7}
 library(bgmm)
@@ -59,7 +59,7 @@ ggplot(faithful, aes(waiting, eruptions, color=grupy, shape=grupy)) +
 
 Co jednak, gdy nie wiemy jaką wybrać liczbę składowych lub jakie wprowadzić ograniczenia na parametry rozkładu? 
 
-W przypadku modeli probabilistycznych użytecznym kryterium może być kryterium Bayesowskie BIC, zdefinowane jako
+W przypadku modeli probabilistycznych użytecznym kryterium może być kryterium Bayesowskie BIC, zdefiniowane jako
 
 $$
 BIC(M) = -2 * \log likelihood(M) + |M| * log(n)
@@ -76,9 +76,10 @@ erupcje <- unsupervisedList(X = as.matrix(faithful), kList = 2:4,
 plot(erupcje)
 ```
 
-Lub porównać w opaerciu o kryterium BIC. Im niższa wartość kryterium tym lepiej dopasowany model. W tym przypadku najlepszy model według kryterium BIC to ten z trzema składowymi oraz o równych wariancjach i braku kowariancji.
+Lub porównać w oparciu o kryterium BIC. Im niższa wartość kryterium tym lepiej dopasowany model. W tym przypadku najlepszy model według kryterium BIC to ten z trzema składowymi oraz o równych wariancjach i braku kowariancji.
 
 ```{r mclust_BIC, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=6}
 plotGIC(erupcje, penalty = "BIC")
 ```
+
 
