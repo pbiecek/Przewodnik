@@ -1,6 +1,11 @@
 # Co nowego zostało ostatnio dodane?
 
 
+* 26 marca 2016
+
+Dodano rozdział o grupowaniu *Jak znaleźć grupy w danych?* https://pbiecek.gitbooks.io/przewodnik/content/Analiza/beznadzoru/skupiska.html
+z omówionymi k-means, k-medoid, agnes, bgmm.
+
 * 19 marca 2016
 
 Rozdział o ggplot2 *Jak tworzyć wykresy z pakietem ggplot2?* został podzielony na części i przeniesiony na stronę https://pbiecek.gitbooks.io/przewodnik/content/Wizualizacja/jak_tworzyc_wykresy_ggplot2.html.
