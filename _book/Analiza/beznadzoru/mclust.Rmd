@@ -2,11 +2,11 @@
 
 Omawiane dotąd metody (grupowanie hierarchiczne, k-średnich, k-medoidów) nie bazowały na żadnym probabilistycznym modelu. Ot, dzieliły obserwacje na grupy obiektów bliskich sobie.
 
-W pewnych zastosowaniach praktyczne jest założenie, że obiekty, które obserwujemy pochodzą z mieszaniny rozkładów. Rozłożenie tej mieszaniny na części niekoniecznie oznacza, że możemy każdą obserwację przypisać do jednej grupy, ale raczej, że lepiej rozumiemy jakie grupy w tej mieszaninie się znajdują.
+W pewnych zastosowaniach praktyczne jest założenie, że obiekty, które obserwujemy pochodzą z mieszaniny rozkładów. Rozłożenie tej mieszaniny na części i zidentyfikowanie wszystkich składowych pozwala nam lepiej zrozumieć naturę obserwowanego zjawiska.
 
-Poniżej skupimy się na mieszaninie rozkładów normalnych, ale w podobny sposób można rozkładać rozkłady również na inne składowe (trudniej jedynie opisać strukturę zależności).
+Poniżej skupimy się na mieszaninie rozkładów normalnych, ale w podobny sposób można rozkładać rozkłady również na inne składowe. Trudniej jedynie opisać strukturę zależności.
 
-Przyjmijmy, że mamy $$k$$ rozkładów normalnych o gęstości $$f(x, \theta_i)$$, dla $$i = 1, ..., k$$, rozkłady mogą różnić się średnią lub macierzą kowariancji $$\theta_i = (\mu_i, \Sigma_i)$$. Rozkłady te są zmieszane z prawdopodobieństwami $$\pi_i$$, brzegowa gęstość wynosi więc
+Przyjmijmy, że mamy $$k$$ rozkładów normalnych o gęstości $$f(x, \theta_i)$$, dla $$i = 1, ..., k$$. Rozkłady mogą różnić się średnią lub macierzą kowariancji $$\theta_i = (\mu_i, \Sigma_i)$$. Rozkłady te są zmieszane z prawdopodobieństwami $$\pi_i$$, brzegowa gęstość wynosi więc
 
 $$
 f(x) = \sum_{i=1}^k \pi_i f(x, \theta_i).
@@ -14,13 +14,11 @@ $$
 
 Standardowo, parametry takiej mieszaniny estymuje się w oparciu o metodę największej wiarygodności. Maksimum funkcji wiarogodności znajduje się algorytmem *expectation–maximization* (w skrócie EM, Więcej o tym modelu i algorytmie EM przeczytać można w *The R Package bgmm: Mixture Modeling with Uncertain Knowledge* https://www.jstatsoft.org/article/view/v047i03).
 
-Zauważmy jeszcze, że dla $$p$$ wymiarowych obserwacji, jedna składowa gaussowska opisana jest przez $$p$$ liczb opisujących średnią i $$p(p+1)/2$$ opisujących macierz kowariancji. Cały model z $$k$$ składowymi opisany jest przez $$k p(p+3)/2 + k - 1$$ parametrów. Liczba parametrów szybko rośnie z wymiarem danych, przez co potrzeba jest dużo obserwacji aby je wszystkie dobrze estymować. Jeżeli obserwacji nie ma zbyt dużo, to dobrym rozwiązaniem może być założenie pewnych ograniczeń na postać macierzy kowariancji $$\Sigma_i$$. Jeżeli założymy, że rozkłady mają taką samą wariancję na każdej składowej, lub nie są skorelowane - znacząco obniżymy liczbę parametrów. 
-
 ## Przykład
 
-Standardowym przykładem ilustrującym składowe są dane o czasach trwania erupcji i czasach pomiędzy erupcjami gejzera Old Faithful w parku Yellowstone. Już sama wstępna eksploracja tych danych pokazuje zasadność założenia o istnieniu dwóch lub większej liczy grup.
+Standardowym przykładem ilustrującym mieszaninę rozkładów normlanych są dane o czasach trwania erupcji i czasach pomiędzy erupcjami gejzera Old Faithful w parku Yellowstone. Już sama wstępna eksploracja tych danych pokazuje zasadność założenia o istnieniu dwóch lub większej liczy grup.
  
-```{r mclust_plot, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=7}
+```{r mclust_plot, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
 head(faithful)
 library(ggplot2)
 ggplot(faithful, aes(waiting, eruptions)) + 
@@ -31,9 +29,9 @@ Wykorzystajmy funkcję `unsupervised()` z pakietu `bgmm` do oszacowania parametr
 
 Funkcja `plot()` narysuje elipsy określające kształt gęstości rozkładów normalnych. Wynikiem jest lista, której elementy `pi`, `mu` i `cvar` przedstawiają wyestymowane parametry.
 
-```{r mclust_unsup, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=7}
+```{r mclust_unsup, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
 library(bgmm)
-erupcje2 <- unsupervised(X = faithful, k = 2)
+erupcje2 <- unsupervised(X = as.matrix(faithful[,1:2]), k = 2)
 plot(erupcje2)
 
 erupcje2$pi
@@ -49,7 +47,7 @@ erupcje2$cvar[2,,]
 
 Mając model probabilistyczny, dla każdej obserwacji można określić prawdopodobieństwo przynależności do każdej ze składowych, więc można też wyznaczyć składową MAP (ang. *maximum a posteriori*).
 
-```{r mclust_predict, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=7}
+```{r mclust_predict, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
 faithful$grupy <- factor(predict(erupcje2, faithful)$class.X)
 ggplot(faithful, aes(waiting, eruptions, color=grupy, shape=grupy)) + 
   geom_point()
@@ -57,7 +55,9 @@ ggplot(faithful, aes(waiting, eruptions, color=grupy, shape=grupy)) +
 
 ## Nieznana struktura, nieznana liczba składowych
 
-Co jednak, gdy nie wiemy jaką wybrać liczbę składowych lub jakie wprowadzić ograniczenia na parametry rozkładu? 
+Zauważmy, że dla $$p$$ wymiarowych obserwacji, jedna składowa gaussowska opisana jest przez $$p$$ liczb opisujących średnią i $$p(p+1)/2$$ opisujących macierz kowariancji. Cały model z $$k$$ składowymi opisany jest przez $$k p(p+3)/2 + k - 1$$ parametrów. Liczba parametrów szybko rośnie z wymiarem danych, przez co potrzeba jest dużo obserwacji aby je wszystkie dobrze estymować. Jeżeli obserwacji nie ma zbyt dużo, to dobrym rozwiązaniem może być założenie pewnych ograniczeń na postać macierzy kowariancji $$\Sigma_i$$. Jeżeli założymy, że rozkłady mają taką samą wariancję na każdej składowej, lub nie są skorelowane - znacząco obniżymy liczbę parametrów. 
+
+Co gdy nie wiemy jaką wybrać liczbę składowych lub jakie wprowadzić ograniczenia na parametry rozkładu? 
 
 W przypadku modeli probabilistycznych użytecznym kryterium może być kryterium Bayesowskie BIC, zdefiniowane jako
 
@@ -70,7 +70,7 @@ gdzie $$n$$ to liczba obserwacji, $|M|$ to rozmiar modelu - liczba parametrów o
 Funkcja `unsupervisedList()` pozwala na dopasowanie do danych zbioru modeli o różnej liczbie składowych i różnej strukturze, a następnie używając funkcji `plot()` można ete modele porównać organoleptycznie
 
 ```{r mclust_erup, warning=FALSE, message=FALSE, dev='svg', fig.width=8, fig.height=8}
-erupcje <- unsupervisedList(X = as.matrix(faithful), kList = 2:4, 
+erupcje <- unsupervisedList(X = as.matrix(faithful[,1:2]), kList = 2:4, 
                       mean = "D", between = c("D", "E"),
                       within = "D", cov = c("D", "0"))
 plot(erupcje)
@@ -78,7 +78,7 @@ plot(erupcje)
 
 Lub porównać w oparciu o kryterium BIC. Im niższa wartość kryterium tym lepiej dopasowany model. W tym przypadku najlepszy model według kryterium BIC to ten z trzema składowymi oraz o równych wariancjach i braku kowariancji.
 
-```{r mclust_BIC, warning=FALSE, message=FALSE, dev='svg', fig.width=7, fig.height=6}
+```{r mclust_BIC, warning=FALSE, message=FALSE, dev='svg', fig.width=6, fig.height=6}
 plotGIC(erupcje, penalty = "BIC")
 ```
 
