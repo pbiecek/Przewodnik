@@ -63,7 +63,7 @@
         data-chapter-title="Jak szukać partycji w oparciu o mieszaniny rozkładów?"
         data-filepath="Analiza/beznadzoru/mclust.md"
         data-basepath="../.."
-        data-revision="Sat Mar 26 2016 01:19:51 GMT+0100 (CET)"
+        data-revision="Sat Mar 26 2016 01:27:02 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -1288,27 +1288,27 @@ plot(erupcje2)
 <p><img src="figure/mclust_unsup-1.svg" alt="plot of chunk mclust_unsup"></p>
 <pre><code class="lang-r">erupcje2$pi
 </code></pre>
-<pre><code>## [1] 0.3558861 0.6441139
+<pre><code>## [1] 0.6441139 0.3558861
 </code></pre><pre><code class="lang-r"><span class="hljs-comment"># sk&#x142;adowa 1</span>
 <span class="hljs-comment"># &#x15B;rednia i macierz wariancji</span>
 erupcje2$mu[<span class="hljs-number">1</span>,]
 </code></pre>
-<pre><code>## [1]  2.036421 54.478841
-</code></pre><pre><code class="lang-r">erupcje2$cvar[<span class="hljs-number">1</span>,,]
-</code></pre>
-<pre><code>##            eruptions    waiting
-## eruptions 0.06919325  0.4354348
-## waiting   0.43543482 33.6991083
-</code></pre><pre><code class="lang-r"><span class="hljs-comment"># sk&#x142;adowa 2</span>
-<span class="hljs-comment"># &#x15B;rednia i macierz wariancji</span>
-erupcje2$mu[<span class="hljs-number">2</span>,]
-</code></pre>
 <pre><code>## [1]  4.28969 79.96846
-</code></pre><pre><code class="lang-r">erupcje2$cvar[<span class="hljs-number">2</span>,,]
+</code></pre><pre><code class="lang-r">erupcje2$cvar[<span class="hljs-number">1</span>,,]
 </code></pre>
 <pre><code>##           eruptions    waiting
 ## eruptions 0.1699323  0.9401497
 ## waiting   0.9401497 36.0410392
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># sk&#x142;adowa 2</span>
+<span class="hljs-comment"># &#x15B;rednia i macierz wariancji</span>
+erupcje2$mu[<span class="hljs-number">2</span>,]
+</code></pre>
+<pre><code>## [1]  2.036421 54.478841
+</code></pre><pre><code class="lang-r">erupcje2$cvar[<span class="hljs-number">2</span>,,]
+</code></pre>
+<pre><code>##            eruptions    waiting
+## eruptions 0.06919325  0.4354348
+## waiting   0.43543482 33.6991083
 </code></pre><p>Maj&#x105;c model probabilistyczny, dla ka&#x17C;dej obserwacji mo&#x17C;na okre&#x15B;li&#x107; prawdopodobie&#x144;stwo przynale&#x17C;no&#x15B;ci do ka&#x17C;dej ze sk&#x142;adowych, wi&#x119;c mo&#x17C;na te&#x17C; wyznaczy&#x107; sk&#x142;adow&#x105; MAP (ang. <em>maximum a posteriori</em>).</p>
 <pre><code class="lang-r">faithful$grupy &lt;- factor(predict(erupcje2, faithful)$class.X)
 </code></pre>
@@ -1337,11 +1337,16 @@ plot(erupcje)
 </code></pre>
 <p><img src="figure/mclust_BIC-1.svg" alt="plot of chunk mclust_BIC"></p>
 <pre><code>##                     k=2      k=3      k=4
-## structure=DDDD 2307.275 2312.795 2334.405
-## structure=DDD0 2331.210 2322.102 2317.258
-## structure=DEDD 2309.689 2294.367 2320.968
-## structure=DED0 2339.197 2302.955 2298.568
-</code></pre>
+## structure=DDDD 2307.275 2312.795 2331.745
+## structure=DDD0 2331.210 2322.102 2317.286
+## structure=DEDD 2309.689 2294.367 2321.467
+## structure=DED0 2339.197 2302.955 2298.583
+</code></pre><h2 id="i-co-dalej">I co dalej?</h2>
+<ul>
+<li>Dobrym pakietem do identyfikacji sk&#x142;adowych mieszanin gaussowskich to pakiet <code>mclust</code> om&#xF3;wiony szczeg&#xF3;&#x142;owo na stronie <a href="http://www.stat.washington.edu/mclust/" target="_blank">http://www.stat.washington.edu/mclust/</a></li>
+<li>Pe&#x142;ny zbi&#xF3;r pakiet&#xF3;w do grupowania opartego o mieszanin&#x119; rozk&#x142;ad&#xF3;w jest przedstawiony na stronie <a href="https://cran.r-project.org/web/views/Cluster.html" target="_blank">https://cran.r-project.org/web/views/Cluster.html</a></li>
+</ul>
+
                     
                     </section>
                 

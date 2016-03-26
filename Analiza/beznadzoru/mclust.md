@@ -59,7 +59,7 @@ erupcje2$pi
 ```
 
 ```
-## [1] 0.3558861 0.6441139
+## [1] 0.6441139 0.3558861
 ```
 
 ```r
@@ -69,7 +69,7 @@ erupcje2$mu[1,]
 ```
 
 ```
-## [1]  2.036421 54.478841
+## [1]  4.28969 79.96846
 ```
 
 ```r
@@ -77,9 +77,9 @@ erupcje2$cvar[1,,]
 ```
 
 ```
-##            eruptions    waiting
-## eruptions 0.06919325  0.4354348
-## waiting   0.43543482 33.6991083
+##           eruptions    waiting
+## eruptions 0.1699323  0.9401497
+## waiting   0.9401497 36.0410392
 ```
 
 ```r
@@ -89,7 +89,7 @@ erupcje2$mu[2,]
 ```
 
 ```
-## [1]  4.28969 79.96846
+## [1]  2.036421 54.478841
 ```
 
 ```r
@@ -97,9 +97,9 @@ erupcje2$cvar[2,,]
 ```
 
 ```
-##           eruptions    waiting
-## eruptions 0.1699323  0.9401497
-## waiting   0.9401497 36.0410392
+##            eruptions    waiting
+## eruptions 0.06919325  0.4354348
+## waiting   0.43543482 33.6991083
 ```
 
 Mając model probabilistyczny, dla każdej obserwacji można określić prawdopodobieństwo przynależności do każdej ze składowych, więc można też wyznaczyć składową MAP (ang. *maximum a posteriori*).
@@ -157,10 +157,14 @@ plotGIC(erupcje, penalty = "BIC")
 
 ```
 ##                     k=2      k=3      k=4
-## structure=DDDD 2307.275 2312.795 2334.405
-## structure=DDD0 2331.210 2322.102 2317.258
-## structure=DEDD 2309.689 2294.367 2320.968
-## structure=DED0 2339.197 2302.955 2298.568
+## structure=DDDD 2307.275 2312.795 2331.745
+## structure=DDD0 2331.210 2322.102 2317.286
+## structure=DEDD 2309.689 2294.367 2321.467
+## structure=DED0 2339.197 2302.955 2298.583
 ```
 
+## I co dalej?
+
+* Dobrym pakietem do identyfikacji składowych mieszanin gaussowskich to pakiet `mclust` omówiony szczegółowo na stronie http://www.stat.washington.edu/mclust/
+* Pełny zbiór pakietów do grupowania opartego o mieszaninę rozkładów jest przedstawiony na stronie https://cran.r-project.org/web/views/Cluster.html
 

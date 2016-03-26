@@ -82,4 +82,8 @@ Lub porównać w oparciu o kryterium BIC. Im niższa wartość kryterium tym lep
 plotGIC(erupcje, penalty = "BIC")
 ```
 
+## I co dalej?
+
+* Dobrym pakietem do identyfikacji składowych mieszanin gaussowskich to pakiet `mclust` omówiony szczegółowo na stronie http://www.stat.washington.edu/mclust/
+* Pełny zbiór pakietów do grupowania opartego o mieszaninę rozkładów jest przedstawiony na stronie https://cran.r-project.org/web/views/Cluster.html
 
