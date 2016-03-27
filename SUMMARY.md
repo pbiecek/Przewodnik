@@ -5,6 +5,11 @@
 * [Programowanie w języku R](puste.md)
    * Jak korzystać z tej książki?
    * Jak zainstalować R i RStudio?
+   * Jak rozpocząć pracę z R?
+       * Jak przeżyć pierwsze 5 minut z R?
+       * Jak pracować z wektorami?
+       * Jak pracować z tabelami danych?
+       * Jak pracować z listami?
    * [Jak wczytywać i zapisywać dane?](Programowanie/zapisywac.md)
        * [Jak wczytać tabele danych z pliku csv lub txt?](Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md)
        * [Jak wczytać tabele danych z Excela?](Programowanie/jak_wczytac_dane_z_excela.md)
@@ -25,7 +30,6 @@
        * [Zadania](Programowanie/zadaniaDplyr.md)
    * Jak tworzyć pętle i instrukcje warunkowe?
    * Jak tworzyć funkcje?
-   * Jak pracować z typami w R?
    * Jak budować pakiety?
    * [Jak budować aplikacje z pakietem Shiny?](Programowanie/jak_tworzyc_aplikajce.md)
      * [Jak zbudować pierwszą aplikację?](Programowanie/jak_tworzyc_aplikajce0.md)
