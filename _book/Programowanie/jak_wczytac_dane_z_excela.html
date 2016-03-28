@@ -63,7 +63,7 @@
         data-chapter-title="Jak wczytać tabele danych z Excela?"
         data-filepath="Programowanie/jak_wczytac_dane_z_excela.md"
         data-basepath=".."
-        data-revision="Tue Mar 22 2016 22:49:52 GMT+0100 (CET)"
+        data-revision="Sat Mar 26 2016 01:30:36 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -832,7 +832,7 @@
                         
                             <b>3.1.5.</b>
                         
-                        Jak znaleźć skupiska w danych?
+                        Jak znaleźć grupy w danych?
                     </a>
             
             
@@ -884,23 +884,31 @@
             
         </li>
     
-        <li class="chapter " data-level="3.1.5.4" data-path="Analiza/beznadzoru/mclust.html">
-            
-            <span><b>3.1.5.4.</b> Jak szukać partycji w oparciu o mieszaniny rozkładów?</span>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.1.5.5" data-path="Analiza/beznadzoru/agnes.html">
+        <li class="chapter " data-level="3.1.5.4" data-path="Analiza/beznadzoru/agnes.html">
             
                 
                     <a href="../Analiza/beznadzoru/agnes.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.5.5.</b>
+                            <b>3.1.5.4.</b>
                         
                         Jak wykonać analizę hierarchiczną?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5.5" data-path="Analiza/beznadzoru/mclust.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mclust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.5.</b>
+                        
+                        Jak szukać partycji w oparciu o mieszaniny rozkładów?
                     </a>
             
             
@@ -1248,7 +1256,7 @@
                     
                         <h1 id="jak-wczyta&#x107;-dane-z-excela">Jak wczyta&#x107; dane z Excela?</h1>
 <p>Jedn&#x105; z najbardziej popularnych form przechowywania danych tabelarycznych s&#x105; pliki Excela. Poni&#x17C;ej poka&#x17C;emy jak takie dane odczyta&#x107; z pliku Excela bezpo&#x15B;rednio do programu R.</p>
-<p>Jako przyk&#x142;ad wykorzystamy dane udost&#x119;pniane przez G&#x142;&#xF3;wny Urz&#x105;d Statystyczny (GUS) w Danku Danych Lokalnych (BDL) <a href="https://bdl.stat.gov.pl/BDL/dane/wymiary" target="_blank">https://bdl.stat.gov.pl/BDL/dane/wymiary</a>. Przez interface www mo&#x17C;na wyklina&#x107; jakie wska&#x17A;niki w jakich grupach chcemy pobra&#x107;, a nast&#x119;pnie mo&#x17C;emy pobra&#x107; je w formacie pliku Excela.</p>
+<p>Jako przyk&#x142;ad wykorzystamy dane udost&#x119;pniane przez G&#x142;&#xF3;wny Urz&#x105;d Statystyczny (GUS) w Banku Danych Lokalnych (BDL) <a href="https://bdl.stat.gov.pl/BDL/dane/wymiary" target="_blank">https://bdl.stat.gov.pl/BDL/dane/wymiary</a>. Przez interface www mo&#x17C;na wyklina&#x107; jakie wska&#x17A;niki w jakich grupach chcemy pobra&#x107;, a nast&#x119;pnie mo&#x17C;emy pobra&#x107; je w formacie pliku Excela.</p>
 <p>Za pomoc&#x105; strony www wybra&#x142;em dane dotycz&#x105;ce ludno&#x15B;ci Polsce w latach 1995:2015 w podziale na grupy wiekowe i p&#x142;e&#x107;. Te dane s&#x105; dost&#x119;pne na stronie <a href="https://github.com/pbiecek/Przewodnik/blob/master/resources/LUDN_2137_20160225144358.xlsx" target="_blank">https://github.com/pbiecek/Przewodnik/blob/master/resources/LUDN_2137_20160225144358.xlsx</a>.</p>
 <p>Pliki Excela pobrane z BDL maj&#x105; trzy zak&#x142;adki. W pierwszej opisane s&#x105; g&#x142;&#xF3;wne informacje dotycz&#x105;ce danych. Druga zak&#x142;adka to dane w ta zwanej w&#x105;skiej/d&#x142;ugiej postaci. Trzecia zak&#x142;adka to dane w postaci szerokiej, gdzie kolejne kolumny odpowiadaj&#x105; kolejnym latom.</p>
 <p>Poni&#x17C;ej umieszczone s&#x105; zrzuty ekranu dla obu zak&#x142;adek.</p>
