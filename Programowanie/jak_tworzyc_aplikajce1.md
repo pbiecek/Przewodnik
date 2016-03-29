@@ -1,6 +1,6 @@
 ## Jak umieszczać wyniki analiz w aplikacji?
 
-W poprzedniej części zobaczyliśmy jak wygląda struktura aplikacji. Jednak aplikacja, którą zbudowaliśmy nie nic ciekawego. 
+W poprzedniej części zobaczyliśmy jak wygląda struktura aplikacji. Jednak aplikacja, którą zbudowaliśmy nie robi nic ciekawego. 
 
 Zbudujmy teraz aplikację, która coś liczy i wyświetla to coś na ekranie. W przypadku poniższej aplikacji wynikiem będą dwa elementy: wykres i opis modelu liniowego. 
 
