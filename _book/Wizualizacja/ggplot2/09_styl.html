@@ -63,7 +63,7 @@
         data-chapter-title="Jak modyfikować styl wykresu?"
         data-filepath="Wizualizacja/ggplot2/09_styl.md"
         data-basepath="../.."
-        data-revision="Tue Mar 29 2016 15:35:44 GMT+0200 (CEST)"
+        data-revision="Tue Mar 29 2016 18:23:19 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1305,15 +1305,19 @@ pl
 <p><img src="figure/mapowania9-1.svg" alt="plot of chunk mapowania9"></p>
 <pre><code class="lang-r">pl + theme_excel()
 </code></pre>
-<p><img src="figure/mapowania9-2.svg" alt="plot of chunk mapowania9"></p>
-<pre><code class="lang-r">pl + theme_bw() +  theme(legend.position=<span class="hljs-string">&quot;none&quot;</span>) +
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;theme_excel&quot;
+</code></pre><pre><code class="lang-r">pl + theme_bw() +  theme(legend.position=<span class="hljs-string">&quot;none&quot;</span>) +
   theme(text=element_text(size=<span class="hljs-number">20</span>)) + ggtitle(<span class="hljs-string">&quot;theme_bw&quot;</span>)
 </code></pre>
-<p><img src="figure/mapowania9-3.svg" alt="plot of chunk mapowania9"></p>
+<p><img src="figure/mapowania9-2.svg" alt="plot of chunk mapowania9"></p>
 <pre><code class="lang-r">pl + theme_classic() +  theme(legend.position=<span class="hljs-string">&quot;none&quot;</span>) +
   theme(text=element_text(size=<span class="hljs-number">20</span>)) + ggtitle(<span class="hljs-string">&quot;theme_classic&quot;</span>)
 </code></pre>
-<p><img src="figure/mapowania9-4.svg" alt="plot of chunk mapowania9"></p>
+<p><img src="figure/mapowania9-3.svg" alt="plot of chunk mapowania9"></p>
+<h2 id="i-co-dalej">I co dalej?</h2>
+<ul>
+<li>Przegl&#x105;d kilkunastu interesuj&#x105;cych sk&#xF3;rek znajduje si&#x119; na stronie  <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html" target="_blank">https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html</a></li>
+</ul>
 
                     
                     </section>

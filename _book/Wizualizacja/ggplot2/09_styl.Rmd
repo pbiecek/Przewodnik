@@ -28,3 +28,7 @@ pl + theme_classic() +  theme(legend.position="none") +
   theme(text=element_text(size=20)) + ggtitle("theme_classic")
 ```
 
+## I co dalej?
+
+* Przegląd kilkunastu interesujących skórek znajduje się na stronie  https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html
+

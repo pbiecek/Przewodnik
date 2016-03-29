@@ -27,19 +27,25 @@ pl
 pl + theme_excel()
 ```
 
-![plot of chunk mapowania9](figure/mapowania9-2.svg)
+```
+## Error in eval(expr, envir, enclos): could not find function "theme_excel"
+```
 
 ```r
 pl + theme_bw() +  theme(legend.position="none") +
   theme(text=element_text(size=20)) + ggtitle("theme_bw")
 ```
 
-![plot of chunk mapowania9](figure/mapowania9-3.svg)
+![plot of chunk mapowania9](figure/mapowania9-2.svg)
 
 ```r
 pl + theme_classic() +  theme(legend.position="none") +
   theme(text=element_text(size=20)) + ggtitle("theme_classic")
 ```
 
-![plot of chunk mapowania9](figure/mapowania9-4.svg)
+![plot of chunk mapowania9](figure/mapowania9-3.svg)
+
+## I co dalej?
+
+* Przegląd kilkunastu interesujących skórek znajduje się na stronie  https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html
 
