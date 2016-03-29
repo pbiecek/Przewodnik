@@ -1,4 +1,4 @@
-# Jak zainstalować R / RStudio / rozpocząć pracę z R Studio?
+# Jak zainstalować R / RStudio?
 
 Aby wygodnie pracować w R powinniśmy 
 

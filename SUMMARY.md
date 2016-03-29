@@ -6,7 +6,7 @@
    * Jak korzystać z tej książki?
    * [Jak zainstalować R i RStudio?](Programowanie/podstawy/jak_zainstalowac_R.md)
    * [Jak rozpocząć pracę z R?](Programowanie/podstawy/jak_zaczac.md)
-       * Jak pracować z wektorami?
+       * [Jak pracować z wektorami?](Programowanie/podstawy/indeksy.md)
        * Jak pracować z tabelami danych?
        * Jak pracować z listami?
        * [Co można zrobić z datami/liczbami/czynnikami/napisami?](Programowanie/podstawy/co_zrobic_z_datami.md)
