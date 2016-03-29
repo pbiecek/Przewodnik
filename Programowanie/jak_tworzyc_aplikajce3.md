@@ -2,7 +2,7 @@
 
 W poprzednich dwóch częściach pokazaliśmy jak umieszczać w aplikacji Shiny wykresy, tabele i inne wyniki, których treść w sposób interaktywny zmienia się po modyfikacji wartości kontrolek. 
 
-Ale aplikacje Shiny mogą zawierać też rozmaite inne rozwiązania, takie jak panele, dodatkowe menu, elementy które pojawią się jedynie w określonych warunkach, wartości kontrolek zależne od wartości innych kontrolek. Na prawdę bardzo różne rozwiązania są możliwe przez co aplikacja Shiny pozwala na zbudowane rozbudowanego portalu analitycznego.
+Ale aplikacje Shiny mogą zawierać też rozmaite inne rozwiązania, takie jak panele, dodatkowe menu, elementy które pojawią się jedynie w określonych warunkach, wartości kontrolek zależne od wartości innych kontrolek. Naprawdę bardzo różne rozwiązania są możliwe przez co aplikacja Shiny pozwala na zbudowane rozbudowanego portalu analitycznego.
 
 Poniżej przedstawimy wybrane ciekawsze rozwiązania oferowane przez Shiny, które wykraczały zakresem poza aplikację przedstawioną w poprzednim rozdziale.
 
