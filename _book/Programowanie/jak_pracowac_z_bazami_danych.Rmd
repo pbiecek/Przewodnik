@@ -57,7 +57,7 @@ Używając funkcji `dbDisconnect()` możemy się z bazą danych rozłączyć. Wa
 dbDisconnect(polaczenie)
 ```
 
-Funkcja `dbGetQuery()` tworzy zapytanie i pobiera jego wyniki. Tą operacje można robić na części. Funkcja `dbSendQuery()` jedynie tworzy i wysyła zapytanie SQL do bazy, a funkcja `fetch()` pobiera kolejne porcje danych.
+Funkcja `dbGetQuery()` tworzy zapytanie, wykonuje je i pobiera jego wyniki. Tę operację można rozbić na części. Funkcja `dbSendQuery()` jedynie tworzy i wysyła zapytanie SQL do bazy, a funkcja `fetch()` pobiera kolejne porcje danych.
 
 Funkcja `dbWriteTable()` zapisuje wskazany obiekt `data.table` jako tabelę w bazie danych.
 

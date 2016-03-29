@@ -63,7 +63,7 @@
         data-chapter-title="Jak pracować z bazami danych?"
         data-filepath="Programowanie/jak_pracowac_z_bazami_danych.md"
         data-basepath=".."
-        data-revision="Tue Mar 29 2016 12:54:51 GMT+0200 (CEST)"
+        data-revision="Tue Mar 29 2016 12:59:53 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1361,7 +1361,7 @@ agregat
 <pre><code class="lang-r">dbDisconnect(polaczenie)
 </code></pre>
 <pre><code>## [1] TRUE
-</code></pre><p>Funkcja <code>dbGetQuery()</code> tworzy zapytanie i pobiera jego wyniki. T&#x105; operacje mo&#x17C;na robi&#x107; na cz&#x119;&#x15B;ci. Funkcja <code>dbSendQuery()</code> jedynie tworzy i wysy&#x142;a zapytanie SQL do bazy, a funkcja <code>fetch()</code> pobiera kolejne porcje danych.</p>
+</code></pre><p>Funkcja <code>dbGetQuery()</code> tworzy zapytanie, wykonuje je i pobiera jego wyniki. T&#x119; operacj&#x119; mo&#x17C;na rozbi&#x107; na cz&#x119;&#x15B;ci. Funkcja <code>dbSendQuery()</code> jedynie tworzy i wysy&#x142;a zapytanie SQL do bazy, a funkcja <code>fetch()</code> pobiera kolejne porcje danych.</p>
 <p>Funkcja <code>dbWriteTable()</code> zapisuje wskazany obiekt <code>data.table</code> jako tabel&#x119; w bazie danych.</p>
 <h2 id="jak-pracowa&#x107;-z-relacyjnymi-bazami-danych">Jak pracowa&#x107; z relacyjnymi bazami danych?</h2>
 <p>SQLite to baza zabawka. Do przechowywania wi&#x119;kszych danych w produkcyjnych rozwi&#x105;zaniach wykorzystywa&#x107; mo&#x17C;na otwarte rozwi&#x105;zania typu PostgreSQL czy MySQL lub komercyjnie rozwijane silniki bazodanowe takie jak Oracle, RedShift, Teradata, Netezza i inne.</p>
@@ -1463,15 +1463,15 @@ class(liczba_glosow)
 <pre><code>## &lt;Query&gt; SELECT &quot;club&quot;, &quot;vote&quot;, &quot;liczba&quot;
 ## FROM (SELECT &quot;club&quot;, &quot;vote&quot;, count(*) AS &quot;liczba&quot;
 ## FROM &quot;votes&quot;
-## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz1&quot;
-## &lt;PostgreSQLConnection:(42999,1)&gt;
+## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz2&quot;
+## &lt;PostgreSQLConnection:(42999,3)&gt;
 </code></pre><pre><code class="lang-r">explain(liczba_glosow)
 </code></pre>
 <pre><code>## &lt;SQL&gt;
 ## SELECT &quot;club&quot;, &quot;vote&quot;, &quot;liczba&quot;
 ## FROM (SELECT &quot;club&quot;, &quot;vote&quot;, count(*) AS &quot;liczba&quot;
 ## FROM &quot;votes&quot;
-## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz1&quot;
+## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz2&quot;
 </code></pre><pre><code>##
 </code></pre><pre><code>## &lt;PLAN&gt;
 ## HashAggregate  (cost=74577.20..74577.72 rows=52 width=9)

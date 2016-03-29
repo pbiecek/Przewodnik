@@ -112,7 +112,7 @@ dbDisconnect(polaczenie)
 ## [1] TRUE
 ```
 
-Funkcja `dbGetQuery()` tworzy zapytanie i pobiera jego wyniki. Tą operacje można robić na części. Funkcja `dbSendQuery()` jedynie tworzy i wysyła zapytanie SQL do bazy, a funkcja `fetch()` pobiera kolejne porcje danych.
+Funkcja `dbGetQuery()` tworzy zapytanie, wykonuje je i pobiera jego wyniki. Tę operację można rozbić na części. Funkcja `dbSendQuery()` jedynie tworzy i wysyła zapytanie SQL do bazy, a funkcja `fetch()` pobiera kolejne porcje danych.
 
 Funkcja `dbWriteTable()` zapisuje wskazany obiekt `data.table` jako tabelę w bazie danych.
 
@@ -283,8 +283,8 @@ liczba_glosow$query
 ## <Query> SELECT "club", "vote", "liczba"
 ## FROM (SELECT "club", "vote", count(*) AS "liczba"
 ## FROM "votes"
-## GROUP BY "club", "vote") AS "zzz1"
-## <PostgreSQLConnection:(42999,1)>
+## GROUP BY "club", "vote") AS "zzz2"
+## <PostgreSQLConnection:(42999,3)>
 ```
 
 ```r
@@ -296,7 +296,7 @@ explain(liczba_glosow)
 ## SELECT "club", "vote", "liczba"
 ## FROM (SELECT "club", "vote", count(*) AS "liczba"
 ## FROM "votes"
-## GROUP BY "club", "vote") AS "zzz1"
+## GROUP BY "club", "vote") AS "zzz2"
 ```
 
 ```
