@@ -6,7 +6,7 @@ A jeżeli chcemy pracować z dużymi zbiorami danych, które zajmują dużo miej
 * pracować na ,,tłustych’’ komputerach z dużą ilością RAM (jednak na dzień dzisiejszy dzisiaj trudno wyjść poza 1 TB RAM, chyba że ma się baaardzo duży budżet),
 * trzymać dane poza R, możliwie dużo przetwarzania wykonywać poza R, a do R wczytywać tylko takie dane, które są naprawdę niezbędne. Poza R, oznacza tutaj w bazie danych.
 
-Nawet jeżeli danych nie jest bardzo dużo, to bazy dane mogą być używany by zapewnić jednolity sposób dostępu do danych z różnych narzędzi, by efektywnie zarządzać danymi, by zapewnić skalowalność operacji na danych.
+Nawet jeżeli danych nie jest bardzo dużo, to bazy dane mogą być używane by zapewnić jednolity sposób dostępu do danych z różnych narzędzi, by efektywnie zarządzać danymi, by zapewnić skalowalność operacji na danych.
 
 Poniżej przedstawiamy dwa przykłady komunikacji R z bazami danych.
 Pierwszy przykład będzie dotyczył prostej bazy danych `SQLite` bazującej na jednym pliku. Są to najczęściej zabawkowe przykłady pozwalające na przećwiczenie podstawowych operacji. Drugi przykład będzie dotyczył pracy z popularną bazą PostgreSQL. Sposób pracy z nią jest bardzo podobny do większości popularnie stosowanych baz relacyjnych.
@@ -283,8 +283,8 @@ liczba_glosow$query
 ## <Query> SELECT "club", "vote", "liczba"
 ## FROM (SELECT "club", "vote", count(*) AS "liczba"
 ## FROM "votes"
-## GROUP BY "club", "vote") AS "zzz2"
-## <PostgreSQLConnection:(42999,3)>
+## GROUP BY "club", "vote") AS "zzz3"
+## <PostgreSQLConnection:(42999,5)>
 ```
 
 ```r
@@ -296,7 +296,7 @@ explain(liczba_glosow)
 ## SELECT "club", "vote", "liczba"
 ## FROM (SELECT "club", "vote", count(*) AS "liczba"
 ## FROM "votes"
-## GROUP BY "club", "vote") AS "zzz2"
+## GROUP BY "club", "vote") AS "zzz3"
 ```
 
 ```

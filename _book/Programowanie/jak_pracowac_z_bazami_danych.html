@@ -63,7 +63,7 @@
         data-chapter-title="Jak pracować z bazami danych?"
         data-filepath="Programowanie/jak_pracowac_z_bazami_danych.md"
         data-basepath=".."
-        data-revision="Tue Mar 29 2016 12:59:53 GMT+0200 (CEST)"
+        data-revision="Tue Mar 29 2016 13:13:00 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1295,7 +1295,7 @@ A je&#x17C;eli chcemy pracowa&#x107; z du&#x17C;ymi zbiorami danych, kt&#xF3;re 
 <li>pracowa&#x107; na ,,t&#x142;ustych&#x2019;&#x2019; komputerach z du&#x17C;&#x105; ilo&#x15B;ci&#x105; RAM (jednak na dzie&#x144; dzisiejszy dzisiaj trudno wyj&#x15B;&#x107; poza 1 TB RAM, chyba &#x17C;e ma si&#x119; baaardzo du&#x17C;y bud&#x17C;et),</li>
 <li>trzyma&#x107; dane poza R, mo&#x17C;liwie du&#x17C;o przetwarzania wykonywa&#x107; poza R, a do R wczytywa&#x107; tylko takie dane, kt&#xF3;re s&#x105; naprawd&#x119; niezb&#x119;dne. Poza R, oznacza tutaj w bazie danych.</li>
 </ul>
-<p>Nawet je&#x17C;eli danych nie jest bardzo du&#x17C;o, to bazy dane mog&#x105; by&#x107; u&#x17C;ywany by zapewni&#x107; jednolity spos&#xF3;b dost&#x119;pu do danych z r&#xF3;&#x17C;nych narz&#x119;dzi, by efektywnie zarz&#x105;dza&#x107; danymi, by zapewni&#x107; skalowalno&#x15B;&#x107; operacji na danych.</p>
+<p>Nawet je&#x17C;eli danych nie jest bardzo du&#x17C;o, to bazy dane mog&#x105; by&#x107; u&#x17C;ywane by zapewni&#x107; jednolity spos&#xF3;b dost&#x119;pu do danych z r&#xF3;&#x17C;nych narz&#x119;dzi, by efektywnie zarz&#x105;dza&#x107; danymi, by zapewni&#x107; skalowalno&#x15B;&#x107; operacji na danych.</p>
 <p>Poni&#x17C;ej przedstawiamy dwa przyk&#x142;ady komunikacji R z bazami danych.
 Pierwszy przyk&#x142;ad b&#x119;dzie dotyczy&#x142; prostej bazy danych <code>SQLite</code> bazuj&#x105;cej na jednym pliku. S&#x105; to najcz&#x119;&#x15B;ciej zabawkowe przyk&#x142;ady pozwalaj&#x105;ce na prze&#x107;wiczenie podstawowych operacji. Drugi przyk&#x142;ad b&#x119;dzie dotyczy&#x142; pracy z popularn&#x105; baz&#x105; PostgreSQL. Spos&#xF3;b pracy z ni&#x105; jest bardzo podobny do wi&#x119;kszo&#x15B;ci popularnie stosowanych baz relacyjnych.</p>
 <h2 id="jak-pracowa&#x107;-z-baz&#x105;-danych-sqlite">Jak pracowa&#x107; z baz&#x105; danych SQLite?</h2>
@@ -1463,15 +1463,15 @@ class(liczba_glosow)
 <pre><code>## &lt;Query&gt; SELECT &quot;club&quot;, &quot;vote&quot;, &quot;liczba&quot;
 ## FROM (SELECT &quot;club&quot;, &quot;vote&quot;, count(*) AS &quot;liczba&quot;
 ## FROM &quot;votes&quot;
-## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz2&quot;
-## &lt;PostgreSQLConnection:(42999,3)&gt;
+## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz3&quot;
+## &lt;PostgreSQLConnection:(42999,5)&gt;
 </code></pre><pre><code class="lang-r">explain(liczba_glosow)
 </code></pre>
 <pre><code>## &lt;SQL&gt;
 ## SELECT &quot;club&quot;, &quot;vote&quot;, &quot;liczba&quot;
 ## FROM (SELECT &quot;club&quot;, &quot;vote&quot;, count(*) AS &quot;liczba&quot;
 ## FROM &quot;votes&quot;
-## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz2&quot;
+## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz3&quot;
 </code></pre><pre><code>##
 </code></pre><pre><code>## &lt;PLAN&gt;
 ## HashAggregate  (cost=74577.20..74577.72 rows=52 width=9)
