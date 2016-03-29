@@ -41,7 +41,7 @@ shinyUI(fluidPage(
 ))
 ```
 
-W pliku `server.R, wewnątrz funkcji `*Output` można odwoływać się do wartości kontrolki poprzez listę `input`. I tak `input$wybranySerial` będzie napisem określającym jaki serial użytkownik wybrał a `input$liniaTrendu` będzie wartością logiczną TRUE/FALSE określającą czy przycisk jest zaznaczony czy odznaczony.
+W pliku `server.R`, wewnątrz funkcji `*Output` można odwoływać się do wartości kontrolki poprzez listę `input`. I tak `input$wybranySerial` będzie napisem określającym jaki serial użytkownik wybrał a `input$liniaTrendu` będzie wartością logiczną TRUE/FALSE określającą czy przycisk jest zaznaczony czy odznaczony.
 
 Wewnątrz funkcji `*Output` można dowolnie odwoływać się do wartości kontrolek. Za każdym razem gdy użytkownik zmieni wartość kontrolki zostaną wykonane wszystkie wyrażenia, zawierające w swojej treści odwołania do zmienionej kontrolki. Wyniki tych wyrażeń zostaną przeliczone na nowo i uaktualnione w oknie aplikacji.
 
