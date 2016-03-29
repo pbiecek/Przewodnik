@@ -30,7 +30,13 @@ gdzie $$\rho$$ jest parametrem. Ta kopula odpowiada zależności pomiędzy zmien
 $$
 C(x_1, x_2, ..., x_p)=\Psi^{-1}\left(\sum_{i=1}^n \Psi\left(F_i\left(x_i\right)\right) \right),
 $$
-gdzie $$\Psi$$ to tzw. funkcja generująca, spełniająca warunki: (1) $$\Psi(1) = 0$$, \linebrak(2) $$\lim_{x\rightarrow 0}\Psi(x) = \infty$$,  (3)  $$\Psi'(x) < 0$$ i (4) $$\Psi''(x) > 0$$.
+gdzie $$\Psi$$ to tzw. funkcja generująca, spełniająca warunki: 
+
+1. $$\Psi(1) = 0$$, 
+2. $$\lim_{x\rightarrow 0}\Psi(x) = \infty$$,  
+3. $$\Psi'(x) < 0$$, 
+4. $$\Psi''(x) > 0$$.
+
 Wybierając odpowiednie funkcje generujące, otrzymujemy następujące podklasy kopuli.
 
   * Kopula produktowa, w tym przypadku funkcja generująca zadana jest wzorem
@@ -113,13 +119,13 @@ head(x)
 ```
 
 ```
-##            [,1]      [,2]
-## [1,] 0.76278595 0.6201576
-## [2,] 0.19761065 0.3975638
-## [3,] 0.03463103 0.0056668
-## [4,] 0.42832732 0.3924189
-## [5,] 0.41696909 0.2829983
-## [6,] 0.67150691 0.6534556
+##           [,1]      [,2]
+## [1,] 0.9017415 0.7996649
+## [2,] 0.5633166 0.2781131
+## [3,] 0.5018875 0.3524915
+## [4,] 0.4723126 0.6805997
+## [5,] 0.9818537 0.9222935
+## [6,] 0.4294685 0.7537388
 ```
 
 Na poniższym przykładzie wygenerujemy 40 obserwacji z rozkładu, którego rozkładami brzegowymi są rozkłady wykładnicze o parametrze $$\lambda =2$$, a struktura zależności opisana jest kopulą Claytona.
@@ -136,13 +142,13 @@ head(y)
 ```
 
 ```
-##            [,1]       [,2]
-## [1,] 0.03265682 0.22427019
-## [2,] 0.49260632 1.07684759
-## [3,] 0.02174317 0.02954191
-## [4,] 0.47358973 0.45462670
-## [5,] 0.15770206 0.88460214
-## [6,] 0.17701264 0.07611893
+##           [,1]      [,2]
+## [1,] 0.1370687 0.2053138
+## [2,] 0.4471693 0.2810865
+## [3,] 0.4311381 1.8271957
+## [4,] 0.5594571 0.9528302
+## [5,] 0.2340921 0.4423038
+## [6,] 0.2403673 0.4180288
 ```
 
 Kopule stosowane są w wielu zagadnieniach. Poniżej przedstawimy przykład badania mocy dwóch testów korelacji, gdy dwuwymiarowa zmienna ma brzegowe rozkłady wykładnicze i zależność opisaną przez kopulę Claytona.
@@ -181,7 +187,7 @@ rowMeans(pv < 0.05)
 
 ```
 ##  Pearson Spearman 
-##    0.485    0.866
+##    0.473    0.855
 ```
 
 W zagadnieniach praktycznych, często nie wiemy z jakiej rodziny wybrać rozkłady brzegowe. W takich sytuacjach dobrym pomysłem jest użycie empirycznej dystrybuanty. Funkcję odwrotną do dystrybuanty empirycznej (która nie jest monotoniczna, ale to tzw. szczegół techniczny) jest funkcja `quantile()`. 
