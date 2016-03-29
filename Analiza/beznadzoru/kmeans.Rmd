@@ -7,17 +7,17 @@ Jest to dosyć mglisty cel, który można realizować na różne sposoby. Zobacz
 Przyjmijmy, że przypisujemy do $$K$$ grup indeksowanych liczbami $$1, ..., K$$. Niech funkcja $$C(x_i)$$ oznacza przypisanie obiektu $$x_i$$ do grupy. Dodatkowo wprowadźmy następujące oznaczenia: $$W(C)$$ to suma odległości obiektów wewnątrz tych samych grup (*within*), a $$B(C)$$ to suma odległości obiektów pomiędzy grupami (*between*).
 
 $$
-W(C) = \frac 12 \sum_{k=1}^K \sum_{i, C(i) = k} \sum_{j, C(j) = k} d(x_i, x_j),
+W(C) = \frac 12 \sum_{k=1}^K \sum_{i: C(i) = k} \sum_{j: C(j) = k} d(x_i, x_j),
 $$
 
 $$
-B(C) = \frac 12 \sum_{k=1}^K \sum_{i, C(i) = k} \sum_{j, C(j) \neq k} d(x_i, x_j).
+B(C) = \frac 12 \sum_{k=1}^K \sum_{i: C(i) = k} \sum_{j: C(j) \neq k} d(x_i, x_j).
 $$
 
 Suma obu tych wartości jest stała i równa sumarycznej odległości pomiędzy wszystkimi obiektami. Skoro suma jest stała, to minimalizacja czy to $$W(C)/B(C)$$ czy $$W(C) - B(C)$$ jest równoważna minimalizacji samego $$W(C)$$. Jeżeli dodatkowo za odległość $$d(x_i,x_j)$$ wybierzemy kwadrat odległości Euklidesowej, to otrzymamy następujący wzór na sumę odległości w grupach 
 
 $$
-W(C) = \sum_{k=1}^K \#{j: C(j) = k} \sum_{i, C(i) = k} || x_i - \bar x_k ||^2.
+W(C) = \sum_{k=1}^K \#{j: C(j) = k} \sum_{i: C(i) = k} || x_i - \bar x_k ||^2.
 $$
 
 Więcej informacji o tym wzorze znaleźć można w rozdziale 14.3.5 *The Elements of Statistical Learning* Trevor Hastie, Robert Tibshirani, Jerome Friedman.
@@ -30,7 +30,7 @@ Jeżeli obserwacji jest niebanalna liczba, nie sposób sprawdzić wszystkich mo�
 
 1. Dla określonego przypisania do grup wartość $$W(C)$$ jest minimalizowana, jeżeli środki grup opisane są przez średnie w grupach. Wyznacz środki poszczególnych grup jako średnie 
 $$
-\bar x_k = \frac{1}{\#{j: C(j) = k}} \sum_{i, C(i) = k} x_i.
+\bar x_k = \frac{1}{\#{j: C(j) = k}} \sum_{i: C(i) = k} x_i.
 $$
 
 2. Dla określonych średnich wartość $$W(C)$$ jest minimalizowana, jeżeli każda obserwacja jest przypisana do grupy wyznaczonej przez najbliższą średnią

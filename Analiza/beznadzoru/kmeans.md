@@ -7,17 +7,17 @@ Jest to dosyć mglisty cel, który można realizować na różne sposoby. Zobacz
 Przyjmijmy, że przypisujemy do $$K$$ grup indeksowanych liczbami $$1, ..., K$$. Niech funkcja $$C(x_i)$$ oznacza przypisanie obiektu $$x_i$$ do grupy. Dodatkowo wprowadźmy następujące oznaczenia: $$W(C)$$ to suma odległości obiektów wewnątrz tych samych grup (*within*), a $$B(C)$$ to suma odległości obiektów pomiędzy grupami (*between*).
 
 $$
-W(C) = \frac 12 \sum_{k=1}^K \sum_{i, C(i) = k} \sum_{j, C(j) = k} d(x_i, x_j),
+W(C) = \frac 12 \sum_{k=1}^K \sum_{i: C(i) = k} \sum_{j: C(j) = k} d(x_i, x_j),
 $$
 
 $$
-B(C) = \frac 12 \sum_{k=1}^K \sum_{i, C(i) = k} \sum_{j, C(j) \neq k} d(x_i, x_j).
+B(C) = \frac 12 \sum_{k=1}^K \sum_{i: C(i) = k} \sum_{j: C(j) \neq k} d(x_i, x_j).
 $$
 
 Suma obu tych wartości jest stała i równa sumarycznej odległości pomiędzy wszystkimi obiektami. Skoro suma jest stała, to minimalizacja czy to $$W(C)/B(C)$$ czy $$W(C) - B(C)$$ jest równoważna minimalizacji samego $$W(C)$$. Jeżeli dodatkowo za odległość $$d(x_i,x_j)$$ wybierzemy kwadrat odległości Euklidesowej, to otrzymamy następujący wzór na sumę odległości w grupach 
 
 $$
-W(C) = \sum_{k=1}^K \#{j: C(j) = k} \sum_{i, C(i) = k} || x_i - \bar x_k ||^2.
+W(C) = \sum_{k=1}^K \#{j: C(j) = k} \sum_{i: C(i) = k} || x_i - \bar x_k ||^2.
 $$
 
 Więcej informacji o tym wzorze znaleźć można w rozdziale 14.3.5 *The Elements of Statistical Learning* Trevor Hastie, Robert Tibshirani, Jerome Friedman.
@@ -30,7 +30,7 @@ Jeżeli obserwacji jest niebanalna liczba, nie sposób sprawdzić wszystkich mo�
 
 1. Dla określonego przypisania do grup wartość $$W(C)$$ jest minimalizowana, jeżeli środki grup opisane są przez średnie w grupach. Wyznacz środki poszczególnych grup jako średnie 
 $$
-\bar x_k = \frac{1}{\#{j: C(j) = k}} \sum_{i, C(i) = k} x_i.
+\bar x_k = \frac{1}{\#{j: C(j) = k}} \sum_{i: C(i) = k} x_i.
 $$
 
 2. Dla określonych średnich wartość $$W(C)$$ jest minimalizowana, jeżeli każda obserwacja jest przypisana do grupy wyznaczonej przez najbliższą średnią
@@ -109,7 +109,7 @@ head(grupy$cluster)
 
 ```
 ## Audi A3 Audi A4 Audi A6 Audi A8 Audi Q7 BMW 316 
-##       3       4       4       2       2       1
+##       3       3       2       1       1       4
 ```
 
 ```r
@@ -117,11 +117,11 @@ grupy$centers
 ```
 
 ```
-##    Cena_norm    KM_norm
-## 1 -0.6445280 -1.0066262
-## 2  3.4400810  2.8222961
-## 3 -0.2142881 -0.1830422
-## 4  0.2846520  0.7662755
+##     Cena_norm    KM_norm
+## 1  3.44008102  2.8222961
+## 2  0.90188042  1.4519034
+## 3 -0.03059072  0.1476185
+## 4 -0.55732347 -0.7505937
 ```
 
 Wykorzystajmy obie te wartości aby narysować auta po podzieleniu na grupy. Dodatkowo dodaliśmy numery grup zaczepione w środkach grup.
@@ -148,7 +148,7 @@ grupy$withinss
 ```
 
 ```
-## [1] 2.509780 1.733690 6.235331 5.545342
+## [1] 1.733690 1.112375 7.271039 5.923938
 ```
 
 ```r
@@ -156,7 +156,7 @@ grupy$betweenss
 ```
 
 ```
-## [1] 87.97586
+## [1] 87.95896
 ```
 
 ```r
@@ -189,8 +189,8 @@ WC
 ```
 
 ```
-## [1] 38.930412 21.885048 16.070026 11.355036  8.883000  7.467007  6.024751
-## [8]  5.235116  5.359783
+## [1] 38.930412 21.885048 16.024143 11.355036  8.883000  7.443055  6.547251
+## [8]  5.852946  4.741451
 ```
 
 ```r
