@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Jak wczytywać korpusy tekstu? | Przewodnik po pakiecie R v. 4.0</title>
+        <title>Jak zainstalować R i RStudio? | Przewodnik po pakiecie R v. 4.0</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -47,10 +47,10 @@
         
     
     
-    <link rel="next" href="../Programowanie/jak_pobierac_dane_z_twittera.html" />
+    <link rel="next" href="../Programowanie/zapisywac.html" />
     
     
-    <link rel="prev" href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html" />
+    <link rel="prev" href="../puste.html" />
     
 
         
@@ -59,9 +59,9 @@
         
         
     <div class="book"
-        data-level="2.4.5"
-        data-chapter-title="Jak wczytywać korpusy tekstu?"
-        data-filepath="Programowanie/jak_wczytywac_korpusy_tekstu.md"
+        data-level="2.2"
+        data-chapter-title="Jak zainstalować R i RStudio?"
+        data-filepath="Programowanie/jak_zainstalowac_R.md"
         data-basepath=".."
         data-revision="Tue Mar 29 2016 20:16:19 GMT+0200 (CEST)"
         data-innerlanguage="">
@@ -151,7 +151,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="Programowanie/jak_zainstalowac_R.html">
+        <li class="chapter active" data-level="2.2" data-path="Programowanie/jak_zainstalowac_R.html">
             
                 
                     <a href="../Programowanie/jak_zainstalowac_R.html">
@@ -283,7 +283,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.4.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
+        <li class="chapter " data-level="2.4.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
             
                 
                     <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html">
@@ -1296,53 +1296,42 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jak-wczytywa&#x107;-korpusy-tekstu">Jak wczytywa&#x107; korpusy tekstu?</h1>
-<p>Dane nie zawsze maj&#x105; struktur&#x119; tabeli. Czasem jedyn&#x105; opcj&#x105; jest wczytanie pliku jako wektora napis&#xF3;w - linia po linii. Do tego celu mo&#x17C;na u&#x17C;yc funkcji <code>readLines()</code>, kt&#xF3;ra potrafi wczyta&#x107; dane zar&#xF3;wno z lokalnego pliku jaki bezpo&#x15B;rendnio z adresu URL w internecie.</p>
-<p>Wykorzystajmy t&#x119; funkcj&#x119;, aby z projektu Gutenberg www.gutenberg.org wczyta&#x107; tre&#x15B;&#x107; ksia&#x17C;ki Juliusza Verne, ,,W 80 dni dooko&#x142;a &#x15B;wiata&apos;&apos; (<a href="http://www.gutenberg.org/cache/epub/103/pg103.txt" target="_blank">http://www.gutenberg.org/cache/epub/103/pg103.txt</a>).</p>
-<pre><code># W 80 dni dooko&#x142;a &#x15B;wiata
-w80dni &lt;- readLines(&quot;http://www.gutenberg.org/cache/epub/103/pg103.txt&quot;)
+                        <h1 id="jak-zainstalowa&#x107;-r--rstudio--rozpocz&#x105;&#x107;-prac&#x119;-z-r-studio">Jak zainstalowa&#x107; R / RStudio / rozpocz&#x105;&#x107; prac&#x119; z R Studio?</h1>
+<p>Aby wygodnie pracowa&#x107; w R powinni&#x15B;my </p>
+<ol>
+<li>Zainstalowa&#x107; R,</li>
+<li>Zainstalowa&#x107; wygodny edytor, np. RStudio,</li>
+<li>Zainstalowa&#x107; niezb&#x119;dne biblioteki dodatkowe,</li>
+<li>Oswoi&#x107; si&#x119; z edytorem.</li>
+</ol>
+<h2 id="jak-zainstalowa&#x107;-r">Jak zainstalowa&#x107; R?</h2>
+<p>Obecnie aktualna wersja R to 3.2.4. Co roku w kwietniu wypuszczana jest kolejna wersja 3.x, czyli nied&#x142;ugo b&#x119;dziemy cieszy&#x107; si&#x119; 3.3.0 (kt&#xF3;r&#x105; mo&#x17C;na ju&#x17C; instalowa&#x107;, przy czym na razie ma status &apos;deweloperska&apos;). W trakcie roku w miar&#x119; potrzeb wypuszczane s&#x105; podwersje.</p>
+<p>Najnowsz&#x105; wersj&#x119; R najlepiej zainstalowa&#x107; ze strony <a href="https://cran.r-project.org/" target="_blank">https://cran.r-project.org/</a>. 
+Instalacja sprowadza si&#x119; do klikania <em>next, next, next</em>.</p>
+<p>Program R jest ca&#x142;kowicie bezp&#x142;atny do wszelkich zastosowa&#x144;, edukacyjnych, przemys&#x142;owych, biznesowych, komercyjnych i hobbystycznych. Program R jest dost&#x119;pny na licencji <a href="https://pl.wikipedia.org/wiki/GNU_General_Public_License" target="_blank">GNU GPL</a>.</p>
+<h2 id="jak-zainstalowa&#x107;-rstudio">Jak zainstalowa&#x107; RStudio?</h2>
+<p>Najnowsz&#x105; wersj&#x119; RStudio Desktop mo&#x17C;na pobra&#x107; ze strony <a href="http://www.rstudio.com/products/rstudio/download/" target="_blank">http://www.rstudio.com/products/rstudio/download/</a>.</p>
+<p>Nie musimy pami&#x119;ta&#x107; tego adresu, wystarczy wpisa&#x107; w Google <em>R Studio download</em> a powy&#x17C;szy adres b&#x119;dzie pierwszym linkiem.</p>
+<h2 id="jak-zainstalowa&#x107;-dodatkowe-pakiety">Jak zainstalowa&#x107; dodatkowe pakiety?</h2>
+<p>Po zainstalowaniu R i RStudio mamy dost&#x119;p do podstawowych funkcjonalno&#x15B;ci. Olbrzymia si&#x142;a R tkwi w tysi&#x105;cach dodatkowych bibliotek / pakiet&#xF3;w, rozwijanych przez tysi&#x105;ce deweloper&#xF3;w na ca&#x142;ym &#x15B;wiecie.</p>
+<p>Aby zainstalowa&#x107; nowy pakiet z oficjalnego repozytorium CRAN nale&#x17C;y u&#x17C;y&#x107; funkcji <code>install.packages()</code>. Jej wywo&#x142;anie zainstaluje na dysku wskazany pakiet i wszystkie pakiety zale&#x17C;ne. </p>
+<p>Aby w&#x142;&#x105;czy&#x107; dany pakiet w obecnej sesji R, tak by wykorzystywa&#x107; dost&#x119;pne w nim funkcje, nale&#x17C;y u&#x17C;y&#x107; funkcji <code>library</code>.</p>
+<p>Przyk&#x142;ady w kolejnych rozdzia&#x142;ach w znakomitej wi&#x119;kszo&#x15B;ci s&#x105; oparte o pakiet <code>PogromcyDanych</code>.</p>
+<pre><code># Wywo&#x142;aj tylko raz aby zainstalowa&#x107; pakiet i zale&#x17C;no&#x15B;ci
+install.packages(&quot;PogromcyDanych&quot;)
 
-# Kilka pierwszych linii
-head(w80dni)
-</code></pre><pre><code>## [1] &quot;The Project Gutenberg EBook of Around the World in 80 Days, by Jules Verne&quot;
-## [2] &quot;&quot;                                                                          
-## [3] &quot;This eBook is for the use of anyone anywhere at no cost and with&quot;          
-## [4] &quot;almost no restrictions whatsoever.  You may copy it, give it away or&quot;      
-## [5] &quot;re-use it under the terms of the Project Gutenberg License included&quot;       
-## [6] &quot;with this eBook or online at www.gutenberg.net&quot;
-</code></pre><p>Zobaczmy jakie s&#x142;owa sa najcz&#x119;&#x15B;ciej uzywane w tej powie&#x15B;ci.</p>
-<pre><code># rozbicie linii na s&#x142;owa
-slowa &lt;- unlist(strsplit(w80dni, split=&quot;[^A-Za-z0-9]+&quot;))
-# liczba s&#x142;&#xF3;w i charakterystyki
-length(slowa)
+# W&#x142;&#x105;cz za ka&#x17C;dym razem gdy na nowo uruchamiasz R, je&#x17C;eli chcesz skorzysta&#x107; z funkcji/zbior&#xF3;w danych z tego pakietu.
+library(PogromcyDanych)
+</code></pre><p>Je&#x17C;eli nie CRAN to co?</p>
+<p>Poza oficjalnym repozytorium kodu na serwerach CRAN, wiele pakiet&#xF3;w jest dost&#x119;pnych w wersji deweloperskiej np. na serwerach GitHub (lub innych, ale GitHub jest najpopularniejszy).</p>
+<p>Aby zainstalowa&#x107; pakiet z GitHuba mo&#x17C;na wykorzysta&#x107; funkcj&#x119; <code>install_github()</code> z pakietu <code>devtools</code>.</p>
+<pre><code>library(devtools)
 
-## [1] 68460
+install_github(&quot;pbiecek/PogromcyDanych&quot;)
+</code></pre><h2 id="jak-oswoi&#x107;-si&#x119;-z-rstudio">Jak oswoi&#x107; si&#x119; z RStudio?</h2>
+<p>Aby oswoi&#x107; si&#x119; ze &#x15B;rodowiskiem RStudio, proponuj&#x119; obejrze&#x107; ten 3-minutowy film przygotowany w ramach projektu <em>Pogromcy Danych</em>. Je&#x17C;eli poni&#x17C;ej nie otwiera si&#x119; okno youtube, to film znale&#x17A;&#x107; mo&#x17C;na pod adresem <a href="https://www.youtube.com/embed/QBAVcoXAS98" target="_blank">https://www.youtube.com/embed/QBAVcoXAS98</a>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QBAVcoXAS98" frameborder="0" allowfullscreen></iframe>
 
-# Najcz&#x119;stsze s&#x142;owa
-head(sort(table(slowa), decreasing = TRUE), 50)
-</code></pre><pre><code>## slowa
-##          the          and           of           to            a 
-##         4312         1896         1876         1720         1281 
-##           in          was                       his           he 
-##          997          995          966          807          773 
-##         Fogg           at         with          not          The 
-##          608          583          553          519          518 
-##         that           on          had        which          for 
-##          514          504          494          442          433 
-##           it           as Passepartout           Mr           by 
-##          418          403          398          389          377 
-##            I          him           is           be          you 
-##          368          321          320          316          308 
-##         were         from         this            s        would 
-##          307          304          300          283          270 
-##         have          but          Fix           an      Phileas 
-##          262          248          245          225          220 
-##           He          who           or         said         they 
-##          217          200          191          191          184 
-##          her           It          are         been          all 
-##          171          171          170          169          167
-</code></pre><h2 id="inne-przydatne-narz&#x119;dzia">Inne przydatne narz&#x119;dzia</h2>
-<p>Pakiet Rpoppler <a href="https://cran.r-project.org/web/packages/Rpoppler/index.html" target="_blank">https://cran.r-project.org/web/packages/Rpoppler/index.html</a> umo&#x17C;liwia korzystanie z funkcjonalno&#x15B;ci biblioteki poppler <a href="http://poppler.freedesktop.org/" target="_blank">http://poppler.freedesktop.org/</a> do pracy z dokumentami pdf. Mi&#x119;dzy innymi umo&#x17C;liwia ekstrakcje tekstu z dokument&#xF3;w pdf.</p>
 
                     
                     </section>
@@ -1353,10 +1342,10 @@ head(sort(table(slowa), decreasing = TRUE), 50)
         </div>
 
         
-        <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html" class="navigation navigation-prev " aria-label="Previous page: Jak zeskrobywać dane ze stron www?"><i class="fa fa-angle-left"></i></a>
+        <a href="../puste.html" class="navigation navigation-prev " aria-label="Previous page: Programowanie w języku R"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Programowanie/jak_pobierac_dane_z_twittera.html" class="navigation navigation-next " aria-label="Next page: Jak pobierać dane z Twittera?"><i class="fa fa-angle-right"></i></a>
+        <a href="../Programowanie/zapisywac.html" class="navigation navigation-next " aria-label="Next page: Jak wczytywać i zapisywać dane?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
