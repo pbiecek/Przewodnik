@@ -4,12 +4,12 @@
   * [Co nowego?](co_nowego.md)
 * [Programowanie w języku R](puste.md)
    * Jak korzystać z tej książki?
-   * [Jak zainstalować R i RStudio?](Programowanie/jak_zainstalowac_R.md)
-   * Jak rozpocząć pracę z R?
-       * Jak przeżyć pierwsze 5 minut z R?
+   * [Jak zainstalować R i RStudio?](Programowanie/podstawy/jak_zainstalowac_R.md)
+   * [Jak rozpocząć pracę z R?](Programowanie/podstawy/jak_zaczac.md)
        * Jak pracować z wektorami?
        * Jak pracować z tabelami danych?
        * Jak pracować z listami?
+       * [Co można zrobić z datami/liczbami/czynnikami/napisami?](Programowanie/podstawy/co_zrobic_z_datami.md)
    * [Jak wczytywać i zapisywać dane?](Programowanie/zapisywac.md)
        * [Jak wczytać tabele danych z pliku csv lub txt?](Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md)
        * [Jak wczytać tabele danych z Excela?](Programowanie/jak_wczytac_dane_z_excela.md)
@@ -28,8 +28,8 @@
        * [Jak wyznaczać agregaty w grupach?](Programowanie/groupby.md)
        * [Jak czyścić dane?](Programowanie/tidyr.md)
        * [Zadania](Programowanie/zadaniaDplyr.md)
-   * Jak tworzyć pętle i instrukcje warunkowe?
-   * Jak tworzyć funkcje?
+   * [Jak tworzyć pętle i instrukcje warunkowe?](Programowanie/podstawy/jak_tworzyc_petle.md)
+   * [Jak tworzyć funkcje?](Programowanie/podstawy/jak_tworzyc_funkcje.md)
    * Jak budować pakiety?
    * [Jak budować aplikacje z pakietem Shiny?](Programowanie/jak_tworzyc_aplikajce.md)
      * [Jak zbudować pierwszą aplikację?](Programowanie/jak_tworzyc_aplikajce0.md)
