@@ -66,4 +66,7 @@ wyszukiwarka$sendKeysToElement(list("Przewodnik po pakiecie R", key="enter"))
 przegladarka$goBack()
 ```
 
+## Co dalej?
+
+* Narzędzia do zeskrobywania danych ze stron www nieustannie się rozwijają. Dobrym miejscem aby śledzić jakie są najczęstsze problemy/rozwiązania z danym pakietem jest serwis `stackoverflow.com`. W przypadku pakietu `rvest` [listę popularnych pytań znaleźć można tutaj](http://stackoverflow.com/questions/tagged/rvest?sort=frequent&pageSize=25).
 

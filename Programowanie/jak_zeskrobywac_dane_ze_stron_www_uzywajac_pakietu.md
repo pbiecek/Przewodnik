@@ -43,9 +43,9 @@ html_text(filmy)
 ##  [8] "Tysiąc i jedna noc – cz. 2, opuszczony"
 ##  [9] "Wstrząs"                               
 ## [10] "Seria Niezgodna: Wierna"               
-## [11] "Siostry"                               
-## [12] "Bang Gang"                             
-## [13] "Niewinne"                              
+## [11] "Niewinne"                              
+## [12] "Siostry"                               
+## [13] "Bang Gang"                             
 ## [14] "Wszystko zostanie w rodzinie"          
 ## [15] "El Clan"                               
 ## [16] "Zdjęcie"                               
@@ -127,4 +127,7 @@ wyszukiwarka$sendKeysToElement(list("Przewodnik po pakiecie R", key="enter"))
 przegladarka$goBack()
 ```
 
+## Co dalej?
+
+* Narzędzia do zeskrobywania danych ze stron www nieustannie się rozwijają. Dobrym miejscem aby śledzić jakie są najczęstsze problemy/rozwiązania z danym pakietem jest serwis `stackoverflow.com`. W przypadku pakietu `rvest` [listę popularnych pytań znaleźć można tutaj](http://stackoverflow.com/questions/tagged/rvest?sort=frequent&pageSize=25).
 
