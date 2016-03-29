@@ -12,7 +12,7 @@ ponieważ bardzo ułatwia pracę z przetwarzaniem danych.
 
 ## Problem cebulki
 
-Aby przedstawić potoki rozpatrzy najpierw taką serię czterech instrukcji.
+Aby przedstawić potoki, rozpatrzmy najpierw taką serię czterech instrukcji.
 
 
 ```r
