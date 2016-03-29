@@ -4,8 +4,7 @@ Aby wygodnie pracować w R powinniśmy
 
 1. Zainstalować R,
 2. Zainstalować wygodny edytor, np. RStudio,
-3. Zainstalować niezbędne biblioteki dodatkowe,
-4. Oswoić się z edytorem.
+3. Zainstalować niezbędne biblioteki dodatkowe.
 
 ## Jak zainstalować R?
 
@@ -51,10 +50,3 @@ library(devtools)
 
 install_github("pbiecek/PogromcyDanych")
 ```
-
-## Jak oswoić się z RStudio?
-
-Aby oswoić się ze środowiskiem RStudio, proponuję obejrzeć ten 3-minutowy film przygotowany w ramach projektu *Pogromcy Danych*. Jeżeli poniżej nie otwiera się okno youtube, to film znaleźć można pod adresem [https://www.youtube.com/embed/QBAVcoXAS98](https://www.youtube.com/embed/QBAVcoXAS98).
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QBAVcoXAS98" frameborder="0" allowfullscreen></iframe>
-
