@@ -4,7 +4,7 @@
   * [Co nowego?](co_nowego.md)
 * [Programowanie w języku R](puste.md)
    * Jak korzystać z tej książki?
-   * Jak zainstalować R i RStudio?
+   * [Jak zainstalować R i RStudio?](Programowanie/jak_zainstalowac_R.md)
    * Jak rozpocząć pracę z R?
        * Jak przeżyć pierwsze 5 minut z R?
        * Jak pracować z wektorami?
