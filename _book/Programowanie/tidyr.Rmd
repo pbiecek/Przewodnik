@@ -86,5 +86,5 @@ separate(df, col = daty, into = c("rok", "miesiac", "dzien"), sep = "-")
 ```
 
 Jeżeli w kolumnie, która jest rozcinana, będzie zbyt mało lub zbyt dużo wartości (np. tylko dwa elementy rozdzielane separatorem) to domyślnie funkcja `separate()` będzie sygnalizowała ostrzeżenia.
-Dodatkowymi argumentami `extra=` i `fill=` można określić jak tratowane mają być nadmiarowe lub brakujące elementy.
+Dodatkowymi argumentami `extra=` i `fill=` można określić jak traktowane mają być nadmiarowe lub brakujące elementy.
 
