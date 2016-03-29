@@ -13,7 +13,7 @@ Zacznijmy od pliku `ui.R`.
 Poniżej wklejamy uaktualnioną treść tego pliku. W miejscu gdzie tworzony jest prawy panel znalazły się wywołania dwóch funkcji 
 
 * `plotOutput()`, wskazującej gdzie ma zostać umieszczony wykres o nazwie `trend`,
-* `verbatimTextOutput()`, wskazującej gdzie ma zostać umieszczone opis obiektu o nazwie `model`.
+* `verbatimTextOutput()`, wskazującej gdzie ma zostać umieszczony opis o nazwie `model`.
 
 Funkcje osadzające obiekty w interface html mają nazwy określające co jest osadzane (wykres, tabela, opis obiektu, strona html) i kończące się słowem `Output`.
 
