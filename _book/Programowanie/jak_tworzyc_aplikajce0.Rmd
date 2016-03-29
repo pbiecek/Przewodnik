@@ -36,5 +36,5 @@ Aby odtworzyć tę aplikacje na własnym komputerze należy w katalogu stworzyć
 
 Uruchomienie aplikacji przez program RStudio spowoduje, że działa ona na lokalnym komputerze. Wgranie obu plików na serwer, na którym zainstalowana jest aplikacja [Shiny Server](https://www.rstudio.com/products/shiny/shiny-server2/) spowoduje, że będziemy mogli tę aplikację udostępnić również innym użytkownikom.
 
-Więcej o podstawowej strukturze aplikacji Shiny, oraz o tym jas stowrzyć i uruchomić pierwszą aplikację, przeczytać można na stronie 
+Więcej o podstawowej strukturze aplikacji Shiny, oraz o tym jak stworzyć i uruchomić pierwszą aplikację, przeczytać można na stronie 
 http://shiny.rstudio.com/tutorial/lesson1/.
