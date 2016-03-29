@@ -193,7 +193,7 @@ dbDisconnect(polaczenie)
 
 ## Jak używać pakietu dplyr w pracy z bazami danych?
 
-Standardów i implementacji SQLa jest tak wiele, że zastanawiające jest dlaczego nazywane są standardami. Praktycznie każda baza danych różni się listą zaimplementowanych funkcjonalności czy agregatów. Jeżeli pracujemy z jedną bazą danych to ta różnorodność może nam to nie doskwierać. Ale jeżeli przyjdzie nam jednocześnie korzystać z MSSQL’a, MySQLa, RedShifta i Postgresa? Lub gdy okaże się, że dane zostały zmigrowane na nową bazę danych?
+Standardów i implementacji SQLa jest tak wiele, że zastanawiające jest dlaczego nazywane są standardami. Praktycznie każda baza danych różni się listą zaimplementowanych funkcjonalności czy agregatów. Jeżeli pracujemy z jedną bazą danych to ta różnorodność nie będzie nam doskwierać. Ale jeżeli przyjdzie nam jednocześnie korzystać z baz MSSQL, MySQL, RedShift i Postgres? Lub gdy okaże się, że dane zostały zmigrowane na nową bazę danych?
 
 Wielu problemów można sobie oszczędzić używając pośrednika do komunikacji z bazą danych. Takim pośrednikiem może być pakiet `dplyr` omówiony w poprzednim rozdziale.
 Pozwala on do pewnego stopnia na pracę z danymi bez zastanawiania się gdzie te dane aktualnie są i jak nazywa się w tym systemie bazodanowym potrzebna nam funkcja.
@@ -283,8 +283,8 @@ liczba_glosow$query
 ## <Query> SELECT "club", "vote", "liczba"
 ## FROM (SELECT "club", "vote", count(*) AS "liczba"
 ## FROM "votes"
-## GROUP BY "club", "vote") AS "zzz2"
-## <PostgreSQLConnection:(5252,3)>
+## GROUP BY "club", "vote") AS "zzz1"
+## <PostgreSQLConnection:(42999,1)>
 ```
 
 ```r
@@ -296,7 +296,7 @@ explain(liczba_glosow)
 ## SELECT "club", "vote", "liczba"
 ## FROM (SELECT "club", "vote", count(*) AS "liczba"
 ## FROM "votes"
-## GROUP BY "club", "vote") AS "zzz2"
+## GROUP BY "club", "vote") AS "zzz1"
 ```
 
 ```

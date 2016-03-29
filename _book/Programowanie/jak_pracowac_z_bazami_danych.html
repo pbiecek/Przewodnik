@@ -63,7 +63,7 @@
         data-chapter-title="Jak pracować z bazami danych?"
         data-filepath="Programowanie/jak_pracowac_z_bazami_danych.md"
         data-basepath=".."
-        data-revision="Tue Mar 29 2016 12:46:15 GMT+0200 (CEST)"
+        data-revision="Tue Mar 29 2016 12:50:40 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1409,7 +1409,7 @@ glosy
 </code></pre>
 <pre><code>## [1] TRUE
 </code></pre><h2 id="jak-u&#x17C;ywa&#x107;-pakietu-dplyr-w-pracy-z-bazami-danych">Jak u&#x17C;ywa&#x107; pakietu dplyr w pracy z bazami danych?</h2>
-<p>Standard&#xF3;w i implementacji SQLa jest tak wiele, &#x17C;e zastanawiaj&#x105;ce jest dlaczego nazywane s&#x105; standardami. Praktycznie ka&#x17C;da baza danych r&#xF3;&#x17C;ni si&#x119; list&#x105; zaimplementowanych funkcjonalno&#x15B;ci czy agregat&#xF3;w. Je&#x17C;eli pracujemy z jedn&#x105; baz&#x105; danych to ta r&#xF3;&#x17C;norodno&#x15B;&#x107; mo&#x17C;e nam to nie doskwiera&#x107;. Ale je&#x17C;eli przyjdzie nam jednocze&#x15B;nie korzysta&#x107; z MSSQL&#x2019;a, MySQLa, RedShifta i Postgresa? Lub gdy oka&#x17C;e si&#x119;, &#x17C;e dane zosta&#x142;y zmigrowane na now&#x105; baz&#x119; danych?</p>
+<p>Standard&#xF3;w i implementacji SQLa jest tak wiele, &#x17C;e zastanawiaj&#x105;ce jest dlaczego nazywane s&#x105; standardami. Praktycznie ka&#x17C;da baza danych r&#xF3;&#x17C;ni si&#x119; list&#x105; zaimplementowanych funkcjonalno&#x15B;ci czy agregat&#xF3;w. Je&#x17C;eli pracujemy z jedn&#x105; baz&#x105; danych to ta r&#xF3;&#x17C;norodno&#x15B;&#x107; nie b&#x119;dzie nam doskwiera&#x107;. Ale je&#x17C;eli przyjdzie nam jednocze&#x15B;nie korzysta&#x107; z baz MSSQL, MySQL, RedShift i Postgres? Lub gdy oka&#x17C;e si&#x119;, &#x17C;e dane zosta&#x142;y zmigrowane na now&#x105; baz&#x119; danych?</p>
 <p>Wielu problem&#xF3;w mo&#x17C;na sobie oszcz&#x119;dzi&#x107; u&#x17C;ywaj&#x105;c po&#x15B;rednika do komunikacji z baz&#x105; danych. Takim po&#x15B;rednikiem mo&#x17C;e by&#x107; pakiet <code>dplyr</code> om&#xF3;wiony w poprzednim rozdziale.
 Pozwala on do pewnego stopnia na prac&#x119; z danymi bez zastanawiania si&#x119; gdzie te dane aktualnie s&#x105; i jak nazywa si&#x119; w tym systemie bazodanowym potrzebna nam funkcja.</p>
 <p>W pakiecie <code>dplyr</code> po&#x142;&#x105;czenia ze &#x17A;r&#xF3;d&#x142;em danych (tabel&#x105; z liczbami lub baz&#x105; danych) tworzy si&#x119; funkcjami <code>src_*</code>. 
@@ -1463,15 +1463,15 @@ class(liczba_glosow)
 <pre><code>## &lt;Query&gt; SELECT &quot;club&quot;, &quot;vote&quot;, &quot;liczba&quot;
 ## FROM (SELECT &quot;club&quot;, &quot;vote&quot;, count(*) AS &quot;liczba&quot;
 ## FROM &quot;votes&quot;
-## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz2&quot;
-## &lt;PostgreSQLConnection:(5252,3)&gt;
+## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz1&quot;
+## &lt;PostgreSQLConnection:(42999,1)&gt;
 </code></pre><pre><code class="lang-r">explain(liczba_glosow)
 </code></pre>
 <pre><code>## &lt;SQL&gt;
 ## SELECT &quot;club&quot;, &quot;vote&quot;, &quot;liczba&quot;
 ## FROM (SELECT &quot;club&quot;, &quot;vote&quot;, count(*) AS &quot;liczba&quot;
 ## FROM &quot;votes&quot;
-## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz2&quot;
+## GROUP BY &quot;club&quot;, &quot;vote&quot;) AS &quot;zzz1&quot;
 </code></pre><pre><code>##
 </code></pre><pre><code>## &lt;PLAN&gt;
 ## HashAggregate  (cost=74577.20..74577.72 rows=52 width=9)
