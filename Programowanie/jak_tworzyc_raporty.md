@@ -33,7 +33,7 @@ Jak widzimy, w pliku `md` znajdują się dodatkowo wyniki kodu R.
 
 ## Plik wynikowy `html`
 
-W kolejnym koku, plik w formacie `md` jest konwertowany do pliku `html`, za pomocą programu `pandoc`. W naszym przypadku wynikowy plik wygląda następująco.
+W kolejnym kroku, plik w formacie `md` jest konwertowany do pliku `html`, za pomocą programu `pandoc`. W naszym przypadku wynikowy plik wygląda następująco.
 
 ![Przykładowy raport w knitr](rysunki/knitr.png)
 
