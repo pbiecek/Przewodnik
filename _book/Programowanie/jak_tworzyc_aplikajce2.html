@@ -63,7 +63,7 @@
         data-chapter-title="Jak umieszać elementy kontrolujące w aplikacji?"
         data-filepath="Programowanie/jak_tworzyc_aplikajce2.md"
         data-basepath=".."
-        data-revision="Tue Mar 29 2016 13:13:00 GMT+0200 (CEST)"
+        data-revision="Tue Mar 29 2016 14:59:09 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1293,7 +1293,7 @@
 <p>Przedstawimy to na przyk&#x142;adzie dw&#xF3;ch dodatkowych kontrolek w naszej aplikacji. 
 Jedna kontrolka b&#x119;dzie opisywa&#x142;a kt&#xF3;ry serial ma by&#x107; analizowany, a druga okre&#x15B;li czy ma by&#x107; dorysowywana linia trendu dla poszczeg&#xF3;lnych sezon&#xF3;w.</p>
 <p>Opisan&#x105; poni&#x17C;ej aplikacj&#x119; mo&#x17C;na zobaczy&#x107; pod adresem <a href="http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny2" target="_blank">Przewodnik/shiny2</a>. Kody &#x17A;r&#xF3;d&#x142;owe dost&#x119;pne s&#x105; pod adresem <a href="https://github.com/pbiecek/Przewodnik/tree/master/Programowanie/shiny/shiny2/" target="_blank">github/shiny2</a>.</p>
-<p>Dodanie obs&#x142;ugi kontrolek r&#xF3;wnie&#x17C; wymaga zmian w obu cz&#x119;&#x15B;ciach opisuj&#x105;cych aplikacj&#x119;. W pliku <code>ui.R</code> nale&#x17C;y wskaza&#x107; gdzie maj&#x105; znale&#x17A;&#x107; si&#x119; kontrolki i jakie warto&#x15B;ci mog&#x105; one przyjmowa&#x107;. W pliku <code>server.R</code> nal&#x17C;y okre&#x15B;li&#x107; jak zachowanie aplikacji ma zale&#x17C;e&#x107; od wskaza&#x144; u&#x17C;ytkownika.</p>
+<p>Dodanie obs&#x142;ugi kontrolek r&#xF3;wnie&#x17C; wymaga zmian w obu cz&#x119;&#x15B;ciach opisuj&#x105;cych aplikacj&#x119;. W pliku <code>ui.R</code> nale&#x17C;y wskaza&#x107; gdzie maj&#x105; znale&#x17A;&#x107; si&#x119; kontrolki i jakie warto&#x15B;ci mog&#x105; one przyjmowa&#x107;. W pliku <code>server.R</code> nale&#x17C;y okre&#x15B;li&#x107; jak zachowanie aplikacji ma zale&#x17C;e&#x107; od wskaza&#x144; u&#x17C;ytkownika.</p>
 <p>Zacznijmy do pliku <code>ui.R</code>. W poni&#x17C;szej deklaracji do lewego panelu dodano wywo&#x142;ania dw&#xF3;ch funkcji. </p>
 <ul>
 <li>Funkcja <code>selectInput()</code> tworzy rozwijan&#x105; list&#x119; wyboru. W takiej li&#x15B;cie nale&#x17C;y okre&#x15B;la&#x107; jakie warto&#x15B;ci s&#x105; mo&#x17C;liwe do wskazania (<code>choices</code>), jaka warto&#x15B;&#x107; powinna by&#x107; domy&#x15B;lnie wybrana (<code>selected</code>) oraz do jakiego obiektu ma by&#x107; zapisany wyb&#xF3;r u&#x17C;ytkownika (<code>inputId</code>).</li>

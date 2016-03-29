@@ -7,7 +7,7 @@ Jedna kontrolka będzie opisywała który serial ma być analizowany, a druga ok
 
 Opisaną poniżej aplikację można zobaczyć pod adresem [Przewodnik/shiny2](http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny2). Kody źródłowe dostępne są pod adresem [github/shiny2](https://github.com/pbiecek/Przewodnik/tree/master/Programowanie/shiny/shiny2/).
 
-Dodanie obsługi kontrolek również wymaga zmian w obu częściach opisujących aplikację. W pliku `ui.R` należy wskazać gdzie mają znaleźć się kontrolki i jakie wartości mogą one przyjmować. W pliku `server.R` nalży określić jak zachowanie aplikacji ma zależeć od wskazań użytkownika.
+Dodanie obsługi kontrolek również wymaga zmian w obu częściach opisujących aplikację. W pliku `ui.R` należy wskazać gdzie mają znaleźć się kontrolki i jakie wartości mogą one przyjmować. W pliku `server.R` należy określić jak zachowanie aplikacji ma zależeć od wskazań użytkownika.
 
 
 Zacznijmy do pliku `ui.R`. W poniższej deklaracji do lewego panelu dodano wywołania dwóch funkcji. 
