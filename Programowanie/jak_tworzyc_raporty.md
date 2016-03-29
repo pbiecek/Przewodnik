@@ -29,7 +29,7 @@ Dla powyższego przykładu, po pierwszym etapie przetwarzania powstaje plik `rap
 
 ![Przykładowy raport w md](rysunki/knitr1.png)
 
-Jak widzimy, w plik `md` znajdują się dodatkowo wyniki kodu R.
+Jak widzimy, w pliku `md` znajdują się dodatkowo wyniki kodu R.
 
 ## Plik wynikowy `html`
 
