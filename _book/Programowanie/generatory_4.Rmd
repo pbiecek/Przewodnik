@@ -32,10 +32,10 @@ C(x_1, x_2, ..., x_p)=\Psi^{-1}\left(\sum_{i=1}^n \Psi\left(F_i\left(x_i\right)\
 $$
 gdzie $$\Psi$$ to tzw. funkcja generująca, spełniająca warunki: 
 
-1. $$\Psi(1) = 0$$, 
-2. $$\lim_{x\rightarrow 0}\Psi(x) = \infty$$,  
-3. $$\Psi'(x) < 0$$, 
-4. $$\Psi''(x) > 0$$.
+(1) $$\Psi(1) = 0$$, 
+(2) $$\lim_{x\rightarrow 0}\Psi(x) = \infty$$,  
+(3) $$\Psi'(x) < 0$$, 
+(4) $$\Psi''(x) > 0$$.
 
 Wybierając odpowiednie funkcje generujące, otrzymujemy następujące podklasy kopuli.
 
