@@ -6,7 +6,7 @@ Zanim zaczniemy poważniejsze tematy musimy uzgodnić podstawy. Pierwszą, być 
 
 Jeżeli nie tylko liczby to co jeszcze? 
 
-To liczby i ich znaczenie. Wydaje się tak oczywiste, że często się o tym zapomina, co niestety ma przykre konsekwencje. Przykładowo, jeżeli mamy zmienną o nazwie wiek i jest w niej wartość 9, to może ona mieć wiele znaczeń. Może jest to wiek w latach, może wartość 9 koduje pewien przedział wiekowy, np. 90+ lat, być może wartość 9 koduje brak danych (czasem wartościami 9, 99, 999 koduje się braku danych), być może to wiek ale w miesiącach. W zależności od tego co znaczy określona wartość należy ją inaczej traktować.
+To liczby i ich znaczenie. Wydaje się tak oczywiste, że często się o tym zapomina, co niestety ma przykre konsekwencje. Przykładowo, jeżeli mamy zmienną o nazwie wiek i jest w niej wartość 9, to może ona mieć wiele znaczeń. Może jest to wiek w latach, może wartość 9 koduje pewien przedział wiekowy, np. 90+ lat, być może wartość 9 koduje brak danych (czasem wartościami 9, 99, 999 koduje się braki danych), być może to wiek ale w miesiącach. W zależności od tego co znaczy określona wartość należy ją inaczej traktować.
 
 Przyjmijmy następujący podział zmiennych:
 
