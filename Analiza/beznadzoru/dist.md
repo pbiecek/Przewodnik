@@ -5,7 +5,7 @@ Poprawne określenie odległości jest *być albo nie być* dla poprawności wyn
 
 W kolejnych podrozdziałach opiszemy różne algorytmy identyfikacji skupisk, ale nie ma znaczenia której metody używamy jeżeli źle określimy odległości.
 
-Weźmy dwie obserwacje, $$x=(x_1, ..., x_n)$$ i $$y=(y_1, ..., y_n)$$.
+Niech $$x$$ i $$y$$ oznaczają dwie obserwacje opisane przez wektory wartości, $$x=(x_1, ..., x_n)$$ i $$y=(y_1, ..., y_n)$$.
 
 Typowe definicje funkcji odległości pomiędzy nimi to:
 
@@ -56,10 +56,10 @@ $$
 ### Odległość Jaccarda
 
 Dla wektorów binarnych, najprostsza interpretacja to: wielkość przecięcia podzielona na wielkość części sumy.
-Często używana przez ekologów, gdyby bada się jak często dwa gatunki współwystępują, sensownie jest porównywać jak często występują razem do miejsc gdzie występuje przynajmniej jeden z nich
+Często używana przez ekologów, np. gdy bada się jak często dwa gatunki współwystępują. Sensownie jest wtedy porównywać jak często te gatunki występują razem w stosunku do liczby miejsc gdzie występuje przynajmniej jeden z nich.
 
 $$
-d(x, y) = \frac{\#\{(i: x_i == 1) \wedge (y_i == 1)\}}{\#\{(i: x_i == 1) \vee (y_i == 1)\}}.
+d(x, y) = \frac{\#\{i: (x_i = 1) \wedge (y_i = 1)\}}{\#\{i: (x_i = 1) \vee (y_i = 1)\}}.
 $$
 
 
@@ -120,7 +120,8 @@ as.matrix(dist(kwiatkow5, method = "max"))
 ```
 
 Łatwość jej użycia niesie ryzyko stosowania jej bez głębszej refleksji jakie odległości mają sens. 
-Powtórzmy więc **w analizie skupisk kluczowy jest wybór odległości**.
+
+Powtórzmy więc jeszcze raz **w analizie skupisk kluczowy jest wybór odległości**.
 
 ## Pokaż ją!
 
