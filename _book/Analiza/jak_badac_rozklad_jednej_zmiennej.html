@@ -63,7 +63,7 @@
         data-chapter-title="Jak badać rozkład jednej zmiennej?"
         data-filepath="Analiza/jak_badac_rozklad_jednej_zmiennej.md"
         data-basepath=".."
-        data-revision="Thu Mar 31 2016 22:32:50 GMT+0200 (CEST)"
+        data-revision="Thu Mar 31 2016 22:43:58 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1377,7 +1377,7 @@ head(poslowie)
 <pre><code class="lang-r">mean(poslowie$Wiek)
 </code></pre>
 <pre><code>## [1] 50.47728
-</code></pre><h3 id="&#x15B;rednia-winsorowska">&#x15A;rednia winsorowska</h3>
+</code></pre><h3 id="&#x15B;rednia-obci&#x119;ta--ucinana">&#x15A;rednia obci&#x119;ta / ucinana</h3>
 <p>A &#x15B;rednia obci&#x119;ta, wyznaczona na podstawie 60\% &#x15B;rodkowych obserwacji?</p>
 <pre><code class="lang-r">mean(poslowie$Wiek, trim=<span class="hljs-number">0.2</span>)
 </code></pre>
@@ -1422,7 +1422,7 @@ b_1 = m_3 / s^3 = g_1 \left((n-1)/n\right)^{3/2}.
 <p>Wszystkie trzy estymatory s&#x105; nieobci&#x105;&#x17C;one dla modelu normalnego.</p>
 <pre><code class="lang-r">skewness(poslowie$Wiek)
 </code></pre>
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;skewness&quot;
+<pre><code>## [1] -0.2378142
 </code></pre><h3 id="kurtoza--miara-sp&#x142;aszczenia">Kurtoza / miara sp&#x142;aszczenia</h3>
 <p>Aby j&#x105; wyznaczy&#x107; potrzebujemy pakietu <code>e1071</code>.</p>
 <p>Kurtoz&#x119; mo&#x17C;na liczy&#x107; na kilka sposob&#xF3;w. </p>

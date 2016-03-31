@@ -30,7 +30,7 @@ $$
 mean(poslowie$Wiek)
 ```
 
-### Średnia winsorowska
+### Średnia obcięta / ucinana
 
 A średnia obcięta, wyznaczona na podstawie 60\% środkowych obserwacji?
 

@@ -53,7 +53,7 @@ mean(poslowie$Wiek)
 ## [1] 50.47728
 ```
 
-### Średnia winsorowska
+### Średnia obcięta / ucinana
 
 A średnia obcięta, wyznaczona na podstawie 60\% środkowych obserwacji?
 
@@ -152,7 +152,7 @@ skewness(poslowie$Wiek)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "skewness"
+## [1] -0.2378142
 ```
 
 
