@@ -152,7 +152,7 @@ skewness(poslowie$Wiek)
 ```
 
 ```
-## [1] -0.2378142
+## Error in eval(expr, envir, enclos): could not find function "skewness"
 ```
 
 
@@ -308,7 +308,7 @@ $$
 h_{bw.nrd0} = 0.9 \min(\hat \sigma, IQR/1.34) n^{-1/5},
 $$
 
-gdzie $$\hat \sigma$$ to ocena odchylenia standardowego, IQR to rozstęp kwartylowy z próby a $n$ to liczba obserwacji. Magiczna stała $1.34$ bierze się stąd, że dla rozkładu normalnego $$IQR/1.34 \approx \sigma$$. 
+gdzie $$\hat \sigma$$ to ocena odchylenia standardowego, IQR to rozstęp kwartylowy z próby a $$n$$ to liczba obserwacji. Magiczna stała $$1.34$$ bierze się stąd, że dla rozkładu normalnego $$IQR/1.34 \approx \sigma$$. 
 
 Inną popularną regułą kciuka jest reguła Scott'a, stosowana gdy `bw="nrd"`
 
