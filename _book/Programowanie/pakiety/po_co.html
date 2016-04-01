@@ -63,7 +63,7 @@
         data-chapter-title="Jak budować pakiety?"
         data-filepath="Programowanie/pakiety/po_co.md"
         data-basepath="../.."
-        data-revision="Sat Apr 02 2016 00:19:15 GMT+0200 (CEST)"
+        data-revision="Sat Apr 02 2016 00:32:28 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1399,7 +1399,8 @@
                 
                     <section class="normal" id="section-">
                     
-                        <p>Cytuj&#x105;c Hilary Parker: <em>Seriously, it doesn&#x2019;t have to be about sharing your code (although that is an added benefit!). It is about saving yourself time.</em></p>
+                        <h1 id="po-co-tworzy&#x107;-w&#x142;asne-pakiety">Po co tworzy&#x107; w&#x142;asne pakiety?</h1>
+<p>Cytuj&#x105;c Hilary Parker: <em>Seriously, it doesn&#x2019;t have to be about sharing your code (although that is an added benefit!). It is about saving yourself time.</em></p>
 <p>Funkcjonalno&#x15B;ci w programie R s&#x105; udost&#x119;pnianie poprzez pakiety. Pakiety mog&#x105; zawiera&#x107; nowe funkcje lub nowe zbiory danych lub jedno i drugie.
 Cze&#x15B;&#x107; pakiet&#xF3;w jest automatycznie &#x142;adowanych przy starcie R (np. <em>stats</em>, <em>graphics</em>, <em>base</em>) a cz&#x119;&#x15B;&#x107; trzeba w&#x142;&#x105;czy&#x107; samodzielnie (np. <em>ggplot2</em>, <em>dplyr</em>, <em>PogromcyDanych</em>) a jeszcze inne trzeba najpierw doinstalowa&#x107;.</p>
 <p>Po co tworzy&#x107; w&#x142;asne pakiety? Motywacje mo&#x17C;na mie&#x107; najr&#xF3;&#x17C;niejsze, najcz&#x119;stsze to:</p>
@@ -1408,10 +1409,11 @@ Cze&#x15B;&#x107; pakiet&#xF3;w jest automatycznie &#x142;adowanych przy starcie
 <li>Ch&#x119;&#x107; zamkni&#x119;cia pewnego zbioru funkcjonalno&#x15B;ci w zwartym kontenerze. Nawet je&#x17C;eli b&#x119;dziemy jedynymi u&#x17C;ytkownikami pakietu, to warto, poniewa&#x17C; u&#x142;atwi to zarz&#x105;dzanie powi&#x105;zanymi funkcjonalno&#x15B;ciami.</li>
 <li>Potrzeba uporz&#x105;dkowania opracowanych funkcjonalno&#x15B;ci. U&#x17C;ywanie pakiet&#xF3;w wymusza jednolit&#x105; struktur&#x119;.</li>
 </ul>
-<h1 id="struktura">Struktura</h1>
+<h1 id="jak-wygl&#x105;da-struktura-pakietu">Jak wygl&#x105;da struktura pakietu?</h1>
+<p><img src="grafika/struktura.png" alt="Struktura przyk&#x142;adowego pakietu proton"></p>
 <p>Pakiet to katalog, wewn&#x105;trz kt&#xF3;rego znajduj&#x105; si&#x119; pliki i podkatalogi ze &#x15B;ci&#x15B;le okre&#x15B;lon&#x105; zawarto&#x15B;ci&#x105;:</p>
 <ul>
-<li>plik <code>DESCRIPTION</code>, z opisem podstawowych informacji o pakiecie (nazwa, opis, autor, zale&#x17C;no&#x15B;ci),</li>
+<li>plik <code>DESCRIPTION</code>, z opisem podstawowych informacji o pakiecie (nazwa pakietu, kr&#xF3;tki opis, autor, zale&#x17C;no&#x15B;ci),</li>
 <li>plik <code>NAMESPACE</code>, z opisem funkcji udost&#x119;pnionych przez pakiet,</li>
 <li>katalog <code>R</code>, z list&#x105; funkcji w programie R,</li>
 <li>katalog <code>data</code>, z list&#x105; zbior&#xF3;w danych udost&#x119;pnionych przez pakiet,</li>
@@ -1419,7 +1421,7 @@ Cze&#x15B;&#x107; pakiet&#xF3;w jest automatycznie &#x142;adowanych przy starcie
 <li>katalog <code>vignettes</code>, z list&#x105; przewodnik&#xF3;w opisuj&#x105;cych funkcjonalno&#x15B;ci pakietu,</li>
 <li>katalog <code>tests</code>, z list&#x105; test&#xF3;w weryfikuj&#x105;cych poprawno&#x15B;&#x107; funkcji.</li>
 </ul>
-<p><img src="grafika/struktura.png" alt="Struktura przyk&#x142;adowego pakietu proton"></p>
+<p>Om&#xF3;wimy zawarto&#x15B;&#x107; kolejnych plik&#xF3;w/katalog&#xF3;w w kolejnych sekcjach.</p>
 
                     
                     </section>
