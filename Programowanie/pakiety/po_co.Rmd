@@ -1,3 +1,5 @@
+# Po co tworzyć własne pakiety?
+
 Cytując Hilary Parker: *Seriously, it doesn’t have to be about sharing your code (although that is an added benefit!). It is about saving yourself time.*
 
 Funkcjonalności w programie R są udostępnianie poprzez pakiety. Pakiety mogą zawierać nowe funkcje lub nowe zbiory danych lub jedno i drugie.
@@ -10,11 +12,13 @@ Po co tworzyć własne pakiety? Motywacje można mieć najróżniejsze, najczęs
 * Potrzeba uporządkowania opracowanych funkcjonalności. Używanie pakietów wymusza jednolitą strukturę.
 
 
-# Struktura
+# Jak wygląda struktura pakietu?
+
+![Struktura przykładowego pakietu proton](grafika/struktura.png)
 
 Pakiet to katalog, wewnątrz którego znajdują się pliki i podkatalogi ze ściśle określoną zawartością:
 
-- plik `DESCRIPTION`, z opisem podstawowych informacji o pakiecie (nazwa, opis, autor, zależności),
+- plik `DESCRIPTION`, z opisem podstawowych informacji o pakiecie (nazwa pakietu, krótki opis, autor, zależności),
 - plik `NAMESPACE`, z opisem funkcji udostępnionych przez pakiet,
 - katalog `R`, z listą funkcji w programie R,
 - katalog `data`, z listą zbiorów danych udostępnionych przez pakiet,
@@ -22,6 +26,6 @@ Pakiet to katalog, wewnątrz którego znajdują się pliki i podkatalogi ze ści
 - katalog `vignettes`, z listą przewodników opisujących funkcjonalności pakietu,
 - katalog `tests`, z listą testów weryfikujących poprawność funkcji.
 
-![Struktura przykładowego pakietu proton](grafika/struktura.png)
+Omówimy zawartość kolejnych plików/katalogów w kolejnych sekcjach.
 
 
