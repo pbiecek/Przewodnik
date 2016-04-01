@@ -32,7 +32,7 @@
    * [Jak tworzyć pętle i instrukcje warunkowe?](Programowanie/podstawy/jak_tworzyc_petle.md)
    * [Jak tworzyć funkcje?](Programowanie/podstawy/jak_tworzyc_funkcje.md)
    * [Jak budować pakiety?](Programowanie/pakiety/po_co.md)
-     * Jak stworzyć nowy pakiet?
+     * [Jak stworzyć nowy pakiet?](Programowanie/pakiety/nowy_pakiet.md)
      * Jak dodawać funkcje do pakietu?
      * Jak dodawać zbiory danych do pakietu?
      * Jak dodawać testy do pakietu?
