@@ -63,7 +63,7 @@
         data-chapter-title="Jak stworzyć nowy pakiet?"
         data-filepath="Programowanie/pakiety/nowy_pakiet.md"
         data-basepath="../.."
-        data-revision="Sat Apr 02 2016 00:57:06 GMT+0200 (CEST)"
+        data-revision="Sat Apr 02 2016 01:25:15 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1414,6 +1414,16 @@
 create(&quot;kupPanAuto&quot;)
 </code></pre><p>Pierwszym argumentem funkcji <code>check()</code> jest &#x15B;cie&#x17C;ka, w kt&#xF3;rej nale&#x17C;y stworzy&#x107; nowy pakiet. Ostatni element tej &#x15B;cie&#x17C;ki (tutaj jedyny) to nazwa pakietu. Powy&#x17C;sza instrukcja w aktualnym katalogu stworzy podkatalog o nazwie <code>kupPanAuto</code> z minimaln&#x105; liczb&#x105; niezb&#x119;dnych plik&#xF3;w.</p>
 <p><img src="grafika/pakiet1.png" alt="Struktura nowo utworzonego pakietu kupPanAuto"></p>
+<h2 id="plik-description">Plik DESCRIPTION</h2>
+<p>Nowo stworzony pakiet ma generyczny plik DESCRIPTION. 
+Pierwsz&#x105; rzecz&#x105;, kt&#xF3;r&#x105; nale&#x17C;y zrobi&#x107; po zbudowaniu pakietu to uzupe&#x142;nienie informacji w tym pliku. </p>
+<p>W sekcji <code>Package</code> uzupe&#x142;niamy nazw&#x119; pakietu, w sekcji <code>Title</code> jednozdaniowy opis pakietu, w sekcji <code>Authors</code> informacj&#x119; o autorach oraz ich roli przy tworzeniu pakiet&#xF3;w. W sekcji <code>Description</code> uzupe&#x142;niamy szerszy opis pakietu.</p>
+<p>Szczeg&#xF3;lnie istotne s&#x105; sekcje <code>Imports</code> i <code>Suggests</code>, opisuj&#x105; one zale&#x17C;no&#x15B;ci od innych pakiet&#xF3;w. </p>
+<ul>
+<li>Sekcja <code>Imports</code> wskazuje pakiety niezb&#x119;dne do dzia&#x142;ania Twojego pakietu. R b&#x119;dzie je instalowa&#x142; przy instalacji Twojego pakietu.</li>
+<li>Sekcja <code>Suggests</code> wskazuje pakiety dodatkowe, kt&#xF3;re mog&#x105; rozszerza&#x107; mo&#x17C;liwo&#x15B;ci Twojego pakietu, ale nie s&#x105; niezb&#x119;dne do dzia&#x142;ania kluczowych funkcjonalno&#x15B;ci.</li>
+</ul>
+<p><img src="grafika/pakiet2.png" alt="Plik DESCRIPTION nowo utworzonego pakietu kupPanAuto"></p>
 
                     
                     </section>
