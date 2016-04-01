@@ -32,6 +32,12 @@
    * [Jak tworzyć pętle i instrukcje warunkowe?](Programowanie/podstawy/jak_tworzyc_petle.md)
    * [Jak tworzyć funkcje?](Programowanie/podstawy/jak_tworzyc_funkcje.md)
    * Jak budować pakiety?
+     * Jak stworzyć nowy pakiet?
+     * Jak dodawać funkcje do pakietu?
+     * Jak dodawać zbiory danych do pakietu?
+     * Jak dodawać testy do pakietu?
+     * Jak budować i testować stworzony pakiet?
+     * Jak udostępniać swój pakiet innym?
    * [Jak budować aplikacje z pakietem Shiny?](Programowanie/jak_tworzyc_aplikajce.md)
      * [Jak zbudować pierwszą aplikację?](Programowanie/jak_tworzyc_aplikajce0.md)
      * [Jak umieszczać wyniki analiz w aplikacji?](Programowanie/jak_tworzyc_aplikajce1.md)
