@@ -31,7 +31,7 @@
        * [Zadania](Programowanie/zadaniaDplyr.md)
    * [Jak tworzyć pętle i instrukcje warunkowe?](Programowanie/podstawy/jak_tworzyc_petle.md)
    * [Jak tworzyć funkcje?](Programowanie/podstawy/jak_tworzyc_funkcje.md)
-   * Jak budować pakiety?
+   * [Jak budować pakiety?](Programowanie/pakiety/po_co.md)
      * Jak stworzyć nowy pakiet?
      * Jak dodawać funkcje do pakietu?
      * Jak dodawać zbiory danych do pakietu?
