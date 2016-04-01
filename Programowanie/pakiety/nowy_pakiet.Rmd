@@ -14,6 +14,20 @@ Pierwszym argumentem funkcji `check()` jest ścieżka, w której należy stworzy
 ![Struktura nowo utworzonego pakietu kupPanAuto](grafika/pakiet1.png)
 
 
+## Plik DESCRIPTION
 
+Nowo stworzony pakiet ma generyczny plik DESCRIPTION. 
+Pierwszą rzeczą, którą należy zrobić po zbudowaniu pakietu to uzupełnienie informacji w tym pliku. 
+
+W sekcji `Package` uzupełniamy nazwę pakietu, w sekcji `Title` jednozdaniowy opis pakietu, w sekcji `Authors` informację o autorach oraz ich roli przy tworzeniu pakietów. W sekcji `Description` uzupełniamy szerszy opis pakietu.
+
+Szczególnie istotne są sekcje `Imports` i `Suggests`, opisują one zależności od innych pakietów. 
+
+* Sekcja `Imports` wskazuje pakiety niezbędne do działania Twojego pakietu. R będzie je instalował przy instalacji Twojego pakietu.
+* Sekcja `Suggests` wskazuje pakiety dodatkowe, które mogą rozszerzać możliwości Twojego pakietu, ale nie są niezbędne do działania kluczowych funkcjonalności.
+
+
+
+![Plik DESCRIPTION nowo utworzonego pakietu kupPanAuto](grafika/pakiet2.png)
 
 
