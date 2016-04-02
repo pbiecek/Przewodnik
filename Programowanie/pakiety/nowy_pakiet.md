@@ -4,9 +4,23 @@ Nowy pakiet najwygodniej budować używając funkcji `create()` z biblioteki `de
 
 Na potrzeby tego rozdziału stworzymy nowy pakiet `kupPanAuto`. Aby stworzyć pusty pakiet o takiej nazwie potrzebne jest wywołanie.
 
-```
+```r
 library(devtools)
 create("kupPanAuto")
+```
+
+```
+## Creating package kupPanAuto in .
+## No DESCRIPTION found. Creating with values:
+## Package: kupPanAuto
+## Title: What the Package Does (one line, title case)
+## Version: 0.0.0.9000
+## Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+## Description: What the package does (one paragraph).
+## Depends: R (>= 3.2.2)
+## License: What license is it under?
+## LazyData: true
+## Adding RStudio project file to kupPanAuto
 ```
 
 Pierwszym argumentem funkcji `check()` jest ścieżka, w której należy stworzyć nowy pakiet. Ostatni element tej ścieżki (tutaj jedyny) to nazwa pakietu. Powyższa instrukcja w aktualnym katalogu stworzy podkatalog o nazwie `kupPanAuto` z minimalną liczbą niezbędnych plików.
@@ -44,8 +58,15 @@ Jeżeli w naszym pakiecie, chcemy korzystać z funkcji lub danych z innych pakie
 
 Możemy w tym celu wykorzystać funkcję `use_package()`, która dodaje informacje o zależnościach od wskazanych pakietach.
 
-```
+```r
 use_package(package = "PogromcyDanych", pkg = "kupPanAuto")
+
+## Adding PogromcyDanych to Imports
+## Refer to functions with PogromcyDanych::fun()
+
 use_package(package = "dplyr", pkg = "kupPanAuto")
+
+## Adding dplyr to Imports
+## Refer to functions with dplyr::fun()
 ```
 
