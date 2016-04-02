@@ -1,6 +1,11 @@
 # Co nowego zostało ostatnio dodane?
 
 
+* 3 kwietnia 2016
+
+Dodano rozdział o budowaniu pakietów *Jak budować pakiety?* https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/pakiety/po_co.html
+w którym omawiany jest dłównie pakiet `devtools` i `testthat`.
+
 * 26 marca 2016
 
 Dodano rozdział o grupowaniu *Jak znaleźć grupy w danych?* https://pbiecek.gitbooks.io/przewodnik/content/Analiza/beznadzoru/skupiska.html
