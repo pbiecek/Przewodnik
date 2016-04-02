@@ -16,6 +16,19 @@ Umieszczam ją poniżej.
 
 ![Ściągawka opracowana przez RStudio](grafika/dev2.png)
 
+## Jak udostępnić swój pakiet?
+
+Stworzyłeś/łaś interesujący pakiet? Chcesz go umieścić w repozytorium CRAN? 
+Dlaczego nie.
+
+Upewnij się, że funkcja `check()` nie wykrywa żadnych błędów.
+Zbuduj plik `tar.gz` ze źródłami pakietu.
+Wyślij swój pakiet za pośrednictwem formularza
+https://cran.r-project.org/submit.html
+
+Innym rozwiązaniem, jest umieszczenie swojego pakietu na serwisie GitHub. 
+Za pomocą funkcji `install_github()` inni użytkownicy będą mogli zainstalować ten pakiet bezpośrednio z GitHuba.
+
 ## Automatyczne formatowanie kodu
 
 Jeżeli chcemy nasz kod udostępnić innym, to warto zadbać o to by kod jakoś wyglądał.
@@ -29,3 +42,4 @@ Funkcja `tidy_dir()` z pakietu `formatR` formatuje treść kodu we wszystkich pl
 library("formatR")
 tidy_dir("kupPanAuto/R")
 ```
+

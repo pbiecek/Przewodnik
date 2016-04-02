@@ -27,7 +27,7 @@ Wyślij swój pakiet za pośrednictwem formularza
 https://cran.r-project.org/submit.html
 
 Innym rozwiązaniem, jest umieszczenie swojego pakietu na serwisie GitHub. 
-Za pomocą funkcji `install_github()` inni użytkownicy będa mogli zainstalować ten pakiet bezpośrednio z GitHuba.
+Za pomocą funkcji `install_github()` inni użytkownicy będą mogli zainstalować ten pakiet bezpośrednio z GitHuba.
 
 ## Automatyczne formatowanie kodu
 
@@ -42,3 +42,4 @@ Funkcja `tidy_dir()` z pakietu `formatR` formatuje treść kodu we wszystkich pl
 library("formatR")
 tidy_dir("kupPanAuto/R")
 ```
+
