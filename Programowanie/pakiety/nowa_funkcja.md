@@ -54,6 +54,7 @@ Minimalna dokumentacja powinna zawierać tytuł oraz opisy argumentów funkcji. 
 #' @param rok Rok, dla którego liczona ma być średnia, domyślnie 2012.
 #' @param auta Zbiór danych, na bazie którego liczona ma być średnia.
 #'
+#' @export
 
 jakiPrzebieg <- function(rok = '2012', auta) {
   wybrane <- filter(auta, Rok.produkcji == rok)
