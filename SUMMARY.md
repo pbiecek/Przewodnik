@@ -33,11 +33,12 @@
    * [Jak tworzyć funkcje?](Programowanie/podstawy/jak_tworzyc_funkcje.md)
    * [Jak budować pakiety?](Programowanie/pakiety/po_co.md)
      * [Jak stworzyć nowy pakiet?](Programowanie/pakiety/nowy_pakiet.md)
-     * Jak dodawać funkcje do pakietu?
-     * Jak dodawać zbiory danych do pakietu?
-     * Jak dodawać testy do pakietu?
-     * Jak budować i testować stworzony pakiet?
-     * Jak udostępniać swój pakiet innym?
+     * [Jak dodawać funkcje do pakietu?](Programowanie/pakiety/nowa_funkcja.md)
+     * [Jak dodawać zbiory danych do pakietu?](Programowanie/pakiety/nowe_dane,md)
+     * [Jak dodawać testy do pakietu?](Programowanie/pakiety/nowe_testy.md)
+     * [Jak budować i testować stworzony pakiet?](Programowanie/pakiety/nowe_budowanie.md)
+     * [Jak udostępniać swój pakiet?](Programowanie/pakiety/udostepnij.md)
+     * [Co dalej?](Programowanie/pakiety/co_dalej.md)
    * [Jak budować aplikacje z pakietem Shiny?](Programowanie/jak_tworzyc_aplikajce.md)
      * [Jak zbudować pierwszą aplikację?](Programowanie/jak_tworzyc_aplikajce0.md)
      * [Jak umieszczać wyniki analiz w aplikacji?](Programowanie/jak_tworzyc_aplikajce1.md)
@@ -51,7 +52,7 @@
    * [Jak generować liczby losowe?](Programowanie/generatory_llosowych.md)
      * [Jak ustawiać ziarno generatora?](Programowanie/generatory_1.md)
      * [Jak losować z prostych rozkładów?](Programowanie/generatory_2.md)
-     * [Jak losowac ze złożonych rozkładów?](Programowanie/generatory_3.md)
+     * [Jak losować ze złożonych rozkładów?](Programowanie/generatory_3.md)
      * [Jak losować z użyciem kopuli?](Programowanie/generatory_4.md)
      * [Jak estymować parametry rozkładu?](Programowanie/generatory_5.md)
    * [Jak korzystać z serwisu GitHub?](Programowanie/jak_korzystac_z_serwisu_github_i_waffle.md)
