@@ -8,14 +8,14 @@ Cykl życia pakietu składa się z kilku kroków:
 4. Pakiet jest zainstalowany (w katalogu z bibliotekami R)
 5. Pakiet włączony w aktualnej sesji R.
 
-Opisy z poprzednich rozdziałów pozwalają na zbudowanie pakietu w stanie z punktu 1. Poniżej pokażemy, jak przejsć do kolejnych kroków.
+Opisy z poprzednich rozdziałów pozwalają na zbudowanie pakietu w stanie z punktu 1. Poniżej pokażemy, jak przejść do kolejnych kroków.
 
 ## Budowanie dokumentacji (-> 2.)
 
 Dodanie opisów dla zbiorów danych czy funkcji w pikach R to jeszcze nie koniec tworzenia dokumentacji.
 Należy ją teraz przeformatować z postaci Roxygen do plików `Rd` zrozumiałych przez program R.
 
-W tym celu można wykorzystać funkcję `document()` z pakietu `devools`. Tworzy ona  pliki `Rd` na podstawie opisów roxugenowych w plikach `R`. Argumentem tej funkcji jest ścieżka do pakietu.
+W tym celu można wykorzystać funkcję `document()` z pakietu `devtools`. Tworzy ona  pliki `Rd` na podstawie opisów roxygenowych w plikach `R`. Argumentem tej funkcji jest ścieżka do pakietu.
 
 ```
 document("kupPanAuto")
@@ -30,7 +30,7 @@ Po wykonaniu tej instrukcji odpowiednie pliki `Rd` są dodawane do katalogu `man
 
 ## Budowanie pakietu do postaci źródłowej (-> 3.)
 
-Aby zbudować katalog z wszystkimi cześciami pakietu do jedengo pliku - postaci źródłowej pakietu należy wykorzystać funkcję `build()` z pakietu `devtools`.
+Aby zbudować katalog z wszystkimi częściami pakietu do jednego pliku - postaci źródłowej pakietu należy wykorzystać funkcję `build()` z pakietu `devtools`.
 
 Parametrem funkcji `build()` jest katalog w którym znajduje się pakiet do zbudowania. Domyślnie jest to aktualny katalog roboczy.
 
@@ -70,7 +70,7 @@ Pakiety instalowane są w katalogu z bibliotekami R. Ścieżkę do tych katalog�
 ## [1] "/Library/Frameworks/R.framework/Versions/3.2/Resources/library"
 ```
 
-Aby zainstalować pakiet z pliku źródłowego lub z katalogu, można wykorzystać polecenie `install`.
+Aby zainstalować pakiet z pliku źródłowego lub z katalogu, można wykorzystać polecenie `install()`.
 
 Parametrem funkcji install() jest katalog w którym znajduje się pakiet do zbudowania. Domyślnie jest to katalog roboczy.
 
