@@ -38,10 +38,6 @@ Najczęściej stosowane tagi to
 * `@examples` - blok z przykładami
 * `@rdname` - określa nazwę pliku Rd
 
-Poniżej przedstawiona jest przykładowa dokumentacja dla funkcji proton.
-
-![Przykładowa dokumentacja dla funkcji proton()](pakiet3.png)
-
 Minimalna dokumentacja powinna zawierać tytuł oraz opisy argumentów funkcji. Dla przykładowej funkcji `jakiPrzebieg()` zawartość pliku `R` mogłaby wyglądać tak:
 
 ```
@@ -61,6 +57,13 @@ jakiPrzebieg <- function(rok = '2012', auta) {
 }
 ```
 
-O tym jak przetworzyć taki plik na plik z poprawnie zbudowaną dokumentacją, piszemy w rozdziale *Jak budować stworzony pakiet?*.
+Po zbudowaniu dokumentacji, w pakiecie opis dla funkcji `jakiPrzebieg()` będzie dostępny po uruchomieniu instrukcji `?jakiPrzebieg`. 
 
+![Pomoc dla funkcji jakiPrzebieg](grafika/manPage.png)
+
+Poniżej przedstawiona jest przykładowa dokumentacja dla funkcji `proton`z pakietu `proton`. Jest ona bardziej rozbudowana, można wiec zobaczyć jak wykorzystywać inne tagi.
+
+![Przykładowa dokumentacja dla funkcji proton()](grafika/pakiet3.png)
+
+O tym jak przetworzyć taki plik na plik z poprawnie zbudowaną dokumentacją, piszemy w rozdziale *Jak budować stworzony pakiet?*.
 
