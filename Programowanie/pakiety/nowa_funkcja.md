@@ -10,7 +10,8 @@ Przykładowo, poniżej przedstawiamy definicję funkcji `jakiPrzebieg`, licząc�
 
 Definicję tej funkcji należy wkleić do dowolnego pliku z rozszerzeniem `R` w katalogu o nazwie `R`.
 
-```{r}
+
+```r
 jakiPrzebieg <- function(rok = '', auta) {
   wybrane <- filter(auta, Rok.produkcji == rok)
   mean(wybrane$Przebieg.w.km, na.rm=TRUE)
