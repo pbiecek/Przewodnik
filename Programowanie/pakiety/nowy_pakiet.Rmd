@@ -36,17 +36,15 @@ Szczególnie istotne są sekcje `Imports` i `Suggests`, opisują one zależnośc
 * Sekcja `Suggests` wskazuje pakiety dodatkowe, które mogą rozszerzać możliwości Twojego pakietu, ale nie są niezbędne do działania kluczowych funkcjonalności.
 
 
-
 ![Plik DESCRIPTION nowo utworzonego pakietu kupPanAuto](grafika/pakiet2.png)
 
-## -----------
-
+## Jak ustawiać zależności
 
 Jeżeli w naszym pakiecie, chcemy korzystać z funkcji lub danych z innych pakietów, powinniśmy dodać odpowiednią zależność do pliku `DESCRIPTION`.
 
 Możemy w tym celu wykorzystać funkcję `use_package()`, która dodaje informacje o zależnościach od wskazanych pakietach.
 
-```{r}
+```
 use_package(package = "PogromcyDanych", pkg = "kupPanAuto")
 use_package(package = "dplyr", pkg = "kupPanAuto")
 ```

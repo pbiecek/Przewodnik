@@ -14,7 +14,16 @@ Pierwszym argumentem funkcji `check()` jest ścieżka, w której należy stworzy
 ![Struktura nowo utworzonego pakietu kupPanAuto](grafika/pakiet1.png)
 
 
+## Plik *.proj
+
+Funkcja `create()` tworzy automatycznie plik konfiguracyjny projektu RStudio. Jest on zapisany do pliku `*.proj`. 
+
+Otwarcie takiego pliku w programie `RStudio` spowoduje otwarcie projektu z automatycznie ustawionym katalogiem roboczym na katalog pakietu.
+
+
 ## Plik DESCRIPTION
+
+Każdy pakietu musi mieć plik `DESCRIPTION`, opisujący podstawowe informacje takie jak nazwa, opis, informacja o autorach i zależnościach od innych pakietów.
 
 Nowo stworzony pakiet ma generyczny plik `DESCRIPTION`. 
 Pierwszą rzeczą, którą należy zrobić po zbudowaniu pakietu to uzupełnienie informacji w tym pliku. 
@@ -27,7 +36,16 @@ Szczególnie istotne są sekcje `Imports` i `Suggests`, opisują one zależnośc
 * Sekcja `Suggests` wskazuje pakiety dodatkowe, które mogą rozszerzać możliwości Twojego pakietu, ale nie są niezbędne do działania kluczowych funkcjonalności.
 
 
-
 ![Plik DESCRIPTION nowo utworzonego pakietu kupPanAuto](grafika/pakiet2.png)
 
+## Jak ustawiać zależności
+
+Jeżeli w naszym pakiecie, chcemy korzystać z funkcji lub danych z innych pakietów, powinniśmy dodać odpowiednią zależność do pliku `DESCRIPTION`.
+
+Możemy w tym celu wykorzystać funkcję `use_package()`, która dodaje informacje o zależnościach od wskazanych pakietach.
+
+```
+use_package(package = "PogromcyDanych", pkg = "kupPanAuto")
+use_package(package = "dplyr", pkg = "kupPanAuto")
+```
 
