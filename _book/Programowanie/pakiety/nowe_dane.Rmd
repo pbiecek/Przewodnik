@@ -34,5 +34,5 @@ Pierwsza linia opisu traktowana jest jako tytuł pliku pomocy. Aby zaznaczyć, �
 
 Poniższa ilustracja przedstawia przykładową dokumentację funkcji.
 
-![Dokumentacja zbioru z danymi](pakiet4.png)
+![Dokumentacja zbioru z danymi](grafika/pakiet4.png)
 

@@ -7,7 +7,7 @@ Pozycją obowiązkową jest nowa książka Hadleya o tym jak pisać pakiety. Lek
 
 Uzupełnieniem dla obu powyższych jest dokumentacja pakietu `roxygen2` dostępna na stronie projektu https://github.com/klutometis/roxygen#roxygen2.
 
-Więcej o testach i pakiecie testthat przeczytać można w artykule *testthat: Get Started with Testing* Hadley Wickham. ^[https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf]
+Więcej o testach i pakiecie testthat przeczytać można w artykule *testthat: Get Started with Testing* Hadley Wickham https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf.
 
 Streszczeniem materiału o pakietach jest ściągawka pakietu devtools opracowana przez RStudio dostępna na stronie https://www.rstudio.com/wp-content/uploads/2015/03/devtools-cheatsheet.pdf.
 Umieszczam ją poniżej.
