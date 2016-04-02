@@ -47,7 +47,7 @@
         
     
     
-    <link rel="next" href="../../Programowanie/jak_tworzyc_aplikajce.html" />
+    <link rel="next" href="../../Programowanie/pakiety/nowa_funkcja.html" />
     
     
     <link rel="prev" href="../../Programowanie/pakiety/po_co.html" />
@@ -63,7 +63,7 @@
         data-chapter-title="Jak stworzyć nowy pakiet?"
         data-filepath="Programowanie/pakiety/nowy_pakiet.md"
         data-basepath="../.."
-        data-revision="Sat Apr 02 2016 01:25:15 GMT+0200 (CEST)"
+        data-revision="Sun Apr 03 2016 01:09:40 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -581,37 +581,76 @@
             
         </li>
     
-        <li class="chapter " data-level="2.9.2" >
+        <li class="chapter " data-level="2.9.2" data-path="Programowanie/pakiety/nowa_funkcja.html">
             
-            <span><b>2.9.2.</b> Jak dodawać funkcje do pakietu?</span>
+                
+                    <a href="../../Programowanie/pakiety/nowa_funkcja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.2.</b>
+                        
+                        Jak dodawać funkcje do pakietu?
+                    </a>
             
             
         </li>
     
-        <li class="chapter " data-level="2.9.3" >
+        <li class="chapter " data-level="2.9.3" data-path="Programowanie/pakiety/nowe_dane,md.html">
             
             <span><b>2.9.3.</b> Jak dodawać zbiory danych do pakietu?</span>
             
             
         </li>
     
-        <li class="chapter " data-level="2.9.4" >
+        <li class="chapter " data-level="2.9.4" data-path="Programowanie/pakiety/nowe_testy.html">
             
-            <span><b>2.9.4.</b> Jak dodawać testy do pakietu?</span>
+                
+                    <a href="../../Programowanie/pakiety/nowe_testy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.4.</b>
+                        
+                        Jak dodawać testy do pakietu?
+                    </a>
             
             
         </li>
     
-        <li class="chapter " data-level="2.9.5" >
+        <li class="chapter " data-level="2.9.5" data-path="Programowanie/pakiety/nowe_budowanie.html">
             
-            <span><b>2.9.5.</b> Jak budować i testować stworzony pakiet?</span>
+                
+                    <a href="../../Programowanie/pakiety/nowe_budowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.5.</b>
+                        
+                        Jak budować stworzony pakiet?
+                    </a>
             
             
         </li>
     
-        <li class="chapter " data-level="2.9.6" >
+        <li class="chapter " data-level="2.9.6" data-path="Programowanie/pakiety/udostepnij.html">
             
-            <span><b>2.9.6.</b> Jak udostępniać swój pakiet innym?</span>
+            <span><b>2.9.6.</b> Jak udostępniać swój pakiet?</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.7" data-path="Programowanie/pakiety/co_dalej.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/co_dalej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.7.</b>
+                        
+                        Co dalej?
+                    </a>
             
             
         </li>
@@ -816,7 +855,7 @@
                         
                             <b>2.15.3.</b>
                         
-                        Jak losowac ze złożonych rozkładów?
+                        Jak losować ze złożonych rozkładów?
                     </a>
             
             
@@ -1408,14 +1447,30 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="jak-stworzy&#x107;-nowy-pakiet">Jak stworzy&#x107; nowy pakiet?</h1>
-<p>Nowy pakiet najwygodniej budowa&#x107; u&#x17C;ywaj&#x105;c funkcji <code>create()</code> z pakietu <code>devtools</code>.</p>
+<p>Nowy pakiet najwygodniej budowa&#x107; u&#x17C;ywaj&#x105;c funkcji <code>create()</code> z biblioteki <code>devtools</code>.</p>
 <p>Na potrzeby tego rozdzia&#x142;u stworzymy nowy pakiet <code>kupPanAuto</code>. Aby stworzy&#x107; pusty pakiet o takiej nazwie potrzebne jest wywo&#x142;anie.</p>
-<pre><code>library(devtools)
-create(&quot;kupPanAuto&quot;)
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(devtools)
+create(<span class="hljs-string">&quot;kupPanAuto&quot;</span>)
+</code></pre>
+<pre><code>## Creating package kupPanAuto in .
+## No DESCRIPTION found. Creating with values:
+## Package: kupPanAuto
+## Title: What the Package Does (one line, title case)
+## Version: 0.0.0.9000
+## Authors@R: person(&quot;First&quot;, &quot;Last&quot;, email = &quot;first.last@example.com&quot;, role = c(&quot;aut&quot;, &quot;cre&quot;))
+## Description: What the package does (one paragraph).
+## Depends: R (&gt;= 3.2.2)
+## License: What license is it under?
+## LazyData: true
+## Adding RStudio project file to kupPanAuto
 </code></pre><p>Pierwszym argumentem funkcji <code>check()</code> jest &#x15B;cie&#x17C;ka, w kt&#xF3;rej nale&#x17C;y stworzy&#x107; nowy pakiet. Ostatni element tej &#x15B;cie&#x17C;ki (tutaj jedyny) to nazwa pakietu. Powy&#x17C;sza instrukcja w aktualnym katalogu stworzy podkatalog o nazwie <code>kupPanAuto</code> z minimaln&#x105; liczb&#x105; niezb&#x119;dnych plik&#xF3;w.</p>
 <p><img src="grafika/pakiet1.png" alt="Struktura nowo utworzonego pakietu kupPanAuto"></p>
+<h2 id="plik-proj">Plik *.proj</h2>
+<p>Funkcja <code>create()</code> tworzy automatycznie plik konfiguracyjny projektu RStudio. Jest on zapisany do pliku <code>*.proj</code>. </p>
+<p>Otwarcie takiego pliku w programie <code>RStudio</code> spowoduje otwarcie projektu z automatycznie ustawionym katalogiem roboczym na katalog pakietu.</p>
 <h2 id="plik-description">Plik DESCRIPTION</h2>
-<p>Nowo stworzony pakiet ma generyczny plik DESCRIPTION. 
+<p>Ka&#x17C;dy pakietu musi mie&#x107; plik <code>DESCRIPTION</code>, opisuj&#x105;cy podstawowe informacje takie jak nazwa, opis, informacja o autorach i zale&#x17C;no&#x15B;ciach od innych pakiet&#xF3;w.</p>
+<p>Nowo stworzony pakiet ma generyczny plik <code>DESCRIPTION</code>. 
 Pierwsz&#x105; rzecz&#x105;, kt&#xF3;r&#x105; nale&#x17C;y zrobi&#x107; po zbudowaniu pakietu to uzupe&#x142;nienie informacji w tym pliku. </p>
 <p>W sekcji <code>Package</code> uzupe&#x142;niamy nazw&#x119; pakietu, w sekcji <code>Title</code> jednozdaniowy opis pakietu, w sekcji <code>Authors</code> informacj&#x119; o autorach oraz ich roli przy tworzeniu pakiet&#xF3;w. W sekcji <code>Description</code> uzupe&#x142;niamy szerszy opis pakietu.</p>
 <p>Szczeg&#xF3;lnie istotne s&#x105; sekcje <code>Imports</code> i <code>Suggests</code>, opisuj&#x105; one zale&#x17C;no&#x15B;ci od innych pakiet&#xF3;w. </p>
@@ -1424,6 +1479,19 @@ Pierwsz&#x105; rzecz&#x105;, kt&#xF3;r&#x105; nale&#x17C;y zrobi&#x107; po zbudo
 <li>Sekcja <code>Suggests</code> wskazuje pakiety dodatkowe, kt&#xF3;re mog&#x105; rozszerza&#x107; mo&#x17C;liwo&#x15B;ci Twojego pakietu, ale nie s&#x105; niezb&#x119;dne do dzia&#x142;ania kluczowych funkcjonalno&#x15B;ci.</li>
 </ul>
 <p><img src="grafika/pakiet2.png" alt="Plik DESCRIPTION nowo utworzonego pakietu kupPanAuto"></p>
+<h2 id="jak-ustawia&#x107;-zale&#x17C;no&#x15B;ci">Jak ustawia&#x107; zale&#x17C;no&#x15B;ci</h2>
+<p>Je&#x17C;eli w naszym pakiecie, chcemy korzysta&#x107; z funkcji lub danych z innych pakiet&#xF3;w, powinni&#x15B;my doda&#x107; odpowiedni&#x105; zale&#x17C;no&#x15B;&#x107; do pliku <code>DESCRIPTION</code>.</p>
+<p>Mo&#x17C;emy w tym celu wykorzysta&#x107; funkcj&#x119; <code>use_package()</code>, kt&#xF3;ra dodaje informacje o zale&#x17C;no&#x15B;ciach od wskazanych pakietach.</p>
+<pre><code class="lang-r">use_package(package = <span class="hljs-string">&quot;PogromcyDanych&quot;</span>, pkg = <span class="hljs-string">&quot;kupPanAuto&quot;</span>)
+
+<span class="hljs-comment">## Adding PogromcyDanych to Imports</span>
+<span class="hljs-comment">## Refer to functions with PogromcyDanych::fun()</span>
+
+use_package(package = <span class="hljs-string">&quot;dplyr&quot;</span>, pkg = <span class="hljs-string">&quot;kupPanAuto&quot;</span>)
+
+<span class="hljs-comment">## Adding dplyr to Imports</span>
+<span class="hljs-comment">## Refer to functions with dplyr::fun()</span>
+</code></pre>
 
                     
                     </section>
@@ -1437,7 +1505,7 @@ Pierwsz&#x105; rzecz&#x105;, kt&#xF3;r&#x105; nale&#x17C;y zrobi&#x107; po zbudo
         <a href="../../Programowanie/pakiety/po_co.html" class="navigation navigation-prev " aria-label="Previous page: Jak budować pakiety?"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../Programowanie/jak_tworzyc_aplikajce.html" class="navigation navigation-next " aria-label="Next page: Jak budować aplikacje z pakietem Shiny?"><i class="fa fa-angle-right"></i></a>
+        <a href="../../Programowanie/pakiety/nowa_funkcja.html" class="navigation navigation-next " aria-label="Next page: Jak dodawać funkcje do pakietu?"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

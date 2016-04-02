@@ -1,0 +1,1562 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Jak dodawać testy do pakietu? | Przewodnik po pakiecie R v. 4.0</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../Programowanie/pakiety/nowe_budowanie.html" />
+    
+    
+    <link rel="prev" href="../../Programowanie/pakiety/nowa_funkcja.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="2.9.4"
+        data-chapter-title="Jak dodawać testy do pakietu?"
+        data-filepath="Programowanie/pakiety/nowe_testy.md"
+        data-basepath="../.."
+        data-revision="Sun Apr 03 2016 01:09:40 GMT+0200 (CEST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="contribute.html">
+            
+                
+                    <a href="../../contribute.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Podrasuj Przewodnik!
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="co_nowego.html">
+            
+                
+                    <a href="../../co_nowego.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Co nowego?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="puste.html">
+            
+                
+                    <a href="../../puste.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Programowanie w języku R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" >
+            
+            <span><b>2.1.</b> Jak korzystać z tej książki?</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Programowanie/podstawy/dlaczego_R.html">
+            
+                
+                    <a href="../../Programowanie/podstawy/dlaczego_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Dlaczego R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Programowanie/podstawy/jak_zainstalowac_R.html">
+            
+                
+                    <a href="../../Programowanie/podstawy/jak_zainstalowac_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Jak zainstalować R i RStudio?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Programowanie/podstawy/jak_zaczac.html">
+            
+                
+                    <a href="../../Programowanie/podstawy/jak_zaczac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Jak rozpocząć pracę z R?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="Programowanie/podstawy/indeksy.html">
+            
+                
+                    <a href="../../Programowanie/podstawy/indeksy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.1.</b>
+                        
+                        Jak pracować z wektorami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" >
+            
+            <span><b>2.4.2.</b> Jak pracować z tabelami danych?</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" >
+            
+            <span><b>2.4.3.</b> Jak pracować z listami?</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.4" data-path="Programowanie/podstawy/co_zrobic_z_datami.html">
+            
+            <span><b>2.4.4.</b> Co można zrobić z datami/liczbami/czynnikami/napisami?</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="Programowanie/zapisywac.html">
+            
+                
+                    <a href="../../Programowanie/zapisywac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Jak wczytywać i zapisywać dane?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+            
+                
+                    <a href="../../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.1.</b>
+                        
+                        Jak wczytać tabele danych z pliku csv lub txt?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
+            
+                
+                    <a href="../../Programowanie/jak_wczytac_dane_z_excela.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.2.</b>
+                        
+                        Jak wczytać tabele danych z Excela?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+            
+                
+                    <a href="../../Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.3.</b>
+                        
+                        Jak wczytać tabele danych ze strony www?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+            
+                
+                    <a href="../../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.4.</b>
+                        
+                        Jak zeskrobywać dane ze stron www?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
+            
+                
+                    <a href="../../Programowanie/jak_wczytywac_korpusy_tekstu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.5.</b>
+                        
+                        Jak wczytywać korpusy tekstu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.6" data-path="Programowanie/jak_pobierac_dane_z_twittera.html">
+            
+                
+                    <a href="../../Programowanie/jak_pobierac_dane_z_twittera.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.6.</b>
+                        
+                        Jak pobierać dane z Twittera?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.7" data-path="Programowanie/jak_pobrac_dane_z.html">
+            
+                
+                    <a href="../../Programowanie/jak_pobrac_dane_z.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.7.</b>
+                        
+                        Jak pobrać dane z...?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.8" data-path="Programowanie/zadania.html">
+            
+                
+                    <a href="../../Programowanie/zadania.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.8.</b>
+                        
+                        Zadania
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="Programowanie/czyscic_przetwarzac.html">
+            
+                
+                    <a href="../../Programowanie/czyscic_przetwarzac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        Jak czyścić i przetwarzać dane?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="Programowanie/filter.html">
+            
+                
+                    <a href="../../Programowanie/filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.1.</b>
+                        
+                        Jak filtrować wiersze?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.2" data-path="Programowanie/mutate.html">
+            
+                
+                    <a href="../../Programowanie/mutate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.2.</b>
+                        
+                        Jak tworzyć nowe kolumny?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.3" data-path="Programowanie/select.html">
+            
+                
+                    <a href="../../Programowanie/select.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.3.</b>
+                        
+                        Jak wybierać kolumny?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.4" data-path="Programowanie/arrange.html">
+            
+                
+                    <a href="../../Programowanie/arrange.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.4.</b>
+                        
+                        Jak sortować wiersze?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.5" data-path="Programowanie/potoki.html">
+            
+                
+                    <a href="../../Programowanie/potoki.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.5.</b>
+                        
+                        Jak pracować z potokami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.6" data-path="Programowanie/groupby.html">
+            
+                
+                    <a href="../../Programowanie/groupby.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.6.</b>
+                        
+                        Jak wyznaczać agregaty w grupach?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.7" data-path="Programowanie/tidyr.html">
+            
+                
+                    <a href="../../Programowanie/tidyr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.7.</b>
+                        
+                        Jak czyścić dane?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6.8" data-path="Programowanie/zadaniaDplyr.html">
+            
+                
+                    <a href="../../Programowanie/zadaniaDplyr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.8.</b>
+                        
+                        Zadania
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="Programowanie/podstawy/jak_tworzyc_petle.html">
+            
+                
+                    <a href="../../Programowanie/podstawy/jak_tworzyc_petle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        Jak tworzyć pętle i instrukcje warunkowe?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="Programowanie/podstawy/jak_tworzyc_funkcje.html">
+            
+                
+                    <a href="../../Programowanie/podstawy/jak_tworzyc_funkcje.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.8.</b>
+                        
+                        Jak tworzyć funkcje?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="Programowanie/pakiety/po_co.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/po_co.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.</b>
+                        
+                        Jak budować pakiety?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.9.1" data-path="Programowanie/pakiety/nowy_pakiet.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowy_pakiet.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.1.</b>
+                        
+                        Jak stworzyć nowy pakiet?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.2" data-path="Programowanie/pakiety/nowa_funkcja.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowa_funkcja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.2.</b>
+                        
+                        Jak dodawać funkcje do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.3" data-path="Programowanie/pakiety/nowe_dane,md.html">
+            
+            <span><b>2.9.3.</b> Jak dodawać zbiory danych do pakietu?</span>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.9.4" data-path="Programowanie/pakiety/nowe_testy.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowe_testy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.4.</b>
+                        
+                        Jak dodawać testy do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.5" data-path="Programowanie/pakiety/nowe_budowanie.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowe_budowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.5.</b>
+                        
+                        Jak budować stworzony pakiet?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.6" data-path="Programowanie/pakiety/udostepnij.html">
+            
+            <span><b>2.9.6.</b> Jak udostępniać swój pakiet?</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9.7" data-path="Programowanie/pakiety/co_dalej.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/co_dalej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.7.</b>
+                        
+                        Co dalej?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="Programowanie/jak_tworzyc_aplikajce.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.</b>
+                        
+                        Jak budować aplikacje z pakietem Shiny?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.10.1" data-path="Programowanie/jak_tworzyc_aplikajce0.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.1.</b>
+                        
+                        Jak zbudować pierwszą aplikację?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.2" data-path="Programowanie/jak_tworzyc_aplikajce1.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.2.</b>
+                        
+                        Jak umieszczać wyniki analiz w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.3" data-path="Programowanie/jak_tworzyc_aplikajce2.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.3.</b>
+                        
+                        Jak umieszać elementy kontrolujące w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.4" data-path="Programowanie/jak_tworzyc_aplikajce3.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.4.</b>
+                        
+                        Jak tworzyć reaktywne elementy w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10.5" data-path="Programowanie/jak_tworzyc_aplikajce4.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.10.5.</b>
+                        
+                        I co dalej?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="Programowanie/jak_tworzyc_raporty.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_raporty.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.11.</b>
+                        
+                        Jak tworzyć raporty z pakietem knitr?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.12" >
+            
+            <span><b>2.12.</b> Jak debugować kod R?</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" >
+            
+            <span><b>2.13.</b> Jak zwiększyć wydajność kodu R?</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.14" data-path="Programowanie/jak_pracowac_z_bazami_danych.html">
+            
+                
+                    <a href="../../Programowanie/jak_pracowac_z_bazami_danych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.14.</b>
+                        
+                        Jak pracować z bazami danych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.15" data-path="Programowanie/generatory_llosowych.html">
+            
+                
+                    <a href="../../Programowanie/generatory_llosowych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.15.</b>
+                        
+                        Jak generować liczby losowe?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.15.1" data-path="Programowanie/generatory_1.html">
+            
+                
+                    <a href="../../Programowanie/generatory_1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.15.1.</b>
+                        
+                        Jak ustawiać ziarno generatora?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.15.2" data-path="Programowanie/generatory_2.html">
+            
+                
+                    <a href="../../Programowanie/generatory_2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.15.2.</b>
+                        
+                        Jak losować z prostych rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.15.3" data-path="Programowanie/generatory_3.html">
+            
+                
+                    <a href="../../Programowanie/generatory_3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.15.3.</b>
+                        
+                        Jak losować ze złożonych rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.15.4" data-path="Programowanie/generatory_4.html">
+            
+                
+                    <a href="../../Programowanie/generatory_4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.15.4.</b>
+                        
+                        Jak losować z użyciem kopuli?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.15.5" data-path="Programowanie/generatory_5.html">
+            
+                
+                    <a href="../../Programowanie/generatory_5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.15.5.</b>
+                        
+                        Jak estymować parametry rozkładu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.16" data-path="Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
+            
+                
+                    <a href="../../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.16.</b>
+                        
+                        Jak korzystać z serwisu GitHub?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.17" data-path="Programowanie/jak_korzystac_z_serwisu_waffle.html">
+            
+                
+                    <a href="../../Programowanie/jak_korzystac_z_serwisu_waffle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.17.</b>
+                        
+                        Jak korzystać z serwisu Waffle?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Analiza/analizadanych_z_programem_r_md.html">
+            
+                
+                    <a href="../../Analiza/analizadanych_z_programem_r_md.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Analiza danych z programem R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Analiza/eksploracja.html">
+            
+                
+                    <a href="../../Analiza/eksploracja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Eksploracja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+            
+                
+                    <a href="../../Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        Jak rozpoznać rodzaj zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="Analiza/jak_badac_rozklad_jednej_zmiennej.html">
+            
+                
+                    <a href="../../Analiza/jak_badac_rozklad_jednej_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        Jak badać rozkład jednej zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
+            
+                
+                    <a href="../../Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        Jak badać rozkład dwóch zmiennych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" >
+            
+            <span><b>3.1.4.</b> Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="Analiza/beznadzoru/skupiska.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/skupiska.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.</b>
+                        
+                        Jak znaleźć grupy w danych?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.5.1" data-path="Analiza/beznadzoru/dist.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/dist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.1.</b>
+                        
+                        Jak wyznaczać odległosć pomiędzy obserwacjami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5.2" data-path="Analiza/beznadzoru/kmeans.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/kmeans.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.2.</b>
+                        
+                        Jak szukać partycji w oparciu o metodę k-średnich?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5.3" data-path="Analiza/beznadzoru/pam.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/pam.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.3.</b>
+                        
+                        Jak szukać partycji w oparciu o metodę k-medoidów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5.4" data-path="Analiza/beznadzoru/agnes.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/agnes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.4.</b>
+                        
+                        Jak wykonać analizę hierarchiczną?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5.5" data-path="Analiza/beznadzoru/mclust.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/mclust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.5.</b>
+                        
+                        Jak szukać partycji w oparciu o mieszaniny rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Analiza/weryfikacja.html">
+            
+                
+                    <a href="../../Analiza/weryfikacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Weryfikacja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
+            
+                
+                    <a href="../../Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        Jak badać właściwości jednej zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
+            
+                
+                    <a href="../../Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                        Jak badać zależności pomiędzy parą zmiennych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" >
+            
+            <span><b>3.2.3.</b> Jak badać warunkowe zależności?</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" >
+            
+            <span><b>3.3.</b> Predykcja</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" >
+            
+            <span><b>3.3.1.</b> Jak mierzyć błąd predykcji?</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" >
+            
+            <span><b>3.3.2.</b> Jak konstruować komitety? predyktorów?</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="Wizualizacja/wizualizacja.html">
+            
+                
+                    <a href="../../Wizualizacja/wizualizacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Wizualizacja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="Wizualizacja/jak_tworzyc_wykresy_ggplot2.html">
+            
+                
+                    <a href="../../Wizualizacja/jak_tworzyc_wykresy_ggplot2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.</b>
+                        
+                        Jak tworzyć wykresy z pakietem ggplot2?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1.1" data-path="Wizualizacja/ggplot2/01_pierwszy_wykres.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/01_pierwszy_wykres.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.1.</b>
+                        
+                        Jak zrobić pierwszy wykres?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.1.2" data-path="Wizualizacja/ggplot2/02_mapowania.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/02_mapowania.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.2.</b>
+                        
+                        Jak określać mapowania?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.1.3" data-path="Wizualizacja/ggplot2/03_geometrie.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/03_geometrie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.3.</b>
+                        
+                        Jak określać geometrię?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.1.4" data-path="Wizualizacja/ggplot2/04_warstwy.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/04_warstwy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.4.</b>
+                        
+                        Jak składać wykres z kilku warstw?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.1.5" data-path="Wizualizacja/ggplot2/05_statystyki.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/05_statystyki.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.5.</b>
+                        
+                        Jak określać statystyki?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.1.6" data-path="Wizualizacja/ggplot2/06_panele.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/06_panele.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.6.</b>
+                        
+                        Jak tworzyć panele?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.1.7" data-path="Wizualizacja/ggplot2/07_skale.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/07_skale.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.7.</b>
+                        
+                        Jak modyfikować skale?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.1.8" data-path="Wizualizacja/ggplot2/08_wspolrzedne.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/08_wspolrzedne.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.8.</b>
+                        
+                        Jak modyfikować układ współrzędnych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.1.9" data-path="Wizualizacja/ggplot2/09_styl.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/09_styl.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.9.</b>
+                        
+                        Jak modyfikować styl wykresu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.2" data-path="Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
+            
+                
+                    <a href="../../Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.2.</b>
+                        
+                        Jak tworzyć interaktywne wykresy?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="references.html">
+            
+                
+                    <a href="../../references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Bibliografia
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Przewodnik po pakiecie R v. 4.0</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="jak-testowa&#x107;-stworzony-pakiet">Jak testowa&#x107; stworzony pakiet?</h1>
+<p><em>Prawdziwym b&#x142;&#x119;dem jest b&#x142;&#x105;d pope&#x142;ni&#x107; i nie naprawi&#x107; go.</em>, Konfucjusz.</p>
+<p>Bardzo wa&#x17C;nym i bardzo zaniedbywan&#x105; cz&#x119;&#x15B;ci&#x105; tworzenia pakiet&#xF3;w jest przygotowywanie test&#xF3;w weryfikuj&#x105;cych czy funkcjonalno&#x15B;ci (wci&#x105;&#x17C;) dzia&#x142;aj&#x105;.</p>
+<p>Dla programu R przygotowano kilka r&#xF3;&#x17C;nych rozwi&#x105;za&#x144; pozwalaj&#x105;cych na integracje test&#xF3;w dla kodu. </p>
+<p>W przypadku budowania pakiet&#xF3;w, lekkim i wygodnym rozwi&#x105;zaniem dla tworzenia test&#xF3;w jest pakiet <code>testthat</code>.</p>
+<h2 id="dodajemy-testy">Dodajemy testy</h2>
+<p>Testy dodajemy w plikach <code>R</code> do katalogu <code>tests/testthat</code> w pakiecie. </p>
+<p>Aby doda&#x107; ten katalog do naszego pakietu, wraz z potrzebnymi zale&#x17C;no&#x15B;ciami, wystarczy wykona&#x107; instrukcj&#x119; <code>use_testthat()</code> z pakietu <code>devtools</code>. </p>
+<p>Przygotuje ona ca&#x142;&#x105; niezb&#x119;dn&#x105; infrastruktur&#x119; dla test&#xF3;w w pakiecie.</p>
+<pre><code class="lang-r">use_testthat(<span class="hljs-string">&quot;kupPanAuto&quot;</span>)
+</code></pre>
+<pre><code>## Error: Can&apos;t find &apos;kupPanAuto&apos;.
+</code></pre><h2 id="jak-wygl&#x105;daj&#x105;-testy-jednostkowe">Jak wygl&#x105;daj&#x105; testy jednostkowe</h2>
+<p>Nazwa testy jednostkowe bierze si&#x119; stad, &#x17C;e testy weryfikuj&#x105; poprawno&#x15B;&#x107; poszczeg&#xF3;lnych jednostek/modu&#x142;&#xF3;w. Zazwyczaj wykorzystuje si&#x119; je by przetestowa&#x107; poszczeg&#xF3;lne funkcje.</p>
+<p>Test to wywo&#x142;ania funkcji <code>test_that()</code>, kt&#xF3;ra przyjmuje dwa argumenty. </p>
+<ul>
+<li>Pierwszym jest nazwa testu. Gdyby podczas wykonania pojawi&#x142; si&#x119; b&#x142;&#x105;d, ta nazwa u&#x142;atwi okre&#x15B;lenie co nie dzia&#x142;a. </li>
+<li>Drugi parametr to lista oczekiwa&#x144;. Czyli funkcji rozpoczynaj&#x105;cych si&#x119; od <code>expect_...</code>. Funkcje te sprawdzaj&#x105;, czy wywo&#x142;anie funkcji ko&#x144;czy si&#x119; oczekiwanym rezultatem, warto&#x15B;ci&#x105;, b&#x142;&#x119;dem, ostrze&#x17C;eniem, napisem itp.</li>
+</ul>
+<p>Trzy przyk&#x142;adowe testy przestawione s&#x105; poni&#x17C;ej.</p>
+<pre><code class="lang-r">test_that(<span class="hljs-string">&quot;Result is a number&quot;</span>,{
+  expect_true(is.numeric(jakaCena(<span class="hljs-string">&quot;Kia&quot;</span>, <span class="hljs-number">2010</span>)))
+})
+test_that(<span class="hljs-string">&quot;An invalid number of parameters&quot;</span>,{
+  expect_error(jakaCena())
+  expect_error(jakaCena(<span class="hljs-string">&quot;Kia&quot;</span>))
+})
+test_that(<span class="hljs-string">&quot;Results are correct&quot;</span>,{
+  expect_equal(round(jakaCena(<span class="hljs-string">&quot;Kia&quot;</span>, <span class="hljs-number">2010</span>)),
+               <span class="hljs-number">44544</span>)
+  expect_equal(round(jakaCena(<span class="hljs-string">&quot;Kia&quot;</span>, <span class="hljs-number">2011</span>)),
+               <span class="hljs-number">65989</span>)
+})
+</code></pre>
+<h2 id="jak-wykona&#x107;-testy">Jak wykona&#x107; testy?</h2>
+<p>Aby wywo&#x142;a&#x107; wszystkie testy z katalogu <code>tests</code> wystarczy wywo&#x142;a&#x107; funkcj&#x119; <code>test()</code> a pakietu <code>devtools</code>.</p>
+<p>Je&#x17C;eli test zostanie wykonany bez b&#x142;&#x119;d&#xF3;w wy&#x15B;wietli si&#x119; jako kropka. Je&#x17C;eli z b&#x142;&#x119;dami, wy&#x15B;wietli si&#x119; informacja o tym co to za test.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(devtools)
+test(<span class="hljs-string">&quot;kupPanAuto&quot;</span>)
+</code></pre>
+<pre><code>Loading kupPanAuto
+Testing kupPanAuto
+1...
+1. Error: Result is a number -----------------------------------------------------------------------------------------------------------------------
+could not find function &quot;jakaCena&quot;
+
+I believe in you!
+</code></pre><h2 id="jak-przetestowa&#x107;-pakiet">Jak przetestowa&#x107; pakiet?</h2>
+<p>Aby pakiet zosta&#x142; przyj&#x119;ty na CRAN nie wystarczy, &#x17C;e funkcje dzia&#x142;aj&#x105; poprawnie.</p>
+<p>Pakiet musi spe&#x142;nia&#x107; list&#x119; okre&#x15B;lonych warunk&#xF3;w dotycz&#x105;cej formatowania (Camel Case dla tytu&#x142;&#xF3;w, niezbyt d&#x142;ugie linie, poprawna dokumentacja, wykonywalne przyk&#x142;ady), czy sp&#xF3;jno&#x15B;ci opisu.</p>
+<p>Do weryfikacji, czy pakiet jest zgodny z wszystkimi wymogami mo&#x17C;na wykorzysta&#x107; funkcj&#x119; <code>check()</code>.</p>
+<p>Wszystko co nie jest okre&#x15B;lone jako <code>OK</code> nale&#x17C;y poprawi&#x107;.</p>
+<pre><code class="lang-r">check(<span class="hljs-string">&quot;kupPanAuto&quot;</span>)
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../Programowanie/pakiety/nowa_funkcja.html" class="navigation navigation-prev " aria-label="Previous page: Jak dodawać funkcje do pakietu?"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../Programowanie/pakiety/nowe_budowanie.html" class="navigation navigation-next " aria-label="Next page: Jak budować stworzony pakiet?"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
