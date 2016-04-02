@@ -1,6 +1,6 @@
 # Jak stworzyć nowy pakiet?
 
-Nowy pakiet najwygodniej budować używając funkcji `create()` z pakietu `devtools`.
+Nowy pakiet najwygodniej budować używając funkcji `create()` z biblioteki `devtools`.
 
 Na potrzeby tego rozdziału stworzymy nowy pakiet `kupPanAuto`. Aby stworzyć pusty pakiet o takiej nazwie potrzebne jest wywołanie.
 
@@ -16,7 +16,7 @@ Pierwszym argumentem funkcji `check()` jest ścieżka, w której należy stworzy
 
 ## Plik DESCRIPTION
 
-Nowo stworzony pakiet ma generyczny plik DESCRIPTION. 
+Nowo stworzony pakiet ma generyczny plik `DESCRIPTION`. 
 Pierwszą rzeczą, którą należy zrobić po zbudowaniu pakietu to uzupełnienie informacji w tym pliku. 
 
 W sekcji `Package` uzupełniamy nazwę pakietu, w sekcji `Title` jednozdaniowy opis pakietu, w sekcji `Authors` informację o autorach oraz ich roli przy tworzeniu pakietów. W sekcji `Description` uzupełniamy szerszy opis pakietu.
