@@ -37,7 +37,7 @@
      * [Jak dodawać zbiory danych do pakietu?](Programowanie/pakiety/nowe_dane,md)
      * [Jak dodawać testy do pakietu?](Programowanie/pakiety/nowe_testy.md)
      * [Jak budować stworzony pakiet?](Programowanie/pakiety/nowe_budowanie.md)
-     * [Jak testować stworzony pakiet?](Programowanie/pakiety/nowe_budowanie.md)
+     * [Jak testować stworzony pakiet?](Programowanie/pakiety/nowe_testy.md)
      * [Jak udostępniać swój pakiet?](Programowanie/pakiety/udostepnij.md)
      * [Co dalej?](Programowanie/pakiety/co_dalej.md)
    * [Jak budować aplikacje z pakietem Shiny?](Programowanie/jak_tworzyc_aplikajce.md)
