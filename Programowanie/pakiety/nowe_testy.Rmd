@@ -22,11 +22,11 @@ use_testthat("kupPanAuto")
 
 ## Jak wyglądają testy jednostkowe
 
-Nazwa testy jednostkowe bierze się stad, że testy weryfikuja poprawność poszczególnych jednostek/modułów. Zazwyczaj wykorzystuje się je by pretestować poszczególne funkcje.
+Nazwa testy jednostkowe bierze się stad, że testy weryfikują poprawność poszczególnych jednostek/modułów. Zazwyczaj wykorzystuje się je by przetestować poszczególne funkcje.
 
 Test to wywołania funkcji `test_that()`, która przyjmuje dwa argumenty. 
 
-- Pierwszym jest nazwa testu. Gdyby podczas wykonani apojawił się błąd, ta nazwa ułatwi określenie co nie działa. 
+- Pierwszym jest nazwa testu. Gdyby podczas wykonania pojawił się błąd, ta nazwa ułatwi określenie co nie działa. 
 - Drugi parametr to lista oczekiwań. Czyli funkcji rozpoczynających się od `expect_...`. Funkcje te sprawdzają, czy wywołanie funkcji kończy się oczekiwanym rezultatem, wartością, błędem, ostrzeżeniem, napisem itp.
 
 Trzy przykładowe testy przestawione są poniżej.
@@ -81,4 +81,3 @@ Wszystko co nie jest określone jako `OK` należy poprawić.
 ```r
 check("kupPanAuto")
 ```
-
