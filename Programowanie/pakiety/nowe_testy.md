@@ -1,0 +1,89 @@
+# Jak testować stworzony pakiet?
+
+*Prawdziwym błędem jest błąd popełnić i nie naprawić go.*, Konfucjusz.
+
+Bardzo ważnym i bardzo zaniedbywaną częścią tworzenia pakietów jest przygotowywanie testów weryfikujących czy funkcjonalności (wciąż) działają.
+
+Dla programu R przygotowano kilka różnych rozwiązań pozwalających na integracje testów dla kodu. 
+
+W przypadku budowania pakietów, lekkim i wygodnym rozwiązaniem dla tworzenia testów jest pakiet `testthat`.
+
+## Dodajemy testy
+
+Testy dodajemy w plikach `R` do katalogu `tests/testthat` w pakiecie. 
+
+Aby dodać ten katalog do naszego pakietu, wraz z potrzebnymi zależnościami, wystarczy wykonać instrukcję `use_testthat()` z pakietu `devtools`. 
+
+Przygotuje ona całą niezbędną infrastrukturę dla testów w pakiecie.
+
+
+```r
+use_testthat("kupPanAuto")
+```
+
+```
+## Error: Can't find 'kupPanAuto'.
+```
+
+## Jak wyglądają testy jednostkowe
+
+Nazwa testy jednostkowe bierze się stad, że testy weryfikuja poprawność poszczególnych jednostek/modułów. Zazwyczaj wykorzystuje się je by pretestować poszczególne funkcje.
+
+Test to wywołania funkcji `test_that()`, która przyjmuje dwa argumenty. 
+
+- Pierwszym jest nazwa testu. Gdyby podczas wykonani apojawił się błąd, ta nazwa ułatwi określenie co nie działa. 
+- Drugi parametr to lista oczekiwań. Czyli funkcji rozpoczynających się od `expect_...`. Funkcje te sprawdzają, czy wywołanie funkcji kończy się oczekiwanym rezultatem, wartością, błędem, ostrzeżeniem, napisem itp.
+
+Trzy przykładowe testy przestawione są poniżej.
+
+```r
+test_that("Result is a number",{
+  expect_true(is.numeric(jakaCena("Kia", 2010)))
+})
+test_that("An invalid number of parameters",{
+  expect_error(jakaCena())
+  expect_error(jakaCena("Kia"))
+})
+test_that("Results are correct",{
+  expect_equal(round(jakaCena("Kia", 2010)),
+               44544)
+  expect_equal(round(jakaCena("Kia", 2011)),
+               65989)
+})
+```
+
+## Jak wykonać testy?
+
+Aby wywołać wszystkie testy z katalogu `tests` wystarczy wywołać funkcję `test()` a pakietu `devtools`.
+
+Jeżeli test zostanie wykonany bez błędów wyświetli się jako kropka. Jeżeli z błędami, wyświetli się informacja o tym co to za test.
+
+```r
+library(devtools)
+test("kupPanAuto")
+```
+
+```
+Loading kupPanAuto
+Testing kupPanAuto
+1...
+1. Error: Result is a number -----------------------------------------------------------------------------------------------------------------------
+could not find function "jakaCena"
+
+I believe in you!
+```
+
+## Jak przetestować pakiet?
+
+Aby pakiet został przyjęty na CRAN nie wystarczy, że funkcje działają poprawnie.
+
+Pakiet musi spełniać listę określonych warunków dotyczącej formatowania (Camel Case dla tytułów, niezbyt długie linie, poprawna dokumentacja, wykonywalne przykłady), czy spójności opisu.
+
+Do weryfikacji, czy pakiet jest zgodny z wszystkimi wymogami można wykorzystać funkcję `check()`.
+
+Wszystko co nie jest określone jako `OK` należy poprawić.
+
+```r
+check("kupPanAuto")
+```
+
