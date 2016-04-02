@@ -62,9 +62,8 @@ Po zbudowaniu dokumentacji, w pakiecie opis dla funkcji `jakiPrzebieg()` będzie
 
 ![Pomoc dla funkcji jakiPrzebieg](grafika/manPage.png)
 
-Poniżej przedstawiona jest przykładowa dokumentacja dla funkcji `proton`z pakietu `proton`. Jest ona bardziej rozbudowana, można wiec zobaczyć jak wykorzystywać inne tagi.
+Poniżej przedstawiona jest przykładowa dokumentacja dla funkcji `proton` z pakietu `proton`. Jest ona bardziej rozbudowana, można wiec zobaczyć jak wykorzystywać inne tagi.
 
 ![Przykładowa dokumentacja dla funkcji proton()](grafika/pakiet3.png)
 
 O tym jak przetworzyć taki plik na plik z poprawnie zbudowaną dokumentacją, piszemy w rozdziale *Jak budować stworzony pakiet?*.
-
