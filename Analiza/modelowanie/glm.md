@@ -2,14 +2,14 @@
 
 ## Wykładnicza rodzina rozkładów
 
-Rodzinę rozkłądów nazywamy wykładniczą rodziną rozkłądów, jeżeli gęstość można rozłożyć na
+Rodzinę rozkładów nazywamy wykładniczą rodziną rozkładów, jeżeli gęstość można zapisać w postaci
 
 $$
 f(y|\theta) = h(y) \exp(b(\theta) T (y) - A(\theta))
 $$
 
 
-## Przykładowe wykłądnicze rodziny rozkładów
+## Przykładowe wykładnicze rodziny rozkładów
 
 ### Rozkład Poissona
 
@@ -25,7 +25,7 @@ $$
 \frac{1}{y!}\exp(y (\log(\lambda) - 1)) 
 $$
 
-w tej postaci łatwiej zauważyć, że jest to rodzina wykłądnicza.
+w tej postaci łatwiej zauważyć, że jest to rodzina wykładnicza.
 
 
 ### Rozkład Dwumianowy
@@ -59,3 +59,4 @@ $$
 $$
 
 a więc to też wykładnicza rodzina rozkładów.
+
