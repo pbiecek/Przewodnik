@@ -2,7 +2,7 @@
 
 Największą zaletą algorytmu k-średnich jest efektywność obliczeniowa. Wyznaczanie średnich i przypisywanie do najbliższej średniej jest algebraicznie szybkie, łatwo się zrównolegla, przez co można stosować te algorytm do dużych baz danych. 
 
-Niestety jak widzieliśmy, opiera się on o kwadrat odległości Euklidesowej. Nie zawsze akurat taka miara podobieństwa nas interesuje. Taka miara jest też bardzo wrażliwa na duże odległości i pojedyncza wartość odstająca może znacząco wpłynąć na sumę kwadratów odległości.
+Niestety, jak widzieliśmy, opiera się on o kwadrat odległości Euklidesowej. Nie zawsze akurat taka miara podobieństwa nas interesuje. Taka miara jest też bardzo wrażliwa na duże odległości i pojedyncza wartość odstająca może znacząco wpłynąć na sumę kwadratów odległości.
 
 Algorytm k-medoidów pozwoli nam wykorzystywać inne miary odległości za cenę wyższej złożoności obliczeniowej.
 
@@ -11,15 +11,15 @@ Algorytm k-medoidów pozwoli nam wykorzystywać inne miary odległości za cenę
 
 Algorytm PAM (*Partitioning Around Medoids*, nazywany dalej algorytmem k-medoidów) jest następujący
 
-0. Zainicjuj algorytm wybierając losowe obiekty jako medoidy/centra/reprezentantów grup.
+1. Zainicjuj algorytm wybierając losowe obiekty jako medoidy/centra/reprezentantów grup.
 
-1. Dla wszystkich obiektów wyznacz ich przypisanie na zasadzie odległości od najbliższego medoidu. 
+2. Dla wszystkich obiektów wyznacz ich przypisanie na zasadzie odległości od najbliższego medoidu. 
 $$
 C(i) = arg\min_k d(x_i, m_k),
 $$
 gdzie $$m_k$$ to medoid grupy $$k$$.
 
-2. Dla każdej grupy, sprawdź czy inny obiekt z tej grupy nie ma mniejszej sumy odległości od wszystkich pozostałych w tej grupie. Jeżeli tak, to to on powinien być nowym medoidem.
+3. Dla każdej grupy, sprawdź czy inny obiekt z tej grupy nie ma mniejszej sumy odległości od wszystkich pozostałych w tej grupie. Jeżeli tak, to to on powinien być nowym medoidem.
 $$
 m'_k = x_{r(k)},
 $$
@@ -27,7 +27,7 @@ $$
 r(k) = arg\min_{i: C(x_i) = k} \sum_{j: C(x_j) = k} d(x_i, x_j).
 $$
 
-3. Powtarzaj kroki 1-2 tak długo póki zmienia się przypisanie do grup $$C(x_i)$$. 
+4. Powtarzaj kroki 2-3 tak długo póki zmienia się przypisanie do grup $$C(x_i)$$. 
 
 
 ## Przykład
