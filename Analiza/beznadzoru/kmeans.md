@@ -17,7 +17,7 @@ $$
 Suma obu tych wartości jest stała i równa sumarycznej odległości pomiędzy wszystkimi obiektami. Skoro suma jest stała, to minimalizacja czy to $$W(C)/B(C)$$ czy $$W(C) - B(C)$$ jest równoważna minimalizacji samego $$W(C)$$. Jeżeli dodatkowo za odległość $$d(x_i,x_j)$$ wybierzemy kwadrat odległości Euklidesowej, to otrzymamy następujący wzór na sumę odległości w grupach 
 
 $$
-W(C) = \sum_{k=1}^K \#{j: C(j) = k} \sum_{i: C(i) = k} || x_i - \bar x_k ||^2.
+W(C) = \sum_{k=1}^K \#\{j: C(j) = k\} \sum_{i: C(i) = k} || x_i - \bar x_k ||^2.
 $$
 
 Więcej informacji o tym wzorze znaleźć można w rozdziale 14.3.5 *The Elements of Statistical Learning* Trevor Hastie, Robert Tibshirani, Jerome Friedman.
@@ -26,19 +26,19 @@ Jeżeli obserwacji jest niebanalna liczba, nie sposób sprawdzić wszystkich mo�
 
 ## Algorytm k-średnich
 
-0. Wybierz losowe przypisanie do grup (lub losowe środki grup).
+1. Wybierz losowe przypisanie do grup (lub losowe środki grup).
 
-1. Dla określonego przypisania do grup wartość $$W(C)$$ jest minimalizowana, jeżeli środki grup opisane są przez średnie w grupach. Wyznacz środki poszczególnych grup jako średnie 
+2. Dla określonego przypisania do grup wartość $$W(C)$$ jest minimalizowana, jeżeli środki grup opisane są przez średnie w grupach. Wyznacz środki poszczególnych grup jako średnie 
 $$
-\bar x_k = \frac{1}{\#{j: C(j) = k}} \sum_{i: C(i) = k} x_i.
+\bar x_k = \frac{1}{\#\{j: C(j) = k\}} \sum_{i: C(i) = k} x_i.
 $$
 
-2. Dla określonych średnich wartość $$W(C)$$ jest minimalizowana, jeżeli każda obserwacja jest przypisana do grupy wyznaczonej przez najbliższą średnią
+3. Dla określonych średnich wartość $$W(C)$$ jest minimalizowana, jeżeli każda obserwacja jest przypisana do grupy wyznaczonej przez najbliższą średnią
 $$
 C(i) = arg\min_k ||x_i - \bar x_k||^2,
 $$
 
-3. Powtarzaj kroki 1-2 tak długo póki zmienia się przypisanie do grup $$C(x_i)$$. 
+4. Powtarzaj kroki 2-3 tak długo póki zmienia się przypisanie do grup $$C(x_i)$$. 
 
 
 Powyższy algorytm z kroku na krok minimalizuje funkcję $$W(C)$$, ale może utknąć w lokalnym minimum tej funkcji. Dlatego zaleca się wystartowanie go z kilku różnych losowych konfiguracji początkowych.
@@ -109,7 +109,7 @@ head(grupy$cluster)
 
 ```
 ## Audi A3 Audi A4 Audi A6 Audi A8 Audi Q7 BMW 316 
-##       3       3       2       1       1       4
+##       2       4       4       3       3       1
 ```
 
 ```r
@@ -117,11 +117,11 @@ grupy$centers
 ```
 
 ```
-##     Cena_norm    KM_norm
-## 1  3.44008102  2.8222961
-## 2  0.90188042  1.4519034
-## 3 -0.03059072  0.1476185
-## 4 -0.55732347 -0.7505937
+##    Cena_norm    KM_norm
+## 1 -0.6445280 -1.0066262
+## 2 -0.2142881 -0.1830422
+## 3  3.4400810  2.8222961
+## 4  0.2846520  0.7662755
 ```
 
 Wykorzystajmy obie te wartości aby narysować auta po podzieleniu na grupy. Dodatkowo dodaliśmy numery grup zaczepione w środkach grup.
@@ -148,7 +148,7 @@ grupy$withinss
 ```
 
 ```
-## [1] 1.733690 1.112375 7.271039 5.923938
+## [1] 2.509780 6.235331 1.733690 5.545342
 ```
 
 ```r
@@ -156,7 +156,7 @@ grupy$betweenss
 ```
 
 ```
-## [1] 87.95896
+## [1] 87.97586
 ```
 
 ```r
@@ -189,8 +189,8 @@ WC
 ```
 
 ```
-## [1] 38.930412 21.885048 16.024143 11.355036  8.883000  7.443055  6.547251
-## [8]  5.852946  4.741451
+## [1] 38.930412 21.885048 16.024143 11.442202  8.883000  7.469044  6.683729
+## [8]  5.929901  4.502655
 ```
 
 ```r
