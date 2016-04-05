@@ -73,6 +73,9 @@
        * [Jak badać właściwości jednej zmiennej?](Analiza/jak_badac_wlasciwosci_jednej_zmiennej.md)
        * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
        * Jak badać warunkowe zależności?
+   * Modelowanie
+     * Modele liniowe
+     * Uogólnione modele liniowe
    * Predykcja
        * Jak mierzyć błąd predykcji?
        * Jak konstruować komitety? predyktorów?
