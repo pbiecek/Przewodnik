@@ -82,11 +82,57 @@ $$
 
 gdzie $$H(\beta^{(i)})$$ to macierz Hessego drugich pochodnych wyznaczona w punkcie $$\beta^{(i)}$$ a $$g(\beta^{(i)})$$ to gradient wyznaczony w tym punkcie.
 
-Innym wariantem jest metoda Fisher Scoring, gdzie macierz Hessego zastępujemy macierzą informacji Fishera.
+Innym wariantem jest metoda Fisher Scoring, gdzie macierz Hessego zastępujemy macierzą informacji Fishera (wartość oczekiwana macierzy drugich pochodnych).
 
 $$
 \beta^{(i+1)} = \beta^{(i)} - H^{(-1)}(\beta^{(i)}) g(\beta^{(i)}),
 $$
+
+
+IRLS - iteratively re-weighted least squares
+
+Okazuje się, że problem estymacji sprowadza się do
+
+$$
+\beta^{(i+1)} = (X^T W^{(i)} X)^{-1} X^T W^{(i)} z^{(i)},
+$$
+
+
+
+
+## Testy
+
+
+### Test Walda
+
+$$
+\hat \beta \to \mathcal N(\beta, I^{-1}(\beta))
+$$
+
+gdzie
+
+$$
+I(\beta) = \phi^{-1} X^T W X
+$$
+
+Macierz kowariancji jest z dokładnością do $$\phi$$ wyznaczana w algorytmie IWLS.
+
+Znając rozkład asymptotyczny $$\hat \beta$$ można zbudować test w oparciu o statystykę Walda.
+
+
+### Test ilorazu wiarogodności
+
+Alternatywą do testu Walda opartego o asymptotyczny normalny rozkład estymatora $$\beta$$ jest wykorzystanie testu ilorazu wiarogodności. 
+
+Rozważmy dwa modele $$M_2$$ i zagnieżdżony w nim $$M_1$$ (zagnieżdżenie oznacza tutaj zawieranie macierzy $$X$$). 
+
+Statystyka testowa -2 logarytmy ilorazu wiarogodności wyraża się przez przeskalowaną różnicę dewiancji
+
+$$
+- 2 \log \lambda = \frac{D(M_1) - D(M_2)}{\phi}.
+$$
+
+Asymptotyczny rozkład testu ilorazu wiarogodności to $$\chi^2_{p}$$ gdzie $$p = p_2 - p_1$$ to różnica w liczbie parametrów pomiędzy rozważanymi modelami.
 
 
 ## Wykładnicza rodzina rozkładów
@@ -148,6 +194,7 @@ $$
 $$
 
 a więc to też wykładnicza rodzina rozkładów.
+
 
 
 
