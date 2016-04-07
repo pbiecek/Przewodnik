@@ -1,5 +1,51 @@
 # Jak budować Uogólnione Modele Liniowe (ang. Generalized Linear Models)?
 
+## Modelowanie wartości oczekiwanej
+
+Uogólnione modele liniowe służą do opisywania wartości oczekiwanych zmiennych losowych pochodzących z wykładniczych rodzin rozkładów prawdopodobieństwa.
+
+Wartość oczekiwaną objaśnianej zmiennej $$y$$ opisujemy przez przekształconą liniową kombinację zmiennych objaśniających $$X \beta$$. 
+
+Ponieważ nośnik zmiennej objaśnianej $$y$$ jest różny dla różnych rozkładów (dla Poissona jest to $$[0, \infty)$$, dla rozkładu dwumianowego $$[0,1]$$, dla rozkładu normlanego $$(-\infty, \infty)$$), dlatego potrzebujemy funkcji, która sprowadzi liniowy predyktor $$X \beta$$ do nośnika zmiennej $$y$$.
+
+Zakładamy więc następującą zależność.
+
+$$
+E(y) = \mu = g^{-1}(X \beta)
+$$
+
+gdzie $$g()$$ to tzw. funkcja łącząca.
+
+W wielu rodzinach wykładniczych wariancja jest funkcją wartości oczekiwanej. Oznaczmy tę funkcję jako $$V$$.
+
+$$
+Var (y) = V( \mu ) = V( g^{-1}(X \beta) )
+$$
+
+
+
+
+
+
+## Estymacja współczynników
+
+Ponieważ dla wielu rodzin nie ma analitycznego rozwiązania, pozostają metody iteracyjnego szukania maksimum funkcji wiarogodności.
+
+Można klasycznie, stosując np. metodę Newtona-Raphsona,
+
+$$
+\beta^{(i+1)} = \beta^{(i)} - H^{(-1)}(\beta^{(i)}) g(\beta^{(i)}),
+$$
+
+gdzie $$H(\beta^{(i)})$$ to macierz Hessego drugich pochodnych wyznaczona w punkcie $$\beta^{(i)}$$ a $$g(\beta^{(i)})$$ to gradient wyznaczony w tym punkcie.
+
+Innym wariantem jest metoda Fisher Scoring, gdzie macierz Hessego zastępujemy macierzą informacji Fishera.
+
+$$
+\beta^{(i+1)} = \beta^{(i)} - H^{(-1)}(\beta^{(i)}) g(\beta^{(i)}),
+$$
+
+
 ## Wykładnicza rodzina rozkładów
 
 Rodzinę rozkładów nazywamy wykładniczą rodziną rozkładów, jeżeli gęstość można zapisać w postaci
@@ -59,4 +105,6 @@ $$
 $$
 
 a więc to też wykładnicza rodzina rozkładów.
+
+
 
