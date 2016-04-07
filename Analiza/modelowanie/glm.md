@@ -24,6 +24,49 @@ $$
 
 
 
+## Funkcje łączące
+
+Dla określonej rodziny wykładniczej można wybierać różne funkcje łączące. 
+
+Poniżej przedstawiamy kanoniczne funkcje łączące (wyrażające średnią w terminach parametrów kanonicznych).
+
+
+### Rozkład normalny 
+
+Funkcja identycznosciowa.
+
+$$
+X \beta = \mu
+$$
+
+
+### Rozkład Poissona 
+
+Logarytm
+
+$$
+X \beta = \ln (\mu)
+$$
+
+$$
+\exp( X \beta) = \mu
+$$
+
+### Rozkład Dwumianowy 
+
+Funkcja Logit
+
+$$
+X \beta = \ln (\frac{\mu}{1 - \mu})
+$$
+
+$$
+\frac{\exp(X \beta)}{1 + \exp(X \beta)} = \mu
+$$
+
+
+
+
 
 
 
