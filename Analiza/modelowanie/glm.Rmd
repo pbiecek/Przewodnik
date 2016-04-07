@@ -198,3 +198,10 @@ a więc to też wykładnicza rodzina rozkładów.
 
 
 
+## glm w R
+
+Aby określić postać uogólnionego modelu liniowego i wyestymować współczynniki można wykorzystać funkcję `glm()`. Trzy podstawowe argumenty tej funkcji to `formula` - opisuje zależność pomiędzy zmiennymi, `family` - opisuje rodzinę rozkładów prawdopodobieństwa i funkcję łączącą i `data` - zbiór danych.
+
+Formułę opisuje się w ten sam sposób co przy zwykłym modelu liniowym. Rodziny rozkładów definiuje się funkcji o nazwach odpowiadających nazwom rodzin, np. `binomial(link = "logit")`, `gaussian(link = "identity")`, `poisson(link = "log")`.
+
+
