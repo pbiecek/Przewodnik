@@ -31,7 +31,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##  15.538   0.375  16.502
+##  13.353   0.280  13.646
 ```
 
 Kilkanaście sekund! 
@@ -85,31 +85,31 @@ summaryRprof("profiler.out")$by.self
 
 ```
 ##                           self.time self.pct total.time total.pct
-## "lm.fit"                       7.96    71.71       7.96     71.71
-## "chol2inv"                     1.85    16.67       1.85     16.67
-## "matrix"                       0.21     1.89       0.38      3.42
-## "runif"                        0.17     1.53       0.17      1.53
-## "na.omit.data.frame"           0.11     0.99       0.29      2.61
-## "[.data.frame"                 0.10     0.90       0.10      0.90
-## "makepredictcall.default"      0.10     0.90       0.10      0.90
-## ".External2"                   0.09     0.81       0.42      3.78
-## "as.vector"                    0.09     0.81       0.09      0.81
-## ".External"                    0.08     0.72       0.08      0.72
-## "is.na"                        0.08     0.72       0.08      0.72
-## "na.omit"                      0.04     0.36       0.33      2.97
-## "%in%"                         0.03     0.27       0.06      0.54
-## "match"                        0.03     0.27       0.05      0.45
-## "summary.lm"                   0.02     0.18       1.87     16.85
-## "makepredictcall"              0.02     0.18       0.12      1.08
-## "paste"                        0.02     0.18       0.09      0.81
-## "[["                           0.02     0.18       0.05      0.45
-## "vapply"                       0.02     0.18       0.02      0.18
-## "model.frame.default"          0.01     0.09       0.60      5.41
-## "deparse"                      0.01     0.09       0.07      0.63
-## ".subset2"                     0.01     0.09       0.01      0.09
-## "all"                          0.01     0.09       0.01      0.09
-## "model.response"               0.01     0.09       0.01      0.09
-## "pmatch"                       0.01     0.09       0.01      0.09
+## "lm.fit"                      10.84    73.05      10.84     73.05
+## "chol2inv"                     2.58    17.39       2.58     17.39
+## "as.vector"                    0.25     1.68       0.25      1.68
+## "summary.lm"                   0.19     1.28       2.77     18.67
+## "runif"                        0.17     1.15       0.17      1.15
+## "makepredictcall.default"      0.12     0.81       0.12      0.81
+## "matrix"                       0.11     0.74       0.28      1.89
+## "na.omit.data.frame"           0.10     0.67       0.26      1.75
+## ".External2"                   0.07     0.47       0.37      2.49
+## "[.data.frame"                 0.07     0.47       0.09      0.61
+## "is.na"                        0.07     0.47       0.07      0.47
+## ".External"                    0.06     0.40       0.06      0.40
+## "na.omit"                      0.04     0.27       0.30      2.02
+## "deparse"                      0.04     0.27       0.07      0.47
+## "FUN"                          0.02     0.13       0.10      0.67
+## ".subset2"                     0.02     0.13       0.02      0.13
+## "paste"                        0.01     0.07       0.08      0.54
+## "[["                           0.01     0.07       0.05      0.34
+## "[[.data.frame"                0.01     0.07       0.04      0.27
+## ".deparseOpts"                 0.01     0.07       0.02      0.13
+## "%in%"                         0.01     0.07       0.02      0.13
+## "match"                        0.01     0.07       0.02      0.13
+## "all"                          0.01     0.07       0.01      0.07
+## "list"                         0.01     0.07       0.01      0.07
+## "pmatch"                       0.01     0.07       0.01      0.07
 ```
 
 ## Graficzne statystyki z pakietem profr
@@ -135,12 +135,12 @@ head(pro)
 
 ```
 ##    level g_id t_id                    f start   end n  leaf  time source
-## 28     1    1    1        as.data.frame  0.00  0.43 1 FALSE  0.43   base
-## 29     1    2    1              summary  0.43 20.15 1 FALSE 19.72   base
-## 30     2    1    1               matrix  0.00  0.33 1 FALSE  0.33   base
-## 31     2    2    1 as.data.frame.matrix  0.33  0.43 1 FALSE  0.10   base
-## 32     2    3    1                  glm  0.43 18.42 1 FALSE 17.99  stats
-## 33     2    4    1          summary.glm 18.42 20.15 1 FALSE  1.73  stats
+## 28     1    1    1        as.data.frame  0.00  0.47 1 FALSE  0.47   base
+## 29     1    2    1              summary  0.47 31.88 1 FALSE 31.41   base
+## 30     2    1    1               matrix  0.00  0.36 1 FALSE  0.36   base
+## 31     2    2    1 as.data.frame.matrix  0.36  0.47 1 FALSE  0.11   base
+## 32     2    3    1                  glm  0.47 29.10 1 FALSE 28.63  stats
+## 33     2    4    2          summary.glm 29.11 31.88 1 FALSE  2.77  stats
 ```
 
 ```r
@@ -164,7 +164,7 @@ system.time({ x=NULL; for (i in 1:10^5) x =c(x, runif(1)) })
 
 ```
 ##    user  system elapsed 
-##  16.979  13.325  30.399
+##  19.649  18.181  41.137
 ```
 
 ```r
@@ -173,7 +173,7 @@ system.time({ x=NULL; for (i in 1:10^5) x[i] =runif(1) })
 
 ```
 ##    user  system elapsed 
-##   9.500  12.624  22.196
+##  12.525  17.224  31.844
 ```
 
 ```r
@@ -182,7 +182,7 @@ system.time({x=numeric(10^5); for(i in 1:10^5) x[i]=runif(1)})
 
 ```
 ##    user  system elapsed 
-##   0.308   0.037   0.360
+##   0.359   0.037   0.398
 ```
 
 ```r
@@ -200,46 +200,27 @@ Pierwsze dwa dynamicznie rozciągają wektor, co w R oznacza kopiowanie w kółk
 
 Jeżeli mierzenie czasu działania z dokładnością do sekundy nie jest wystarczające, to warto skorzystać z biblioteki `microbenchmark`. Nie dość, że powtarza ona określone instrukcje wiele razy (domyślnie 100), to jeszcze prezentuje graficznie i tekstowo rozkład czasów działania.
 
+W poniższym przykładzie porónujemy ponownie cztery sposoby losowania wektora liczb.
 
 
 ```r
 library(microbenchmark)
 library(ggplot2)
 
-microbenchmark(
+pro <- microbenchmark(
   skladanie = { x=NULL; for (i in 1:10^3) x =c(x, runif(1)) },
   skladanie2 = { x=NULL; for (i in 1:10^3) x[i] =runif(1) },
   inicjacja = {x=numeric(10^3); for(i in 1:10^3) x[i]=runif(1)},
   wektoryzacja = { x=NULL; x = runif(10^3) })
+
+boxplot(pro)
 ```
 
-```
-## Unit: microseconds
-##          expr      min       lq       mean   median       uq       max
-##     skladanie 2961.737 3684.758 4542.48931 4008.024 4236.851 58727.642
-##    skladanie2 3058.808 3773.830 4638.96561 4036.253 4418.396 53049.009
-##     inicjacja 2250.163 2504.703 5033.90407 2832.123 3247.410 68066.542
-##  wektoryzacja   29.412   30.919   42.17776   32.027   33.770   874.727
-##  neval cld
-##    100   b
-##    100   b
-##    100   b
-##    100  a
-```
+![plot of chunk mikroprofilowanie](figure/mikroprofilowanie-1.png)
 
 ```r
-boxplot(.Last.value)
+autoplot(pro)
 ```
 
-```
-## Error in sort.int(x, na.last = na.last, decreasing = decreasing, ...): 'x' must be atomic
-```
-
-```r
-autoplot(.Last.value)
-```
-
-```
-## Error: Objects of type gg/ggplot not supported by autoplot.
-```
+![plot of chunk mikroprofilowanie](figure/mikroprofilowanie-2.png)
 

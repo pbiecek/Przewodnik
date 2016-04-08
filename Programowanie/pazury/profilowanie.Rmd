@@ -123,13 +123,13 @@ W poniższym przykładzie porónujemy ponownie cztery sposoby losowania wektora 
 library(microbenchmark)
 library(ggplot2)
 
-microbenchmark(
+pro <- microbenchmark(
   skladanie = { x=NULL; for (i in 1:10^3) x =c(x, runif(1)) },
   skladanie2 = { x=NULL; for (i in 1:10^3) x[i] =runif(1) },
   inicjacja = {x=numeric(10^3); for(i in 1:10^3) x[i]=runif(1)},
   wektoryzacja = { x=NULL; x = runif(10^3) })
 
-boxplot(.Last.value)
-autoplot(.Last.value)
+boxplot(pro)
+autoplot(pro)
 ```
 
