@@ -31,7 +31,7 @@ system.time({
 
 ```
 ##    user  system elapsed 
-##  13.353   0.280  13.646
+##  14.472   0.280  14.794
 ```
 
 Kilkanaście sekund! 
@@ -85,31 +85,39 @@ summaryRprof("profiler.out")$by.self
 
 ```
 ##                           self.time self.pct total.time total.pct
-## "lm.fit"                      10.84    73.05      10.84     73.05
-## "chol2inv"                     2.58    17.39       2.58     17.39
-## "as.vector"                    0.25     1.68       0.25      1.68
-## "summary.lm"                   0.19     1.28       2.77     18.67
-## "runif"                        0.17     1.15       0.17      1.15
-## "makepredictcall.default"      0.12     0.81       0.12      0.81
-## "matrix"                       0.11     0.74       0.28      1.89
-## "na.omit.data.frame"           0.10     0.67       0.26      1.75
-## ".External2"                   0.07     0.47       0.37      2.49
-## "[.data.frame"                 0.07     0.47       0.09      0.61
-## "is.na"                        0.07     0.47       0.07      0.47
-## ".External"                    0.06     0.40       0.06      0.40
-## "na.omit"                      0.04     0.27       0.30      2.02
-## "deparse"                      0.04     0.27       0.07      0.47
-## "FUN"                          0.02     0.13       0.10      0.67
-## ".subset2"                     0.02     0.13       0.02      0.13
-## "paste"                        0.01     0.07       0.08      0.54
-## "[["                           0.01     0.07       0.05      0.34
-## "[[.data.frame"                0.01     0.07       0.04      0.27
-## ".deparseOpts"                 0.01     0.07       0.02      0.13
-## "%in%"                         0.01     0.07       0.02      0.13
-## "match"                        0.01     0.07       0.02      0.13
-## "all"                          0.01     0.07       0.01      0.07
-## "list"                         0.01     0.07       0.01      0.07
-## "pmatch"                       0.01     0.07       0.01      0.07
+## "lm.fit"                       9.84    75.17       9.84     75.17
+## "chol2inv"                     1.89    14.44       1.89     14.44
+## "runif"                        0.30     2.29       0.30      2.29
+## "na.omit.data.frame"           0.15     1.15       0.26      1.99
+## "makepredictcall.default"      0.12     0.92       0.12      0.92
+## ".External2"                   0.11     0.84       0.42      3.21
+## "matrix"                       0.08     0.61       0.38      2.90
+## "[.data.frame"                 0.08     0.61       0.08      0.61
+## "as.vector"                    0.08     0.61       0.08      0.61
+## ".External"                    0.07     0.53       0.07      0.53
+## "na.omit"                      0.05     0.38       0.31      2.37
+## "<Anonymous>"                  0.03     0.23      13.09    100.00
+## "paste"                        0.03     0.23       0.10      0.76
+## "is.na"                        0.03     0.23       0.03      0.23
+## "summary.lm"                   0.02     0.15       1.91     14.59
+## "model.frame.default"          0.02     0.15       0.61      4.66
+## "match"                        0.02     0.15       0.06      0.46
+## "sys.call"                     0.02     0.15       0.02      0.15
+## "eval"                         0.01     0.08      13.09    100.00
+## "model.matrix"                 0.01     0.08       0.22      1.68
+## "model.matrix.default"         0.01     0.08       0.21      1.60
+## "makepredictcall"              0.01     0.08       0.13      0.99
+## "[[.data.frame"                0.01     0.08       0.09      0.69
+## "deparse"                      0.01     0.08       0.07      0.53
+## "%in%"                         0.01     0.08       0.05      0.38
+## ".deparseOpts"                 0.01     0.08       0.04      0.31
+## ".subset2"                     0.01     0.08       0.01      0.08
+## "all"                          0.01     0.08       0.01      0.08
+## "c"                            0.01     0.08       0.01      0.08
+## "is.ordered"                   0.01     0.08       0.01      0.08
+## "nargs"                        0.01     0.08       0.01      0.08
+## "paste0"                       0.01     0.08       0.01      0.08
+## "sum"                          0.01     0.08       0.01      0.08
 ```
 
 ## Graficzne statystyki z pakietem profr
@@ -135,12 +143,12 @@ head(pro)
 
 ```
 ##    level g_id t_id                    f start   end n  leaf  time source
-## 28     1    1    1        as.data.frame  0.00  0.47 1 FALSE  0.47   base
-## 29     1    2    1              summary  0.47 31.88 1 FALSE 31.41   base
-## 30     2    1    1               matrix  0.00  0.36 1 FALSE  0.36   base
-## 31     2    2    1 as.data.frame.matrix  0.36  0.47 1 FALSE  0.11   base
-## 32     2    3    1                  glm  0.47 29.10 1 FALSE 28.63  stats
-## 33     2    4    2          summary.glm 29.11 31.88 1 FALSE  2.77  stats
+## 28     1    1    1        as.data.frame  0.00  0.44 1 FALSE  0.44   base
+## 29     1    2    1              summary  0.44 23.40 1 FALSE 22.96   base
+## 30     2    1    1               matrix  0.00  0.33 1 FALSE  0.33   base
+## 31     2    2    1 as.data.frame.matrix  0.33  0.44 1 FALSE  0.11   base
+## 32     2    3    1                  glm  0.44 21.20 1 FALSE 20.76  stats
+## 33     2    4    1          summary.glm 21.20 23.40 1 FALSE  2.20  stats
 ```
 
 ```r
@@ -164,7 +172,7 @@ system.time({ x=NULL; for (i in 1:10^5) x =c(x, runif(1)) })
 
 ```
 ##    user  system elapsed 
-##  19.649  18.181  41.137
+##  17.573  13.793  31.471
 ```
 
 ```r
@@ -173,7 +181,7 @@ system.time({ x=NULL; for (i in 1:10^5) x[i] =runif(1) })
 
 ```
 ##    user  system elapsed 
-##  12.525  17.224  31.844
+##  10.191  13.802  24.573
 ```
 
 ```r
@@ -182,7 +190,7 @@ system.time({x=numeric(10^5); for(i in 1:10^5) x[i]=runif(1)})
 
 ```
 ##    user  system elapsed 
-##   0.359   0.037   0.398
+##   0.375   0.059   0.482
 ```
 
 ```r
@@ -191,7 +199,7 @@ system.time({ x=NULL; x = runif(10^5) })
 
 ```
 ##    user  system elapsed 
-##   0.003   0.000   0.003
+##   0.004   0.000   0.003
 ```
 
 Pierwsze dwa dynamicznie rozciągają wektor, co w R oznacza kopiowanie w kółko całego wektora wyników. Trwa to długo. Inicjacja wektora pustymi wartościami powoduje że czas obliczeń skrócił się 30 razy. Wektoryzacja obliczeń skraca czas obliczeń o kolejne 10 razy.
@@ -223,4 +231,12 @@ autoplot(pro)
 ```
 
 ![plot of chunk mikroprofilowanie](figure/mikroprofilowanie-2.png)
+
+# Materiały
+
+Kilka bardzo ciekawych zadań do rozwiązania można znaleźć na stronie:
+
+http://www.nimbios.org/ifiles/hpc/1_basics.pdf
+
+http://www.nimbios.org/ifiles/hpc/2_performance.pdf
 

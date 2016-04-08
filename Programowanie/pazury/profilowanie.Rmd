@@ -133,3 +133,11 @@ boxplot(pro)
 autoplot(pro)
 ```
 
+# Materiały
+
+Kilka bardzo ciekawych zadań do rozwiązania można znaleźć na stronie:
+
+http://www.nimbios.org/ifiles/hpc/1_basics.pdf
+
+http://www.nimbios.org/ifiles/hpc/2_performance.pdf
+
