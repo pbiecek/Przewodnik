@@ -47,7 +47,7 @@
      * [I co dalej?](Programowanie/jak_tworzyc_aplikajce4.md)
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * Jak debugować kod R?
-   * Jak zwiększyć wydajność kodu R?
+   * [Jak badać czas działania kodu?](Programowanie/pazury/profilowanie.md)
    * [Jak pracować z bazami danych?](Programowanie/jak_pracowac_z_bazami_danych.md)
    * [Jak generować liczby losowe?](Programowanie/generatory_llosowych.md)
      * [Jak ustawiać ziarno generatora?](Programowanie/generatory_1.md)
