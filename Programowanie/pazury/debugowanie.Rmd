@@ -103,4 +103,27 @@ Poniższa instrukcja wywoła w sposób bezpieczny funkcję `funkcja2(1, "jeden")
 try(funkcja2(1, "jeden"), silent=TRUE)
 ```
 
+## browser()
 
+Funkcję `browser()` można umieszczać w środku innych funkcji lub bloku kodu. Gdy zostanie uruchomiona w wyniku otworzy bieżące środowisko i pozwoli na odpytanie stanu zmiennych w nim.
+
+
+## Debugowanie w RStudio
+
+RStudio posiada rozbudowane wsparcie dla debugowania, czy to zwykłych skryptów czy np. aplikacji shiny. W dowolnej linii kodu R można założyć pułapkę, gdy interpreter przeczyta ten fragment kodu to przerwanie skryptu zostanie przerwane i użytkownik ma opcje by prześledzić co się dzieje w określonym miejscy.
+
+Więcej o debugowaniu w RStudio można przeczytać w pliku https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio
+
+## Pokrycie testów
+
+Dobrym sposobem na możliwie rzadkie używanie debuggera, jest pisanie dobrych i wielu testów jednostkowych.
+
+Jak tworzyć testy - pisaliśmy to w rozdziale o pakietach. 
+
+Aby sprawdzić jak dokładnie testy pokrywają kod pakietu, można wykorzystać pakiet `covr` i funkcje `package_coverage()`. Przedstawia ona tekstową analizę jaka część funkcji jest weryfikowana. Funkcje, które nie są wystarczająco pokryte testami warto uzupełnić.
+
+```{r}
+library(covr)
+x <- package_coverage("~/GitHub/archivist")
+x
+```

@@ -122,4 +122,160 @@ Poniższa instrukcja wywoła w sposób bezpieczny funkcję `funkcja2(1, "jeden")
 try(funkcja2(1, "jeden"), silent=TRUE)
 ```
 
+## browser()
 
+Funkcję `browser()` można umieszczać w środku innych funkcji lub bloku kodu. Gdy zostanie uruchomiona w wyniku otworzy bieżące środowisko i pozwoli na odpytanie stanu zmiennych w nim.
+
+
+## Debugowanie w RStudio
+
+RStudio posiada rozbudowane wsparcie dla debugowania, czy to zwykłych skryptów czy np. aplikacji shiny. W dowolnej linii kodu R można założyć pułapkę, gdy interpreter przeczyta ten fragment kodu to przerwanie skryptu zostanie przerwane i użytkownik ma opcje by prześledzić co się dzieje w określonym miejscy.
+
+Więcej o debugowaniu w RStudio można przeczytać w pliku https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio
+
+## Pokrycie testów
+
+Dobrym sposobem na możliwie rzadkie używanie debuggera, jest pisanie dobrych i wielu testów jednostkowych.
+
+Jak tworzyć testy - pisaliśmy to w rozdziale o pakietach. 
+
+Aby sprawdzić jak dokładnie testy pokrywają kod pakietu, można wykorzystać pakiet `covr` i funkcje `package_coverage()`. Przedstawia ona tekstową analizę jaka część funkcji jest weryfikowana. Funkcje, które nie są wystarczająco pokryte testami warto uzupełnić.
+
+
+```r
+library(covr)
+x <- package_coverage("~/GitHub/archivist")
+x
+```
+
+```
+## archivist Coverage: 40.46%
+```
+
+```
+## R/addArchivistHooks.R: 0.00%
+```
+
+```
+## R/addTagsRepo.R: 0.00%
+```
+
+```
+## R/ahistory.R: 0.00%
+```
+
+```
+## R/asession.R: 0.00%
+```
+
+```
+## R/atags.R: 0.00%
+```
+
+```
+## R/cache.R: 0.00%
+```
+
+```
+## R/getTags.R: 0.00%
+```
+
+```
+## R/restoreLibraries.R: 0.00%
+```
+
+```
+## R/rmFromRepo.R: 0.00%
+```
+
+```
+## R/shinySearchInLocalRepo.R: 0.00%
+```
+
+```
+## R/extractData.R: 1.16%
+```
+
+```
+## R/extractMiniature.R: 20.00%
+```
+
+```
+## R/extractTags.R: 22.39%
+```
+
+```
+## R/summaryRepo.R: 53.19%
+```
+
+```
+## R/loadFromRepo.R: 56.25%
+```
+
+```
+## R/getRemoteHook.R: 58.62%
+```
+
+```
+## R/zipRepo.R: 60.00%
+```
+
+```
+## R/splitTags.R: 72.22%
+```
+
+```
+## R/asearch.R: 76.00%
+```
+
+```
+## R/zzz.R: 76.47%
+```
+
+```
+## R/alink.R: 79.49%
+```
+
+```
+## R/showRepo.R: 80.00%
+```
+
+```
+## R/deleteRepo.R: 81.25%
+```
+
+```
+## R/copyToRepo.R: 83.72%
+```
+
+```
+## R/magrittr.R: 88.71%
+```
+
+```
+## R/saveToRepo.R: 88.89%
+```
+
+```
+## R/searchInRepo.R: 91.30%
+```
+
+```
+## R/setRepo.R: 94.12%
+```
+
+```
+## R/aread.R: 94.44%
+```
+
+```
+## R/createEmptyRepo.R: 94.74%
+```
+
+```
+## R/archivistOptions.R: 100.00%
+```
+
+```
+## R/createMDGallery.R: 100.00%
+```
