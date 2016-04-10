@@ -1,4 +1,4 @@
-# Algorytm EM (ang. Expectation–maximization)
+# Dlaczego algorytm EM działa (ang. Expectation–maximization)?
 
 Algorytm EM ma wiele zastosowań, w sytuacji gdy bezpośrednia maksymalizacji funkcji log-wiarogodności $$l(\theta, Y)$$ jest trudna. W wielu sytuacjach, problem maksymalizacji można uprościć, jeżeli przestrzeń parametrów rozszerzy się o dodatkowe - nieobserwowane zmienne. 
 
@@ -12,6 +12,28 @@ Poniższy opis rozpoczniemy od ogólnego sformułowania algorytmu EM, a następn
 Oznaczmy przez $$Y$$ obserwowaną zmienną losową (potencjalnie wielowymiarową) o rozkładzie $$F$$ z rodziny indeksowanej parametrem $$\phi$$. Bezpośrednia estymacja $$\phi$$ metodą największej wiarygodności jest trudna, więc rozszerzamy przestrzeń o zmienne ukryte/nieobserwowane $$Z$$.
 
 Łączny wektor zmiennych losowych $$(Y, Z)$$ pochodzi z rodziny indeksowanej parametrem $$\theta \in \Theta$$. Gęstość tego rozkładu oznaczmy przez $$f(y, z; \theta)$$.
+
+
+## Algorytm EM
+
+Algorytm EM jest następujący:
+
+1. Wybierz początkową wartość wektora parametrów $$\hat\theta^{(1)}$$
+
+2. Krok E (Expectation). Wyznacz wartość warunkową dla aktualnego $$\hat\theta^{(j)}$$, gdzie $$j$$ to numer iteracji. 
+$$
+Q(\theta, \hat\theta^{(j)}) = E(l(\theta; Z, Y) | Y, \hat\theta^{(j)}).
+$$
+To jest funkcja po $$\theta$$.
+
+3. Krok M (Maximization). Wyznacz kolejną wartość $$\hat\theta^{(j+1)}$$, taką która maksymalizuje $$Q(\theta, \hat\theta^{(j)})$$ po  $$\theta$$.
+
+4. Powtarzaj kroki 2-3 do spełnienia określonego warunku stop.
+
+
+## Dlaczego to działa?
+
+Pytanie, na które musimy odpowiedzieć to dlaczego optymalizacja $$Q(\theta, \hat\theta^{(j)})$$ pomaga w maksymalizacji funkcji wiarygodności.
 
 Zacznijmy od rozkładu warunkowego
 $$
@@ -45,7 +67,6 @@ Funkcja $$R(\theta, \theta')$$ ma swoje maksimum gdy wartość oczekiwana jest w
 A więc 
 $$R(\theta, \theta') \leq R(\theta', \theta')$$,
 co z kolei oznacza, że jeżeli jesteśmy w stanie znaleźć $$\theta$$, które zwiększy $$Q(\theta, \theta')$$ to z pewnością zwiększymy też $$l(\theta; Y)$$.
-
 
 
 
