@@ -68,5 +68,83 @@ A więc
 $$R(\theta, \theta') \leq R(\theta', \theta')$$,
 co z kolei oznacza, że jeżeli jesteśmy w stanie znaleźć $$\theta$$, które zwiększy $$Q(\theta, \theta')$$ to z pewnością zwiększymy też $$l(\theta; Y)$$.
 
+## A może tak policzyć cos na palcach?
+
+Ogólne sformułowanie algorytmu EM umożliwia stosowanie go do rozmaitych sytuacji, ale aby wyrobić sobie intuicję przeliczmy jeden prosty przykład, jednowymiarowej mieszaniny dwóch rozkładów normlanych różniących się tylko średnią. Dla większej liczby składowych, wymiarów i parametrów obliczenia są według tego samego schematu, jest tylko więcej symboli.
+
+Model mieszaniny. Dwie składowe 
+$$
+Y_1 \sim \mathcal N(\mu_1, \sigma^2),
+$$
+$$
+Y_2 \sim \mathcal N(\mu_2, \sigma^2),
+$$
+rozkład mieszający
+$$
+Z \sim B(1, \pi),
+$$
+i mieszanina 
+$$
+Y = (1-Z) Y_1 + Z Y_2.
+$$
+
+Mieszanina to w $$\pi$$ rozkład zmiennej $$Y_1$$ a w $$1-\pi$$ rozkład zmiennej $$Y_2$$. Gęstość tego rozkładu można opisać jako
+$$
+f_Y(x) = (1-\pi) \phi_1(x) + \pi \phi_2(x).
+$$
+
+Nasz wektor parametrów to $$\theta=(\pi, \mu_1, \mu_2, \sigma)$$ a funkcja log-wiarogodności ma postać
+$$
+l(\theta, y) = \sum_i \log [(1-\pi)\phi_1(y_i) + \pi \phi_2(y_i)].
+$$
+Optymalizacja takiej sumy logarytmów sum nie jest prosta. 
+
+Zgodnie z duchem EM ułatwimy sobie zadanie dodając do modelu zmienne ukryte $$Z$$. Funkcja wiarogodności w takim modelu ma postać
+$$
+l(\theta, y, z) = \sum_i [(1-z_i) \log \phi_1 (y_i) + z_i \log \phi_2 (y_i)] + 
+\sum_i [(1-z_i) \log \pi + z_i \log (1-\pi) ].
+$$
+
+Tę funkcję będzie nam łatwiej maksymalizować. Przyjrzyjmy się krokom w algorytmie EM.
+
+### Krok E
+
+Chcemy wyznaczyć warunkową wartość oczekiwaną funkcji $$l(\theta, y, z)$$ po $$y, theta^{(i)}$$. Człony funkcji wiarogodności zawierające $$y_i$$ się nei zmienią, musimy jedynie policzyć co stanie się z członem $$z_i$$.
+
+$$
+E(Z_i | Y; \theta^{(i)}) = Pr(Z_i = 1 | Y; \theta^{(i)}) = \frac{Pr(Z_i = 1, Y; \theta^{(i)})}{Pr(Y; \theta^{(i)})}
+$$
+a więc
+$$
+E(Z_i | Y; \theta^{(i)}) = \frac{\hat \pi^{(i)} \phi_2(y_i) }{(1-\hat \pi^{(i)}) \phi_1(y_i) + \hat \pi^{(i)} \phi_2(y_i) } = \eta_i.
+$$
+
+Wyliczone wartości oczekiwane wstawiamy w miejsce $$z_i$$.
+
+### M
+
+Funkcja $$Q(\theta, \hat \theta^{(i)})$$ jest już funkcją parametrów $$(\mu_1, \mu_2, \sigma, \pi)$$. Z uwagi na jej postać, można każdy z parametrów maksymalizować niezależnie wyznaczając pochodna i przyrównując do zera.
+
+Otrzymamy
+
+$$
+\hat \mu_1^{(j+1)} = \frac{\sum_i (1-\eta_i)y_i}{\sum_i (1-\eta_i)},
+$$
+$$
+\hat \mu_2^{(j+1)} = \frac{\sum_i \eta_i y_i}{\sum_i \eta_i},
+$$
+$$
+\hat \sigma_2^{2, (j+1)} = [\sum_i (1-\eta_i) (y_i - \hat\mu_1^{(j)})^2 + \sum_i \eta_i (y_i - \hat\mu_2^{(j)})^2]/n,
+$$
+$$
+\hat \pi^{(j+1)} = \sum_i \eta_i / n.
+$$
+
+
+Kroki E i M należy powtarzać aż nie uzyska się przyzwoitej zbieżności.
+
+
+
+
 
 
