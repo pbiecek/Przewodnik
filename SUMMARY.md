@@ -69,6 +69,7 @@
          * [Jak szukać partycji w oparciu o metodę k-medoidów?](Analiza/beznadzoru/pam.md)
          * [Jak wykonać analizę hierarchiczną?](Analiza/beznadzoru/agnes.md)
          * [Jak szukać partycji w oparciu o mieszaniny rozkładów?](Analiza/beznadzoru/mclust.md)
+         * [Jak działa algorytm EM?](Analiza/beznadzoru/em.md)
    * [Weryfikacja](Analiza/weryfikacja.md)
        * [Jak badać właściwości jednej zmiennej?](Analiza/jak_badac_wlasciwosci_jednej_zmiennej.md)
        * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
