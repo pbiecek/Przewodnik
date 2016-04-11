@@ -9,35 +9,38 @@ Poniższy opis rozpoczniemy od ogólnego sformułowania algorytmu EM, a następn
 
 ## Ogólne sformułowanie problemu
 
-Oznaczmy przez $$Y$$ obserwowaną zmienną losową (potencjalnie wielowymiarową) o rozkładzie $$F$$ z rodziny indeksowanej parametrem $$\phi$$. Bezpośrednia estymacja $$\phi$$ metodą największej wiarygodności jest trudna, więc rozszerzamy przestrzeń o zmienne ukryte/nieobserwowane $$Z$$.
+Oznaczmy przez $$Y$$ obserwowaną zmienną losową (potencjalnie wielowymiarową) o rozkładzie $$F$$ z rodziny indeksowanej parametrem $$\theta$$. Bezpośrednia estymacja $$\theta$$ metodą największej wiarygodności jest trudna, więc rozszerzamy przestrzeń o zmienne ukryte/nieobserwowane $$Z$$.
 
 Łączny wektor zmiennych losowych $$(Y, Z)$$ pochodzi z rodziny indeksowanej parametrem $$\theta \in \Theta$$. Gęstość tego rozkładu oznaczmy przez $$f(y, z; \theta)$$.
 
 
 ## Algorytm EM
 
-Algorytm EM jest następujący:
+Algorytm EM ma następującą postać:
 
-1. Wybierz początkową wartość wektora parametrów $$\hat\theta^{(1)}$$
+1. Wybierz początkową wartość wektora parametrów $$\hat\theta^{(1)}$$,
 
-2. Krok E (Expectation). Wyznacz wartość warunkową dla aktualnego $$\hat\theta^{(j)}$$, gdzie $$j$$ to numer iteracji. 
+2. Krok E (*Expectation*). Wyznacz warunkową wartość oczekiwaną dla aktualnego $$\hat\theta^{(j)}$$, gdzie $$j$$ to numer iteracji. 
 $$
-Q(\theta, \hat\theta^{(j)}) = E(l(\theta; Z, Y) | Y, \hat\theta^{(j)}).
+Q\left(\theta, \hat\theta^{(j)}\right) = E\left(l(\theta; Z, Y) | Y, \hat\theta^{(j)}\right).
 $$
-To jest funkcja po $$\theta$$.
+Będziemy ją traktować jako funkcję po $$\theta$$.
 
-3. Krok M (Maximization). Wyznacz kolejną wartość $$\hat\theta^{(j+1)}$$, taką która maksymalizuje $$Q(\theta, \hat\theta^{(j)})$$ po  $$\theta$$.
+3. Krok M (*Maximization*). Wyznacz kolejną wartość $$\hat\theta^{(j+1)}$$, taką która maksymalizuje $$Q\left(\theta, \hat\theta^{(j)}\right)$$ po  $$\theta$$.
+$$
+\hat\theta^{(j+1)} = arg \max_\theta Q\left(\theta, \hat\theta^{(j)}\right).
+$$
 
 4. Powtarzaj kroki 2-3 do spełnienia określonego warunku stop.
 
 
 ## Dlaczego to działa?
 
-Pytanie, na które musimy odpowiedzieć to dlaczego optymalizacja $$Q(\theta, \hat\theta^{(j)})$$ pomaga w maksymalizacji funkcji wiarygodności.
+Pytanie, na które musimy odpowiedzieć, to dlaczego optymalizacja $$Q\left(\theta, \hat\theta^{(j)}\right)$$ pomaga w maksymalizacji funkcji wiarygodności.
 
 Zacznijmy od rozkładu warunkowego
 $$
-P(Z|Y; \theta) = \frac{ P(Z, Y; \theta) }{ P(Y; \theta) }
+P(Z|Y; \theta) = \frac{ P(Z, Y; \theta) }{ P(Y; \theta) },
 $$
 a więc 
 $$
@@ -55,22 +58,22 @@ $$
 l(\theta; Y) = E(l_0(\theta; Z, Y) | Y, \theta') - E(l_1(\theta; Z|Y) | Y, \theta')
 $$
 
-Aby uprościć zapis poniżej, przyjmijmy takie standardowe oznaczenia.
+Aby uprościć zapis poniżej, przyjmijmy takie standardowe oznaczenia dla prawej strony tego równania.
 $$
 l(\theta; Y) = Q(\theta, \theta') - R(\theta, \theta')
 $$
 
 Rozłożyliśmy funkcję log-wiarogodności, którą chcielibyśmy maksymalizować po $$\theta$$ na dwa człony. Algorytm EM będzie bezpośrednio maksymalizował $$Q(\theta, \theta')$$. 
 
-Funkcja $$R(\theta, \theta')$$ ma swoje maksimum gdy wartość oczekiwana jest warunkowana tym samym rozkładem co będąca pod nią funkcja wiarygodności (funkcja wiarygodności jest wypukła, więc można skorzystać z nierówności Jensena. Pośrednie kroki są opisane w ćwiczeniu 8.2 *Elements of Statistical Learning*). 
+Funkcja $$R(\theta, \theta')$$ ma swoje maksimum gdy wartość oczekiwana jest warunkowana tym samym rozkładem co będąca pod nią funkcja wiarygodności. Jest tak dlatego, że funkcja wiarygodności jest wypukła i można wykorzystać nierówności Jensena. Pośrednie kroki uzasadneinia tej właściwości są opisane w ćwiczeniu 8.2 *Elements of Statistical Learning*). 
 
 A więc 
 $$R(\theta, \theta') \leq R(\theta', \theta')$$,
 co z kolei oznacza, że jeżeli jesteśmy w stanie znaleźć $$\theta$$, które zwiększy $$Q(\theta, \theta')$$ to z pewnością zwiększymy też $$l(\theta; Y)$$.
 
-## A może tak policzyć cos na palcach?
+## A może tak policzyć coś na palcach?
 
-Ogólne sformułowanie algorytmu EM umożliwia stosowanie go do rozmaitych sytuacji, ale aby wyrobić sobie intuicję przeliczmy jeden prosty przykład, jednowymiarowej mieszaniny dwóch rozkładów normlanych różniących się tylko średnią. Dla większej liczby składowych, wymiarów i parametrów obliczenia są według tego samego schematu, jest tylko więcej symboli.
+Ogólne sformułowanie algorytmu EM umożliwia stosowanie go do rozmaitych sytuacji. Ale aby wyrobić sobie intuicję przeliczmy jeden prosty przykład, jednowymiarowej mieszaniny dwóch rozkładów normlanych różniących się tylko średnią. Dla większej liczby składowych, wymiarów i parametrów obliczenia przeprowadza się według tego samego schematu, jest jedynie więcej symboli.
 
 Model mieszaniny. Dwie składowe 
 $$
@@ -109,7 +112,7 @@ Tę funkcję będzie nam łatwiej maksymalizować. Przyjrzyjmy się krokom w alg
 
 ### Krok E
 
-Chcemy wyznaczyć warunkową wartość oczekiwaną funkcji $$l(\theta, y, z)$$ po $$y, theta^{(i)}$$. Człony funkcji wiarogodności zawierające $$y_i$$ się nie zmienią, musimy jedynie policzyć co stanie się z członem $$z_i$$.
+Chcemy wyznaczyć warunkową wartość oczekiwaną funkcji $$l(\theta, y, z)$$ po $$y, \theta^{(i)}$$. Człony funkcji wiarogodności zawierające $$y_i$$ się nie zmienią. Musimy jedynie policzyć co stanie się z członem $$z_i$$.
 
 $$
 E(Z_i | Y; \theta^{(i)}) = Pr(Z_i = 1 | Y; \theta^{(i)}) = \frac{Pr(Z_i = 1, Y; \theta^{(i)})}{Pr(Y; \theta^{(i)})}
@@ -123,18 +126,18 @@ Wyliczone wartości oczekiwane wstawiamy w miejsce $$z_i$$.
 
 ### Krok M
 
-Funkcja $$Q(\theta, \hat \theta^{(i)})$$ jest już funkcją parametrów $$(\mu_1, \mu_2, \sigma, \pi)$$. Z uwagi na jej postać, można każdy z parametrów maksymalizować niezależnie wyznaczając pochodna i przyrównując do zera.
+Funkcja $$Q(\theta, \hat \theta^{(i)})$$ jest już funkcją parametrów $$(\mu_1, \mu_2, \sigma, \pi)$$. Z uwagi na jej postać, można każdy z parametrów maksymalizować niezależnie. Wyznaczamy pochodną i przyrównujemy ją do zera.
 
 Otrzymamy
 
 $$
-\hat {\mu_1}^{(j+1)} = \frac{\sum_i (1-\eta_i)y_i}{\sum_i (1-\eta_i)},
+ {\hat\mu_1}^{(j+1)} = \frac{\sum_i (1-\eta_i)y_i}{\sum_i (1-\eta_i)},
 $$
 $$
-\hat {\mu_2}^{(j+1)} = \frac{\sum_i \eta_i y_i}{\sum_i \eta_i},
+ {\hat\mu_2}^{(j+1)} = \frac{\sum_i \eta_i y_i}{\sum_i \eta_i},
 $$
 $$
-\hat \sigma_2^{2, (j+1)} = [\sum_i (1-\eta_i) (y_i - \hat{\mu_1}^{(j)})^2 + \sum_i \eta_i (y_i - \hat{\mu_2}^{(j)})^2]/n,
+\hat \sigma_2^{2, (j+1)} = \left[\sum_i (1-\eta_i) \left(y_i - {\hat\mu_1}^{(j)}\right)^2 + \sum_i \eta_i \left(y_i - {\hat\mu_2}^{(j)}\right)^2\right]/n,
 $$
 $$
 \hat \pi^{(j+1)} = \sum_i \eta_i / n.
@@ -147,7 +150,7 @@ Kroki E i M należy powtarzać aż nie uzyska się przyzwoitej zbieżności.
 ## Estymacja MAP
 
 Przedstawiony powyżej algorytm EM maksymalizuje funkcje wiarogodności.
-Rosnąca popularność metod Bayesowskich spowodowała, że jego odmiana jest też wykorzystywana do znajdowania estymatorów maksimum a-posteriori.
+Rosnąca popularność metod Bayesowskich spowodowała, że jego odmiana jest też wykorzystywana do znajdowania estymatorów maksimum a-posteriori (MAP).
 
 Punktem wyjścia jest wzór na rozkład a-posteriori
 $$
