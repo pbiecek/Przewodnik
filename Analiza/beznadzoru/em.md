@@ -109,7 +109,7 @@ Tę funkcję będzie nam łatwiej maksymalizować. Przyjrzyjmy się krokom w alg
 
 ### Krok E
 
-Chcemy wyznaczyć warunkową wartość oczekiwaną funkcji $$l(\theta, y, z)$$ po $$y, theta^{(i)}$$. Człony funkcji wiarogodności zawierające $$y_i$$ się nei zmienią, musimy jedynie policzyć co stanie się z członem $$z_i$$.
+Chcemy wyznaczyć warunkową wartość oczekiwaną funkcji $$l(\theta, y, z)$$ po $$y, theta^{(i)}$$. Człony funkcji wiarogodności zawierające $$y_i$$ się nie zmienią, musimy jedynie policzyć co stanie się z członem $$z_i$$.
 
 $$
 E(Z_i | Y; \theta^{(i)}) = Pr(Z_i = 1 | Y; \theta^{(i)}) = \frac{Pr(Z_i = 1, Y; \theta^{(i)})}{Pr(Y; \theta^{(i)})}
@@ -121,7 +121,7 @@ $$
 
 Wyliczone wartości oczekiwane wstawiamy w miejsce $$z_i$$.
 
-### M
+### Krok M
 
 Funkcja $$Q(\theta, \hat \theta^{(i)})$$ jest już funkcją parametrów $$(\mu_1, \mu_2, \sigma, \pi)$$. Z uwagi na jej postać, można każdy z parametrów maksymalizować niezależnie wyznaczając pochodna i przyrównując do zera.
 
@@ -144,7 +144,20 @@ $$
 Kroki E i M należy powtarzać aż nie uzyska się przyzwoitej zbieżności.
 
 
+## Estymacja MAP
 
+Przedstawiony powyżej algorytm EM maksymalizuje funkcje wiarogodności.
+Rosnąca popularność metod Bayesowskich spowodowała, że jego odmiana jest też wykorzystywana do znajdowania estymatorów maksimum a-posteriori.
 
+Punktem wyjścia jest wzór na rozkład a-posteriori
+$$
+p(\theta | Y) \approx l(\theta, y) + \log(p(\theta)). 
+$$
+
+Algorytm EM jest ogólnym algorytmem maksymalizacji. Możemy wykorzystać go również do szukania maksimum rozkładu aposteriori, dodając w kroku E człon $$\log(p(\theta))$$
+
+$$
+Q^{MAP}(\theta, \theta') = Q(\theta, \theta') + \log(p(\theta)).
+$$
 
 
