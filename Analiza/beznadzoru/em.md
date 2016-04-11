@@ -128,13 +128,13 @@ Funkcja $$Q(\theta, \hat \theta^{(i)})$$ jest już funkcją parametrów $$(\mu_1
 Otrzymamy
 
 $$
-\hat \mu_1^{(j+1)} = \frac{\sum_i (1-\eta_i)y_i}{\sum_i (1-\eta_i)},
+\hat {\mu_1}^{(j+1)} = \frac{\sum_i (1-\eta_i)y_i}{\sum_i (1-\eta_i)},
 $$
 $$
-\hat \mu_2^{(j+1)} = \frac{\sum_i \eta_i y_i}{\sum_i \eta_i},
+\hat {\mu_2}^{(j+1)} = \frac{\sum_i \eta_i y_i}{\sum_i \eta_i},
 $$
 $$
-\hat \sigma_2^{2, (j+1)} = [\sum_i (1-\eta_i) (y_i - \hat\mu_1^{(j)})^2 + \sum_i \eta_i (y_i - \hat\mu_2^{(j)})^2]/n,
+\hat \sigma_2^{2, (j+1)} = [\sum_i (1-\eta_i) (y_i - \hat{\mu_1}^{(j)})^2 + \sum_i \eta_i (y_i - \hat{\mu_2}^{(j)})^2]/n,
 $$
 $$
 \hat \pi^{(j+1)} = \sum_i \eta_i / n.
