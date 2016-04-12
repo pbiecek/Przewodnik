@@ -8,16 +8,12 @@ $$
 stress_1 = \sqrt{ \sum_{i,j} \left(d_{i,j} - ||x_i - x_j||\right)^2 }
 $$
 
-$$
-stress_1 = \left( \sum_{i,j} (d_{i,j} - ||x_i - x_j||)^2 \right)^{\frac 12}
-$$
-
 Opisuje ona różnice pomiędzy zadanymi odległościami, a odległościami w nowej przestrzeni. Minimalizacja funkcji $$stress_1$$ sprowadza się do znalezienia optymalnych wartości dla współrzędnych $$x_i$$. 
 
 Z punktu widzenia optymalizacji, możemy również minimalizować poniższą funkcję, która ma jednak taką zaletę, że wartości nie zależą już od wybranej jednostki. Zauważmy też, że dla optymalizacji nie ma również znaczenia pierwiastek. 
 
 $$
-stress_2 = \left( \frac{ \sum_{i,j} (d_{i,j} - ||x_i - x_j||)^2 }{ \sum_{i,j} d^2_{i,j} } \right)^{\frac 12}
+stress_2 = \sqrt{ \frac{ \sum_{i,j} (d_{i,j} - ||x_i - x_j||)^2 }{ \sum_{i,j} d^2_{i,j} } }
 $$
 
 
@@ -32,7 +28,7 @@ $$
 to nie musi być liniowa regresja, ale coś co sprowadzi $$\delta_{i,j}$$ do skali $$d_{i,j}$$,
 4. Wyznacz bieżącą wartość funkcji $$stress$$
 $$
-stress = \left( \frac{ \sum_{i,j} (d_{i,j} - \hat\delta_{i,j})^2 }{ \sum_{i,j} d^2_{i,j} } \right)^{\frac 12},
+stress = \sqrt{ \frac{ \sum_{i,j} (d_{i,j} - \hat\delta_{i,j})^2 }{ \sum_{i,j} d^2_{i,j} } },
 $$
 5. Na bazie gradientu funkcji $$stress$$ uaktualnij współrzędne reprezentacji $$x_i$$. 
 
