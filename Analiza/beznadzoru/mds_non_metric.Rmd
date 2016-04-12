@@ -9,7 +9,7 @@ Skalowanie nie-metryczne pozwala na znalezienie reprezentacji, która odwzorowuj
 Wprowadźmy następującą funkcję zniekształcenia (tzw. funkcję ang. *stress*).
 
 $$
-stress = \left( \frac{\sum_{i,j} (f(d_{i,j}) - ||x_i - x_j||)^2}{\sum_{i,j}  ||x_i - x_j||^2} \right)^{\frac 12}
+stress = \sqrt{ \frac{\sum_{i,j} (f(d_{i,j}) - ||x_i - x_j||)^2}{\sum_{i,j}  ||x_i - x_j||^2} }
 $$
 
 We wzorze powyżej $$f()$$ oznacza monotoniczną rosnącą funkcję przekształcającą odległości pomiędzy obiektami ale zachowującą ich kolejność. Ta funkcja jest również optymalizowana w procesie minimalizacji współczynnika $$stress$$.
@@ -25,7 +25,7 @@ $$
 Zamiast przeprowadzać regresję porządkową (ang. *isotonic regression*) można też estymować $$f()$$, na bazie tej regresji wyznacz $$\hat d_{i,j}$$,
 4. Wyznacz bieżącą wartość funkcji $$stress$$
 $$
-stress = \left( \frac{ \sum_{i,j} (d_{i,j} - \hat\delta_{i,j})^2 }{ \sum_{i,j} d^2_{i,j} } \right)^{\frac 12},
+stress = \sqrt{ \frac{ \sum_{i,j} (d_{i,j} - \hat\delta_{i,j})^2 }{ \sum_{i,j} d^2_{i,j} } },
 $$
 5. Na bazie gradientu funkcji $$stress$$ uaktualnij współrzędne reprezentacji $$x_i$$. 
 
