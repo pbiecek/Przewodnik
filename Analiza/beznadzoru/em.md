@@ -163,4 +163,8 @@ $$
 Q^{MAP}(\theta, \theta') = Q(\theta, \theta') + \log(p(\theta)).
 $$
 
+## Inne materiały
+
+Alternatywne wyprowadzenie EM przez Andrew Ng http://cs229.stanford.edu/notes/cs229-notes8.pdf.
+
 
