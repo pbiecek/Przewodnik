@@ -59,3 +59,9 @@ ggplot(projekcja, aes(V1, V2, label=imie)) +
   geom_text_repel(data=projekcja[c(268, 348, 139, 259, 168, 309, 223),]) +theme_bw()
 ```
 
+## Inne materiały
+
+* Sameer Agarwal i inni o *Generalized Non-metric Multidimensional Scaling* https://homes.cs.washington.edu/~sagarwal/nmds.pdf
+
+
+

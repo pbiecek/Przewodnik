@@ -77,3 +77,9 @@ ggplot(projekcja, aes(V1, V2, label=imie)) +
 
 ![plot of chunk glosowania4](figure/glosowania4-1.svg)
 
+## Inne materiały
+
+* Sameer Agarwal i inni o *Generalized Non-metric Multidimensional Scaling* https://homes.cs.washington.edu/~sagarwal/nmds.pdf
+
+
+
