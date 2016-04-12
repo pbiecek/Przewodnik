@@ -63,6 +63,8 @@
        * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
        * [Jak badać rozkład dwóch zmiennych?](Analiza/jak_badac_rozklad_dwoch_zmiennych.md)
        * [Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)](Analiza/beznadzoru/mds.md)
+         * [Jak wykonać skalowanie metryczne?](Analiza/beznadzoru/mds_metric.md)
+         * [Jak wykonać skalowanie nie-metryczne?](Analiza/beznadzoru/mds_non_metric.md)
        * [Jak znaleźć grupy w danych?](Analiza/beznadzoru/skupiska.md)
          * [Jak wyznaczać odległosć pomiędzy obserwacjami?](Analiza/beznadzoru/dist.md)
          * [Jak szukać partycji w oparciu o metodę k-średnich?](Analiza/beznadzoru/kmeans.md)
