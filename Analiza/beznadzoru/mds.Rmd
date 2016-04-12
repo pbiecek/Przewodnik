@@ -9,5 +9,3 @@ Ten problem można rozwiązać na wiele sposobów, poniżej przedstawimy najbard
 Problem skalowania wielowymiarowego ma wiele zastosowań zarówno w eksploracji danych, wizualizacji danych czy tzw. identyfikacji struktur w danych. W ogólnym przypadku możemy obiekty reprezentować na $$p$$ wymiarowej przestrzeni z dowolną metryką, ale w przykładach skupimy się na reprezentacji dwu-wymiarowej z odległością Euklidesową.
 
 
-
-
