@@ -34,6 +34,8 @@ $$
 
 Funkcja `isoMDS()` z pakietu `MASS` wyznacza skalowanie niemetryczne.
 
+Poniżej zastosujemy ją na tych samych danych co w poprzednim rozdziale.
+
 
 ```r
 library(ggplot2)
@@ -44,7 +46,7 @@ library(cluster)
 glosowania <- archivist::aread("pbiecek/Przewodnik/arepo/3eab62451d26be6d14fe99dda69675ca")
 podobienstwa <- daisy(glosowania[,-(1:2)])
 
-projekcja <- as.data.frame( isoMDS(podobienstwa, k = 2)$points )
+mds2 <- isoMDS(podobienstwa, k = 2)
 ```
 
 ```
@@ -57,6 +59,7 @@ projekcja <- as.data.frame( isoMDS(podobienstwa, k = 2)$points )
 ```
 
 ```r
+projekcja <- as.data.frame( mds2$points )
 projekcja$klub <- glosowania[,2]
 projekcja$imie <- glosowania[,1]
 
