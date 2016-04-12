@@ -2,7 +2,7 @@
 
 W ogólnym przypadku macierz podobieństw $$D$$ może być wyznaczana w dowolny sposób. Mogą być to subiektywnie wyznaczane podobieństwa, oparte o subiektywne rankingi, pomiary odległości pomiędzy napisami, sekwencjami DNA, strukturami przestrzennymi białek, zdjęciami, dowolnymi obiektami.
 
-W wielu sytuacjach podobieństwa mają na celu wyłącznie uporządkowanie obiektów ale nie mają samodzielnej interpretacji. Przykładowo, jeżeli porównujemy owoce, można określić że jabłko jest bardziej podobne do gruszki niż do jagody. Takie względe podobieństwo możemy zapisać liczbami, ale wartość tych liczb nie musi mieć znaczenia, znaczenie będzie miało wyłącznie uporządkowanie. 
+W wielu sytuacjach podobieństwa mają na celu wyłącznie uporządkowanie obiektów ale nie mają samodzielnej interpretacji. Przykładowo, jeżeli porównujemy owoce, można określić, że jabłko jest bardziej podobne do gruszki niż do jagody. Takie względne podobieństwo możemy zapisać liczbami, ale wartość tych liczb nie musi mieć znaczenia, znaczenie będzie miało wyłącznie uporządkowanie. 
 
 Skalowanie nie-metryczne pozwala na znalezienie reprezentacji, która odwzorowuje kolejność odległości pomiędzy parami obiektów a nie odległość pomiędzy obiektami. 
 
@@ -12,7 +12,7 @@ $$
 stress = \left( \frac{\sum_{i,j} (f(d_{i,j}) - ||x_i - x_j||)^2}{\sum_{i,j}  ||x_i - x_j||^2} \right)^{\frac 12}
 $$
 
-We wzorze powyżęj $$f()$$ oznacza monotoniczną rosnącą funkcję przekształcającą odległości pomiędy obiektami ale zachowującą ich kolejność. Ta funkcja jest również optymalizowana w procesie minimalizacji współczynnika $$stress$$.
+We wzorze powyżej $$f()$$ oznacza monotoniczną rosnącą funkcję przekształcającą odległości pomiędzy obiektami ale zachowującą ich kolejność. Ta funkcja jest również optymalizowana w procesie minimalizacji współczynnika $$stress$$.
 
 Ogólny schemat algorytmu skalowania nie-metrycznego jest następujący.
 
@@ -22,7 +22,7 @@ Ogólny schemat algorytmu skalowania nie-metrycznego jest następujący.
 $$
 d_{i,j} = f( \delta_{i,j} ).
 $$
-Zamiast przeprowadzać regresję porządkową (ang. *isotonic regression*) można też wyestymować $$f()$$, na bazie tej regresji wyznacz $$\hat d_{i,j}$$,
+Zamiast przeprowadzać regresję porządkową (ang. *isotonic regression*) można też estymować $$f()$$, na bazie tej regresji wyznacz $$\hat d_{i,j}$$,
 4. Wyznacz bieżącą wartość funkcji $$stress$$
 $$
 stress = \left( \frac{ \sum_{i,j} (d_{i,j} - \hat\delta_{i,j})^2 }{ \sum_{i,j} d^2_{i,j} } \right)^{\frac 12},
@@ -32,7 +32,7 @@ $$
 
 ## Jak przeprowadzić skalowanie nie-metryczne w R?
 
-Funkcja `isoMDS()` z pakietu `MASS` wyznacza skalowanie niemetyczne.
+Funkcja `isoMDS()` z pakietu `MASS` wyznacza skalowanie niemetryczne.
 
 
 ```r
@@ -80,6 +80,5 @@ ggplot(projekcja, aes(V1, V2, label=imie)) +
 ## Inne materiały
 
 * Sameer Agarwal i inni o *Generalized Non-metric Multidimensional Scaling* https://homes.cs.washington.edu/~sagarwal/nmds.pdf
-
 
 
