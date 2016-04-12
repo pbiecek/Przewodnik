@@ -28,7 +28,7 @@ $$
 to nie musi być liniowa regresja, ale coś co sprowadzi $$\delta_{ij}$$ do skali $$d_{ij}$$. Oznaczmy jako $$\hat\d_{ij} = \hat\alpha + \hat\beta \delta_{ij}$$.
 4. Wyznacz bieżącą wartość funkcji $$stress$$
 $$
-stress = \sqrt{ \frac{ \sum_{i,j} (d_{ij} - \hat\d_{ij})^2 }{ \sum_{i,j} d^2_{ij} } },
+stress = \sqrt{ \frac{ \sum_{i,j} (d_{ij} - \hat{\d_{ij}})^2 }{ \sum_{i,j} d^2_{ij} } },
 $$
 5. Na bazie gradientu funkcji $$stress$$ uaktualnij współrzędne reprezentacji $$x_i$$. 
 
@@ -37,9 +37,11 @@ Powyższy algorytm ma wiele wariantów, różniących się np. adaptacyjnym wybo
 
 ## Jak przeprowadzić skalowanie metryczne w R?
 
-Funkcja `sammon()` z pakietu `MASS` wyznacza klasyczne skalowanie metyczne (nazwa pochodzi od pracy J. Sammona 1969).
+Funkcja `sammon()` z pakietu `MASS` wyznacza skalowanie metyczne (nazwa pochodzi od pracy J. Sammona 1969).
 
-Poniższy przykład wczytuje dane o głosach posłów z VII kadencji Sejmu RP na ponad 5600 głosowań. Opierając się na macierzy podobieństw wektorów głosów wyznaczmy dwu-wymiarową reprezentacje posłów. Pozycja zależy wyłącznie od tego w jaki sposób głosowano. Ale jak widzimy, posłowie tych samych klubów głosują często podobnie do siebie.
+Poniższy przykład wczytuje dane o głosach posłów z VII kadencji Sejmu RP na ponad 5600 głosowań. Opierając się na macierzy podobieństw wektorów głosów wyznaczmy dwu-wymiarową reprezentacje podobieństwa posłów. 
+
+Pozycja na tym wykresie zależy wyłącznie od tego w jaki sposób głosowano. Bliskość odpowiada podobieństwu w głosowaniach. Jak widzimy, posłowie tych samych klubów głosują często podobnie do siebie.
 
 ```{r glosowania, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
 library(ggplot2)
@@ -50,7 +52,9 @@ library(cluster)
 glosowania <- archivist::aread("pbiecek/Przewodnik/arepo/3eab62451d26be6d14fe99dda69675ca")
 podobienstwa <- daisy(glosowania[,-(1:2)])
 
-projekcja <- as.data.frame( sammon(podobienstwa, k = 2)$points )
+mds1 <- sammon(podobienstwa, k = 2)
+
+projekcja <- as.data.frame( mds1$points )
 projekcja$klub <- glosowania[,2]
 projekcja$imie <- glosowania[,1]
 
