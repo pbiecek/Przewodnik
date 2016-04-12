@@ -57,5 +57,5 @@ ggplot(projekcja, aes(V1, V2, label=imie)) +
 
 ## Inne materiały
 
-* K. Mardia *Some properties of classical multi-dimensional scaling* https://www1.maths.leeds.ac.uk/~sta6kvm/reprints/CommunStatTheo1978.pdf
-
+* Właściwości metody klasycznej K. Mardia *Some properties of classical multi-dimensional scaling* https://www1.maths.leeds.ac.uk/~sta6kvm/reprints/CommunStatTheo1978.pdf
+* Szczegółowe wyprowadzenie skalowania Steffen Unkel *Classical Multidimensional Scaling* http://www.statistik.lmu.de/institut/ag//leisch/teaching/fcim13/handout.pdf
