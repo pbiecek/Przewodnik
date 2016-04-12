@@ -5,7 +5,7 @@ Oznaczmy przez $$x_i \in \mathcal R^p$$ współrzędne reprezentacji obiektu $$i
 Problem szukania $$p$$ wymiarowej reprezentacji można zamienić na problem optymalizacji funkcji opisującej błąd odwzorowania. Wprowadźmy następującą funkcję zniekształcenia (tzw. funkcję ang. *stress*).
 
 $$
-stress_1 = \sqrt{ \sum_{i,j} \left(d_{i,j} - ||x_i - x_j||\right)^2 }
+stress_1 = \sqrt{ \sum_{i,j} \left(d_{ij} - ||x_i - x_j||\right)^2 }
 $$
 
 Opisuje ona różnice pomiędzy zadanymi odległościami, a odległościami w nowej przestrzeni. Minimalizacja funkcji $$stress_1$$ sprowadza się do znalezienia optymalnych wartości dla współrzędnych $$x_i$$. 
@@ -13,7 +13,7 @@ Opisuje ona różnice pomiędzy zadanymi odległościami, a odległościami w no
 Z punktu widzenia optymalizacji, możemy również minimalizować poniższą funkcję, która ma jednak taką zaletę, że wartości nie zależą już od wybranej jednostki. Zauważmy też, że dla optymalizacji nie ma również znaczenia pierwiastek. 
 
 $$
-stress_2 = \sqrt{ \frac{ \sum_{i,j} (d_{i,j} - ||x_i - x_j||)^2 }{ \sum_{i,j} d^2_{i,j} } }
+stress_2 = \sqrt{ \frac{ \sum_{i,j} (d_{ij} - ||x_i - x_j||)^2 }{ \sum_{i,j} d^2_{i,j} } }
 $$
 
 
@@ -21,14 +21,14 @@ W ogólnym przypadku minimalizacja funkcji $$stress_1$$ nie jest łatwa i wykorz
 
 1. Wyznacz początkowa konfigurację (może być losowa, lub oparta o skalowanie klasyczne),
 2. Wyznacz macierz odległości pomiędzy obiektami w bieżącej konfiguracji $$\delta{i,j} = ||x_i - x_j||$$,
-3. Wykonaj regresję odległości $$\delta_{i,j}$$ na oryginalne odległości $$d_{i,j}$$,
+3. Wykonaj regresję odległości $$\delta_{ij}$$ na oryginalne odległości $$d_{ij}$$,
 $$
-d_{i,j} = \alpha + \beta \delta_{i,j},
+d_{ij} = \alpha + \beta \delta_{ij},
 $$
-to nie musi być liniowa regresja, ale coś co sprowadzi $$\delta_{i,j}$$ do skali $$d_{i,j}$$,
+to nie musi być liniowa regresja, ale coś co sprowadzi $$\delta_{ij}$$ do skali $$d_{ij}$$. Oznaczmy jako $$\hat\d_{ij} = \hat\alpha + \hat\beta \delta_{ij}$$.
 4. Wyznacz bieżącą wartość funkcji $$stress$$
 $$
-stress = \sqrt{ \frac{ \sum_{i,j} (d_{i,j} - \hat\delta_{i,j})^2 }{ \sum_{i,j} d^2_{i,j} } },
+stress = \sqrt{ \frac{ \sum_{i,j} (d_{ij} - \hat\d_{ij})^2 }{ \sum_{i,j} d^2_{ij} } },
 $$
 5. Na bazie gradientu funkcji $$stress$$ uaktualnij współrzędne reprezentacji $$x_i$$. 
 
