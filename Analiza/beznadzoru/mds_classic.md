@@ -1,7 +1,7 @@
 # Klasyczne skalowanie metryczne
 
 Klasyczne skalowanie metryczne zakłada, że macierz odległości $$D$$ powstała na bazie odległości euklidesowej.
-To skalowanie odpowiada metodzie PCA, z tą różnicą, że puntem wyjścia jest macierz odległości.
+To skalowanie odpowiada metodzie PCA, z tą różnicą, że puntem wyjścia jest macierz euklidesowych odległości.
 
 Algorytm skalowania jest następujący (jednokrokowy)
 
@@ -12,8 +12,13 @@ B = -\frac 12 J D^2 J,
 $$
 gdzie macierz centrująca to $$J = I - 1 1^T/n$$,
 3. Wyznacz wartości własne $$\lambda$$ i wektory własne $$V$$ macierzy $$B$$.
-4. Wyznacz współrzędne obiektów jako $$X=V_p diag(\lambda^{1/2}_p)$$, gdzie $$V_p$$ to macierz z $$p$$ pierwszymi wektorami własnymi, a wektor $$\lambda_p$$ to p-największych wartości własnych.
+4. Wyznacz współrzędne obiektów jako 
+$$
+X = V_p diag(\lambda^{1/2}_p),
+$$
+gdzie $$V_p$$ to macierz z $$p$$ pierwszymi wektorami własnymi, a wektor $$\lambda_p$$ to p-największych wartości własnych.
 
+Założeniem tej metody jest to, że macierz $$D$$ oparta jest o odległość euklidesową. Ale nawet gdy to założenie nie jest spełnione, skalowanie klasyczne jest wykorzystywane by wybrać początkową konfigurację dla innych algorytmów skalowania metrycznego lub nie metrycznego.
 
 
 ## Jak przeprowadzić skalowanie klasyczne w R?
