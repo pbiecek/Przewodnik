@@ -52,7 +52,7 @@ Funkcja `sammon()` z pakietu `MASS` wyznacza klasyczne skalowanie metyczne (nazw
 
 Poniższy przykład wczytuje dane o głosach posłów z VII kadencji Sejmu RP na ponad 5600 głosowań. Opierając się na macierzy podobieństw wektorów głosów wyznaczmy dwu-wymiarową reprezentacje posłów. Pozycja zależy wyłącznie od tego w jaki sposób głosowano. Ale jak widzimy, posłowie tych samych klubów głosują często podobnie do siebie.
 
-```{r glosowania, warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+```{r glosowania, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
 library(ggplot2)
 library(ggrepel)
 library(MASS)
@@ -66,15 +66,15 @@ projekcja$klub <- glosowania[,2]
 projekcja$imie <- glosowania[,1]
 
 ggplot(projekcja, aes(V1, V2, label=imie)) + 
-  geom_point(aes(color=klub)) 
+  geom_point(aes(color=klub)) +theme_bw()
 ```
 
 Zaznaczmy na tym wykresie pozycje liderów klubów.
 
-```{r glosowania2, warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+```{r glosowania2, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
 ggplot(projekcja, aes(V1, V2, label=imie)) + 
   geom_point(aes(color=klub)) +
-  geom_text_repel(data=projekcja[c(268, 348, 139, 259, 168, 309, 223),]) 
+  geom_text_repel(data=projekcja[c(268, 348, 139, 259, 168, 309, 223),]) +theme_bw()
 ```
 
 
@@ -115,21 +115,21 @@ $$
 
 Funkcja `isoMDS()` z pakietu `MASS` wyznacza skalowanie niemetyczne.
 
-```{r glosowania3, warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+```{r glosowania3, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
 projekcja <- as.data.frame( isoMDS(podobienstwa, k = 2)$points )
 projekcja$klub <- glosowania[,2]
 projekcja$imie <- glosowania[,1]
 
 ggplot(projekcja, aes(V1, V2, label=imie)) + 
-  geom_point(aes(color=klub)) 
+  geom_point(aes(color=klub)) +theme_bw()
 ```
 
 Zaznaczmy na tym wykresie pozycje liderów klubów.
 
-```{r glosowania4, warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+```{r glosowania4, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
 ggplot(projekcja, aes(V1, V2, label=imie)) + 
   geom_point(aes(color=klub)) +
-  geom_text_repel(data=projekcja[c(268, 348, 139, 259, 168, 309, 223),]) 
+  geom_text_repel(data=projekcja[c(268, 348, 139, 259, 168, 309, 223),]) +theme_bw()
 ```
 
 
