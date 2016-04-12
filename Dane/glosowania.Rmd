@@ -33,4 +33,8 @@ dis <- daisy(tmp[,-(1:2)])
 g3 <- pam(dis, 5)
 table(g3$clustering, tmp$club)
 
+
+
+
+
 ```
