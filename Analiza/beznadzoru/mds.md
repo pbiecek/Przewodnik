@@ -11,7 +11,7 @@ Problem skalowania wielowymiarowego ma wiele zastosowań zarówno w eksploracji 
 
 ## Skalowanie metryczne
 
-Oznaczmy przez $$x_i \im \mathcal R^p$$ współrzędne reprezentacji obiektu $$i$$ w nowej, zredukowanej przestrzeni.
+Oznaczmy przez $$x_i \in \mathcal R^p$$ współrzędne reprezentacji obiektu $$i$$ w nowej, zredukowanej przestrzeni.
 
 Problem szukania $$p$$ wymiarowej reprezentacji można zamienić na problem optymalizacji funkcji opisującej błąd odwzorowania. Wprowadźmy następującą funkcję zniekształcenia (tzw. funkcję ang. *stress*).
 
