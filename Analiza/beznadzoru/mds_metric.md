@@ -5,6 +5,10 @@ Oznaczmy przez $$x_i \in \mathcal R^p$$ współrzędne reprezentacji obiektu $$i
 Problem szukania $$p$$ wymiarowej reprezentacji można zamienić na problem optymalizacji funkcji opisującej błąd odwzorowania. Wprowadźmy następującą funkcję zniekształcenia (tzw. funkcję ang. *stress*).
 
 $$
+stress_1 = \sqrt{ \sum_{i,j} \left(d_{i,j} - ||x_i - x_j||\right)^2 }
+$$
+
+$$
 stress_1 = \left( \sum_{i,j} (d_{i,j} - ||x_i - x_j||)^2 \right)^{\frac 12}
 $$
 
