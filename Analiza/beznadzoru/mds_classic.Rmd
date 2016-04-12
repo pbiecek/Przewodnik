@@ -18,14 +18,17 @@ X = V_p diag(\lambda^{1/2}_p),
 $$
 gdzie $$V_p$$ to macierz z $$p$$ pierwszymi wektorami własnymi, a wektor $$\lambda_p$$ to p-największych wartości własnych.
 
-Założeniem tej metody jest to, że macierz $$D$$ oparta jest o odległość euklidesową. Ale nawet gdy to założenie nie jest spełnione, skalowanie klasyczne jest wykorzystywane by wybrać początkową konfigurację dla innych algorytmów skalowania metrycznego lub nie metrycznego.
+Oczywistą zaletą tej metody jest jednokrokowość. Jest to najszybszy algorytm skalowania.
+
+Jednak aby wyniki były miarodajne, założeniem tej metody jest to, że macierz $$D$$ oparta jest o odległość euklidesową. 
+Nawet gdy to założenie nie jest spełnione, skalowanie klasyczne jest wykorzystywane by wybrać początkową konfigurację dla innych algorytmów skalowania metrycznego lub nie metrycznego.
 
 
 ## Jak przeprowadzić skalowanie klasyczne w R?
 
 Funkcja `cmdscale()` z pakietu `MASS` wyznacza klasyczne skalowanie metryczne (nazwa pochodzi od *classical metric scalling*).
 
-Poniższy przykład wczytuje dane o głosach posłów z VII kadencji Sejmu RP na ponad 5600 głosowań. Opierając się na macierzy podobieństw wektorów głosów wyznaczmy dwu-wymiarową reprezentacje posłów. Pozycja zależy wyłącznie od tego w jaki sposób głosowano. Ale jak widzimy, posłowie tych samych klubów głosują często podobnie do siebie.
+Poniżej zastosujemy ją na tych samych danych co w poprzednim rozdziale.
 
 ```{r glosowania5, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
 library(ggplot2)
