@@ -2,7 +2,7 @@
 
 Problem, który będziemy rozwiązywać w tym rozdziale jest następujący:
 
-Mamy symetryczną macierz $$D = [d_{i,j}]$$, będącą macierzą podobieństw pomiędzy $$n$$ obiektami. Na podstawie tej macierzy szukamy $$p$$ wymiarowej reprezentacji w przestrzeni $$\mathcal R^p$$, takiej by podobieństwa pomiędzy obiektami były zachowane.
+Mamy symetryczną macierz $$D = [d_{ij}]$$, będącą macierzą podobieństw pomiędzy $$n$$ obiektami. Na podstawie tej macierzy szukamy $$p$$ wymiarowej reprezentacji w przestrzeni $$\mathcal R^p$$, takiej by podobieństwa pomiędzy obiektami były zachowane.
 
 Ten problem można rozwiązać na wiele sposobów, poniżej przedstawimy najbardziej klasyczne podejścia zachęcając jednocześnie czytelnika do szukania innych.
 
