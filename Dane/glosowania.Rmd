@@ -53,6 +53,6 @@ votings4 <- votings4[,c(1,5688,2:5687)]
 setLocalRepo("~/GitHub/Przewodnik/arepo")
 
 saveToLocalRepo(votings4)
-# 25bbda5c987185cfb68b20b575822a74
+# 3eab62451d26be6d14fe99dda69675ca
 
 ```
