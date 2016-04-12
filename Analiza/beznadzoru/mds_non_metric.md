@@ -9,7 +9,7 @@ Skalowanie nie-metryczne pozwala na znalezienie reprezentacji, która odwzorowuj
 Wprowadźmy następującą funkcję zniekształcenia (tzw. funkcję ang. *stress*).
 
 $$
-stress = \sqrt{ \frac{\sum_{i,j} (f(d_{i,j}) - ||x_i - x_j||)^2}{\sum_{i,j}  ||x_i - x_j||^2} }
+stress = \sqrt{ \frac{\sum_{i,j} (f(d_{ij}) - ||x_i - x_j||)^2}{\sum_{i,j}  ||x_i - x_j||^2} }
 $$
 
 We wzorze powyżej $$f()$$ oznacza monotoniczną rosnącą funkcję przekształcającą odległości pomiędzy obiektami ale zachowującą ich kolejność. Ta funkcja jest również optymalizowana w procesie minimalizacji współczynnika $$stress$$.
@@ -18,14 +18,14 @@ Ogólny schemat algorytmu skalowania nie-metrycznego jest następujący.
 
 1. Wyznacz początkowa konfigurację (może być losowa, lub oparta o skalowanie klasyczne),
 2. Wyznacz macierz odległości pomiędzy obiektami w bieżącej konfiguracji $$\delta{i,j} = ||x_i - x_j||$$,
-3. Wykonaj regresję porządkową odległości $$\delta_{i,j}$$ na oryginalne odległości $$d_{i,j}$$,
+3. Wykonaj regresję porządkową odległości $$\delta_{ij}$$ na oryginalne odległości $$d_{ij}$$,
 $$
-d_{i,j} = f( \delta_{i,j} ).
+d_{ij} = f( \delta_{ij} ).
 $$
-Zamiast przeprowadzać regresję porządkową (ang. *isotonic regression*) można też estymować $$f()$$, na bazie tej regresji wyznacz $$\hat d_{i,j}$$,
+Zamiast przeprowadzać regresję porządkową (ang. *isotonic regression*) można też estymować $$f()$$, na bazie tej regresji wyznacz $$\hat d_{ij}$$,
 4. Wyznacz bieżącą wartość funkcji $$stress$$
 $$
-stress = \sqrt{ \frac{ \sum_{i,j} (d_{i,j} - \hat\delta_{i,j})^2 }{ \sum_{i,j} d^2_{i,j} } },
+stress = \sqrt{ \frac{ \sum_{i,j} (d_{ij} - \hat\delta_{ij})^2 }{ \sum_{i,j} d^2_{i,j} } },
 $$
 5. Na bazie gradientu funkcji $$stress$$ uaktualnij współrzędne reprezentacji $$x_i$$. 
 
