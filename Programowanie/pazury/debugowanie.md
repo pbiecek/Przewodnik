@@ -44,8 +44,7 @@ W takim przypadku użyteczną funkcją jest `dump.frames()`. W momencie uruchomi
 
 Funkcja `option()` pozwala na określenie rożnych globalnych parametrów. Akurat parametr `error` opisuje co ma się wydarzyć, jeżeli interpreter R napotka na błąd. Poniższy przykład definiuje nowe zachowanie: jeżeli wystąpi błąd, wszystkie informacje o błędzie należy zapisać do pliku `errorDump`.
 
-
-```r
+```
 options(error=quote(dump.frames("errorDump",TRUE)))
 ```
 
@@ -279,3 +278,9 @@ x
 ```
 ## R/createMDGallery.R: 100.00%
 ```
+
+## Więcej informacji
+
+* Interesujący przegląd możliwości RStudio dotyczących debudowania http://www.win-vector.com/blog/2016/04/free-data-science-video-lecture-debugging-in-r/
+
+
