@@ -25,10 +25,10 @@ W ogólnym przypadku minimalizacja funkcji $$stress_1$$ nie jest łatwa i wykorz
 $$
 d_{ij} = \alpha + \beta \delta_{ij},
 $$
-to nie musi być liniowa regresja, ale coś co sprowadzi $$\delta_{ij}$$ do skali $$d_{ij}$$. Oznaczmy jako $$\hat\d_{ij} = \hat\alpha + \hat\beta \delta_{ij}$$.
+to nie musi być liniowa regresja, ale coś co sprowadzi $$\delta_{ij}$$ do skali $$d_{ij}$$. Oznaczmy jako $$\hat d_{ij} = \hat\alpha + \hat\beta \delta_{ij}$$.
 4. Wyznacz bieżącą wartość funkcji $$stress$$
 $$
-stress = \sqrt{ \frac{ \sum_{i,j} (d_{ij} - \hat{\d_{ij}})^2 }{ \sum_{i,j} d^2_{ij} } },
+stress = \sqrt{ \frac{ \sum_{i,j} (d_{ij} - \hat{d_{ij}})^2 }{ \sum_{i,j} d^2_{ij} } },
 $$
 5. Na bazie gradientu funkcji $$stress$$ uaktualnij współrzędne reprezentacji $$x_i$$. 
 
