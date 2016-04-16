@@ -1,9 +1,10 @@
 # Metoda składowych głównych (ang. PCA, *Principal Component Analysis*)
 
-Dotychczas omówione metody bazowały na macierzy odległości / niepodobieństwa $$D$$ i z niej odtwarzały współrzędne punktów. 
-W tym rozdziale omówimy prostszy przypadek, w którym mamy dane $$X$$ w przestrzeni $$q$$ wymiarowej i chcemy je liniowo rzutować do przestrzeni $$p$$ wymiarowej, w ten sposób by zachować jak najlepiej kwadrat odległości euklidesowe pomiędzy obiektami.
+Dotychczas omówione metody bazowały na macierzy odległości / niepodobieństwa $$D$$ i z niej odtwarzały nowe współrzędne obiektów. 
 
-Poniżej traktujemy $$X$$ jako macierz o $$n$$ wierszach i $$q$$ kolumnach.
+W tym rozdziale omówimy prostszy przypadek, w którym mamy dane $$X$$ w przestrzeni $$q$$ wymiarowej i chcemy je liniowo rzutować do przestrzeni $$p$$ wymiarowej, w ten sposób by zachować jak najlepiej kwadrat odległości euklidesowej pomiędzy obiektami.
+
+Poniżej traktujemy $$X$$ jako macierz o $$n$$ wierszach i $$q$$ kolumnach, kolejne kolumny to zmienne opisujące obiekty.
 
 ## Skalowanie i centrowanie
 
@@ -15,27 +16,33 @@ Jeżeli zmienne są w różnych jednostkach, lub dotyczą różnych współczynn
 ## Największa wariacja - metoda wartości własnych
 
 Metoda PCA, którą poniżej omówimy, ma na celu jak najwierniejsze odwzorowanie kwadratu odległości euklidesowej.
-Średnia kwadratu odległości euklidesowej odpowiada wariancji. Problem rzutowania, które zachowuje kwadraty odległości euklidesowych jest więc równoważny problemowi rzutowania, które maksymalizuje wariancje w danych po rzutowaniu.
+Średnia kwadratu odległości euklidesowej punktów od średniej z punktów odpowiada wariancji. Problem rzutowania, które zachowuje kwadraty odległości euklidesowych jest więc równoważny problemowi rzutowania, które maksymalizuje wariancje w danych po rzutowaniu.
 
 Jak szukać rzutu maksymalizującego wariancję? 
 
 
-Zacznijmy od rzutu jednowymiarowego. Szukamy więc jednowymiarowej przestrzeni, takiej, że rzut na nią zachowuje największą wariancję.
-Przyjmijmy, że wektor $$u$$ jest wektorem bazowym tej podprzestrzeni. Długość rzutu wektora $$x$$ na tę podprzestrzeń to $$u^Tx$$. 
+Zacznijmy od rzutu jednowymiarowego. Szukamy jednowymiarowej przestrzeni, takiej, że rzut na nią ma jak największą wariancję.
+Przyjmijmy, że wektor $$u$$ jest wektorem bazowym tej nowej jednowymiarowej podprzestrzeni. Długość rzutu wektora $$x$$ na tę podprzestrzeń to $$u^Tx$$. 
 
-Wariancja to suma kwadratów rzutów, czyli
+Rzut zachowuje punkte zerowy, a więc Wariancja to suma kwadratów rzutów, czyli
 $$
-\frac 1n  \sum_i (x_i^T u)^2,
+Var(X^Tu) = \frac 1n  \sum_{i=1}^n (x_i^T u)^2,
 $$
 i można ją przedstawić jako 
 $$
-u^T(\sum_i x_i x_i^T)u.
+Var(X^Tu) = u^T\left(\sum_i x_i x_i^T\right)u.
 $$
 
-Zauważmy, że $$\sum_i x_i x_i^T$$ to macierz kowariancji danych. Przy dodatkowym ograniczeniu, że $$||u||=1$$ metodą mnożników Lagrange możemy znaleźć $$u$$, w tym przypadku będzie ono wektorem własnym odpowiadającym pierwszej wartości własnej.
+Zauważmy, że $$\sum_i x_i x_i^T$$ to macierz kowariancji danych (wciąż $$X$$jest wycentrowany). Przy dodatkowym ograniczeniu, że $$||u||=1$$ metodą mnożników Lagrange możemy znaleźć $$u$$.
 
+Funkcja Lagrange przyjmie postać
+$$
+u^T\left(\sum_i x_i x_i^T\right)u - \lambda u^Tu
+$$
 
+W tym przypadku rozwiązaniem jest wektor własny odpowiadającym pierwszej wartości własnej.
 
+Podobnie postępuje się dla kolejnych wymiarów i orzymuje się jako rozwiązania kolejne wartości własne.
 
 ## Wartości osobliwe - Singular value decomposition
 
@@ -43,11 +50,11 @@ Rozłóżmy macierz $$X$$ (zakładamy, że jej kolumny są wycentrowane i wystan
 $$
 X = U \Sigma W^T,
 $$
-gdzie $$\Sigma$$ jest macierzą diagonalną, macierze $$U$$ i $$W$$ są ortonormalne.
+gdzie $$\Sigma$$ jest macierzą diagonalną, macierze $$U$$ i $$W$$ są ortonormalne (a więc $$U^TU = I$$). Taki rozkład macierzy nazywamy rozkłądem na wartości osobliwe.
 
 Zauważmy, że
 $$
-X^T X = W \Sigma^2 W,
+X^T X = W^T \Sigma^2 W,
 $$
 a więc wartości osobliwe odpowiadają kwadratom wartości własnych.
 
@@ -113,6 +120,24 @@ model
 ## Average.critics.%           8.061223e-01
 ## Rotten.Tomatoes.Audience.% -5.030698e-17
 ## Metacritic.Audience.%      -8.326673e-17
+```
+
+Z modelu można wyłuskać dane po rzutowaniu.
+
+
+```r
+PCA12 <- model$x[,1:2]
+head(PCA12)
+```
+
+```
+##                                     PC1        PC2
+## Brooklyn                     -3.2417470  0.2121708
+## Avengers..Age.of.Ultron      -1.5103770 -0.3797345
+## Spectre                      -0.5508384  0.2148260
+## The.Good.Dinosaur            -1.3811634  0.2281014
+## Star.Wars..Force.Awakens     -2.6814663  0.0202641
+## Tomorrowland..A.World.Beyond  0.1619536  0.6190086
 ```
 
 Funkcja `plot()` pokazuje procent wyjaśnionej zmienności. Ale więcej pokaże biplot, wykonany z użyciem funkcji `autoplot{ggfortify}`.
