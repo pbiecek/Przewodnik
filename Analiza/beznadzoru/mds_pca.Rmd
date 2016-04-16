@@ -24,7 +24,7 @@ Jak szukać rzutu maksymalizującego wariancję?
 Zacznijmy od rzutu jednowymiarowego. Szukamy jednowymiarowej przestrzeni, takiej, że rzut na nią ma jak największą wariancję.
 Przyjmijmy, że wektor $$u$$ jest wektorem bazowym tej nowej jednowymiarowej podprzestrzeni. Długość rzutu wektora $$x$$ na tę podprzestrzeń to $$u^Tx$$. 
 
-Rzut zachowuje punkte zerowy, a więc Wariancja to suma kwadratów rzutów, czyli
+Rzut zachowuje punkt zerowy, a więc Wariancja to suma kwadratów rzutów, czyli
 $$
 Var(X^Tu) = \frac 1n  \sum_{i=1}^n (x_i^T u)^2,
 $$
@@ -42,7 +42,7 @@ $$
 
 W tym przypadku rozwiązaniem jest wektor własny odpowiadającym pierwszej wartości własnej.
 
-Podobnie postępuje się dla kolejnych wymiarów i orzymuje się jako rozwiązania kolejne wartości własne.
+Podobnie postępuje się dla kolejnych wymiarów i otrzymuje się jako rozwiązania kolejne wartości własne.
 
 ## Wartości osobliwe - Singular value decomposition
 
@@ -50,7 +50,7 @@ Rozłóżmy macierz $$X$$ (zakładamy, że jej kolumny są wycentrowane i wystan
 $$
 X = U \Sigma W^T,
 $$
-gdzie $$\Sigma$$ jest macierzą diagonalną, macierze $$U$$ i $$W$$ są ortonormalne (a więc $$U^TU = I$$). Taki rozkład macierzy nazywamy rozkłądem na wartości osobliwe.
+gdzie $$\Sigma$$ jest macierzą diagonalną, macierze $$U$$ i $$W$$ są ortonormalne (a więc $$U^TU = I$$). Taki rozkład macierzy nazywamy rozkładem na wartości osobliwe.
 
 Zauważmy, że
 $$
