@@ -58,7 +58,7 @@ X^T X = W^T \Sigma^2 W,
 $$
 a więc wartości osobliwe odpowiadają kwadratom wartości własnych.
 
-Możemy więc rzut na niższą przestrzeń wyznaczyć też ze wzoru
+Możemy więc rzut na niższą przestrzeń wyznaczyć też ze wzoru (wybieramy jedynie pierwsze wektory własne)
 $$
 M = XW = U \Sigma.
 $$
