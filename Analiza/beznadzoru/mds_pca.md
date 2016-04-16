@@ -37,7 +37,7 @@ Zauważmy, że $$\sum_i x_i x_i^T$$ to macierz kowariancji danych (wciąż $$X$$
 
 Funkcja Lagrange przyjmie postać
 $$
-u^T\left(\sum_i x_i x_i^T\right)u - \lambda u^Tu
+u^T\left(\sum_i x_i x_i^T\right)u - \lambda u^Tu.
 $$
 
 W tym przypadku rozwiązaniem jest wektor własny odpowiadającym pierwszej wartości własnej.
