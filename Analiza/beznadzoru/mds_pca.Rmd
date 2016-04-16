@@ -71,7 +71,7 @@ head(filmy2015)
 
 Analizę PCA można wykonać funkcją `princomp()` wykorzystującą wartości własne lub funkcją `prcomp()` wykorzystującą rozkład SVD. Ta druga metoda jest lepsza z uwagi na właściwości numeryczne.
 
-```{r pca2, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+```{r pca2, dev='svg',warning=FALSE, message=FALSE, fig.width=7, fig.height=4.5}
 rownames(filmy2015) <- make.names(filmy2015[,1], unique = TRUE)
 model <- prcomp(scale(filmy2015[,-1]))
 model
