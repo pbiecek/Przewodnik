@@ -1,19 +1,20 @@
 # Reguły asocjacyjne / reguły skojarzeniowe
 
-Pierwotna motywacja dotyczyła analizy danych zakupowych, tzw. analizy koszykowej. 
+Identyfikacja reguły asocjacyjnych pozwala na poznanie struktury danych. Dosyć specyficznych danych, tzw. danych transakcyjnych. 
 
-Przyjmijmy, że mamy koszyki zakupów. Na ich podstawie chcemy wyznaczyć produkty często kupowane razem. Po co?
+Pierwotna motywacja dotyczyła analizy danych zakupowych, tzw. analizy koszykowej. Zastosowań jest znacznie więcej, ale dla wygody będziemy się posługiwali terminologią koszykową.
+Przyjmijmy, że dane dotyczą transakcji, każda transakcja dotyczy zbioru produktów. Na ich podstawie chcemy wyznaczyć produkty często kupowane razem. 
 
-Jeżeli analiza koszykowa wykazałaby, że zakup produktu X pociąga za sobą zakup produktu Y (np. zakup kiełbasek na grilla pociąga za sobą zakup ketchupu), to sprzedawca mógłby obniżyć cenę kiełbasek (dobra reklama, wiele osób przychodzi do sklepu) a podnieść cenę ketchupu (dzięki czemu koszyk zakupowy jest droższy).
+Po co? Jeżeli analiza koszykowa pokaże, że zakup produktu X pociąga za sobą zakup produktu Y (np. zakup kiełbasek na grilla pociąga za sobą zakup ketchupu), to sprzedawca mógłby obniżyć cenę kiełbasek (dobra reklama, wiele osób przychodzi do sklepu) a podnieść cenę ketchupu (dzięki czemu koszyk zakupowy jest droższy).
 
-Poniżej, dla wygody będziemy się posługiwali terminologią koszykową, ale analiza tego typu stosuje się w wielu innych zagadnieniach. Produktem może być przeczytana książka, aktywny gen, obejrzany film, wybrany przedmiot, obejrzana strona internetowa itp.
+Analiza koszykowa ma też zastosowania w zagadnieniach. Produktem może być przeczytana książka, aktywny gen, obejrzany film, wybrany przedmiot, obejrzana strona internetowa itp.
 
 
 ## Składnia reguł
 
 Oznaczmy przez $$P$$ zbiór produktów 
 $$
-P = (P_1, P_2, ..., P_n).
+P = \{P_1, P_2, ..., P_n\}.
 $$
 
 Regułą decyzyjną nazwiemy parę o strukturze 
@@ -32,15 +33,15 @@ Par postaci $$L \to R$$ można wygenerować bardzo wiele. Aby wybrać z nich te 
 
 Trzy najpopularniejsze to:
 
-* Support (wsparcie), czyli do jakiej części transakcji stosuje się lewa strona reguły. To iloraz liczby transakcji spełniających lewą stronę do liczby wszystkich transakcji.
+* Support (*wsparcie*), wyznacza sie dla zbioru. Określa do jakiej części transakcji stosuje się dany zbiór. To iloraz liczby transakcji zawierających produkty ze zbioru do liczby wszystkich transakcji.
 $$
 supp(L) = n_L / n
 $$
-* Confidence (wiarygodność/ufność), czyli procent transakcji zgodnych z regułą (zawierających produkty z obu stron) do transakcji zgodnych z lewą stroną reguły (zawierających produkty z prawej strony).
+* Confidence (*wiarygodność/ufność*), czyli procent transakcji zgodnych z regułą (zawierających produkty z obu stron) do transakcji zgodnych z lewą stroną reguły (zawierających produkty z prawej strony).
 $$
 conf(L \to R) = supp(L + R) / supp(L)
 $$
-* Lift, (podniesienie), czyli ilukrotnie częściej w transakcjach występuje lewa i prawa strona w stosunku to tego gdyby występowały niezależnie.
+* Lift (*podniesienie*), czyli ilukrotnie częściej w transakcjach występuje lewa i prawa strona w stosunku do częstości spodziewanej, gdyby obie strony występowały niezależnie.
 $$
 lift(L \to R) \frac{supp(L + R)}{supp(L) supp(R)}
 $$
@@ -76,15 +77,15 @@ Polega on na bardzo prostej obserwacji: wsparcie zbioru nie może się zwiększy
 
 Następnie dla każdego częstego zbioru wygeneruj wszystkie podziały na dwa podzbiory i wyznacz ich ufność. Pzostaw tylko te, dla których ufność $$\geq min_c$$.
 
-## Wady i zalety
+## Wady takiego podejścia
 
-Ustalenie minimalnego wsparcia bardzo przydaje się do konstrukcji reguł. Jednak w zastosowaniach często nawet bardzo rzadkie reguły mogłyby być interesujące (np. mogą dotyczyć drogich produktów premium)
+Ustalenie minimalnego wsparcia bardzo przydaje się do konstrukcji reguł. Jednak w zastosowaniach często nawet bardzo rzadkie reguły mogłyby być interesujące (np. mogą dotyczyć drogich produktów premium).
 
-Wsparcie spada szybo z rosnącą wielkością reguł a więc stały próg na wsparcie preferuje krótkie reguły.
+Wsparcie spada szybo z rosnącą wielkością reguł, a więc stały próg na wsparcie preferuje krótkie reguły.
 
-Zaufanie nei bierze pod uwagę częstości prawej strony reguły.
+Zaufanie nie bierze pod uwagę częstości występowania prawej strony reguły (ale *lift* już tak).
 
-Można by używać testu $$\chi^2$$, ale czasem to są małe wartości, jest wiele hipotez. 
+Można używać testu $$\chi^2$$ do oceny jakości reguł, ale opierać się on będzie o mało liczbe tabele, a do testowania jest wiele hipotez. 
 
 
 ## Przykład zastosowań
