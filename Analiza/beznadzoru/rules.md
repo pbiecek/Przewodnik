@@ -7,7 +7,7 @@ Przyjmijmy, że dane dotyczą transakcji, każda transakcja dotyczy zbioru produ
 
 Po co? Jeżeli analiza koszykowa pokaże, że zakup produktu X pociąga za sobą zakup produktu Y (np. zakup kiełbasek na grilla pociąga za sobą zakup ketchupu), to sprzedawca mógłby obniżyć cenę kiełbasek (dobra reklama, wiele osób przychodzi do sklepu) a podnieść cenę ketchupu (dzięki czemu koszyk zakupowy jest droższy).
 
-Analiza koszykowa ma też zastosowania w zagadnieniach. Produktem może być przeczytana książka, aktywny gen, obejrzany film, wybrany przedmiot, obejrzana strona internetowa itp.
+Analiza koszykowa ma też zastosowania w innych zagadnieniach. Produktem może być przeczytana książka, aktywny gen (które geny się aktywują), obejrzany film, wyszukana strona internetowa itp.
 
 
 ## Składnia reguł
@@ -33,17 +33,17 @@ Par postaci $$L \to R$$ można wygenerować bardzo wiele. Aby wybrać z nich te 
 
 Trzy najpopularniejsze to:
 
-* Support (*wsparcie*), wyznacza się dla zbioru. Określa do jakiej części transakcji stosuje się dany zbiór. To iloraz liczby transakcji zawierających produkty ze zbioru do liczby wszystkich transakcji.
+* Support (*wsparcie*), wyznacza się dla zbioru. Określa do jakiej części transakcji stosuje się dany zbiór. To iloraz liczby transakcji zawierających produkty ze zbioru do liczby wszystkich transakcji
 $$
-supp(L) = n_L / n
+supp(L) = n_L / n.
 $$
-* Confidence (*wiarygodność/ufność*), czyli procent transakcji zgodnych z regułą (zawierających produkty z obu stron) do transakcji zgodnych z lewą stroną reguły (zawierających produkty z prawej strony).
+* Confidence (*wiarygodność/ufność*), czyli procent transakcji zgodnych z regułą (zawierających produkty z obu stron) do transakcji zgodnych z lewą stroną reguły (zawierających produkty z prawej strony)
 $$
-conf(L \to R) = supp(L + R) / supp(L)
+conf(L \to R) = supp(L + R) / supp(L).
 $$
-* Lift (*podniesienie*), czyli ilukrotnie częściej w transakcjach występuje lewa i prawa strona w stosunku do częstości spodziewanej, gdyby obie strony występowały niezależnie.
+* Lift (*podniesienie*), czyli ilukrotnie częściej w transakcjach występuje lewa i prawa strona w stosunku do częstości spodziewanej, gdyby obie strony występowały niezależnie
 $$
-lift(L \to R) \frac{supp(L + R)}{supp(L) supp(R)}
+lift(L \to R) = \frac{supp(L + R)}{supp(L) supp(R)}.
 $$
 
 Są też inne współczynniki, ale te trzy są najczęściej używane.
@@ -54,10 +54,10 @@ W praktyce często zakłada się minimalne wartości na oba te współczynniki i
 
 
 
-## Jak szukać reguł
+## Jak szukać reguł?
 
 Problem wydaje się prosty. Wystarczy rozważyć wszystkie możliwe reguły, policzyć dla nich Support/Confidence i wybrać te o wysokich wartościach obu współczynników.
-Ale wszystkich możliwych reguł jest za dużo by móc je generować dla typowych zbiorów danych.
+Ale wszystkich możliwych reguł jest zazwyczaj za dużo by móc je generować dla nawet małych zbiorów produktów (wszystkich podzbiorów $$k$$ projektów jest $$2^k-1$$).
 
 
 W praktycznych zastosowaniach w pierwszej kolejności wyznacza się najpierw zbiór częstych zbiorów, czyli takich aby $$supp(L) > \min_s$$.
@@ -67,7 +67,7 @@ W drugim kroku, na podstawie tego zbioru częstego rozważa się jego podzbiory 
 
 ## Jak szukać częstych zbiorów - algorytm apriori
 
-Najpopularniejszym algorytmem jest *apriori* (Agarwal i Srikant, 1994). 
+Najpopularniejszym algorytmem wyznaczania zbiorów częstych jest algorytm *apriori* (Agarwal i Srikant, 1994). 
 Polega on na bardzo prostej obserwacji: wsparcie zbioru nie może się zwiększyć po dodaniu do zbioru nowej reguły.
 
 1. Znajdź wszystkie jednoelementowe zbiory $$X$$, takie które $$supp(X) \geq min_s$$,
