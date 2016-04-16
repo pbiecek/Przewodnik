@@ -1,6 +1,11 @@
 # Co nowego zostało ostatnio dodane?
 
 
+* 15 kwietnia 2016
+
+Dodano rozdział o regułach decyzyjnych z omówionym pakietem `arules`
+https://pbiecek.gitbooks.io/przewodnik/content/Analiza/beznadzoru/rules.html
+
 * 3 kwietnia 2016
 
 Dodano rozdział o budowaniu pakietów *Jak budować pakiety?* https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/pakiety/po_co.html
