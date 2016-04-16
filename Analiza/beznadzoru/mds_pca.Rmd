@@ -80,7 +80,7 @@ model
 Funkcja `plot()` pokazuje procent wyjaśnionej zmienności. Ale więcej pokaże biplot, wykonany z użyciem funkcji `autoplot{ggfortify}`.
 
 
-```{r pca3, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+```{r pca3, dev='svg',warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
 plot(model)
 library(ggfortify)
 autoplot(model, shape = FALSE, label.size = 2, loadings = TRUE, loadings.label = TRUE, loadings.label.size = 5) + theme_bw()
