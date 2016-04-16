@@ -6,6 +6,10 @@
 Dodano rozdział o regułach decyzyjnych z omówionym pakietem `arules`
 https://pbiecek.gitbooks.io/przewodnik/content/Analiza/beznadzoru/rules.html
 
+* 10 kwietnia 2016
+
+Dodano rozdział o skalowaniu wielowymiarowym MDS https://pbiecek.gitbooks.io/przewodnik/content/Analiza/beznadzoru/mds.html
+
 * 3 kwietnia 2016
 
 Dodano rozdział o budowaniu pakietów *Jak budować pakiety?* https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/pakiety/po_co.html
