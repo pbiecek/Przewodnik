@@ -91,45 +91,174 @@ Można by używać testu $$\chi^2$$, ale czasem to są małe wartości, jest wie
 
 Do zastosowań wykorzystamy zbiór danych `Groceries` z pakietu `arules`. Jest to zbiór danych klasy `transactions` z 9835 transakcjami, dotyczą one produktów z 169 kategorii.
 
-```{r}
+
+```r
 library("arules")
 data("Groceries")
 Groceries
+```
+
+```
+## transactions in sparse format with
+##  9835 transactions (rows) and
+##  169 items (columns)
+```
+
+```r
 head(Groceries@itemInfo)
+```
+
+```
+##              labels  level2           level1
+## 1       frankfurter sausage meet and sausage
+## 2           sausage sausage meet and sausage
+## 3        liver loaf sausage meet and sausage
+## 4               ham sausage meet and sausage
+## 5              meat sausage meet and sausage
+## 6 finished products sausage meet and sausage
+```
+
+```r
 dim(Groceries@data)
+```
+
+```
+## [1]  169 9835
 ```
 
 Dane o produktach w stransakcjach są przechowywane w postaci rzadkiej macierzy zer i jedynek.
 Można ją wyświetlić lub narysować.
 
-```{r rules3, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+
+```r
 Groceries@data[1:5,1:30]
+```
+
+```
+## 5 x 30 sparse Matrix of class "ngCMatrix"
+##                                                                 
+## [1,] . . . . . . . . . . . . . | . . . . . . . . . . . . . . . .
+## [2,] . . . . . . . . . . . . . . . . . . . . . . . . . . . | . .
+## [3,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+## [4,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+## [5,] . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+```
+
+```r
 image(head(Groceries,300))
 ```
 
+![plot of chunk rules3](figure/rules3-1.svg)
+
 Aby wyznaczyć reguły asocjacyjne, można wykorzystać funkcję `apriori()`. Dodatkowe argumenty, przekazane przez parametr `parameter` pozwala określić progi na wyszukiwane reguły.
 
-```{r rules2, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+
+```r
 rules <- apriori(Groceries, parameter = list(support = .001))
+```
+
+```
+## Apriori
+## 
+## Parameter specification:
+##  confidence minval smax arem  aval originalSupport support minlen maxlen
+##         0.8    0.1    1 none FALSE            TRUE   0.001      1     10
+##  target   ext
+##   rules FALSE
+## 
+## Algorithmic control:
+##  filter tree heap memopt load sort verbose
+##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+## 
+## Absolute minimum support count: 9 
+## 
+## set item appearances ...[0 item(s)] done [0.00s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
+## sorting and recoding items ... [157 item(s)] done [0.00s].
+## creating transaction tree ... done [0.00s].
+## checking subsets of size 1 2 3 4 5 6 done [0.01s].
+## writing ... [410 rule(s)] done [0.00s].
+## creating S4 object  ... done [0.00s].
+```
+
+```r
 rules
+```
+
+```
+## set of 410 rules
+```
+
+```r
 inspect(head(sort(rules, by = "lift"), 3))
+```
+
+```
+##   lhs                        rhs                   support confidence     lift
+## 1 {liquor,                                                                    
+##    red/blush wine}        => {bottled beer}    0.001931876  0.9047619 11.23527
+## 2 {citrus fruit,                                                              
+##    other vegetables,                                                          
+##    soda,                                                                      
+##    fruit/vegetable juice} => {root vegetables} 0.001016777  0.9090909  8.34040
+## 3 {tropical fruit,                                                            
+##    other vegetables,                                                          
+##    whole milk,                                                                
+##    yogurt,                                                                    
+##    oil}                   => {root vegetables} 0.001016777  0.9090909  8.34040
 ```
 
 Reguły można prezentować graficznie. Służy do tego pakiet `arulesViz`. 
 
-```{r rules1, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+
+```r
 library(arulesViz)
 plot(rules)
+```
 
+![plot of chunk rules1](figure/rules1-1.svg)
+
+```r
 itemFrequencyPlot(Groceries, topN =20)
+```
 
+![plot of chunk rules1](figure/rules1-2.svg)
+
+```r
 plot(head(sort(rules, by="lift"), 50),  method="graph", control=list(cex=.7))
+```
 
+![plot of chunk rules1](figure/rules1-3.svg)
+
+```r
 # tylko częste zbiory
 
 rules <- apriori(Groceries, parameter = list(target = "frequent",
   supp=0.001, minlen = 2, maxlen=4))
+```
 
+```
+## Apriori
+## 
+## Parameter specification:
+##  confidence minval smax arem  aval originalSupport support minlen maxlen
+##          NA    0.1    1 none FALSE            TRUE   0.001      2      4
+##             target   ext
+##  frequent itemsets FALSE
+## 
+## Algorithmic control:
+##  filter tree heap memopt load sort verbose
+##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+## 
+## Absolute minimum support count: 9 
+## 
+## set item appearances ...[0 item(s)] done [0.00s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
+## sorting and recoding items ... [157 item(s)] done [0.00s].
+## creating transaction tree ... done [0.00s].
+## checking subsets of size 1 2 3 4 done [0.01s].
+## writing ... [12949 set(s)] done [0.00s].
+## creating S4 object  ... done [0.00s].
 ```
 
 
