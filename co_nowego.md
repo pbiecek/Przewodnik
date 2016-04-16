@@ -3,12 +3,12 @@
 
 * 15 kwietnia 2016
 
-Dodano rozdział o regułach decyzyjnych z omówionym pakietem `arules`
+Dodano rozdział 3.1.6 o regułach decyzyjnych z omówionym pakietem `arules`
 https://pbiecek.gitbooks.io/przewodnik/content/Analiza/beznadzoru/rules.html
 
 * 10 kwietnia 2016
 
-Dodano rozdział o skalowaniu wielowymiarowym MDS https://pbiecek.gitbooks.io/przewodnik/content/Analiza/beznadzoru/mds.html
+Dodano rozdział 3.1.4 o skalowaniu wielowymiarowym MDS https://pbiecek.gitbooks.io/przewodnik/content/Analiza/beznadzoru/mds.html
 
 * 3 kwietnia 2016
 
