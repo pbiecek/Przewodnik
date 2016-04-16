@@ -69,7 +69,7 @@ W drugim kroku, na podstawie tego zbioru częstego rozważa się jego podzbiory 
 Najpopularniejszym algorytmem jest apriori (Agarwal i Srikant, 1994). 
 Polega on na bardzo prostej obserwacji: wsparcie zbioru nie może się zwiększyć po dodaniu do zbioru nowej reguły.
 
-1. Znajdź wszystkie jednoelementowe zbiory $$X$$, takie które $$supp(X)$ \geq min_s$$,
+1. Znajdź wszystkie jednoelementowe zbiory $$X$$, takie które $$supp(X) \geq min_s$$,
 2. Na podstawie zbiorów o wielkości $$k$$ wygeneruj zbioru o wielkości $$k+1$$ przez dodanie po jednym produkcie. Pozostaw tylko te, zbiory których wsparcie jest większe niż $$min_s$$.
 3. Powtarzaj krok 2.
 
