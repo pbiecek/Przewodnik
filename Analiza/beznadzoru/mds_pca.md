@@ -143,18 +143,18 @@ head(PCA12)
 Funkcja `plot()` pokazuje procent wyjaśnionej zmienności. Ale więcej pokaże biplot, wykonany z użyciem funkcji `autoplot{ggfortify}`.
 
 
-
 ```r
 plot(model)
 ```
 
-![plot of chunk pca3](figure/pca3-1.svg)
+![plot of chunk pca5](figure/pca5-1.svg)
+
 
 ```r
 library(ggfortify)
 autoplot(model, shape = FALSE, label.size = 2, loadings = TRUE, loadings.label = TRUE, loadings.label.size = 5) + theme_bw()
 ```
 
-![plot of chunk pca3](figure/pca3-2.svg)
+![plot of chunk pca3](figure/pca3-1.svg)
 
 
