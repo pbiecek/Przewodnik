@@ -57,28 +57,28 @@ Nawet jeżeli pracujemy na małym komputerze, wciąż możemy wykorzystać wszys
 
 Funkcją `detectCores()` sprawdźmy na początek ile mamy rdzeni w komputerze.
 
-
 ```r
 library(parallel)
 detectCores()
 ```
 
+```
 [1] 8
+```
 
 Na tym małym laptopie mamy tylko 8 rdzeni. Aby sensownie na nim pracować zajmiemy 7 rdzeni pozostawiając jeden na inne zadania.
 
 Klaster można zbudować funkcją `makeCluster()`. Domyślnie tworzony jest klaster typu PSOC. Specyfikacja tego klastra (pierwszy argument) to  liczba węzłów, które mają być stworzone. 
 
-
 ```r
+N <- 100000
+
 klaster <- makeCluster(detectCores()-1)
 print(klaster)
 ```
 
+```
 socket cluster with 7 nodes on host 'localhost'
-
-```r
-N <- 10000
 ```
 
 Mamy klaster, czas na nim coś ciekawego policzyć.
@@ -88,25 +88,25 @@ Stwórzmy funkcję `alm()`, która dla każdego uruchomienia, zbuduje próbę bo
 Następnie używamy funkcji `parLapply()` aby wykonać tę funkcję 10 000 razy. 
 
 
-
 ```r
 alm <- function(i) {
   tmp <- anscombe[sample(nrow(anscombe), replace = T),]
   lm(y3~x3, data=tmp)$coef
 }
 
-system.time(
+system.time({
   res <- parLapply(klaster, 1:N, alm)
-)
+})
 ```
 
+```
    user  system elapsed 
-  0.019   0.008   3.136 
+  0.158   0.060  27.972 
+```
 
 Wynikiem funkcji `parLapply()` jest lista z wynikami poszczególnych wywołań funkcji `alm()`. Tak, w powyższym przypadku funkcja `alm()` przyjmuje jeden argument (ponieważ musi) ale z niego nie korzysta (ponieważ nie potrzebuje). Każda próba boostrapowa jest wyznaczana niezależnie.
 
 Przekształćmy tę listę z wynikami do ramki danych. Używając biblioteki `ggplot2` pokażemy najpierw dane z których będziemy wyznaczać rozkład współczynników a następnie pokażmy wyznaczony metodą bootstrap rozkład współczynników w modelu regresji.
-
 
 ```r
 wspolczynniki <- as.data.frame(as.table(simplify2array(res)))
@@ -135,19 +135,26 @@ alm <- function(i, new_data) {
   lm(y3~x3, data=tmp)$coef
 }
 
-system.time(
+system.time({
   res <- parLapply(klaster, 1:N, alm, new_data = anscombe)
-)
+})
 ```
 
+```
+Error in summary.connection(connection): invalid connection
+```
+
+Timing stopped at: 0.023 0 0.026 
+
+```
    user  system elapsed 
-  0.018   0.007   3.080 
+  0.171   0.072  32.649 
+```
 
 Przekazywanie danych przez argumenty funkcji to spory narzut. Czasem wygodniej byłoby przekazać dane lub parametry w inny sposób. 
 Można do tego celu wykorzystać funkcje `clusterExport()`.
 
 Wskazaną zmienną wysyła do wszystkich węzłów klastra. W poniższym przykładzie, funkcja `alm()` korzysta ze zmiennej `new_data`, która została wcześniej rozesłana po węzłach klastra za pomocą funkcji `clusterExport()`.
-
 
 ```r
 new_data <- anscombe
@@ -158,29 +165,31 @@ alm <- function(i) {
   lm(y3~x3, data=tmp)$coef
 }
 
-system.time(
+system.time({
   res <- parLapply(klaster, 1:N, alm)
-)
+})
 ```
 
+```
    user  system elapsed 
-  0.025   0.011   3.383 
+  0.189   0.071  32.358 
+```
 
 Funkcja `parLapply()` jako wynik zwraca listę wartości. Listę tę można uprościć czasem do wektora czasem do macierzy używając funkcji `simplify2array()`. Aby nie kłopotać się tym dodatkowym wywołaniem, można zamiast `parLapply()` użyć `parSapply()`.
-
 
 ```r
 res <- parSapply(klaster, 1:N, alm)
 str(res)
 ```
 
- num [1:2, 1:10000] 3.242 0.491 3.381 0.468 4.006 ...
+```
+ num [1:2, 1:100000] 4.008 0.345 2.231 0.607 2.651 ...
  - attr(*, "dimnames")=List of 2
   ..$ : chr [1:2] "(Intercept)" "x3"
   ..$ : NULL
+```
 
 Po zakończeniu obliczeń równoległych należy pozamykać wiszące i zużywające RAM procesy. Aby zwinąć klaster można wykorzystać funkcję `stopCluster()`.
-
 
 ```r
 stopCluster(klaster)
@@ -194,35 +203,39 @@ Funkcja `mclapply()` wykorzystuje domyślnie liczbę rdzeni zdefiniowaną w opcj
 
 Można ją stosować zamiennie z funkcją `lapply()`.
 
-
 ```r
 alm <- function(i) {
   tmp <- new_data[sample(nrow(new_data), replace = T),]
   lm(y3~x3, data=tmp)$coef
 }
-
-getOption("mc.cores", 2)
 ```
 
+```
 [1] 8
+```
 
 ```r
-system.time(
+getOption("mc.cores", 2)
+system.time({
   res <- mclapply(1:N, alm)
-)
+})
 ```
 
+```
    user  system elapsed 
- 24.923   3.819   4.715 
+187.179   6.089  40.159 
+```
 
 ```r
 str(simplify2array(res))
 ```
 
- num [1:2, 1:10000] 1.908 0.62 4 0.346 2.626 ...
+```
+ num [1:2, 1:100000] 3.096 0.517 2.036 0.7 2.316 ...
  - attr(*, "dimnames")=List of 2
   ..$ : chr [1:2] "(Intercept)" "x3"
   ..$ : NULL
+```
 
 # Zadania
 
