@@ -48,6 +48,7 @@
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * [Jak debugować kod R?](Programowanie/pazury/debugowanie.md)
    * [Jak badać czas działania kodu?](Programowanie/pazury/profilowanie.md)
+   * [Jak zrównoleglić obliczenia w R?](Programowanie/pazury/rownolegle.md)
    * [Jak pracować z bazami danych?](Programowanie/jak_pracowac_z_bazami_danych.md)
    * [Jak generować liczby losowe?](Programowanie/generatory_llosowych.md)
      * [Jak ustawiać ziarno generatora?](Programowanie/generatory_1.md)
