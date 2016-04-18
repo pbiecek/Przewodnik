@@ -108,6 +108,58 @@ try(funkcja2(1, "jeden"), silent=TRUE)
 Funkcję `browser()` można umieszczać w środku innych funkcji lub bloku kodu. Gdy zostanie uruchomiona w wyniku otworzy bieżące środowisko i pozwoli na odpytanie stanu zmiennych w nim.
 
 
+## Śledzenie z użyciem funkcji trace
+
+Bardzo potężne możliwości debugowania kodu daje funkcja `trace()`.
+Umożliwia ona wstrzyknięcie do dowolnej funkcji dowolnej instrukcji / wyrażenia. Ułatwia to debugowanie funkcji. 
+
+Prześledźmy kilka typowych przykładów użycia.
+
+Wywołanie funkcji `trace()` z tylko jednym argumentem - nazwą funkcji do śledzenia, powoduje, że za każdym razem gdy ta funkcja będzie wywołana wyświetli się komunikat.
+
+Przykładowo, zobaczmy ile razy wywoływana jest funkcja `sum()` gdy liczy się histogram. Funkcja `untrace()` usuwa informacje o śledzeniu.
+
+```{r}
+trace(sum)
+tmp <- hist(rnorm(100), plot = FALSE) 
+untrace(sum)
+```
+
+Możliwości funkcji `trace()` są znacznie większe. Pozwala ona na wstrzyknięcie dowolnego kodu R w dowolne miejsce dowolnej funkcji. 
+
+Przedstawimy to na przykładzie. Zacznijmy od stworzenia w miarę prostej funkcji
+
+```{r}
+f <- function(x) {
+  y <- x + runif(1)
+  z <- y + runif(1)
+  w <- z + runif(1)
+  w
+}
+```
+
+Dodajemy informacje śledzące do funkcji `f()`. Przed trzecią linią wstrzykniemy kod `quote(browser())` a na koniec funkcji wstrzykniemy kod `quote(cat("Argumenty", x, y, z, w))`.
+Możemy więc w dowolnym miejscu podejrzeć stan argumentów danej funkcji.
+
+```{r}
+trace("f", quote(browser()),
+      at = 3,
+      exit = quote(cat("Argumenty", x, y, z, w)))
+```
+
+Aby przekonać się co zrobiła funkcja `trace()` zobaczmy jak teraz wygląda ciało fucnkji `f()`. Od razu widać kod śledzący.
+
+```{r}
+body(f)
+```
+
+Na koniec zawsze usuwamy informację o śledzeniu.
+
+```{r}
+untrace("f")
+```
+
+
 ## Debugowanie w RStudio
 
 RStudio posiada rozbudowane wsparcie dla debugowania, czy to zwykłych skryptów czy np. aplikacji shiny. W dowolnej linii kodu R można założyć pułapkę, gdy interpreter przeczyta ten fragment kodu to przerwanie skryptu zostanie przerwane i użytkownik ma opcje by prześledzić co się dzieje w określonym miejscy.
