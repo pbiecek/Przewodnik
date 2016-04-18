@@ -33,4 +33,26 @@ dis <- daisy(tmp[,-(1:2)])
 g3 <- pam(dis, 5)
 table(g3$clustering, tmp$club)
 
+
+
+### jeden czlowiek - jeden wiersz
+library(tidyr)
+votings <- archivist::aread("pbiecek/Przewodnik/arepo/9175ec8b23098c4364495afde9a2cc17")
+votings2 <- na.omit(gather(votings, glosowanie, glos, -surname_name, -club))
+
+votings3 <- spread(votings2[,-2], glosowanie, glos)
+
+votings4 <- votings3[,colSums(is.na(votings3)) <= 53]
+votings4 <- votings4[rowSums(is.na(votings4))==0,]
+
+clubs <- tapply(votings[,2], votings[,1], tail, 1)
+
+votings4$clubs <- clubs[as.character(votings4[,1])]
+votings4 <- votings4[,c(1,5688,2:5687)]
+
+setLocalRepo("~/GitHub/Przewodnik/arepo")
+
+saveToLocalRepo(votings4)
+# 3eab62451d26be6d14fe99dda69675ca
+
 ```
