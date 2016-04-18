@@ -131,7 +131,6 @@ Funkcja `alm()` nie potrzebowała żadnych argumentów. Ale są funkcje, które 
 
 Wszystkie dodatkowe argumenty można przekazać wewnątrz funkcji `parLapply()`. W poniższym przykładzie zbiór danych przesyłamy za pomocą argumentu `new_data`.
 
-
 ```r
 alm <- function(i, new_data) {
   tmp <- new_data[sample(nrow(new_data), replace = T),]
@@ -142,12 +141,6 @@ system.time({
   res <- parLapply(klaster, 1:N, alm, new_data = anscombe)
 })
 ```
-
-```
-Error in summary.connection(connection): invalid connection
-```
-
-Timing stopped at: 0.021 0 0.02 
 
 ```
    user  system elapsed 
