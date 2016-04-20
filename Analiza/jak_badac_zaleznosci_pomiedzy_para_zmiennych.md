@@ -257,7 +257,7 @@ $$
 
 Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-3))$$.
 
-Znając rozkład możemy zbudować już w prosty sposób test statystyczny. Również korzystając z tej transformacji i jej rozkłądu asymtotycznego można zbudowac test dla równości dwóch współczynników korelacji.
+Znając rozkład możemy już w prosty sposób zbudować test statystyczny. Tę transformację można wykorzystać również do konstrukcji testu dla równości dwóch współczynników korelacji.
 
 
 ### Korelacja rang
