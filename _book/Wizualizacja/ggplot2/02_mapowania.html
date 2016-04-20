@@ -63,7 +63,7 @@
         data-chapter-title="Jak określać mapowania?"
         data-filepath="Wizualizacja/ggplot2/02_mapowania.md"
         data-basepath="../.."
-        data-revision="Wed Apr 20 2016 17:58:53 GMT+0200 (CEST)"
+        data-revision="Wed Apr 20 2016 18:02:29 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1629,7 +1629,7 @@ ggplot(countries, aes(x=birth.rate, y=death.rate, color=continent, shape=contine
 </code></pre>
 <p><img src="figure/mapowania1-1.svg" alt="plot of chunk mapowania1"></p>
 <p>W tym przyk&#x142;adzie, okre&#x15B;laj&#x105;c mapowanie <em>kszta&#x142;t</em> = <em>kontynent</em> &#x17C;&#x105;damy by kszta&#x142;ty punkt&#xF3;w odpowiada&#x142;y kontynentom. Nie okre&#x15B;lamy jednak jaki kszta&#x142;t ma okre&#x15B;la&#x107; kt&#xF3;ry kontynent.  </p>
-<p>Spos&#xF3;b mapowania wybiera biblioteka <code>gglot2</code> na podstawie typu zmiennej i liczby poziom&#xF3;w, kt&#xF3;re maj&#x105; by&#x107; przedstawione.</p>
+<p>Spos&#xF3;b mapowania wybiera biblioteka <code>ggplot2</code> na podstawie typu zmiennej (factor/ilo&#x15B;ciowa/logiczna) i liczby poziom&#xF3;w, kt&#xF3;re maj&#x105; by&#x107; przedstawione.</p>
 <p>Przyk&#x142;adowo, na poprzednim wykresie przedstawiali&#x15B;my kontynent za pomoc&#x105; kolor&#xF3;w. Kolory s&#x105; tak dobierane by mo&#x17C;liwie u&#x142;atwi&#x107; rozr&#xF3;&#x17C;nienie poszczeg&#xF3;lnych kontynent&#xF3;w. Nie ma jednak &#x17C;adnego za&#x142;o&#x17C;onego porz&#x105;dku pomi&#x119;dzy kontynentami.</p>
 <p>Na poni&#x17C;szym przyk&#x142;adzie kolor mapujemy na zmienn&#x105; ilo&#x15B;ciow&#x105; - populacja. Tutaj jest ju&#x17C; porz&#x105;dek i jest on odzwierciedlony przez skal&#x119; kolor&#xF3;w rozpinaj&#x105;c&#x105; si&#x119; od niebieskiego po czer&#x144;.</p>
 <pre><code class="lang-r">ggplot(countries, aes(x=birth.rate, y=death.rate, color=population, size=population)) +

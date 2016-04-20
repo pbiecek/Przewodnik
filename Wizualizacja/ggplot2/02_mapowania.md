@@ -19,7 +19,7 @@ ggplot(countries, aes(x=birth.rate, y=death.rate, color=continent, shape=contine
 
 W tym przykładzie, określając mapowanie *kształt* = *kontynent* żądamy by kształty punktów odpowiadały kontynentom. Nie określamy jednak jaki kształt ma określać który kontynent.  
 
-Sposób mapowania wybiera biblioteka `gglot2` na podstawie typu zmiennej i liczby poziomów, które mają być przedstawione.
+Sposób mapowania wybiera biblioteka `ggplot2` na podstawie typu zmiennej (factor/ilościowa/logiczna) i liczby poziomów, które mają być przedstawione.
 
 Przykładowo, na poprzednim wykresie przedstawialiśmy kontynent za pomocą kolorów. Kolory są tak dobierane by możliwie ułatwić rozróżnienie poszczególnych kontynentów. Nie ma jednak żadnego założonego porządku pomiędzy kontynentami.
 
