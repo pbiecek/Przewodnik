@@ -186,7 +186,7 @@ fisher.test(tab22)
 
 ## Jak weryfikować niezależność dwóch zmiennych ilościowych?
 
-Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach zmiennych, uwikłądnie zmiennych, wiele możliwych odstępst od niezalezności.
+Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach (czyli korelacje wartości skranych bez względu na ich znak), uwikłanie zmiennych, wiele możliwych odstępst od niezależności.
 
 Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują nas dwa rodzaje zależności: liniowa oraz monotoniczna. Do ich badania najczęściej wykorzystuje się testy na współczynnik kolrelacji Pearsona i Spearmana.
 
