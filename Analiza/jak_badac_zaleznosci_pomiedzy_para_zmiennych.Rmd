@@ -212,7 +212,7 @@ $$
 \rho = 1 - \frac{6 \sum(r_i - s_i)^2}{n(n^2-1)}.
 $$
 
-Rozkład tej statystyki można tablicować dla małych $n$. Asymptotycznie ma ona rozkład normalny z wariancją $$1/(n-1)$$.
+Rozkład tej statystyki można tablicować dla małych $$n$$. Asymptotycznie ma ona rozkład normalny z wariancją $$1/(n-1)$$.
 Ale w implementacji najczęściej stosuje się podobną transformację co w przypadku testu Pearsona, czyli
 
 $$
