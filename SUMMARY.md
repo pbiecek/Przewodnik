@@ -73,7 +73,7 @@
        * Jak badać warunkowe zależności?
    * Modelowanie
      * Modele liniowe
-     * [Uogólnione modele liniowe](Analiza/modelowanie/glm.md)
+     * Uogólnione modele liniowe Analiza/modelowanie/glm.md
    * Predykcja
        * Jak mierzyć błąd predykcji?
        * Jak konstruować komitety? predyktorów?
