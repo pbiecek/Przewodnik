@@ -70,13 +70,6 @@
    * [Weryfikacja](Analiza/weryfikacja.md)
        * [Jak badać właściwości jednej zmiennej?](Analiza/jak_badac_wlasciwosci_jednej_zmiennej.md)
        * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
-       * Jak badać warunkowe zależności?
-   * Modelowanie
-     * Modele liniowe
-     * Uogólnione modele liniowe Analiza/modelowanie/glm.md
-   * Predykcja
-       * Jak mierzyć błąd predykcji?
-       * Jak konstruować komitety? predyktorów?
    * [Wizualizacja](Wizualizacja/wizualizacja.md)
        * [Jak tworzyć wykresy z pakietem ggplot2?](Wizualizacja/jak_tworzyc_wykresy_ggplot2.md)
          * [Jak zrobić pierwszy wykres?](Wizualizacja/ggplot2/01_pierwszy_wykres.md)
