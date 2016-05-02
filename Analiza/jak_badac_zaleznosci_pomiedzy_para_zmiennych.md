@@ -155,7 +155,7 @@ Statystyka testowa jest oparta o tablicę kontyngencji
 | $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | 
 | $$y_2$$ | $$n_{21}$$ | $$n_{22}$$ | 
 
-o rozkładzie hipotergeometrycznym.
+o rozkładzie hipergeometrycznym.
 
 Jeżeli badamy zależnośc pomiędzy parą zmiennych binarnych to zalecane jest użycie tego testu. Umożliwia on również weryfikowanie hipotez kierunkowych (a więc częstsze/rzadsze niż przypadkowe współwystępowanie $$x_2y_2$$).
 
