@@ -88,7 +88,7 @@ ggplot(auta, aes(Cena, KM, label=nazwa, color=grupa)) +
 ## Sylwetki grup
 
 Do diagnostyki pogrupowania wykorzystuje się często tzw. sylwetki (ang. *silhouette*).  
-Są to wykresu, przedstawiające dla każdego obiektu informację na ile blisko temu obiektowi do wszystkich pozostałych z jego grupy w stosunku do wszystkich pozostałych z innej, najbliższej grupy.
+Są to wykresy, przedstawiające dla każdego obiektu informację na ile blisko temu obiektowi do wszystkich pozostałych z jego grupy w stosunku do wszystkich pozostałych z innej, najbliższej grupy.
 
 Formalnie, możemy tę wartość zapisać jako 
 
