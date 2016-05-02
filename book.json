@@ -15,7 +15,7 @@
         "issues": "https://github.com/pbiecek/Przewodnik/issues",
         "edit": "TUTAJ"
     },
-     "styles": {
-        "website": "styles/website.css"
+   "styles": {
+      "website": "styles/website.css"
     }
 }
