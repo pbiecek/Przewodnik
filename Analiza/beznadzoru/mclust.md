@@ -24,13 +24,13 @@ head(faithful)
 ```
 
 ```
-##   eruptions waiting grupy
-## 1     3.600      79     2
-## 2     1.800      54     1
-## 3     3.333      74     2
-## 4     2.283      62     1
-## 5     4.533      85     2
-## 6     2.883      55     1
+##   eruptions waiting
+## 1     3.600      79
+## 2     1.800      54
+## 3     3.333      74
+## 4     2.283      62
+## 5     4.533      85
+## 6     2.883      55
 ```
 
 ```r
@@ -107,13 +107,6 @@ Mając model probabilistyczny, dla każdej obserwacji można określić prawdopo
 
 ```r
 faithful$grupy <- factor(predict(erupcje2, faithful)$class.X)
-```
-
-```
-## Error in FUN(newX[, i], ...): non-numeric argument to binary operator
-```
-
-```r
 ggplot(faithful, aes(waiting, eruptions, color=grupy, shape=grupy)) + 
   geom_point()
 ```
@@ -132,7 +125,7 @@ $$
 BIC(M) = -2 * \log likelihood(M) + |M| * log(n)
 $$
 
-gdzie $$n$$ to liczba obserwacji, $|M|$ to rozmiar modelu - liczba parametrów opisujących model a $$\log likelihood(M)$$ to funkcja log wiarogodności. 
+gdzie $$n$$ to liczba obserwacji, $$|M|$$ to rozmiar modelu - liczba parametrów opisujących model a $$\log likelihood(M)$$ to funkcja log wiarogodności. 
 
 Funkcja `unsupervisedList()` pozwala na dopasowanie do danych zbioru modeli o różnej liczbie składowych i różnej strukturze, a następnie używając funkcji `plot()` można ete modele porównać organoleptycznie
 
@@ -157,10 +150,10 @@ plotGIC(erupcje, penalty = "BIC")
 
 ```
 ##                     k=2      k=3      k=4
-## structure=DDDD 2307.275 2312.795 2331.745
-## structure=DDD0 2331.210 2322.102 2317.286
-## structure=DEDD 2309.689 2294.367 2321.467
-## structure=DED0 2339.197 2302.955 2298.583
+## structure=DDDD 2307.275 2312.795 2334.405
+## structure=DDD0 2331.210 2322.102 2317.258
+## structure=DEDD 2309.689 2294.367 2320.968
+## structure=DED0 2339.197 2302.955 2298.568
 ```
 
 ## I co dalej?

@@ -65,7 +65,7 @@ $$
 BIC(M) = -2 * \log likelihood(M) + |M| * log(n)
 $$
 
-gdzie $$n$$ to liczba obserwacji, $|M|$ to rozmiar modelu - liczba parametrów opisujących model a $$\log likelihood(M)$$ to funkcja log wiarogodności. 
+gdzie $$n$$ to liczba obserwacji, $$|M|$$ to rozmiar modelu - liczba parametrów opisujących model a $$\log likelihood(M)$$ to funkcja log wiarogodności. 
 
 Funkcja `unsupervisedList()` pozwala na dopasowanie do danych zbioru modeli o różnej liczbie składowych i różnej strukturze, a następnie używając funkcji `plot()` można ete modele porównać organoleptycznie
 
