@@ -68,14 +68,14 @@ W drugim kroku, na podstawie tego zbioru częstego rozważa się jego podzbiory 
 ## Jak szukać częstych zbiorów - algorytm apriori
 
 Najpopularniejszym algorytmem wyznaczania zbiorów częstych jest algorytm *apriori* (Agarwal i Srikant, 1994). 
-Polega on na bardzo prostej obserwacji: wsparcie zbioru nie może się zwiększyć po dodaniu do zbioru nowej reguły.
+Polega on na bardzo prostej obserwacji: wsparcie zbioru nie może się zwiększyć po dodaniu do zbioru nowego elementu.
 
 1. Znajdź wszystkie jednoelementowe zbiory $$X$$, takie które $$supp(X) \geq min_s$$,
-2. Na podstawie zbiorów o wielkości $$k$$ wygeneruj zbioru o wielkości $$k+1$$ przez dodanie po jednym produkcie. Pozostaw tylko te, zbiory których wsparcie jest większe niż $$min_s$$.
+2. Na podstawie zbiorów o wielkości $$k$$ wygeneruj zbiory o wielkości $$k+1$$ przez dodanie po jednym produkcie. Pozostaw tylko te, zbiory których wsparcie jest większe niż $$min_s$$.
 3. Powtarzaj krok 2.
 
 
-Następnie dla każdego częstego zbioru wygeneruj wszystkie podziały na dwa podzbiory i wyznacz ich ufność. Pozostaw tylko te, dla których ufność $$\geq min_c$$.
+Następnie dla każdego częstego zbioru wygeneruj wszystkie możliwe jednoelementowe prawe strony i wyznacz ich ufność. Pozostaw tylko te, dla których ufność $$\geq min_c$$.
 
 ## Wady takiego podejścia
 
