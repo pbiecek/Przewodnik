@@ -1,6 +1,6 @@
 # Jak przeprowadzić grupowanie/partycjonowanie hierarchiczne?
 
-Metoda k-średnich i k-mediodów wyznaczała podział zbioru obiektów na $$k$$ rozłącznych grup. Wybór $$k$$ jest istotny a wyniki dla $$k$$ i $$k+1$$ mogą być bardzo różne.
+Metoda k-średnich i k-medoidów wyznaczała podział zbioru obiektów na $$k$$ rozłącznych grup. Wybór $$k$$ jest istotny a wyniki dla $$k$$ i $$k+1$$ mogą być bardzo różne.
 
 Innym podejściem do analizy grup jest budowa grup w sposób hierarchiczny, tak by nowe grupy brały się z podziały już wybranych grup. Taki sposób konstrukcji grup prowadzi do hierarchicznej reprezentacji grup, która z reguły jest przedstawiana graficznie za pomocą drzewa.
 
