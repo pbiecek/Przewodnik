@@ -24,7 +24,7 @@ t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}},
 $$
 a rozkład statystyki dla prawdziwej hipotezy zerowej to rozkład t z n-1 stopniami swobody.
 
-Przykładowo, sprawdźmy, czy wiek posłów różni się od średniej w populacji. Bierne prawo wyborcze przysługuje w Polsce od 21 roku życia. Uwzględniając strukturę populacji średnia wiek osób w wieku powyżej 21 roku życia to około 50 lat (TODO: wylicz dokładniej).
+Przykładowo, sprawdźmy, czy wiek posłów różni się od średniej w populacji. Bierne prawo wyborcze przysługuje w Polsce od 21 roku życia. Uwzględniając strukturę populacji średnia wieku osób w wieku powyżej 21 roku życia to około 50 lat.
 
 Sprawdzimy więc, czy średni wiek posłów różni się istotnie od średniego wieku w populacji osób, którym przysługuje bierne prawo wyborcze. Wykorzystamy do tego funkcję `t.test()` z argumentem `mu`. Argumentem `alternative` można określić alternatywę.
 
@@ -67,7 +67,7 @@ t = (n-1) s^2/\sigma_0^2
 $$
 Przy prawdziwej hipotezie zerowej ma on rozkład $$\chi^2$$ z n-1 stopniami swobody.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(PairedData)
 
 var.test(poslowie$Wiek, ratio=100)

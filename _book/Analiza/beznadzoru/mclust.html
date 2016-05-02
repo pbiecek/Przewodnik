@@ -63,7 +63,7 @@
         data-chapter-title="Jak szukać partycji w oparciu o mieszaniny rozkładów?"
         data-filepath="Analiza/beznadzoru/mclust.md"
         data-basepath="../.."
-        data-revision="Mon May 02 2016 23:29:23 GMT+0200 (CEST)"
+        data-revision="Tue May 03 2016 00:04:39 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1452,13 +1452,13 @@ f(x) = \sum_{i=1}^k \pi_i f(x, \theta_i).
 <p>Standardowym przyk&#x142;adem ilustruj&#x105;cym mieszanin&#x119; rozk&#x142;ad&#xF3;w normlanych s&#x105; dane o czasach trwania erupcji i czasach pomi&#x119;dzy erupcjami gejzera Old Faithful w parku Yellowstone. Ju&#x17C; sama wst&#x119;pna eksploracja tych danych pokazuje zasadno&#x15B;&#x107; za&#x142;o&#x17C;enia o istnieniu dw&#xF3;ch lub wi&#x119;kszej liczy grup.</p>
 <pre><code class="lang-r">head(faithful)
 </code></pre>
-<pre><code>##   eruptions waiting grupy
-## 1     3.600      79     2
-## 2     1.800      54     1
-## 3     3.333      74     2
-## 4     2.283      62     1
-## 5     4.533      85     2
-## 6     2.883      55     1
+<pre><code>##   eruptions waiting
+## 1     3.600      79
+## 2     1.800      54
+## 3     3.333      74
+## 4     2.283      62
+## 5     4.533      85
+## 6     2.883      55
 </code></pre><pre><code class="lang-r"><span class="hljs-keyword">library</span>(ggplot2)
 ggplot(faithful, aes(waiting, eruptions)) + 
   geom_point()
@@ -1496,9 +1496,7 @@ erupcje2$mu[<span class="hljs-number">2</span>,]
 ## waiting   0.43543482 33.6991083
 </code></pre><p>Maj&#x105;c model probabilistyczny, dla ka&#x17C;dej obserwacji mo&#x17C;na okre&#x15B;li&#x107; prawdopodobie&#x144;stwo przynale&#x17C;no&#x15B;ci do ka&#x17C;dej ze sk&#x142;adowych, wi&#x119;c mo&#x17C;na te&#x17C; wyznaczy&#x107; sk&#x142;adow&#x105; MAP (ang. <em>maximum a posteriori</em>).</p>
 <pre><code class="lang-r">faithful$grupy &lt;- factor(predict(erupcje2, faithful)$class.X)
-</code></pre>
-<pre><code>## Error in FUN(newX[, i], ...): non-numeric argument to binary operator
-</code></pre><pre><code class="lang-r">ggplot(faithful, aes(waiting, eruptions, color=grupy, shape=grupy)) + 
+ggplot(faithful, aes(waiting, eruptions, color=grupy, shape=grupy)) + 
   geom_point()
 </code></pre>
 <p><img src="figure/mclust_predict-1.svg" alt="plot of chunk mclust_predict"></p>
@@ -1509,7 +1507,7 @@ erupcje2$mu[<span class="hljs-number">2</span>,]
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mi>I</mi><mi>C</mi><mo>(</mo><mi>M</mi><mo>)</mo><mo>=</mo><mo>&#x2212;</mo><mn>2</mn><mo>&#x2217;</mo><mi>log</mi><mi>l</mi><mi>i</mi><mi>k</mi><mi>e</mi><mi>l</mi><mi>i</mi><mi>h</mi><mi>o</mi><mi>o</mi><mi>d</mi><mo>(</mo><mi>M</mi><mo>)</mo><mo>+</mo><mi mathvariant="normal">&#x2223;</mi><mi>M</mi><mi mathvariant="normal">&#x2223;</mi><mo>&#x2217;</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">
 BIC(M) = -2 * \log likelihood(M) + |M| * log(n)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord">&#x2212;</span><span class="mord mathrm">2</span><span class="mbin">&#x2217;</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">i</span><span class="mord mathit">h</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathrm">&#x2223;</span><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mord mathrm">&#x2223;</span><span class="mbin">&#x2217;</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span></span></span></span></span></p>
-<p>gdzie <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">n</span></span></span></span> to liczba obserwacji, $|M|$ to rozmiar modelu - liczba parametr&#xF3;w opisuj&#x105;cych model a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mi>l</mi><mi>i</mi><mi>k</mi><mi>e</mi><mi>l</mi><mi>i</mi><mi>h</mi><mi>o</mi><mi>o</mi><mi>d</mi><mo>(</mo><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\log likelihood(M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">i</span><span class="mord mathit">h</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span> to funkcja log wiarogodno&#x15B;ci. </p>
+<p>gdzie <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">n</span></span></span></span> to liczba obserwacji, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">&#x2223;</mi><mi>M</mi><mi mathvariant="normal">&#x2223;</mi></mrow><annotation encoding="application/x-tex">|M|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">&#x2223;</span><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mord mathrm">&#x2223;</span></span></span></span> to rozmiar modelu - liczba parametr&#xF3;w opisuj&#x105;cych model a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mi>l</mi><mi>i</mi><mi>k</mi><mi>e</mi><mi>l</mi><mi>i</mi><mi>h</mi><mi>o</mi><mi>o</mi><mi>d</mi><mo>(</mo><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\log likelihood(M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">i</span><span class="mord mathit">h</span><span class="mord mathit">o</span><span class="mord mathit">o</span><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span> to funkcja log wiarogodno&#x15B;ci. </p>
 <p>Funkcja <code>unsupervisedList()</code> pozwala na dopasowanie do danych zbioru modeli o r&#xF3;&#x17C;nej liczbie sk&#x142;adowych i r&#xF3;&#x17C;nej strukturze, a nast&#x119;pnie u&#x17C;ywaj&#x105;c funkcji <code>plot()</code> mo&#x17C;na ete modele por&#xF3;wna&#x107; organoleptycznie</p>
 <pre><code class="lang-r">erupcje &lt;- unsupervisedList(X = as.matrix(faithful[,<span class="hljs-number">1</span>:<span class="hljs-number">2</span>]), kList = <span class="hljs-number">2</span>:<span class="hljs-number">4</span>, 
                       mean = <span class="hljs-string">&quot;D&quot;</span>, between = c(<span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>),
@@ -1522,10 +1520,10 @@ plot(erupcje)
 </code></pre>
 <p><img src="figure/mclust_BIC-1.svg" alt="plot of chunk mclust_BIC"></p>
 <pre><code>##                     k=2      k=3      k=4
-## structure=DDDD 2307.275 2312.795 2331.745
-## structure=DDD0 2331.210 2322.102 2317.286
-## structure=DEDD 2309.689 2294.367 2321.467
-## structure=DED0 2339.197 2302.955 2298.583
+## structure=DDDD 2307.275 2312.795 2334.405
+## structure=DDD0 2331.210 2322.102 2317.258
+## structure=DEDD 2309.689 2294.367 2320.968
+## structure=DED0 2339.197 2302.955 2298.568
 </code></pre><h2 id="i-co-dalej">I co dalej?</h2>
 <ul>
 <li>Dobrym pakietem do identyfikacji sk&#x142;adowych mieszanin gaussowskich to pakiet <code>mclust</code> om&#xF3;wiony szczeg&#xF3;&#x142;owo na stronie <a href="http://www.stat.washington.edu/mclust/" target="_blank">http://www.stat.washington.edu/mclust/</a></li>

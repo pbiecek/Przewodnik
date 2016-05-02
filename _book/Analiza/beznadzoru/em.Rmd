@@ -65,7 +65,7 @@ $$
 
 Rozłożyliśmy funkcję log-wiarogodności, którą chcielibyśmy maksymalizować po $$\theta$$ na dwa człony. Algorytm EM będzie bezpośrednio maksymalizował $$Q(\theta, \theta')$$. 
 
-Funkcja $$R(\theta, \theta')$$ ma swoje maksimum gdy wartość oczekiwana jest warunkowana tym samym rozkładem co będąca pod nią funkcja wiarygodności. Jest tak dlatego, że funkcja wiarygodności jest wypukła i można wykorzystać nierówności Jensena. Pośrednie kroki uzasadneinia tej właściwości są opisane w ćwiczeniu 8.2 *Elements of Statistical Learning*). 
+Funkcja $$R(\theta, \theta')$$ ma swoje maksimum gdy wartość oczekiwana jest warunkowana tym samym rozkładem co będąca pod nią funkcja wiarygodności. Jest tak dlatego, że funkcja wiarygodności jest wypukła i można wykorzystać nierówności Jensena. Pośrednie kroki uzasadnienia tej właściwości są opisane w ćwiczeniu 8.2 *Elements of Statistical Learning*. 
 
 A więc 
 $$R(\theta, \theta') \leq R(\theta', \theta')$$,
