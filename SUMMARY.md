@@ -38,6 +38,8 @@
      * [I co dalej?](Programowanie/jak_tworzyc_aplikajce4.md)
    * [Jak tworzyć usługi SaaS oparte o RESTful API?](Programowanie/pazury/REST.md)
      * [Jak uruchomić RESTowy serwer?](Programowanie/pazury/REST01.md)
+     * [Jak pracować z opencpu?](Programowanie/pazury/REST02.md)
+     * [Jak zdalnie wywołać funkcję?](Programowanie/pazury/REST03.md)
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * [Jak debugować kod R?](Programowanie/pazury/debugowanie.md)
    * [Jak badać czas działania kodu?](Programowanie/pazury/profilowanie.md)

@@ -20,3 +20,4 @@ Testowa strona do budowania zapytań od serwera jest dostępna pod adresem `http
 
 ![Testowa aplikacja www](figure/aplikacja2.png)
 
+
