@@ -1,8 +1,8 @@
-## Jak zdalnie zbudowac wykres?
+## Jak zdalnie zbudować wykres?
 
 Wynikiem zdalnego wywołania funkcji mogą być nie tylko obiekty R, ale też grafika/wykresy np. w formacie png, pdf lub svg.
 
-Jak stworzyć taki wykres? Wystarczy zdalnie wykonać funkcję, która wykres wyprodukuje. Zobaczmy przykłąd z użyciem histogramu generowanego przez funkcję `hist()`.
+Jak stworzyć taki wykres? Wystarczy zdalnie wykonać funkcję, która wykres wyprodukuje. Zobaczmy przykład z użyciem histogramu generowanego przez funkcję `hist()`.
 
 ```r
 httr::POST("http://localhost:4348/ocpu/library/graphics/R/hist", 
@@ -23,10 +23,10 @@ Response [http://localhost:4348/ocpu/library/graphics/R/hist]
 /ocpu/tmp/x051d8acae9/files/DESCRIPTION
 ```
 
-Odwołać do wyników można się przez uchwyt wsazywany jako wynik funkcji `POST`, czyli
+Odwołać do wyników można się przez uchwyt wskazywany jako wynik funkcji `POST`, czyli
 
 * `http://localhost:4348/ocpu/tmp/x051d8acae9`
-* jeżeli jest wiecej wykresów to można wskazać który ma być odczytany `http://localhost:4348/ocpu/tmp/x051d8acae9/graphics/1/pdf`
+* jeżeli jest więcej wykresów to można wskazać który ma być odczytany `http://localhost:4348/ocpu/tmp/x051d8acae9/graphics/1/pdf`
 
 ## Jak pobrać całą sesje z uruchomienia zdalnego funkcji
 
@@ -38,9 +38,9 @@ Wynik przetwarzania może być wyświetlony
 
 ## Jak używać funkcji z własnych pakietów?
 
-Wywoływanie zdalne funkcji z pakietów standardowych ma pewne zalety. Ale znacznie bardziej przydatne jest udostępnianie własnych funkcjonajlności pozamykacnych jako wynkcje we własnych pakietach.
+Wywoływanie zdalne funkcji z pakietów standardowych ma pewne zalety. Ale znacznie bardziej przydatne jest udostępnianie własnych funkcjonalności pozamykanych jako funkcje we własnych pakietach.
 
-Przykłądowo, zbudowałem własny pakiet `proton`, który udostępnia funkcję `dcode()`. Zobaczmy jak ją uruchomić lokalnie i zdalnie
+Przykładowo, zbudowałem własny pakiet `proton`, który udostępnia funkcję `dcode()`. Zobaczmy jak ją uruchomić lokalnie i zdalnie
 
 * wykonanie lokalne
 
@@ -52,7 +52,7 @@ proton:::dcode('Zakoduj to')
 "aZPLWFQ GL"
 ```
 
-* Równowazne wykonanie zdalne
+* Równoważnie wykonanie zdalne
 
 ```r
 httr::POST("http://localhost:4348/ocpu/library/proton/R/dcode", 
@@ -73,7 +73,7 @@ Response [http://localhost:4348/ocpu/library/proton/R/dcode]
 /ocpu/tmp/x0872f3db8b/files/DESCRIPTION
 ```
 
-* Ze zdalnego wywołania musimy jeszcez wyłuskać wyniki
+* Ze zdalnego wywołania musimy jeszcze wyłuskać wyniki
 
 ```r
 load(url("http://localhost:4348/ocpu/tmp/x0872f3db8b/R/.val/rda"))
@@ -83,4 +83,5 @@ load(url("http://localhost:4348/ocpu/tmp/x0872f3db8b/R/.val/rda"))
 ```
 [1] "aZPLWFQ GL"
 ```
+
 
