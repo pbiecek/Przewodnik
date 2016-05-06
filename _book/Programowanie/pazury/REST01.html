@@ -63,7 +63,7 @@
         data-chapter-title="Jak uruchomić RESTowy serwer?"
         data-filepath="Programowanie/pazury/REST01.md"
         data-basepath="../.."
-        data-revision="Fri May 06 2016 19:24:22 GMT+0200 (CEST)"
+        data-revision="Fri May 06 2016 21:05:43 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1536,15 +1536,23 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="jak-uruchomi&#x107;-restowy-serwer">Jak uruchomi&#x107; RESTowy serwer?</h1>
-<p>Zacznijmy od przyk&#x142;adu. Uruchomimy lokalnie serwer na porcie 4348.</p>
-<p>Samo w&#x142;&#x105;czenie pakietu <code>opencpu</code> startuje serwer na losowym porcie. Dlatego poni&#x17C;ej w drugiej linii zamykamy uruchomiony serwer i uruchamiamy go na wskazanym porcie <code>4348</code>.</p>
-<pre><code>library(opencpu)
-opencpu$stop()
-opencpu$start(4348)
-</code></pre><p>Serwer zosta&#x142; uruchomiony w tle. Jak to rozpozna&#x107;? Np. za pomoc&#x105; programu <em>Network Utility</em> mo&#x17C;na sprawdzi&#x107; list&#x119; otwartych port&#xF3;w (ilustracja poni&#x17C;ej).</p>
+<p>Zacznijmy od przyk&#x142;adu. Uruchomimy lokalnie serwer RESTful bazuj&#x105;cy na R na porcie 4348.</p>
+<p>Samo w&#x142;&#x105;czenie pakietu <code>opencpu</code> startuje serwer na losowym porcie. Dlatego poni&#x17C;ej najpierw ten serwer zamykamy, a nast&#x119;pnie uruchamiamy ponownie na wskazanym porcie <code>4348</code> (pocz&#x105;tkowy port mo&#x17C;na okre&#x15B;li&#x107; w plikach konfiguracyjnych).</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(opencpu)
+opencpu$<span class="hljs-keyword">stop</span>()
+opencpu$start(<span class="hljs-number">4348</span>)
+</code></pre>
+<pre><code>Initiating OpenCPU server...
+Using config: /Users/pbiecek/.opencpu.conf
+OpenCPU started.
+[httpuv] http://localhost:4348/ocpu
+OpenCPU single-user server ready.
+</code></pre><p>Serwer zosta&#x142; uruchomiony w tle. </p>
+<p>Ale jak to rozpozna&#x107;? Np. za pomoc&#x105; programu <em>Network Utility</em> mo&#x17C;na sprawdzi&#x107; list&#x119; otwartych port&#xF3;w (ilustracja poni&#x17C;ej).</p>
 <p><img src="figure/aplikacja1.png" alt="Lista otwartych port&#xF3;w"></p>
-<p>Domy&#x15B;lnie serwer uruchamia si&#x119; na interfejsie <code>localhost</code>. Mo&#x17C;emy wi&#x119;c odpytywa&#x107; ten serwer przez przegl&#x105;dark&#x119; internetow&#x105;.</p>
-<p>Testowa strona do budowania zapyta&#x144; od serwera jest dost&#x119;pna pod adresem <code>http://localhost:4348/ocpu/test/</code>. Pozwala ona w prosty spos&#xF3;b budowa&#x107; zapytania GET i POST.</p>
+<p>Domy&#x15B;lnie serwer uruchamia si&#x119; na interfejsie <code>localhost</code>. Mo&#x17C;emy wi&#x119;c odpytywa&#x107; ten serwer przez przegl&#x105;dark&#x119; internetow&#x105;, tak&#x105; jak chrome, firefox czy safari.</p>
+<p>Testowa strona do budowania zapyta&#x144; od serwera jest dost&#x119;pna pod adresem <code>http://localhost:4348/ocpu/test/</code>. </p>
+<p>Pozwala ona w prosty spos&#xF3;b budowa&#x107; zapytania GET i POST. Poni&#x17C;ej przedstawiamy ilustracje jak wygl&#x105;da ta strona. Na jednym ekranie wida&#x107; i parametry zapytania i parametry odpowiedzi z serwera.</p>
 <p><img src="figure/aplikacja2.png" alt="Testowa aplikacja www"></p>
 
                     

@@ -63,7 +63,7 @@
         data-chapter-title="Jak zdalnie zbudować wykres?"
         data-filepath="Programowanie/pazury/REST04.md"
         data-basepath="../.."
-        data-revision="Fri May 06 2016 19:24:22 GMT+0200 (CEST)"
+        data-revision="Fri May 06 2016 21:05:43 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1555,18 +1555,21 @@
 </code></pre><p>Odwo&#x142;a&#x107; do wynik&#xF3;w mo&#x17C;na si&#x119; przez uchwyt wskazywany jako wynik funkcji <code>POST</code>, czyli</p>
 <ul>
 <li><code>http://localhost:4348/ocpu/tmp/x051d8acae9</code></li>
-<li>je&#x17C;eli jest wi&#x119;cej wykres&#xF3;w to mo&#x17C;na wskaza&#x107; kt&#xF3;ry ma by&#x107; odczytany <code>http://localhost:4348/ocpu/tmp/x051d8acae9/graphics/1/pdf</code></li>
+<li>je&#x17C;eli jest wi&#x119;cej wykres&#xF3;w, to mo&#x17C;na wskaza&#x107; kt&#xF3;ry ma by&#x107; odczytany <code>http://localhost:4348/ocpu/tmp/x051d8acae9/graphics/1/pdf</code></li>
 </ul>
-<h2 id="jak-pobra&#x107;-ca&#x142;&#x105;-sesje-z-uruchomienia-zdalnego-funkcji">Jak pobra&#x107; ca&#x142;&#x105; sesje z uruchomienia zdalnego funkcji</h2>
-<p>Wynik wywo&#x142;ania funkcji - ca&#x142;a sesja - mo&#x17C;e by&#x107; pobrana jako jeden plik
+<p>Wykres mo&#x17C;na obejrze&#x107; w przegl&#x105;darce we wskazanym formacie</p>
+<p><img src="figure/adane06.png" alt="Przyk&#x142;adowy histogram"></p>
+<h2 id="jak-pobra&#x107;-ca&#x142;&#x105;-sesje-z-uruchomienia-zdalnego-funkcji">Jak pobra&#x107; ca&#x142;&#x105; sesje z uruchomienia zdalnego funkcji?</h2>
+<p>Wynik wywo&#x142;ania funkcji - ca&#x142;a sesja - mo&#x17C;e by&#x107; pobrana jako jeden plik w formacie <code>zip</code>. Wystarczy na ko&#x144;cu uchwytu wskaza&#x107; format
 <code>http://localhost:4348/ocpu/tmp/x051d8acae9/zip</code>.</p>
-<p>Wynik przetwarzania mo&#x17C;e by&#x107; wy&#x15B;wietlony 
-<code>http://localhost:4348/ocpu/tmp/x051d8acae9/console/text</code>.</p>
+<p>Wynik sesji R mo&#x17C;e by&#x107; wy&#x15B;wietlony w formacie tekstowym, je&#x17C;eli ustawi si&#x119; format na <code>text</code>. Przyk&#x142;adowo
+<code>http://localhost:4348/ocpu/tmp/x051d8acae9/console/text</code> przedstawia taki wynik jak przedstawia poni&#x17C;szy obraz.</p>
+<p><img src="figure/adane07.png" alt="Sesja"></p>
 <h2 id="jak-u&#x17C;ywa&#x107;-funkcji-z-w&#x142;asnych-pakiet&#xF3;w">Jak u&#x17C;ywa&#x107; funkcji z w&#x142;asnych pakiet&#xF3;w?</h2>
 <p>Wywo&#x142;ywanie zdalne funkcji z pakiet&#xF3;w standardowych ma pewne zalety. Ale znacznie bardziej przydatne jest udost&#x119;pnianie w&#x142;asnych funkcjonalno&#x15B;ci pozamykanych jako funkcje we w&#x142;asnych pakietach.</p>
 <p>Przyk&#x142;adowo, zbudowa&#x142;em w&#x142;asny pakiet <code>proton</code>, kt&#xF3;ry udost&#x119;pnia funkcj&#x119; <code>dcode()</code>. Zobaczmy jak j&#x105; uruchomi&#x107; lokalnie i zdalnie</p>
 <ul>
-<li>wykonanie lokalne</li>
+<li>Wykonanie lokalne</li>
 </ul>
 <pre><code class="lang-r">proton:::dcode(<span class="hljs-string">&apos;Zakoduj to&apos;</span>)
 </code></pre>

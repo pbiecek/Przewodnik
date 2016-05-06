@@ -63,7 +63,7 @@
         data-chapter-title="Jak pracować z opencpu?"
         data-filepath="Programowanie/pazury/REST02.md"
         data-basepath="../.."
-        data-revision="Fri May 06 2016 19:24:22 GMT+0200 (CEST)"
+        data-revision="Fri May 06 2016 21:05:43 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1542,19 +1542,55 @@
 <li>Przez uchwyt <code>http://localhost:4348/ocpu/library/stats/R</code> mo&#x17C;na sprawdza&#x107; jakie funkcje udost&#x119;pnia pakiet.</li>
 <li>Przez uchwyt <code>http://localhost:4348/ocpu/library/stats/data</code> mo&#x17C;na sprawdza&#x107; jakie zbiory danych udost&#x119;pnia pakiet.</li>
 </ul>
+<p>Poni&#x17C;ej prezentujemy wynik otwarcia pierwszego z tych uchwyt&#xF3;w w oknie przegl&#x105;darki. Odpowiedzi&#x105; serwera jest strona z list&#x105; obiekt&#xF3;w w pakiecie <code>stats</code>.</p>
+<p><img src="figures/aplikacja3.png" alt="Lista obiekt&#xF3;w w pakiecie stats"></p>
 <p>Komunikacj&#x119; z serwerem <code>opencpu</code> mo&#x17C;na przeprowadzi&#x107; na wiele sposob&#xF3;w. Dla nas najciekawsze s&#x105; trzy opcje.</p>
 <ul>
 <li>z u&#x17C;yciem przegl&#x105;darki internetowej (np. przez podane testowe API), </li>
 <li>u&#x17C;ywaj&#x105;c programu <code>curl</code> z linii polece&#x144;, wywo&#x142;uj&#x105;c np. polecenie 
 <code>curl http://localhost:4348/ocpu/library/stats/data/</code></li>
-<li>u&#x17C;ywaj&#x105;c R i np funkcji <code>GET()</code> i <code>POST()</code> z pakietu <code>httr</code></li>
+<li>u&#x17C;ywaj&#x105;c R i np. funkcji <code>GET()</code> i <code>POST()</code> z pakietu <code>httr</code></li>
 </ul>
 <p>Ta ostatnia opcja pozwala nam tworzy&#x107; zar&#xF3;wno klienta jak i serwer w programie R.</p>
 <p>Poni&#x17C;szy przyk&#x142;ad wykorzystuje funkcj&#x119; <code>httr::GET</code> aby sprawdzi&#x107; list&#x119; dost&#x119;pnych danych i a nast&#x119;pnie pobra&#x107; &#x17A;r&#xF3;d&#x142;o funkcji zainstalowanych na serwerze.</p>
-<pre><code>library(httr)
-httr::GET(&quot;http://localhost:4348/ocpu/library/stats/data&quot;)
-httr::GET(&quot;http://localhost:4348/ocpu/library/stats/R/rnorm&quot;)
-httr::GET(&quot;http://localhost:4348/ocpu/library/proton/R/dcode&quot;)
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(httr)
+httr::GET(<span class="hljs-string">&quot;http://localhost:4348/ocpu/library/stats/data&quot;</span>)
+</code></pre>
+<pre><code>Response [http://localhost:9511/ocpu/library/stats/data/]
+  Date: 2016-05-06 20:40
+  Status: 200
+  Content-Type: text/plain; charset=utf-8
+  Size: 1.16 kB
+ability.cov
+airmiles
+AirPassengers
+airquality
+anscombe
+attenu
+attitude
+austres
+beaver1 (beavers)
+beaver2 (beavers)
+...
+</code></pre><p>Co si&#x119; wy&#x15B;wietli je&#x17C;eli uchwytem wska&#x17C;emy funkcj&#x119;?</p>
+<pre><code class="lang-r">httr::GET(<span class="hljs-string">&quot;http://localhost:4348/ocpu/library/proton/R/dcode&quot;</span>)
+</code></pre>
+<pre><code>Response [http://localhost:9511/ocpu/library/proton/R/dcode/print]
+  Date: 2016-05-06 20:41
+  Status: 200
+  Content-Type: text/plain; charset=utf-8
+  Size: 320 B
+function (tex) 
+{
+    tmp1 &lt;- c(LETTERS, letters)
+    tmp2 &lt;- setdiff(unique(unlist(strsplit(tex, split = &quot;&quot;))), 
+        tmp1)
+    let &lt;- c(tmp1, tmp2)
+    names(let) &lt;- c(rev(tmp1), tmp2)
+    sapply(strsplit(tex, split = &quot;&quot;), function(x) {
+        paste(let[x], collapse = &quot;&quot;)
+    })
+...
 </code></pre><h2 id="formatowanie-danych">Formatowanie danych</h2>
 <p>Wyniki zdalnych wywo&#x142;a&#x144; mog&#x105; by&#x107; obiektami r&#xF3;&#x17C;nych typ&#xF3;w.  Server <code>opencpu</code> automatycznie konwertuje wynik na r&#xF3;&#x17C;ne formaty, w zale&#x17C;no&#x15B;ci od wskazanego sufixu.</p>
 <p>Przyk&#x142;adowy zbi&#xF3;r danych o kotach i ptakach z pakietu <code>PogromcyDanych</code>  mo&#x17C;na przekonwertowa&#x107; na format json lub csv lub binarny rda korzystaj&#x105;c z nast&#x119;puj&#x105;cych uchwyt&#xF3;w.</p>
@@ -1565,6 +1601,9 @@ httr::GET(&quot;http://localhost:4348/ocpu/library/proton/R/dcode&quot;)
 <li><code>http://localhost:4348/ocpu/library/PogromcyDanych/data/koty_ptaki/csv</code></li>
 <li><code>http://localhost:4348/ocpu/library/PogromcyDanych/data/koty_ptaki/rda</code></li>
 </ul>
+<p>Na poni&#x17C;szych ilustracjach przedstawiamy wynik pierwszych dw&#xF3;ch z powy&#x17C;szych uchwyt&#xF3;w.</p>
+<p><img src="figure/adane01.png" alt="Format print">
+<img src="figure/adane02.png" alt="Format json"></p>
 <h2 id="formatowanie-funkcji">Formatowanie funkcji</h2>
 <p>Dla funkcji mo&#x17C;na w podobny spos&#xF3;b odpyta&#x107; dokumentacje funkcji lub pobra&#x107; cia&#x142;o funkcji. Poni&#x17C;sze uchwyty reaguj&#x105; na metod&#x119; GET.</p>
 <ul>
@@ -1574,6 +1613,10 @@ httr::GET(&quot;http://localhost:4348/ocpu/library/proton/R/dcode&quot;)
 <li><code>http://localhost:4348/ocpu/library/stats/man/rnorm/html</code></li>
 <li><code>http://localhost:4348/ocpu/library/stats/man/rnorm/pdf</code></li>
 </ul>
+<p>Poni&#x17C;ej przedstawiamy wyniki trzech z tych uchwyt&#xF3;w.</p>
+<p><img src="figure/adane03.png" alt="Format print">
+<img src="figure/adane04.png" alt="Format text">
+<img src="figure/adane05.png" alt="Format html"></p>
 
                     
                     </section>

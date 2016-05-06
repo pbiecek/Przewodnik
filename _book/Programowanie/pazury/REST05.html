@@ -63,7 +63,7 @@
         data-chapter-title="Co jeszcze warto wiedzieć o pakiecie opencpu?"
         data-filepath="Programowanie/pazury/REST05.md"
         data-basepath="../.."
-        data-revision="Fri May 06 2016 19:24:22 GMT+0200 (CEST)"
+        data-revision="Fri May 06 2016 21:05:43 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1537,22 +1537,42 @@
                     
                         <h1 id="co-jeszcze-warto-wiedzie&#x107;-o-pakiecie-opencpu">Co jeszcze warto wiedzie&#x107; o pakiecie opencpu?</h1>
 <h2 id="serwis-publicopencpuorg">Serwis public.opencpu.org</h2>
-<p>Zdalne wykonanie funkcji mo&#x17C;na prze&#x107;wiczy&#x107; na serwisie udost&#x119;pnionym przez tw&#xF3;rc&#xF3;w tego pakietu na stronie  <code>public.opencpu.org</code>.</p>
-<p>Oczywi&#x15B;cie mo&#x17C;na korzysta&#x107; tylko z funkcji w pakietach, kt&#xF3;re s&#x105; tam zainstalowane.</p>
+<p>Zdalne wykonanie funkcji mo&#x17C;na prze&#x107;wiczy&#x107; na serwisie udost&#x119;pnionym przez tw&#xF3;rc&#xF3;w tego pakietu na stronie  <code>https://public.opencpu.org</code>.</p>
+<p>Oczywi&#x15B;cie mo&#x17C;na korzysta&#x107; tylko z funkcji w pakietach, kt&#xF3;re s&#x105; tam zainstalowane. Poni&#x17C;ej przedstawiamy przyk&#x142;ad dla funkcji <code>rexp()</code>.</p>
 <pre><code class="lang-r">httr::POST(<span class="hljs-string">&quot;https://public.opencpu.org/ocpu/library/stats/R/rexp&quot;</span>, 
            body = list(n = <span class="hljs-string">&quot;2+12&quot;</span>, rate= <span class="hljs-string">&quot;1&quot;</span>))
-
-<span class="hljs-comment"># Wyniki mo&#x17C;na odczyta&#x107; i wykorzysta&#x107; jak w przypadku poprzednich analiz</span>
-<span class="hljs-comment"># https://public.opencpu.org/ocpu/tmp/x0efb038db9/R</span>
 </code></pre>
+<pre><code>Response [https://public.opencpu.org/ocpu/library/stats/R/rexp]
+  Date: 2016-05-06 19:01
+  Status: 201
+  Content-Type: text/plain; charset=utf-8
+  Size: 184 B
+/ocpu/tmp/x047f51b820/R/.val
+/ocpu/tmp/x047f51b820/stdout
+/ocpu/tmp/x047f51b820/source
+/ocpu/tmp/x047f51b820/console
+/ocpu/tmp/x047f51b820/info
+/ocpu/tmp/x047f51b820/files/DESCRIPTION
+</code></pre><p>Wyniki mo&#x17C;na odczyta&#x107; i wykorzysta&#x107; jak w przypadku poprzednich analiz
+<code>https://public.opencpu.org/ocpu/tmp/x047f51b820/R</code>.</p>
 <h2 id="jak-wywo&#x142;a&#x107;-wi&#x119;kszy-fragment-kodu">Jak wywo&#x142;a&#x107; wi&#x119;kszy fragment kodu?</h2>
 <p>U&#x17C;ywaj&#x105;c funkcji <code>identity()</code> mo&#x17C;emy wywo&#x142;a&#x107; ca&#x142;y blok instrukcji, przekazuj&#x105;c je jako parametr funkcji - identyczno&#x15B;&#x107;.</p>
 <pre><code class="lang-r">httr::POST(<span class="hljs-string">&quot;https://public.opencpu.org/ocpu/library/base/R/identity&quot;</span>, 
            body = list(x = <span class="hljs-string">&quot;coef(lm(speed~dist, data=cars))&quot;</span>))
-
-<span class="hljs-comment"># Wyniki mo&#x17C;na odczyta&#x107; i wykorzysta&#x107; jak w przypadku poprzednich analiz</span>
-<span class="hljs-comment"># https://public.opencpu.org/ocpu/tmp/x044bc7b4f3/R</span>
 </code></pre>
+<pre><code>Response [https://public.opencpu.org/ocpu/library/base/R/identity]
+  Date: 2016-05-06 19:02
+  Status: 201
+  Content-Type: text/plain; charset=utf-8
+  Size: 184 B
+/ocpu/tmp/x0a403fa4ec/R/.val
+/ocpu/tmp/x0a403fa4ec/stdout
+/ocpu/tmp/x0a403fa4ec/source
+/ocpu/tmp/x0a403fa4ec/console
+/ocpu/tmp/x0a403fa4ec/info
+/ocpu/tmp/x0a403fa4ec/files/DESCRIPTION
+</code></pre><p>Wyniki mo&#x17C;na odczyta&#x107; i wykorzysta&#x107; jak w przypadku poprzednich analiz
+<code>https://public.opencpu.org/ocpu/tmp/x0a403fa4ec/R</code>.</p>
 <h2 id="linki">Linki</h2>
 <p>Instrukcja jak zainstalowa&#x107; pakiet <code>opencpu</code> na prawdziwym serwerze (tutaj pracowali&#x15B;my z lokaln&#x105; instalacj&#x105;) znajduje si&#x119; tutaj: <a href="https://www.opencpu.org/download.html" target="_blank">https://www.opencpu.org/download.html</a>.</p>
 <p>Szersza dokumentacja pakietu <code>opencpu</code> dost&#x119;pna jest na stronie projektu <a href="https://www.opencpu.org/api.html#api-root" target="_blank">https://www.opencpu.org/api.html#api-root</a>.</p>

@@ -63,7 +63,7 @@
         data-chapter-title="Jak zdalnie wywołać funkcję?"
         data-filepath="Programowanie/pazury/REST03.md"
         data-basepath="../.."
-        data-revision="Fri May 06 2016 19:24:22 GMT+0200 (CEST)"
+        data-revision="Fri May 06 2016 21:05:43 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1539,7 +1539,7 @@
 <p>W pakiecie <code>opencpu</code> operacja GET s&#x142;u&#x17C;y do pobierania danych.
 Aby wywo&#x142;a&#x107; zdalnie funkcj&#x119; nale&#x17C;y wykorzysta&#x107; operacj&#x119; POST. 
 Mo&#x17C;na to zrobi&#x107; z u&#x17C;yciem funkcji <code>httr::POST</code>. Argumenty zdalnego wywo&#x142;ania mo&#x17C;na poda&#x107; jako list&#x119;, przekazuj&#x105;c j&#x105; przez argument <code>body</code>.</p>
-<p>Przyjrzyjmy si&#x119; przyk&#x142;adowemu wywo&#x142;aniu. Uruchomimy zdalnie funkcj&#x119; <code>rnorm</code> a jednym argumentem <code>n = 5</code>. Wynik zostanie zapisany do katalogu dost&#x119;pnego pod uchwytem <code>/ocpu/tmp/x009700e95f</code>.</p>
+<p>Przyjrzyjmy si&#x119; przyk&#x142;adowemu wywo&#x142;aniu. Uruchomimy zdalnie funkcj&#x119; <code>rnorm</code> z jednym argumentem <code>n = 5</code>. Wynik zostanie zapisany do katalogu dost&#x119;pnego pod uchwytem <code>/ocpu/tmp/x009700e95f</code>.</p>
 <pre><code class="lang-r">(tmp &lt;- httr::POST(<span class="hljs-string">&quot;http://localhost:4348/ocpu/library/stats/R/rnorm&quot;</span>, 
            body = list(n = <span class="hljs-string">&quot;5&quot;</span>)))
 </code></pre>
@@ -1554,25 +1554,25 @@ Mo&#x17C;na to zrobi&#x107; z u&#x17C;yciem funkcji <code>httr::POST</code>. Arg
 /ocpu/tmp/x009700e95f/console
 /ocpu/tmp/x009700e95f/info
 /ocpu/tmp/x009700e95f/files/DESCRIPTION
-</code></pre><p>Po zdalnym wywo&#x142;aniu funkcji na serwerze powstaje zapis sesji z wynikami przetwarzania. Tak&#x105; sesje mo&#x17C;na odpytywa&#x107;, np aby odczyta&#x107; list&#x119; obiekt&#xF3;w R w sesji mo&#x17C;na si&#x119;gn&#x105;&#x107; do uchwytu <code>http://localhost:4348/ocpu/tmp/x009700e95f/R/</code>. </p>
+</code></pre><p>Po zdalnym wywo&#x142;aniu funkcji na serwerze powstaje zapis sesji z wynikami przetwarzania. Tak&#x105; sesj&#x119; mo&#x17C;na odpytywa&#x107;. Np. aby odczyta&#x107; list&#x119; obiekt&#xF3;w R w sesji mo&#x17C;na si&#x119;gn&#x105;&#x107; do uchwytu <code>http://localhost:4348/ocpu/tmp/x009700e95f/R/</code>. </p>
 <p>Mo&#x17C;emy te wyniki odczyta&#x107; w R na wiele sposob&#xF3;w. Przedstawmy trzy najprostsze. Si&#x119;gniemy do <code>ocpu/tmp/x009700e95f/R/.val</code> odczytuj&#x105;c ten obiekt jako plik rda, csv czy plik R.</p>
-<ol>
-<li>odczytywanie wynik&#xF3;w przez parsowanie funkcji print<pre><code class="lang-r">(tmp &lt;- httr::GET(<span class="hljs-string">&quot;http://localhost:4348/ocpu/tmp/x009700e95f/R&quot;</span>))
+<ul>
+<li>odczytywanie wynik&#xF3;w przez parsowanie funkcji <code>print()</code></li>
+</ul>
+<pre><code class="lang-r">(tmp &lt;- httr::GET(<span class="hljs-string">&quot;http://localhost:4348/ocpu/tmp/x009700e95f/R&quot;</span>))
 rawToChar(tmp$content)
 </code></pre>
-</li>
-</ol>
 <pre><code>[1] &quot;[1] -0.1798980  1.3466641  1.1543092  0.2607556 -0.3512327\n&quot;
-</code></pre><ol>
-<li>odczytywanie wynik&#xF3;w w formacie rda przez funkcj&#x119; <code>load</code></li>
-</ol>
+</code></pre><ul>
+<li>odczytywanie wynik&#xF3;w w formacie rda przez funkcj&#x119; <code>load()</code></li>
+</ul>
 <pre><code class="lang-r">(load(url(<span class="hljs-string">&quot;http://localhost:4348/ocpu/tmp/x009700e95f/R/.val/rda&quot;</span>)))
 .val
 </code></pre>
 <pre><code>[1] -0.1798980  1.3466641  1.1543092  0.2607556 -0.3512327
-</code></pre><ol>
+</code></pre><ul>
 <li>odczytywanie wynik&#xF3;w w formacie csv z u&#x17C;yciem funkcji <code>readLines()</code></li>
-</ol>
+</ul>
 <pre><code class="lang-r">readLines(url(<span class="hljs-string">&quot;http://localhost:4348/ocpu/tmp/x009700e95f/R/.val/csv&quot;</span>))
 </code></pre>
 <pre><code>[1] &quot;\&quot;x\&quot;&quot;              &quot;-0.179898029143394&quot; &quot;1.34666410945253&quot;  
@@ -1588,7 +1588,7 @@ httr::POST(<span class="hljs-string">&quot;http://localhost:4348/ocpu/library/st
 httr::POST(<span class="hljs-string">&quot;http://localhost:4348/ocpu/library/stats/R/rexp&quot;</span>, 
            body = list(n = <span class="hljs-string">&quot;sqrt(9)&quot;</span>, rate= <span class="hljs-string">&quot;1&quot;</span>))
 
-<span class="hljs-comment"># przekazanie wynik&#xF3;w jednej funkcji jako argumentu drugiej</span>
+<span class="hljs-comment"># przekazanie wynik&#xF3;w jednej funkcji jako argumentu do drugiej</span>
 httr::POST(<span class="hljs-string">&quot;http://localhost:4348/ocpu/library/stats/R/rexp&quot;</span>, 
            body = list(n = <span class="hljs-string">&quot;x01bbf1e095&quot;</span>, rate= <span class="hljs-string">&quot;1&quot;</span>))
 </code></pre>
