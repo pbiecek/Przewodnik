@@ -37,6 +37,7 @@
      * [Jak tworzyć reaktywne elementy w aplikacji?](Programowanie/jak_tworzyc_aplikajce3.md)
      * [I co dalej?](Programowanie/jak_tworzyc_aplikajce4.md)
    * [Jak tworzyć usługi SaaS oparte o RESTful API?](Programowanie/pazury/REST.md)
+     * [Jak uruchomić RESTowy serwer?](Programowanie/pazury/REST01.md)
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * [Jak debugować kod R?](Programowanie/pazury/debugowanie.md)
    * [Jak badać czas działania kodu?](Programowanie/pazury/profilowanie.md)

@@ -12,7 +12,7 @@ Systemy zgodne z wzorcem REST nazywane są RESTful. Często są one oparte o pro
 
 Dlaczego mielibyśmy chcieć tworzyć takie RESTful API? Jest to najprostszy sposób by udostępnić określone funkcjonalności zbudowane w R dla innych elementów, bez względu na ich architekturę. 
 
-Ok, a więc jak zbudować usługi SaaS oparte o RESTful API? W R najłatwiej to zrobić za pomocą pakietu `openCPU`.
+Ok, a więc jak zbudować usługi SaaS oparte o RESTful API? W R najłatwiej to zrobić za pomocą pakietu `opencpu`.
 
 
 
