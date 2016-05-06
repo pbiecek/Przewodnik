@@ -36,6 +36,7 @@
      * [Jak umieszać elementy kontrolujące w aplikacji?](Programowanie/jak_tworzyc_aplikajce2.md)
      * [Jak tworzyć reaktywne elementy w aplikacji?](Programowanie/jak_tworzyc_aplikajce3.md)
      * [I co dalej?](Programowanie/jak_tworzyc_aplikajce4.md)
+   * [Jak tworzyć usługi SaaS oparte o RESTful API?](Programowanie/pazury/REST.md)
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * [Jak debugować kod R?](Programowanie/pazury/debugowanie.md)
    * [Jak badać czas działania kodu?](Programowanie/pazury/profilowanie.md)
