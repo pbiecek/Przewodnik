@@ -10,9 +10,13 @@ opencpu$stop()
 opencpu$start(4348)
 ```
 
-Serwer został uruchomiony w tle. Jak to rozpoznać? Np. za pomocą programu *Network Utility* można sprawdzić listę otwartych portów.
+Serwer został uruchomiony w tle. Jak to rozpoznać? Np. za pomocą programu *Network Utility* można sprawdzić listę otwartych portów (ilustracja poniżej).
+
+![Lista otwartych portów](figure/aplikacja1.png)
 
 Domyślnie serwer uruchamia się na interface `localhost`. Możemy więc odpytywać ten serwer przez przeglądarkę internetową.
 
-Testowa strona do budowania zapytań od serwera jest dostępna pod adresem `http://localhost:4348/ocpu/test/`.
+Testowa strona do budowania zapytań od serwera jest dostępna pod adresem `http://localhost:4348/ocpu/test/`. Pozwala ona w prosty sposób budować zapytania GET i POST.
+
+![Testowa aplikacja www](figure/aplikacja2.png)
 
