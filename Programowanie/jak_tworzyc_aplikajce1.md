@@ -15,7 +15,7 @@ Poniżej wklejamy uaktualnioną treść tego pliku. W miejscu gdzie tworzony jes
 * `plotOutput()`, wskazującej gdzie ma zostać umieszczony wykres o nazwie `trend`,
 * `verbatimTextOutput()`, wskazującej gdzie ma zostać umieszczony opis o nazwie `model`.
 
-Funkcje osadzające obiekty w interface html mają nazwy określające co jest osadzane (wykres, tabela, opis obiektu, strona html) i kończące się słowem `Output`.
+Funkcje osadzające obiekty w interfejsie html mają nazwy określające co jest osadzane (wykres, tabela, opis obiektu, strona html) i kończące się słowem `Output`.
 
 ```
 library(shiny)

@@ -18,17 +18,41 @@ W programie R dostępnych jest kilka rożnych pakietów pozwalających na wczyty
 
 Funkcja `read.xlsx` pozwala na wczytanie danych z określonego pliku. Możemy dodatkowo określić z której zakładki chcemy wczytać dane. Zacznijmy od wczytania danych w postaci wąskiej z zakładki drugiej.
 
-```{r}
+
+```r
 library(openxlsx)
 ludnosc <- read.xlsx("../resources/LUDN_2137_20160225144358.xlsx", sheet = 2)
+```
+
+```
+## Error in read.xlsx.default("../resources/LUDN_2137_20160225144358.xlsx", : Excel file does not exist.
+```
+
+```r
 head(ludnosc)
+```
+
+```
+## Error in head(ludnosc): object 'ludnosc' not found
 ```
 
 W podobny sposób możemy odczytać dane z zakładki 3.
 
-```{r}
+
+```r
 ludnoscSzeroka <- read.xlsx("../resources/LUDN_2137_20160225144358.xlsx", sheet = 3)
+```
+
+```
+## Error in read.xlsx.default("../resources/LUDN_2137_20160225144358.xlsx", : Excel file does not exist.
+```
+
+```r
 ludnoscSzeroka[3:8,1:10]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'ludnoscSzeroka' not found
 ```
 
 

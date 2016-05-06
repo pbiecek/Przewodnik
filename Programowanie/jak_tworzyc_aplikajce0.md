@@ -1,6 +1,6 @@
 ## Jak zbudować pierwszą aplikację
 
-Aplikacja Shiny składają się z dwóch części, które zazwyczaj opisuje się w dwóch osobnych plikach. Jedna część opisuje interface użytkownika (plik `ui.R`), druga opisuje sposób przetwarzania danych (plik `server.R`). 
+Aplikacja Shiny składają się z dwóch części, które zazwyczaj opisuje się w dwóch osobnych plikach. Jedna część opisuje interfejs użytkownika (plik `ui.R`), druga opisuje sposób przetwarzania danych (plik `server.R`). 
 
 Zacznijmy od określenia pierwszej prostej aplikacji. Jej działanie można zobaczyć na stronie [Przewodnik/shiny0](http://mi2.mini.pw.edu.pl:8080/Przewodnik/shiny0/). Nie robi ona nic poza wyświetleniem tytułu i dwóch napisów.
 

@@ -8,7 +8,7 @@ API (ang. Application Programming Interface) opisuje sposób komunikacji element
 
 REST (ang. representational state transfer) to wzorzec architektury oprogramowania często stosowany w API. 
 
-Systemy zgodne z wzorcem REST nazywane są RESTful. Często są one oparte o protokół HTTP (ang. Hypertext Transfer Protocol) wykorzystując metody tego protokołu, najczęściej GET i POST. Dwie charakterystyczne cechy tego rozwiązania to architektura klient-serwer (w komunikacji każdy element wie czy działa jako klient czy serwer, komunikując się korzysta z jednolitego interfaceu) i bezstanowość (do pewnego stopnia, serwer odpowiadając na zapytania klienta reaguje to bez pamiętania kontekstu dotychczasowej komunikacji).
+Systemy zgodne z wzorcem REST nazywane są RESTful. Często są one oparte o protokół HTTP (ang. Hypertext Transfer Protocol) wykorzystując metody tego protokołu, najczęściej GET i POST. Dwie charakterystyczne cechy tego rozwiązania to architektura klient-serwer (w komunikacji każdy element wie czy działa jako klient czy serwer, komunikując się korzysta z jednolitego interfejsu) i bezstanowość (do pewnego stopnia, serwer odpowiadając na zapytania klienta reaguje to bez pamiętania kontekstu dotychczasowej komunikacji).
 
 Dlaczego mielibyśmy chcieć tworzyć takie RESTful API? Jest to najprostszy sposób by udostępnić określone funkcjonalności zbudowane w R dla innych elementów, bez względu na ich architekturę. 
 
