@@ -1,5 +1,9 @@
 # Co nowego zostało ostatnio dodane?
 
+* 5 maja 2016
+
+Dodano rozdział 2.6 o serwisach Saas z omówionym pakietem `opencpu`
+https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/pazury/REST.html
 
 * 15 kwietnia 2016
 
