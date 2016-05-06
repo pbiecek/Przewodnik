@@ -4,7 +4,7 @@ W pakiecie `opencpu` operacja GET służy do pobierania danych.
 Aby wywołać zdalnie funkcję należy wykorzystać operację POST. 
 Można to zrobić z użyciem funkcji `httr::POST`. Argumenty zdalnego wywołania można podać jako listę, przekazując ją przez argument `body`.
 
-Przyjrzyjmy się przykładowemu wywołaniu. Uruchomimy zdalnie funkcję `rnorm` a jednym argumentem `n = 5`. Wynik zostanie zapisany do katalogu dostępnego pod uchwytem `/ocpu/tmp/x009700e95f`.
+Przyjrzyjmy się przykładowemu wywołaniu. Uruchomimy zdalnie funkcję `rnorm` z jednym argumentem `n = 5`. Wynik zostanie zapisany do katalogu dostępnego pod uchwytem `/ocpu/tmp/x009700e95f`.
 
 ```r
 (tmp <- httr::POST("http://localhost:4348/ocpu/library/stats/R/rnorm", 
@@ -25,11 +25,12 @@ Response [http://localhost:4348/ocpu/library/stats/R/rnorm]
 /ocpu/tmp/x009700e95f/files/DESCRIPTION
 ```
 
-Po zdalnym wywołaniu funkcji na serwerze powstaje zapis sesji z wynikami przetwarzania. Taką sesje można odpytywać, np aby odczytać listę obiektów R w sesji można sięgnąć do uchwytu `http://localhost:4348/ocpu/tmp/x009700e95f/R/`. 
+Po zdalnym wywołaniu funkcji na serwerze powstaje zapis sesji z wynikami przetwarzania. Taką sesję można odpytywać. Np. aby odczytać listę obiektów R w sesji można sięgnąć do uchwytu `http://localhost:4348/ocpu/tmp/x009700e95f/R/`. 
 
 Możemy te wyniki odczytać w R na wiele sposobów. Przedstawmy trzy najprostsze. Sięgniemy do `ocpu/tmp/x009700e95f/R/.val` odczytując ten obiekt jako plik rda, csv czy plik R.
 
-1. odczytywanie wyników przez parsowanie funkcji print
+* odczytywanie wyników przez parsowanie funkcji `print()`
+
 ```r
 (tmp <- httr::GET("http://localhost:4348/ocpu/tmp/x009700e95f/R"))
 rawToChar(tmp$content)
@@ -39,7 +40,7 @@ rawToChar(tmp$content)
 [1] "[1] -0.1798980  1.3466641  1.1543092  0.2607556 -0.3512327\n"
 ```
 
-2. odczytywanie wyników w formacie rda przez funkcję `load`
+* odczytywanie wyników w formacie rda przez funkcję `load()`
 
 ```r
 (load(url("http://localhost:4348/ocpu/tmp/x009700e95f/R/.val/rda")))
@@ -50,7 +51,7 @@ rawToChar(tmp$content)
 [1] -0.1798980  1.3466641  1.1543092  0.2607556 -0.3512327
 ```
 
-3. odczytywanie wyników w formacie csv z użyciem funkcji `readLines()`
+* odczytywanie wyników w formacie csv z użyciem funkcji `readLines()`
 
 ```r
 readLines(url("http://localhost:4348/ocpu/tmp/x009700e95f/R/.val/csv"))
@@ -76,7 +77,7 @@ httr::POST("http://localhost:4348/ocpu/library/stats/R/rpois",
 httr::POST("http://localhost:4348/ocpu/library/stats/R/rexp", 
            body = list(n = "sqrt(9)", rate= "1"))
 
-# przekazanie wyników jednej funkcji jako argumentu drugiej
+# przekazanie wyników jednej funkcji jako argumentu do drugiej
 httr::POST("http://localhost:4348/ocpu/library/stats/R/rexp", 
            body = list(n = "x01bbf1e095", rate= "1"))
 ```
