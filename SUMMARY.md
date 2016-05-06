@@ -40,6 +40,7 @@
      * [Jak uruchomić RESTowy serwer?](Programowanie/pazury/REST01.md)
      * [Jak pracować z opencpu?](Programowanie/pazury/REST02.md)
      * [Jak zdalnie wywołać funkcję?](Programowanie/pazury/REST03.md)
+     * [Jak zdalnie zbudować wykres?](Programowanie/pazury/REST04.md)
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
    * [Jak debugować kod R?](Programowanie/pazury/debugowanie.md)
    * [Jak badać czas działania kodu?](Programowanie/pazury/profilowanie.md)
