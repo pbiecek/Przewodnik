@@ -26,15 +26,21 @@ Response [http://localhost:4348/ocpu/library/graphics/R/hist]
 Odwołać do wyników można się przez uchwyt wskazywany jako wynik funkcji `POST`, czyli
 
 * `http://localhost:4348/ocpu/tmp/x051d8acae9`
-* jeżeli jest więcej wykresów to można wskazać który ma być odczytany `http://localhost:4348/ocpu/tmp/x051d8acae9/graphics/1/pdf`
+* jeżeli jest więcej wykresów, to można wskazać który ma być odczytany `http://localhost:4348/ocpu/tmp/x051d8acae9/graphics/1/pdf`
 
-## Jak pobrać całą sesje z uruchomienia zdalnego funkcji
+Wykres można obejrzeć w przeglądarce we wskazanym formacie
 
-Wynik wywołania funkcji - cała sesja - może być pobrana jako jeden plik
+![Przykładowy histogram](figure/adane06.png)
+
+## Jak pobrać całą sesje z uruchomienia zdalnego funkcji?
+
+Wynik wywołania funkcji - cała sesja - może być pobrana jako jeden plik w formacie `zip`. Wystarczy na końcu uchwytu wskazać format
 `http://localhost:4348/ocpu/tmp/x051d8acae9/zip`.
 
-Wynik przetwarzania może być wyświetlony 
-`http://localhost:4348/ocpu/tmp/x051d8acae9/console/text`.
+Wynik sesji R może być wyświetlony w formacie tekstowym, jeżeli ustawi się format na `text`. Przykładowo
+`http://localhost:4348/ocpu/tmp/x051d8acae9/console/text` przedstawia taki wynik jak przedstawia poniższy obraz.
+
+![Sesja](figure/adane07.png)
 
 ## Jak używać funkcji z własnych pakietów?
 
@@ -42,7 +48,7 @@ Wywoływanie zdalne funkcji z pakietów standardowych ma pewne zalety. Ale znacz
 
 Przykładowo, zbudowałem własny pakiet `proton`, który udostępnia funkcję `dcode()`. Zobaczmy jak ją uruchomić lokalnie i zdalnie
 
-* wykonanie lokalne
+* Wykonanie lokalne
 
 ```r
 proton:::dcode('Zakoduj to')
@@ -83,5 +89,3 @@ load(url("http://localhost:4348/ocpu/tmp/x0872f3db8b/R/.val/rda"))
 ```
 [1] "aZPLWFQ GL"
 ```
-
-
