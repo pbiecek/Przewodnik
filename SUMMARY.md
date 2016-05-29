@@ -43,6 +43,7 @@
      * [Jak zdalnie zbudować wykres?](Programowanie/pazury/REST04.md)
      * [Co jeszcze warto wiedzieć o pakiecie opencpu?](Programowanie/pazury/REST05.md)
    * [Jak tworzyć raporty z pakietem knitr?](Programowanie/jak_tworzyc_raporty.md)
+   * [Jak serializować obiekty z użyciem archivist?](Programowanie/pazury/archivist.md)
    * [Jak debugować kod R?](Programowanie/pazury/debugowanie.md)
    * [Jak badać czas działania kodu?](Programowanie/pazury/profilowanie.md)
    * [Jak zrównoleglić obliczenia w R?](Programowanie/pazury/rownolegle.md)

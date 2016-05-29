@@ -65,7 +65,9 @@ Szersza dokumentacja pakietu `opencpu` dostępna jest na stronie projektu https:
 Na podstawie pakietu `PogromcyDanych` przygotować usługę SaaS, która:
 
 A. Dla wskazanej marki samochodu wyznacza tempo spadku ceny w kolejnych latach rysuje tę zmianę na wykresie.
+
 B. Dla wskazanego rocznika i przebiegu wyznacza średnią cenę aut o danych parametrach.
+
 C. Dla wskazanej marki samochodu i rocznika wyznacza 5 najtańszych aut z danej marki i danego rocznika.
 
 Po zbudowaniu takiej usługi, warto spróbować uruchomić ją zdalnie z innego komputera.
