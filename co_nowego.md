@@ -1,5 +1,10 @@
 # Co nowego zostało ostatnio dodane?
 
+* 30 maja 2015
+
+Dodano rozdział 2.8 ,,Jak serializować obiekty z użyciem pakietu archivist?''
+https://pbiecek.gitbooks.io/przewodnik/content/Programowanie/pazury/archivist.html
+
 * 5 maja 2016
 
 Dodano rozdział 2.6 o serwisach Saas z omówionym pakietem `opencpu`
