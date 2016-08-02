@@ -73,7 +73,7 @@ Aby wyczyścić instrukcje zapisujące przestrzeń nazw przy każdym błędzie w
 options(error=NULL)
 ```
 
-## Automatyczny start debuggera
+## Automatyczny start debugera
 
 Jeżeli pracujemy w trybie interaktywnym i każdy błąd lubimy przeanalizować, to wygodne będzie ustawienie funkcji `recover()` jako funkcji do wywołania po wystąpieniu błędu.
 
@@ -110,7 +110,7 @@ Ale to co można zrobić to określić jak ma wyglądać zachowanie R gdy błąd
 
 Do tego celu można wykorzystać funkcję `try()` lub `tryCatch()`.
 
-Jest ona wygodna, gdy np. uruchamiamy określony fragment kodu wielokrotni, np. równolegle, i liczymy się z tym, że któreś uruchomienie może zakończyć się błędem (pobieranie złej strony www).
+Jest ona wygodna, gdy np. uruchamiamy określony fragment kodu wielokrotnie, np. równolegle, oraz liczymy się z tym, że któreś uruchomienie może zakończyć się błędem (pobieranie złej strony www).
 Jeżeli nie chcemy by błąd przerywał całość obliczeń, to dobrym rozwiązaniem jest jego przechwycenie.
 
 Można do tego wykorzystać funkcja `try()` i `tryCatch()`.
@@ -147,19 +147,10 @@ tmp <- hist(rnorm(100), plot = FALSE)
 ## trace: sum
 ## trace: sum
 ## trace: sum
-## trace: sum
-## trace: sum
-## trace: sum
 ```
 
 ```r
 untrace(sum)
-```
-
-```
-## trace: sum
-## trace: sum
-## trace: sum
 ```
 
 Możliwości funkcji `trace()` są znacznie większe. Pozwala ona na wstrzyknięcie dowolnego kodu R w dowolne miejsce dowolnej funkcji. 
@@ -190,7 +181,7 @@ trace("f", quote(browser()),
 ## [1] "f"
 ```
 
-Aby przekonać się co zrobiła funkcja `trace()` zobaczmy jak teraz wygląda ciało fucnkji `f()`. Od razu widać kod śledzący.
+Aby przekonać się co zrobiła funkcja `trace()` zobaczmy jak teraz wygląda ciało funkcji `f()`. Od razu widać kod śledzący.
 
 
 ```r
@@ -228,7 +219,7 @@ Więcej o debugowaniu w RStudio można przeczytać w pliku https://support.rstud
 
 ## Pokrycie testów
 
-Dobrym sposobem na możliwie rzadkie używanie debuggera, jest pisanie dobrych i wielu testów jednostkowych.
+Dobrym sposobem na możliwie rzadkie używanie debugera, jest pisanie dobrych i wielu testów jednostkowych.
 
 Jak tworzyć testy - pisaliśmy to w rozdziale o pakietach. 
 
@@ -237,140 +228,26 @@ Aby sprawdzić jak dokładnie testy pokrywają kod pakietu, można wykorzystać 
 
 ```r
 library(covr)
+```
+
+```
+## Error in library(covr): there is no package called 'covr'
+```
+
+```r
 x <- package_coverage("~/GitHub/archivist")
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "package_coverage"
+```
+
+```r
 x
 ```
 
 ```
-## archivist Coverage: 40.46%
-```
-
-```
-## R/addArchivistHooks.R: 0.00%
-```
-
-```
-## R/addTagsRepo.R: 0.00%
-```
-
-```
-## R/ahistory.R: 0.00%
-```
-
-```
-## R/asession.R: 0.00%
-```
-
-```
-## R/atags.R: 0.00%
-```
-
-```
-## R/cache.R: 0.00%
-```
-
-```
-## R/getTags.R: 0.00%
-```
-
-```
-## R/restoreLibraries.R: 0.00%
-```
-
-```
-## R/rmFromRepo.R: 0.00%
-```
-
-```
-## R/shinySearchInLocalRepo.R: 0.00%
-```
-
-```
-## R/extractData.R: 1.16%
-```
-
-```
-## R/extractMiniature.R: 20.00%
-```
-
-```
-## R/extractTags.R: 22.39%
-```
-
-```
-## R/summaryRepo.R: 53.19%
-```
-
-```
-## R/loadFromRepo.R: 56.25%
-```
-
-```
-## R/getRemoteHook.R: 58.62%
-```
-
-```
-## R/zipRepo.R: 60.00%
-```
-
-```
-## R/splitTags.R: 72.22%
-```
-
-```
-## R/asearch.R: 76.00%
-```
-
-```
-## R/zzz.R: 76.47%
-```
-
-```
-## R/alink.R: 79.49%
-```
-
-```
-## R/showRepo.R: 80.00%
-```
-
-```
-## R/deleteRepo.R: 81.25%
-```
-
-```
-## R/copyToRepo.R: 83.72%
-```
-
-```
-## R/magrittr.R: 88.71%
-```
-
-```
-## R/saveToRepo.R: 88.89%
-```
-
-```
-## R/searchInRepo.R: 91.30%
-```
-
-```
-## R/setRepo.R: 94.12%
-```
-
-```
-## R/aread.R: 94.44%
-```
-
-```
-## R/createEmptyRepo.R: 94.74%
-```
-
-```
-## R/archivistOptions.R: 100.00%
-```
-
-```
-## R/createMDGallery.R: 100.00%
+## Error in eval(expr, envir, enclos): object 'x' not found
 ```
 
 ## Więcej informacji
