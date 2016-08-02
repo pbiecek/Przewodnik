@@ -55,7 +55,7 @@ Aby wyczyścić instrukcje zapisujące przestrzeń nazw przy każdym błędzie w
 options(error=NULL)
 ```
 
-## Automatyczny start debuggera
+## Automatyczny start debugera
 
 Jeżeli pracujemy w trybie interaktywnym i każdy błąd lubimy przeanalizować, to wygodne będzie ustawienie funkcji `recover()` jako funkcji do wywołania po wystąpieniu błędu.
 
@@ -92,7 +92,7 @@ Ale to co można zrobić to określić jak ma wyglądać zachowanie R gdy błąd
 
 Do tego celu można wykorzystać funkcję `try()` lub `tryCatch()`.
 
-Jest ona wygodna, gdy np. uruchamiamy określony fragment kodu wielokrotni, np. równolegle, i liczymy się z tym, że któreś uruchomienie może zakończyć się błędem (pobieranie złej strony www).
+Jest ona wygodna, gdy np. uruchamiamy określony fragment kodu wielokrotnie, np. równolegle, oraz liczymy się z tym, że któreś uruchomienie może zakończyć się błędem (pobieranie złej strony www).
 Jeżeli nie chcemy by błąd przerywał całość obliczeń, to dobrym rozwiązaniem jest jego przechwycenie.
 
 Można do tego wykorzystać funkcja `try()` i `tryCatch()`.
@@ -147,7 +147,7 @@ trace("f", quote(browser()),
       exit = quote(cat("Argumenty", x, y, z, w)))
 ```
 
-Aby przekonać się co zrobiła funkcja `trace()` zobaczmy jak teraz wygląda ciało fucnkji `f()`. Od razu widać kod śledzący.
+Aby przekonać się co zrobiła funkcja `trace()` zobaczmy jak teraz wygląda ciało funkcji `f()`. Od razu widać kod śledzący.
 
 ```{r}
 body(f)
@@ -168,7 +168,7 @@ Więcej o debugowaniu w RStudio można przeczytać w pliku https://support.rstud
 
 ## Pokrycie testów
 
-Dobrym sposobem na możliwie rzadkie używanie debuggera, jest pisanie dobrych i wielu testów jednostkowych.
+Dobrym sposobem na możliwie rzadkie używanie debugera, jest pisanie dobrych i wielu testów jednostkowych.
 
 Jak tworzyć testy - pisaliśmy to w rozdziale o pakietach. 
 

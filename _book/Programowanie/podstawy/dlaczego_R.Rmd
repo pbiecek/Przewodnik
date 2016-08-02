@@ -7,5 +7,8 @@ https://medium.com/airbnb-engineering/using-r-packages-and-education-to-scale-da
 Własne skórki graficzne
 https://github.com/ricardo-bion/ggtech
 
+* Rosnące znaczenie R jako języka
 
+R moves up to 5th place in IEEE language rankings
 
+http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html
