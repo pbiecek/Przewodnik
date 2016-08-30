@@ -8,9 +8,9 @@ Takie dane można odczytać na różne sposoby. Poniżej przedstawimy dwa najcz�
 
 Jeżeli tabela HTML jest poprawnie sformatowana, to najwygodniej jest wykorzystać funkcję `readHTMLTable` z pakietu `XML`. Wczytuje ona całą stronę internetową do R, następnie ją analizuje tak by wyłuskać z niej tabele. Wynikiem działania tej funkcji jest lista z tabelami znalezionymi na stronie.
 
-Prześledźmy działanie tej funkcji na bazie strony Wikipedii o liście meczów reprezentacji Polski w piłce nożnej
+Prześledźmy działanie tej funkcji na przykładzie czytania danych z strony Wikipedii, ze strony o liście meczów reprezentacji Polski w piłce nożnej
 https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej. 
-Stronę HTML odczytujemy i pobieramy funkcją `getURL()`. Na ten stronie znajduje się wiele tabel. Funkcja `readHTMLTable` wczytuje je wszystkie.
+Stronę HTML odczytujemy i pobieramy funkcją `getURL()`. Na tej przykłądowej stronie znajduje się wiele tabel. Funkcja `readHTMLTable` wczyta je wszystkie a jako wynik zwróci listę tabel.
 
 ```{r}
 library(XML)
