@@ -1,6 +1,6 @@
 # Jak wczytywać tabele z formatu HTML?
 
-Badzo często, dane które chcemy wczytać do R są dostępne w postaci tabeli na stronie HTML.
+Bardzo często, dane które chcemy wczytać do R są dostępne w postaci tabeli na stronie HTML.
 
 Takie dane można odczytać na różne sposoby. Poniżej przedstawimy dwa najczęstsze.
 
@@ -8,9 +8,9 @@ Takie dane można odczytać na różne sposoby. Poniżej przedstawimy dwa najcz�
 
 Jeżeli tabela HTML jest poprawnie sformatowana, to najwygodniej jest wykorzystać funkcję `readHTMLTable` z pakietu `XML`. Wczytuje ona całą stronę internetową do R, następnie ją analizuje tak by wyłuskać z niej tabele. Wynikiem działania tej funkcji jest lista z tabelami znalezionymi na stronie.
 
-Prześledźmy działanie tej funkcji na bazie strony Wikipedii o liście meczów reprezentacji Polski w piłce nożnej
+Prześledźmy działanie tej funkcji na przykładzie czytania danych z strony Wikipedii, ze strony o liście meczów reprezentacji Polski w piłce nożnej
 https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej. 
-Stronę HTML odczytujemy i pobrieramy funckją `getURL()`. Na ten stronie znajduje się wiele tabel. Funkcja `readHTMLTable` wczytuje je wszystkie.
+Stronę HTML odczytujemy i pobieramy funkcją `getURL()`. Na tej przykłądowej stronie znajduje się wiele tabel. Funkcja `readHTMLTable` wczyta je wszystkie a jako wynik zwróci listę tabel.
 
 
 ```r
@@ -55,7 +55,7 @@ head(statystyki)
 
 ## Skubanie strony HTML
 
-Jeżeli dane nie są w poprawnej tabeli HTML, ale są formatowane np. jako elmenty `div`, to alternatywny sposób pobierania danych polega na wczytaniu całej strony HTML a następnie wyrażeniami regularnymi wydzieraniu poszczególnych elementów strony.
+Jeżeli dane nie są w poprawnej tabeli HTML, ale są formatowane np. jako elementy `div`, to alternatywny sposób pobierania danych polega na wczytaniu całej strony HTML a następnie wyrażeniami regularnymi wydzieraniu poszczególnych elementów strony.
 
 W poniższym przykładzie to skubanie jest rozłożone na kilka etapów. Najpierw odczytujemy treść strony internetowej.
 
@@ -98,12 +98,6 @@ table(mecze)
 ```
 
 ```
-## mecze
-##       0:0  0:1  0:2  0:3  0:4  0:6  0:7  1:0  1:1  1:2  1:3  1:4  1:5  1:6 
-##   17   13   23   10    7    4    1    1   17   23   10    9    3    2    1 
-## 10:0  2:0  2:1  2:2  2:3  2:5  3:0  3:1  3:2  4:0  4:1  4:2  4:3  5:0  6:0 
-##    1   17    8   13    5    1    4    9    4    5    1    1    1    3    1 
-##  8:0  8:1 
-##    1    1
+## < table of extent 0 >
 ```
 

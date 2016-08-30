@@ -63,7 +63,7 @@
         data-chapter-title="Jak debugować kod R?"
         data-filepath="Programowanie/pazury/debugowanie.md"
         data-basepath="../.."
-        data-revision="Tue Aug 02 2016 11:48:46 GMT+0200 (CEST)"
+        data-revision="Tue Aug 30 2016 22:28:28 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1583,7 +1583,7 @@ funkcja(&quot;napis&quot;)
 debugger(errorDump)
 </code></pre><p>Aby wyczy&#x15B;ci&#x107; instrukcje zapisuj&#x105;ce przestrze&#x144; nazw przy ka&#x17C;dym b&#x142;&#x119;dzie wystarczy za argument <code>error</code> poda&#x107; <code>NULL</code>.</p>
 <pre><code>options(error=NULL)
-</code></pre><h2 id="automatyczny-start-debuggera">Automatyczny start debuggera</h2>
+</code></pre><h2 id="automatyczny-start-debugera">Automatyczny start debugera</h2>
 <p>Je&#x17C;eli pracujemy w trybie interaktywnym i ka&#x17C;dy b&#x142;&#x105;d lubimy przeanalizowa&#x107;, to wygodne b&#x119;dzie ustawienie funkcji <code>recover()</code> jako funkcji do wywo&#x142;ania po wyst&#x105;pieniu b&#x142;&#x119;du.</p>
 <pre><code>options(error = recover)
 </code></pre><p>W najnowszych wersjach RStudio automatycznie pojawia si&#x119; opcja w&#x142;&#x105;czenia interaktywnego debugera je&#x17C;eli tylko wyst&#x105;pi jaki&#x15B; b&#x142;&#x105;d. Ale w starczych, lub gdy pracujemy na zdalnej konsoli, ta opcja jest wci&#x105;&#x17C; przydatna.</p>
@@ -1602,7 +1602,7 @@ funkcja2(1, &quot;jeden&quot;)
 <p>Wyst&#x105;pienia b&#x142;&#x119;du czasem nie spos&#xF3;b przewidzie&#x107;.
 Ale to co mo&#x17C;na zrobi&#x107; to okre&#x15B;li&#x107; jak ma wygl&#x105;da&#x107; zachowanie R gdy b&#x142;&#x105;d si&#x119; pojawi.</p>
 <p>Do tego celu mo&#x17C;na wykorzysta&#x107; funkcj&#x119; <code>try()</code> lub <code>tryCatch()</code>.</p>
-<p>Jest ona wygodna, gdy np. uruchamiamy okre&#x15B;lony fragment kodu wielokrotni, np. r&#xF3;wnolegle, i liczymy si&#x119; z tym, &#x17C;e kt&#xF3;re&#x15B; uruchomienie mo&#x17C;e zako&#x144;czy&#x107; si&#x119; b&#x142;&#x119;dem (pobieranie z&#x142;ej strony www).
+<p>Jest ona wygodna, gdy np. uruchamiamy okre&#x15B;lony fragment kodu wielokrotnie, np. r&#xF3;wnolegle, oraz liczymy si&#x119; z tym, &#x17C;e kt&#xF3;re&#x15B; uruchomienie mo&#x17C;e zako&#x144;czy&#x107; si&#x119; b&#x142;&#x119;dem (pobieranie z&#x142;ej strony www).
 Je&#x17C;eli nie chcemy by b&#x142;&#x105;d przerywa&#x142; ca&#x142;o&#x15B;&#x107; oblicze&#x144;, to dobrym rozwi&#x105;zaniem jest jego przechwycenie.</p>
 <p>Mo&#x17C;na do tego wykorzysta&#x107; funkcja <code>try()</code> i <code>tryCatch()</code>.</p>
 <p>Poni&#x17C;sza instrukcja wywo&#x142;a w spos&#xF3;b bezpieczny funkcj&#x119; <code>funkcja2(1, &quot;jeden&quot;)</code>. Argument <code>silent=TRUE</code> oznacza, &#x17C;e nawet je&#x17C;eli b&#x142;&#x105;d wyst&#x105;pi to nale&#x17C;y go zignorowa&#x107;. W takim jednak przypadku wynikiem funkcji <code>try()</code> b&#x119;dzie obiekt klasy <code>try-error</code>.</p>
@@ -1621,15 +1621,9 @@ tmp &lt;- hist(rnorm(<span class="hljs-number">100</span>), plot = <span class="
 <pre><code>## trace: sum
 ## trace: sum
 ## trace: sum
-## trace: sum
-## trace: sum
-## trace: sum
 </code></pre><pre><code class="lang-r">untrace(sum)
 </code></pre>
-<pre><code>## trace: sum
-## trace: sum
-## trace: sum
-</code></pre><p>Mo&#x17C;liwo&#x15B;ci funkcji <code>trace()</code> s&#x105; znacznie wi&#x119;ksze. Pozwala ona na wstrzykni&#x119;cie dowolnego kodu R w dowolne miejsce dowolnej funkcji. </p>
+<p>Mo&#x17C;liwo&#x15B;ci funkcji <code>trace()</code> s&#x105; znacznie wi&#x119;ksze. Pozwala ona na wstrzykni&#x119;cie dowolnego kodu R w dowolne miejsce dowolnej funkcji. </p>
 <p>Przedstawimy to na przyk&#x142;adzie. Zacznijmy od stworzenia w miar&#x119; prostej funkcji</p>
 <pre><code class="lang-r">f &lt;- <span class="hljs-keyword">function</span>(x) {
   y &lt;- x + runif(<span class="hljs-number">1</span>)
@@ -1645,7 +1639,7 @@ Mo&#x17C;emy wi&#x119;c w dowolnym miejscu podejrze&#x107; stan argument&#xF3;w 
       exit = quote(cat(<span class="hljs-string">&quot;Argumenty&quot;</span>, x, y, z, w)))
 </code></pre>
 <pre><code>## [1] &quot;f&quot;
-</code></pre><p>Aby przekona&#x107; si&#x119; co zrobi&#x142;a funkcja <code>trace()</code> zobaczmy jak teraz wygl&#x105;da cia&#x142;o fucnkji <code>f()</code>. Od razu wida&#x107; kod &#x15B;ledz&#x105;cy.</p>
+</code></pre><p>Aby przekona&#x107; si&#x119; co zrobi&#x142;a funkcja <code>trace()</code> zobaczmy jak teraz wygl&#x105;da cia&#x142;o funkcji <code>f()</code>. Od razu wida&#x107; kod &#x15B;ledz&#x105;cy.</p>
 <pre><code class="lang-r">body(f)
 </code></pre>
 <pre><code>## {
@@ -1667,46 +1661,18 @@ Mo&#x17C;emy wi&#x119;c w dowolnym miejscu podejrze&#x107; stan argument&#xF3;w 
 <p>RStudio posiada rozbudowane wsparcie dla debugowania, czy to zwyk&#x142;ych skrypt&#xF3;w czy np. aplikacji shiny. W dowolnej linii kodu R mo&#x17C;na za&#x142;o&#x17C;y&#x107; pu&#x142;apk&#x119;, gdy interpreter przeczyta ten fragment kodu to przerwanie skryptu zostanie przerwane i u&#x17C;ytkownik ma opcje by prze&#x15B;ledzi&#x107; co si&#x119; dzieje w okre&#x15B;lonym miejscy.</p>
 <p>Wi&#x119;cej o debugowaniu w RStudio mo&#x17C;na przeczyta&#x107; w pliku <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio" target="_blank">https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio</a></p>
 <h2 id="pokrycie-test&#xF3;w">Pokrycie test&#xF3;w</h2>
-<p>Dobrym sposobem na mo&#x17C;liwie rzadkie u&#x17C;ywanie debuggera, jest pisanie dobrych i wielu test&#xF3;w jednostkowych.</p>
+<p>Dobrym sposobem na mo&#x17C;liwie rzadkie u&#x17C;ywanie debugera, jest pisanie dobrych i wielu test&#xF3;w jednostkowych.</p>
 <p>Jak tworzy&#x107; testy - pisali&#x15B;my to w rozdziale o pakietach. </p>
 <p>Aby sprawdzi&#x107; jak dok&#x142;adnie testy pokrywaj&#x105; kod pakietu, mo&#x17C;na wykorzysta&#x107; pakiet <code>covr</code> i funkcje <code>package_coverage()</code>. Przedstawia ona tekstow&#x105; analiz&#x119; jaka cz&#x119;&#x15B;&#x107; funkcji jest weryfikowana. Funkcje, kt&#xF3;re nie s&#x105; wystarczaj&#x105;co pokryte testami warto uzupe&#x142;ni&#x107;.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(covr)
-x &lt;- package_coverage(<span class="hljs-string">&quot;~/GitHub/archivist&quot;</span>)
-x
 </code></pre>
-<pre><code>## archivist Coverage: 40.46%
-</code></pre><pre><code>## R/addArchivistHooks.R: 0.00%
-</code></pre><pre><code>## R/addTagsRepo.R: 0.00%
-</code></pre><pre><code>## R/ahistory.R: 0.00%
-</code></pre><pre><code>## R/asession.R: 0.00%
-</code></pre><pre><code>## R/atags.R: 0.00%
-</code></pre><pre><code>## R/cache.R: 0.00%
-</code></pre><pre><code>## R/getTags.R: 0.00%
-</code></pre><pre><code>## R/restoreLibraries.R: 0.00%
-</code></pre><pre><code>## R/rmFromRepo.R: 0.00%
-</code></pre><pre><code>## R/shinySearchInLocalRepo.R: 0.00%
-</code></pre><pre><code>## R/extractData.R: 1.16%
-</code></pre><pre><code>## R/extractMiniature.R: 20.00%
-</code></pre><pre><code>## R/extractTags.R: 22.39%
-</code></pre><pre><code>## R/summaryRepo.R: 53.19%
-</code></pre><pre><code>## R/loadFromRepo.R: 56.25%
-</code></pre><pre><code>## R/getRemoteHook.R: 58.62%
-</code></pre><pre><code>## R/zipRepo.R: 60.00%
-</code></pre><pre><code>## R/splitTags.R: 72.22%
-</code></pre><pre><code>## R/asearch.R: 76.00%
-</code></pre><pre><code>## R/zzz.R: 76.47%
-</code></pre><pre><code>## R/alink.R: 79.49%
-</code></pre><pre><code>## R/showRepo.R: 80.00%
-</code></pre><pre><code>## R/deleteRepo.R: 81.25%
-</code></pre><pre><code>## R/copyToRepo.R: 83.72%
-</code></pre><pre><code>## R/magrittr.R: 88.71%
-</code></pre><pre><code>## R/saveToRepo.R: 88.89%
-</code></pre><pre><code>## R/searchInRepo.R: 91.30%
-</code></pre><pre><code>## R/setRepo.R: 94.12%
-</code></pre><pre><code>## R/aread.R: 94.44%
-</code></pre><pre><code>## R/createEmptyRepo.R: 94.74%
-</code></pre><pre><code>## R/archivistOptions.R: 100.00%
-</code></pre><pre><code>## R/createMDGallery.R: 100.00%
+<pre><code>## Error in library(covr): there is no package called &apos;covr&apos;
+</code></pre><pre><code class="lang-r">x &lt;- package_coverage(<span class="hljs-string">&quot;~/GitHub/archivist&quot;</span>)
+</code></pre>
+<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;package_coverage&quot;
+</code></pre><pre><code class="lang-r">x
+</code></pre>
+<pre><code>## Error in eval(expr, envir, enclos): object &apos;x&apos; not found
 </code></pre><h2 id="wi&#x119;cej-informacji">Wi&#x119;cej informacji</h2>
 <ul>
 <li>Interesuj&#x105;cy przegl&#x105;d mo&#x17C;liwo&#x15B;ci RStudio dotycz&#x105;cych debudowania <a href="http://www.win-vector.com/blog/2016/04/free-data-science-video-lecture-debugging-in-r/" target="_blank">http://www.win-vector.com/blog/2016/04/free-data-science-video-lecture-debugging-in-r/</a></li>

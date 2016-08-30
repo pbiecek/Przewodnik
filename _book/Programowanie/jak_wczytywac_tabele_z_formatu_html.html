@@ -63,7 +63,7 @@
         data-chapter-title="Jak wczytać tabele danych ze strony www?"
         data-filepath="Programowanie/jak_wczytywac_tabele_z_formatu_html.md"
         data-basepath=".."
-        data-revision="Tue Aug 02 2016 11:48:46 GMT+0200 (CEST)"
+        data-revision="Tue Aug 30 2016 22:28:28 GMT+0200 (CEST)"
         data-innerlanguage="">
     
 
@@ -1551,13 +1551,13 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="jak-wczytywa&#x107;-tabele-z-formatu-html">Jak wczytywa&#x107; tabele z formatu HTML?</h1>
-<p>Badzo cz&#x119;sto, dane kt&#xF3;re chcemy wczyta&#x107; do R s&#x105; dost&#x119;pne w postaci tabeli na stronie HTML.</p>
+<p>Bardzo cz&#x119;sto, dane kt&#xF3;re chcemy wczyta&#x107; do R s&#x105; dost&#x119;pne w postaci tabeli na stronie HTML.</p>
 <p>Takie dane mo&#x17C;na odczyta&#x107; na r&#xF3;&#x17C;ne sposoby. Poni&#x17C;ej przedstawimy dwa najcz&#x119;stsze.</p>
 <h2 id="poprawnie-sformatowana-tabela-html">Poprawnie sformatowana tabela HTML</h2>
 <p>Je&#x17C;eli tabela HTML jest poprawnie sformatowana, to najwygodniej jest wykorzysta&#x107; funkcj&#x119; <code>readHTMLTable</code> z pakietu <code>XML</code>. Wczytuje ona ca&#x142;&#x105; stron&#x119; internetow&#x105; do R, nast&#x119;pnie j&#x105; analizuje tak by wy&#x142;uska&#x107; z niej tabele. Wynikiem dzia&#x142;ania tej funkcji jest lista z tabelami znalezionymi na stronie.</p>
-<p>Prze&#x15B;led&#x17A;my dzia&#x142;anie tej funkcji na bazie strony Wikipedii o li&#x15B;cie mecz&#xF3;w reprezentacji Polski w pi&#x142;ce no&#x17C;nej
+<p>Prze&#x15B;led&#x17A;my dzia&#x142;anie tej funkcji na przyk&#x142;adzie czytania danych z strony Wikipedii, ze strony o li&#x15B;cie mecz&#xF3;w reprezentacji Polski w pi&#x142;ce no&#x17C;nej
 <a href="https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej" target="_blank">https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej</a>. 
-Stron&#x119; HTML odczytujemy i pobrieramy funckj&#x105; <code>getURL()</code>. Na ten stronie znajduje si&#x119; wiele tabel. Funkcja <code>readHTMLTable</code> wczytuje je wszystkie.</p>
+Stron&#x119; HTML odczytujemy i pobieramy funkcj&#x105; <code>getURL()</code>. Na tej przyk&#x142;&#x105;dowej stronie znajduje si&#x119; wiele tabel. Funkcja <code>readHTMLTable</code> wczyta je wszystkie a jako wynik zwr&#xF3;ci list&#x119; tabel.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(XML)
 <span class="hljs-keyword">library</span>(RCurl)
 link &lt;- <span class="hljs-string">&quot;https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej&quot;</span>
@@ -1586,7 +1586,7 @@ head(statystyki)
 ## 5                                                          Rados&#x142;aw Ka&#x142;u&#x17C;ny
 ## 6                               eM&#x15A;, Emmanuel Olisadebe, Pawe&#x142; Krysza&#x142;owicz
 </code></pre><h2 id="skubanie-strony-html">Skubanie strony HTML</h2>
-<p>Je&#x17C;eli dane nie s&#x105; w poprawnej tabeli HTML, ale s&#x105; formatowane np. jako elmenty <code>div</code>, to alternatywny spos&#xF3;b pobierania danych polega na wczytaniu ca&#x142;ej strony HTML a nast&#x119;pnie wyra&#x17C;eniami regularnymi wydzieraniu poszczeg&#xF3;lnych element&#xF3;w strony.</p>
+<p>Je&#x17C;eli dane nie s&#x105; w poprawnej tabeli HTML, ale s&#x105; formatowane np. jako elementy <code>div</code>, to alternatywny spos&#xF3;b pobierania danych polega na wczytaniu ca&#x142;ej strony HTML a nast&#x119;pnie wyra&#x17C;eniami regularnymi wydzieraniu poszczeg&#xF3;lnych element&#xF3;w strony.</p>
 <p>W poni&#x17C;szym przyk&#x142;adzie to skubanie jest roz&#x142;o&#x17C;one na kilka etap&#xF3;w. Najpierw odczytujemy tre&#x15B;&#x107; strony internetowej.</p>
 <pre><code class="lang-r">link &lt;- <span class="hljs-string">&quot;https://pl.wikipedia.org/wiki/Lista_mecz%C3%B3w_reprezentacji_Polski_w_pi%C5%82ce_no%C5%BCnej&quot;</span>
 html &lt;- readLines(link)
@@ -1607,13 +1607,7 @@ mecze &lt;- gsub(mecze, pattern=<span class="hljs-string">&quot; .*$&quot;</span
 <p>I tak po kilku krokach mo&#x17C;emy wykonywa&#x107; kolejne analizy na tak wy&#x142;uskanych statystykach.</p>
 <pre><code class="lang-r">table(mecze)
 </code></pre>
-<pre><code>## mecze
-##       0:0  0:1  0:2  0:3  0:4  0:6  0:7  1:0  1:1  1:2  1:3  1:4  1:5  1:6 
-##   17   13   23   10    7    4    1    1   17   23   10    9    3    2    1 
-## 10:0  2:0  2:1  2:2  2:3  2:5  3:0  3:1  3:2  4:0  4:1  4:2  4:3  5:0  6:0 
-##    1   17    8   13    5    1    4    9    4    5    1    1    1    3    1 
-##  8:0  8:1 
-##    1    1
+<pre><code>## &lt; table of extent 0 &gt;
 </code></pre>
                     
                     </section>
