@@ -76,6 +76,7 @@
          * [Jak działa algorytm EM?](Analiza/beznadzoru/em.md)
        * [Jak szukać reguł asocjacyjnych?](Analiza/beznadzoru/rules.md)
    * [Weryfikacja](Analiza/weryfikacja.md)
+       * [Wprowadzenie do testowania](Analiza/Weryfikacja/wprowadzenie.md)
        * [Jak badać właściwości jednej zmiennej?](Analiza/jak_badac_wlasciwosci_jednej_zmiennej.md)
        * [Jak badać zależności pomiędzy parą zmiennych?](Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.md)
    * [Wizualizacja](Wizualizacja/wizualizacja.md)
