@@ -1,25 +1,40 @@
-# Jak zainstalować R / RStudio?
+# Jak zainstalować programy R i RStudio?
 
-Aby wygodnie pracować w R powinniśmy 
+Aby wygodnie pracować z programem R powinniśmy 
 
-1. Zainstalować R,
+1. Zainstalować program R,
 2. Zainstalować wygodny edytor, np. RStudio,
 3. Zainstalować niezbędne biblioteki dodatkowe.
 
 ## Jak zainstalować R?
 
-Obecnie aktualna wersja R to 3.2.4. Co roku w kwietniu wypuszczana jest kolejna wersja 3.x, czyli niedługo będziemy cieszyć się 3.3.0 (którą można już instalować, przy czym na razie ma status 'deweloperska'). W trakcie roku w miarę potrzeb wypuszczane są podwersje.
+Obecnie aktualna wersja R to 3.3.1. Co roku w kwietniu wypuszczana jest kolejna wersja 3.x, czyli niedługo będziemy cieszyć się 3.4.0. W trakcie roku w miarę potrzeb wypuszczane są podwersje.
 
-Najnowszą wersję R najlepiej zainstalować ze strony https://cran.r-project.org/. 
-Instalacja sprowadza się do klikania *next, next, next*.
+Najnowszą wersję R najlepiej zainstalować ze strony https://cran.r-project.org/. Dostępne są wersje zarówno dla systemu Windows, OSX jak i dla różnych dystrybucji Linuxa. 
+Instalacja sprowadza się do klikania *next, next, next* (Windows lub OSX) lub instalacji przez managera pakietów (Linuxy).
 
-Program R jest całkowicie bezpłatny do wszelkich zastosowań, edukacyjnych, przemysłowych, biznesowych, komercyjnych i hobbystycznych. Program R jest dostępny na licencji [GNU GPL](https://pl.wikipedia.org/wiki/GNU_General_Public_License).
+Program R jest dostępny na licencji [GNU GPL](https://pl.wikipedia.org/wiki/GNU_General_Public_License). Oznacza to, że jest całkowicie bezpłatny do wszelkich zastosowań, edukacyjnych, przemysłowych, biznesowych, komercyjnych i hobbystycznych. 
 
 ## Jak zainstalować RStudio?
+
+RStudio jest narzędziem ułatwiającym pracę z R. Jest to edytor, manager wersji, narzędzie wspierające debugowanie, tworzenie pakietów, aplikacji czy raportów. Można żyć bez tej nakładki, ale co to za życie.
 
 Najnowszą wersję RStudio Desktop można pobrać ze strony http://www.rstudio.com/products/rstudio/download/.
 
 Nie musimy pamiętać tego adresu, wystarczy wpisać w Google *R Studio download* a powyższy adres będzie pierwszym linkiem.
+
+Praca z RStudio jest znacznie przyjemniejsza gdy nauczymy  się kilku podstawowych skrótów klawiszowych. Pełną listę skrótów można znaleźć pod adresem: 
+https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf
+
+Najprzydatniejsze skróty to:
+
+* Ctrl+1-9, przełączanie pomiędzy oknami aplikacji
+* Ctrl/Cmd+UP, historia komend
+* Ctrl+L, czyści konsolę
+* Tab, uzupełnianie kodu
+* Ctrl/Cmd+Shift+C, komentowanie linii lub zbioru linii kodu
+* Ctrl/Cmd+ENTER, wykonanie zaznaczonego kodu w konsoli.
+
 
 ## Jak zainstalować dodatkowe pakiety?
 
@@ -50,3 +65,4 @@ library(devtools)
 
 install_github("pbiecek/PogromcyDanych")
 ```
+
