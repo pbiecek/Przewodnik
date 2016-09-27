@@ -11,7 +11,7 @@ Od początku język R był tworzony i rozwijany pod statystyków, z tego też po
 
 Świadczyć może o tym ranking przygotowany na podstawie głosów członków komitetu IEEE (ang. *Institute of Electrical and Electronics Engineers*). W tym rankingu R został w roku 2016 wymieniony na 5. miejscu wśród najpopularniejszych języków, wyprzedzając takie tuzy jak PHP czy JavaScript.
 
-![Ranking IEEE 2016](Mjc5MjI0Ng.png)
+![Ranking IEEE 2016](figures/Mjc5MjI0Ng.png)
 
 Jest wiele powodów tej popularności języka R. Poniżej przedstawię te subiektywnie wybrane za najważniejsze.
 
