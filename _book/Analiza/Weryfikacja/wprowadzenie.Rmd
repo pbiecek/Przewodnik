@@ -1,3 +1,16 @@
 ## Wprowadzenie do testowania
 
+* Czy wyniki na maturze różnią się dla różnych płci?
+* Czy wysokość zarobków w pierwszej pracy zależy od wzrostu?
+* Czy choroba serca częściej dotyka mieszkańców miast niż wsi?
+
+Jest wiele interesujących pytań typu 'czy', dla których możliwe są dwie odpowiedzi i chcielibyśmy wykorzystać dane aby zdecydować do której odpowiedzi się przychylić.
+
+Jednym z możliwych podejść w tej sytuacji jest wnioskowanie Bayesowskie i ocena prawdopodobieństwa prawdziwości możliwych odpowiedzi.
+
+Innym możliwym podejściem jest wnioskowanie oparte o testy statystyczne. 
+To podejście jest mniej intuicyjne ale często wykorzystywane, poświęcimy mu więc poniżej trochę miejsca.
+
+
+
 
