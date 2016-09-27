@@ -1,19 +1,38 @@
-# Jak zainstalować programy R i RStudio?
+# Co trzeba zainstalować aby pracować z R?
 
-Aby wygodnie pracować z programem R powinniśmy 
+Aby wygodnie pracować z programem R potrzebujemy wykonać trzy kroki.
 
-1. Zainstalować program R,
-2. Zainstalować wygodny edytor, np. RStudio,
-3. Zainstalować niezbędne biblioteki dodatkowe.
+Pierwszy krok, to zainstalowanie podstawowego środowiska R, na które składa się interpreter i podstawowy zbiór pakietów.
+Już ten zestaw już ma potężne możliwości w większości przypadków wystarczające do analizy danych, rysowania wykresów i wykonywania innych typowych zadań. 
 
-## Jak zainstalować R?
+Drugi krok, to instalacja edytora RStudio, narzędzia, które bardzo ułatwia prace z programem R. Nie jest to jedyny edytor dla R, ale z obecnych dzisiaj na rynku jest najlepszym rozwiązaniem. Podobnie jak R również ten edytor w wersji podstawowej jest dostępny bezpłatnie.
 
-Obecnie aktualna wersja R to 3.3.1. Co roku w kwietniu wypuszczana jest kolejna wersja 3.x, czyli niedługo będziemy cieszyć się 3.4.0. W trakcie roku w miarę potrzeb wypuszczane są podwersje.
+Trzeci i ostatni krok, to doinstalowanie dodatkowych pakietów z przydatnymi funkcjami. Aktualnie dostępnych jest ponad siedem tysięcy  pakietów! Nie ma jednak potrzeby instalowania ich wszystkich od razu. Z reguły w miarę używania okazuje się, że przydałaby się nam jakaś dodatkowa funkcja, która jest już dostępna w pewnym pakiecie i dopiero wtedy warto taki pakiet doinstalować.
 
-Najnowszą wersję R najlepiej zainstalować ze strony https://cran.r-project.org/. Dostępne są wersje zarówno dla systemu Windows, OSX jak i dla różnych dystrybucji Linuxa. 
-Instalacja sprowadza się do klikania *next, next, next* (Windows lub OSX) lub instalacji przez managera pakietów (Linuxy).
+Poniżej znajduje się krótka informacja jak łatwo przebrnąć przez oba etapy instalacji.
 
-Program R jest dostępny na licencji [GNU GPL](https://pl.wikipedia.org/wiki/GNU_General_Public_License). Oznacza to, że jest całkowicie bezpłatny do wszelkich zastosowań, edukacyjnych, przemysłowych, biznesowych, komercyjnych i hobbystycznych. 
+## Instalacja podstawowego środowiska R
+
+Dla większości systemów operacyjnych, w tym wszystkich dystrybucji Linuxa, Unixa, dla wersji Windowsa począwszy od Windowsa 95 i dla MacOSa, pakiet R jest dostępny w postaci źródłowej lub skompilowanej na określony system. 
+
+Obecnie aktualna wersja R to 3.3.1. Co roku w kwietniu wypuszczana jest kolejna duża wersja 3.x, czyli niedługo będziemy cieszyć się wersją 3.4.0. W trakcie roku w miarę potrzeb wypuszczane są podwersje. Program R szybko się rozwija i warto przynajmniej raz do roku aktualizować go do najnowszej dostępnej wersji. 
+
+Instalacja jest prosta, wystarczy otworzyć stronę `https://cran.r-project.org/`, wybrać system operacyjny i pobrać plik binarny do instalacji.
+Instalacja sprowadza się do klikania przycisku *Next, next, next*.
+Można mieć zainstalowanych jednocześnie kilka różnych wersji R. Przechowywanie starszych wersji programu R może być wygodne, jeżeli chcemy mieć prostą możliwość odtworzenia w przyszłości dokładnie tych samych wyników co na wersji obecnej.
+
+W przypadku instalacji na nietypowych platformach można posiłkować się szczegółową instrukcją instalacji dostępną na stronie https://cran.r-project.org/doc/manuals/R-admin.html.
+
+> Wygodną właściwością środowiska R jest to, że można je uruchamiać bez instalowania. Można więc skopiować środowisko R na płytę CD, na pendrive lub dysk przenośny i uruchamiać na dowolnym komputerze bez potrzeby instalacji.
+
+Trudno jest podać minimalne wymagania sprzętowe niezbędne do działania R. Wersję podstawową można bez problemu zainstalować na wieloletnich maszynach z 256MB RAM, procesorach klasy Pentium lub wyższej i kilkadziesiąt MB miejsca na dysku twardym.
+O ile jednak wersja podstawowa jest lekka, to instalacja dodatkowych pakietów może wymagać kilku GB pamięci RAM lub miejsca na dysku. Szczególnie pakiety z dużymi danymi genomicznymi potrafią dużo ważyć.
+
+> Osoby używające programu R do bardzo wymagających obliczeniowo analiz powinny raczej używać OSXowej, Linuxowej lub Unixowej wersji R. W tych systemach operacyjnych zarządzanie pamięcią jest wydajniejsze przez co R działa  (odrobinę) szybciej. Dla unixów dostępne są też dodatkowe narzędzia pozwalające na wykorzystanie wielowątkowości i innych mechanizmów systemowych (np. funkcji `fork()`).
+
+
+
+
 
 ## Jak zainstalować RStudio?
 
