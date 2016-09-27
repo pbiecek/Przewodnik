@@ -30,8 +30,7 @@ O ile jednak wersja podstawowa jest lekka, to instalacja dodatkowych pakietów m
 
 > Osoby używające programu R do bardzo wymagających obliczeniowo analiz powinny raczej używać OSXowej, Linuxowej lub Unixowej wersji R. W tych systemach operacyjnych zarządzanie pamięcią jest wydajniejsze przez co R działa  (odrobinę) szybciej. Dla unixów dostępne są też dodatkowe narzędzia pozwalające na wykorzystanie wielowątkowości i innych mechanizmów systemowych (np. funkcji `fork()`).
 
-
-
+![Strona https://cran.r-project.org/ z której można pobrać program R skompilowany dla najpopularniejszych systemów operacyjnych.](figures/Rbase.png)
 
 
 ## Jak zainstalować RStudio?
