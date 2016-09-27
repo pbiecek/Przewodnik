@@ -2,9 +2,10 @@
 
 * [Podrasuj Przewodnik!](contribute.md)
   * [Co nowego?](co_nowego.md)
-* [Programowanie w języku R](puste.md)
+* [Wprowadzenie do R](puste.md)
    * [Dlaczego R?](Programowanie/podstawy/dlaczego_R.md)
    * [Jak zainstalować R i RStudio?](Programowanie/podstawy/jak_zainstalowac_R.md)
+* [Programowanie w języku R](puste.md)
    * [Jak wczytywać i zapisywać dane?](Programowanie/zapisywac.md)
        * [Jak wczytać tabele danych z pliku csv lub txt?](Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md)
        * [Jak wczytać tabele danych z Excela?](Programowanie/jak_wczytac_dane_z_excela.md)
