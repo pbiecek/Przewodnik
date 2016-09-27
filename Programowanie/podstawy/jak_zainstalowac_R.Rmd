@@ -65,10 +65,10 @@ Aby włączyć dany pakiet w obecnej sesji R, tak by wykorzystywać dostępne w 
 Przykłady w kolejnych rozdziałach w znakomitej większości są oparte o pakiet `PogromcyDanych`.
 
 ```
-# Wywołaj tylko raz aby zainstalować pakiet i zależności
+## Wywołaj tylko raz aby zainstalować pakiet i zależności
 install.packages("PogromcyDanych")
 
-# Włącz za każdym razem gdy na nowo uruchamiasz R, jeżeli chcesz skorzystać z funkcji/zbiorów danych z tego pakietu.
+## Włącz za każdym razem gdy na nowo uruchamiasz R, jeżeli chcesz skorzystać z funkcji/zbiorów danych z tego pakietu.
 library(PogromcyDanych)
 ```
 
