@@ -2,7 +2,7 @@
 
 * [Podrasuj Przewodnik!](contribute.md)
   * [Co nowego?](co_nowego.md)
-* [Wprowadzenie do R](puste.md)
+* [Wprowadzenie do R](wprowadzenie.md)
    * [Dlaczego R?](Wprowadzenie/dlaczego_R.md)
    * [Jak wygląda praca z programem R?](Wprowadzenie/jak_wyglada_praca_z_R.md)
      * [Skrobanie danych ze strony www](Wprowadzenie/jak_skrobac_z_www.md)
