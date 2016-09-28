@@ -68,7 +68,8 @@ Przykłady w kolejnych rozdziałach w znakomitej większości są oparte o pakie
 ## Wywołaj tylko raz aby zainstalować pakiet i zależności
 install.packages("PogromcyDanych")
 
-## Włącz za każdym razem gdy na nowo uruchamiasz R, jeżeli chcesz skorzystać z funkcji/zbiorów danych z tego pakietu.
+## Włącz za każdym razem gdy na nowo uruchamiasz R, 
+## jeżeli chcesz skorzystać z funkcji/zbiorów danych z tego pakietu.
 library(PogromcyDanych)
 ```
 
