@@ -1,5 +1,9 @@
 # Co nowego zostało ostatnio dodane?
 
+* 30 września 2016
+
+Dodano rozdział 2.2 ,,Jak przygotować miejsce pracy?''
+
 * 30 maja 2015
 
 Dodano rozdział 2.8 ,,Jak serializować obiekty z użyciem pakietu archivist?''
