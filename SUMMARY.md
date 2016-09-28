@@ -10,6 +10,7 @@
      * [Jak zainstalować R?](Wprowadzenie/jak_zainstalowac_R.md)
      * [Jak zainstalować RStudio?](Wprowadzenie/jak_zainstalowac_RStudio.md)
      * [Jak zainstalować dodatkowe pakiety?](Wprowadzenie/jak_zainstalowac_pakiety.md)
+   * [Gdzie szukać dodatkowej pomocy?](Wprowadzenie/dodatkowa_pomoc.md)
 * [Programowanie w języku R](puste2.md)
    * [Jak wczytywać i zapisywać dane?](Programowanie/zapisywac.md)
        * [Jak wczytać tabele danych z pliku csv lub txt?](Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.md)
