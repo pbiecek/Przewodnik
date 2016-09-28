@@ -1,4 +1,4 @@
-Przewodnik po pakiecie R 4.0
+Przewodnik po pakiecie R v4.0
 ============================
 
 Przewodnik jest zbiorem materiałów poświęconych językowi oraz bibliotekom programu R. Wykorzystuję je do prowadzenia zajęć na Wydziale Matematyki i Informatyki Uniwersytetu Warszawskiego oraz Matematyki i Nauk Informacyjnych Politechniki Warszawskiej.
