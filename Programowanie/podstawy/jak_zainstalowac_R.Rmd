@@ -81,7 +81,6 @@ Aby zainstalować pakiet z GitHuba można wykorzystać funkcję `install_github(
 
 ```
 library(devtools)
-
 install_github("pbiecek/PogromcyDanych")
 ```
 
