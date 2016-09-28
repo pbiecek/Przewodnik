@@ -5,7 +5,7 @@
 * [Wprowadzenie do R](wprowadzenie.md)
    * [Dlaczego R?](Wprowadzenie/dlaczego_R.md)
    * [Jak wygląda praca z programem R?](Wprowadzenie/jak_wyglada_praca_z_R.md)
-     * [Skrobanie danych ze strony www](Wprowadzenie/jak_skrobac_z_www.md)
+     * [Przykładowa sesja](Wprowadzenie/przykladowa_sesja.md)
    * [Jak przygotować miejsce pracy?](Wprowadzenie/jak_przygotowac_miejsce.md)
      * [Jak zainstalować R?](Wprowadzenie/jak_zainstalowac_R.md)
      * [Jak zainstalować RStudio?](Wprowadzenie/jak_zainstalowac_RStudio.md)
