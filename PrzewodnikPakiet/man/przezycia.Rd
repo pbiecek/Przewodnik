@@ -9,7 +9,7 @@
 data(przezycia)
 }
 \description{
-Mortality data for Polsnd. Based on http://www.mortality.org/ database.
+Mortality data for Poland. Based on http://www.mortality.org/ database.
 The subsequent columns describe:
 \itemize{
 \item Year. Year or range of years (for both period & cohort data)
