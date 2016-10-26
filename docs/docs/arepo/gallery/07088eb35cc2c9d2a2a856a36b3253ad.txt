@@ -1,0 +1,7 @@
+  Glosow                   Klub  Wyksztalcenie                      Zawod        ImieNazwisko DataUrodzenia MiejsceUrodzenia  Wiek
+1  10500 Prawo i Sprawiedliwość         wyższe              poseł na Sejm     Adam Abramowicz    1961-03-10   Biała Podlaska 55.01
+2  18514 Prawo i Sprawiedliwość         wyższe           parlamentarzysta    Andrzej Adamczyk    1959-01-04      Krzeszowice 57.19
+3   7275  Platforma Obywatelska         wyższe         agroprzedsiębiorca    Zbigniew Ajchler    1955-11-21        Szamotuły 60.32
+4  15668               Kukiz'15         wyższe specjalista ds. medialnych Adam Andruszkiewicz    1990-06-30          Grajewo 25.69
+5  12021 Prawo i Sprawiedliwość         wyższe           poseł na Sejm RP     Waldemar Andzel    1971-09-17          Czeladź 44.48
+6   7935               Kukiz'15 średnie ogólne                dziennikarz          Piotr Apel    1984-02-08         Warszawa 32.08

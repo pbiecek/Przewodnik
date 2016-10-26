@@ -1,0 +1,121 @@
+# Jak pracować z wektorami?
+
+Trzy podstawowe struktury danych w programie R to:
+
+* wektory - uporządkowane zbiory wartości tego samego typu, np. wektory liczb, napisów. 
+* tabele z danymi - uporządkowany zbiór wektorów o tej samej długości (kolumn w tabeli z danymi). 
+* listy - uporządkowane zbiory wartości, potencjalnie każda wartość może mieć inny typ.
+
+Poniżej pokażemy jak z tych typów korzystać.
+
+W programie R nawet jedna wartość jest wektorem, tyle że małym, jednoelementowym.
+
+```{r}
+4
+```
+
+Dłuższe wektory można tworzyć funkcją `c()`, która skleja kilka wektorów w jeden.
+
+```{r}
+c(3, 4, 5)
+```
+
+Przykładami wektorów są sekwencje, czyli kolekcje kolejnych wartości liczbowych. 
+Sekwencje kolejnych liczb można stworzyć operatorem `:` lub funkcją `seq()`.
+
+```{r}
+2:7
+seq(from = 3, to = 15, by = 2)
+```
+
+W podobny sposób można tworzyć wektory wartości logicznych lub napisowych.
+
+```{r}
+w_logiczne <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+w_logiczne
+w_napisy <- c("alfa", "beta", "gamma", "delta")
+w_napisy
+```
+
+## Indeksowanie wektora
+
+W jaki sposób wybierać elementy wektora? Indeksując ten wektor. Zobaczmy jak budować indeksy za przykład wykorzystując kolejne litery alfabetu łacińskiego.
+
+```{r}
+head(LETTERS)
+```
+
+Aby odwołać się do określonych indeksów wektora należy użyć operatora []. Wewnątrz nawiasów kwadratowych podaje się indeks elementu, do którego chcemy się odwołać.
+
+```{r}
+LETTERS[5]
+LETTERS[c(1, 5, 10)]
+
+indeksy <- c(1, 5, 10)
+LETTERS[indeksy]
+
+LETTERS[10:1]
+```
+
+Indeksować można również używając wartości logicznych.
+
+```{r}
+LETTERS > "K"
+```
+
+## Indeksowanie tabel danych
+
+Tabelę z danymi indeksuje się w ten sam sposób co wektory, z tą różnicą, że należy osobno wskazać indeksy dla wierszy i kolumn.
+
+Indeksy podaje się w nawiasach kwadratowych, indeksy wierszy od indeksów kolumn rozdziela się znakiem przecinka. Do dalszych przykładów wykorzystamy przykładową ramkę z danymi.
+
+```{r}
+library(PogromcyDanych)
+koty_ptaki
+```
+
+
+Przykładowe odwołanie się do trzeciego wiersza z ramki danych
+
+```{r}
+koty_ptaki[3, ]
+```
+
+Aby wybrać fragment tabeli z danymi, można indeksować i wiersze i kolumny.
+
+```{r}
+koty_ptaki[2:7, c(1,2,5)]
+```
+
+
+Funkcje `head()` i `tail()` wybierają kilka pierwszych/ ostatnich wierszy. Domyślnie 6, ale określając wartość drugiego argumentów można wybrać mniej / więcej wierszy.
+
+```{r}
+head(koty_ptaki,2)
+```
+
+Podobnie jak dla wektorów można wybierać wiersze/kolumny używając indeksów logicznych lub nazw wierszy/kolumn.
+
+```{r}
+najszybsze <- koty_ptaki$predkosc > 120
+najszybsze
+koty_ptaki[najszybsze, ]
+```
+
+I przez nazwy.
+
+```{r}
+colnames(koty_ptaki)
+koty_ptaki[, "waga"]
+```
+
+Indeksy można wykorzystywać by sortować tabele z danymi.
+
+```{r}
+koty_ptaki[,"predkosc"]
+order(koty_ptaki[,"predkosc"])
+
+kolejnosc <- order(koty_ptaki[,"predkosc"])
+koty_ptaki[kolejnosc, ]
+```
+
