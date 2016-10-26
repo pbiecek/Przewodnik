@@ -57,8 +57,10 @@ Podział jest powtarzany tak długo, aż osiągnięty jest warunek stopu.
 
 Warunek stopu może dotyczyć maksymalnej głębokości drzewa, minimalnej wielkości w drzewie lub minimalnej wymaganej czystości węzła.
 
-Otrzymywane drzewa są często bardzo głębokie, więc następnie są wtórnie przycinane.
+Otrzymywane drzewa są często bardzo głębokie, więc następnie są wtórnie przycinane. Ten proces określa się jako ang. *prunnig*.
 
+Powyżej opisany schemat można rozszerzać na wiele sposobów. Jednym  zprzydatnych uogólnień jest użycie różnych funkcji straty, które wprost wskazują jak kosztowe są określone błędy w klasyfikacji.
+Więcej informacji o dodatkowych opcji można przeczytac w dokumencie https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf.
 
 ### Przykłady w R 
 

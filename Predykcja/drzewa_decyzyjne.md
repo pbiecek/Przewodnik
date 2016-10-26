@@ -68,8 +68,10 @@ Podział jest powtarzany tak długo, aż osiągnięty jest warunek stopu.
 
 Warunek stopu może dotyczyć maksymalnej głębokości drzewa, minimalnej wielkości w drzewie lub minimalnej wymaganej czystości węzła.
 
-Otrzymywane drzewa są często bardzo głębokie, więc następnie są wtórnie przycinane.
+Otrzymywane drzewa są często bardzo głębokie, więc następnie są wtórnie przycinane. Ten proces określa się jako ang. *prunnig*.
 
+Powyżej opisany schemat można rozszerzać na wiele sposobów. Jednym  zprzydatnych uogólnień jest użycie różnych funkcji straty, które wprost wskazują jak kosztowe są określone błędy w klasyfikacji.
+Więcej informacji o dodatkowych opcji można przeczytac w dokumencie https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf.
 
 ### Przykłady w R 
 
@@ -84,7 +86,7 @@ drzewo <- rpart(Survived~., data=titanic)
 rpart.plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ```r
 drzewo <- rpart(Survived~., data=titanic, 
@@ -92,7 +94,7 @@ drzewo <- rpart(Survived~., data=titanic,
 rpart.plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png)
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png)
 
 Więcej informacji o tym jak rysować ładniejsze drzewa http://www.milbo.org/rpart-plot/prp.pdf
 
@@ -160,7 +162,7 @@ drzewo <- ctree(Survived~., data=titanic,
 plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 Argumentem `ctree_control` możemy określić dodatkowe parametry, takie jak maksymalna głębokość drzewa.
 
@@ -171,7 +173,7 @@ drzewo <- ctree(Survived~., data=titanic,
 plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 Również tym argumentem możemy określić sposób korekty p-wartości, poziom istotności dla testu, sposób redukcji statystyki testowej, minimalna wielkość węzła do podziału.
 
@@ -186,7 +188,7 @@ drzewo <- ctree(Survived~., data=titanic,
 plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 Zmienna objaśniana może być jednowymiarowa, wielowymiarowa, jakościowa, ilościowa lub nawet cenzorowana.
 
@@ -200,5 +202,5 @@ drzewo <- ctree(Surv(time/365, death)~.,
 plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
