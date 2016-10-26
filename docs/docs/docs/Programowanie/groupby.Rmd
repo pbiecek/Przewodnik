@@ -1,0 +1,82 @@
+# Jak wyznaczać agregaty / statystyki w grupach?
+
+Częstą operacją, którą wykonuje się na danych, szczególnie tych dużych, jest wyznaczanie statystyk / podsumowań / agregatów dla podgrup danych.
+
+Aby takie agregaty wyznaczać z pakietem `dplyr` możemy wykorzystać funkcje `summarise()` i `groupby()`. Pierwsza określa jakie statystyki chcemy policzyć, druga określa w jakich grupach.
+
+Przedstawimy te funkcje poniżej jedna po drugiej.
+
+## Jak wyznaczać agregaty?
+
+Funkcją `summarise()` można wyznaczyć agregaty w danych.
+
+Przykładowo, poniższa instrukcja dla zbioru danych `auta2012` liczy średnią cenę, pierwiastek z wariancji ceny i medianę przebiegu aut.
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(PogromcyDanych)
+
+auta2012 %>%
+  summarise(sredniaCena = mean(Cena.w.PLN),
+            sdCena = sqrt(var(Cena.w.PLN)),
+            medianaPrzebiegu = median(Przebieg.w.km, na.rm=TRUE))
+```
+
+Nie zawsze agregat związany jest z przekształceniem wartości w jakiejś kolumnie.
+Przykładowo, dosyć przydatną statystyką jest liczba wierszy, która nie zależy od wartości w danych. Taki agregat można wyznaczyć funkcją `n()`.
+
+Wyznaczając agregaty możemy składać funkcje. Przykładowo składając `mean()` i `grepl()` możemy policzyć procent aut z określonym elementem wyposażenia. 
+
+```{r, warning=FALSE}
+auta2012 %>%
+  summarise(liczba.aut.z.klimatyzacja = sum(grepl("klimatyzacja", Wyposazenie.dodatkowe)),
+            procent.aut.z.klimatyzacja = 100*mean(grepl("klimatyzacja", Wyposazenie.dodatkowe)),
+            procent.aut.z.automatem = 100*mean(Skrzynia.biegow == "automatyczna"),
+            liczba.aut = n())
+```
+
+## Grupowanie
+
+Funkcja `group_by()` pozwala określić w jakich grupach mają być liczone agregaty wyznaczane przez funkcję `summarise()`.
+
+Sama funkcja nie powoduje żadnego przetwarzania, a jedynie dodaje znacznik określający co jest teraz zmienną grupującą. Kolejne funkcje w potoku (tj. `summarise()`) będą dzięki temu znacznikowi wiedziały, że statystyki należy wyznaczać w grupach.
+
+Poniższy przykład liczy trzy statystyki (medianę ceny, przebiegu i liczbę wierszy) dla poszczególnych typów paliwa.
+
+```{r, warning=FALSE}
+auta2012 %>%
+  filter(Marka == "Volkswagen", Rok.produkcji == 2007) %>%
+  group_by(Rodzaj.paliwa) %>%
+  summarise(medianaCeny = median(Cena.w.PLN, na.rm=TRUE),
+            medianaPrzebieg = median(Przebieg.w.km, na.rm=TRUE),
+            liczba = n())
+```
+
+Agregaty są zwykłą ramką danych, można wykonywać na nich kolejne operacje, np. sortowanie.
+
+```{r, warning=FALSE}
+auta2012 %>%
+  filter(Marka == "Volkswagen", Rok.produkcji == 2007) %>%
+  group_by(Rodzaj.paliwa) %>%
+  summarise(medianaCeny = median(Cena.w.PLN, na.rm=TRUE),
+            medianaPrzebieg = median(Przebieg.w.km, na.rm=TRUE),
+            liczba = n()) %>%
+  arrange(liczba)
+```
+
+## Grupowanie po dwóch zmiennych
+
+Grupować można po dwóch lub większej liczbie zmiennych.
+W tym przypadku agregaty liczone są dla każdej występującej w danych kombinacji zmiennych grupujących.
+
+Jeżeli jakaś kombinacja grup w danych nie występuje (np. `Model = Beetle` i `Rodzaj.paliwa = benzyna+LPG`) to nie pojawi się też w agregatach.
+
+```{r, warning=FALSE}
+auta2012 %>%
+  filter(Rok.produkcji == 2007, Marka == "Volkswagen") %>%
+  group_by(Model, Rodzaj.paliwa) %>%
+  summarise(medianaCeny = median(Cena.w.PLN, na.rm=TRUE),
+            medianaPrzebieg = median(Przebieg.w.km, na.rm=TRUE),
+            liczba = n()) 
+```
+

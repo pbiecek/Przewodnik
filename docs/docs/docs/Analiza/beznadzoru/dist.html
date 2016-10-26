@@ -1,0 +1,1850 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Jak wyznaczać odległosć pomiędzy obserwacjami? | Przewodnik po pakiecie R v. 4.0</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../Analiza/beznadzoru/kmeans.html" />
+    
+    
+    <link rel="prev" href="../../Analiza/beznadzoru/skupiska.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.1.5.1"
+        data-chapter-title="Jak wyznaczać odległosć pomiędzy obserwacjami?"
+        data-filepath="Analiza/beznadzoru/dist.md"
+        data-basepath="../.."
+        data-revision="Thu Sep 29 2016 00:55:21 GMT+0200 (CEST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="contribute.html">
+            
+                
+                    <a href="../../contribute.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Podrasuj Przewodnik!
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="co_nowego.html">
+            
+                
+                    <a href="../../co_nowego.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Co nowego?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="wprowadzenie.html">
+            
+                
+                    <a href="../../wprowadzenie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Wprowadzenie do R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="Wprowadzenie/dlaczego_R.html">
+            
+                
+                    <a href="../../Wprowadzenie/dlaczego_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Dlaczego R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Wprowadzenie/jak_wyglada_praca_z_R.html">
+            
+                
+                    <a href="../../Wprowadzenie/jak_wyglada_praca_z_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Jak wygląda praca z programem R?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="Wprowadzenie/przykladowa_sesja.html">
+            
+                
+                    <a href="../../Wprowadzenie/przykladowa_sesja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Przykładowa sesja
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Wprowadzenie/jak_przygotowac_miejsce.html">
+            
+                
+                    <a href="../../Wprowadzenie/jak_przygotowac_miejsce.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Jak przygotować miejsce pracy?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="Wprowadzenie/jak_zainstalowac_R.html">
+            
+                
+                    <a href="../../Wprowadzenie/jak_zainstalowac_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        Jak zainstalować R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="Wprowadzenie/jak_zainstalowac_RStudio.html">
+            
+                
+                    <a href="../../Wprowadzenie/jak_zainstalowac_RStudio.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        Jak zainstalować RStudio?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="Wprowadzenie/jak_zainstalowac_pakiety.html">
+            
+                
+                    <a href="../../Wprowadzenie/jak_zainstalowac_pakiety.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        Jak zainstalować dodatkowe pakiety?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Wprowadzenie/dodatkowa_pomoc.html">
+            
+                
+                    <a href="../../Wprowadzenie/dodatkowa_pomoc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Gdzie szukać dodatkowej pomocy?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="puste2.html">
+            
+                
+                    <a href="../../puste2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Programowanie w języku R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Programowanie/zapisywac.html">
+            
+                
+                    <a href="../../Programowanie/zapisywac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Jak wczytywać i zapisywać dane?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+            
+                
+                    <a href="../../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        Jak wczytać tabele danych z pliku csv lub txt?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
+            
+                
+                    <a href="../../Programowanie/jak_wczytac_dane_z_excela.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        Jak wczytać tabele danych z Excela?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+            
+                
+                    <a href="../../Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        Jak wczytać tabele danych ze strony www?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+            
+                
+                    <a href="../../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.4.</b>
+                        
+                        Jak zeskrobywać dane ze stron www?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
+            
+                
+                    <a href="../../Programowanie/jak_wczytywac_korpusy_tekstu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.</b>
+                        
+                        Jak wczytywać korpusy tekstu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="Programowanie/jak_pobierac_dane_z_twittera.html">
+            
+                
+                    <a href="../../Programowanie/jak_pobierac_dane_z_twittera.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.6.</b>
+                        
+                        Jak pobierać dane z Twittera?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.7" data-path="Programowanie/jak_pobrac_dane_z.html">
+            
+                
+                    <a href="../../Programowanie/jak_pobrac_dane_z.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.7.</b>
+                        
+                        Jak pobrać dane z...?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.8" data-path="Programowanie/zadania.html">
+            
+                
+                    <a href="../../Programowanie/zadania.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.8.</b>
+                        
+                        Zadania
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Programowanie/czyscic_przetwarzac.html">
+            
+                
+                    <a href="../../Programowanie/czyscic_przetwarzac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Jak czyścić i przetwarzać dane?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="Programowanie/filter.html">
+            
+                
+                    <a href="../../Programowanie/filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        Jak filtrować wiersze?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="Programowanie/mutate.html">
+            
+                
+                    <a href="../../Programowanie/mutate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                        Jak tworzyć nowe kolumny?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="Programowanie/select.html">
+            
+                
+                    <a href="../../Programowanie/select.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.3.</b>
+                        
+                        Jak wybierać kolumny?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="Programowanie/arrange.html">
+            
+                
+                    <a href="../../Programowanie/arrange.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.4.</b>
+                        
+                        Jak sortować wiersze?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="Programowanie/potoki.html">
+            
+                
+                    <a href="../../Programowanie/potoki.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.5.</b>
+                        
+                        Jak pracować z potokami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.6" data-path="Programowanie/groupby.html">
+            
+                
+                    <a href="../../Programowanie/groupby.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.6.</b>
+                        
+                        Jak wyznaczać agregaty w grupach?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.7" data-path="Programowanie/tidyr.html">
+            
+                
+                    <a href="../../Programowanie/tidyr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.7.</b>
+                        
+                        Jak czyścić dane?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.8" data-path="Programowanie/zadaniaDplyr.html">
+            
+                
+                    <a href="../../Programowanie/zadaniaDplyr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.8.</b>
+                        
+                        Zadania
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Programowanie/pakiety/po_co.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/po_co.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Jak budować pakiety?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="Programowanie/pakiety/nowy_pakiet.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowy_pakiet.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        Jak stworzyć nowy pakiet?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="Programowanie/pakiety/nowa_funkcja.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowa_funkcja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                        Jak dodawać funkcje do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="Programowanie/pakiety/nowe_dane.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowe_dane.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.3.</b>
+                        
+                        Jak dodawać zbiory danych do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="Programowanie/pakiety/nowe_testy.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowe_testy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.4.</b>
+                        
+                        Jak dodawać testy do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="Programowanie/pakiety/nowe_budowanie.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/nowe_budowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.5.</b>
+                        
+                        Jak budować stworzony pakiet?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="Programowanie/pakiety/co_dalej.html">
+            
+                
+                    <a href="../../Programowanie/pakiety/co_dalej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.6.</b>
+                        
+                        Co dalej?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="Programowanie/jak_tworzyc_aplikajce.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Jak budować aplikacje z pakietem Shiny?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="Programowanie/jak_tworzyc_aplikajce0.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.</b>
+                        
+                        Jak zbudować pierwszą aplikację?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.2" data-path="Programowanie/jak_tworzyc_aplikajce1.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.2.</b>
+                        
+                        Jak umieszczać wyniki analiz w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.3" data-path="Programowanie/jak_tworzyc_aplikajce2.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.3.</b>
+                        
+                        Jak umieszać elementy kontrolujące w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.4" data-path="Programowanie/jak_tworzyc_aplikajce3.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.4.</b>
+                        
+                        Jak tworzyć reaktywne elementy w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.5" data-path="Programowanie/jak_tworzyc_aplikajce4.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_aplikajce4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.5.</b>
+                        
+                        I co dalej?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="Programowanie/pazury/REST.html">
+            
+                
+                    <a href="../../Programowanie/pazury/REST.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Jak tworzyć usługi SaaS oparte o RESTful API?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.5.1" data-path="Programowanie/pazury/REST01.html">
+            
+                
+                    <a href="../../Programowanie/pazury/REST01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.1.</b>
+                        
+                        Jak uruchomić RESTowy serwer?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.2" data-path="Programowanie/pazury/REST02.html">
+            
+                
+                    <a href="../../Programowanie/pazury/REST02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.2.</b>
+                        
+                        Jak pracować z opencpu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.3" data-path="Programowanie/pazury/REST03.html">
+            
+                
+                    <a href="../../Programowanie/pazury/REST03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.3.</b>
+                        
+                        Jak zdalnie wywołać funkcję?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.4" data-path="Programowanie/pazury/REST04.html">
+            
+                
+                    <a href="../../Programowanie/pazury/REST04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.4.</b>
+                        
+                        Jak zdalnie zbudować wykres?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.5" data-path="Programowanie/pazury/REST05.html">
+            
+                
+                    <a href="../../Programowanie/pazury/REST05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.5.</b>
+                        
+                        Co jeszcze warto wiedzieć o pakiecie opencpu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="Programowanie/jak_tworzyc_raporty.html">
+            
+                
+                    <a href="../../Programowanie/jak_tworzyc_raporty.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Jak tworzyć raporty z pakietem knitr?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="Programowanie/pazury/archivist.html">
+            
+                
+                    <a href="../../Programowanie/pazury/archivist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Jak serializować obiekty z użyciem archivist?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="Programowanie/pazury/debugowanie.html">
+            
+                
+                    <a href="../../Programowanie/pazury/debugowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Jak debugować kod R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="Programowanie/pazury/profilowanie.html">
+            
+                
+                    <a href="../../Programowanie/pazury/profilowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Jak badać czas działania kodu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="Programowanie/pazury/rownolegle.html">
+            
+                
+                    <a href="../../Programowanie/pazury/rownolegle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.10.</b>
+                        
+                        Jak zrównoleglić obliczenia w R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="Programowanie/jak_pracowac_z_bazami_danych.html">
+            
+                
+                    <a href="../../Programowanie/jak_pracowac_z_bazami_danych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                        Jak pracować z bazami danych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="Programowanie/generatory_llosowych.html">
+            
+                
+                    <a href="../../Programowanie/generatory_llosowych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.</b>
+                        
+                        Jak generować liczby losowe?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.12.1" data-path="Programowanie/generatory_1.html">
+            
+                
+                    <a href="../../Programowanie/generatory_1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.1.</b>
+                        
+                        Jak ustawiać ziarno generatora?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12.2" data-path="Programowanie/generatory_2.html">
+            
+                
+                    <a href="../../Programowanie/generatory_2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.2.</b>
+                        
+                        Jak losować z prostych rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12.3" data-path="Programowanie/generatory_3.html">
+            
+                
+                    <a href="../../Programowanie/generatory_3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.3.</b>
+                        
+                        Jak losować ze złożonych rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12.4" data-path="Programowanie/generatory_4.html">
+            
+                
+                    <a href="../../Programowanie/generatory_4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.4.</b>
+                        
+                        Jak losować z użyciem kopuli?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12.5" data-path="Programowanie/generatory_5.html">
+            
+                
+                    <a href="../../Programowanie/generatory_5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.5.</b>
+                        
+                        Jak estymować parametry rozkładu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
+            
+                
+                    <a href="../../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                        Jak korzystać z serwisu GitHub?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="Programowanie/jak_korzystac_z_serwisu_waffle.html">
+            
+                
+                    <a href="../../Programowanie/jak_korzystac_z_serwisu_waffle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                        Jak korzystać z serwisu Waffle?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Analiza/analizadanych_z_programem_r_md.html">
+            
+                
+                    <a href="../../Analiza/analizadanych_z_programem_r_md.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Analiza danych z programem R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Analiza/eksploracja.html">
+            
+                
+                    <a href="../../Analiza/eksploracja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Eksploracja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+            
+                
+                    <a href="../../Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.1.</b>
+                        
+                        Jak rozpoznać rodzaj zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="Analiza/jak_badac_rozklad_jednej_zmiennej.html">
+            
+                
+                    <a href="../../Analiza/jak_badac_rozklad_jednej_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.2.</b>
+                        
+                        Jak badać rozkład jednej zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
+            
+                
+                    <a href="../../Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.3.</b>
+                        
+                        Jak badać rozkład dwóch zmiennych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="Analiza/beznadzoru/mds.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/mds.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.4.</b>
+                        
+                        Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.4.1" data-path="Analiza/beznadzoru/mds_metric.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/mds_metric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.4.1.</b>
+                        
+                        Jak wykonać skalowanie metryczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4.2" data-path="Analiza/beznadzoru/mds_non_metric.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/mds_non_metric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.4.2.</b>
+                        
+                        Jak wykonać skalowanie nie-metryczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4.3" data-path="Analiza/beznadzoru/mds_classic.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/mds_classic.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.4.3.</b>
+                        
+                        Jak wykonać skalowanie klasyczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4.4" data-path="Analiza/beznadzoru/mds_pca.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/mds_pca.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.4.4.</b>
+                        
+                        Jak wykorzystać metodę składowych głównych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="Analiza/beznadzoru/skupiska.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/skupiska.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.</b>
+                        
+                        Jak znaleźć grupy w danych?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="4.1.5.1" data-path="Analiza/beznadzoru/dist.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/dist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.1.</b>
+                        
+                        Jak wyznaczać odległosć pomiędzy obserwacjami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5.2" data-path="Analiza/beznadzoru/kmeans.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/kmeans.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.2.</b>
+                        
+                        Jak szukać partycji w oparciu o metodę k-średnich?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5.3" data-path="Analiza/beznadzoru/pam.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/pam.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.3.</b>
+                        
+                        Jak szukać partycji w oparciu o metodę k-medoidów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5.4" data-path="Analiza/beznadzoru/agnes.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/agnes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.4.</b>
+                        
+                        Jak wykonać analizę hierarchiczną?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5.5" data-path="Analiza/beznadzoru/mclust.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/mclust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.5.</b>
+                        
+                        Jak szukać partycji w oparciu o mieszaniny rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5.6" data-path="Analiza/beznadzoru/em.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/em.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.6.</b>
+                        
+                        Jak działa algorytm EM?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="Analiza/beznadzoru/rules.html">
+            
+                
+                    <a href="../../Analiza/beznadzoru/rules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.6.</b>
+                        
+                        Jak szukać reguł asocjacyjnych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Analiza/weryfikacja.html">
+            
+                
+                    <a href="../../Analiza/weryfikacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Weryfikacja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="Analiza/Weryfikacja/wprowadzenie.html">
+            
+                
+                    <a href="../../Analiza/Weryfikacja/wprowadzenie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.1.</b>
+                        
+                        Wprowadzenie do testowania
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
+            
+                
+                    <a href="../../Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.2.</b>
+                        
+                        Jak badać właściwości jednej zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
+            
+                
+                    <a href="../../Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.3.</b>
+                        
+                        Jak badać zależności pomiędzy parą zmiennych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Wizualizacja/wizualizacja.html">
+            
+                
+                    <a href="../../Wizualizacja/wizualizacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Wizualizacja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="Wizualizacja/jak_tworzyc_wykresy_ggplot2.html">
+            
+                
+                    <a href="../../Wizualizacja/jak_tworzyc_wykresy_ggplot2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.</b>
+                        
+                        Jak tworzyć wykresy z pakietem ggplot2?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1.1" data-path="Wizualizacja/ggplot2/01_pierwszy_wykres.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/01_pierwszy_wykres.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.1.</b>
+                        
+                        Jak zrobić pierwszy wykres?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.2" data-path="Wizualizacja/ggplot2/02_mapowania.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/02_mapowania.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.2.</b>
+                        
+                        Jak określać mapowania?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.3" data-path="Wizualizacja/ggplot2/03_geometrie.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/03_geometrie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.3.</b>
+                        
+                        Jak określać geometrię?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.4" data-path="Wizualizacja/ggplot2/04_warstwy.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/04_warstwy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.4.</b>
+                        
+                        Jak składać wykres z kilku warstw?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.5" data-path="Wizualizacja/ggplot2/05_statystyki.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/05_statystyki.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.5.</b>
+                        
+                        Jak określać statystyki?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.6" data-path="Wizualizacja/ggplot2/06_panele.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/06_panele.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.6.</b>
+                        
+                        Jak tworzyć panele?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.7" data-path="Wizualizacja/ggplot2/07_skale.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/07_skale.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.7.</b>
+                        
+                        Jak modyfikować skale?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.8" data-path="Wizualizacja/ggplot2/08_wspolrzedne.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/08_wspolrzedne.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.8.</b>
+                        
+                        Jak modyfikować układ współrzędnych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.9" data-path="Wizualizacja/ggplot2/09_styl.html">
+            
+                
+                    <a href="../../Wizualizacja/ggplot2/09_styl.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.9.</b>
+                        
+                        Jak modyfikować styl wykresu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
+            
+                
+                    <a href="../../Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.2.</b>
+                        
+                        Jak tworzyć interaktywne wykresy?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="references.html">
+            
+                
+                    <a href="../../references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Bibliografia
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Przewodnik po pakiecie R v. 4.0</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="jak-wyznacza&#x107;-odleg&#x142;o&#x15B;&#x107;-pomi&#x119;dzy-obserwacjami">Jak wyznacza&#x107; odleg&#x142;o&#x15B;&#x107; pomi&#x119;dzy obserwacjami?</h1>
+<p>Analiza skupisk jest oparta o odleg&#x142;o&#x15B;ci pomi&#x119;dzy obserwacjami. 
+Poprawne okre&#x15B;lenie odleg&#x142;o&#x15B;ci jest <em>by&#x107; albo nie by&#x107;</em> dla poprawno&#x15B;ci wynik&#xF3;w.</p>
+<p>W kolejnych podrozdzia&#x142;ach opiszemy r&#xF3;&#x17C;ne algorytmy identyfikacji skupisk, ale nie ma znaczenia kt&#xF3;rej metody u&#x17C;ywamy je&#x17C;eli &#x17A;le okre&#x15B;limy odleg&#x142;o&#x15B;ci.</p>
+<p>Niech <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">x</span></span></span></span> i <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span> oznaczaj&#x105; dwie obserwacje opisane przez wektory warto&#x15B;ci, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>=</mo><mo>(</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>x</mi><mi>n</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">x=(x_1, ..., x_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit">x</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span></span></span></span> i <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mo>(</mo><msub><mi>y</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>y</mi><mi>n</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">y=(y_1, ..., y_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">)</span></span></span></span>.</p>
+<p>Typowe definicje funkcji odleg&#x142;o&#x15B;ci pomi&#x119;dzy nimi to:</p>
+<h2 id="typowe-wybory-dla-zmiennych-ilo&#x15B;ciowych">Typowe wybory dla zmiennych ilo&#x15B;ciowych</h2>
+<h3 id="odleg&#x142;o&#x15B;&#x107;-euklidesowa">Odleg&#x142;o&#x15B;&#x107; Euklidesowa</h3>
+<p>Standardowa odleg&#x142;o&#x15B;&#x107; w <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">R^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><msqrt><mrow><msub><mo>&#x2211;</mo><mi>i</mi></msub><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>&#x2212;</mo><msub><mi>y</mi><mi>i</mi></msub><msup><mo>)</mo><mn>2</mn></msup></mrow></msqrt><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+d(x, y) = \sqrt{\sum_i (x_i - y_i)^2}.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.520058em;"></span><span class="strut bottom" style="height:3.04003em;vertical-align:-1.5199719999999999em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="sqrt mord"><span class="sqrt-sign" style="top:0.2699419999999999em;"><span class="style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing size4">&#x221A;</span></span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="mord displaystyle textstyle cramped"><span class="mop op-limits"><span class="vlist"><span style="top:1.1776689999999999em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span><span class="op-symbol large-op mop">&#x2211;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">&#x2212;</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.289em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span><span style="top:-1.4400579999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">.</span></span></span></span></span></p>
+<h3 id="odleg&#x142;o&#x15B;&#x107;-maksimum">Odleg&#x142;o&#x15B;&#x107; maksimum</h3>
+<p>Maksymalna odleg&#x142;o&#x15B;&#x107; po wsp&#xF3;&#x142;rz&#x119;dnych.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><msub><mi>max</mi><mi>i</mi></msub><mrow><mi mathvariant="normal">&#x2223;</mi><msub><mi>x</mi><mi>i</mi></msub><mo>&#x2212;</mo><msub><mi>y</mi><mi>i</mi></msub><mi mathvariant="normal">&#x2223;</mi></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+d(x, y) = \max_i{|x_i - y_i|}.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1.477664em;vertical-align:-0.7276640000000001em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:0.6276640000000001em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span style="top:1.3877787807814457e-16em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span><span class="mop">max</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">&#x2212;</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">&#x2223;</span></span><span class="mord mathrm">.</span></span></span></span></span></p>
+<h3 id="odleg&#x142;o&#x15B;&#x107;-manhattan-taks&#xF3;wkowa">Odleg&#x142;o&#x15B;&#x107; Manhattan (taks&#xF3;wkowa)</h3>
+<p>Suma odleg&#x142;o&#x15B;ci po wsp&#xF3;&#x142;rz&#x119;dnych</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><msub><mo>&#x2211;</mo><mi>i</mi></msub><mrow><mi mathvariant="normal">&#x2223;</mi><msub><mi>x</mi><mi>i</mi></msub><mo>&#x2212;</mo><msub><mi>y</mi><mi>i</mi></msub><mi mathvariant="normal">&#x2223;</mi></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+d(x, y) = \sum_i{|x_i - y_i|}.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.0500050000000003em;"></span><span class="strut bottom" style="height:2.327674em;vertical-align:-1.277669em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.1776689999999999em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span><span class="op-symbol large-op mop">&#x2211;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">&#x2212;</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">&#x2223;</span></span><span class="mord mathrm">.</span></span></span></span></span></p>
+<h3 id="odleg&#x142;o&#x15B;&#x107;-canberra">Odleg&#x142;o&#x15B;&#x107; Canberra</h3>
+<p>Wa&#x17C;ona wersja odleg&#x142;o&#x15B;ci Manhattan, stosowana dla danych o zliczeniach (np. o rozk&#x142;adzie zbli&#x17C;onym do Poissona), uporz&#x105;dkowanych rankingach itp.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><msub><mo>&#x2211;</mo><mi>i</mi></msub><mrow><mfrac><mrow><mi mathvariant="normal">&#x2223;</mi><msub><mi>x</mi><mi>i</mi></msub><mo>&#x2212;</mo><msub><mi>y</mi><mi>i</mi></msub><mi mathvariant="normal">&#x2223;</mi></mrow><mrow><mi mathvariant="normal">&#x2223;</mi><msub><mi>x</mi><mi>i</mi></msub><mi mathvariant="normal">&#x2223;</mi><mo>+</mo><mi mathvariant="normal">&#x2223;</mi><msub><mi>y</mi><mi>i</mi></msub><mi mathvariant="normal">&#x2223;</mi></mrow></mfrac></mrow></mrow><annotation encoding="application/x-tex">
+d(x, y) = \sum_i{\frac{|x_i - y_i|}{|x_i| + |y_i|}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.427em;"></span><span class="strut bottom" style="height:2.704669em;vertical-align:-1.277669em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.1776689999999999em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span><span class="op-symbol large-op mop">&#x2211;</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord displaystyle textstyle uncramped"><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">&#x2223;</span><span class="mbin">+</span><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">&#x2223;</span></span></span></span><span style="top:-0.2300000000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">&#x2212;</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">&#x2223;</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></span></span></p>
+<h2 id="typowe-wybory-dla-zmiennych-jako&#x15B;ciowych">Typowe wybory dla zmiennych jako&#x15B;ciowych</h2>
+<h3 id="odleg&#x142;o&#x15B;&#x107;-hamminga">Odleg&#x142;o&#x15B;&#x107; Hamminga</h3>
+<p>Liczba r&#xF3;&#x17C;nych wsp&#xF3;&#x142;rz&#x119;dnych. Cz&#x119;sto wykorzystywana dla ci&#x105;g&#xF3;w cyfr lub liter, ale te&#x17C; dla binarnych wektor&#xF3;w.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">#</mi><mo>{</mo><mi>i</mi><mo>:</mo><msub><mi>x</mi><mi>i</mi></msub><mo>&#x2260;</mo><msub><mi>y</mi><mi>i</mi></msub><mo>}</mo></mrow><annotation encoding="application/x-tex">
+d(x, y) = \#\{i: x_i \neq y_i\}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathrm">#</span><span class="mopen">{</span><span class="mord mathit">i</span><span class="mrel">:</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">&#x2260;</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose">}</span></span></span></span></span></p>
+<h3 id="odleg&#x142;o&#x15B;&#x107;-jaccarda">Odleg&#x142;o&#x15B;&#x107; Jaccarda</h3>
+<p>Dla wektor&#xF3;w binarnych, najprostsza interpretacja to: wielko&#x15B;&#x107; przeci&#x119;cia podzielona na wielko&#x15B;&#x107; cz&#x119;&#x15B;ci sumy.
+Cz&#x119;sto u&#x17C;ywana przez ekolog&#xF3;w, np. gdy bada si&#x119; jak cz&#x119;sto dwa gatunki wsp&#xF3;&#x142;wyst&#x119;puj&#x105;. Sensownie jest wtedy por&#xF3;wnywa&#x107; jak cz&#x119;sto te gatunki wyst&#x119;puj&#x105; razem w stosunku do liczby miejsc gdzie wyst&#x119;puje przynajmniej jeden z nich.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">#</mi><mo>{</mo><mi>i</mi><mo>:</mo><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>)</mo><mo>&#x2227;</mo><mo>(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>)</mo><mo>}</mo></mrow><mrow><mi mathvariant="normal">#</mi><mo>{</mo><mi>i</mi><mo>:</mo><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>)</mo><mo>&#x2228;</mo><mo>(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>)</mo><mo>}</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+d(x, y) = \frac{\#\{i: (x_i = 1) \wedge (y_i = 1)\}}{\#\{i: (x_i = 1) \vee (y_i = 1)\}}.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.427em;"></span><span class="strut bottom" style="height:2.363em;vertical-align:-0.936em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">d</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">#</span><span class="mopen">{</span><span class="mord mathit">i</span><span class="mrel">:</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">&#x2228;</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mclose">}</span></span></span></span><span style="top:-0.2300000000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">#</span><span class="mopen">{</span><span class="mord mathit">i</span><span class="mrel">:</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">&#x2227;</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mclose">}</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mord mathrm">.</span></span></span></span></span></p>
+<h2 id="nietypowe-wybory">Nietypowe wybory</h2>
+<p>Je&#x17C;eli analizujemy wektor zmiennych o zbli&#x17C;onych charakterystykach to mo&#x17C;emy wybra&#x107; kt&#xF3;r&#x105;&#x15B; z powy&#x17C;szych metryk.
+Ale:</p>
+<ul>
+<li><p>Je&#x17C;eli elementy wektora s&#x105; w znacz&#x105;co r&#xF3;&#x17C;nych zakresach zmienno&#x15B;ci to cz&#x119;sto rozs&#x105;dnym pomys&#x142;em jest unormowanie ka&#x17C;dej ze wsp&#xF3;&#x142;rz&#x119;dnych osobno (np. d&#x142;ugo&#x15B;&#x107; w metrach i milimetrach). Unormowa&#x107; mo&#x17C;na tak by &#x15B;rednia by&#x142;a r&#xF3;wna 0 i sd 1 lub by zakres zmienno&#x15B;ci wynosi&#x142; [0,1] lub w inny spos&#xF3;b (np. przez rangi).</p>
+</li>
+<li><p>Je&#x17C;eli elementy <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">x</span></span></span></span> i <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span> sk&#x142;adaj&#x105; si&#x119; z r&#xF3;&#x17C;nych zmiennych, np. jako&#x15B;ciowych (kraj pochodzenia) i ilo&#x15B;ciowych (wiek) to mo&#x17C;emy na poszczeg&#xF3;lnych wsp&#xF3;&#x142;rz&#x119;dnych wyznacza&#x107; cz&#x105;stkowe macierze odleg&#x142;o&#x15B;ci a nast&#x119;pnie je sk&#x142;ada&#x107;.</p>
+</li>
+<li><p>Cz&#x119;sto nie jest oczywiste jak liczy&#x107; odleg&#x142;o&#x15B;&#x107;. Przypu&#x15B;&#x107;my &#x17C;e por&#xF3;wnujemy g&#x142;osowania pos&#x142;&#xF3;w (za, przeciw, wstrzyma&#x142; si&#x119;, nie by&#x142;o go) - odleg&#x142;o&#x15B;&#x107; pomi&#x119;dzy g&#x142;osowaniami mo&#x17C;na r&#xF3;&#x17C;nie okre&#x15B;la&#x107;. Lub przypu&#x15B;&#x107;my &#x17C;e por&#xF3;wnujemy korpusy tekst&#xF3;w. Co b&#x119;dzie dobr&#x105; miar&#x105; podobie&#x144;stwa napis&#xF3;w? A gdy por&#xF3;wnujemy obrazy? Cz&#x119;sto nie ma sensu por&#xF3;wnywanie bezpo&#x15B;rednio obraz&#xF3;w, ale najpierw wyznacza si&#x119; cechy kt&#xF3;re ju&#x17C; mo&#x17C;na por&#xF3;wnywa&#x107; w bardziej klasyczny spos&#xF3;b.</p>
+</li>
+</ul>
+<h2 id="a-jak-to-zrobi&#x107;-w-r">A jak to zrobi&#x107; w R?</h2>
+<p>Najprostszy spos&#xF3;b by policzy&#x107; odleg&#x142;o&#x15B;&#x107; w R jest przez u&#x17C;ycie funkcji <code>dist()</code>. S&#x105; w niej zaimplementowane powy&#x17C;ej opisane odleg&#x142;o&#x15B;ci.</p>
+<pre><code class="lang-r">kwiatkow5 &lt;- iris[<span class="hljs-number">1</span>:<span class="hljs-number">5</span>,<span class="hljs-number">1</span>:<span class="hljs-number">4</span>]
+
+dist(kwiatkow5)
+</code></pre>
+<pre><code>##           1         2         3         4
+## 2 0.5385165                              
+## 3 0.5099020 0.3000000                    
+## 4 0.6480741 0.3316625 0.2449490          
+## 5 0.1414214 0.6082763 0.5099020 0.6480741
+</code></pre><pre><code class="lang-r">dist(kwiatkow5, method = <span class="hljs-string">&quot;manhattan&quot;</span>)
+</code></pre>
+<pre><code>##     1   2   3   4
+## 2 0.7            
+## 3 0.8 0.5        
+## 4 1.0 0.5 0.4    
+## 5 0.2 0.7 0.8 1.0
+</code></pre><pre><code class="lang-r">as.matrix(dist(kwiatkow5, method = <span class="hljs-string">&quot;max&quot;</span>))
+</code></pre>
+<pre><code>##     1   2   3   4   5
+## 1 0.0 0.5 0.4 0.5 0.1
+## 2 0.5 0.0 0.2 0.3 0.6
+## 3 0.4 0.2 0.0 0.2 0.4
+## 4 0.5 0.3 0.2 0.0 0.5
+## 5 0.1 0.6 0.4 0.5 0.0
+</code></pre><p>&#x141;atwo&#x15B;&#x107; jej u&#x17C;ycia niesie ryzyko stosowania jej bez g&#x142;&#x119;bszej refleksji jakie odleg&#x142;o&#x15B;ci maj&#x105; sens. </p>
+<p>Powt&#xF3;rzmy wi&#x119;c jeszcze raz <strong>w analizie skupisk kluczowy jest wyb&#xF3;r odleg&#x142;o&#x15B;ci</strong>.</p>
+<h2 id="poka&#x17C;-j&#x105;">Poka&#x17C; j&#x105;!</h2>
+<p>Macierz odleg&#x142;o&#x15B;ci (o ile nie jest du&#x17C;a) mo&#x17C;na przedstawia&#x107; graficznie z u&#x17C;yciem tzw. mapy ciep&#x142;a. Wi&#x119;cej o tym jak jest konstruowana w kolejnych rozdzia&#x142;ach.</p>
+<pre><code class="lang-r">d &lt;- as.matrix(dist(kwiatkow5, method = <span class="hljs-string">&quot;max&quot;</span>))
+
+heatmap(d, symm = <span class="hljs-literal">TRUE</span>)
+</code></pre>
+<p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../Analiza/beznadzoru/skupiska.html" class="navigation navigation-prev " aria-label="Previous page: Jak znaleźć grupy w danych?"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../Analiza/beznadzoru/kmeans.html" class="navigation navigation-next " aria-label="Next page: Jak szukać partycji w oparciu o metodę k-średnich?"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
