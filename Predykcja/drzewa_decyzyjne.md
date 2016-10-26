@@ -1,398 +1,187 @@
-# Jak badać zależności pomiędzy parą zmiennych?
+# Jak hodować drzewa decyzyjne?
 
-Testów weryfikujących strukturę zależności pomiędzy parą zmiennych jest co niemiara. 
-W języku polskim całkiem bogata kolekcja testów jest przedstawiona w książce Ryszarda Magiery [,,Modele i metody statystyki Matematycznej''](https://www.google.pl/search?newwindow=1&q=modele+i+metody+statystyki+matematycznej&oq=modele+i+metody+statystyki+matematycznej).
+Jedną z najpopularniejszych technik konstrukcji modeli predykcyjnych są drzewa decyzyjne. 
+Ich główną zaletą jest prosta interpretacja, oraz (relatywnie) prosta konstrukcja.
+Ich główną wadą jest duża wariancja a co idzie w parze, podatność na tzw. przeuczenie.
 
-Zamiast jednak opisywać wszystkie testy statystyczne (co jest niemożliwe) poniżej skupimy się na przedstawieniu tych najbardziej popularnych, tworzących swego rodzaju szkielet, który można rozbudowywać w różnych kierunkach.
+Ale po kolei.
 
-## Jak weryfikować niezależność dwóch zmiennych jakościowych?
+## Drzewa klasyfikacyjne, regresyjne, ...
 
-**Problem:** Mamy dwie zmienne jakościowe (np. kolor oczu i kolor włosów), ciekawi jesteśmy czy jest pomiędzy nimi zależność.
+Poniżej omówimy drzewa klasyfikacyjne, a więc takie, które opisują zmienną jakościowa występującą w dwóch lub większej liczbie klas.  
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$. $$X$$ przyjmuje wartości ze zbioru $$(x_1, ..., x_r)$$ a $$Y$$ przyjmuje wartości ze zbioru $$(y_1, ..., y_s)$$. 
+Jednak w bardzo podobny sposób można skonstruować drzewa opisujące zmienną ciągłą (tzw. drzewa regresyjne), zmienna cenzurowaną lub inną zmienną.
 
-Brzegowy rozkład zmiennej X określmy jako $$P(X = x_i) = p_{i.}$$ a zmiennej $$Y$$ jako $$P(Y = Y_j) = p_{.j}$$.
-Łączny rozkład zmiennych $$(X,Y)$$ określimy jako $$P(X=x_i, Y=y_j) = p_{ij}$$.
-
-**Hipoteza**: Określmy hipotezę zerową (niezależności), dla każdego $$i,j$$
-
-$$
-H_0: p_{ij} = p_{i.}p_{.j}
-$$
-
-Hipoteza alternatywna jest taka, że dla dowolnego $$i,j$$ ta równość nie zachodzi.
-
-
-**Statystyka testowa**:
-
-Statystyka testowa jest oparta o tablicę kontyngencji (tablicę zliczeń).
-
-| Y \ X | $$x_1$$ | $$x_2$$ |   | $$x_s$$ |
-|---|---|---|---|---|
-| $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | ... | $$n_{1s}$$ |
-| ...  |  ... |   |   | ...  |
-| $$y_r$$ | $$n_{r1}$$ | $$n_{r2}$$ | ... | $$n_{rs}$$ |
-
-
-Tablica kontyngencji opisuje obserwowane w danych liczebności wystąpienia poszczególnych kombinacji wartości. Statystyka testowa porównuje te wartości z wartościami oczekiwanymi, przy założeniu prawdziwej hipotezy zerowej.
-
-Ogólna postać statystyki testowej w teście $$\chi^2$$ to
-
-$$
-T = \sum_i \frac{(O_i - E_i)^2}{E_i}
-$$
-
-gdzie $$O_i$$ oznacza obserwowane liczebności, $$E_i$$ oczekiwane liczebności dla i-tej komórki. 
-
-Ta generyczna postać statystyki testowej, w tym konkretnym przypadku przyjmuje postać (indeksy z kropkami to sumy po wierszach/kolumnach)
-
-$$
-T = \sum_{i=1}^r \sum_{j=1}^s \frac{(n_{ij} - n_{i.}n_{.j}/n)^2}{n_{i.}n_{.j}/n_{..}}
-$$
-
-Ta statystyka testowa ma asymptotyczny rozkład $$\chi^2_{(r-1)(s-1)}$$.
-
-Za obszar odrzucenia przyjmuje się przedział postaci $$[c, \infty]$$.
-Przykładowa gęstość rozkładu $$\chi^2_4$$ z zaznaczonym kwartylem rzędu $$0.95$$.
+Do przedstawienia zagadnienia konstrukcji drzewa decyzyjnego wykorzystamy zbiór danych o pasażerach statku Titanic. Interesować nas będzie jakie zmienne wpływają na to czy pasażer przeżył czy nie.
 
 
 ```r
-library(ggplot2)
-x <- seq(0,15,0.01)
-(q <- qchisq(0.95, 4))
+library(Przewodnik)
+head(titanic)
 ```
 
 ```
-## [1] 9.487729
+##   Survived Pclass    Sex Age    Fare Embarked
+## 1        0      3   male  22  7.2500        S
+## 2        1      1 female  38 71.2833        C
+## 3        1      3 female  26  7.9250        S
+## 4        1      1 female  35 53.1000        S
+## 5        0      3   male  35  8.0500        S
+## 6        0      3   male  NA  8.4583        Q
 ```
 
-```r
-df <- data.frame(x, d = dchisq(x,4), rejection = x>q )
-ggplot(df, aes(x, y=d, fill=rejection)) + geom_area() + theme(legend.position="none") + scale_fill_manual(values=c("grey","red3"))
-```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
+## Generyczne drzewo
 
-### Przykład
+Ogólny schemat budowy binarnego drzewa decyzyjnego wygląda następująco.
 
-Rozważmy następującą tabelę liczebności. Opisuje ona występowanie różnych kolorów oczu / włosów.
+1. Rozpoczynamy ze zbiorem `p` zmiennych opisujących n obserwacji, naszym celem jest budowa drzewa opisującego zmienną y.
+2. Dla każdego zbioru wykonujemy takie kroki
+  a. Dla każdej z `p` zmiennych rozważamy wszystkie możliwe binarne podziały tej zmiennej,
+  b. Dla każdego możliwego podziału wygenerowanego przez wybraną zmienną sprawdzamy jak zmieni się miara zróżnicowania zmiennej `y` w dwóch uzyskanych podzbiorach. Jako kandydujący podział wybieramy taki, który maksymalizuje zmianę miary zróżnicowania.
+  c. Jeżeli spełnione są warunki podziału, to dzielimy zbiór na dwa podzbiory i wracamy do kroku 2. Jednym z warunków podziału jest by miara zróżnicowana zmiennej `y` po podziale zwiększyła się.
 
+Istnieje wiele wersji szczegółowych powyższego algorytmu, w zależności od tego jakie miary i jak są maksmalizowane. Poniżej omówimy dwie najbardziej popularne.
 
-```r
-(tab <- HairEyeColor[,,1])
-```
+## Rekursywne podziały
 
-```
-##        Eye
-## Hair    Brown Blue Hazel Green
-##   Black    32   11    10     3
-##   Brown    53   50    25    15
-##   Red      10   10     7     7
-##   Blond     3   30     5     8
-```
+Dwa klasyczne algorytmy rekursywnego podziału to CART (Classification And Regression Tree) i rodzina klasyfikatorów ID3, C4.5, C5.0 (rozwijane przez Rossa Quinlan). 
 
-```r
-# archivist::aread("pbiecek/Przewodnik/arepo/a3666b4084daa5db9251dc36e3286298")
-```
+W obu algorytmach drzewo budowane jest w sposób rekursywny. Dla każdego węzła w drzewie wybierany jest optymalny podział elementów tego węzła na dwie grupy w oparciu o pojedynczą zmienną. Algorytmy te różnią się miarą wykorzystywaną do oceny który podział jest najlepszy.
 
-Aby przeprowadzić test $$\chi^2$$ można wykorzystać funkcję `chisq.test()`. Wyznacza ona zarówno macierz oczekiwanych częstości, statystykę testową jak i wartość p.
+W algorytmie CART wykorzystywana jest miara ,,czystości'' węzła *Gini impurity*. Jest ona wyznaczana jako prawdopodobieństwo, że losowo wybrany element będzie niepoprawnie zaklasyfikowany, jeżeli klasyfikacja jest wykonywana losowo z zachowaniem proporcji w węźle. 
 
+Wybierany jest podział, który maksymalizuje czystość węzłów.
 
-```r
-wynik <- chisq.test(tab)
+$$
+I_G(p) = \sum_i p_i(1-p_i) = 1 - \sum_i p_i^2.
+$$
+W algorytmie C4.5 i C5.0 wykorzystywany jest współczynnik *Information gain*, wyznaczany jako entropia węzła rodzica minus suma ważonych entropii węzłów pochodnych. Gdzie entropia jest wyznaczana jako
 
-wynik$p.value
-```
+$$
+E(p) = - \sum_i p_i \log_2 p_i.
+$$
 
-```
-## [1] 4.447279e-06
-```
+Podział jest powtarzany tak długo, aż osiągnięty jest warunek stopu.
 
-```r
-wynik$statistic
-```
-
-```
-## X-squared 
-##  41.28029
-```
-
-```r
-wynik$expected
-```
-
-```
-##        Eye
-## Hair       Brown     Blue     Hazel     Green
-##   Black 19.67025 20.27240  9.433692  6.623656
-##   Brown 50.22939 51.76703 24.089606 16.913978
-##   Red   11.94265 12.30824  5.727599  4.021505
-##   Blond 16.15771 16.65233  7.749104  5.440860
-```
-
-```r
-wynik$observed
-```
-
-```
-##        Eye
-## Hair    Brown Blue Hazel Green
-##   Black    32   11    10     3
-##   Brown    53   50    25    15
-##   Red      10   10     7     7
-##   Blond     3   30     5     8
-```
-
-## Jak weryfikować niezależność dwóch zmiennych binarnych?
-
-Specyficzną wersją testu na niezależność dwóch zmiennych jakościowych jest test dla dwóch zmiennych binarnych. 
-Zamiast wykorzystywać w tym przypadku asymptotyczny rozkład statystyki testowej można badać dokładny rozkład statystyki testowej. Stąd też nazwa testu - dokładny test Fishera.
-
-Statystyka testowa jest oparta o tablicę kontyngencji
-
-| Y \ X | $$x_1$$ | $$x_2$$ |
-|---|---|---|
-| $$y_1$$ | $$n_{11}$$ | $$n_{12}$$ | 
-| $$y_2$$ | $$n_{21}$$ | $$n_{22}$$ | 
-
-o rozkładzie hipergeometrycznym.
-
-Jeżeli badamy zależnośc pomiędzy parą zmiennych binarnych to zalecane jest użycie tego testu. Umożliwia on również weryfikowanie hipotez kierunkowych (a więc częstsze/rzadsze niż przypadkowe współwystępowanie $$x_2y_2$$).
-
-### Przykład
-
-Ograniczmy nadanie kolorów oczu do niebieskie/brązowe a włosów do czarne / blond.
+W pakiecie `rpart` zaimplementowany jest algorytm CART. W pakiecie `C50` zaimplementowany jest algorytm C5.0.
 
 
 ```r
-tab22 <- tab[c(1,4),c(1,2)]
-  
-fisher.test(tab22)
+library(rpart)
+library(rpart.plot)
+
+drzewo <- rpart(Survived~., data=titanic)
+rpart.plot(drzewo)
 ```
 
-```
-## 
-## 	Fisher's Exact Test for Count Data
-## 
-## data:  tab22
-## p-value = 7.391e-09
-## alternative hypothesis: true odds ratio is not equal to 1
-## 95 percent confidence interval:
-##    6.673302 168.168624
-## sample estimates:
-## odds ratio 
-##   27.39659
-```
+![plot of chunk unnamed-chunk-120](figure/unnamed-chunk-120-1.png)
 
-## Jak weryfikować niezależność dwóch zmiennych ilościowych?
+Więcej informacji o tym jak rysować ładniejsze drzewa http://www.milbo.org/rpart-plot/prp.pdf
 
-Dla zmiennych ilościowych zależność może przybierać bardzo różną postać. Możemy obserwować zależność w kwadratach (czyli korelacje wartości skranych bez względu na ich znak), uwikłanie zmiennych, wiele możliwych odstępst od niezależności.
+## Warunkowe testowanie
 
-Z powodu łatwości interpretacji, najczęściej w pierwszym kroku interesują nas dwa rodzaje zależności: liniowa oraz monotoniczna. Do ich badania najczęściej wykorzystuje się testy na współczynnik korelacji Pearsona i Spearmana.
+Szczegółowy opis tego algorytmu znajduje się na stronie
+https://cran.r-project.org/web/packages/partykit/vignettes/ctree.pdf
 
-### Dwuwymiarowy rozkład normalny
+Tym razem będziemy chcieli naprawić problemy wyżej przedstawionej implementacji:
 
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową z dwuwymiarowego rozkładu normalnego $$(X,Y) \sim \mathcal N(\mu, \Sigma)$$. Gdzie $$\Sigma$$ to macierz kowariancji, element poza przekątną oznaczny przez $$\sigma_{12}$$.
+1. przeuczenie, o ile nie stosuje się dodatkowych warunków zatrzymania podziału węzłów,
+2. tzw. *selection bias* wynikający z tego, że zmienne mające wiele możliwych punktów podziału mają większą szansę na bycie wybranymi w skutek czysto losowych fluktuacji.
 
-**Hipoteza**: 
+W tym podejściu wykorzystamy testy statystyczne by kontrolować oba powyższe problemy.
 
-$$
-H_0: \sigma_{12} = 0.
-$$
-$$
-H_A: \sigma_{12} <> 0.
-$$
+Procedura budowy drzewa jest następująca:
 
-**Statystyka testowa**:
+1. Rozpoczynamy ze zbiorem `p` zmiennych opisujących n obserwacji, naszym celem jest budowa drzewa opisującego zmienną y.
+2. Dla każdego zbioru wykonujemy test weryfikujący czy którakolwiek ze zmiennych p jest istotnie statystycznie zależna od zmiennej `y`. Jeżeli hipoteza zerowa nie zostanie odrzucona to przerywamy dalszy podział tego zbioru. Jeżeli zostanie odrzucona to przechodzimy z tym zbiorem do kolejnego kroku.
+3. Wybieramy zmienną $X_i$ ze zbioru `p` zmiennych o najsilniejszej zależności od zmiennej `y`. 
+4. Dla zmiennej $X_i$ wyznacz optymalny podział zmiennej na dwa rozłączne podzbiory. Z dwoma tak utworzonymi zbiorami powróć do kroku 2.
 
-Statystyka testowa oparta jest o współczynnik korelacji Pearsona
+### Hipoteza globalna
+
+Kroki 2 i 3 oparte są o test permutacyjny, który z kolei oparty jest o następującą statystykę dla $i$ tej zmiennej.
 
 $$
-\hat \rho = \frac{\sum_i (x_{i} - \bar x)(y_i - \bar y)}{\sqrt{\sum_i (x_{i} - \bar x)^2\sum_i (y_{i} - \bar y)^2}}
+T_i = \sum_j g_j(x_{ij})h(y_j, Y)^T.
+$$
+Funkcje $g()$ i $h()$ zależą od charakteru zmiennej $y$ (ciągła, cenzurowana, dyskretna). 
+
+Zauważmy, że statystyka $T_i$ nie musi być jednowymiarowa, jej wymiar zależy od funkcji $g()$, która zmienną objaśniającą może zakodować jako kilka tzw. dummy variables (częste dla zmiennych jakościowych), oraz funkcji $h()$, która dla wielowymiarowego $y$ również może mieć więcej niż jedną współrzędną.
+
+Statystyka $T_i$ jest redukowana do statystyki jednowymiarowej przez uprzednie ustandaryzowanie a następnie zastosowanie jednej z dwóch transformacji, wartości maksymalnej składowych albo sumy kwadratów.
+
+$$
+T_{i,max} = \max_{p,q} s(T_{i}^{p,q})
+$$
+$$
+T_{i,quad} = \sum_{p,q} s(T_{i}^{p,q})^2
 $$
 
-Rozkład statystyki $$\hat \rho$$ jest określony na odcinku [-1,1]. Aby ułatwić jej analizę stosowane jest następujące przekształcenie
+Statystyki testowe nie mogą być bezpośrednio porównywane z uwagi na różne skale (wynikające np. z różnej liczby składowych $p,q$).
 
-$$
-T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1 - \hat \rho^2}}.
-$$
+Aby móc porównywać zmienne, dla każdej zmiennej, na podstawie statystyki testowej, wyznaczana jest p-wartość. 
 
-Po takim przekształceniu statystyka $$T$$ ma rozkład $$t_{n-2}$$ i w oparciu o niego konstruowany jest obszar krytyczny. Dla dwustronnej hipotezy alternatywnej jest to obszar $$(-\infty, -c] \cup [c, \infty)$$.
+Hipoteza globalna o łącznym wpływie zmiennych jest weryfikowana na podstawie minimalnej p-wartości, po ewentualnej korekcie Bonferroniego.
+
+### Optymalny podział
+
+W kroku 4. dla wybranej zmiennej wybierany jest optymalny podział. Również on oparty jest o test permutacyjny. 
+
+Dla różnych podziałów na dwie grupy wyznaczana jest statystyka $T_i$. Optymalny podział wyznaczany jest przez maksymalizację wartości statystyki testowej.
+
+
+## Przykłady w R
+
+Zbudujmy jednopoziomowe drzewo decyzyjne dla zmiennej `Survived` ze zbioru danych `titanic`.
 
 
 ```r
-x <- seq(-5,5, .01)
-(q <- qt(0.975, 5))
+library(party)
+drzewo <- ctree(Survived~., data=titanic, 
+                controls = ctree_control(maxdepth=1))
+plot(drzewo)
 ```
 
-```
-## [1] 2.570582
-```
+![plot of chunk unnamed-chunk-121](figure/unnamed-chunk-121-1.png)
 
-```r
-df <- data.frame(x, d = dt(x,5), rejection = abs(x)>q )
-ggplot(df, aes(x, y=d, fill=rejection)) + geom_bar(stat="identity") + theme(legend.position="none") + scale_fill_manual(values=c("grey","red3"))
-```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
-
-Czasem weryfikowana jest też inna hipoteza zerowa. Jeżeli chceny zbadać, czy korelacja jest istotnie różna (np. istotnie większa) od określonej wartości $$\rho_0$$ to interesuje nas raczej hipoteza.
-
-**Hipoteza**: 
-
-$$
-H_0: \sigma_{12} = \rho_0.
-$$
-$$
-H_A: \sigma_{12} <> \rho_0.
-$$
-
-**Statystyka testowa**:
-
-W tym przypadku stosuje się inną transformację, tzw. transformację Fishera.
-
-$$
-U = 1/2 \ln(\frac{1+\hat \rho}{1-\hat \rho}).
-$$
-
-Przy prawdziwej hipotezie zerowej ta statystyka ma asymptotycznie rozkład normalny $$\mathcal N (1/2\ln(\frac{1+\rho_0}{1-\rho_0}) + \rho_0/(2(n-1)), 1/(n-3))$$.
-
-Znając rozkład możemy już w prosty sposób zbudować test statystyczny. Tę transformację można wykorzystać również do konstrukcji testu dla równości dwóch współczynników korelacji.
-
-
-### Korelacja rang
-
-Założenie o dwuwymiarowym rozkładzie normalnym jest silnie ograniczające. 
-Co prawda test Pearsona stosuje się nawet jeżeli zmienna nie ma rozkładu normalnego, ale jedynie do niego zbliżony. Wciąż jednak tego typu test wykrywa jedynie liniowe zależnosci.
-
-Dlatego często stosowanym testem dla zbioru hipotez jest test korelacji Spearmana. Jest ona w stanie identyfikować zależności monotoniczne. Ideę testu Spearmana można streścić w określeniu: badanie korelacji rang.
-
-**Model**: Przyjmijmy, że obserwujemy dwuwymiarową zmienną losową $$(X,Y)$$ o rozkładzie ciągłym. 
-
-Oznaczmy dodatkowo $$r_i = rank(X_i)$$, $$s_i = rank(Y_i)$$.
-
-**Hipoteza**: 
-
-$$
-H_0: \rho(r_i, s_i) = 0.
-$$
-$$
-H_A: \rho(r_i, s_i) <> 0.
-$$
-
-**Statystyka testowa**:
-
-Statystyką testową jest korelacja Pearsona ale liczona dla rang, a nie oryginalnych obserwacji. Ponieważ średnia ranga to $$(n+1)/2$$ więc otrzymujemy
-
-$$
-\rho = \frac{\sum_i (r_{i} - (n+1)/2)(s_i - (n+1)/2)}{\sqrt{\sum_i (r_{i} - (n+1)/2)^2\sum_i (s_{i} - (n+1)/2)^2}}.
-$$
-
-Po prostych przekształceniach otrzymujemy
-
-$$
-\rho = 1 - \frac{6 \sum(r_i - s_i)^2}{n(n^2-1)}.
-$$
-
-Rozkład tej statystyki można tablicować dla małych $$n$$. Asymptotycznie ma ona rozkład normalny z wariancją $$1/(n-1)$$.
-Ale w implementacji najczęściej stosuje się podobną transformację co w przypadku testu Pearsona, czyli
-
-$$
-T = \sqrt{n-2}\frac{\hat \rho}{\sqrt{1-\hat \rho^2}}.
-$$
-
-Asymptotycznie ta statystyka ma rozkład $$t_{n-2}$$.
-
-### A co jeżeli interesuje mnie inna zależność?
-
-Opisane powyżej testy badają dwa rodzaje zależności - liniowy i monotoniczny.
-
-Jeżeli interesuje nas inna klasa zależności to możliwy wybór jest albo przez badanie funkcji łączących (tzw. kopule) albo przez badanie zmiennych jakościowych. Każdą zmienną ilosciową możemy zdyskretyzować, dzieląc ją na pewną liczbę podprzedziałów i analizując zależność pomiedzy przedziałami (testem $$\chi^2$$ lub analizą korespondencji).
-
-
-### Przykład
-
-Korzystając ze zbioru danych `koty_ptaki` sprawdzimy czy jest zależność pomiędzy długością kota a jego wagą.
+Argumentem `ctree_control` możemy określić dodatkowe parametry, takie jak maksymalna głębokość drzewa.
 
 
 ```r
-library(PogromcyDanych)
-head(koty_ptaki[,1:3])
+drzewo <- ctree(Survived~., data=titanic, 
+                controls = ctree_control(maxdepth=3))
+plot(drzewo)
 ```
 
-```
-##   gatunek waga dlugosc
-## 1  Tygrys  300     2.5
-## 2     Lew  200     2.0
-## 3  Jaguar  100     1.7
-## 4    Puma   80     1.7
-## 5 Leopard   70     1.4
-## 6  Gepard   60     1.4
-```
+![plot of chunk unnamed-chunk-122](figure/unnamed-chunk-122-1.png)
 
-```r
-ggplot(koty_ptaki, aes(waga, dlugosc)) + geom_point(size=3) + geom_smooth(method="lm", color="grey", se=FALSE)
-```
-
-![plot of chunk z1](figure/z1-1.png)
-
-Korelację Pearsona (liniową) badalibyśmy testem `cor.test()`
+Również tym argumentem możemy określić sposób korekty p-wartości, poziom istotności dla testu, sposób redukcji statystyki testowej, minimalna wielkość węzła do podziału.
 
 
 ```r
-cor.test(koty_ptaki$waga, koty_ptaki$dlugosc)
+drzewo <- ctree(Survived~., data=titanic, 
+                controls = ctree_control(maxdepth=3,
+                                        teststat = "quad",
+                                        testtype = "Bonferroni",
+                                        mincriterion = 0.9999,
+                                        minsplit = 5))
+plot(drzewo)
 ```
 
-```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  koty_ptaki$waga and koty_ptaki$dlugosc
-## t = 6.4499, df = 11, p-value = 4.743e-05
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.6633850 0.9666441
-## sample estimates:
-##       cor 
-## 0.8893128
-```
+![plot of chunk unnamed-chunk-123](figure/unnamed-chunk-123-1.png)
 
-Korelację Spearmana (monotoniczną) badalibyśmy testem `cor.test()`. Współczynnik korelacji rang jest prawie równy 1.
+Zmienna objaśniana może być jednowymiarowa, wielowymiarowa, jakościowa, ilościowa lub nawet cenzorowana.
+
+Poniżej prezentujemy przykład dla analizy przeżycia pacjentek chorych na BRCA.
 
 
 ```r
-cor.test(koty_ptaki$waga, koty_ptaki$dlugosc, method="spearman")
+drzewo <- ctree(Surv(time/365, death)~., 
+                data=brca, 
+                controls = ctree_control(maxdepth=2))
+plot(drzewo)
 ```
 
-```
-## Warning in cor.test.default(koty_ptaki$waga, koty_ptaki$dlugosc, method =
-## "spearman"): Cannot compute exact p-value with ties
-```
+![plot of chunk unnamed-chunk-124](figure/unnamed-chunk-124-1.png)
 
-```
-## 
-## 	Spearman's rank correlation rho
-## 
-## data:  koty_ptaki$waga and koty_ptaki$dlugosc
-## S = 4.5155, p-value = 3.401e-10
-## alternative hypothesis: true rho is not equal to 0
-## sample estimates:
-##       rho 
-## 0.9875947
-```
-
-Po dyskretyzacji badalibyśmy np. następującą tabelę (widzimy silną zależność nawet bez testu).
-
-
-```r
-table(cut(koty_ptaki$waga, c(0,20,110,400)), 
-      cut(koty_ptaki$dlugosc, c(0, 1, 1.9, 3)))
-```
-
-```
-##            
-##             (0,1] (1,1.9] (1.9,3]
-##   (0,20]        5       0       0
-##   (20,110]      0       5       0
-##   (110,400]     0       0       3
-```

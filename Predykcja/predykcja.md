@@ -1,2 +1,2 @@
-# Predykacja
+# Predykcja
 
