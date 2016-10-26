@@ -1,0 +1,15 @@
+# Jak znaleźć grupy w danych?
+
+Tak więc masz wiele wiele obserwacji i nie wiesz co z nimi zrobić?
+
+A może chcesz sprawdzić, czy w tym zbiorze obserwacji nie da się wyróżnić grup obserwacji?
+Może jest w nim jakaś struktura, którą da się odkryć?
+
+Dane dotyczą zachowania klientów? Może da się zidentyfikować segmenty klientów o określonych zwyczajach? Mając zidentyfikowane takie grupy można dotrzeć do nich z bardziej spersonalizowaną reklamą?
+
+A może to pacjenci i wśród nich można wyróżnić podgrupy o specyficznych symptomach? Mając takie grupy można pokusić się o bardziej specyficzne leczenie.
+
+A może to dane o parametrach genetycznych różnych nieznanych szczepów bakterii? Na bazie tej mieszaniny można wyróżnić grupy podobne pod kątem genetyki.
+
+Zobaczmy jak można identyfikować podgrupy obiektów podobnych do siebie.
+

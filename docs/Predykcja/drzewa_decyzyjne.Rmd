@@ -45,6 +45,8 @@ Wybierany jest podział, który maksymalizuje czystość węzłów.
 $$
 I_G(p) = \sum_i p_i(1-p_i) = 1 - \sum_i p_i^2.
 $$
+Algorytm CART działa również dla ciągłych zmiennych. W tym przypadku za optymalizowany współczynniki wybiera się redukcję wariancji pomiędzy rodzicem a węzłami potomnymi.
+
 W algorytmie C4.5 i C5.0 wykorzystywany jest współczynnik *Information gain*, wyznaczany jako entropia węzła rodzica minus suma ważonych entropii węzłów pochodnych. Gdzie entropia jest wyznaczana jako
 
 $$
@@ -53,6 +55,15 @@ $$
 
 Podział jest powtarzany tak długo, aż osiągnięty jest warunek stopu.
 
+Warunek stopu może dotyczyć maksymalnej głębokości drzewa, minimalnej wielkości w drzewie lub minimalnej wymaganej czystości węzła.
+
+Otrzymywane drzewa są często bardzo głębokie, więc następnie są wtórnie przycinane. Ten proces określa się jako ang. *prunnig*.
+
+Powyżej opisany schemat można rozszerzać na wiele sposobów. Jednym  zprzydatnych uogólnień jest użycie różnych funkcji straty, które wprost wskazują jak kosztowe są określone błędy w klasyfikacji.
+Więcej informacji o dodatkowych opcji można przeczytac w dokumencie https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf.
+
+### Przykłady w R 
+
 W pakiecie `rpart` zaimplementowany jest algorytm CART. W pakiecie `C50` zaimplementowany jest algorytm C5.0.
 
 ```{r}
@@ -60,6 +71,10 @@ library(rpart)
 library(rpart.plot)
 
 drzewo <- rpart(Survived~., data=titanic)
+rpart.plot(drzewo)
+
+drzewo <- rpart(Survived~., data=titanic, 
+                control = rpart.control(minsplit = 5, maxdepth=2))
 rpart.plot(drzewo)
 
 ```

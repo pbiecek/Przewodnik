@@ -1,0 +1,158 @@
+# Jak serializować obiekty z użyciem pakietu archivist?
+
+W programie R wszystko jest obiektem. Każdy model, tabela, wykres, funkcja, wszystko jest obiektem, który żyje w pamięci aktualnie uruchomionej sesji R. 
+
+Często jednak pojawia się potrzeba zapisania, odszukania lub przesłania obiektu z jednej sesji R do innej. Takie operacje są wspierane przez bibliotekę `archivist`.
+
+Omówimy ją poniżej w oparciu o typowe przypadki użycia.
+
+## Kluczowe pojęcia
+
+Funkcja skrótu MD5 - kryptograficzna funkcja przypisująca każdemu dowolnemu ciągowi bajtów jednoznacznie wyznaczony hash, będący 32 znakami cyframi szesnastkowymi (256 bitów). Więcej informacji: https://pl.wikipedia.org/wiki/MD5
+
+GitHub/Bitbucket - archiwa kodu w modelu cloud oparte o system Git/Mercurial
+
+Repozytorium - zbiór obiektów wraz z API zapewniającym dodatkowo operacje wyszukiwania, odczytywania i zapisywania obiektów.
+
+Repozytoria dzielimy na lokalne (umieszczone na dysku) i zdalne (w pakietach R lub na GitHub/Bitbucket).
+
+Tag - etykieta opisująca zawartość obiektu, ułatwia odszukiwanie obiektów o określonych cechach.
+
+## Odzyskiwanie obiektów
+
+Obiekty, które są już w repozytorium można odczytać funkcją `aread()`.
+
+Przykładowo poniższa linia odczyta z repozytorium `graphGallery` użytkownika `pbiecek` na Github obiekt o hashu `f05f0ed0662fe01850ec1b928830ef32`. Jest to wykres wykonany w pakiecie `ggplot2`.
+
+```{r archivist002}
+archivist::aread("pbiecek/graphGallery/f05f0ed0662fe01850ec1b928830ef32")
+```
+
+Aby odczytywać obiekty z lokalnego repozytorium, należy funkcją `setLocalRepo()` ustawić ścieżkę do repozytorium na dysku. 
+
+Następnie wystarczy wywołać funkcję `aread()` podając jako argument jedynie hash obiektu. 
+Poniżej odczytamy w ten sposób model liniowy.
+
+```{r archivist003}
+library(archivist)
+
+(repoDir <- system.file("graphGallery", package = "archivist"))
+setLocalRepo(repoDir)
+aread("2a6e492cb6982f230e48cf46023e2e4f")
+```
+
+## Wyszukiwanie obiektów
+
+Obiekty są zapisywane do bazy danych razem z tagami, które umożliwiają łatwe wyszukiwanie tych obiektów.
+
+Przykładowe tagi to data utworzenia, klasa, nazwy zmiennych, informacje o zależnościach pomiędzy obiektami czy nazwa symbolu do którego przypisany jest obiekt.
+
+Przykładowo, poniższa instrukcja odczytuje z repozytorium wszystkie obiektu klasy `lm`, które wśród predyktorów mają zmienną `Sepal.Length`.
+
+```{r archivist004}
+models <- asearch("pbiecek/graphGallery",
+                  patterns = c("class:lm", "coefname:Sepal.Length"))
+lapply(models, coef)
+```
+
+W podobny sposób można z lokalnego repozytorium odczytać wszystkie wykresy klasy `gg`, które na osi OX mają zmienną `Sepal.Length`, 
+
+Odczytajmy je i wyświetlmy na ekranie.
+
+```{r archivist005}
+plots <- asearch(patterns = c("class:gg", "labelx:Sepal.Length"))
+length(plots)
+library("gridExtra")
+do.call(grid.arrange, plots)
+```
+
+## Historia obiektu
+
+W odtwarzalnych obliczeniach kuszącą obietnicą jest możliwość odtworzenia historii obiektu, szczegółowych informacji jak obiekt był zbudowany.
+Gdyby to było możliwe, dla każdego wyniku moglibyśmy sprawdzić jak został on osiągnięty.
+
+Z pakietem `archivist` to często jest możliwe. Trzeba tylko używać operatora `%a%` przy tworzeniu obiektów. Ten operator zapisuje do repozytorium wszelkie informacje potrzebne do odtworzenia obiektu.
+
+```{r  archivist006}
+library("archivist")
+library("dplyr")
+createLocalRepo("arepo", default = TRUE)
+
+iris %a%
+ filter(Sepal.Length < 6) %a%
+ lm(Petal.Length~Species, data=.) %a%
+ summary() -> tmp
+```
+
+Funkcją `ahistory()` można odtworzyć historię danego obiektu. 
+
+```{r  archivist007}
+ahistory(tmp)
+ahistory(md5hash = "050e41ec3bc40b3004bc6bdd356acae7")
+```
+
+Gdy obiekt jest zapisywany do repozytorium zapamiętywana jest też informacja o zainstalowanych pakietach. Można ją odtworzyć i odczytać. 
+
+```{r}
+sinfo <- asession("050e41ec3bc40b3004bc6bdd356acae7")
+head(sinfo$packages)
+```
+
+## Tworzymy repozytorium i wypełniamy je obiektami
+
+Aby zbudować lokalne repozytorium można wykorzystać funkcję `createLocalRepo()`.
+
+Utwórzmy repozytorium `arepo` w lokalnym katalogu i uczyńmy je od razu domyślnym.
+
+```{r}
+repo <- "arepo"
+createLocalRepo(repoDir = repo, default = TRUE)
+```
+
+Zbudujmy przykładowy wykres i dodajmy go do repozytorium używając funkcji `saveToLocalRepo()`. Repozytorium domyślne jest określone, nie ma więc konieczności podawania go w funkcji `saveToRepo()`.
+
+```{r}
+library("ggplot2")
+pl <- qplot(Sepal.Length, Petal.Length, data = iris)
+saveToLocalRepo(pl)
+```
+
+Hash obiektu jest produkowany funkcją `digest()`. Możemy zawsze sprawdzić czy się zgadza dla odczytanego obiektu.
+
+```{r}
+digest::digest(pl)
+```
+
+Funkcjami `showLocalRepo()` i `summaryLocalRepo()` można wyświetlić statystyki dotyczące obiektów w repozytoriach.
+
+```{r}
+showLocalRepo(method = "tags")
+summaryLocalRepo()
+```
+
+## Inne zastosowania
+
+W połączeniu z funkcją `trace()` możemy dodać archiwizację wszystkich obiektów tworzonych przez określoną funkcje. Np. możemy do archiwum zapisać wszystkie modele liniowe zbudowane funkcją `lm()`.
+
+```{r}
+library("archivist")
+createLocalRepo("allModels", default = TRUE)
+trace(lm, exit = quote(saveToLocalRepo(z)))
+```
+
+Lub możemy połączyć pakiet `archivist` z pakietem `knitr` i wszystkie obiekty określonej klasy wyprodukowane przez `knitra` dodać do repozytorium.
+
+Funkcja ` addHooksToPrint ()` automatycznie dodaje uchwyty w podpisach rysunków, jest to bardzo wygodne do odzyskiwania obiektów.
+
+Przykład działania tego połączenia można obejrzeć pod adresem
+http://bit.ly/1nW9Cvz
+
+```
+addHooksToPrint(class=c("ggplot", "data.frame"),
+repoDir = "arepo", repo = "Eseje", user = "pbiecek", subdir = "arepo")
+```
+
+Dla repozytoriów można też przygotować listę wszystkich obiektów tam umieszczonych wraz z ich tagami. Przykład takiego katalogu znajduje się na stronie
+https://github.com/pbiecek/Eseje/tree/master/arepo
+
+![Lista funkcji w pakiecie archivist](figure/archivist001.png)

@@ -1,0 +1,7 @@
+  Petal.Length Species
+1          1.4  setosa
+2          1.4  setosa
+3          1.3  setosa
+4          1.5  setosa
+5          1.4  setosa
+6          1.7  setosa
