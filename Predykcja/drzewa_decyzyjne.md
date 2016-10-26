@@ -56,6 +56,8 @@ Wybierany jest podział, który maksymalizuje czystość węzłów.
 $$
 I_G(p) = \sum_i p_i(1-p_i) = 1 - \sum_i p_i^2.
 $$
+Algorytm CART działa również dla ciągłych zmiennych. W tym przypadku za optymalizowany współczynniki wybiera się redukcję wariancji pomiędzy rodzicem a węzłami potomnymi.
+
 W algorytmie C4.5 i C5.0 wykorzystywany jest współczynnik *Information gain*, wyznaczany jako entropia węzła rodzica minus suma ważonych entropii węzłów pochodnych. Gdzie entropia jest wyznaczana jako
 
 $$
@@ -63,6 +65,13 @@ E(p) = - \sum_i p_i \log_2 p_i.
 $$
 
 Podział jest powtarzany tak długo, aż osiągnięty jest warunek stopu.
+
+Warunek stopu może dotyczyć maksymalnej głębokości drzewa, minimalnej wielkości w drzewie lub minimalnej wymaganej czystości węzła.
+
+Otrzymywane drzewa są często bardzo głębokie, więc następnie są wtórnie przycinane.
+
+
+### Przykłady w R 
 
 W pakiecie `rpart` zaimplementowany jest algorytm CART. W pakiecie `C50` zaimplementowany jest algorytm C5.0.
 
@@ -75,7 +84,15 @@ drzewo <- rpart(Survived~., data=titanic)
 rpart.plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-120](figure/unnamed-chunk-120-1.png)
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+
+```r
+drzewo <- rpart(Survived~., data=titanic, 
+                control = rpart.control(minsplit = 5, maxdepth=2))
+rpart.plot(drzewo)
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png)
 
 Więcej informacji o tym jak rysować ładniejsze drzewa http://www.milbo.org/rpart-plot/prp.pdf
 
@@ -143,7 +160,7 @@ drzewo <- ctree(Survived~., data=titanic,
 plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-121](figure/unnamed-chunk-121-1.png)
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 Argumentem `ctree_control` możemy określić dodatkowe parametry, takie jak maksymalna głębokość drzewa.
 
@@ -154,7 +171,7 @@ drzewo <- ctree(Survived~., data=titanic,
 plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-122](figure/unnamed-chunk-122-1.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 Również tym argumentem możemy określić sposób korekty p-wartości, poziom istotności dla testu, sposób redukcji statystyki testowej, minimalna wielkość węzła do podziału.
 
@@ -169,7 +186,7 @@ drzewo <- ctree(Survived~., data=titanic,
 plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-123](figure/unnamed-chunk-123-1.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 Zmienna objaśniana może być jednowymiarowa, wielowymiarowa, jakościowa, ilościowa lub nawet cenzorowana.
 
@@ -183,5 +200,5 @@ drzewo <- ctree(Surv(time/365, death)~.,
 plot(drzewo)
 ```
 
-![plot of chunk unnamed-chunk-124](figure/unnamed-chunk-124-1.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
