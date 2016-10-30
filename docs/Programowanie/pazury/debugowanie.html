@@ -63,7 +63,7 @@
         data-chapter-title="Jak debugować kod R?"
         data-filepath="Programowanie/pazury/debugowanie.md"
         data-basepath="../.."
-        data-revision="Wed Oct 26 2016 11:41:07 GMT+0200 (CEST)"
+        data-revision="Sun Oct 30 2016 22:45:54 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -1854,14 +1854,43 @@ Mo&#x17C;emy wi&#x119;c w dowolnym miejscu podejrze&#x107; stan argument&#xF3;w 
 <p>Jak tworzy&#x107; testy - pisali&#x15B;my to w rozdziale o pakietach. </p>
 <p>Aby sprawdzi&#x107; jak dok&#x142;adnie testy pokrywaj&#x105; kod pakietu, mo&#x17C;na wykorzysta&#x107; pakiet <code>covr</code> i funkcje <code>package_coverage()</code>. Przedstawia ona tekstow&#x105; analiz&#x119; jaka cz&#x119;&#x15B;&#x107; funkcji jest weryfikowana. Funkcje, kt&#xF3;re nie s&#x105; wystarczaj&#x105;co pokryte testami warto uzupe&#x142;ni&#x107;.</p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(covr)
+x &lt;- package_coverage(<span class="hljs-string">&quot;~/GitHub/archivist&quot;</span>)
+x
 </code></pre>
-<pre><code>## Error in library(covr): there is no package called &apos;covr&apos;
-</code></pre><pre><code class="lang-r">x &lt;- package_coverage(<span class="hljs-string">&quot;~/GitHub/archivist&quot;</span>)
-</code></pre>
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;package_coverage&quot;
-</code></pre><pre><code class="lang-r">x
-</code></pre>
-<pre><code>## Error in eval(expr, envir, enclos): object &apos;x&apos; not found
+<pre><code>## archivist Coverage: 39.51%
+</code></pre><pre><code>## R/addArchivistHooks.R: 0.00%
+</code></pre><pre><code>## R/addTagsRepo.R: 0.00%
+</code></pre><pre><code>## R/ahistory.R: 0.00%
+</code></pre><pre><code>## R/asession.R: 0.00%
+</code></pre><pre><code>## R/atags.R: 0.00%
+</code></pre><pre><code>## R/atrace.R: 0.00%
+</code></pre><pre><code>## R/cache.R: 0.00%
+</code></pre><pre><code>## R/getTags.R: 0.00%
+</code></pre><pre><code>## R/restoreLibraries.R: 0.00%
+</code></pre><pre><code>## R/rmFromRepo.R: 0.00%
+</code></pre><pre><code>## R/shinySearchInLocalRepo.R: 0.00%
+</code></pre><pre><code>## R/extractData.R: 1.16%
+</code></pre><pre><code>## R/extractMiniature.R: 20.00%
+</code></pre><pre><code>## R/extractTags.R: 22.39%
+</code></pre><pre><code>## R/loadFromRepo.R: 52.33%
+</code></pre><pre><code>## R/summaryRepo.R: 53.19%
+</code></pre><pre><code>## R/getRemoteHook.R: 58.62%
+</code></pre><pre><code>## R/zipRepo.R: 60.00%
+</code></pre><pre><code>## R/splitTags.R: 72.22%
+</code></pre><pre><code>## R/asearch.R: 74.19%
+</code></pre><pre><code>## R/zzz.R: 76.47%
+</code></pre><pre><code>## R/alink.R: 79.49%
+</code></pre><pre><code>## R/showRepo.R: 80.00%
+</code></pre><pre><code>## R/deleteRepo.R: 81.25%
+</code></pre><pre><code>## R/copyToRepo.R: 83.72%
+</code></pre><pre><code>## R/aread.R: 84.00%
+</code></pre><pre><code>## R/createEmptyRepo.R: 88.24%
+</code></pre><pre><code>## R/searchInRepo.R: 88.31%
+</code></pre><pre><code>## R/magrittr.R: 88.71%
+</code></pre><pre><code>## R/saveToRepo.R: 88.89%
+</code></pre><pre><code>## R/setRepo.R: 94.12%
+</code></pre><pre><code>## R/archivistOptions.R: 100.00%
+</code></pre><pre><code>## R/createMDGallery.R: 100.00%
 </code></pre><h2 id="wi&#x119;cej-informacji">Wi&#x119;cej informacji</h2>
 <ul>
 <li>Interesuj&#x105;cy przegl&#x105;d mo&#x17C;liwo&#x15B;ci RStudio dotycz&#x105;cych debudowania <a href="http://www.win-vector.com/blog/2016/04/free-data-science-video-lecture-debugging-in-r/" target="_blank">http://www.win-vector.com/blog/2016/04/free-data-science-video-lecture-debugging-in-r/</a></li>

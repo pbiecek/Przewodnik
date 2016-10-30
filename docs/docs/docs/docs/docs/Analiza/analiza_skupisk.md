@@ -1,2 +1,0 @@
-# Analiza Skupisk
-
