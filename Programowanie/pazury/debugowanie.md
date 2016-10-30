@@ -228,26 +228,144 @@ Aby sprawdzić jak dokładnie testy pokrywają kod pakietu, można wykorzystać 
 
 ```r
 library(covr)
-```
-
-```
-## Error in library(covr): there is no package called 'covr'
-```
-
-```r
 x <- package_coverage("~/GitHub/archivist")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "package_coverage"
-```
-
-```r
 x
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'x' not found
+## archivist Coverage: 39.51%
+```
+
+```
+## R/addArchivistHooks.R: 0.00%
+```
+
+```
+## R/addTagsRepo.R: 0.00%
+```
+
+```
+## R/ahistory.R: 0.00%
+```
+
+```
+## R/asession.R: 0.00%
+```
+
+```
+## R/atags.R: 0.00%
+```
+
+```
+## R/atrace.R: 0.00%
+```
+
+```
+## R/cache.R: 0.00%
+```
+
+```
+## R/getTags.R: 0.00%
+```
+
+```
+## R/restoreLibraries.R: 0.00%
+```
+
+```
+## R/rmFromRepo.R: 0.00%
+```
+
+```
+## R/shinySearchInLocalRepo.R: 0.00%
+```
+
+```
+## R/extractData.R: 1.16%
+```
+
+```
+## R/extractMiniature.R: 20.00%
+```
+
+```
+## R/extractTags.R: 22.39%
+```
+
+```
+## R/loadFromRepo.R: 52.33%
+```
+
+```
+## R/summaryRepo.R: 53.19%
+```
+
+```
+## R/getRemoteHook.R: 58.62%
+```
+
+```
+## R/zipRepo.R: 60.00%
+```
+
+```
+## R/splitTags.R: 72.22%
+```
+
+```
+## R/asearch.R: 74.19%
+```
+
+```
+## R/zzz.R: 76.47%
+```
+
+```
+## R/alink.R: 79.49%
+```
+
+```
+## R/showRepo.R: 80.00%
+```
+
+```
+## R/deleteRepo.R: 81.25%
+```
+
+```
+## R/copyToRepo.R: 83.72%
+```
+
+```
+## R/aread.R: 84.00%
+```
+
+```
+## R/createEmptyRepo.R: 88.24%
+```
+
+```
+## R/searchInRepo.R: 88.31%
+```
+
+```
+## R/magrittr.R: 88.71%
+```
+
+```
+## R/saveToRepo.R: 88.89%
+```
+
+```
+## R/setRepo.R: 94.12%
+```
+
+```
+## R/archivistOptions.R: 100.00%
+```
+
+```
+## R/createMDGallery.R: 100.00%
 ```
 
 ## Więcej informacji
