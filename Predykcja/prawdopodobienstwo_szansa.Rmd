@@ -1,0 +1,6 @@
+# Prawdopodobieństwo czy sansa?
+
+```{r, warning=FALSE, message=FALSE}
+library(Przewodnik)
+head(titanic)
+```
