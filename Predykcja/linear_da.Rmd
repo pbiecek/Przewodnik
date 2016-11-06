@@ -20,7 +20,7 @@ A więc log szansę można wyrazić jako
 $$
 \log (odds_i) = \log \frac{(2\pi)^{-1/2} |\Sigma|^{-1/2} \exp\left(-\frac 12 (x_i - \mu_1)^T\Sigma^{-1}(x_i - \mu_1)\right) P(y_i = 1)}{(2\pi)^{-1/2} |\Sigma|^{-1/2} \exp\left(-\frac 12 (x_i - \mu_0)^T\Sigma^{-1}(x_i - \mu_0)\right) P(y_i = 0)}  
 $$
-Kilka prostch przekształceń i mamy
+Kilka prostych przekształceń i mamy
 $$
 \log (odds_i) =  
  x_i^T\Sigma^{-1} (\mu_1 - \mu_0)
@@ -30,7 +30,7 @@ x_i^T A + c
 $$
 Jak widzimy, szansa w przypadku metody LDA wyraża się liniową funkcją zmiennych $x_i$. Macierz współczynników $A$ i $c$ wyznacza się na bazie ocen $\hat\mu_k$ i $\hat\Sigma$.
 
-Metoda kwadratowa rózni się od liniowej tylko tym, że dla każdej klasy estymuje się osobną macierz kowariancji.
+Metoda kwadratowa różni się od liniowej tylko tym, że dla każdej klasy estymuje się osobną macierz kowariancji.
 
 $$
 X_i | (y_i = k) \sim \mathcal N (\mu_k, \Sigma_k)
@@ -38,7 +38,7 @@ $$
 
 Gdy dla takiej gęstości policzymy log szansę to okaże się, że jest ona kwadratową funkcją $x_i$.
 
-Gdy klas jest dużo, estymacja macierzy kowariancji o rozmiarach $pxp$ jest obarczona dużym błędem. Dlatego rozważa się też regularyzowaną estymacie macierzy kowariancji w grupach, tak że
+Gdy klas jest dużo, estymacja macierzy kowariancji o rozmiarach $pxp$ jest obarczona dużym błędem. Dlatego rozważa się też regularyzowaną estymację macierzy kowariancji w grupach, tak że
 $$
 \Sigma_k^r = \alpha \Sigma + (1-\alpha) \Sigma_k.
 $$
@@ -46,7 +46,7 @@ $$
 
 ## Jak to zrobić w R?
 
-Ponieważ metoda LDA i QDA oparta jest o założenie wielowymiarowej normalności zmiennej $X$, dlatego sensownie jest ją stosowac dla zmiennych lościowych.
+Ponieważ metoda LDA i QDA oparta jest o założenie wielowymiarowej normalności zmiennej $X$, dlatego sensownie jest ją stosować dla zmiennych ilościowych.
 
 Poniżej przedstawimy przykład dla funkcji `MASS::lda()` i `MASS::qda()`.
 
@@ -58,3 +58,4 @@ mq <- qda(Survived~Age+Fare, data=titanic)
 mq
 ```
 Można też wykorzystać funkcję `predict()` aby wyznaczać predykcje dla nowych wartości $X$.
+
