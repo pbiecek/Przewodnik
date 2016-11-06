@@ -2,6 +2,14 @@
 
 ## Jak to działa?
 
+W regresji logistycznej modeluje się log-szansę jako funkcję liniową zmiennych $X_i$.
+
+$$
+\log (odds_i) =  X_i \beta
+$$
+Pozostaje tylko problem, jak estymować współczynniki $\beta$/
+
+
 
 
 ## Jak to zrobić w R?
