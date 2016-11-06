@@ -40,5 +40,16 @@ gdzie $u^{(j)}$ to gradient funkcji log wiarogodności, a $H^{(j)}$ to albo maci
 
 ## Jak to zrobić w R?
 
+Przykłady regresji logistycznej przedstawimy na danych o przeżyciach z katastrofy statku Titanic. 
 
+```{r}
+library("Przewodnik")
+head(titanic)
+```
 
+Funkcja `glm()` wyznacza współczynniki w modelu uogólnionych modeli liniowych (ang. Generalized Linear Models). Gdy wskażemy rodzinę rozkładów dwumianowych, otrzymamy model regresji logistycznej.
+
+```{r}
+rl <- glm(Survived~Sex+Pclass+Age+Fare, data=titanic, family = "binomial")
+summary(rl)
+```
