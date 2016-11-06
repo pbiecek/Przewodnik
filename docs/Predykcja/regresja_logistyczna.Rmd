@@ -2,8 +2,54 @@
 
 ## Jak to działa?
 
+W regresji logistycznej modeluje się log-szansę jako funkcję liniową zmiennych $X_i$.
 
+$$
+\log (odds_i) =  X_i \beta
+$$
+Pozostaje tylko problem, jak estymować współczynniki $\beta$.
+
+W przypadku metody regresji logistycznej stosuje się metodę maksymalnej wiarogodności. 
+
+Jak pamiętamy $y_i \sim B(p_i, 1)$ a
+$$
+p_i = \frac{\exp(\log (odds_i))}{1+\exp(\log (odds_i))} = \frac{\exp(X_i \beta)}{1+\exp(X_i \beta)}
+$$
+
+Funkcja log-wiarogodności ma postać
+$$
+l(\beta) = \sum_{i=1}^N \log \left( p_i^{y_i} (1-p_i)^{(1-y_i)} \right)
+$$
+Rozpisujemy
+$$
+l(\beta) = \sum_{i=1}^N y_i \log p_i + (1-y_i)  \log (1-p_i) = \sum_{i=1}^N y_i x_i \beta  + \log (1 - \exp(x_i \beta)) 
+$$
+Policzmy pochodną z funkcji wiarogodności
+$$
+\frac{\delta}{\delta \beta_i}l(\beta) = \sum_{i=1}^N x_i \left(y_i - \frac{\exp (x_i \beta)}{1+\exp(x_i \beta)}\right)  = \sum_{i=1}^N x_i(y_i - \tilde{p_i}) 
+$$
+Nie znajdziemy zwartej analitycznej postaci na estymator największej wiarogodności w tym modelu.
+Zazwyczaj stosuje się rozwiązanie numeryczne oparte o metodę ważonych najmniejszych kwadratów (Fisher Scoring) lub o metodę estymacji Newton-Raphson.
+
+To metody iteracyjne, w których kolejne oceny $\beta^{(j)}$ wyznacza się jako
+
+$$
+\beta^{(j+1)} = \beta^{(j)} - {H^{(j)}}^{-1} u^{(j)}
+$$
+gdzie $u^{(j)}$ to gradient funkcji log wiarogodności, a $H^{(j)}$ to albo macierz drugich pochodnych (macierz Hessego, hesjan) funkcji log-wiarogodności (metoda Newton-Raphson) albo oczekiwana wartość tej macierzy (metoda Fisher Scoring).
 
 ## Jak to zrobić w R?
 
+Przykłady regresji logistycznej przedstawimy na danych o przeżyciach z katastrofy statku Titanic. 
 
+```{r}
+library("Przewodnik")
+head(titanic)
+```
+
+Funkcja `glm()` wyznacza współczynniki w modelu uogólnionych modeli liniowych (ang. Generalized Linear Models). Gdy wskażemy rodzinę rozkładów dwumianowych, otrzymamy model regresji logistycznej.
+
+```{r}
+rl <- glm(Survived~Sex+Pclass+Age+Fare, data=titanic, family = "binomial")
+summary(rl)
+```
