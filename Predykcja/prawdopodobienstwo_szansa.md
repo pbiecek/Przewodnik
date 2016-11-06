@@ -44,5 +44,5 @@ $$
 
 Log-szanse można jednoznacznie przekształcić na prawdopodobieństwo.
 $$
-p_i = \frac{1}{1 + \exp(- \log {odds}_i)}
+p_i = \frac{1}{1 + \exp(- \log ({odds}_i))}
 $$
