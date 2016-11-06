@@ -34,9 +34,14 @@ Dla zmiennych dyskretnych $x_{i,j}$, rozkład warunkowy estymuje się bezpośred
 Warto zauważyć przy okazji, że po wyestymowaniu współczynników otrzymujemy funkcje o strukturze
 
 $$
-\log (odds_i) = \sum_j \underbrace{\log \frac{P(X_{i,j} = x_{i,j} | y_i = 1)}{P(X_{i,j} = x_{i,j} | y_i = 0)}}_{g_j(x_{i,j})}  + \underbrace{\log \frac{P(y_i = 1)}{P(y_i = 0)}}_{c}
+\log (odds_i) = \sum_j g_j(x_{i,j}) + c
 $$
 Czyli log-szansa jest modelowana z użyciem GAM (generalized additive models), gdzie każda zmienna $j$ ma niezależny, addytywny wpływ na szacowaną log-szansę.
+ 
+```
+!! to tylko w LaTeX
+\log (odds_i) = \sum_j \underbrace{\log \frac{P(X_{i,j} = x_{i,j} | y_i = 1)}{P(X_{i,j} = x_{i,j} | y_i = 0)}}_{g_j(x_{i,j})}  + \underbrace{\log \frac{P(y_i = 1)}{P(y_i = 0)}}_{c}
+```
   
 ## Jak to zrobić w R?
 
