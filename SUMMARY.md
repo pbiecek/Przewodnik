@@ -71,6 +71,7 @@
        * [Naiwny Bayes](Predykcja/naiwny_bayes.md)
        * [Liniowa i kwadratowa dyskryminacja](Predykcja/linear_da.md)
        * [Regresja logistyczna](Predykcja/regresja_logistyczna.md)
+       * [Obszary decyzyjne](Predykcja/obszary_decyzyjne.md)
    * [Eksploracja](Analiza/eksploracja.md)
        * [Jak rozpoznać rodzaj zmiennej?](Analiza/jak_rozpoznac_rodzaj_zmiennej.md)
        * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
