@@ -44,8 +44,17 @@ $$
 $$
 
 
-
 ## Jak to zrobić w R?
 
+Ponieważ metoda LDA i QDA oparta jest o założenie wielowymiarowej normalności zmiennej $X$, dlatego sensownie jest ją stosowac dla zmiennych lościowych.
 
+Poniżej przedstawimy przykład dla funkcji `MASS::lda()` i `MASS::qda()`.
 
+```{r}
+library("MASS")
+ml <- lda(Survived~Age+Fare, data=titanic)
+ml
+mq <- qda(Survived~Age+Fare, data=titanic)
+mq
+```
+Można też wykorzystać funkcję `predict()` aby wyznaczać predykcje dla nowych wartości $X$.
