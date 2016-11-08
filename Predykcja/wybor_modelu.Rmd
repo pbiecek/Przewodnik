@@ -1,0 +1,22 @@
+# Wybór modelu
+
+## Miej znaczy więcej, czyli dlaczego musimy wybierać model?
+
+## Kryteria oparte o na podpróbie danych
+
+### Zbiór uczący - zbiór testowy
+
+### k-krotna kroswalidacja (k-fold cross validation)
+
+### k-krotna powtórzona kross walidacja
+
+### Techniki oparte  o bootstrap
+
+## Kryteria oparte na całej próbie danych
+
+### AIC (Akaike information criterion)
+
+### BIC (Bayesian information criterion)
+
+### GIC (Generalised information criterion)
+
