@@ -72,13 +72,7 @@ Wadą powyżej opisanych technik jest to, że reguła decyzyjna jest trenowana n
 
 ## Kryteria oparte na całej próbie danych
 
-### AIC (Akaike information criterion)
-
-
-$$
-AIC = - 2 L_{max} + 2 k 
-$$
-
+W przpadku pracy z modelami regresyjnymi, bardzo często wykorzystywane są kryteria informacyjne.
 
 ### BIC (Bayesian information criterion)
 
@@ -119,6 +113,39 @@ $$
 
 Wybór modelu minimalizującego kryterium BIC odpowiada wyborowi modelu o najwyższym prawdopodobieństwie a posteriori.
 
+### AIC (Akaike information criterion)
+
+Kryterium AIC jest związane z inną logiką postępowania. Model, który wybieramy to model najbliższy rozkładowi generującemu dane. Najbliższy w sensie odległosci [Kullbacka–Leiblera](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) (nie jest to prawdziwa odległość, nie jest symetryczna).
+
+$$
+K(m) = \int P(y|X) \log \frac{P(y|X)}{P_{M_m}(y|X)} dy
+$$
+Minimalizacja tej odległości sprowadza się do maksymalizacji 
+$$
+\int P(y|X) \log P_{M_m}(y|X) dy
+$$
+Naturalne oszacowanie sprowadzałoby się do 
+$$
+E[\log P_{M_m}(y|X)]
+$$
+ale ten estymator jest obciążony (te same dane używane są do oszacowania $\hat\theta_m$ i do oszacowania $K$). Akaike wyznaczył to obciążenie [tutaj więcej informacji](http://www.stat.cmu.edu/~larry/=stat705/Lecture16.pdf) i nieobciązony szacunek wynosi
+
+
+$$
+\frac 1n \sum_{i=1}^n \log P_{M_m}(y|X,\hat\theta_m) - \frac kn  
+$$
+a pierwszy człon to wartość wynkcji wiarogodności w maksimum
+$$
+\frac {\mathcal l(M_m, \hat\theta_m)}n  - \frac kn  
+$$
+
+A więc maksymalizacja tego członujest równoważna z minimalizacją kryterium
+
+$$
+AIC_m = - 2 l(M_m, \hat\theta_m) + 2 k 
+$$
+
+
 ### GIC (Generalised information criterion)
 
 Zauważmy że oba kryteria AIC i BIC mają podobną strukturę. Można więc wprowadzić uogólnione kryterium oparte o funkcję
@@ -130,6 +157,16 @@ które każdy dodatkowy parametr modelu każe z siłą $f(n)$. W tej rodzinie mi
 
 $$
 HQC = - 2 L_{max} + 2 k \ln(\ln (n))
+$$
+
+Warto w tym miejscu zaznaczyć, że AIC wybiera modele większe, takie które odtwarzają prawdziwy rozkłąd $P(y|X)$, przez co ma spodziewane lepsze właściwości prognostyczne. BIC jest kryterium zgodnym, w dla dużych prób będzie wybierało prawdziwy model (jeżeli jest na liście rozważanych modeli).
+
+### Dla modelu liniowego
+
+Warto pamiętać, że dla modelu liniowego
+
+$$
+- 2 \log P(y, M | \hat\theta_m, M_m) \propto RSS/\sigma^2 
 $$
 
 ## Funkcja straty
