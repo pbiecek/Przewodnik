@@ -11,7 +11,7 @@ Przyświecać będą nam dwa cele.
 - Aby ocenić jakość predykcji. Jeżeli już zbudowaliśmy regułę decyzyjną, chcielibyśmy wiedzieć jak dobra jest ta reguła i jakich dokładności predykcji powinniśmy się spodziewać.
 
 
-## Kryteria oparte o na podpróbie danych
+## Kryteria oparte o na pod próbie danych
 
 Na potrzeby dalszych rozważań, przyjmijmy, że mamy $n$ obserwacji o indeksach ze zbioru $I$.
 
@@ -74,9 +74,97 @@ Wadą powyżej opisanych technik jest to, że reguła decyzyjna jest trenowana n
 
 ### AIC (Akaike information criterion)
 
+
+$$
+AIC = - 2 L_{max} + 2 k 
+$$
+
+
 ### BIC (Bayesian information criterion)
 
+Nazywane też kryterium Schwarza. 
+
+Motywacja jest następująca: Mamy $M$ modeli $\mathcal M_m$, każdy parametryzowany wektorem $\theta_m$ (potencjalnie o różnych długościach). 
+Chcemy wybrać model najlepszy (tutaj w sensie maksymalnego prawdopodobieństwa a posteriori).
+
+Prawdopodobieństwo a posteriori z t.w. Bayesa jest proporcjonalne do
+
+$$
+P(M_m | y, X) \propto P(M_m) P(y, X | M_m) 
+$$
+Do wyboru najlepszego modelu wystarczy nam znajomość prawdopodobieństwa a posteriori z dokładnością do stałej. 
+Wystarczy bowiem, by dla dowolnych dwóch modeli wyznaczyć iloraz prawdopodobieństw a posteriori
+$$
+\frac{P(M_m|y,X)}{P(M_l|y,X)}
+$$
+A przy założeniu, że modele są tak samo prawdopodobne ten iloraz redukuje się do tzw. Bayes Factor
+$$
+BF_{m,l} = \frac{P(y,X|M_m)}{P(y,X|M_l)}
+$$
+tyle, że nie znamy $P(y,X|M_m)$ ponieważ nie znamy $\theta_m$, musimy więc wycałkować po tym rozkładzie
+$$
+P(y, X | M_m)  = \int P(y, X | \theta_m, M_m) P(\theta_m | M_m) d\theta_m
+$$
+Zamiast całkować, możemy skorzystać z aproksymacji Laplace'a ([tutaj dobre wyprowadzenie](http://www.inference.phy.cam.ac.uk/mackay/itprnn/ps/341.342.pdf) [lub tutaj](http://www.stats.ox.ac.uk/~steffen/teaching/bs2HT9/laplace.pdf))
+$$
+\log P(y, X | M_m) = \log P(y, X | \hat\theta_m, M_m) - \frac{k}{2} \log n + O(1) 
+$$
+gdzie $k$ to liczba parametrów w modelu $M_m$ a $\hat\theta_m$ to estymator największej wiarogodności w modelu $M_m$ a pierwszy człon prawej strony to wartość funkcji wiarogodności w estymatorze największej wiarogodności.
+
+Jeżeli wymnożymy obie strony przez -2, to otrzymamy kryterium BIC
+
+$$
+BIC = - 2 L_{max} + k \log (n)
+$$
+
+Wybór modelu minimalizującego kryterium BIC odpowiada wyborowi modelu o najwyższym prawdopodobieństwie a posteriori.
+
 ### GIC (Generalised information criterion)
+
+Zauważmy że oba kryteria AIC i BIC mają podobną strukturę. Można więc wprowadzić uogólnione kryterium oparte o funkcję
+
+$$
+GIC = - 2 L_{max} + k f(n)
+$$
+które każdy dodatkowy parametr modelu każe z siłą $f(n)$. W tej rodzinie mieści się wiele znanych kryteriów, np. Hannan–Quinn information criterion
+
+$$
+HQC = - 2 L_{max} + 2 k \ln(\ln (n))
+$$
+
+## Funkcja straty
+
+Oceniając jakość predykcji możemy przyjmować różne funkcje straty. Dla regresji dwie najpopularniejsze to kwadratowa funkcja straty i funkcja straty oparta o moduł.
+
+$$
+L(y, f(X)) = (y - f(X))^2
+$$
+$$
+L(y, f(X)) = |y - f(X)|
+$$
+
+
+## Bias - variance tradeoff
+
+Wybierając model chcielibyśmy mieć jak najniższy błąd predykcji. Ten błąd jest jednak ograniczony od dołu przez sumę kilku czynników. Pokażemy je na przykładzie (patrz EoSL rozdział 7.3).
+
+Rozważmy prosty model $y = f(X) + \varepsilon$, gdzie $E (\varepsilon) = 0$ i $Var (\varepsilon) = \sigma_\varepsilon^2$.
+
+Dla zadanej reguły $\hat f(X)$, wyznaczonej na bazie zbioru danych $x_0$, średniokwadratowy błąd predykcji wynosi
+$$
+E[(y - \hat f(X))^2|X=x_0]
+$$
+po rozpisaniu otrzymujemy
+$$
+\sigma_\varepsilon^2 + [E \hat f(x_0) - f(x_0)]^2 + E [ \hat f(x_0) - E \hat f(x_0) ]^2
+$$
+Kolejne elementy tej sumy to: 
+
+- wariancja szumu losowego charakterystycznego dla prawdziwego modelu (nie redukowalna), 
+- kwadrat obciążenia $\hat f(x_0)$,
+- wariancję oceny $\hat f(x_0)$.
+
+Zazwyczaj wybieranie modeli, które redukują obciążenie kończy się zwiększaniem wariancji i vice versa. W określonych sytuacjach korzystne może być wprowadzenie obciążenia do modelu gdy w wyniku niego otrzymujemy mniejszą wariancję (patrz LASSO lub inna regularyzacja).
 
 
 ## Miej znaczy więcej, czyli dlaczego musimy wybierać model?
@@ -113,5 +201,6 @@ ggplot(df, aes(NN, szumy)) +
 ## Jak to zrobić w pakiecie R?
 
 caret
+
 
 
