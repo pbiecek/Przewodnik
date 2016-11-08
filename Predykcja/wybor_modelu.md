@@ -213,7 +213,8 @@ Tak oczywiście nie jest, tutaj dokładność rośnie wyłącznie dlatego, że j
 
 W rzeczywistości, na zbiorze testowym, dodawanie zbędnych predyktorów jedynie zwiększa wariancje predykcji. 
 
-```{r wiecejmniej, warning=FALSE, message=FALSE}
+
+```r
 library(ggplot2)
 NN <- rep(c(2, 4, 6, 8, 10,20,30,40,50,70,90,110,120,130,140,150,175,200), each=10)
 n <- 250
@@ -231,8 +232,9 @@ szumy <- sapply(NN, function(N){
 df <- data.frame(NN, szumy)
 ggplot(df, aes(NN, szumy)) + 
   geom_point() + ylab("Liczba zgodnych predykcji") + xlab("Liczba predyktorow") + ggtitle("Dokladnosc liczona na zbiorze uczacym rosnie do 1")
-
 ```
+
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)
 
 
 ## Jak to zrobić w pakiecie R?
