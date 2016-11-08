@@ -234,13 +234,126 @@ ggplot(df, aes(NN, szumy)) +
   geom_point() + ylab("Liczba zgodnych predykcji") + xlab("Liczba predyktorow") + ggtitle("Dokladnosc liczona na zbiorze uczacym rosnie do 1")
 ```
 
-![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)
+![plot of chunk wiecejmniej](figure/wiecejmniej-1.png)
 
 
 ## Jak to zrobić w pakiecie R?
 
-caret
+Zacznijmy od wyznaczenia modelu.
 
 
+```r
+library("Przewodnik")
+model4 <- glm(Survived~Sex+Pclass+Age+Fare, data=titanic, family = "binomial")
+model3 <- glm(Survived~Sex+Pclass+Age, data=titanic, family = "binomial")
+```
+
+Funkcje `AIC()` i `BIC()` wyznaczają wartości kryteriów AIC i BIC dla obu modeli. W obu przypadkach model 3 jest lepszy.
 
 
+```r
+AIC(model3)
+```
+
+```
+## [1] 657.2831
+```
+
+```r
+AIC(model4)
+```
+
+```
+## [1] 659.2292
+```
+
+```r
+BIC(model3)
+```
+
+```
+## [1] 680.1375
+```
+
+```r
+BIC(model4)
+```
+
+```
+## [1] 686.6545
+```
+
+Gdybyśmy chcieli dzielić zbiór danych na uczący i testowy to wygodnie jest użyć poniższych funkcji.
+
+
+```r
+library("caret")
+set.seed(1313)
+# prosty podział na zbiór uczący i testowy
+str(createDataPartition(titanic$Survived, times=2, p = 0.75))
+```
+
+```
+## List of 2
+##  $ Resample1: int [1:669] 1 2 3 4 5 6 7 8 9 11 ...
+##  $ Resample2: int [1:669] 1 3 4 7 8 9 10 11 12 13 ...
+```
+
+```r
+# technika k-fold CV
+str(createFolds(titanic$Survived, k = 5))
+```
+
+```
+## List of 5
+##  $ Fold1: int [1:179] 1 6 7 14 16 22 30 33 44 45 ...
+##  $ Fold2: int [1:177] 3 4 8 10 11 20 21 23 24 39 ...
+##  $ Fold3: int [1:178] 5 13 28 29 32 34 35 37 43 51 ...
+##  $ Fold4: int [1:178] 9 12 18 19 27 36 40 48 55 58 ...
+##  $ Fold5: int [1:179] 2 15 17 25 26 31 38 47 61 62 ...
+```
+
+```r
+# technika k-fold repeated CV
+str(createMultiFolds(titanic$Survived, k = 5, times = 2))
+```
+
+```
+## List of 10
+##  $ Fold1.Rep1: int [1:714] 1 3 5 6 7 9 10 11 12 13 ...
+##  $ Fold2.Rep1: int [1:712] 2 4 6 7 8 9 10 11 13 15 ...
+##  $ Fold3.Rep1: int [1:712] 1 2 3 4 5 6 7 8 10 11 ...
+##  $ Fold4.Rep1: int [1:713] 1 2 3 4 5 7 8 9 11 12 ...
+##  $ Fold5.Rep1: int [1:713] 1 2 3 4 5 6 8 9 10 12 ...
+##  $ Fold1.Rep2: int [1:712] 3 4 5 6 7 8 11 12 13 14 ...
+##  $ Fold2.Rep2: int [1:714] 1 2 4 5 6 7 8 9 10 11 ...
+##  $ Fold3.Rep2: int [1:713] 1 2 3 4 6 9 10 11 14 15 ...
+##  $ Fold4.Rep2: int [1:713] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ Fold5.Rep2: int [1:712] 1 2 3 5 7 8 9 10 11 12 ...
+```
+
+```r
+# technika bootstrap
+str(createResample(titanic$Survived, times = 2))
+```
+
+```
+## List of 2
+##  $ Resample1: int [1:891] 1 3 4 5 5 6 7 7 8 9 ...
+##  $ Resample2: int [1:891] 2 2 2 3 3 4 4 5 6 9 ...
+```
+
+Przykładowo wykorzystanie techniki k-fold dla danych z regresji logistycznej, mogłoby wyglądać tak:
+
+
+```r
+set.seed(1313)
+foldy <- createFolds(titanic$Survived, k = 10)
+errors <- lapply(foldy, function(ind) {
+  model <- glm(Survived~Sex+Pclass+Age, data=titanic[-ind,], family = "binomial")
+  predict(model, newdata=titanic[ind,], "response") - (titanic[ind,"Survived"] == "1")
+})
+hist(unlist(errors), 100, col="grey")
+```
+
+![plot of chunk histbledow](figure/histbledow-1.png)

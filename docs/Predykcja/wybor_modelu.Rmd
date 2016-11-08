@@ -237,8 +237,48 @@ ggplot(df, aes(NN, szumy)) +
 
 ## Jak to zrobić w pakiecie R?
 
-caret
+Zacznijmy od wyznaczenia modelu.
 
+```{r}
+library("Przewodnik")
+model4 <- glm(Survived~Sex+Pclass+Age+Fare, data=titanic, family = "binomial")
+model3 <- glm(Survived~Sex+Pclass+Age, data=titanic, family = "binomial")
+```
 
+Funkcje `AIC()` i `BIC()` wyznaczają wartości kryteriów AIC i BIC dla obu modeli. W obu przypadkach model 3 jest lepszy.
 
+```{r}
+AIC(model3)
+AIC(model4)
+BIC(model3)
+BIC(model4)
+```
 
+Gdybyśmy chcieli dzielić zbiór danych na uczący i testowy to wygodnie jest użyć poniższych funkcji.
+
+```{r}
+library("caret")
+set.seed(1313)
+# prosty podział na zbiór uczący i testowy
+str(createDataPartition(titanic$Survived, times=2, p = 0.75))
+# technika k-fold CV
+str(createFolds(titanic$Survived, k = 5))
+# technika k-fold repeated CV
+str(createMultiFolds(titanic$Survived, k = 5, times = 2))
+# technika bootstrap
+str(createResample(titanic$Survived, times = 2))
+
+```
+
+Przykładowo wykorzystanie techniki k-fold dla danych z regresji logistycznej, mogłoby wyglądać tak:
+
+```{r histbledow}
+set.seed(1313)
+foldy <- createFolds(titanic$Survived, k = 10)
+errors <- lapply(foldy, function(ind) {
+  model <- glm(Survived~Sex+Pclass+Age, data=titanic[-ind,], family = "binomial")
+  predict(model, newdata=titanic[ind,], "response") - (titanic[ind,"Survived"] == "1")
+})
+hist(unlist(errors), 100, col="grey")
+
+```
