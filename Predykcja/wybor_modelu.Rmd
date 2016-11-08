@@ -6,12 +6,9 @@ Przyświecać będą nam dwa cele.
 
 - Aby wybrać regułę predykcyjną. Jeżeli mamy kilka różnych podejść do klasyfikacji. Możemy zobaczyć jak dobre są różne podejścia i wybrać to, które jest najlepsze.
 
+- Aby wybrać listę istotnych zmiennych. Jeżeli mamy kilka modeli, różniących się zmiennymi, które są włączone do modelu, możemy użyć oceny jakości predykcji aby wybrać najlepszy podzbiór zmiennych.
+
 - Aby ocenić jakość predykcji. Jeżeli już zbudowaliśmy regułę decyzyjną, chcielibyśmy wiedzieć jak dobra jest ta reguła i jakich dokładności predykcji powinniśmy się spodziewać.
-
-
-## Miej znaczy więcej, czyli dlaczego musimy wybierać model?
-
-
 
 
 ## Kryteria oparte o na podpróbie danych
@@ -80,6 +77,40 @@ Wadą powyżej opisanych technik jest to, że reguła decyzyjna jest trenowana n
 ### BIC (Bayesian information criterion)
 
 ### GIC (Generalised information criterion)
+
+
+## Miej znaczy więcej, czyli dlaczego musimy wybierać model?
+
+Poniższy wykres pokazuje jak rośnie dokładność predykcji dla regresji logistycznej gdy dodajemy nowe, całkowicie losowe regresory.
+
+Wydawałoby się, że im więcej regresorów tym lepiej. 
+Tak oczywiście nie jest, tutaj dokładność rośnie wyłącznie dlatego, że jest źle mierzona i mamy do czynienia z przeuczonym modelem.
+
+W rzeczywistości, na zbiorze testowym, dodawanie zbędnych predyktorów jedynie zwiększa wariancje predykcji. 
+
+```{r, warning=FALSE, message=FALSE}
+library(ggplot2)
+NN <- rep(c(2, 4, 6, 8, 10,20,30,40,50,70,90,110,120,130,140,150,175,200), each=10)
+n <- 250
+szumy <- sapply(NN, function(N){
+  szum <- as.data.frame(matrix(runif(N * n), nrow = n, ncol = N))
+  colnames(szum) <- paste0("zm", 1:N)
+  szum$outcome <- factor(rep(LETTERS[1:2], each=n/2))
+  
+  nb <- glm(outcome~., data=szum, family="binomial")
+  pred <- predict(nb, szum, type = "response") > .5
+  tab <- table(pred, szum$outcome)
+  sum(diag(tab))/sum(tab)
+})
+
+df <- data.frame(NN, szumy)
+ggplot(df, aes(NN, szumy)) + 
+  geom_point() + ylab("Liczba zgodnych predykcji") + xlab("Liczba predyktorow") + ggtitle("Dokladnosc liczona na zbiorze uczacym rosnie do 1")
+
+```
+
+
+## Jak to zrobić w pakiecie R?
 
 caret
 
