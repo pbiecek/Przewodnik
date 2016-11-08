@@ -1,16 +1,22 @@
 # Ocena jakości predykcji
 
-## Po co?
+W rym rozdziale przedyskutujemy różne podejścia do oceny jakości modelu i wyboru modelu.
 
-- Aby wybrać regułę predykcyjną
+Przyświecać będą nam dwa cele.
 
-- Aby ocenić jakość predykcji
+- Aby wybrać regułę predykcyjną. Jeżeli mamy kilka różnych podejść do klasyfikacji. Możemy zobaczyć jak dobre są różne podejścia i wybrać to, które jest najlepsze.
+
+- Aby ocenić jakość predykcji. Jeżeli już zbudowaliśmy regułę decyzyjną, chcielibyśmy wiedzieć jak dobra jest ta reguła i jakich dokładności predykcji powinniśmy się spodziewać.
+
 
 ## Miej znaczy więcej, czyli dlaczego musimy wybierać model?
 
+
+
+
 ## Kryteria oparte o na podpróbie danych
 
-Na potrzeby dalszych rozważań, przyjmijmy, że mamy $n$ obserwacji o indeksach ze bioru $I$.
+Na potrzeby dalszych rozważań, przyjmijmy, że mamy $n$ obserwacji o indeksach ze zbioru $I$.
 
 Dla każdej obserwacji mamy parę $(y, X)$, gdzie $y$ to zmienna, którą chcemy opisać a $X$ to wektor zmiennych opisujących. 
 
@@ -20,7 +26,7 @@ Na zmiennych $X$ będziemy budować regułę mówiącą coś o zmiennej $y$.
 
 Zbiór $n$ obserwacji jest dzielony na dwa rozłączne podzbiory, uczący i testowy, $U$ i $T$ obserwacji. Gdzie $U \cup T = I$.
 
-Na zbiorze uczącym $U$ obserwacj zbudowana zostanie reguła decyzyjna. Następnie zostanie zastosowana na zbiorze testowym $T$ obserwacji, w wyniku czego otrzymamy szacunki zmiennej $\tilde y_t$.
+Na zbiorze uczącym $U$ obserwacji zbudowana zostanie reguła decyzyjna. Następnie zostanie zastosowana na zbiorze testowym $T$ obserwacji, w wyniku czego otrzymamy szacunki zmiennej $\tilde y_t$.
 
 Porównując na zbiorze testowym prawdziwe $y$ i przewidywane $\tilde y$ możemy ocenić jak dobra jest prognoza. 
 
@@ -33,7 +39,7 @@ Zalety: Metoda prosta do realizacji
 Wady: Słabe wykorzystanie danych, metoda uczenia reguły decyzyjnej wykorzystuje tylko $n_u$ danych.
 
 
-### k-krotna kroswalidacja (k-fold cross validation)
+### k-krotna walidacja krzyżowa (k-fold cross validation)
 
 Zbiór $n$ obserwacji jest dzielony na $k$ (często $k=10$) rozłącznych równolicznych podzbiorów o indeksach $F_i$.
 
@@ -52,7 +58,7 @@ Wady: Wyniki mogą zależeć od podziału na $k$ podzbiorów.
 
 Odmianą tej techniki jest tzw. one-leave-out, gdzie $k=n$, czyli w każdym kroku uczymy regułę na wszystkich obserwacjach poza jedną - tą na której robimy predykcję.
 
-### k-krotna powtórzona kross walidacja
+### k-krotna powtórzona walidacja krzyżowa
 
 Wadą powyżej przedstawionej techniki była losowość wynikająca z podziału na $k$ grup.
 
@@ -60,7 +66,7 @@ W metodzie *k-fold repeated cross validation* dokonujemy kilku lub kilkudziesię
 
 ### Techniki oparte  o bootstrap
 
-Wadą powyżej opisanych technik jest to, że reduła decyzyjna jest trenowana na zbiorze mniejszym niż wyjściowy $n$ elementowy zbiór. Alternatywą jest następująca procedura:
+Wadą powyżej opisanych technik jest to, że reguła decyzyjna jest trenowana na zbiorze mniejszym niż wyjściowy $n$ elementowy zbiór. Alternatywą jest następująca procedura:
 
 - Wylosuj próbę bootstrapową z wyjściowego zbioru danych (losowanie ze zwracaniem $n$ wierszy).
 - Na obserwacjach z wyjściowego zbioru, których nie ma w próbie bootstrapowej wyznacz predykcje $\tilde y$. Porównaj $\tilde y$ i $y$.
@@ -76,3 +82,5 @@ Wadą powyżej opisanych technik jest to, że reduła decyzyjna jest trenowana n
 ### GIC (Generalised information criterion)
 
 caret
+
+
