@@ -263,3 +263,39 @@ df <- data.frame(daty = c("2004-01-01", "2012-04-15", "2006-10-29", "2010-03-03"
 df
 separate(df, col=daty, into=c("rok", "miesiac", "dzien"), sep="-")
 ```
+
+### Rozdział 2.6.1
+
+```{r}
+library("PogromcyDanych")  
+data("koty_ptaki")   
+head(koty_ptaki)
+koty_ptaki <- read.table(file="http://biecek.pl/R/koty_ptaki.csv", 
+          sep=";", dec=",", header=TRUE)
+head(koty_ptaki)
+```
+
+### Rozdział 2.6.4
+
+```{r}
+(dane <- read.fwf("http://www.biecek.pl/R/dane/daneFWF.txt", 
+               widths=c(1,2,4,5,2)))
+(dane <- read.fwf("http://www.biecek.pl/R/dane/daneFWF.txt", 
+                widths=list(c(1,2,11), c(2,1,11))))
+```
+
+### Rozdział 2.6.5
+
+```{r}
+library("Hmisc")
+dane  <- spss.get("http://www.biecek.pl/R/dane/daneSPSS.sav", datevars="urodzony")
+head(dane, 4)
+```
+
+### Rozdział 2.6.7
+
+```{r}
+library("R.matlab")
+daneMat <- readMat("http://www.biecek.pl/R/dane/daneMatlab.MAT")
+str(daneMat)
+```

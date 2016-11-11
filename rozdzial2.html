@@ -137,6 +137,10 @@ $(document).ready(function () {
 <li><a href="#rozdzia-2.5.6">Rozdział 2.5.6</a></li>
 <li><a href="#rozdzia-2.5.7">Rozdział 2.5.7</a></li>
 <li><a href="#rozdzia-2.5.8">Rozdział 2.5.8</a></li>
+<li><a href="#rozdzia-2.6.1">Rozdział 2.6.1</a></li>
+<li><a href="#rozdzia-2.6.4">Rozdział 2.6.4</a></li>
+<li><a href="#rozdzia-2.6.5">Rozdział 2.6.5</a></li>
+<li><a href="#rozdzia-2.6.7">Rozdział 2.6.7</a></li>
 </ul>
 </div>
 
@@ -626,6 +630,65 @@ df</code></pre>
 ## 2 2012      04    15  2
 ## 3 2006      10    29  3
 ## 4 2010      03    03  4</code></pre>
+</div>
+<div id="rozdzia-2.6.1" class="section level3">
+<h3>Rozdział 2.6.1</h3>
+<pre class="r"><code>library(&quot;PogromcyDanych&quot;)  
+data(&quot;koty_ptaki&quot;)   
+head(koty_ptaki)</code></pre>
+<pre><code>##   gatunek waga dlugosc predkosc habitat zywotnosc druzyna
+## 1  Tygrys  300     2.5       60    Azja        25     Kot
+## 2     Lew  200     2.0       80  Afryka        29     Kot
+## 3  Jaguar  100     1.7       90 Ameryka        15     Kot
+## 4    Puma   80     1.7       70 Ameryka        13     Kot
+## 5 Leopard   70     1.4       85    Azja        21     Kot
+## 6  Gepard   60     1.4      115  Afryka        12     Kot</code></pre>
+<pre class="r"><code>koty_ptaki &lt;- read.table(file=&quot;http://biecek.pl/R/koty_ptaki.csv&quot;, 
+          sep=&quot;;&quot;, dec=&quot;,&quot;, header=TRUE)
+head(koty_ptaki)</code></pre>
+<pre><code>##   gatunek waga dlugosc predkosc habitat zywotnosc druzyna
+## 1  Tygrys  300     2.5       60    Azja        25     Kot
+## 2     Lew  200     2.0       80  Afryka        29     Kot
+## 3  Jaguar  100     1.7       90 Ameryka        15     Kot
+## 4    Puma   80     1.7       70 Ameryka        13     Kot
+## 5 Leopard   70     1.4       85    Azja        21     Kot
+## 6  Gepard   60     1.4      115  Afryka        12     Kot</code></pre>
+</div>
+<div id="rozdzia-2.6.4" class="section level3">
+<h3>Rozdział 2.6.4</h3>
+<pre class="r"><code>(dane &lt;- read.fwf(&quot;http://www.biecek.pl/R/dane/daneFWF.txt&quot;, 
+               widths=c(1,2,4,5,2)))</code></pre>
+<pre><code>##   V1 V2   V3    V4 V5
+## 1  1 10  ALA  STOP 13
+## 2  1 11  OLA  STOP  5</code></pre>
+<pre class="r"><code>(dane &lt;- read.fwf(&quot;http://www.biecek.pl/R/dane/daneFWF.txt&quot;, 
+                widths=list(c(1,2,11), c(2,1,11))))</code></pre>
+<pre><code>##   V1 V2          V3 V4 V5          V6
+## 1  1 10  ALA STOP13 11  1  OLA STOP 5</code></pre>
+</div>
+<div id="rozdzia-2.6.5" class="section level3">
+<h3>Rozdział 2.6.5</h3>
+<pre class="r"><code>library(&quot;Hmisc&quot;)
+dane  &lt;- spss.get(&quot;http://www.biecek.pl/R/dane/daneSPSS.sav&quot;, datevars=&quot;urodzony&quot;)
+head(dane, 4)</code></pre>
+<pre><code>##   wiek waga diagnoza   urodzony
+## 1   18   62 zdrowy   1989-10-07
+## 2   19   66 zdrowy   1988-01-01
+## 3   21   98 chory    1986-11-06
+## 4   28   74 chory    1979-12-01</code></pre>
+</div>
+<div id="rozdzia-2.6.7" class="section level3">
+<h3>Rozdział 2.6.7</h3>
+<pre class="r"><code>library(&quot;R.matlab&quot;)
+daneMat &lt;- readMat(&quot;http://www.biecek.pl/R/dane/daneMatlab.MAT&quot;)
+str(daneMat)</code></pre>
+<pre><code>## List of 2
+##  $ normalny   : num [1:10, 1:10] 0.1352 -0.139 -1.1634 1.1837 -0.0154 ...
+##  $ wykladniczy: num [1:10, 1:10] 0.54 0.859 0.663 1.097 0.837 ...
+##  - attr(*, &quot;header&quot;)=List of 3
+##   ..$ description: chr &quot;MATLAB 5.0 MAT-file, Platform: PCWIN, Created on: Sat Nov 03 12:59:22 2007                                                  &quot;
+##   ..$ version    : chr &quot;5&quot;
+##   ..$ endian     : chr &quot;little&quot;</code></pre>
 </div>
 
 
