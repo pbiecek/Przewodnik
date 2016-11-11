@@ -18,3 +18,6 @@ Materiały do wersji drukowanej Przewodnika
 Rozdział 1:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial1.html
 
+Rozdział 2:
+https://rawgit.com/pbiecek/Przewodnik/master/rozdzial2.html
+
