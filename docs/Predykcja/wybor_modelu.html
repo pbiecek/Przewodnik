@@ -63,7 +63,7 @@
         data-chapter-title="Wybór modelu"
         data-filepath="Predykcja/wybor_modelu.md"
         data-basepath=".."
-        data-revision="Tue Nov 08 2016 23:46:56 GMT+0100 (CET)"
+        data-revision="Fri Nov 11 2016 17:32:21 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -2050,8 +2050,8 @@ str(createResample(titanic$Survived, times = <span class="hljs-number">2</span>)
 <pre><code class="lang-r">set.seed(<span class="hljs-number">1313</span>)
 foldy &lt;- createFolds(titanic$Survived, k = <span class="hljs-number">10</span>)
 errors &lt;- lapply(foldy, <span class="hljs-keyword">function</span>(ind) {
-  model &lt;- glm(Survived~Sex+Pclass+Age, data=titanic[-ind,], family = <span class="hljs-string">&quot;binomial&quot;</span>)
-  predict(model, newdata=titanic[ind,], <span class="hljs-string">&quot;response&quot;</span>) - (titanic[ind,<span class="hljs-string">&quot;Survived&quot;</span>] == <span class="hljs-string">&quot;1&quot;</span>)
+  model &lt;- glm(Survived~Sex+Pclass+Age, data=titanic[ind,], family = <span class="hljs-string">&quot;binomial&quot;</span>)
+  predict(model, newdata=titanic[-ind,], <span class="hljs-string">&quot;response&quot;</span>) - (titanic[-ind,<span class="hljs-string">&quot;Survived&quot;</span>] == <span class="hljs-string">&quot;1&quot;</span>)
 })
 hist(unlist(errors), <span class="hljs-number">100</span>, col=<span class="hljs-string">&quot;grey&quot;</span>)
 </code></pre>

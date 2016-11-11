@@ -350,8 +350,8 @@ Przykładowo wykorzystanie techniki k-fold dla danych z regresji logistycznej, m
 set.seed(1313)
 foldy <- createFolds(titanic$Survived, k = 10)
 errors <- lapply(foldy, function(ind) {
-  model <- glm(Survived~Sex+Pclass+Age, data=titanic[-ind,], family = "binomial")
-  predict(model, newdata=titanic[ind,], "response") - (titanic[ind,"Survived"] == "1")
+  model <- glm(Survived~Sex+Pclass+Age, data=titanic[ind,], family = "binomial")
+  predict(model, newdata=titanic[-ind,], "response") - (titanic[-ind,"Survived"] == "1")
 })
 hist(unlist(errors), 100, col="grey")
 ```
