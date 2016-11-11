@@ -152,5 +152,114 @@ mosaicplot(~wyksztalcenie, data=daneSoc, main="",
            border="white")
 
 mosaicplot(~wyksztalcenie+praca, data=daneSoc, border="white", col=c("grey40", "grey70"))
+```
 
+### Rozdział 2.5.1
+
+```{r}
+library("dplyr")
+tylkoCorsa <- filter(auta, Model == "Corsa")
+head(tylkoCorsa)
+tylkoCorsa <- filter(auta, Model == "Corsa", Produkcja == 2010, Paliwo == "diesel")
+head(tylkoCorsa)
+```
+
+### Rozdział 2.5.2
+
+```{r}
+trzyKolumny <- select(auta, Marka, Model, Cena)
+head(trzyKolumny)
+head(select(auta, starts_with("M")))
+```
+
+### Rozdział 2.5.3
+
+```{r}
+autaZWiekiem <- mutate(auta,
+                       Wiek = 2013 - Produkcja,
+                       PrzebiegNaRok = round(Przebieg/Wiek))
+head(select(autaZWiekiem,Marka, Model,  Cena, Paliwo, Wiek, PrzebiegNaRok))
+```
+
+### Rozdział 2.5.4
+
+```{r}
+posortowaneAuta <- arrange(auta, Model, Cena)
+head(posortowaneAuta)
+posortowaneAuta <- arrange(auta, Model, desc(Cena))
+tylkoKia <- filter(auta, Marka == "Kia")
+posortowane <- arrange(tylkoKia, Cena)
+czteryKolumny <- select(posortowane, Model, Cena, Przebieg, Produkcja)
+head(czteryKolumny, 4)
+```
+
+### Rozdział 2.5.5
+
+```{r}
+head(
+  select( 
+    arrange(
+      filter(auta, 
+             Marka == "Kia"), 
+      Cena), 
+    Model, Cena, Przebieg, Produkcja)
+  , 4)
+auta %>% 
+  filter(Marka == "Kia") %>% 
+  arrange(Cena) %>% 
+  select(Model, Cena, Przebieg, Produkcja) -> 
+  posortowane
+head(posortowane)
+auta %>% 
+	lm(Cena~Przebieg, data = .) %>% 
+	summary()
+```
+
+### Rozdział 2.5.6
+
+```{r}
+auta %>%
+  summarise(sredniaCena = mean(Cena),
+            medianaPrzebiegu = median(Przebieg),
+            sredniWiek = mean(2013 - Produkcja),
+            liczba = n())
+auta %>%
+  group_by(Marka) %>%
+  summarise(sredniaCena = mean(Cena),
+            medianaPrzebiegu = median(Przebieg),
+            sredniWiek = mean(2013 - Produkcja),
+            liczba = n())
+auta %>%
+  group_by(Marka) %>%
+  summarise(sredniaCena = mean(Cena),
+            medianaPrzebiegu = median(Przebieg),
+            sredniWiek = mean(2013 - Produkcja),
+            liczba = n()) %>%
+  arrange(sredniaCena)
+```
+
+### Rozdział 2.5.7
+
+```{r}
+library("eurostat")
+tsdtr210 <- get_eurostat("tsdtr210")
+head(tsdtr210)
+library("tidyr")
+szeroka <- spread(tsdtr210, time, values)
+szeroka %>% filter(geo == "PL")
+szeroka2 <- spread(tsdtr210, geo, values)
+szeroka2 %>% filter(time == "2010-01-01")
+```
+
+### Rozdział 2.5.8
+
+```{r}
+szeroka %>% 
+  gather(rok, wartosc, -geo, -vehicle) %>%
+  tail()
+unite(tsdtr210, geo_time, geo, time, sep=":") %>%
+  head()
+df <- data.frame(daty = c("2004-01-01", "2012-04-15", "2006-10-29", "2010-03-03"), id = 1:4)
+df
+separate(df, col=daty, into=c("rok", "miesiac", "dzien"), sep="-")
 ```
