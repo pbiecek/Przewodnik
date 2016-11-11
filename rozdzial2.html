@@ -516,6 +516,26 @@ head(posortowane)</code></pre>
 <pre><code>##   sredniaCena medianaPrzebiegu sredniWiek liczba
 ## 1    33340.38           122000   6.638333   2400</code></pre>
 <pre class="r"><code>auta %&gt;%
+  select(Marka, Cena, Przebieg, Model) %&gt;%
+  group_by(Marka) %&gt;%
+  mutate(Przebieg = Przebieg/mean(Przebieg, na.rm=TRUE)) </code></pre>
+<pre><code>## Source: local data frame [2,400 x 4]
+## Groups: Marka [6]
+## 
+##      Marka  Cena  Przebieg  Model
+##     &lt;fctr&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;fctr&gt;
+## 1  Peugeot  8799 0.6712017    206
+## 2  Peugeot 15500 0.9001999    206
+## 3  Peugeot 11900 1.6977455    206
+## 4  Peugeot 10999 1.3029209    206
+## 5  Peugeot 11900 1.1528876    206
+## 6  Peugeot 19900 0.6822568    206
+## 7  Peugeot 16400 1.1844736    206
+## 8  Peugeot 13900 1.0344403    206
+## 9  Peugeot 13900 1.2555420    206
+## 10 Peugeot 18400 0.4501000    206
+## # ... with 2,390 more rows</code></pre>
+<pre class="r"><code>auta %&gt;%
   group_by(Marka) %&gt;%
   summarise(sredniaCena = mean(Cena),
             medianaPrzebiegu = median(Przebieg),

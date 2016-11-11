@@ -224,6 +224,10 @@ auta %>%
             sredniWiek = mean(2013 - Produkcja),
             liczba = n())
 auta %>%
+  select(Marka, Cena, Przebieg, Model) %>%
+  group_by(Marka) %>%
+  mutate(Przebieg = Przebieg/mean(Przebieg, na.rm=TRUE)) 
+auta %>%
   group_by(Marka) %>%
   summarise(sredniaCena = mean(Cena),
             medianaPrzebiegu = median(Przebieg),
