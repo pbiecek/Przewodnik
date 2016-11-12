@@ -1,9 +1,9 @@
 ---
 title: "Rozdział 2"
 output:
-  html_document: 
-       toc: yes
   html_notebook: default
+  html_document:
+    toc: yes
 ---
 
 ```{r global_options, include=FALSE}
