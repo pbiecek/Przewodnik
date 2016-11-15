@@ -1,0 +1,23 @@
+# Komitety
+
+W tym miejscu opiszemy metody konstrukcji reguł predykcyjnych oparte o komitety innych reguł.
+
+Rozważymy dwa podejścia, oba związane są z tzw. *Bias-Variance Trade-off*. Błąd predykcji rozkłada się czynniki, z których dwa to obciążenie (bias) i wariancja (variance).
+
+Mając to na uwadze, skostruujemy metodę predykcji opartą o komitet innych metod, tak by:
+
+* Bagging, łączenie mniejszych reguł w większą regułę decyzyjną ma na celu obniżenie wariancji reguły decyzyjnej. Najczęściej osiąga się to przez wprowadzenie obciążenia. Technika sprawdza się dla wyjściowych modeli o małym obciążeniu.
+
+* Boosting, łączenie mniejszych reguł w większą regułę decyzyjną ma na celu obniżenie obciążenia. Najczęściej osiąga się to kosztem zwiększonej wariancji. Technika sprawdza się dla wyjściowych modeli o małej wariancji.
+
+## Bagging
+
+
+
+
+## Boosting
+
+
+
+
+

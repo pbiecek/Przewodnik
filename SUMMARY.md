@@ -72,6 +72,7 @@
        * [Regresja logistyczna](Predykcja/regresja_logistyczna.md)
        * [Jak hodować drzewa decyzyjne?](Predykcja/drzewa_decyzyjne.md)
        * [Obszary decyzyjne](Predykcja/obszary_decyzyjne.md)
+       * [Komitety klasyfikatorów](Predykcja/komitety.md)
        * [Wybór modelu](Predykcja/wybor_modelu.md)
    * [Eksploracja](Analiza/eksploracja.md)
        * [Jak rozpoznać rodzaj zmiennej?](Analiza/jak_rozpoznac_rodzaj_zmiennej.md)
