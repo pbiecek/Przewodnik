@@ -12,8 +12,8 @@ titanic2 <- na.omit(titanic)
 library("randomForest")
 rf <- randomForest(Survived~Age+Fare, data=titanic2)
 
-grid <- expand.grid(Age=seq(0,90, length.out=100),
-                    Fare=seq(0,250, length.out=100))
+grid <- expand.grid(Age=seq(0,90, length.out=200),
+                    Fare=seq(0,250, length.out=200))
 pred_rf <- predict(rf, grid, type="prob")[,1]
 grid$posterior_rf <- pred_rf
 
@@ -33,11 +33,11 @@ importance(rf)
 
 ```
 ##          MeanDecreaseGini
-## Pclass          34.705861
-## Sex             87.069807
-## Age             58.658998
-## Fare            62.045679
-## Embarked         8.153328
+## Pclass          34.440507
+## Sex             88.093624
+## Age             59.116168
+## Fare            62.281178
+## Embarked         8.026446
 ```
 
 ```r
@@ -52,12 +52,12 @@ Aby ocenić jakość takich scorów często stosuje się krzywą ROC (Receiver o
 
 * czułość (sensitivity) - true positive rate
 $$
-TPR = \frac{TP}{P} = \frac{y = +, \hat y = +}{\hat y = +}
+TPR = \frac{TP}{P} = \frac{Pr\{y = +, \hat y = +\}}{Pr\{\hat y = +\}}
 $$
 
 * specyficzność (specificity) - true negative rate
 $$
-SPEC = \frac{TN}{N} = \frac{y = -, \hat y = -}{\hat y = -}
+SPEC = \frac{TN}{N} = \frac{Pr\{y = -, \hat y = -\}}{Pr\{\hat y = -\}}
 $$
 
 * accuracy - skuteczność
@@ -131,22 +131,22 @@ summary(oc)
 ## optimal.cutpoints.default(X = "pred", status = "truth", tag.healthy = "0", 
 ##     methods = "Youden", data = pref_df)
 ## 
-## Area under the ROC curve (AUC):  0.651 (0.566, 0.736) 
+## Area under the ROC curve (AUC):  0.714 (0.637, 0.791) 
 ## 
 ## CRITERION: Youden
 ## Number of optimal cutoffs: 1
 ## 
 ##                     Estimate
-## cutoff             0.5600000
-## Se                 0.4861111
-## Sp                 0.7641509
-## PPV                0.5833333
-## NPV                0.6864407
-## DLR.Positive       2.0611111
-## DLR.Negative       0.6724966
-## FP                25.0000000
-## FN                37.0000000
-## Optimal criterion  0.2502621
+## cutoff             0.3100000
+## Se                 0.6944444
+## Sp                 0.6415094
+## PPV                0.5681818
+## NPV                0.7555556
+## DLR.Positive       1.9371345
+## DLR.Negative       0.4763072
+## FP                38.0000000
+## FN                22.0000000
+## Optimal criterion  0.3359539
 ```
 
 ```r

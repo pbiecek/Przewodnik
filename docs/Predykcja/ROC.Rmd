@@ -11,8 +11,8 @@ titanic2 <- na.omit(titanic)
 library("randomForest")
 rf <- randomForest(Survived~Age+Fare, data=titanic2)
 
-grid <- expand.grid(Age=seq(0,90, length.out=100),
-                    Fare=seq(0,250, length.out=100))
+grid <- expand.grid(Age=seq(0,90, length.out=200),
+                    Fare=seq(0,250, length.out=200))
 pred_rf <- predict(rf, grid, type="prob")[,1]
 grid$posterior_rf <- pred_rf
 
@@ -34,12 +34,12 @@ Aby ocenić jakość takich scorów często stosuje się krzywą ROC (Receiver o
 
 * czułość (sensitivity) - true positive rate
 $$
-TPR = \frac{TP}{P} = \frac{y = +, \hat y = +}{\hat y = +}
+TPR = \frac{TP}{P} = \frac{Pr\{y = +, \hat y = +\}}{Pr\{\hat y = +\}}
 $$
 
 * specyficzność (specificity) - true negative rate
 $$
-SPEC = \frac{TN}{N} = \frac{y = -, \hat y = -}{\hat y = -}
+SPEC = \frac{TN}{N} = \frac{Pr\{y = -, \hat y = -\}}{Pr\{\hat y = -\}}
 $$
 
 * accuracy - skuteczność
