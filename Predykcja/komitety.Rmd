@@ -103,7 +103,7 @@ Zauważmy teraz, że ponieważ $y_i \in \{-1,1\}$ i $G(X_i) \in \{-1,1\}$ to dla
 $$
 G_m = \arg\min_{G} \sum_{i=1}^n w_i^{m}  1_{y_i \neq G(X_i)}.
 $$
-Co już łatwo zrobić, to rozwiązaniem jest reguła decyzyjna minimalizująca bład predykcji z zadanymi wagami $w_i$.
+Co już łatwo zrobić, to rozwiązaniem jest reguła decyzyjna minimalizująca błąd predykcji z zadanymi wagami $w_i$.
 
 Z kolei mając $G_m$ pozostaje rozwiązać
 
@@ -127,7 +127,7 @@ $$
 $$
 
 
-Taką funkcję jednej zmiennej $\alpha$ łatwo już rowziązać. Oznaczając przez $res_i$
+Taką funkcję jednej zmiennej $\alpha$ łatwo już rozwiązać. Oznaczając przez $res_i$
 $$
 res_i = \frac{\sum_{i=1}^n w_i^{m} 1_{y_i = G_m(X_i)}}{\sum_{i=1}^N w_i^{m}}
 $$
@@ -148,7 +148,7 @@ Boosting jest wrażliwy na obserwacje odstające.
 
 Boosting buduje kolejne modele w sposób sekwencyjny.
 
-Wielu gurów ML uważa że boosting jest lepszy od baggingu, ale w praktyce bywa różnie.
+Wiele osób, uznanych autorytetów w ML uważa, że boosting jest lepszy od baggingu. Asymptotycznie to może i prawda, ale w praktyce dla zwykłych prób bywa różnie.
 
 # Jak to zrobić w R?
 
@@ -162,7 +162,7 @@ rf
 ```
 
 Metoda gradient boosting oparta o drzewa jest dostępna w `xgboost`.
-Nie można jako argumenty podać formułę, trzeba samemu wyznaczyć ektor y i kolumne X.
+Nie można jako argumenty podać formułę, trzeba samemu wyznaczyć ektor y i kolumnę X.
 
 Również należy określić jak głębokie drzewa mają być generowane
 
