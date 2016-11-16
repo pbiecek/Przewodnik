@@ -63,7 +63,7 @@
         data-chapter-title="ROC, AUC i inne"
         data-filepath="Predykcja/ROC.md"
         data-basepath=".."
-        data-revision="Wed Nov 16 2016 01:57:58 GMT+0100 (CET)"
+        data-revision="Wed Nov 16 2016 02:00:29 GMT+0100 (CET)"
         data-innerlanguage="">
     
 
@@ -1874,11 +1874,11 @@ ggplot(grid, aes(Age, Fare, color=posterior_rf)) +
 importance(rf)
 </code></pre>
 <pre><code>##          MeanDecreaseGini
-## Pclass          34.440507
-## Sex             88.093624
-## Age             59.116168
-## Fare            62.281178
-## Embarked         8.026446
+## Pclass          34.396544
+## Sex             88.341231
+## Age             58.222577
+## Fare            61.271870
+## Embarked         7.947573
 </code></pre><pre><code class="lang-r">varImpPlot(rf)
 </code></pre>
 <p><img src="figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"></p>
@@ -1915,15 +1915,9 @@ pred_rf &lt;- predict(rf, titanic2_test, type=<span class="hljs-string">&quot;pr
 
 roc.estimate &lt;- calculate_roc(pred_rf, titanic2_test$Survived)
 single.rocplot &lt;- ggroc(roc.estimate)
+plot_journal_roc(single.rocplot)
 </code></pre>
-<pre><code>## ggroc is deprecated. Please use geom_roc instead. Type ?geom_roc for more information.
-</code></pre><pre><code class="lang-r">plot_journal_roc(single.rocplot)
-</code></pre>
-<pre><code>## Scale for &apos;x&apos; is already present. Adding another scale for &apos;x&apos;, which
-## will replace the existing scale.
-</code></pre><pre><code>## Scale for &apos;y&apos; is already present. Adding another scale for &apos;y&apos;, which
-## will replace the existing scale.
-</code></pre><p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+<p><img src="figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
 <pre><code class="lang-r"><span class="hljs-keyword">library</span>(<span class="hljs-string">&quot;ROCR&quot;</span>)
 pred &lt;- prediction( pred_rf, titanic2_test$Survived)
 perf &lt;- performance(pred,<span class="hljs-string">&quot;tpr&quot;</span>,<span class="hljs-string">&quot;fpr&quot;</span>)
@@ -1943,25 +1937,25 @@ summary(oc)
 ## optimal.cutpoints.default(X = &quot;pred&quot;, status = &quot;truth&quot;, tag.healthy = &quot;0&quot;, 
 ##     methods = &quot;Youden&quot;, data = pref_df)
 ## 
-## Area under the ROC curve (AUC):  0.714 (0.637, 0.791) 
+## Area under the ROC curve (AUC):  0.732 (0.656, 0.807) 
 ## 
 ## CRITERION: Youden
 ## Number of optimal cutoffs: 1
 ## 
 ##                     Estimate
-## cutoff             0.3100000
-## Se                 0.6944444
-## Sp                 0.6415094
-## PPV                0.5681818
-## NPV                0.7555556
-## DLR.Positive       1.9371345
-## DLR.Negative       0.4763072
-## FP                38.0000000
-## FN                22.0000000
-## Optimal criterion  0.3359539
-</code></pre><pre><code class="lang-r">plot(oc)
+## cutoff             0.5900000
+## Se                 0.5416667
+## Sp                 0.8396226
+## PPV                0.6964286
+## NPV                0.7295082
+## DLR.Positive       3.3774510
+## DLR.Negative       0.5458801
+## FP                17.0000000
+## FN                33.0000000
+## Optimal criterion  0.3812893
+</code></pre><pre><code class="lang-r">plot(oc, which=<span class="hljs-number">1</span>)
 </code></pre>
-<p><img src="figure/oc-1.png" alt="plot of chunk oc"><img src="figure/oc-2.png" alt="plot of chunk oc"></p>
+<p><img src="figure/oc-1.png" alt="plot of chunk oc"></p>
 
                     
                     </section>

@@ -33,11 +33,11 @@ importance(rf)
 
 ```
 ##          MeanDecreaseGini
-## Pclass          34.440507
-## Sex             88.093624
-## Age             59.116168
-## Fare            62.281178
-## Embarked         8.026446
+## Pclass          34.396544
+## Sex             88.341231
+## Age             58.222577
+## Fare            61.271870
+## Embarked         7.947573
 ```
 
 ```r
@@ -81,24 +81,7 @@ pred_rf <- predict(rf, titanic2_test, type="prob")[,2]
 
 roc.estimate <- calculate_roc(pred_rf, titanic2_test$Survived)
 single.rocplot <- ggroc(roc.estimate)
-```
-
-```
-## ggroc is deprecated. Please use geom_roc instead. Type ?geom_roc for more information.
-```
-
-```r
 plot_journal_roc(single.rocplot)
-```
-
-```
-## Scale for 'x' is already present. Adding another scale for 'x', which
-## will replace the existing scale.
-```
-
-```
-## Scale for 'y' is already present. Adding another scale for 'y', which
-## will replace the existing scale.
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
@@ -131,27 +114,27 @@ summary(oc)
 ## optimal.cutpoints.default(X = "pred", status = "truth", tag.healthy = "0", 
 ##     methods = "Youden", data = pref_df)
 ## 
-## Area under the ROC curve (AUC):  0.714 (0.637, 0.791) 
+## Area under the ROC curve (AUC):  0.732 (0.656, 0.807) 
 ## 
 ## CRITERION: Youden
 ## Number of optimal cutoffs: 1
 ## 
 ##                     Estimate
-## cutoff             0.3100000
-## Se                 0.6944444
-## Sp                 0.6415094
-## PPV                0.5681818
-## NPV                0.7555556
-## DLR.Positive       1.9371345
-## DLR.Negative       0.4763072
-## FP                38.0000000
-## FN                22.0000000
-## Optimal criterion  0.3359539
+## cutoff             0.5900000
+## Se                 0.5416667
+## Sp                 0.8396226
+## PPV                0.6964286
+## NPV                0.7295082
+## DLR.Positive       3.3774510
+## DLR.Negative       0.5458801
+## FP                17.0000000
+## FN                33.0000000
+## Optimal criterion  0.3812893
 ```
 
 ```r
-plot(oc)
+plot(oc, which=1)
 ```
 
-![plot of chunk oc](figure/oc-1.png)![plot of chunk oc](figure/oc-2.png)
+![plot of chunk oc](figure/oc-1.png)
 

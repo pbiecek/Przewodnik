@@ -22,7 +22,7 @@ ggplot(grid, aes(Age, Fare, color=posterior_rf)) +
 
 Funkcją `varImpPlot` możemy pokazać ranking ważności zmiennych. 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 rf <- randomForest(Survived~., data=titanic2)
 importance(rf)
 varImpPlot(rf)
@@ -49,7 +49,7 @@ $$
 
 * Youden J = czułość + specyficzność - 1.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library("caret")
 inds <- createDataPartition(titanic2$Survived, p = 0.75)
 titanic2_train <- titanic2[inds[[1]],]
@@ -80,6 +80,6 @@ library("OptimalCutpoints")
 pref_df <- data.frame(pred = pred_rf, truth = titanic2_test$Survived)
 oc <- optimal.cutpoints(X = "pred", status = "truth", methods="Youden", data=pref_df, tag.healthy = "0")
 summary(oc)
-plot(oc)
+plot(oc, which=1)
 ```
 
