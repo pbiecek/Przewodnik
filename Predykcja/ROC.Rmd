@@ -4,7 +4,7 @@ Mając klasyfikator, często potrzebujemy narzędzia, które pozwoli ocenić jeg
 
 Przyjrzyjmy się lasom losowym dla dwóch zmiennych. To są obszary decyzyjne.
 
-```{r, message=FALSE, warning=FALSE}
+```{r obszary, message=FALSE, warning=FALSE}
 library("Przewodnik")
 titanic2 <- na.omit(titanic)
 

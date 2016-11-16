@@ -21,7 +21,7 @@ ggplot(grid, aes(Age, Fare, color=posterior_rf)) +
   geom_point(size=1)
 ```
 
-![plot of chunk unnamed-chunk-43](figure/unnamed-chunk-43-1.png)
+![plot of chunk obszary](figure/obszary-1.png)
 
 Funkcją `varImpPlot` możemy pokazać ranking ważności zmiennych. 
 
@@ -33,18 +33,18 @@ importance(rf)
 
 ```
 ##          MeanDecreaseGini
-## Pclass          35.193596
-## Sex             88.536642
-## Age             57.725035
-## Fare            60.610263
-## Embarked         7.934726
+## Pclass          34.705861
+## Sex             87.069807
+## Age             58.658998
+## Fare            62.045679
+## Embarked         8.153328
 ```
 
 ```r
 varImpPlot(rf)
 ```
 
-![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-44-1.png)
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
 
 Lasy losowe jako wynik zwracają wartości scorów z przedziału 0-1. 
 
@@ -101,7 +101,7 @@ plot_journal_roc(single.rocplot)
 ## will replace the existing scale.
 ```
 
-![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45-1.png)
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ```r
 library("ROCR")
@@ -111,7 +111,7 @@ plot(perf,col="blue")
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45-2.png)
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png)
 
 Aby ocenić jakość klasyfikatora można wykorzystać całą krzywą ROC lub pole pod nią - AUC.
 
@@ -131,27 +131,27 @@ summary(oc)
 ## optimal.cutpoints.default(X = "pred", status = "truth", tag.healthy = "0", 
 ##     methods = "Youden", data = pref_df)
 ## 
-## Area under the ROC curve (AUC):  0.756 (0.683, 0.828) 
+## Area under the ROC curve (AUC):  0.651 (0.566, 0.736) 
 ## 
 ## CRITERION: Youden
 ## Number of optimal cutoffs: 1
 ## 
 ##                     Estimate
-## cutoff             0.4620000
-## Se                 0.6666667
-## Sp                 0.7735849
-## PPV                0.6666667
-## NPV                0.7735849
-## DLR.Positive       2.9444444
-## DLR.Negative       0.4308943
-## FP                24.0000000
-## FN                24.0000000
-## Optimal criterion  0.4402516
+## cutoff             0.5600000
+## Se                 0.4861111
+## Sp                 0.7641509
+## PPV                0.5833333
+## NPV                0.6864407
+## DLR.Positive       2.0611111
+## DLR.Negative       0.6724966
+## FP                25.0000000
+## FN                37.0000000
+## Optimal criterion  0.2502621
 ```
 
 ```r
 plot(oc)
 ```
 
-![plot of chunk unnamed-chunk-46](figure/unnamed-chunk-46-1.png)![plot of chunk unnamed-chunk-46](figure/unnamed-chunk-46-2.png)
+![plot of chunk oc](figure/oc-1.png)![plot of chunk oc](figure/oc-2.png)
 
