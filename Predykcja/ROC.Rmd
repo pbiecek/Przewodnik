@@ -49,7 +49,7 @@ $$
 
 * Youden J = czułość + specyficzność - 1.
 
-```{r, message=FALSE, warning=FALSE}
+```{r rocauc, message=FALSE, warning=FALSE}
 library("caret")
 inds <- createDataPartition(titanic2$Survived, p = 0.75)
 titanic2_train <- titanic2[inds[[1]],]

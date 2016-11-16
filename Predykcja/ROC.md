@@ -33,11 +33,11 @@ importance(rf)
 
 ```
 ##          MeanDecreaseGini
-## Pclass          34.396544
-## Sex             88.341231
-## Age             58.222577
-## Fare            61.271870
-## Embarked         7.947573
+## Pclass          34.520624
+## Sex             87.590997
+## Age             59.034988
+## Fare            61.851399
+## Embarked         7.908397
 ```
 
 ```r
@@ -84,7 +84,7 @@ single.rocplot <- ggroc(roc.estimate)
 plot_journal_roc(single.rocplot)
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+![plot of chunk rocauc](figure/rocauc-1.png)
 
 ```r
 library("ROCR")
@@ -94,7 +94,7 @@ plot(perf,col="blue")
 abline(0,1)
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png)
+![plot of chunk rocauc](figure/rocauc-2.png)
 
 Aby ocenić jakość klasyfikatora można wykorzystać całą krzywą ROC lub pole pod nią - AUC.
 
@@ -114,22 +114,22 @@ summary(oc)
 ## optimal.cutpoints.default(X = "pred", status = "truth", tag.healthy = "0", 
 ##     methods = "Youden", data = pref_df)
 ## 
-## Area under the ROC curve (AUC):  0.732 (0.656, 0.807) 
+## Area under the ROC curve (AUC):  0.676 (0.597, 0.755) 
 ## 
 ## CRITERION: Youden
 ## Number of optimal cutoffs: 1
 ## 
 ##                     Estimate
-## cutoff             0.5900000
-## Se                 0.5416667
-## Sp                 0.8396226
-## PPV                0.6964286
-## NPV                0.7295082
-## DLR.Positive       3.3774510
-## DLR.Negative       0.5458801
-## FP                17.0000000
-## FN                33.0000000
-## Optimal criterion  0.3812893
+## cutoff             0.2360000
+## Se                 0.8055556
+## Sp                 0.4811321
+## PPV                0.5132743
+## NPV                0.7846154
+## DLR.Positive       1.5525253
+## DLR.Negative       0.4041394
+## FP                55.0000000
+## FN                14.0000000
+## Optimal criterion  0.2866876
 ```
 
 ```r
