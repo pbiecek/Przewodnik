@@ -54,10 +54,89 @@ $$
 gdzie $j$ to klasa obserwacji $m$ a $n$ to liczba wszystkich obserwacji.
 
 
+Więcej informacji o lasach losowych na stronie [Breiman](https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm).
+
 ## Boosting
 
+Boosting to technika polegająca w połączeniu sekwencji reguł decyzyjnych (nawet słabych, ledwie lepszych niż losowe zgadywanie) w silną regułę. 
+Termin 'silna reguła' oznacza tutaj regułę o małym błędzie na zbiorze uczącym.
+
+Cel ten można zrealizować stosując następujący algorytm.
+
+1. Zbuduj regułę $C_1$ na zbiorze uczącym. Dla każdej obserwacji określ reszty - funkcje straty związaną z daną obserwacją.
+2. Na resztach zbuduj regułę $C_2$, dołącz ją do reguły $C_1$ tworząc ważoną kombinację $\alpha_1 C_1 + \alpha_2 C_2$. Dla każdej obserwacji określ reszty - funkcje straty związaną z daną obserwacją.
+3. Powtarzaj krok 2 douczając za każdym razem nową regułę poprawiającą obecny stan predykcji.
+
+Na algorytm ten można patrzeć jak na optymalizację po przestrzeni reguł decyzyjnych o zadanej strukturze. Znalezienie optymalnej nowej reguły decyzyjnej można porównać do optymalizacji gradientowej. Wzór na każdą nową regułę zależy od funkcji straty, ale w ogólności tzw. *gradient boosting* można opisać jako rozwiązanie problemu
+$$
+\hat \theta_m = \arg \min_\theta \sum_{i=1} L (y_i, f_{m-1}(x_i) + T(X_i, \theta))
+$$
+Czyli w każdym kroku szukamy optymalnego kroku $T(X,\theta)$ aby minimalizować funkcję straty $L()$.
+
+### AdaBoost
+
+Poniżej przedstawimy prawdopodobnie najbardziej znany algorytm z klasy boosting - AdaBoost (Robert Schapire 1990). Poniższe wyprowadzenie jest oparte o Elements of Statistical Learning, rozdział 10.
+
+Przyjmijmy za funkcję straty tzw. wykładniczą funkcję straty, dla binarnej klasyfikacji z $y\in\{-1,1\}$. Zapisuje się tę funkcję jako 
+$$
+L(y, f(X)) = \exp(-y f(X))
+$$
+
+Przyjmijmy, że budowana reguła decyzyjna ma strukturę
+$$
+f(X) = \sum_{i=1}^k \alpha_i G_i(X)
+$$
+gdzie $G_i(X)$ to małe reguły decyzyjne a $\alpha_i$ to wagi z jakimi te reguły są składane. Funkcja $f(X)$ jest wyznaczana sekwencyjnie, w każdym kroku dodawany jest kolejny człon $\alpha_i G_i(X)$.
+
+Sprowadza się to do rozwiązania zadania
+$$
+(\alpha_m, G_m) = \arg\min_{\alpha, G} \sum_{i=1}^n \exp [-y_i (f_{m-1}(X_i) + \alpha G(X_i))].
+$$
+Powyższy wzór można zapisać jako 
+$$
+(\alpha_m, G_m) = \arg\min_{\alpha, G} \sum_{i=1}^n w_i^{m} \exp [-y_i \alpha G(X_i)].
+$$
+gdzie $w_i^m$ to wartość funkcji straty dla modelu wyznaczonego w kroku $m-1$.
+
+Zauważmy teraz, że ponieważ $y_i \in \{-1,1\}$ i $G(X_i) \in \{-1,1\}$ to dla każdego $\beta>0$ można wyznaczyć optymalne $G_m$ jako
+
+$$
+G_m = \arg\min_{G} \sum_{i=1}^n w_i^{m}  1_{y_i \neq G(X_i)}.
+$$
+Co już łatwo zrobić, to rozwiązaniem jest reguła decyzyjna minimalizująca bład predykcji z zadanymi wagami $w_i$.
+
+Z kolei mając $G_m$ pozostaje rozwiązać
+
+$$
+\alpha_m = \arg\min_{\alpha} \sum_{i=1}^n w_i^{m} \exp [-y_i \alpha G_m(X_i)]
+$$
+co można zapisać jako
+$$
+\alpha_m = \arg\min_{\alpha} 
+\exp(-\alpha)\sum_{i:y_i = G_m(X_i)} w_i^{m} + \exp(\alpha) \sum_{i:y_i \neq G_m(X_i)} w_i^{m}.
+$$
+i dalej jako
+$$
+\alpha_m = \arg\min_{\alpha} 
+\left(\exp(\alpha) - \exp(-\alpha)\right) \sum_{i=1}^n w_i^{m} 1_{y_i = G_m(X_i)} +  \exp(-\alpha) \sum_{i=1}^N w_i^{m}.
+$$
+oraz
+$$
+\alpha_m = \arg\min_{\alpha} 
+\left(\exp(\alpha) - \exp(-\alpha)\right) \frac{\sum_{i=1}^n w_i^{m} 1_{y_i = G_m(X_i)}}{\sum_{i=1}^N w_i^{m}} +  \exp(-\alpha) .
+$$
 
 
+Taką funkcję jednej zmiennej $\alpha$ łatwo już rowziązać. Oznaczając przez $res_i$
+$$
+res_i = \frac{\sum_{i=1}^n w_i^{m} 1_{y_i = G_m(X_i)}}{\sum_{i=1}^N w_i^{m}}
+$$
+mamy 
+$$
+\alpha_m  = \frac 12 \log \frac{1 - res_i}{res_i}
+$$
+
+Mamy już zarówno $\alpha_m$ jak i $G_m$, więc mamy i całą regułę decyzyjną. Warto zaznaczyć, że $G_m$ często szuka się wśród niewielkich drzew decyzyjnych (np. jedno-dwupoziomowych).
 
 ## Porównanie Baggingu i Boostingu
 
@@ -69,3 +148,33 @@ Boosting jest wrażliwy na obserwacje odstające.
 
 Boosting buduje kolejne modele w sposób sekwencyjny.
 
+Wielu gurów ML uważa że boosting jest lepszy od baggingu, ale w praktyce bywa różnie.
+
+# Jak to zrobić w R?
+
+Stara ale wciąż jedna z najlepszych implementacji lasów losowych jest dostępna w pakiecie `randomForest`.
+
+```{r, message=FALSE, warning=FALSE}
+library("Przewodnik")
+library("randomForest")
+rf <- randomForest(Survived~., data=na.omit(titanic))
+rf
+```
+
+Metoda gradient boosting oparta o drzewa jest dostępna w `xgboost`.
+Nie można jako argumenty podać formułę, trzeba samemu wyznaczyć ektor y i kolumne X.
+
+Również należy określić jak głębokie drzewa mają być generowane
+
+```{r, message=FALSE, warning=FALSE}
+library("xgboost")
+titanic2 <- na.omit(titanic)
+y = titanic2$Survived == "1"
+X = model.matrix(Survived~., titanic2)
+gb <- xgboost(X, y,
+              objective = "binary:logistic", 
+              nrounds = 2,
+              max.deph = 2)
+gb
+
+```
