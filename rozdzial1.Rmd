@@ -24,8 +24,10 @@ Kody z rozdziału 1 ,,Przewodnika po programie R'' wydanie 4.
 library("rvest")
 wikiPL <- "https://pl.wikipedia.org/wiki/Reprezentacja_Polski_w_pi%C5%82ce_no%C5%BCnej"
 webpage <- read_html(wikiPL)
-tab <- html_table(html_nodes(webpage,xpath = '//*[@id="mw-content-text"]/table[30]'))
-tab <- tab[[1]]
+table_links <- html_nodes(webpage, '.wikitable')
+tables <- html_table(table_links, fill=TRUE)
+FIFA_table <- which(sapply(tables, ncol) == 14)
+tab <- tables[[FIFA_table]]
 head(tab)
 ```
 
