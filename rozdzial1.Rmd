@@ -46,8 +46,9 @@ head(data_long, 3)
 
 ### Rozdział 1.2.1.3
 
-```{r}
+```{r wczytywaniePPPR}
 library("ggplot2")
 ggplot(data_long, aes(factor(Rok), Pozycja)) +
-  geom_boxplot() + ggtitle("Pozycja Polski w rankingu FIFA")
+  geom_boxplot() + ggtitle("Pozycja Polski w rankingu FIFA") +
+  xlab("Data publikacji rankingu") + ylab("Pozycja Polski w rankingu")
 ```
