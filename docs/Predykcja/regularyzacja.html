@@ -1,0 +1,2072 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Regularyzacja | Przewodnik po pakiecie R v. 4.0</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Analiza/eksploracja.html" />
+    
+    
+    <link rel="prev" href="../Predykcja/wybor_modelu.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.1.10"
+        data-chapter-title="Regularyzacja"
+        data-filepath="Predykcja/regularyzacja.md"
+        data-basepath=".."
+        data-revision="Tue Nov 22 2016 01:46:06 GMT+0100 (CET)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="contribute.html">
+            
+                
+                    <a href="../contribute.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Podrasuj Przewodnik!
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="co_nowego.html">
+            
+                
+                    <a href="../co_nowego.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Co nowego?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="wprowadzenie.html">
+            
+                
+                    <a href="../wprowadzenie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Wprowadzenie do R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="Wprowadzenie/dlaczego_R.html">
+            
+                
+                    <a href="../Wprowadzenie/dlaczego_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Dlaczego R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Wprowadzenie/jak_wyglada_praca_z_R.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_wyglada_praca_z_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Jak wygląda praca z programem R?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="Wprowadzenie/przykladowa_sesja.html">
+            
+                
+                    <a href="../Wprowadzenie/przykladowa_sesja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Przykładowa sesja
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Wprowadzenie/jak_przygotowac_miejsce.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_przygotowac_miejsce.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Jak przygotować miejsce pracy?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="Wprowadzenie/jak_zainstalowac_R.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_zainstalowac_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        Jak zainstalować R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="Wprowadzenie/jak_zainstalowac_RStudio.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_zainstalowac_RStudio.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        Jak zainstalować RStudio?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="Wprowadzenie/jak_zainstalowac_pakiety.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_zainstalowac_pakiety.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        Jak zainstalować dodatkowe pakiety?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Wprowadzenie/dodatkowa_pomoc.html">
+            
+                
+                    <a href="../Wprowadzenie/dodatkowa_pomoc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Gdzie szukać dodatkowej pomocy?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="puste2.html">
+            
+                
+                    <a href="../puste2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Programowanie w języku R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Programowanie/zapisywac.html">
+            
+                
+                    <a href="../Programowanie/zapisywac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Jak wczytywać i zapisywać dane?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        Jak wczytać tabele danych z pliku csv lub txt?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytac_dane_z_excela.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        Jak wczytać tabele danych z Excela?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        Jak wczytać tabele danych ze strony www?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+            
+                
+                    <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.4.</b>
+                        
+                        Jak zeskrobywać dane ze stron www?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.</b>
+                        
+                        Jak wczytywać korpusy tekstu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="Programowanie/jak_pobierac_dane_z_twittera.html">
+            
+                
+                    <a href="../Programowanie/jak_pobierac_dane_z_twittera.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.6.</b>
+                        
+                        Jak pobierać dane z Twittera?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.7" data-path="Programowanie/jak_pobrac_dane_z.html">
+            
+                
+                    <a href="../Programowanie/jak_pobrac_dane_z.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.7.</b>
+                        
+                        Jak pobrać dane z...?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.8" data-path="Programowanie/zadania.html">
+            
+                
+                    <a href="../Programowanie/zadania.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.8.</b>
+                        
+                        Zadania
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Programowanie/czyscic_przetwarzac.html">
+            
+                
+                    <a href="../Programowanie/czyscic_przetwarzac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Jak czyścić i przetwarzać dane?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="Programowanie/filter.html">
+            
+                
+                    <a href="../Programowanie/filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        Jak filtrować wiersze?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="Programowanie/mutate.html">
+            
+                
+                    <a href="../Programowanie/mutate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                        Jak tworzyć nowe kolumny?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="Programowanie/select.html">
+            
+                
+                    <a href="../Programowanie/select.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.3.</b>
+                        
+                        Jak wybierać kolumny?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="Programowanie/arrange.html">
+            
+                
+                    <a href="../Programowanie/arrange.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.4.</b>
+                        
+                        Jak sortować wiersze?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="Programowanie/potoki.html">
+            
+                
+                    <a href="../Programowanie/potoki.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.5.</b>
+                        
+                        Jak pracować z potokami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.6" data-path="Programowanie/groupby.html">
+            
+                
+                    <a href="../Programowanie/groupby.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.6.</b>
+                        
+                        Jak wyznaczać agregaty w grupach?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.7" data-path="Programowanie/tidyr.html">
+            
+                
+                    <a href="../Programowanie/tidyr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.7.</b>
+                        
+                        Jak czyścić dane?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.8" data-path="Programowanie/zadaniaDplyr.html">
+            
+                
+                    <a href="../Programowanie/zadaniaDplyr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.8.</b>
+                        
+                        Zadania
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Programowanie/pakiety/po_co.html">
+            
+                
+                    <a href="../Programowanie/pakiety/po_co.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Jak budować pakiety?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="Programowanie/pakiety/nowy_pakiet.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowy_pakiet.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        Jak stworzyć nowy pakiet?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="Programowanie/pakiety/nowa_funkcja.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowa_funkcja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                        Jak dodawać funkcje do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="Programowanie/pakiety/nowe_dane.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowe_dane.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.3.</b>
+                        
+                        Jak dodawać zbiory danych do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="Programowanie/pakiety/nowe_testy.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowe_testy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.4.</b>
+                        
+                        Jak dodawać testy do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="Programowanie/pakiety/nowe_budowanie.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowe_budowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.5.</b>
+                        
+                        Jak budować stworzony pakiet?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="Programowanie/pakiety/co_dalej.html">
+            
+                
+                    <a href="../Programowanie/pakiety/co_dalej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.6.</b>
+                        
+                        Co dalej?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="Programowanie/jak_tworzyc_aplikajce.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Jak budować aplikacje z pakietem Shiny?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="Programowanie/jak_tworzyc_aplikajce0.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.</b>
+                        
+                        Jak zbudować pierwszą aplikację?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.2" data-path="Programowanie/jak_tworzyc_aplikajce1.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.2.</b>
+                        
+                        Jak umieszczać wyniki analiz w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.3" data-path="Programowanie/jak_tworzyc_aplikajce2.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.3.</b>
+                        
+                        Jak umieszać elementy kontrolujące w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.4" data-path="Programowanie/jak_tworzyc_aplikajce3.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.4.</b>
+                        
+                        Jak tworzyć reaktywne elementy w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.5" data-path="Programowanie/jak_tworzyc_aplikajce4.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.5.</b>
+                        
+                        I co dalej?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="Programowanie/pazury/REST.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Jak tworzyć usługi SaaS oparte o RESTful API?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.5.1" data-path="Programowanie/pazury/REST01.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.1.</b>
+                        
+                        Jak uruchomić RESTowy serwer?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.2" data-path="Programowanie/pazury/REST02.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.2.</b>
+                        
+                        Jak pracować z opencpu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.3" data-path="Programowanie/pazury/REST03.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.3.</b>
+                        
+                        Jak zdalnie wywołać funkcję?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.4" data-path="Programowanie/pazury/REST04.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.4.</b>
+                        
+                        Jak zdalnie zbudować wykres?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.5" data-path="Programowanie/pazury/REST05.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.5.</b>
+                        
+                        Co jeszcze warto wiedzieć o pakiecie opencpu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="Programowanie/jak_tworzyc_raporty.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_raporty.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Jak tworzyć raporty z pakietem knitr?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="Programowanie/pazury/archivist.html">
+            
+                
+                    <a href="../Programowanie/pazury/archivist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Jak serializować obiekty z użyciem archivist?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="Programowanie/pazury/debugowanie.html">
+            
+                
+                    <a href="../Programowanie/pazury/debugowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Jak debugować kod R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="Programowanie/pazury/profilowanie.html">
+            
+                
+                    <a href="../Programowanie/pazury/profilowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Jak badać czas działania kodu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="Programowanie/pazury/rownolegle.html">
+            
+                
+                    <a href="../Programowanie/pazury/rownolegle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.10.</b>
+                        
+                        Jak zrównoleglić obliczenia w R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="Programowanie/jak_pracowac_z_bazami_danych.html">
+            
+                
+                    <a href="../Programowanie/jak_pracowac_z_bazami_danych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                        Jak pracować z bazami danych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="Programowanie/generatory_llosowych.html">
+            
+                
+                    <a href="../Programowanie/generatory_llosowych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.</b>
+                        
+                        Jak generować liczby losowe?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.12.1" data-path="Programowanie/generatory_1.html">
+            
+                
+                    <a href="../Programowanie/generatory_1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.1.</b>
+                        
+                        Jak ustawiać ziarno generatora?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12.2" data-path="Programowanie/generatory_2.html">
+            
+                
+                    <a href="../Programowanie/generatory_2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.2.</b>
+                        
+                        Jak losować z prostych rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12.3" data-path="Programowanie/generatory_3.html">
+            
+                
+                    <a href="../Programowanie/generatory_3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.3.</b>
+                        
+                        Jak losować ze złożonych rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12.4" data-path="Programowanie/generatory_4.html">
+            
+                
+                    <a href="../Programowanie/generatory_4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.4.</b>
+                        
+                        Jak losować z użyciem kopuli?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12.5" data-path="Programowanie/generatory_5.html">
+            
+                
+                    <a href="../Programowanie/generatory_5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.5.</b>
+                        
+                        Jak estymować parametry rozkładu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
+            
+                
+                    <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                        Jak korzystać z serwisu GitHub?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="Programowanie/jak_korzystac_z_serwisu_waffle.html">
+            
+                
+                    <a href="../Programowanie/jak_korzystac_z_serwisu_waffle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                        Jak korzystać z serwisu Waffle?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Analiza/analizadanych_z_programem_r_md.html">
+            
+                
+                    <a href="../Analiza/analizadanych_z_programem_r_md.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Analiza danych z programem R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Predykcja/predykcja.html">
+            
+                
+                    <a href="../Predykcja/predykcja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Predykcja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="Predykcja/prawdopodobienstwo_szansa.html">
+            
+                
+                    <a href="../Predykcja/prawdopodobienstwo_szansa.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.1.</b>
+                        
+                        Prawdopodobieństwo a szansa
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="Predykcja/naiwny_bayes.html">
+            
+                
+                    <a href="../Predykcja/naiwny_bayes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.2.</b>
+                        
+                        Naiwny Bayes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="Predykcja/linear_da.html">
+            
+                
+                    <a href="../Predykcja/linear_da.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.3.</b>
+                        
+                        Liniowa i kwadratowa dyskryminacja
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="Predykcja/regresja_logistyczna.html">
+            
+                
+                    <a href="../Predykcja/regresja_logistyczna.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.4.</b>
+                        
+                        Regresja logistyczna
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="Predykcja/drzewa_decyzyjne.html">
+            
+                
+                    <a href="../Predykcja/drzewa_decyzyjne.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.</b>
+                        
+                        Jak hodować drzewa decyzyjne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="Predykcja/obszary_decyzyjne.html">
+            
+            <span><b>4.1.6.</b> Obszary decyzyjne</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.7" data-path="Predykcja/komitety.html">
+            
+                
+                    <a href="../Predykcja/komitety.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.7.</b>
+                        
+                        Komitety klasyfikatorów
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.8" data-path="Predykcja/ROC.html">
+            
+                
+                    <a href="../Predykcja/ROC.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.8.</b>
+                        
+                        ROC, AUC i inne
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.9" data-path="Predykcja/wybor_modelu.html">
+            
+                
+                    <a href="../Predykcja/wybor_modelu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.9.</b>
+                        
+                        Wybór modelu
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.1.10" data-path="Predykcja/regularyzacja.html">
+            
+                
+                    <a href="../Predykcja/regularyzacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.10.</b>
+                        
+                        Regularyzacja
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Analiza/eksploracja.html">
+            
+                
+                    <a href="../Analiza/eksploracja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Eksploracja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+            
+                
+                    <a href="../Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.1.</b>
+                        
+                        Jak rozpoznać rodzaj zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="Analiza/jak_badac_rozklad_jednej_zmiennej.html">
+            
+                
+                    <a href="../Analiza/jak_badac_rozklad_jednej_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.2.</b>
+                        
+                        Jak badać rozkład jednej zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
+            
+                
+                    <a href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.3.</b>
+                        
+                        Jak badać rozkład dwóch zmiennych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="Analiza/beznadzoru/mds.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.</b>
+                        
+                        Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.4.1" data-path="Analiza/beznadzoru/mds_metric.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds_metric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.1.</b>
+                        
+                        Jak wykonać skalowanie metryczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4.2" data-path="Analiza/beznadzoru/mds_non_metric.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds_non_metric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.2.</b>
+                        
+                        Jak wykonać skalowanie nie-metryczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4.3" data-path="Analiza/beznadzoru/mds_classic.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds_classic.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.3.</b>
+                        
+                        Jak wykonać skalowanie klasyczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4.4" data-path="Analiza/beznadzoru/mds_pca.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds_pca.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.4.</b>
+                        
+                        Jak wykorzystać metodę składowych głównych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5" data-path="Analiza/beznadzoru/skupiska.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/skupiska.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.</b>
+                        
+                        Jak znaleźć grupy w danych?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.5.1" data-path="Analiza/beznadzoru/dist.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/dist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.1.</b>
+                        
+                        Jak wyznaczać odległosć pomiędzy obserwacjami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.2" data-path="Analiza/beznadzoru/kmeans.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/kmeans.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.2.</b>
+                        
+                        Jak szukać partycji w oparciu o metodę k-średnich?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.3" data-path="Analiza/beznadzoru/pam.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/pam.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.3.</b>
+                        
+                        Jak szukać partycji w oparciu o metodę k-medoidów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.4" data-path="Analiza/beznadzoru/agnes.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/agnes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.4.</b>
+                        
+                        Jak wykonać analizę hierarchiczną?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.5" data-path="Analiza/beznadzoru/mclust.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mclust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.5.</b>
+                        
+                        Jak szukać partycji w oparciu o mieszaniny rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.6" data-path="Analiza/beznadzoru/em.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/em.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.6.</b>
+                        
+                        Jak działa algorytm EM?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.6" data-path="Analiza/beznadzoru/rules.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/rules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.6.</b>
+                        
+                        Jak szukać reguł asocjacyjnych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Analiza/weryfikacja.html">
+            
+                
+                    <a href="../Analiza/weryfikacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Weryfikacja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="Analiza/Weryfikacja/wprowadzenie.html">
+            
+                
+                    <a href="../Analiza/Weryfikacja/wprowadzenie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.</b>
+                        
+                        Wprowadzenie do testowania
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
+            
+                
+                    <a href="../Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.2.</b>
+                        
+                        Jak badać właściwości jednej zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.3" data-path="Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
+            
+                
+                    <a href="../Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.3.</b>
+                        
+                        Jak badać zależności pomiędzy parą zmiennych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="Wizualizacja/wizualizacja.html">
+            
+                
+                    <a href="../Wizualizacja/wizualizacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Wizualizacja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.4.1" data-path="Wizualizacja/jak_tworzyc_wykresy_ggplot2.html">
+            
+                
+                    <a href="../Wizualizacja/jak_tworzyc_wykresy_ggplot2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.</b>
+                        
+                        Jak tworzyć wykresy z pakietem ggplot2?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.4.1.1" data-path="Wizualizacja/ggplot2/01_pierwszy_wykres.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/01_pierwszy_wykres.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.1.</b>
+                        
+                        Jak zrobić pierwszy wykres?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.2" data-path="Wizualizacja/ggplot2/02_mapowania.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/02_mapowania.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.2.</b>
+                        
+                        Jak określać mapowania?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.3" data-path="Wizualizacja/ggplot2/03_geometrie.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/03_geometrie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.3.</b>
+                        
+                        Jak określać geometrię?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.4" data-path="Wizualizacja/ggplot2/04_warstwy.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/04_warstwy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.4.</b>
+                        
+                        Jak składać wykres z kilku warstw?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.5" data-path="Wizualizacja/ggplot2/05_statystyki.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/05_statystyki.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.5.</b>
+                        
+                        Jak określać statystyki?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.6" data-path="Wizualizacja/ggplot2/06_panele.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/06_panele.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.6.</b>
+                        
+                        Jak tworzyć panele?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.7" data-path="Wizualizacja/ggplot2/07_skale.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/07_skale.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.7.</b>
+                        
+                        Jak modyfikować skale?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.8" data-path="Wizualizacja/ggplot2/08_wspolrzedne.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/08_wspolrzedne.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.8.</b>
+                        
+                        Jak modyfikować układ współrzędnych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.9" data-path="Wizualizacja/ggplot2/09_styl.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/09_styl.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.9.</b>
+                        
+                        Jak modyfikować styl wykresu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.2" data-path="Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
+            
+                
+                    <a href="../Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.2.</b>
+                        
+                        Jak tworzyć interaktywne wykresy?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="references.html">
+            
+                
+                    <a href="../references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Bibliografia
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Przewodnik po pakiecie R v. 4.0</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="jak-regularyzowa&#x107;-modele-regresyjne">Jak regularyzowa&#x107; modele regresyjne?</h1>
+<p>Jak widzieli&#x15B;my w rozdziale <a href="http://pbiecek.github.io/Przewodnik/Predykcja/wybor_modelu.html" target="_blank">Wyb&#xF3;r modelu</a>, gdy liczba zmiennych w modelu jest du&#x17C;a (p &gt;&gt; n) nale&#x17C;y spodziewa&#x107; si&#x119; przeuczenia modelu. </p>
+<p>Przeuczenie w terminologii statystycznej oznacza du&#x17C;&#x105; wariancj&#x119; estymatora przy ma&#x142;ym b&#x142;&#x119;dzie na zbiorze ucz&#x105;cym.</p>
+<p>Co zrobi&#x107; by si&#x119; nie przeucza&#x107;? Standardowo dla modeli regresyjnych stosuje si&#x119; trzy strategie:</p>
+<ol>
+<li>Wyb&#xF3;r zmiennych (subset selection), np. z u&#x17C;yciem kryteri&#xF3;w AIC/BIC/jednowymiarowe filtrowanie. </li>
+<li>Stosowanie regularyzacji opartej o kar&#x119; za wielko&#x15B;&#x107; wsp&#xF3;&#x142;czynnik&#xF3;w w modelu,</li>
+<li>Redukcja wymiaru zmiennych predykcyjnych przez zastosowanie techniki PCA/PCR.</li>
+</ol>
+<p>Poni&#x17C;ej om&#xF3;wimy te strategie jedna po drugiej.</p>
+<h2 id="wyb&#xF3;r-podzbioru-zmiennych">Wyb&#xF3;r podzbioru zmiennych</h2>
+<p>Jednym ze sposob&#xF3;w zmniejszenia wariancji modelu regresyjnego jest budowanie go na mniejszej liczbie zmiennych.</p>
+<p>Jak wyznaczy&#x107; t&#x119; mniejsz&#x105; liczb&#x119; zmiennych?</p>
+<ol>
+<li>Mo&#x17C;na wybra&#x107; model o najni&#x17C;szej warto&#x15B;ci kryterium AIC</li>
+<li>Mo&#x17C;na wybra&#x107; model o najni&#x17C;szej warto&#x15B;ci kryterium BIC</li>
+<li>Mo&#x17C;na wybra&#x107; model tylko ze zmiennymi o zale&#x17C;no&#x15B;ci o istotno&#x15B;ci ni&#x17C;szej ni&#x17C; $\alpha$.</li>
+</ol>
+<pre><code class="lang-r">load(url(<span class="hljs-string">&quot;https://github.com/pbiecek/StatystykaII/raw/master/MIMUW_2016/materialy/brca.rda&quot;</span>))
+brcaSmall &lt;- brca[,c(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>:<span class="hljs-number">10</span>, <span class="hljs-number">92</span>:<span class="hljs-number">97</span>)]
+</code></pre>
+<p>Pe&#x142;ny przegl&#x105;d modeli. Dla ka&#x17C;dego modelu wyznaczamy AIC i BIC.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(<span class="hljs-string">&quot;e1071&quot;</span>)
+<span class="hljs-keyword">library</span>(<span class="hljs-string">&quot;ggplot2&quot;</span>)
+comb &lt;- bincombinations(ncol(brcaSmall)-<span class="hljs-number">1</span>)[-<span class="hljs-number">1</span>,]
+crit &lt;- matrix(<span class="hljs-number">0</span>, nrow(comb), <span class="hljs-number">3</span>)
+
+<span class="hljs-keyword">for</span> (i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:nrow(comb)) {
+  vnames &lt;- colnames(brcaSmall)[which(comb[i,]==<span class="hljs-number">1</span>)]
+  form &lt;- paste0(<span class="hljs-string">&quot;outcome~&quot;</span>, paste0(vnames, collapse=<span class="hljs-string">&quot;+&quot;</span>))
+  model &lt;- glm(as.formula(form), data=brcaSmall, family=<span class="hljs-string">&quot;binomial&quot;</span>)
+  crit[i,<span class="hljs-number">1</span>] &lt;- AIC(model)
+  crit[i,<span class="hljs-number">2</span>] &lt;- BIC(model)
+  crit[i,<span class="hljs-number">3</span>] &lt;- sum(comb[i,]==<span class="hljs-number">1</span>)
+}
+colnames(crit) &lt;- c(<span class="hljs-string">&quot;AIC&quot;</span>, <span class="hljs-string">&quot;BIC&quot;</span>,<span class="hljs-string">&quot;p&quot;</span>)
+crit &lt;- data.frame(crit)
+</code></pre>
+<p>Por&#xF3;wnujemy wszystkie modele z modelem wybranym przez funkcj&#x119; <code>step()</code>. </p>
+<p>Czerwona kropka to model optymalny, zielona to model wybrany przez funkcj&#x119; <code>step()</code>.</p>
+<pre><code class="lang-r">bestStepBIC &lt;- step(glm(outcome~., data=brcaSmall, family=<span class="hljs-string">&quot;binomial&quot;</span>), trace = <span class="hljs-number">0</span>, k = log(nrow(brcaSmall)))
+
+ggplot(crit, aes(p,BIC)) + 
+  geom_point() +
+  geom_point(data=crit[which.min(crit$BIC),], color=<span class="hljs-string">&quot;red&quot;</span>, size=<span class="hljs-number">5</span>) +
+  geom_point(data=crit[crit$BIC == BIC(bestStepBIC) &amp;
+                         crit$p == length(bestStepBIC$coefficients)-<span class="hljs-number">1</span>,], color=<span class="hljs-string">&quot;green3&quot;</span>, size=<span class="hljs-number">3</span>) + scale_x_continuous(breaks = <span class="hljs-number">1</span>:<span class="hljs-number">12</span>) + ggtitle(<span class="hljs-string">&quot;Najlepszy model wzgl&#x119;dem BIC&quot;</span>)
+</code></pre>
+<p><img src="figure/obic-1.png" alt="plot of chunk obic"></p>
+<p>Por&#xF3;wnujemy wszystkie modele z modelem wybranym przez funkcj&#x119; <code>step()</code>.</p>
+<p>Czerwona kropka to model optymalny, zielona to model wybrany przez funkcj&#x119; <code>step()</code>.</p>
+<pre><code class="lang-r">tmpFun = <span class="hljs-keyword">function</span>(fit, aic) {
+  list(size = length(fit$coefficients), aic = AIC(fit))
+}
+
+bestStepAIC &lt;- step(glm(outcome~., data=brcaSmall, family=<span class="hljs-string">&quot;binomial&quot;</span>),keep=tmpFun,  trace = <span class="hljs-number">0</span>)
+
+pathDF &lt;- data.frame(size = unlist(bestStepAIC$keep[<span class="hljs-number">1</span>,]),
+            aic = unlist(bestStepAIC$keep[<span class="hljs-number">2</span>,]))
+
+ggplot(crit, aes(p,AIC)) + 
+  geom_point() +
+  geom_point(data=crit[which.min(crit$AIC),], color=<span class="hljs-string">&quot;red&quot;</span>, size=<span class="hljs-number">5</span>) +
+  geom_point(data=crit[crit$AIC == AIC(bestStepAIC) &amp;
+                         crit$p == length(bestStepAIC$coefficients)-<span class="hljs-number">1</span>,], color=<span class="hljs-string">&quot;green3&quot;</span>, size=<span class="hljs-number">3</span>) + 
+    geom_line(data=pathDF, aes(size-<span class="hljs-number">1</span>, aic), color=<span class="hljs-string">&quot;blue&quot;</span>) + 
+  scale_x_continuous(breaks = <span class="hljs-number">1</span>:<span class="hljs-number">12</span>) + ggtitle(<span class="hljs-string">&quot;Najlepszy model wzgl&#x119;dem AIC&quot;</span>)
+</code></pre>
+<p><img src="figure/oaic-1.png" alt="plot of chunk oaic"></p>
+<h2 id="regularyzacja">Regularyzacja</h2>
+<p>Innym sposobem ograniczenia wariancji modelu regresyjnego jest ograniczenie warto&#x15B;ci wsp&#xF3;&#x142;czynnik&#xF3;w tego modelu.</p>
+<p>Ogranicza&#x107; mo&#x17C;na norm&#x119; $L_2$ wektora wsp&#xF3;&#x142;czynnik&#xF3;w (rozwi&#x105;zanie znane pod nazw&#x105; regresja grzbietowa) lub norm&#x119; $L_1$ wektora wsp&#xF3;&#x142;czynnik&#xF3;w (rozwi&#x105;zanie znane pod nazw&#x105; LASSO) lub mieszanin&#x119; tych norm (rozwi&#x105;zanie znane pod nazw&#x105; sieci elastycznych).</p>
+<h3 id="lasso">Lasso</h3>
+<p>Dla normy $L_1$ wyznacza si&#x119; estymator $\hat\beta$ ograniczony przez warto&#x15B;&#x107; $s$</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>&#x3B2;</mi><mo>^</mo></mover><mrow><mi>l</mi><mi>a</mi><mi>s</mi><mi>s</mi><mi>o</mi></mrow></msub><mo>=</mo><msub><mrow><mi>arg</mi><mi>min</mi></mrow><mrow><mi mathvariant="normal">&#x2223;</mi><mi mathvariant="normal">&#x2223;</mi><mi>&#x3B2;</mi><mi mathvariant="normal">&#x2223;</mi><msub><mi mathvariant="normal">&#x2223;</mi><mn>1</mn></msub><mo>&lt;</mo><mi>s</mi></mrow></msub><mi>l</mi><mo>(</mo><mi>y</mi><mo separator="true">,</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo>+</mo><mi>X</mi><mi>&#x3B2;</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">
+\hat\beta_{lasso} = {\arg\min}_{||\beta||_1 &lt; s} l(y, \beta_0 + X \beta)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9578799999999998em;"></span><span class="strut bottom" style="height:1.3773199999999999em;vertical-align:-0.41944em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span></span><span style="top:-0.26343999999999995em;margin-left:0.16668em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>^</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">a</span><span class="mord mathit">s</span><span class="mord mathit">s</span><span class="mord mathit">o</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mop">ar<span style="margin-right:0.01389em;">g</span></span><span class="mop">min</span></span><span class="vlist"><span style="top:0.24444em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">&#x2223;</span><span class="mord mathrm">&#x2223;</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathrm">&#x2223;</span><span class="vlist"><span style="top:0.15em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">&lt;</span><span class="mord mathit">s</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mclose">)</span></span></span></span></span></p>
+<p>R&#xF3;wnowa&#x17C;nie mo&#x17C;na ten estymator wyznaczy&#x107; przez minimalizacj&#x119; funkcji log wiarogodno&#x15B;ci z dodan&#x105; kar&#x105; za wielko&#x15B;&#x107; wsp&#xF3;&#x142;czynnik&#xF3;w.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>&#x3B2;</mi><mo>^</mo></mover><mrow><mi>l</mi><mi>a</mi><mi>s</mi><mi>s</mi><mi>o</mi></mrow></msub><mo>=</mo><msub><mrow><mi>arg</mi><mi>min</mi></mrow><mrow><mo>(</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo separator="true">,</mo><mi>&#x3B2;</mi><mo>)</mo><mo>&#x2208;</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></msub><mi>l</mi><mo>(</mo><mi>y</mi><mo separator="true">,</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo>+</mo><mi>X</mi><mi>&#x3B2;</mi><mo>)</mo><mo>+</mo><mi>&#x3B1;</mi><mi mathvariant="normal">&#x2223;</mi><mi mathvariant="normal">&#x2223;</mi><mi>&#x3B2;</mi><mi mathvariant="normal">&#x2223;</mi><msub><mi mathvariant="normal">&#x2223;</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">
+\hat\beta_{lasso} = {\arg \min}_{(\beta_0, \beta) \in \mathbb{R}^{p+1}} l(y, \beta_0 + X \beta) + \alpha||\beta||_1
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9578799999999998em;"></span><span class="strut bottom" style="height:1.3773199999999999em;vertical-align:-0.41944em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span></span><span style="top:-0.26343999999999995em;margin-left:0.16668em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>^</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">a</span><span class="mord mathit">s</span><span class="mord mathit">s</span><span class="mord mathit">o</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mop">ar<span style="margin-right:0.01389em;">g</span></span><span class="mop">min</span></span><span class="vlist"><span style="top:0.24444em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.07142857142857144em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mclose">)</span><span class="mrel">&#x2208;</span><span class=""><span class="mord scriptstyle cramped"><span class="mord mathbb">R</span></span><span class="vlist"><span style="top:-0.30289em;margin-right:0.07142857142857144em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord scriptscriptstyle cramped"><span class="mord mathit">p</span><span class="mbin">+</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.0037em;">&#x3B1;</span><span class="mord mathrm">&#x2223;</span><span class="mord mathrm">&#x2223;</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathrm">&#x2223;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></p>
+<p>Pomi&#x119;dzy parametrami $\alpha$ i $s$ istnieje zale&#x17C;no&#x15B;&#x107; 1-1.</p>
+<p>Uwaga 1:</p>
+<p>Wsp&#xF3;&#x142;czynniki $\hat\beta_{lasso}$ mog&#x105; przyjmowa&#x107; warto&#x15B;&#x107; 0.</p>
+<h3 id="regresja-grzbietowa">Regresja grzbietowa</h3>
+<p>Dla regresji grzbietowej wz&#xF3;r na estymator wsp&#xF3;&#x142;czynnik&#xF3;w ma posta&#x107;</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>&#x3B2;</mi><mo>^</mo></mover><mrow><mi>r</mi><mi>i</mi><mi>d</mi><mi>g</mi><mi>e</mi></mrow></msub><mo>=</mo><msub><mrow><mi>arg</mi><mi>min</mi></mrow><mrow><mo>(</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo separator="true">,</mo><mi>&#x3B2;</mi><mo>)</mo><mo>&#x2208;</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></msub><mi>l</mi><mo>(</mo><mi>y</mi><mo separator="true">,</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo>+</mo><mi>X</mi><mi>&#x3B2;</mi><mo>)</mo><mo>+</mo><mi>&#x3B1;</mi><mi mathvariant="normal">&#x2223;</mi><mi mathvariant="normal">&#x2223;</mi><mi>&#x3B2;</mi><mi mathvariant="normal">&#x2223;</mi><msub><mi mathvariant="normal">&#x2223;</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">
+\hat\beta_{ridge} = {\arg \min}_{(\beta_0, \beta) \in \mathbb{R}^{p+1}} l(y, \beta_0 + X \beta) + \alpha||\beta||_2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9578799999999998em;"></span><span class="strut bottom" style="height:1.3773199999999999em;vertical-align:-0.41944em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span></span><span style="top:-0.26343999999999995em;margin-left:0.16668em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>^</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">e</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mop">ar<span style="margin-right:0.01389em;">g</span></span><span class="mop">min</span></span><span class="vlist"><span style="top:0.24444em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.07142857142857144em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mclose">)</span><span class="mrel">&#x2208;</span><span class=""><span class="mord scriptstyle cramped"><span class="mord mathbb">R</span></span><span class="vlist"><span style="top:-0.30289em;margin-right:0.07142857142857144em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord scriptscriptstyle cramped"><span class="mord mathit">p</span><span class="mbin">+</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.0037em;">&#x3B1;</span><span class="mord mathrm">&#x2223;</span><span class="mord mathrm">&#x2223;</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathrm">&#x2223;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>
+W modelu gaussowskim funkcja log-wiarogodno&#x15B;ci jest proporcjonalna do RSS, mamy wi&#x119;c</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>&#x3B2;</mi><mo>^</mo></mover><mrow><mi>r</mi><mi>i</mi><mi>d</mi><mi>g</mi><mi>e</mi></mrow></msub><mo>=</mo><msub><mrow><mi>arg</mi><mi>min</mi></mrow><mrow><mo>(</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo separator="true">,</mo><mi>&#x3B2;</mi><mo>)</mo><mo>&#x2208;</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></msub><mo>(</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo>+</mo><mi>X</mi><mi>&#x3B2;</mi><mo>&#x2212;</mo><mi>y</mi><msup><mo>)</mo><mi>T</mi></msup><mo>(</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo>+</mo><mi>X</mi><mi>&#x3B2;</mi><mo>&#x2212;</mo><mi>y</mi><mo>)</mo><mo>+</mo><mi>&#x3BB;</mi><msup><mi>&#x3B2;</mi><mi>T</mi></msup><mi>&#x3B2;</mi></mrow><annotation encoding="application/x-tex">
+\hat\beta_{ridge} = {\arg \min}_{(\beta_0, \beta) \in \mathbb{R}^{p+1}} (\beta_0 + X \beta - y)^T(\beta_0 + X \beta - y) + \lambda \beta^T\beta
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9578799999999998em;"></span><span class="strut bottom" style="height:1.3773199999999999em;vertical-align:-0.41944em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span></span><span style="top:-0.26343999999999995em;margin-left:0.16668em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>^</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">e</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mop">ar<span style="margin-right:0.01389em;">g</span></span><span class="mop">min</span></span><span class="vlist"><span style="top:0.24444em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.07142857142857144em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mclose">)</span><span class="mrel">&#x2208;</span><span class=""><span class="mord scriptstyle cramped"><span class="mord mathbb">R</span></span><span class="vlist"><span style="top:-0.30289em;margin-right:0.07142857142857144em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord scriptscriptstyle cramped"><span class="mord mathit">p</span><span class="mbin">+</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mbin">&#x2212;</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mbin">&#x2212;</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathit">&#x3BB;</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span></span></span></span></span></p>
+<p>Ten estymator mo&#x17C;na wyznaczy&#x107; w spos&#xF3;b analityczny
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>&#x3B2;</mi><mo>^</mo></mover><mrow><mi>r</mi><mi>i</mi><mi>d</mi><mi>g</mi><mi>e</mi></mrow></msub><mo>=</mo><msup><mrow><mo fence="true">(</mo><msup><mi>X</mi><mi>T</mi></msup><mi>X</mi><mo>+</mo><mi>&#x3BB;</mi><mi>I</mi><mo fence="true">)</mo></mrow><mrow><mo>&#x2212;</mo><mn>1</mn></mrow></msup><msup><mi>X</mi><mi>T</mi></msup><mi>y</mi></mrow><annotation encoding="application/x-tex">
+\hat\beta_{ridge} = \left(X^TX + \lambda I\right)^{-1} X^T y
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9578799999999998em;"></span><span class="strut bottom" style="height:1.3078899999999998em;vertical-align:-0.35001em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span></span><span style="top:-0.26343999999999995em;margin-left:0.16668em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="accent-body"><span>^</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">i</span><span class="mord mathit">d</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">e</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mrel">=</span><span class="minner"><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mbin">+</span><span class="mord mathit">&#x3BB;</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size1">)</span></span></span><span class="vlist"><span style="top:-0.5053309999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">&#x2212;</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span></span></p>
+<h3 id="elastic-net">Elastic net</h3>
+<p>Dla metody elastic net, kara ma dwie sk&#x142;adowe oparte o metryk&#x119; $L_1$ i $L_2$.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi>arg</mi><mi>min</mi></mrow><mrow><mo>(</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo separator="true">,</mo><mi>&#x3B2;</mi><mo>)</mo><mo>&#x2208;</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi>p</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></msub><mi>l</mi><mo>(</mo><mi>y</mi><mo separator="true">,</mo><msub><mi>&#x3B2;</mi><mn>0</mn></msub><mo>+</mo><mi>X</mi><mi>&#x3B2;</mi><mo>)</mo><mo>+</mo><mi>&#x3BB;</mi><mrow><mo fence="true">[</mo><mo>(</mo><mn>1</mn><mo>&#x2212;</mo><mi>&#x3B1;</mi><mo>)</mo><mi mathvariant="normal">&#x2223;</mi><mi mathvariant="normal">&#x2223;</mi><mi>&#x3B2;</mi><mi mathvariant="normal">&#x2223;</mi><msubsup><mi mathvariant="normal">&#x2223;</mi><mn>2</mn><mn>2</mn></msubsup><mi mathvariant="normal">/</mi><mn>2</mn><mo>+</mo><mi>&#x3B1;</mi><mi mathvariant="normal">&#x2223;</mi><mi mathvariant="normal">&#x2223;</mi><mi>&#x3B2;</mi><mi mathvariant="normal">&#x2223;</mi><msub><mi mathvariant="normal">&#x2223;</mi><mn>1</mn></msub><mo fence="true">]</mo></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+{\arg \min}_{(\beta_0, \beta) \in \mathbb{R}^{p+1}} l(y, \beta_0 + X \beta) + \lambda \left[ (1-\alpha)||\beta||_2^2/2 + \alpha||\beta||_1\right].
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8641079999999999em;"></span><span class="strut bottom" style="height:1.283548em;vertical-align:-0.41944em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mop">ar<span style="margin-right:0.01389em;">g</span></span><span class="mop">min</span></span><span class="vlist"><span style="top:0.24444em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.07142857142857144em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mclose">)</span><span class="mrel">&#x2208;</span><span class=""><span class="mord scriptstyle cramped"><span class="mord mathbb">R</span></span><span class="vlist"><span style="top:-0.30289em;margin-right:0.07142857142857144em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord scriptscriptstyle cramped"><span class="mord mathit">p</span><span class="mbin">+</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathit">&#x3BB;</span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size1">[</span></span><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mbin">&#x2212;</span><span class="mord mathit" style="margin-right:0.0037em;">&#x3B1;</span><span class="mclose">)</span><span class="mord mathrm">&#x2223;</span><span class="mord mathrm">&#x2223;</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathrm">&#x2223;</span><span class="vlist"><span style="top:0.247em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mord mathrm">/</span><span class="mord mathrm">2</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.0037em;">&#x3B1;</span><span class="mord mathrm">&#x2223;</span><span class="mord mathrm">&#x2223;</span><span class="mord mathit" style="margin-right:0.05278em;">&#x3B2;</span><span class="mord mathrm">&#x2223;</span><span class="mord"><span class="mord mathrm">&#x2223;</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size1">]</span></span></span><span class="mord mathrm">.</span></span></span></span></span></p>
+<p>Uwaga 1:</p>
+<p>Aby wsp&#xF3;&#x142;czynniki $\beta$ mo&#x17C;na by&#x142;o wsp&#xF3;lnie ogranicza&#x107;, trzeba wcze&#x15B;niej standaryzowa&#x107; macierz $X$.</p>
+<h3 id="jak-to-zrobi&#x107;-w-r">Jak to zrobi&#x107; w R?</h3>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(<span class="hljs-string">&quot;glmnet&quot;</span>)
+X &lt;- as.matrix(brcaSmall[,-<span class="hljs-number">1</span>])
+X &lt;- scale(X)
+
+model &lt;- glmnet(x = X, y = brcaSmall$outcome == <span class="hljs-string">&quot;death in 3 years&quot;</span>, alpha=<span class="hljs-number">0</span>, family=<span class="hljs-string">&quot;binomial&quot;</span>)
+plot(model, xvar = <span class="hljs-string">&quot;lambda&quot;</span>, label = <span class="hljs-literal">TRUE</span>)
+</code></pre>
+<p><img src="figure/glmnet-1.png" alt="plot of chunk glmnet"></p>
+<pre><code class="lang-r">model &lt;- glmnet(x = X, y = brcaSmall$outcome == <span class="hljs-string">&quot;death in 3 years&quot;</span>, alpha=<span class="hljs-number">1</span>, family=<span class="hljs-string">&quot;binomial&quot;</span>)
+plot(model, xvar = <span class="hljs-string">&quot;lambda&quot;</span>, label = <span class="hljs-literal">TRUE</span>)
+</code></pre>
+<p><img src="figure/glmnet-2.png" alt="plot of chunk glmnet"></p>
+<pre><code class="lang-r">cvfit = cv.glmnet(x = X, y = brcaSmall$outcome == <span class="hljs-string">&quot;death in 3 years&quot;</span>, alpha=<span class="hljs-number">1</span>, family=<span class="hljs-string">&quot;binomial&quot;</span>)
+plot(cvfit)
+</code></pre>
+<p><img src="figure/glmnet-3.png" alt="plot of chunk glmnet"></p>
+<pre><code class="lang-r">coef(cvfit, s = <span class="hljs-string">&quot;lambda.min&quot;</span>)
+</code></pre>
+<pre><code>## 13 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+##                       1
+## (Intercept) -2.35487481
+## ADAM29      -0.34967342
+## ALKBH1      -0.52442702
+## CLIC6       -0.51475641
+## CTSO        -0.19908113
+## EIF2B3       0.10576319
+## ENTPD1      -0.61199370
+## ICAM3       -0.34654417
+## LRP2         0.01954816
+## FCGR1B       .         
+## ABI3BP       .         
+## LOC284837    0.18055607
+## EMR3        -0.07480810
+</code></pre><p>Wi&#x119;cej instrukcji na stronie <a href="https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html" target="_blank">https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html</a></p>
+<h2 id="pcr--principal-component-regression">PCR - Principal component regression</h2>
+<p>Metoda PCR to z&#x142;o&#x17C;enie regresji i metody PCA.</p>
+<p>W pierwszym kroku redukuje si&#x119; wymiar - liczb&#x119; zmiennych przez wykonanie PCA (Principal component analysis). </p>
+<p>Nast&#x119;pnie buduje si&#x119; model regresyjny na nowych zmiennych.</p>
+<p>W programie R mo&#x17C;na t&#x119; regresj&#x119; przeprowadzi&#x107; funkcj&#x105; <code>pcr{pls}</code>.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Predykcja/wybor_modelu.html" class="navigation navigation-prev " aria-label="Previous page: Wybór modelu"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Analiza/eksploracja.html" class="navigation navigation-next " aria-label="Next page: Eksploracja"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
