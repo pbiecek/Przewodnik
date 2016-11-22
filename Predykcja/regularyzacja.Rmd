@@ -22,16 +22,14 @@ Jak wyznaczyć tę mniejszą liczbę zmiennych?
 2. Można wybrać model o najniższej wartości kryterium BIC
 3. Można wybrać model tylko ze zmiennymi o zależności o istotności niższej niż $\alpha$.
 
-
-```r
+```{r}
 load(url("https://github.com/pbiecek/StatystykaII/raw/master/MIMUW_2016/materialy/brca.rda"))
 brcaSmall <- brca[,c(1, 5:10, 92:97)]
 ```
 
 Pełny przegląd modeli. Dla każdego modelu wyznaczamy AIC i BIC.
 
-
-```r
+```{r, message=FALSE, warning=FALSE}
 library("e1071")
 library("ggplot2")
 comb <- bincombinations(ncol(brcaSmall)-1)[-1,]
@@ -53,8 +51,7 @@ Porównujemy wszystkie modele z modelem wybranym przez funkcję `step()`.
 
 Czerwona kropka to model optymalny, zielona to model wybrany przez funkcję `step()`.
 
-
-```r
+```{r obic, message=FALSE, warning=FALSE}
 bestStepBIC <- step(glm(outcome~., data=brcaSmall, family="binomial"), trace = 0, k = log(nrow(brcaSmall)))
 
 ggplot(crit, aes(p,BIC)) + 
@@ -64,14 +61,11 @@ ggplot(crit, aes(p,BIC)) +
                          crit$p == length(bestStepBIC$coefficients)-1,], color="green3", size=3) + scale_x_continuous(breaks = 1:12) + ggtitle("Najlepszy model względem BIC")
 ```
 
-![plot of chunk obic](figure/obic-1.png)
-
 Porównujemy wszystkie modele z modelem wybranym przez funkcję `step()`.
 
 Czerwona kropka to model optymalny, zielona to model wybrany przez funkcję `step()`.
 
-
-```r
+```{r oaic, message=FALSE, warning=FALSE}
 tmpFun = function(fit, aic) {
   list(size = length(fit$coefficients), aic = AIC(fit))
 }
@@ -88,9 +82,8 @@ ggplot(crit, aes(p,AIC)) +
                          crit$p == length(bestStepAIC$coefficients)-1,], color="green3", size=3) + 
     geom_line(data=pathDF, aes(size-1, aic), color="blue") + 
   scale_x_continuous(breaks = 1:12) + ggtitle("Najlepszy model względem AIC")
-```
 
-![plot of chunk oaic](figure/oaic-1.png)
+```
 
 ## Regularyzacja
 
@@ -153,52 +146,21 @@ Aby współczynniki $\beta$ można było wspólnie ograniczać, trzeba wcześnie
 ### Jak to zrobić w R?
 
 
-
-```r
+```{r glmnet}
 library("glmnet")
 X <- as.matrix(brcaSmall[,-1])
 X <- scale(X)
 
 model <- glmnet(x = X, y = brcaSmall$outcome == "death in 3 years", alpha=0, family="binomial")
 plot(model, xvar = "lambda", label = TRUE)
-```
 
-![plot of chunk glmnet](figure/glmnet-1.png)
-
-```r
 model <- glmnet(x = X, y = brcaSmall$outcome == "death in 3 years", alpha=1, family="binomial")
 plot(model, xvar = "lambda", label = TRUE)
-```
 
-![plot of chunk glmnet](figure/glmnet-2.png)
-
-```r
 cvfit = cv.glmnet(x = X, y = brcaSmall$outcome == "death in 3 years", alpha=1, family="binomial")
 plot(cvfit)
-```
 
-![plot of chunk glmnet](figure/glmnet-3.png)
-
-```r
 coef(cvfit, s = "lambda.min")
-```
-
-```
-## 13 x 1 sparse Matrix of class "dgCMatrix"
-##                       1
-## (Intercept) -2.35487481
-## ADAM29      -0.34967342
-## ALKBH1      -0.52442702
-## CLIC6       -0.51475641
-## CTSO        -0.19908113
-## EIF2B3       0.10576319
-## ENTPD1      -0.61199370
-## ICAM3       -0.34654417
-## LRP2         0.01954816
-## FCGR1B       .         
-## ABI3BP       .         
-## LOC284837    0.18055607
-## EMR3        -0.07480810
 ```
 
 Więcej instrukcji na stronie https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html
