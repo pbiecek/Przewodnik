@@ -75,6 +75,7 @@
        * [Komitety klasyfikatorów](Predykcja/komitety.md)
        * [ROC, AUC i inne](Predykcja/ROC.md)
        * [Wybór modelu](Predykcja/wybor_modelu.md)
+       * [Regularyzacja](Predykcja/regularyzacja.md)
    * [Eksploracja](Analiza/eksploracja.md)
        * [Jak rozpoznać rodzaj zmiennej?](Analiza/jak_rozpoznac_rodzaj_zmiennej.md)
        * [Jak badać rozkład jednej zmiennej?](Analiza/jak_badac_rozklad_jednej_zmiennej.md)
