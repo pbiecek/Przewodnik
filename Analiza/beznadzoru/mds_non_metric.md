@@ -18,14 +18,14 @@ Ogólny schemat algorytmu skalowania nie-metrycznego jest następujący.
 
 1. Wyznacz początkowa konfigurację (może być losowa, lub oparta o skalowanie klasyczne),
 2. Wyznacz macierz odległości pomiędzy obiektami w bieżącej konfiguracji $$\delta{i,j} = ||x_i - x_j||$$,
-3. Wykonaj regresję porządkową odległości $$\delta_{ij}$$ na oryginalne odległości $$d_{ij}$$,
+3. Wykonaj regresję odległości $$\delta_{ij}$$ na oryginalne odległości $$d_{ij}$$,
 $$
 d_{ij} = f( \delta_{ij} ).
 $$
-Zamiast przeprowadzać regresję porządkową (ang. *isotonic regression*) można też estymować $$f()$$, na bazie tej regresji wyznacz $$\hat d_{ij}$$,
+Zamiast przeprowadzać regresję monotoniczną (ang. *isotonic regression*) można też estymować $$f()$$ parametrycznie, na bazie tej regresji wyznacz $$\hat d_{ij}$$,
 4. Wyznacz bieżącą wartość funkcji $$stress$$
 $$
-stress = \sqrt{ \frac{ \sum_{i,j} (d_{ij} - \hat\delta_{ij})^2 }{ \sum_{i,j} d^2_{i,j} } },
+stress = \sqrt{ \frac{ \sum_{i,j} (\hat f(d_{ij}) - \delta_{ij})^2 }{ \sum_{i,j} d^2_{i,j} } },
 $$
 5. Na bazie gradientu funkcji $$stress$$ uaktualnij współrzędne reprezentacji $$x_i$$. 
 
