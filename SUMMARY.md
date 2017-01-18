@@ -30,7 +30,7 @@
        * [Jak wyznaczać agregaty w grupach?](Programowanie/groupby.md)
        * [Jak czyścić dane?](Programowanie/tidyr.md)
        * [Zadania](Programowanie/zadaniaDplyr.md)
-   * [Jak żyć w tidyverse?](Programowanie/tidyverse/jak_zyc.md)
+   * [Jak żyć z tidyverse?](Programowanie/tidyverse/jak_zyc.md)
        * [Jak pracować z datami?](Programowanie/tidyverse/lubridate.md)
        * [Jak pracować z czynnikami?](Programowanie/tidyverse/forcats.md)
    * [Jak budować pakiety?](Programowanie/pakiety/po_co.md)

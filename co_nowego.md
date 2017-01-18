@@ -1,5 +1,13 @@
 # Co nowego zostało ostatnio dodane?
 
+* 18 stycznia 2017
+
+Dodano rozdział 3.3 ,,Jak pracować z czynnikami - forcats?''
+
+* 17 stycznia 2017
+
+Dodano rozdział 3.2 ,,Jak pracować z datami - lubridate?''
+
 * 30 września 2016
 
 Dodano rozdział 2.2 ,,Jak przygotować miejsce pracy?''
