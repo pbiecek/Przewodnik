@@ -31,7 +31,7 @@ Funkcja `fct_infreq()` zmienia kolejność by odpowiadała częstości występow
 ```
 
 Po co zmieniać kolejność czynników? 
-Najczęściej po to by wpłynąc na działanie funkcji `table()`, która pokazuje częstoścy występowania poziomów zmiennej lub by wpłynąć na kolejność występowania poziomów na wykresach.
+Najczęściej po to by wpłynąć na działanie funkcji `table()`, która pokazuje częstości występowania poziomów zmiennej lub by wpłynąć na kolejność występowania poziomów na wykresach.
 
 ```{r barploty}
 barplot(table(f))
@@ -41,7 +41,7 @@ barplot(table(f3))
 
 ### Kolejność poziomów c.d.
 
-Kolejne przykłądy przeprowadzimy na kolumnie `Marka` ze zbioru danych `auta2012`.
+Kolejne przykłady przeprowadzimy na kolumnie `Marka` ze zbioru danych `auta2012`.
 
 ```{r}
 library(Przewodnik)
@@ -50,8 +50,8 @@ head(auta2012$Marka)
 ```
 
 Funkcja `fct_infreq()` uporządkuje poziomy w kolejności częstości występowania.
-Funkcja `fct_reorder()` uporządkuje poziomy w kolejnści średnich wartości innej zmiennej (w przykładzie poniżej w kolejności średniej ceny aut danej marki).
-Funkcja `fct_relevel()` zmienia kolejność poziomów, przesuwając wskaznae poziomy na początek.
+Funkcja `fct_reorder()` uporządkuje poziomy w kolejności średnich wartości innej zmiennej (w przykładzie poniżej w kolejności średniej ceny aut danej marki).
+Funkcja `fct_relevel()` zmienia kolejność poziomów, przesuwając wskazane poziomy na początek.
 Funkcja `fct_rev()` odwraca kolejność czynników.
 
 ```{r}
@@ -63,9 +63,9 @@ head(fct_rev(auta2012$Marka))
 
 ### Zmiana poziomów
 
-Funkcja `fct_recode()` pozwala na zaminę nazw poziomów.
+Funkcja `fct_recode()` pozwala na zamianę nazw poziomów.
 Funkcja `fct_collapse()` pozwala na agregację wybranych poziomów w jeden.
-Funkjca `fct_lump()` agreguje wszystkie rzadkie poziomy w jeden, pozostawiając jedynie określoną liczbę najczęstszych poziomów.
+Funkcja `fct_lump()` agreguje wszystkie rzadkie poziomy w jeden, pozostawiając jedynie określoną liczbę najczęstszych poziomów.
 
 ```{r}
 head(fct_recode(auta2012$Marka, "Alfa-Romeo" = "AlfaRomeo", "Aston-Martin" = "AstonMartin"))
@@ -85,3 +85,4 @@ auta2012$Marka %>%
 ### Więcej informacji 
 
 [R for Data Science](http://r4ds.had.co.nz/factors.html)
+
