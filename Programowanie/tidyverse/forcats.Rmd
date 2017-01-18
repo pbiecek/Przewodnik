@@ -33,7 +33,7 @@ Funkcja `fct_infreq()` zmienia kolejność by odpowiadała częstości występow
 Po co zmieniać kolejność czynników? 
 Najczęściej po to by wpłynąć na działanie funkcji `table()`, która pokazuje częstości występowania poziomów zmiennej lub by wpłynąć na kolejność występowania poziomów na wykresach.
 
-```{r barploty}
+```{r barploty, fig.height=4, fig.width=4}
 barplot(table(f))
 barplot(table(f2))
 barplot(table(f3))
