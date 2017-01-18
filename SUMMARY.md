@@ -32,6 +32,7 @@
        * [Zadania](Programowanie/zadaniaDplyr.md)
    * [Jak żyć w tidyverse?](Programowanie/tidyverse/jak_zyc.md)
        * [Jak pracować z datami?](Programowanie/tidyverse/lubridate.md)
+       * [Jak pracować z czynnikami?](Programowanie/tidyverse/forcats.md)
    * [Jak budować pakiety?](Programowanie/pakiety/po_co.md)
      * [Jak stworzyć nowy pakiet?](Programowanie/pakiety/nowy_pakiet.md)
      * [Jak dodawać funkcje do pakietu?](Programowanie/pakiety/nowa_funkcja.md)
