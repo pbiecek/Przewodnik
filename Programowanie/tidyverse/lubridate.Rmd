@@ -29,7 +29,7 @@ Z dat można wyłuskiwać informację o tym który to dzień roku, który tydzie
 
 ```{r}
 wday(obiad)
-wday(obiad, label = TRUE)
+wday(obiad, label = TRUE, abbr = FALSE)
 ```
 
 ### Arytmetyka na datach
