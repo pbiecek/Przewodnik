@@ -21,3 +21,11 @@ https://rawgit.com/pbiecek/Przewodnik/master/rozdzial1.html
 Rozdział 2:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial2.html
 
+Jak to zrobić w Pythonie?
+=========================
+
+Krzysztof Trajkowski przygotował tłumaczenia kodów z wybranych rozdziałów na język `python`.
+
+Rozdział 4:
+https://rawgit.com/pbiecek/Przewodnik/master/rozdzial4_python.html
+
