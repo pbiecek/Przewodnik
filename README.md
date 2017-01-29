@@ -22,6 +22,9 @@ Jak to zrobić w Pythonie?
 
 Krzysztof Trajkowski przygotował tłumaczenia kodów z wybranych rozdziałów na język `python`.
 
+Rozdział 1:
+https://rawgit.com/pbiecek/Przewodnik/master/rozdzial1_python.html
+
 Rozdział 4:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial4_python.html
 
