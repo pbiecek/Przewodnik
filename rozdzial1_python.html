@@ -240,13 +240,7 @@ print(tab.head())</code></pre>
 </div>
 <div id="rozdzia-1.2.1.2" class="section level1">
 <h1>Rozdział 1.2.1.2</h1>
-<pre class="python"><code>import warnings
-warnings.filterwarnings(&quot;ignore&quot;)
-
-from scipy import *
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+<pre class="python"><code>import pandas as pd
 
 tab = pd.read_csv('/home/krz/Pulpit/Przewodnik_R1/tab.csv')
 tab = tab.apply(pd.to_numeric, args=('coerce',))
