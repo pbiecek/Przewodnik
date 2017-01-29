@@ -1,8 +1,11 @@
 ---
-title: "Rozdział 1"
+title: "Przwodnik po pakiecie R"
+author: "Przemysław Biecek"
+date: "2017-01-30"
 output:
-  html_document: default
-  html_notebook: default
+  html_document: 
+    toc: true
+    toc_float: true
 ---
 
 ```{r global_options, include=FALSE}
