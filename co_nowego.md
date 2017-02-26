@@ -1,5 +1,9 @@
 # Co nowego zostało ostatnio dodane?
 
+* 20 lutego 2017
+
+Dodano przykłady w języku python (by Krzysiek Trajkowski
+
 * 18 stycznia 2017
 
 Dodano rozdział 3.3 ,,Jak pracować z czynnikami - forcats?''
