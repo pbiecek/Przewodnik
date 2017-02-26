@@ -25,6 +25,9 @@ Krzysztof Trajkowski przygotował tłumaczenia kodów z wybranych rozdziałów n
 Rozdział 1:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial1_python.html
 
+Rozdział 2:
+https://rawgit.com/pbiecek/Przewodnik/master/rozdzial2_python.html
+
 Rozdział 4:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial4_python.html
 
