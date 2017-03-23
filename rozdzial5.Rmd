@@ -1,0 +1,164 @@
+---
+title: "Rozdział 5 - Graficzna prezentacja danych"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=TRUE)
+```
+
+Aby zainstalować i włączyć pakiet `Przewodnik` wykonaj poniższe dwie liniki.
+
+```
+devtools::install_github("pbiecek/PrzewodnikPakiet")
+library("Przewodnik")
+```
+
+Kody z rozdziału *5. Graficzna prezentacja danych* ,,Przewodnika po programie R'' wydanie 4.
+
+## 5.1. Znajdź siedem różnic
+
+```{r}
+library("PBImisc")
+plot(MDRD12~MDRD7, data = kidney) 
+library("lattice")
+xyplot(MDRD12~MDRD7, data = kidney) 
+library("ggplot2")
+qplot(MDRD12,MDRD7, data = kidney)
+```
+
+## 5.3. Pakiet lattice
+
+```{r}
+library("PBImisc")
+library("lattice")
+xyplot(MDRD12 ~ MDRD7 | discrepancy.DR, data = kidney)
+
+xyplot(MDRD12 ~ MDRD7 | discrepancy.DR, data = kidney, type=c("p","smooth","r"), col="grey", pch=16, ylab="MDRD 30d", xlab="MDRD 7d")
+```
+
+### 5.3.4. Panele i mechanizm warunkowania
+
+```{r}
+histogram(~MDRD12 | therapy, data = kidney)
+histogram(~MDRD12 | equal.count(donor.age,4), data = kidney)
+```
+
+### 5.3.5. Mechanizm grupowani
+
+```{r}
+densityplot(~MDRD12, group = therapy, data = kidney,
+plot.points = FALSE)
+```
+
+### 5.3.6. Legenda wykresu
+
+```{r}
+densityplot(~MDRD12, group=therapy, auto.key = TRUE, data = kidney)
+densityplot(~MDRD12, group=therapy, data = kidney, auto.key = list(space = "right", columns = 1))
+```
+
+### 5.3.7. Atlas funkcji graficznych z pakietu lattice
+
+```{r}
+xyplot(MDRD12 + MDRD36 ~ MDRD7 | discrepancy.DR==0, data=kidney, type=c("p","smooth","g"), cex=0.5, auto.key = TRUE)
+
+splom(kidney[,c(9,11,13,15)], type=c("smooth","p"), pch='.')
+
+stripplot(factor(discrepancy.AB)~MDRD7, data = kidney, jitter.data = TRUE, alpha = 0.5)
+
+discrepancy <- equal.count(kidney$discrepancy.AB, number=3)
+bwplot(therapy~MDRD12|discrepancy, data=kidney, varwidth = TRUE)
+
+library("Przewodnik")
+(wPlec <- table(daneSoc$wyksztalcenie, daneSoc$plec))
+
+dotplot(wPlec, groups=FALSE, origin=0, type = c("p","h"))
+dotplot(wPlec, type="o", auto.key = list(space="right"))
+
+attach(daneSoc)
+tabela <- as.data.frame(table(wyksztalcenie, plec, praca ))
+barchart(wyksztalcenie~Freq|plec, groups=praca, auto.key=TRUE, data=tabela)
+
+parallel(~kidney[,c(9:16)], groups=MDRD7<30, data=kidney, alpha=0.2, horizontal.axis = FALSE, scales = list(x = list(rot = 90)))
+
+histogram(~MDRD7 | therapy, data = kidney)
+
+densityplot(~MDRD7 | factor(diabetes), groups=therapy, data=kidney, bw = 8, plot.points="rug", auto.key = TRUE)
+
+library("latticeExtra")
+ecdfplot(~MDRD7 | factor(diabetes), groups=therapy, data=kidney, auto.key=list(space="right"))
+
+qq(diabetes ~ MDRD7 | therapy, distribution=qnorm, data=kidney)
+qqmath( ~ MDRD7 | factor(diabetes), groups=therapy, data=kidney)
+
+cloud(MDRD7 ~ MDRD30 + MDRD12 | diabetes, data = kidney)
+
+library("MASS")
+siatka <- kde2d(kidney$MDRD7, kidney$MDRD30, n=50)
+siatka <- data.frame(expand.grid(MDRD7=siatka$x,MDRD30=siatka$y), z=c(siatka$z))
+levelplot(z~MDRD7*MDRD30, siatka, cuts=20, colorkey=T,region=T)
+contourplot(z~MDRD7*MDRD30, siatka, cuts=20)
+
+wireframe(z ~ MDRD7 * MDRD30, siatka, cuts=20, shade=TRUE)
+wireframe(z ~ MDRD7 * MDRD30, siatka, cuts=20, shade=FALSE)
+```
+
+### 5.3.8. Więcej o panelach
+
+```{r}
+xyplot(Petal.Length ~ Sepal.Length | Species, data=iris, scales = list(x = "free", y = "sliced"))
+
+tabela <- as.data.frame(table(daneSoc$wyksztalcenie, daneSoc$plec, daneSoc$praca))
+wykres <- barchart(wyksztalcenie ~ Freq | plec, groups = praca, auto.key=TRUE, data=tabela)
+wykres$panel
+
+nasz.panel <- function(..., border) {
+  panel.grid(h=0, v=-1)
+  panel.barchart(..., border="transparent")
+  panel.text(list(...)$x+1, as.numeric(list(...)$y) -0.5 +
+  as.numeric(list(...)$groups[list(...)$subscripts])/3,
+  as.numeric(list(...)$x))
+}
+update(wykres, panel=nasz.panel, scales=list(x="free"), origin=0)
+
+xyplot(cisnienie.skurczowe ~ cisnienie.rozkurczowe | plec,
+  data = daneSoc,
+  panel = function(x,y,...) {
+    lpoints(cisnienie.rozkurczowe,cisnienie.skurczowe,
+    pch=19, col='grey', cex=0.5)
+    panel.xyplot(x,y,pch='+', cex=2)
+  }
+)
+```
+
+### 5.3.9. Motywy i parametry graficzne
+
+```{r}
+trellis.par.get("plot.line")
+# trellis.par.set(plot.line = list(lwd = 3))
+```
+
+### 5.3.10. Zaawansowane opcje
+
+```{r}
+wykres <- xyplot(MDRD7 ~ MDRD12, data = kidney, pch = 19)
+plot(wykres, split = c(1,1,2,1))
+plot(wykres, split = c(2,1,2,2), newpage = FALSE)
+plot(wykres, split = c(3,2,4,2), newpage = FALSE)
+plot(wykres, split = c(4,2,4,2), newpage = FALSE)
+wykres <- xyplot(MDRD7 ~ MDRD12, data = kidney, pch = 19)
+plot(wykres, position=c(0,0,.8,.8))
+plot(wykres, position=c(0.35,0.35,.9,.9), newpage = FALSE)
+plot(wykres, position=c(0.7,0.7,1,1), newpage = FALSE)
+
+form <- sunspot.year~1:length(sunspot.year)
+xyplot(form, type="l", aspect="xy", xlab="", subset=1:140)
+xyplot(form, type="l", aspect="xy", xlab="", subset=141:280)
+xyplot(MDRD12~MDRD7, kidney, pch=19, aspect="iso")
+xyplot(MDRD12~MDRD7, kidney, pch=19, aspect="fill")
+```
+
