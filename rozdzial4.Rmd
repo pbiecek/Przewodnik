@@ -1,5 +1,6 @@
 ---
-title: "Rozdział 4"
+title: "Rozdział 4 - Niezbędnik statystyka"
+author: "Przemysław Biecek"
 output:
   html_document:
     toc: true
@@ -10,14 +11,15 @@ output:
 knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=TRUE)
 ```
 
+Kody z rozdziału *4. Niezbędnik statystyka* [,,Przewodnika po programie R'' wydanie 4](http://biecek.pl/R).
+
+
 Aby zainstalować i włączyć pakiet `Przewodnik` wykonaj poniższe dwie liniki.
 
 ```
 devtools::install_github("pbiecek/PrzewodnikPakiet")
 library("Przewodnik")
 ```
-
-Kody z rozdziału 4 ,,Przewodnika po programie R'' wydanie 4.
 
 ## 4.1. Generatory liczb losowych
 
