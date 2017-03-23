@@ -11,14 +11,17 @@ Materiały do Przewodnika
 
 Kody źródłowe i wyniki dla wersji oficjalnej Przewodnika.
 
-Rozdział 1:
+Rozdział 1 *Wprowadzenie*:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial1.html
 
-Rozdział 2:
+Rozdział 2 *Podstawy pracy z R*:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial2.html
 
-Rozdział 4:
+Rozdział 4 *Niezbędnik statystyka*:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial4.html
+
+Rozdział 5 *Graficzna prezentacja danych*:
+https://rawgit.com/pbiecek/Przewodnik/master/rozdzial5.html
 
 Jak to zrobić w Pythonie?
 =========================
