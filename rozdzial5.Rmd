@@ -1,5 +1,6 @@
 ---
 title: "Rozdział 5 - Graficzna prezentacja danych"
+author: "Przemysław Biecek"
 output:
   html_document:
     toc: true
@@ -10,14 +11,14 @@ output:
 knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=TRUE)
 ```
 
+Kody z rozdziału *5. Graficzna prezentacja danych* [,,Przewodnika po programie R'' wydanie 4](http://biecek.pl/R).
+
 Aby zainstalować i włączyć pakiet `Przewodnik` wykonaj poniższe dwie liniki.
 
 ```
 devtools::install_github("pbiecek/PrzewodnikPakiet")
 library("Przewodnik")
 ```
-
-Kody z rozdziału *5. Graficzna prezentacja danych* ,,Przewodnika po programie R'' wydanie 4.
 
 ## 5.1. Znajdź siedem różnic
 
@@ -278,3 +279,149 @@ print(pl, vp = vp3)
 class(pl)
 summary(pl)
 ```
+
+## 5.5. Pakiet graphics
+
+### 5.5.1. Wprowadzenie
+
+```{r}
+x <- seq(-2*pi, 2*pi, by = 0.3)
+plot(x, sin(x), type="b",main="Wykres sin(x) i cos(x)",col="red")
+lines(x, cos(x), col="blue", type="l")
+
+curve(sin, from = -2*pi, to = 2*pi)
+curve(x^2 - sin(x^2), -2, 2)
+
+plot(0, xlim=c(-2,2), ylim=c(-2,2), type="n", xlab="", ylab="", main="Wariacje nt. funkcji abline()")
+
+abline(0, 0)
+for (i in 1:10)
+  abline(0, i)
+abline(h=-1, lwd=3, col="red")
+abline(v=-1, lwd=3, lty=2, col="blue")
+
+text( 1.7, 0.2, "a=0, b=0")
+text( 1.7, 1.1, "a=1, b=0")
+text( 1.3, 1.7, "a=2, b=0")
+text( 1.7,-0.8, "h = -1")
+text(-0.6, 1.1, "v = -1")
+
+```
+
+### 5.5.3. Funkcja matplot()
+
+```{r}
+ruchBrowna <- matrix(rnorm(800), 200, 4)
+ruchBrowna <- apply(ruchBrowna, 2, cumsum)
+matplot(ruchBrowna, type="l", lwd=2, lty=1)
+```
+
+
+### 5.5.6. Funkcja image()
+
+```{r}
+plusk <- function(x,y,s1,s2)
+  sin(sqrt((x-s1)^2+(y-s2)^2)/4)/(abs(x-s1)+abs(y-s2)+25)
+mat1 <- outer(1:200, 1:200, plusk, s1=100, s2=50)
+mat2 <- outer(1:200, 1:200, plusk, s1=50, s2=100)
+mat3 <- outer(1:200, 1:200, plusk, s1=20, s2=20)
+par(bty="n", mar=c(0,0,0,0))
+image(mat1+mat2+mat3, col=heat.colors(250))
+```
+
+### 5.5.8. Kolory
+
+```{r}
+t(col2rgb("orange"))
+```
+
+### 5.5.12. Tytuł, podtytuł i opisy osi wykresu
+
+```{r}
+boxplot(rnorm(100), main="Taki sobie boxplot")
+boxplot(rnorm(100))
+title(main="Taki sobie boxplot")
+```
+
+### 5.5.13. Pozycjonowanie wykresu, wiele wykresów na rysunku
+
+```{r}
+(matryca <- rbind(c(1,2,3), c(4,5,3)))
+# layout(matryca, widths=c(2,2,1), heights=c(2,2))
+```
+
+### 5.5.14. Wykres słonecznikowy, funkcja: sunflowerplot()
+
+```{r}
+zm1 <- rbinom(200,5,0.5)
+zm2 <- rbinom(200,5,0.5)
+sunflowerplot(zm1, zm2)
+```
+
+### 5.5.15. Wykresy kropkowe
+
+```{r}
+library(car)
+pairs(~wiek+cisnienie.skurczowe+cisnienie.rozkurczowe, data=daneSoc,pch=21, cex=1.5)
+scatterplotMatrix(daneSoc[,c(1,6,7)], pch=19)
+library(GGally)
+ggpairs(daneSoc[,c(2,3,6,7)])
+
+coplot(cisnienie.skurczowe~cisnienie.rozkurczowe|plec+wiek,
+data = daneSoc)
+
+library(scatterplot3d)
+scatterplot3d(daneSoc$wiek, daneSoc$cisnienie.skurczowe, daneSoc$cisnienie.rozkurczowe)
+#scatter3d(cisnienie.rozkurczowe, wzrost, cisnienie.skurczowe, groups=plec)
+```
+
+### 5.5.16. Wykres macierzy korelacji
+
+```{r}
+library("ellipse")
+kor <- cor(daneO[,c(1,2,3,4,8,9)], use = "pai")
+plotcorr(kor, numbers = TRUE)
+plotcorr(kor, col=rgb((kor+1)/2,0,0))
+```
+
+### 5.5.17. Wykres konturowy
+
+```{r}
+dataEllipse(daneSoc$cisnienie.skurczowe, daneSoc$cisnienie.rozkurczowe)
+dataEllipse(daneSoc$cisnienie.skurczowe, daneSoc$cisnienie.rozkurczowe,
+   levels=(1:10)/10, col=c("red",rep("black",204)), pch=19)
+```
+
+### 5.5.18. Wykres koniczyny
+
+```{r}
+library(vcd)
+attach(daneSoc)
+fourfold(table(plec, praca))
+fourfold(table(plec, praca, wyksztalcenie))
+```
+
+### 5.5.19. Wielowymiarowy, jądrowy estymator geęstości
+
+```{r}
+library(ks)
+library(MASS)
+danetmp <- daneSoc[, c(6,7)]
+mcov <- Hscv(danetmp)
+gest2d <- kde(danetmp, H=mcov)
+plot(gest2d, cont=c(5,25,50,75,95))
+```
+
+
+### 5.5.21. Wykres mapa ciepła
+
+```{r}
+heatmap(kor, margins=c(7,7), symm=TRUE)
+```
+
+### 5.5.22. Wykres profili obserwacji
+
+```{r}
+parcoord(daneSoc[,c(1,6,7)], col=c("red","green"))
+```
+
