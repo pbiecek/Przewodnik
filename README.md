@@ -17,6 +17,9 @@ https://rawgit.com/pbiecek/Przewodnik/master/rozdzial1.html
 Rozdział 2:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial2.html
 
+Rozdział 4:
+https://rawgit.com/pbiecek/Przewodnik/master/rozdzial4.html
+
 Jak to zrobić w Pythonie?
 =========================
 
