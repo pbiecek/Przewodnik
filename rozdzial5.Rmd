@@ -27,7 +27,7 @@ plot(MDRD12~MDRD7, data = kidney)
 library("lattice")
 xyplot(MDRD12~MDRD7, data = kidney) 
 library("ggplot2")
-qplot(MDRD12,MDRD7, data = kidney)
+qplot(MDRD7, MDRD12, data = kidney)
 ```
 
 ## 5.3. Pakiet lattice
@@ -162,3 +162,119 @@ xyplot(MDRD12~MDRD7, kidney, pch=19, aspect="iso")
 xyplot(MDRD12~MDRD7, kidney, pch=19, aspect="fill")
 ```
 
+## 5.4. Pakiet ggplot2
+
+### 5.4.1. Wprowadzenie
+
+```{r}
+library("Przewodnik")
+head(countries)
+```
+
+### 5.4.2. Warstwy wykresu
+
+```{r}
+ggplot(countries, aes(birth.rate, death.rate)) +
+  geom_point() +
+  geom_smooth(se = FALSE, size = 3)
+
+ggplot(countries, aes(x=continent, y=birth.rate, label=country))+
+  geom_violin(aes(fill=continent)) +
+  geom_jitter(position=position_jitter(width = .45)) +
+  geom_rug(sides = "l")
+```
+
+### 5.4.3. Mapowanie zmiennych na atrybuty wykresu
+
+```{r}
+ggplot(countries, aes(x = birth.rate, y = death.rate, 
+                      color = continent, size = population)) +
+      geom_point()
+
+ggplot(countries, aes(x = birth.rate, y = death.rate,
+                      color = birth.rate)) + geom_point(size=3)
+```
+
+### 5.4.4. Geometria warstwy
+
+```{r}
+szkielet <- ggplot(countries, aes(continent, birth.rate, 
+                                  color=continent, fill=continent))
+szkielet + geom_point()
+szkielet + geom_boxplot()
+szkielet + geom_dotplot(binaxis = "y", stackdir = "center")
+szkielet + geom_violin(scale="width")
+```
+
+### 5.4.5. Statystyki i agregacje
+
+```{r}
+ggplot(countries, aes(continent)) + geom_bar()
+ggplot(countries, aes(birth.rate, death.rate)) +
+  geom_point() + geom_smooth() +
+  geom_smooth(method="lm", se=FALSE, color="red", size=5)
+```
+
+### 5.4.6. Mechanizm warunkowania
+
+```{r}
+ggplot(countries, aes(x = birth.rate, y = death.rate)) +
+  stat_ellipse() + geom_point() +
+  facet_grid(~continent)
+
+ggplot(countries, aes(x = birth.rate, y = death.rate)) +
+  geom_point(data=countries[,-5], size=0.5, color="grey") +
+  stat_ellipse(color="red4") + geom_point(size=2, color="red") +
+  facet_grid(~continent)
+```
+
+### 5.4.7. Kontrola skal
+
+```{r}
+pl <- ggplot(countries, aes(x = birth.rate, y = death.rate, 
+                            shape = continent)) + geom_point()
+pl + scale_shape_manual(values = LETTERS)
+pl + scale_shape_discrete(solid = FALSE)
+
+pl <- ggplot(countries, aes(x = birth.rate, y = death.rate)) + 
+  geom_point()
+pl + scale_x_reverse() + scale_y_reverse()
+pl + scale_x_continuous(breaks = c(1,2,5,10,20,50), limits=c(0,50))
+```
+
+### 5.4.8. Układ współrz˛ednych i osie wykresu
+
+```{r}
+pl <- ggplot(countries, aes(x = birth.rate, y = death.rate)) +
+  geom_point() + geom_smooth(se = FALSE, size = 2)
+pl + coord_trans(y = "sqrt", x = "sqrt")
+pl + coord_fixed()
+pl + coord_flip()
+```
+
+### 5.4.9. Motywy i kompozycje graficzne
+
+```{r}
+library("ggthemes")
+pl + theme_bw() + ggtitle("theme_bw")
+pl + theme_tufte() + ggtitle("theme_tufte")
+```
+
+### 5.4.10. Pozycjonowanie wykresów na rysunku
+
+```{r}
+library(grid)
+vp1 <- viewport()
+vp2 <- viewport(width=0.4, height=0.4, x=0.75, y=0.7)
+vp3 <- viewport(width=0.4, height=0.4, x=0.75, y=0.3)
+print(pl, vp = vp1)
+print(pl, vp = vp2)
+print(pl, vp = vp3)
+```
+
+### 5.4.11. Obiekt klasy gg
+
+```{r}
+class(pl)
+summary(pl)
+```
