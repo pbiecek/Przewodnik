@@ -1,9 +1,8 @@
 ---
-title: "Przwodnik po pakiecie R"
+title: "Rozdział 1. Wprowadzenie - Przwodnik po pakiecie R"
 author: "Przemysław Biecek"
-date: "2017-01-30"
 output:
-  html_document: 
+  html_document:
     toc: true
     toc_float: true
 ---
@@ -12,14 +11,14 @@ output:
 knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=TRUE)
 ```
 
+Kody z rozdziału *1. Wprowadzenie* [,,Przewodnika po programie R'' wydanie 4](http://biecek.pl/R).
+
 Aby zainstalować i włączyć pakiet `Przewodnik` wykonaj poniższe dwie liniki.
 
 ```
 devtools::install_github("pbiecek/PrzewodnikPakiet")
 library("Przewodnik")
 ```
-
-Kody z rozdziału 1 ,,Przewodnika po programie R'' wydanie 4.
 
 ### Rozdział 1.2.1.1
 
