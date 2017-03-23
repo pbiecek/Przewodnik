@@ -31,3 +31,6 @@ https://rawgit.com/pbiecek/Przewodnik/master/rozdzial2_python.html
 Rozdział 4:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial4_python.html
 
+Rozdział 5:
+https://rawgit.com/pbiecek/Przewodnik/master/rozdzial5_python.html
+
