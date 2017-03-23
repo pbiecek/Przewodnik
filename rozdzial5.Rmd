@@ -425,3 +425,53 @@ heatmap(kor, margins=c(7,7), symm=TRUE)
 parcoord(daneSoc[,c(1,6,7)], col=c("red","green"))
 ```
 
+### 5.5.22. Wykres profili obserwacji
+
+```{r}
+parcoord(daneSoc[,c(1,6,7)], col=c("red","green"))
+```
+
+## 5.6. Pakiet rCharts
+
+```{r}
+# library("devtools")
+# install_github("ramnathv/rCharts")
+
+library("Przewodnik")
+przezycia2009 <- przezycia[przezycia$Year == 2009 &
+przezycia$Age != "110+",]
+head(przezycia2009[,c(1,2,3,7,11)])
+
+library("rCharts")
+p1 <- nPlot(mx ~ Age, group = "Gender", data = przezycia2009, type = "lineChart")
+
+p1$chart(yScale = "#! d3.scale.log() !#")
+p1$xAxis(axisLabel = 'Wiek')
+p1$yAxis(axisLabel = 'Smiertelnosc')
+p1$set(width = 750, height = 590)
+
+# p1
+
+p2 <- nPlot(dx ~ Age, group = "Gender", data = przezycia2009, type = "multiBarChart")
+
+p2$chart(stacked = TRUE)
+p2$chart(tooltipContent = "#! function(key, x, y, e){
+  return 'Liczba osÓb: ' + e.point.dx
+} !#")
+p2$set(width = 750, height = 590)
+
+# p2
+
+map1 <- Leaflet$new()
+map1$setView(c(52.22, 21), zoom = 12)
+map1$marker(c(52.22223, 21.00728),
+  bindPopup = "Politechnika Warszawska, MiNI")
+map1$marker(c(52.21167, 20.9815),
+  bindPopup = "Uniwersytet Warszawski, MIM")
+map1$marker(c(52.23925, 21.01742),
+  bindPopup = "Uniwersytet Warszawski, Centrala")
+
+# map
+
+```
+
