@@ -1,0 +1,2086 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Jak tworzyć interaktywne wykresy? | Przewodnik po pakiecie R v. 4.0</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../references.html" />
+    
+    
+    <link rel="prev" href="../Wizualizacja/ggplot2/09_styl.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.4.2"
+        data-chapter-title="Jak tworzyć interaktywne wykresy?"
+        data-filepath="Wizualizacja/jak_tworzyc_interaktywne_wykresy.md"
+        data-basepath=".."
+        data-revision="Sun Feb 26 2017 21:23:31 GMT+0100 (CET)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="contribute.html">
+            
+                
+                    <a href="../contribute.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Podrasuj Przewodnik!
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="co_nowego.html">
+            
+                
+                    <a href="../co_nowego.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Co nowego?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="wprowadzenie.html">
+            
+                
+                    <a href="../wprowadzenie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Wprowadzenie do R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="Wprowadzenie/dlaczego_R.html">
+            
+                
+                    <a href="../Wprowadzenie/dlaczego_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Dlaczego R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Wprowadzenie/jak_wyglada_praca_z_R.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_wyglada_praca_z_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Jak wygląda praca z programem R?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="Wprowadzenie/przykladowa_sesja.html">
+            
+                
+                    <a href="../Wprowadzenie/przykladowa_sesja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        Przykładowa sesja
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Wprowadzenie/jak_przygotowac_miejsce.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_przygotowac_miejsce.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Jak przygotować miejsce pracy?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="Wprowadzenie/jak_zainstalowac_R.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_zainstalowac_R.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        Jak zainstalować R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="Wprowadzenie/jak_zainstalowac_RStudio.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_zainstalowac_RStudio.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        Jak zainstalować RStudio?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="Wprowadzenie/jak_zainstalowac_pakiety.html">
+            
+                
+                    <a href="../Wprowadzenie/jak_zainstalowac_pakiety.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        Jak zainstalować dodatkowe pakiety?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Wprowadzenie/dodatkowa_pomoc.html">
+            
+                
+                    <a href="../Wprowadzenie/dodatkowa_pomoc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Gdzie szukać dodatkowej pomocy?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="puste2.html">
+            
+                
+                    <a href="../puste2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Programowanie w języku R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Programowanie/zapisywac.html">
+            
+                
+                    <a href="../Programowanie/zapisywac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Jak wczytywać i zapisywać dane?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytac_tabele_danych_z_pliku_csv_lub_txt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        Jak wczytać tabele danych z pliku csv lub txt?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="Programowanie/jak_wczytac_dane_z_excela.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytac_dane_z_excela.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        Jak wczytać tabele danych z Excela?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytywac_tabele_z_formatu_html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        Jak wczytać tabele danych ze strony www?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+            
+                
+                    <a href="../Programowanie/jak_zeskrobywac_dane_ze_stron_www_uzywajac_pakietu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.4.</b>
+                        
+                        Jak zeskrobywać dane ze stron www?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="Programowanie/jak_wczytywac_korpusy_tekstu.html">
+            
+                
+                    <a href="../Programowanie/jak_wczytywac_korpusy_tekstu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.</b>
+                        
+                        Jak wczytywać korpusy tekstu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="Programowanie/jak_pobierac_dane_z_twittera.html">
+            
+                
+                    <a href="../Programowanie/jak_pobierac_dane_z_twittera.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.6.</b>
+                        
+                        Jak pobierać dane z Twittera?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.7" data-path="Programowanie/jak_pobrac_dane_z.html">
+            
+                
+                    <a href="../Programowanie/jak_pobrac_dane_z.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.7.</b>
+                        
+                        Jak pobrać dane z...?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.8" data-path="Programowanie/zadania.html">
+            
+                
+                    <a href="../Programowanie/zadania.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.8.</b>
+                        
+                        Zadania
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Programowanie/czyscic_przetwarzac.html">
+            
+                
+                    <a href="../Programowanie/czyscic_przetwarzac.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Jak czyścić i przetwarzać dane?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="Programowanie/filter.html">
+            
+                
+                    <a href="../Programowanie/filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        Jak filtrować wiersze?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="Programowanie/mutate.html">
+            
+                
+                    <a href="../Programowanie/mutate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                        Jak tworzyć nowe kolumny?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="Programowanie/select.html">
+            
+                
+                    <a href="../Programowanie/select.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.3.</b>
+                        
+                        Jak wybierać kolumny?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="Programowanie/arrange.html">
+            
+                
+                    <a href="../Programowanie/arrange.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.4.</b>
+                        
+                        Jak sortować wiersze?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="Programowanie/potoki.html">
+            
+                
+                    <a href="../Programowanie/potoki.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.5.</b>
+                        
+                        Jak pracować z potokami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.6" data-path="Programowanie/groupby.html">
+            
+                
+                    <a href="../Programowanie/groupby.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.6.</b>
+                        
+                        Jak wyznaczać agregaty w grupach?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.7" data-path="Programowanie/tidyr.html">
+            
+                
+                    <a href="../Programowanie/tidyr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.7.</b>
+                        
+                        Jak czyścić dane?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.8" data-path="Programowanie/zadaniaDplyr.html">
+            
+                
+                    <a href="../Programowanie/zadaniaDplyr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.8.</b>
+                        
+                        Zadania
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Programowanie/tidyverse/jak_zyc.html">
+            
+                
+                    <a href="../Programowanie/tidyverse/jak_zyc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Jak żyć z tidyverse?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="Programowanie/tidyverse/lubridate.html">
+            
+                
+                    <a href="../Programowanie/tidyverse/lubridate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        Jak pracować z datami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="Programowanie/tidyverse/forcats.html">
+            
+                
+                    <a href="../Programowanie/tidyverse/forcats.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                        Jak pracować z czynnikami?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="Programowanie/pakiety/po_co.html">
+            
+                
+                    <a href="../Programowanie/pakiety/po_co.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Jak budować pakiety?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="Programowanie/pakiety/nowy_pakiet.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowy_pakiet.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.</b>
+                        
+                        Jak stworzyć nowy pakiet?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.2" data-path="Programowanie/pakiety/nowa_funkcja.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowa_funkcja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.2.</b>
+                        
+                        Jak dodawać funkcje do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.3" data-path="Programowanie/pakiety/nowe_dane.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowe_dane.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.3.</b>
+                        
+                        Jak dodawać zbiory danych do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.4" data-path="Programowanie/pakiety/nowe_testy.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowe_testy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.4.</b>
+                        
+                        Jak dodawać testy do pakietu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.5" data-path="Programowanie/pakiety/nowe_budowanie.html">
+            
+                
+                    <a href="../Programowanie/pakiety/nowe_budowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.5.</b>
+                        
+                        Jak budować stworzony pakiet?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.6" data-path="Programowanie/pakiety/co_dalej.html">
+            
+                
+                    <a href="../Programowanie/pakiety/co_dalej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.6.</b>
+                        
+                        Co dalej?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="Programowanie/jak_tworzyc_aplikajce.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Jak budować aplikacje z pakietem Shiny?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.5.1" data-path="Programowanie/jak_tworzyc_aplikajce0.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce0.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.1.</b>
+                        
+                        Jak zbudować pierwszą aplikację?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.2" data-path="Programowanie/jak_tworzyc_aplikajce1.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.2.</b>
+                        
+                        Jak umieszczać wyniki analiz w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.3" data-path="Programowanie/jak_tworzyc_aplikajce2.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.3.</b>
+                        
+                        Jak umieszać elementy kontrolujące w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.4" data-path="Programowanie/jak_tworzyc_aplikajce3.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.4.</b>
+                        
+                        Jak tworzyć reaktywne elementy w aplikacji?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.5" data-path="Programowanie/jak_tworzyc_aplikajce4.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_aplikajce4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.5.</b>
+                        
+                        I co dalej?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="Programowanie/pazury/REST.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Jak tworzyć usługi SaaS oparte o RESTful API?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.6.1" data-path="Programowanie/pazury/REST01.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.1.</b>
+                        
+                        Jak uruchomić RESTowy serwer?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.2" data-path="Programowanie/pazury/REST02.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.2.</b>
+                        
+                        Jak pracować z opencpu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.3" data-path="Programowanie/pazury/REST03.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.3.</b>
+                        
+                        Jak zdalnie wywołać funkcję?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.4" data-path="Programowanie/pazury/REST04.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.4.</b>
+                        
+                        Jak zdalnie zbudować wykres?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.5" data-path="Programowanie/pazury/REST05.html">
+            
+                
+                    <a href="../Programowanie/pazury/REST05.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.5.</b>
+                        
+                        Co jeszcze warto wiedzieć o pakiecie opencpu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="Programowanie/jak_tworzyc_raporty.html">
+            
+                
+                    <a href="../Programowanie/jak_tworzyc_raporty.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Jak tworzyć raporty z pakietem knitr?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="Programowanie/pazury/archivist.html">
+            
+                
+                    <a href="../Programowanie/pazury/archivist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Jak serializować obiekty z użyciem archivist?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="Programowanie/pazury/debugowanie.html">
+            
+                
+                    <a href="../Programowanie/pazury/debugowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Jak debugować kod R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="Programowanie/pazury/profilowanie.html">
+            
+                
+                    <a href="../Programowanie/pazury/profilowanie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.10.</b>
+                        
+                        Jak badać czas działania kodu?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="Programowanie/pazury/rownolegle.html">
+            
+                
+                    <a href="../Programowanie/pazury/rownolegle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                        Jak zrównoleglić obliczenia w R?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="Programowanie/jak_pracowac_z_bazami_danych.html">
+            
+                
+                    <a href="../Programowanie/jak_pracowac_z_bazami_danych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.</b>
+                        
+                        Jak pracować z bazami danych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="Programowanie/generatory_llosowych.html">
+            
+                
+                    <a href="../Programowanie/generatory_llosowych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                        Jak generować liczby losowe?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.13.1" data-path="Programowanie/generatory_1.html">
+            
+                
+                    <a href="../Programowanie/generatory_1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.1.</b>
+                        
+                        Jak ustawiać ziarno generatora?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13.2" data-path="Programowanie/generatory_2.html">
+            
+                
+                    <a href="../Programowanie/generatory_2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.2.</b>
+                        
+                        Jak losować z prostych rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13.3" data-path="Programowanie/generatory_3.html">
+            
+                
+                    <a href="../Programowanie/generatory_3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.3.</b>
+                        
+                        Jak losować ze złożonych rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13.4" data-path="Programowanie/generatory_4.html">
+            
+                
+                    <a href="../Programowanie/generatory_4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.4.</b>
+                        
+                        Jak losować z użyciem kopuli?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13.5" data-path="Programowanie/generatory_5.html">
+            
+                
+                    <a href="../Programowanie/generatory_5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.5.</b>
+                        
+                        Jak estymować parametry rozkładu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
+            
+                
+                    <a href="../Programowanie/jak_korzystac_z_serwisu_github_i_waffle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                        Jak korzystać z serwisu GitHub?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.15" data-path="Programowanie/jak_korzystac_z_serwisu_waffle.html">
+            
+                
+                    <a href="../Programowanie/jak_korzystac_z_serwisu_waffle.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.15.</b>
+                        
+                        Jak korzystać z serwisu Waffle?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Analiza/analizadanych_z_programem_r_md.html">
+            
+                
+                    <a href="../Analiza/analizadanych_z_programem_r_md.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Analiza danych z programem R
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Predykcja/predykcja.html">
+            
+                
+                    <a href="../Predykcja/predykcja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Predykcja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="Predykcja/prawdopodobienstwo_szansa.html">
+            
+                
+                    <a href="../Predykcja/prawdopodobienstwo_szansa.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.1.</b>
+                        
+                        Prawdopodobieństwo a szansa
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="Predykcja/naiwny_bayes.html">
+            
+                
+                    <a href="../Predykcja/naiwny_bayes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.2.</b>
+                        
+                        Naiwny Bayes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="Predykcja/linear_da.html">
+            
+                
+                    <a href="../Predykcja/linear_da.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.3.</b>
+                        
+                        Liniowa i kwadratowa dyskryminacja
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="Predykcja/regresja_logistyczna.html">
+            
+                
+                    <a href="../Predykcja/regresja_logistyczna.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.4.</b>
+                        
+                        Regresja logistyczna
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="Predykcja/drzewa_decyzyjne.html">
+            
+                
+                    <a href="../Predykcja/drzewa_decyzyjne.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.5.</b>
+                        
+                        Jak hodować drzewa decyzyjne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="Predykcja/obszary_decyzyjne.html">
+            
+            <span><b>4.1.6.</b> Obszary decyzyjne</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.7" data-path="Predykcja/komitety.html">
+            
+                
+                    <a href="../Predykcja/komitety.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.7.</b>
+                        
+                        Komitety klasyfikatorów
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.8" data-path="Predykcja/ROC.html">
+            
+                
+                    <a href="../Predykcja/ROC.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.8.</b>
+                        
+                        ROC, AUC i inne
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.9" data-path="Predykcja/wybor_modelu.html">
+            
+                
+                    <a href="../Predykcja/wybor_modelu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.9.</b>
+                        
+                        Wybór modelu
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.10" data-path="Predykcja/regularyzacja.html">
+            
+                
+                    <a href="../Predykcja/regularyzacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.10.</b>
+                        
+                        Regularyzacja
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Analiza/eksploracja.html">
+            
+                
+                    <a href="../Analiza/eksploracja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Eksploracja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+            
+                
+                    <a href="../Analiza/jak_rozpoznac_rodzaj_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.1.</b>
+                        
+                        Jak rozpoznać rodzaj zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="Analiza/jak_badac_rozklad_jednej_zmiennej.html">
+            
+                
+                    <a href="../Analiza/jak_badac_rozklad_jednej_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.2.</b>
+                        
+                        Jak badać rozkład jednej zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
+            
+                
+                    <a href="../Analiza/jak_badac_rozklad_dwoch_zmiennych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.3.</b>
+                        
+                        Jak badać rozkład dwóch zmiennych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="Analiza/beznadzoru/mds.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.</b>
+                        
+                        Jak zmniejszyć wymiar danych? (skalowanie wielowymiarowe)
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.4.1" data-path="Analiza/beznadzoru/mds_metric.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds_metric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.1.</b>
+                        
+                        Jak wykonać skalowanie metryczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4.2" data-path="Analiza/beznadzoru/mds_non_metric.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds_non_metric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.2.</b>
+                        
+                        Jak wykonać skalowanie nie-metryczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4.3" data-path="Analiza/beznadzoru/mds_classic.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds_classic.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.3.</b>
+                        
+                        Jak wykonać skalowanie klasyczne?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4.4" data-path="Analiza/beznadzoru/mds_pca.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mds_pca.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.4.4.</b>
+                        
+                        Jak wykorzystać metodę składowych głównych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5" data-path="Analiza/beznadzoru/skupiska.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/skupiska.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.</b>
+                        
+                        Jak znaleźć grupy w danych?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.5.1" data-path="Analiza/beznadzoru/dist.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/dist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.1.</b>
+                        
+                        Jak wyznaczać odległosć pomiędzy obserwacjami?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.2" data-path="Analiza/beznadzoru/kmeans.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/kmeans.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.2.</b>
+                        
+                        Jak szukać partycji w oparciu o metodę k-średnich?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.3" data-path="Analiza/beznadzoru/pam.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/pam.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.3.</b>
+                        
+                        Jak szukać partycji w oparciu o metodę k-medoidów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.4" data-path="Analiza/beznadzoru/agnes.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/agnes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.4.</b>
+                        
+                        Jak wykonać analizę hierarchiczną?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.5" data-path="Analiza/beznadzoru/mclust.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/mclust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.5.</b>
+                        
+                        Jak szukać partycji w oparciu o mieszaniny rozkładów?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5.6" data-path="Analiza/beznadzoru/em.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/em.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.5.6.</b>
+                        
+                        Jak działa algorytm EM?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.6" data-path="Analiza/beznadzoru/rules.html">
+            
+                
+                    <a href="../Analiza/beznadzoru/rules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.6.</b>
+                        
+                        Jak szukać reguł asocjacyjnych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Analiza/weryfikacja.html">
+            
+                
+                    <a href="../Analiza/weryfikacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Weryfikacja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="Analiza/Weryfikacja/wprowadzenie.html">
+            
+                
+                    <a href="../Analiza/Weryfikacja/wprowadzenie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.1.</b>
+                        
+                        Wprowadzenie do testowania
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
+            
+                
+                    <a href="../Analiza/jak_badac_wlasciwosci_jednej_zmiennej.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.2.</b>
+                        
+                        Jak badać właściwości jednej zmiennej?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.3" data-path="Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
+            
+                
+                    <a href="../Analiza/jak_badac_zaleznosci_pomiedzy_para_zmiennych.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.3.</b>
+                        
+                        Jak badać zależności pomiędzy parą zmiennych?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="Wizualizacja/wizualizacja.html">
+            
+                
+                    <a href="../Wizualizacja/wizualizacja.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Wizualizacja
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.4.1" data-path="Wizualizacja/jak_tworzyc_wykresy_ggplot2.html">
+            
+                
+                    <a href="../Wizualizacja/jak_tworzyc_wykresy_ggplot2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.</b>
+                        
+                        Jak tworzyć wykresy z pakietem ggplot2?
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.4.1.1" data-path="Wizualizacja/ggplot2/01_pierwszy_wykres.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/01_pierwszy_wykres.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.1.</b>
+                        
+                        Jak zrobić pierwszy wykres?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.2" data-path="Wizualizacja/ggplot2/02_mapowania.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/02_mapowania.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.2.</b>
+                        
+                        Jak określać mapowania?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.3" data-path="Wizualizacja/ggplot2/03_geometrie.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/03_geometrie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.3.</b>
+                        
+                        Jak określać geometrię?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.4" data-path="Wizualizacja/ggplot2/04_warstwy.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/04_warstwy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.4.</b>
+                        
+                        Jak składać wykres z kilku warstw?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.5" data-path="Wizualizacja/ggplot2/05_statystyki.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/05_statystyki.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.5.</b>
+                        
+                        Jak określać statystyki?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.6" data-path="Wizualizacja/ggplot2/06_panele.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/06_panele.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.6.</b>
+                        
+                        Jak tworzyć panele?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.7" data-path="Wizualizacja/ggplot2/07_skale.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/07_skale.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.7.</b>
+                        
+                        Jak modyfikować skale?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.8" data-path="Wizualizacja/ggplot2/08_wspolrzedne.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/08_wspolrzedne.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.8.</b>
+                        
+                        Jak modyfikować układ współrzędnych?
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.1.9" data-path="Wizualizacja/ggplot2/09_styl.html">
+            
+                
+                    <a href="../Wizualizacja/ggplot2/09_styl.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.9.</b>
+                        
+                        Jak modyfikować styl wykresu?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.4.2" data-path="Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
+            
+                
+                    <a href="../Wizualizacja/jak_tworzyc_interaktywne_wykresy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.2.</b>
+                        
+                        Jak tworzyć interaktywne wykresy?
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="references.html">
+            
+                
+                    <a href="../references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Bibliografia
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Przewodnik po pakiecie R v. 4.0</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="jak-tworzy&#x107;-interaktywne-wykresy">Jak tworzy&#x107; interaktywne wykresy?</h1>
+<p>Naj&#x142;atwiejszy spos&#xF3;b aby budowa&#x107; interaktywne wykresy w R, to skorzystanie z pakietu <code>rCharts</code> (<a href="http://rcharts.io/" target="_blank">http://rcharts.io/</a>).</p>
+<p>Pakiet rCharts tworzy stron&#x119; HTML z osadzonymi bibliotekami JavaScript. Mo&#x17C;na korzysta&#x107; z bibliotek <code>NVD3</code>, <code>Highcharts</code>, <code>Leaflet</code> i innych. Pe&#x142;na lista znajduje si&#x119; na stronie pakietu <code>rCharts</code>.</p>
+<p>Poni&#x17C;ej przedstawimy kilka wybranych przyk&#x142;ad&#xF3;w.
+Szczeg&#xF3;&#x142;owa lista dost&#x119;pnych opcji znajduje si&#x119; na <a href="http://www.rpubs.com/dnchari/rcharts" target="_blank">tej stronie</a>.</p>
+<h1 id="biblioteka-nvd3">Biblioteka <code>NVD3</code></h1>
+<p>Wykresy wykorzystuj&#x105;ce bibliotek&#x119; NVD3 mo&#x17C;na wykona&#x107; u&#x17C;ywa&#x107; funkcji <code>nPlot()</code>. 
+Szeroki opis dost&#x119;pnych wykres&#xF3;w w tej bibliotece znajduje si&#x119; tutaj <a href="http://nvd3.org/" target="_blank">http://nvd3.org/</a>.</p>
+<h2 id="wykres-liniowy">Wykres liniowy</h2>
+<p>Przedstawmy wykres liniowy na bazie danych o &#x15B;miertelno&#x15B;ci os&#xF3;b w r&#xF3;&#x17C;nych wieku. 
+Dane pochodz&#x105; ze strony <a href="http://www.mortality.org/" target="_blank">http://www.mortality.org/</a>. Szczeg&#xF3;&#x142;owy opis co znajduje si&#x119; w kt&#xF3;rej kolumnie znajduje si&#x119; na <a href="http://www.mortality.org/Public/ExplanatoryNotes.php#CompleteDataSeries" target="_blank">na tej stronie</a>.</p>
+<p>Wybierzemy tylko dane z roku 2009 i poka&#x17C;emy wyniki dla obu p&#x142;ci.
+Zacznijmy od wczytania danych.</p>
+<pre><code class="lang-r">przezycia &lt;- archivist::aread(<span class="hljs-string">&quot;pbiecek/Przewodnik/arepo/609491e5ec491f240cbeafe377743e21&quot;</span>)  
+head(przezycia)
+</code></pre>
+<pre><code>##   Year Age      mx      qx   ax     lx   dx    Lx      Tx    ex Gender
+## 1 1958   0 0.06562 0.06249 0.24 100000 6249 95231 6863376 68.63 Female
+## 2 1958   1 0.00474 0.00472 0.50  93751  443 93530 6768146 72.19 Female
+## 3 1958   2 0.00173 0.00173 0.50  93308  162 93228 6674616 71.53 Female
+## 4 1958   3 0.00119 0.00119 0.50  93147  111 93091 6581388 70.66 Female
+## 5 1958   4 0.00085 0.00085 0.50  93036   79 92996 6488297 69.74 Female
+## 6 1958   5 0.00071 0.00071 0.50  92957   66 92924 6395301 68.80 Female
+</code></pre><pre><code class="lang-r">przezycia2009 &lt;- przezycia[przezycia$Year == <span class="hljs-number">2009</span> &amp;
+                             przezycia$Age != <span class="hljs-string">&quot;110+&quot;</span>,]
+</code></pre>
+<p>Przyst&#x119;pujemy do tworzenia wykresu. </p>
+<p>Po zbudowaniu wykresu funkcj&#x105; <code>nPlot()</code>, nale&#x17C;y dookre&#x15B;li&#x107; szeroko&#x15B;&#x107; i wysoko&#x15B;&#x107; wykresy oraz nazwy osi. </p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(rCharts)
+p1 &lt;- nPlot(mx ~ Age, group = <span class="hljs-string">&quot;Gender&quot;</span>, data = przezycia2009, type = <span class="hljs-string">&quot;lineChart&quot;</span>)
+p1$chart(yScale = <span class="hljs-string">&quot;#! d3.scale.log() !#&quot;</span>)
+p1$xAxis(axisLabel = <span class="hljs-string">&apos;Wiek&apos;</span>)
+p1$yAxis(axisLabel = <span class="hljs-string">&apos;&#x15A;miertelno&#x15B;&#x107;&apos;</span>)
+p1$set(width = <span class="hljs-number">750</span>, height = <span class="hljs-number">590</span>)
+<span class="hljs-comment"># p1$save(&quot;rCharts1.html&quot;, standalone=TRUE)</span>
+</code></pre>
+<p>Nast&#x119;pnie wykres jest gotowy do umieszczenia na stronie www. 
+Wykres jest stron&#x105; html, mo&#x17C;na j&#x105; umie&#x15B;ci&#x107; na innej stronie poleceniem <code>iframe</code>.</p>
+<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts1.html">
+</iframe>
+
+<h2 id="wykres-punktowy">Wykres punktowy</h2>
+<p>Ta sama funkcja mo&#x17C;e by&#x107; u&#x17C;yta do zbudowania wykresu punktowego. Wystarczy jako typ wskaza&#x107; <code>type=&quot;scatterChart&quot;</code>.</p>
+<p>Na poni&#x17C;szym przyk&#x142;adzie pracujemy z danymi o wsp&#xF3;&#x142;czynniku liczby zgon&#xF3;w i urodzin na 1000 mieszka&#x144;c&#xF3;w w r&#xF3;&#x17C;nych krajach. 
+Dodatkowo pokazane jest jak mo&#x17C;na modyfikowa&#x107; informacj&#x119; o etykiecie.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(SmarterPoland)
+head(countries)
+</code></pre>
+<pre><code>##               country birth.rate death.rate population continent
+## 1         Afghanistan       34.1        7.7      30552      Asia
+## 2             Albania       12.9        9.4       3173    Europe
+## 3             Algeria       24.3        5.7      39208    Africa
+## 4             Andorra        8.9        8.4         79    Europe
+## 5              Angola       44.1       13.9      21472    Africa
+## 6 Antigua and Barbuda       16.5        6.8         90  Americas
+</code></pre><pre><code class="lang-r">p2 &lt;- nPlot(death.rate ~ birth.rate, group = <span class="hljs-string">&quot;continent&quot;</span>, data = countries, type = <span class="hljs-string">&quot;scatterChart&quot;</span>)
+p2$xAxis(axisLabel = <span class="hljs-string">&apos;Zgon&#xF3;w na 1000 os&#xF3;b&apos;</span>)
+p2$yAxis(axisLabel = <span class="hljs-string">&apos;Urodzin na 1000 os&#xF3;b&apos;</span>)
+p2$chart(tooltipContent = <span class="hljs-string">&quot;#! function(key, x, y, e){ 
+  return &apos;Kraj: &apos; + e.point.country 
+} !#&quot;</span>)
+p2$set(width = <span class="hljs-number">750</span>, height = <span class="hljs-number">590</span>)
+<span class="hljs-comment"># p2$save(&quot;rCharts2.html&quot;, standalone=TRUE)</span>
+</code></pre>
+<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts2.html">
+</iframe>
+
+<h1 id="biblioteka-morrisjs">Biblioteka <code>MorrisJS</code></h1>
+<p>Biblioteka MorrisJS udost&#x119;pnia inne ciekawe wykresy, g&#x142;&#xF3;wnie liniowe i s&#x142;upkowe. Przegl&#x105;d wykres&#xF3;w z tej biblioteki znajduje si&#x119; na stronie <a href="http://morrisjs.github.io/morris.js/" target="_blank">http://morrisjs.github.io/morris.js/</a></p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(tidyr)
+eZycia &lt;- przezycia %&gt;%
+  dplyr::filter(Age == <span class="hljs-number">0</span>) %&gt;%
+  dplyr::mutate(Year = as.character(Year)) %&gt;%
+  dplyr::select(Year, Gender, ex) %&gt;%
+  spread(Gender, ex)
+head(eZycia)
+</code></pre>
+<pre><code>##   Year Female  Male
+## 1 1958  68.63 63.03
+## 2 1959  68.34 62.62
+## 3 1960  70.63 64.81
+## 4 1961  70.81 64.86
+## 5 1962  70.54 64.55
+## 6 1963  71.52 65.41
+</code></pre><pre><code class="lang-r">m1 &lt;- mPlot(x = <span class="hljs-string">&apos;Year&apos;</span>, y = c(<span class="hljs-string">&apos;Female&apos;</span>, <span class="hljs-string">&apos;Male&apos;</span>), type = <span class="hljs-string">&apos;Line&apos;</span>,
+  data = eZycia, pointSize = <span class="hljs-number">0</span>, lineWidth = <span class="hljs-number">1</span>)
+m1$set(width = <span class="hljs-number">750</span>, height = <span class="hljs-number">590</span>)
+<span class="hljs-comment"># m1$save(&quot;rCharts3.html&quot;, standalone=TRUE)</span>
+</code></pre>
+<iframe style="width:780px; height:620px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts3.html">
+</iframe>
+
+<h1 id="biblioteka-leaflet">Biblioteka <code>Leaflet</code></h1>
+<p>Biblioteka <code>Leaflet</code> jest &#x15B;wietnym narz&#x119;dzie do przedstawiania danych na mapach. </p>
+<p>Wystarczy skaza&#x107; wsp&#xF3;&#x142;rz&#x119;dne pocz&#x105;tkowego widoku, doda&#x107; markery i mo&#x17C;na pokazywa&#x107; interaktywn&#x105; map&#x119;.</p>
+<pre><code class="lang-r">map1 = Leaflet$new()
+map1$setView(c(<span class="hljs-number">52.22</span>, <span class="hljs-number">21</span>), zoom = <span class="hljs-number">12</span>)
+map1$marker(c(<span class="hljs-number">52.22223</span>, <span class="hljs-number">21.00728</span>), bindPopup = <span class="hljs-string">&quot;Politechnika Warszawska, MiNI&quot;</span>)
+map1$marker(c(<span class="hljs-number">52.21167</span>, <span class="hljs-number">20.9815</span>), bindPopup = <span class="hljs-string">&quot;Uniwersytet Warszawski, MIM&quot;</span>)
+map1$marker(c(<span class="hljs-number">52.23925</span>, <span class="hljs-number">21.01742</span>), bindPopup = <span class="hljs-string">&quot;Uniwersytet Warszawski, Centrala&quot;</span>)
+<span class="hljs-comment"># map1$save(&quot;rCharts4.html&quot;, standalone=TRUE)</span>
+</code></pre>
+<iframe style="width:700px; height:350px" src="https://rawgit.com/pbiecek/Przewodnik/master/Wizualizacja/rCharts4.html">
+</iframe>
+
+<h1 id="wi&#x119;cej">Wi&#x119;cej</h1>
+<p>Kompletna lista wykres&#xF3;w wspieranych przez pakiet rCharts znajduje si&#x119; na stronie <a href="http://www.rpubs.com/dnchari/rcharts" target="_blank">http://www.rpubs.com/dnchari/rcharts</a>.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Wizualizacja/ggplot2/09_styl.html" class="navigation navigation-prev " aria-label="Previous page: Jak modyfikować styl wykresu?"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../references.html" class="navigation navigation-next " aria-label="Next page: Bibliografia"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"ga":{"token":"UA-5650686-13","configuration":"auto"},"github":{"url":"https://github.com/pbiecek/Przewodnik"},"katex":{},"expandable-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

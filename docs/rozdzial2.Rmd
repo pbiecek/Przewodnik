@@ -1,14 +1,17 @@
 ---
-title: "Rozdział 2"
+title: "Rozdział 2 - Podstawy pracy z R"
+author: "Przemysław Biecek"
 output:
-  html_notebook: default
   html_document:
-    toc: yes
+    toc: true
+    toc_float: true
 ---
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=TRUE)
 ```
+
+Kody z rozdziału *2. Podstawy pracy z R* [,,Przewodnika po programie R'' wydanie 4](http://biecek.pl/R).
 
 Aby zainstalować i włączyć pakiet `Przewodnik` wykonaj poniższe dwie liniki.
 
@@ -17,9 +20,7 @@ devtools::install_github("pbiecek/PrzewodnikPakiet")
 library("Przewodnik")
 ```
 
-Kody z rozdziału 2 ,,Przewodnika po programie R'' wydanie 4.
-
-### Rozdział 2.1
+## Rozdział 2.1
 
 ```{r}
 auta <- read.table("http://www.biecek.pl/R/auta.csv", 
@@ -75,7 +76,7 @@ l[["logika"]]
 l$liczby
 ```
 
-### Rozdział 2.3
+## Rozdział 2.3
 
 ```{r}
 library("Przewodnik")
@@ -107,7 +108,7 @@ summary(daneSoc$wyksztalcenie)
 summary(daneSoc[,1:4])
 ```
 
-### Rozdział 2.4
+## Rozdział 2.4
 
 ```{r}
 library("Przewodnik")
@@ -154,7 +155,7 @@ mosaicplot(~wyksztalcenie, data=daneSoc, main="",
 mosaicplot(~wyksztalcenie+praca, data=daneSoc, border="white", col=c("grey40", "grey70"))
 ```
 
-### Rozdział 2.5.1
+## Rozdział 2.5
 
 ```{r}
 library("dplyr")
@@ -268,7 +269,7 @@ df
 separate(df, col=daty, into=c("rok", "miesiac", "dzien"), sep="-")
 ```
 
-### Rozdział 2.6.1
+## Rozdział 2.6
 
 ```{r}
 library("PogromcyDanych")  

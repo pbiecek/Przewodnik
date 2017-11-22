@@ -1,0 +1,678 @@
+---
+title: "Rozdział 4 - Niezbędnik statystyka"
+author: "Przemysław Biecek"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=TRUE)
+```
+
+Kody z rozdziału *4. Niezbędnik statystyka* [,,Przewodnika po programie R'' wydanie 4](http://biecek.pl/R).
+
+
+Aby zainstalować i włączyć pakiet `Przewodnik` wykonaj poniższe dwie liniki.
+
+```
+devtools::install_github("pbiecek/PrzewodnikPakiet")
+library("Przewodnik")
+```
+
+## 4.1. Generatory liczb losowych
+
+### 4.1.1. Wprowadzenie do generatorów liczb pseudolosowych
+
+```{r}
+(RNGkind("Super", "Box"))
+(RNGkind("Super", "Ahr"))
+.Random.seed[1:6]
+
+save.seed <- .Random.seed
+rnorm(9)
+
+.Random.seed <- save.seed
+rnorm(9)
+
+set.seed(1313)
+runif(10)
+
+set.seed(1313)
+runif(10)
+```
+
+### 4.1.2. Popularne rozkłady zmiennych losowych
+
+
+```{r}
+runif(5)
+punif(0.5)
+dunif(0.5)
+qunif(0.1)
+
+x <- seq(-4,4,by=0.01)
+plot(x, dnorm(x), type="l", lwd=3, cex.axis=1.5, cex.lab=1.5)
+par(usr=c(-4,4,-0.04,1.04))
+
+lines(x, pnorm(x), lty=2, lwd=3, cex.axis=1.5, cex.lab=1.5)
+axis(side=4, cex.axis=1.5, cex.lab=1.5)
+mtext(side=4, "pnorm()", line=2.5, cex.axis=1.5, cex=1.5)
+
+pnorm(-3) + (1 - pnorm(3))
+dnorm(-1:1, mean=0, sd=1)
+
+qnorm(c(0.001, 0.025, 0.05, 0.5, 0.95, 0.975, 0.999))
+rnorm(10, mean = 2, sd = 1)
+rnorm(10, mean = 1:10, sd=1:10)
+
+```
+### 4.1.3. Wybrane metody generowania zmiennych losowych
+
+#### 4.1.3.1. Proces Poissona
+
+```{r}
+rPoisProcess <- function (T=1, lambda=1) {
+  N <- rpois(1, T*lambda)
+  sort(runif(N,0,T))
+}
+
+rPoisProcess(T=10, lambda=0.2)
+
+rRandomField <- function (T1=1, T2=1, lambda=1) {
+  N = rpois(1, T1*T2*lambda)
+  data.frame(x=runif(N,0,T1), y=runif(N,0,T2))
+}
+rRandomField(T1=10, T2=10, lambda=0.02)
+
+set.seed(1313)
+n <- 100; d <- 100; N <- 10000
+Sigma <- cov(matrix(rnorm(n*d),n,d))
+X <- matrix(rnorm(n*d),n,d)
+system.time(replicate(N, {
+  Q <- chol(Sigma)
+  X %*% Q
+} ))
+
+system.time(replicate(N, {
+  tmp <- svd(Sigma)
+  X %*% (tmp$u %*% diag(sqrt(tmp$d)) %*% t(tmp$v))
+}))
+
+system.time(replicate(N, {
+  tmp <- eigen(Sigma, symmetric=T)
+  X %*% (tmp$vectors %*% diag(sqrt(abs(tmp$values))) %*% t(tmp$vectors))
+}))
+
+```
+
+#### 4.1.3.3. Kopule/funkcje łączące
+
+```{r}
+library(copula)
+(norm.cop <- normalCopula(0.5))
+str(norm.cop)
+
+x <- rCopula(1000, norm.cop)
+head(x)
+
+N <- 40
+clayton.cop <- claytonCopula(1, dim = 2)
+x <- rCopula(N, clayton.cop)
+y <- cbind(qexp(x[,1],rate=2), qexp(x[,2],rate=2))
+head(y)
+
+N <- 40
+pv <- matrix(0, 2, 1000)
+clayton.cop <- claytonCopula(1, dim = 2)
+rownames(pv) <- c("Pearson", "Spearman")
+
+for (i in 1:1000) {
+  x <- rCopula(N, clayton.cop)
+  y <- cbind(qexp(x[,1],2), qexp(x[,2],2))
+  pv[1, i] <- cor.test(y[,1], y[,2], method="pearson")$p.value
+  pv[2, i] <- cor.test(y[,1], y[,2], method="spearman")$p.value
+}
+
+rowMeans(pv < 0.05)
+```
+
+### 4.1.4. Estymacja parametrów rozkładu
+
+```{r}
+library(MASS)
+wek <- rlnorm(100)
+fitdistr(wek, "normal")
+fitdistr(wek, "gamma", list(shape=3, rate=3))
+```
+
+## 4.2. Wstępne przetwarzanie danych
+
+### 4.2.1. Brakujące obserwacje
+
+```{r}
+library(dprep)
+data(hepatitis)
+dim(hepatitis)
+
+sum(is.na(hepatitis))
+sum(apply(is.na(hepatitis),1,max))
+
+indeksyKompletnych = complete.cases(hepatitis)
+dim(hepatitis[indeksyKompletnych,])
+
+summary(hepatitis[,19])
+
+summary(na.omit(hepatitis[,19]))
+```
+
+```{r, message=FALSE}
+library(Hmisc)
+wektor <- c(1,5,NA,2,8,8,3,NA,10)
+impute(wektor, 2.5)
+
+impute(wektor, mean)
+impute(wektor, "random")
+
+imputacjemedian <- e1071::impute(hepatitis, "median")
+imputacjemean <- ce.mimp(hepatitis, "mean", atr=1:20)
+imputacjeknn <- ec.knnimp(hepatitis, k=10)
+
+library(rms)
+replikacje <- aregImpute(~V18+V12+V6, n.impute=100, data=hepatitis, pr=FALSE)
+modelRepl <- fit.mult.impute(V18~V6+V12, ols, replikacje, data=hepatitis)
+summary.lm(modelRepl)
+
+modelBezRepl <- lm(V18~V6+V12, data=hepatitis)
+summary(modelBezRepl)
+```
+
+### 4.2.2. Normalizacja, skalowanie i transformacje nieliniowe
+
+```{r}
+library(Przewodnik)
+cov(daneSoc[,c(1,6,7)])
+cov(scale(daneSoc[,c(1,6,7)]))
+wektor.sd <- apply(daneSoc[,c(1,6,7)], 2, sd)
+head( sweep(daneSoc[,c(1,6,7)], 2, FUN= "/", wektor.sd) )
+head( apply(daneSoc[,c(1,6,7)], 2, function(x) x/sd(x)) )
+```
+
+```{r}
+library("Przewodnik")
+Lbox <- boxcox(daneO[,"VEGF"]~daneO[,"Rozmiar.guza"])
+Lbox$x[which.max(Lbox$y)]
+Lbox <- boxcox(daneO[,"Wiek"]~daneO[,"Rozmiar.guza"])
+Lbox$x[which.max(Lbox$y)]
+zmOryginalna <- c(0.1,0.8,0.5,0.2,0.9,0.7)
+(zmZmieniona <- cut(zmOryginalna, c(0,0.33,0.66,1), c("niski", "sredni", "wysoki")))
+levels(zmZmieniona) <- c("niewysoki", "niewysoki", "wysoki")
+zmZmieniona
+
+tDaneO <- transform(daneO, logVEGF = log(VEGF),
+fNowo4wor = factor(Nowotwor), cutWiek = cut(Wiek,4))
+head(tDaneO, 3)
+```
+
+## 4.3. Analiza wariancji, regresja liniowa i logistyczna
+
+### 4.3.2. Analiza jednoczynnikowa
+
+```{r}
+library("Przewodnik")
+summary(mieszkania)
+
+(a1 <- anova(lm(cena~dzielnica, data = mieszkania)))
+(a2 <- anova(lm(cena~typ.budynku, data = mieszkania)))
+
+a1[1,5]
+a2[1,5]
+
+summary(model1 <- aov(cena~dzielnica, data = mieszkania))
+TukeyHSD(model1)
+
+plot(TukeyHSD(model1))
+plot(cena ~ dzielnica, data = mieszkania)
+
+library("agricolae")
+df <- df.residual(model1)
+MSerror <- deviance(model1)/df
+HSD.test(mieszkania$cena, mieszkania$dzielnica, df, MSerror)
+
+t(contr.treatment(5))
+t(contr.helmert(5))
+
+kontr <- contr.helmert(3)
+model <- lm(cena~dzielnica, data=mieszkania,
+contrasts = list(dzielnica=kontr))
+summary(model)
+
+kontr <- cbind(c(2, -1, -1), c(0, 1, -1))
+model <- lm(cena~dzielnica, data=mieszkania,
+contrasts = list(dzielnica=kontr))
+summary(model)$coef
+
+```
+
+### 4.3.3. Analiza wieloczynnikowa
+
+
+```{r}
+(a3 <- anova(lm(cena~dzielnica+typ.budynku, data = mieszkania)))
+a3[1:2,5]
+plot.design(mieszkania[,c("dzielnica", "typ.budynku", "cena")])
+interaction.plot(mieszkania$dzielnica, mieszkania$typ.budynku, mieszkania$cena, lwd=3)
+
+a4 <- anova(lm(cena~dzielnica*typ.budynku, data = mieszkania))
+a4 <- anova(lm(cena~(dzielnica+typ.budynku)^2, data = mieszkania))
+(a4 <- anova(lm(cena~dzielnica+typ.budynku+dzielnica:typ.budynku, data = mieszkania)))
+
+anova(lm(cena~dzielnica+typ.budynku, data = mieszkania))[1:2,5]
+anova(lm(cena~dzielnica, data = mieszkania))[1,5]
+
+model <- manova(cbind(cena,powierzchnia)~dzielnica+typ.budynku, data=mieszkania)
+summary(model, test="Hotelling-Lawley")
+```
+
+### 4.3.4. Regresja
+
+
+```{r}
+modelPP <- lm(cena~powierzchnia+pokoi, data = mieszkania)
+modelPP$coefficients
+modelPP$coeff
+summary(modelPP)
+
+podsumowanieModeluPP <- summary(modelPP)
+podsumowanieModeluPP$coef[2:3,4]
+
+podsumowanieModeluPP$coef[,1]
+
+c(podsumowanieModeluPP$r.squared, podsumowanieModeluPP$adj.r.squared)
+
+summary(lm(cena~powierzchnia+pokoi+dzielnica, data = mieszkania))
+
+modelDP <- lm(cena~powierzchnia+dzielnica, data = mieszkania)
+ndane <- data.frame(powierzchnia=c(48,68), dzielnica=c("Biskupin", "Krzyki"))
+predict(modelDP, newdata = ndane)
+
+vif(lm(cena~powierzchnia+pokoi, data=mieszkania))
+vif(lm(rnorm(200)~powierzchnia+pokoi+cena, data=mieszkania))
+```
+
+### 4.3.5. Wprowadzenie do regresji logistycznej
+
+```{r}
+library("Przewodnik")
+modelNV <- glm(Niepowodzenia~Nowotwor+log(VEGF), data=daneO, family="binomial")
+summary(modelNV)
+
+modelN <- glm(Niepowodzenia~Nowotwor, daneO, family="binomial")
+ndaneO <- data.frame(Nowotwor=c(1, 2, 3))
+predict(modelN, ndaneO, type = "response")
+
+cdplot(daneO$VEGF, daneO$Niepowodzenia, bw=3000)
+cdplot(mieszkania$cena, mieszkania$typ.budynku)
+
+library(pscl)
+modelN <- glm(Niepowodzenia~Nowotwor, daneO, family="binomial")
+pR2(modelN)
+
+x <- runif(100)*3
+y <- x^2.5-5+rnorm(100,0,3)
+model <- nls(y ~ x^a - b, start = list(a = 2, b = 2))
+summary(model)
+
+mojModel <- function(a,b,x) sin(a+b*x)
+x <- runif(100)*6
+y <- mojModel(pi/2,2,x)+rnorm(100,0,1)
+
+model <- nls(y~mojModel(a,b,x), start=list(a=2,b=2), algorithm="plinear")
+summary(model)
+
+```
+
+## 4.4. Testowanie
+
+```{r}
+library(goftest)
+x <- rnorm(100, 10, 1.4)
+cvm.test(x)
+
+(pwynik <- cvm.test(x)$p.value)
+
+library(car)
+y <- rnorm(100)
+qqnorm(y)
+qqline(y, col = "red")
+qqPlot(y)
+
+```
+
+#### 4.4.1. Testy zgodności z rozkładem jednostajnym
+
+```{r}
+przedzialy <- seq(0,1,0.2)
+(x <- table(cut(runif(100), przedzialy)))
+chisq.test(x)
+
+(x <- table(cut(rbeta(100,3,2), przedzialy)))
+chisq.test(x)
+
+x <- runif(100)
+ks.test(x, "punif")
+ks.test(x, "pnorm", 1, 1)
+
+x <- runif(100); y <- rnorm(100)
+ks.test(x, y)
+
+x <- rexp(100)
+y <- rnorm(500)
+qqplot(x, y)
+```
+
+### 4.4.2. Testowanie hipotezy o równości parametrów położenia
+
+```{r}
+x <- rnorm(50)
+y <- x + 0.3 + rnorm(50,0,0.01)
+t.test(y, mu=0)
+
+t.test(x, y)$p.value
+
+t.test(x, y, paired=TRUE)
+
+t.test(x, y, paired=T)$p.value
+
+wilcox.test(y, mu=0)$p.value
+
+wilcox.test(x, y)$p.value
+```
+
+### 4.4.3. Testowanie hipotezy o równości parametrów skali
+
+```{r}
+x <- rnorm(20,2,1)
+y <- rnorm(20,2,2)
+z <- rnorm(20,2,3)
+
+var.test(x,y)
+
+ansari.test(x,y)$p.value
+
+bartlett.test(list(x,y,z))$p.value
+
+mood.test(x,y)$p.value
+
+grupy <- gl(3,20); wart <- c(x,y,z)
+fligner.test(wart~grupy, data.frame(wart, grupy))$p.value
+
+library(car)
+leveneTest(wart,grupy)[1,3]
+```
+
+### 4.4.4. Testowanie hipotez dotyczących wskaźnika struktury
+
+```{r}
+(wtestu <- prop.test(594, 1234, p=0.5))
+wtestu$conf.int
+
+x <- c(11,120,1300,14000,150000)
+n <- c(100,1000,10000,100000,1000000)
+x/n
+
+pairwise.prop.test(x, n, p.adjust.method = "bonferroni")
+```
+
+### 4.4.5. Testy istotności zależności pomiędzy dwoma zmiennymi
+
+```{r}
+set.seed(227)
+x <- rlnorm(50)
+y <- x + rlnorm(50)
+cor.test(x, y, method="pearson")
+cor.test(x, y, method="spearman")
+
+get.z <- function(rho) log((1+rho)/(1-rho))/2
+
+rho0.test <- function(rho, n, rho0=0, alternative="two.sided") {
+  p.raw <- pnorm((get.z(rho) - get.z(rho0))/sqrt(1/(n-3)))
+  if (alternative=="two.sided") return(1 - 2*abs(0.5-p.raw))
+  if (alternative=="less") return(p.raw)
+  if (alternative=="greater") return(1-p.raw)
+}
+
+rho.rho.test <- function(rho1,n1, rho2,n2, alternative="two.sided"){
+  p.raw <- pnorm((get.z(rho1) - get.z(rho2))/sqrt(1/(n1-3)+1/(n2-3)))
+  if (alternative=="two.sided") return(1 - 2*abs(0.5 - p.raw))
+  if (alternative=="less") return(p.raw)
+  if (alternative=="greater") return(1-p.raw)
+}
+
+tabela <- table(daneSoc$plec, daneSoc$praca)
+tabela
+chiwynik <- chisq.test(tabela)
+chiwynik
+chiwynik$expected
+
+fisher.test(tabela)
+mcnemar.test(tabela)
+
+```
+
+#### 4.4.5.4. Współczynnik zgodności kappa
+
+
+```{r}
+library(irr)
+ocena1 <- factor(2 + trunc(runif(100)*4))
+ocena2 <- factor(2 + trunc(runif(100)*4))
+table(ocena1, ocena2)
+kappa2(cbind(ocena1, ocena2))
+table(ocena1, ocena2)
+kappa2(cbind(ocena1, ocena2), weight = "unweighted")
+kappa2(cbind(ocena1, ocena2), weight = "squared")
+```
+
+### 4.4.6. Testowanie zbioru hipotez
+
+```{r}
+pwart <- numeric(6)
+for (i in 1:6)
+  pwart[i] <- t.test(rnorm(20),rnorm(20,1))$p.value
+p.adjust(pwart, method=c("BH"))
+
+```
+
+### 4.4.7. Rozkład statystyki testowej
+
+```{r}
+N <- 10^5
+getStat <- function(n=30, p=0.2) {
+  x <- rbinom(n,1,p)
+  y <- rbinom(n,1,p)
+  tab <- table(x,y)
+  chisq.test(tab)$statistic
+}
+
+st.testowa <- replicate(N, getStat())
+plot(ecdf(st.testowa), xlim=c(0,5))
+lines(sort(st.testowa), pchisq(sort(st.testowa),1), col="red", lwd=3)
+
+x <- kidney[kidney$recipient.age < 40, "MDRD30"]
+y <- kidney[kidney$recipient.age >= 40, "MDRD30"]
+n <- length(x); m <- length(y); B <- 999
+
+(theta <- ks.test(x,y)$statistic)
+
+thetastar <- replicate(B, {
+  zstar <- sample(c(x,y))
+  xstar <- zstar[1:n]
+  ystar <- zstar[(1:m)+n]
+  ks.test(xstar, ystar)$statistic
+})
+
+(sum(thetastar >= theta) + 1) / (B+1)
+
+```
+
+## 4.5. Bootstrap
+
+```{r}
+library(boot)
+srednia <- function(x,w) sum(x*w)
+wynikBoot <- boot(daneO$VEGF, srednia, R=999, stype="w")
+quantile(wynikBoot$t, c(0.05/2, 1 - 0.05/2))
+plot(wynikBoot)
+mean(daneO$VEGF)
+
+boot.ci(wynikBoot, conf = 0.95)
+
+VEGF.stat <- function(data) {
+  mean(data)
+}
+VEGF.sim <- function(data, mle) {
+  rnorm(length(data), mean = mle[1], sd = mle[2])
+}
+VEGF.mle <- c(mean(daneO$VEGF), sd(daneO$VEGF))
+bootParametryczny <- boot(daneO$VEGF, statistic = VEGF.stat, R = 999, sim = "parametric", ran.gen = VEGF.sim, mle = VEGF.mle)
+
+plot(bootParametryczny)
+boot.ci(bootParametryczny, type = "perc", conf = 0.95)
+```
+
+### 4.5.2. Testy bootstrapowe
+
+```{r}
+statystykaT <- function(x,i) (mean(x[i]) - mean(x))/sd(x[i])
+boostrapowyTestT <- function(wektor, mu0=0) {
+  # wyznaczamy 999 replikacji i liczymy wartosci statystyki
+  wartosciStatystykiT <- boot(wektor,statystykaT,R=999,stype="i")
+  # wyznaczamy dystrybuante dla rozkladu statystyki T
+  dystrybuantaStatystykiT <- ecdf(wartosciStatystykiT$t)
+  T <- mean(wektor - mu0)/sd(wektor)
+  # wyznaczamy kwantyl odpowiadajacy wartosci statystyki T w rozkladzie statystyki testowej dla replikacji bootstrpowych
+  kwantyl <- dystrybuantaStatystykiT(T)
+  # wyznaczamy p-wartosc dla testu dwustronnego
+  1 - 2*abs(kwantyl-0.5)
+}
+boostrapowyTestT(daneO$VEGF, 3000)
+boostrapowyTestT(daneO$VEGF, 4000)
+
+```
+
+## 4.6. Analiza przeżycia
+
+```{r}
+library("Przewodnik")
+czasy <- with(daneO, Surv(Okres.bez.wznowy,Niepowodzenia=="wznowa"))
+czasy[1:10]
+
+```
+
+### 4.6.1. Krzywa przeżycia
+
+```{r}
+library(survival)
+krzywaKM <- survfit(czasy~1)
+summary(krzywaKM)
+plot(krzywaKM)
+plot(survfit(czasy~daneO$Nowotwor))
+survdiff(czasy~daneO$Nowotwor)
+```
+
+### 4.6.2. Model Coxa
+
+```{r}
+fit <- coxph(czasy~Nowotwor+Wiek, data=daneO)
+(fit2 <- cox.zph(fit))
+summary(fit)
+
+library("partykit")
+library("ipred")
+library("TH.data")
+data("GBSG2", package = "ipred")
+GBSG2ct <- ctree(Surv(time, cens) ~ .,data = GBSG2)
+plot(GBSG2ct)
+```
+
+## 4.7. Wybrane funkcje matematyczne
+
+### 4.7.1. Operacje na zbiorach
+
+```{r}
+x <- 1:10
+y <- 5:15
+setdiff(union(x,y), intersect(x,y))
+setequal(x, setdiff(x, setdiff(y,x)))
+is.element(3, x)
+```
+
+### 4.7.2. Operacje arytmetyczne
+
+```{r}
+1-exp(0.1^15)
+expm1(0.1^15)
+log(1+0.1^20)
+log1p(0.1^20)
+```
+
+### 4.7.3. Wielomiany
+
+```{r}
+library(orthopolynom)
+(p1 <- polynomial(c(2,0,1)))
+(p2 <- polynomial(c(2,2,1,1)))
+p1 + p2
+p1 * p2
+integral(p1,c(0,1))
+deriv(p2)
+poly.calc(c(-1,1))
+poly.calc(c(0,2,4), c(3,2,3))
+solve(p2)
+LCM(p1,p2)
+GCD(p1,p2)
+```
+
+### 4.7.4. Bazy wielomianów ortogonalnych
+
+```{r}
+library(orthopolynom)
+Nmax <- 5
+(wielomiany <- slegendre.polynomials(Nmax, normalized=TRUE))
+
+wielomian4 <- as.function(wielomiany[[4]])
+wielomian4(c(0, 0.5, 1))
+
+curve(wielomian4, 0, 1, lwd=3, lty=4, ylab="")
+
+for (i in 1:Nmax) {
+  wielomian <- as.function(wielomiany[[i]])
+  curve(wielomian, 0, 1, add=TRUE, lwd=3, lty=i)
+}
+
+```
+
+### 4.7.5. Szukanie maksimum/minimum/zer funkcji
+
+```{r}
+f <- function(x, wyznacznik) {(x - 7)^wyznacznik - x}
+optimize(f, interval=c(-1,10), wyznacznik = 2)
+
+uniroot(f, interval=c(-1,10), wyznacznik = 2)
+```
+
+### 4.7.6. Rachunek różniczkowo–całkowy
+
+```{r}
+D(expression(3*(x-2)^2-15), "x")
+(wyraz <- deriv(~(x-2)^2+15,"x")) 
+x <- 1:3
+eval(wyraz)
+integrate(dnorm, 0, Inf)
+integrate(function(x) sin(x)^2, 0, 600)
+# integrate(function(x) sin(x)^2, 0, Inf)
+
+```
+

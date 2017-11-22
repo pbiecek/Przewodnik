@@ -1,11 +1,11 @@
 # Jak tworzyć interaktywne wykresy?
 
-Najłatwiejszy sposób aby budować interaktywne wykresy w R, to skorzystanie z pakietu `rCharts` (http://rcharts.io/).
+Najłatwiejszy sposób aby budować interaktywne wykresy w R, to skorzystanie z pakietu `rCharts` (https://ramnathv.github.io/rCharts/).
 
 Pakiet rCharts tworzy stronę HTML z osadzonymi bibliotekami JavaScript. Można korzystać z bibliotek `NVD3`, `Highcharts`, `Leaflet` i innych. Pełna lista znajduje się na stronie pakietu `rCharts`.
 
 Poniżej przedstawimy kilka wybranych przykładów.
-Szczegółowa lista dostępnych opcji znajduje się na [tej stronie](http://www.rpubs.com/dnchari/rcharts).
+Szczegółowa lista dostępnych opcji znajduje się na [tej stronie](https://ramnathv.github.io/rCharts/).
 
 # Biblioteka `NVD3`
 

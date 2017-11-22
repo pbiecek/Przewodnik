@@ -1,0 +1,305 @@
+---
+title: "Rozdział 2"
+output:
+  html_notebook: default
+  html_document:
+    toc: yes
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=TRUE)
+```
+
+Aby zainstalować i włączyć pakiet `Przewodnik` wykonaj poniższe dwie liniki.
+
+```
+devtools::install_github("pbiecek/PrzewodnikPakiet")
+library("Przewodnik")
+```
+
+Kody z rozdziału 2 ,,Przewodnika po programie R'' wydanie 4.
+
+### Rozdział 2.1
+
+```{r}
+auta <- read.table("http://www.biecek.pl/R/auta.csv", 
+		sep = ";", header = TRUE)
+head(auta)
+```
+
+### Rozdział 2.2.1
+
+```{r}
+c(2, 3, 5, 7, 11, 13, 17)
+-3:3
+seq(from = 0, to = 100, by = 11)
+month.name
+LETTERS
+LETTERS[ 5:10 ]
+LETTERS[ c(1, 2, 9:14) ]
+co_drugi <- seq(from = 1, to = length(LETTERS), by = 2)
+LETTERS[ co_drugi ]
+month.name[ -(5:9) ]
+wartosc <- c(pion = 1, skoczek = 3, goniec = 3, 
+             wieza = 5, hetman = 9, krol = Inf)
+wartosc[ c("goniec", "wieza") ]
+wartosc[ 6:1 ]
+wartosc[ wartosc < 6 ]
+wartosc[ c(4,5) ] <- c(6,7)
+wartosc
+wartosc <- c(wartosc, nowa_bierka = 5)
+```
+
+### Rozdział 2.2.2
+
+```{r}
+library("Przewodnik")
+head(koty_ptaki)
+koty_ptaki[ c(1, 3, 5) , ]
+koty_ptaki[ c(1, 3, 5) , 2:5]
+koty_ptaki[ koty_ptaki[,"predkosc"] > 100, 
+            c("gatunek", "predkosc", "dlugosc")]
+koty_ptaki[, "predkosc"]
+koty_ptaki$predkosc
+koty_ptaki$predkosc_mile <- koty_ptaki$predkosc * 1.6
+head(koty_ptaki, 2)
+```
+
+### Rozdział 2.2.3
+
+```{r}
+l <- list(liczby = 1:5, litery = LETTERS, logika = c(TRUE, TRUE, TRUE, FALSE))
+l
+l[[2]]
+l[["logika"]]
+l$liczby
+```
+
+### Rozdział 2.3
+
+```{r}
+library("Przewodnik")
+head(daneSoc, 2)
+```
+
+### Rozdział 2.3.1
+
+```{r}
+range(daneSoc$wiek)
+mean(daneSoc$wiek)
+mean(daneSoc$wiek, trim=0.2)
+median(daneSoc$wiek)
+summary(daneSoc$wiek)
+sd(daneSoc$wiek)
+library("e1071")
+kurtosis(daneSoc$wiek)
+skewness(daneSoc$wiek)
+quantile(daneSoc$wiek, c(0.1, 0.25, 0.5, 0.75, 0.9))
+cor(daneSoc[,c(1,6,7)])
+```
+
+### Rozdział 2.3.2
+
+```{r}
+table(daneSoc$wyksztalcenie)
+table(daneSoc$wyksztalcenie, daneSoc$praca)
+summary(daneSoc$wyksztalcenie)
+summary(daneSoc[,1:4])
+```
+
+### Rozdział 2.4
+
+```{r}
+library("Przewodnik")
+tab <- table( daneSoc$wyksztalcenie )
+barplot(tab, horiz = TRUE, las = 1)
+
+tab2 <- table( daneSoc$plec, daneSoc$wyksztalcenie )
+barplot(tab2, las=1, beside = TRUE)
+legend("topright",c("kobieta","mezczyzna"),fill=c("grey","black"))
+
+hist(daneSoc$wiek, breaks = 15, main="Histogram wieku", las=1,
+     ylab="Liczba", xlab="Wiek")
+
+hist(daneSoc$wiek, breaks = 15, col="grey", border="white", las=1, 
+     probability = TRUE, ylab="Czestosc", xlab="Wiek")
+
+boxplot(daneSoc$cisnienie.rozk, daneSoc$cisnienie.skur,
+        horizontal = TRUE, names = c("Skurczowe","Rozkurczowe"))
+
+boxplot(wiek~wyksztalcenie, data = daneSoc, varwidth=TRUE,  
+    col="lightgrey", ylab="Wiek", las=1)
+
+plot(density(daneSoc$wiek), main="Rozklad wieku")
+
+plot(density(daneSoc$wiek, bw=1), main="Rozklad wieku",type="h")
+
+plot(ecdf(daneSoc$wiek), main="Dystrybuanta wieku")
+
+mezczyzni <- filter(daneSoc, plec == "mezczyzna")
+kobiety   <- filter(daneSoc, plec == "kobieta")
+plot(ecdf(mezczyzni$wiek), main="Wiek / plec", pch=21)
+plot(ecdf(kobiety$wiek), add=TRUE, col = "grey")
+
+library("car")
+sp(cisnienie.rozkurczowe~cisnienie.skurczowe, data=daneSoc, 
+   smooth=FALSE, reg.line=FALSE, pch=19)
+
+sp(cisnienie.rozkurczowe~cisnienie.skurczowe|plec, data=daneSoc, 
+   smooth=FALSE, lwd=3, pch=c(19,17))
+
+mosaicplot(~wyksztalcenie, data=daneSoc, main="", 
+           border="white")
+
+mosaicplot(~wyksztalcenie+praca, data=daneSoc, border="white", col=c("grey40", "grey70"))
+```
+
+### Rozdział 2.5.1
+
+```{r}
+library("dplyr")
+tylkoCorsa <- filter(auta, Model == "Corsa")
+head(tylkoCorsa)
+tylkoCorsa <- filter(auta, Model == "Corsa", Produkcja == 2010, Paliwo == "diesel")
+head(tylkoCorsa)
+```
+
+### Rozdział 2.5.2
+
+```{r}
+trzyKolumny <- select(auta, Marka, Model, Cena)
+head(trzyKolumny)
+head(select(auta, starts_with("M")))
+```
+
+### Rozdział 2.5.3
+
+```{r}
+autaZWiekiem <- mutate(auta,
+                       Wiek = 2013 - Produkcja,
+                       PrzebiegNaRok = round(Przebieg/Wiek))
+head(select(autaZWiekiem,Marka, Model,  Cena, Paliwo, Wiek, PrzebiegNaRok))
+```
+
+### Rozdział 2.5.4
+
+```{r}
+posortowaneAuta <- arrange(auta, Model, Cena)
+head(posortowaneAuta)
+posortowaneAuta <- arrange(auta, Model, desc(Cena))
+tylkoKia <- filter(auta, Marka == "Kia")
+posortowane <- arrange(tylkoKia, Cena)
+czteryKolumny <- select(posortowane, Model, Cena, Przebieg, Produkcja)
+head(czteryKolumny, 4)
+```
+
+### Rozdział 2.5.5
+
+```{r}
+head(
+  select( 
+    arrange(
+      filter(auta, 
+             Marka == "Kia"), 
+      Cena), 
+    Model, Cena, Przebieg, Produkcja)
+  , 4)
+auta %>% 
+  filter(Marka == "Kia") %>% 
+  arrange(Cena) %>% 
+  select(Model, Cena, Przebieg, Produkcja) -> 
+  posortowane
+head(posortowane)
+auta %>% 
+	lm(Cena~Przebieg, data = .) %>% 
+	summary()
+```
+
+### Rozdział 2.5.6
+
+```{r}
+auta %>%
+  summarise(sredniaCena = mean(Cena),
+            medianaPrzebiegu = median(Przebieg),
+            sredniWiek = mean(2013 - Produkcja),
+            liczba = n())
+auta %>%
+  select(Marka, Cena, Przebieg, Model) %>%
+  group_by(Marka) %>%
+  mutate(Przebieg = Przebieg/mean(Przebieg, na.rm=TRUE)) 
+auta %>%
+  group_by(Marka) %>%
+  summarise(sredniaCena = mean(Cena),
+            medianaPrzebiegu = median(Przebieg),
+            sredniWiek = mean(2013 - Produkcja),
+            liczba = n())
+auta %>%
+  group_by(Marka) %>%
+  summarise(sredniaCena = mean(Cena),
+            medianaPrzebiegu = median(Przebieg),
+            sredniWiek = mean(2013 - Produkcja),
+            liczba = n()) %>%
+  arrange(sredniaCena)
+```
+
+### Rozdział 2.5.7
+
+```{r}
+library("eurostat")
+tsdtr210 <- get_eurostat("tsdtr210")
+head(tsdtr210)
+library("tidyr")
+szeroka <- spread(tsdtr210, time, values)
+szeroka %>% filter(geo == "PL")
+szeroka2 <- spread(tsdtr210, geo, values)
+szeroka2 %>% filter(time == "2010-01-01")
+```
+
+### Rozdział 2.5.8
+
+```{r}
+szeroka %>% 
+  gather(rok, wartosc, -geo, -vehicle) %>%
+  tail()
+unite(tsdtr210, geo_time, geo, time, sep=":") %>%
+  head()
+df <- data.frame(daty = c("2004-01-01", "2012-04-15", "2006-10-29", "2010-03-03"), id = 1:4)
+df
+separate(df, col=daty, into=c("rok", "miesiac", "dzien"), sep="-")
+```
+
+### Rozdział 2.6.1
+
+```{r}
+library("PogromcyDanych")  
+data("koty_ptaki")   
+head(koty_ptaki)
+koty_ptaki <- read.table(file="http://biecek.pl/R/koty_ptaki.csv", 
+          sep=";", dec=",", header=TRUE)
+head(koty_ptaki)
+```
+
+### Rozdział 2.6.4
+
+```{r}
+(dane <- read.fwf("http://www.biecek.pl/R/dane/daneFWF.txt", 
+               widths=c(1,2,4,5,2)))
+(dane <- read.fwf("http://www.biecek.pl/R/dane/daneFWF.txt", 
+                widths=list(c(1,2,11), c(2,1,11))))
+```
+
+### Rozdział 2.6.5
+
+```{r}
+library("Hmisc")
+dane  <- spss.get("http://www.biecek.pl/R/dane/daneSPSS.sav", datevars="urodzony")
+head(dane, 4)
+```
+
+### Rozdział 2.6.7
+
+```{r}
+library("R.matlab")
+daneMat <- readMat("http://www.biecek.pl/R/dane/daneMatlab.MAT")
+str(daneMat)
+```

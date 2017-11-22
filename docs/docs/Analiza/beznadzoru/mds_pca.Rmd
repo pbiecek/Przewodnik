@@ -1,0 +1,105 @@
+# Metoda składowych głównych (ang. PCA, *Principal Component Analysis*)
+
+Dotychczas omówione metody bazowały na macierzy odległości / niepodobieństwa $$D$$ i z niej odtwarzały nowe współrzędne obiektów. 
+
+W tym rozdziale omówimy prostszy przypadek, w którym mamy dane $$X$$ w przestrzeni $$q$$ wymiarowej i chcemy je liniowo rzutować do przestrzeni $$p$$ wymiarowej, w ten sposób by zachować jak najlepiej kwadrat odległości euklidesowej pomiędzy obiektami.
+
+Poniżej traktujemy $$X$$ jako macierz o $$n$$ wierszach i $$q$$ kolumnach, kolejne kolumny to zmienne opisujące obiekty.
+
+## Skalowanie i centrowanie
+
+Zawsze gdy pracujemy z odległościami powinniśmy upewnić się, że każdy wymiar / każda zmienna jest w tych samych jednostkach. Tylko dzięki temu, możemy zapewnić, że odległość jest równomiernie związana z każdą zmienną.
+
+Jeżeli zmienne są w różnych jednostkach, lub dotyczą różnych współczynników, wtedy zalecanym postępowaniem jest wycentrowanie i przeskalowanie każdej zmiennej / każdego wymiaru by mieć średnią 0 i odchylenie standardowe 1.
+
+
+## Największa wariacja - metoda wartości własnych
+
+Metoda PCA, którą poniżej omówimy, ma na celu jak najwierniejsze odwzorowanie kwadratu odległości euklidesowej.
+Średnia kwadratu odległości euklidesowej punktów od średniej z punktów odpowiada wariancji. Problem rzutowania, które zachowuje kwadraty odległości euklidesowych jest więc równoważny problemowi rzutowania, które maksymalizuje wariancje w danych po rzutowaniu.
+
+Jak szukać rzutu maksymalizującego wariancję? 
+
+
+Zacznijmy od rzutu jednowymiarowego. Szukamy jednowymiarowej przestrzeni, takiej, że rzut na nią ma jak największą wariancję.
+Przyjmijmy, że wektor $$u$$ jest wektorem bazowym tej nowej jednowymiarowej podprzestrzeni. Długość rzutu wektora $$x$$ na tę podprzestrzeń to $$u^Tx$$. 
+
+Rzut zachowuje punkt zerowy, a więc Wariancja to suma kwadratów rzutów, czyli
+$$
+Var(X^Tu) = \frac 1n  \sum_{i=1}^n (x_i^T u)^2,
+$$
+i można ją przedstawić jako 
+$$
+Var(X^Tu) = u^T\left(\sum_i x_i x_i^T\right)u.
+$$
+
+Zauważmy, że $$\sum_i x_i x_i^T$$ to macierz kowariancji danych (wciąż $$X$$jest wycentrowany). Przy dodatkowym ograniczeniu, że $$||u||=1$$ metodą mnożników Lagrange możemy znaleźć $$u$$.
+
+Funkcja Lagrange przyjmie postać
+$$
+\left(\sum_i x_i x_i^T\right)u - \lambda u.
+$$
+
+W tym przypadku rozwiązaniem jest wektor własny odpowiadającym pierwszej wartości własnej.
+
+Podobnie postępuje się dla kolejnych wymiarów i otrzymuje się jako rozwiązania kolejne wartości własne.
+
+## Wartości osobliwe - Singular value decomposition
+
+Rozłóżmy macierz $$X$$ (zakładamy, że jej kolumny są wycentrowane i wystandaryzowane) na
+$$
+X = U \Sigma W^T,
+$$
+gdzie $$\Sigma$$ jest macierzą diagonalną, macierze $$U$$ i $$W$$ są ortonormalne (a więc $$U^TU = I$$). Taki rozkład macierzy nazywamy rozkładem na wartości osobliwe.
+
+Zauważmy, że
+$$
+X^T X = W^T \Sigma^2 W,
+$$
+a więc wartości osobliwe odpowiadają kwadratom wartości własnych.
+
+Możemy więc rzut na niższą przestrzeń wyznaczyć też ze wzoru (wybieramy jedynie pierwsze wektory własne)
+$$
+M = XW = U \Sigma.
+$$
+
+
+
+## Przykład w R
+
+Na potrzeby poniższych analiz wykorzystamy dane o filmach z 2015 roku z bazy Hollywood Insider.
+
+```{r pca, dev='svg',warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+library(archivist)
+filmy <- archivist::aread("pbiecek/Przewodnik/arepo/10aab376f2bc0001cbd1db1802e9fb53")
+filmy2015 <- na.omit(filmy[filmy$year == "2015", c(1, 4:8)])
+head(filmy2015)
+```
+
+Analizę PCA można wykonać funkcją `princomp()` wykorzystującą wartości własne lub funkcją `prcomp()` wykorzystującą rozkład SVD. Ta druga metoda jest lepsza z uwagi na właściwości numeryczne.
+
+```{r pca2, dev='svg',warning=FALSE, message=FALSE, fig.width=7, fig.height=4.5}
+rownames(filmy2015) <- make.names(filmy2015[,1], unique = TRUE)
+model <- prcomp(scale(filmy2015[,-1]))
+model
+```
+
+Z modelu można wyłuskać dane po rzutowaniu.
+
+```{r pca4, dev='svg',warning=FALSE, message=FALSE, fig.width=7, fig.height=4.5}
+PCA12 <- model$x[,1:2]
+head(PCA12)
+```
+
+Funkcja `plot()` pokazuje procent wyjaśnionej zmienności. Ale więcej pokaże biplot, wykonany z użyciem funkcji `autoplot{ggfortify}`.
+
+```{r pca5, dev='svg',warning=FALSE, message=FALSE, fig.width=7, fig.height=4.5}
+plot(model)
+```
+
+```{r pca3, dev='svg',warning=FALSE, message=FALSE, fig.width=10, fig.height=10}
+library(ggfortify)
+autoplot(model, shape = FALSE, label.size = 2, loadings = TRUE, loadings.label = TRUE, loadings.label.size = 5) + theme_bw()
+```
+
+

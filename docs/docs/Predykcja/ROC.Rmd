@@ -1,0 +1,85 @@
+# ROC, AUC i inne
+
+Mając klasyfikator, często potrzebujemy narzędzia, które pozwoli ocenić jego jakość.
+
+Przyjrzyjmy się lasom losowym dla dwóch zmiennych. To są obszary decyzyjne.
+
+```{r obszary, message=FALSE, warning=FALSE}
+library("Przewodnik")
+titanic2 <- na.omit(titanic)
+
+library("randomForest")
+rf <- randomForest(Survived~Age+Fare, data=titanic2)
+
+grid <- expand.grid(Age=seq(0,90, length.out=200),
+                    Fare=seq(0,250, length.out=200))
+pred_rf <- predict(rf, grid, type="prob")[,1]
+grid$posterior_rf <- pred_rf
+
+ggplot(grid, aes(Age, Fare, color=posterior_rf)) + 
+  geom_point(size=1)
+```
+
+Funkcją `varImpPlot` możemy pokazać ranking ważności zmiennych. 
+
+```{r, message=FALSE, warning=FALSE}
+rf <- randomForest(Survived~., data=titanic2)
+importance(rf)
+varImpPlot(rf)
+```
+
+Lasy losowe jako wynik zwracają wartości scorów z przedziału 0-1. 
+
+Aby ocenić jakość takich scorów często stosuje się krzywą ROC (Receiver operating characteristic), przedstawiającą zmianę dwóch współczynników, jako funkcję przyjętego punktu odcięcia.
+
+* czułość (sensitivity) - true positive rate
+$$
+TPR = \frac{TP}{P} = \frac{Pr\{y = +, \hat y = +\}}{Pr\{\hat y = +\}}
+$$
+
+* specyficzność (specificity) - true negative rate
+$$
+SPEC = \frac{TN}{N} = \frac{Pr\{y = -, \hat y = -\}}{Pr\{\hat y = -\}}
+$$
+
+* accuracy - skuteczność
+$$
+ACC = \frac{TN+TP}{n}
+$$
+
+* Youden J = czułość + specyficzność - 1.
+
+```{r rocauc, message=FALSE, warning=FALSE}
+library("caret")
+inds <- createDataPartition(titanic2$Survived, p = 0.75)
+titanic2_train <- titanic2[inds[[1]],]
+titanic2_test  <- titanic2[-inds[[1]],]
+
+rf <- randomForest(Survived~Age+Fare, data=titanic2_train)
+
+library("plotROC")
+pred_rf <- predict(rf, titanic2_test, type="prob")[,2]
+
+roc.estimate <- calculate_roc(pred_rf, titanic2_test$Survived)
+single.rocplot <- ggroc(roc.estimate)
+plot_journal_roc(single.rocplot)
+
+library("ROCR")
+pred <- prediction( pred_rf, titanic2_test$Survived)
+perf <- performance(pred,"tpr","fpr")
+plot(perf,col="blue")
+abline(0,1)
+```
+
+Aby ocenić jakość klasyfikatora można wykorzystać całą krzywą ROC lub pole pod nią - AUC.
+
+Jeżeli chcemy wybrać optymalny punkt podziału, wygodnie jest skorzystać z pakietu `OptimalCutpoints` i funkcji `optimal.cutpoints` wybierającej optymalny punkt podziału.
+
+```{r oc}
+library("OptimalCutpoints")
+pref_df <- data.frame(pred = pred_rf, truth = titanic2_test$Survived)
+oc <- optimal.cutpoints(X = "pred", status = "truth", methods="Youden", data=pref_df, tag.healthy = "0")
+summary(oc)
+plot(oc, which=1)
+```
+

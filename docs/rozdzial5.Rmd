@@ -1,0 +1,477 @@
+---
+title: "Rozdział 5 - Graficzna prezentacja danych"
+author: "Przemysław Biecek"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=TRUE)
+```
+
+Kody z rozdziału *5. Graficzna prezentacja danych* [,,Przewodnika po programie R'' wydanie 4](http://biecek.pl/R).
+
+Aby zainstalować i włączyć pakiet `Przewodnik` wykonaj poniższe dwie liniki.
+
+```
+devtools::install_github("pbiecek/PrzewodnikPakiet")
+library("Przewodnik")
+```
+
+## 5.1. Znajdź siedem różnic
+
+```{r}
+library("PBImisc")
+plot(MDRD12~MDRD7, data = kidney) 
+library("lattice")
+xyplot(MDRD12~MDRD7, data = kidney) 
+library("ggplot2")
+qplot(MDRD7, MDRD12, data = kidney)
+```
+
+## 5.3. Pakiet lattice
+
+```{r}
+library("PBImisc")
+library("lattice")
+xyplot(MDRD12 ~ MDRD7 | discrepancy.DR, data = kidney)
+
+xyplot(MDRD12 ~ MDRD7 | discrepancy.DR, data = kidney, type=c("p","smooth","r"), col="grey", pch=16, ylab="MDRD 30d", xlab="MDRD 7d")
+```
+
+### 5.3.4. Panele i mechanizm warunkowania
+
+```{r}
+histogram(~MDRD12 | therapy, data = kidney)
+histogram(~MDRD12 | equal.count(donor.age,4), data = kidney)
+```
+
+### 5.3.5. Mechanizm grupowani
+
+```{r}
+densityplot(~MDRD12, group = therapy, data = kidney,
+plot.points = FALSE)
+```
+
+### 5.3.6. Legenda wykresu
+
+```{r}
+densityplot(~MDRD12, group=therapy, auto.key = TRUE, data = kidney)
+densityplot(~MDRD12, group=therapy, data = kidney, auto.key = list(space = "right", columns = 1))
+```
+
+### 5.3.7. Atlas funkcji graficznych z pakietu lattice
+
+```{r}
+xyplot(MDRD12 + MDRD36 ~ MDRD7 | discrepancy.DR==0, data=kidney, type=c("p","smooth","g"), cex=0.5, auto.key = TRUE)
+
+splom(kidney[,c(9,11,13,15)], type=c("smooth","p"), pch='.')
+
+stripplot(factor(discrepancy.AB)~MDRD7, data = kidney, jitter.data = TRUE, alpha = 0.5)
+
+discrepancy <- equal.count(kidney$discrepancy.AB, number=3)
+bwplot(therapy~MDRD12|discrepancy, data=kidney, varwidth = TRUE)
+
+library("Przewodnik")
+(wPlec <- table(daneSoc$wyksztalcenie, daneSoc$plec))
+
+dotplot(wPlec, groups=FALSE, origin=0, type = c("p","h"))
+dotplot(wPlec, type="o", auto.key = list(space="right"))
+
+attach(daneSoc)
+tabela <- as.data.frame(table(wyksztalcenie, plec, praca ))
+barchart(wyksztalcenie~Freq|plec, groups=praca, auto.key=TRUE, data=tabela)
+
+parallel(~kidney[,c(9:16)], groups=MDRD7<30, data=kidney, alpha=0.2, horizontal.axis = FALSE, scales = list(x = list(rot = 90)))
+
+histogram(~MDRD7 | therapy, data = kidney)
+
+densityplot(~MDRD7 | factor(diabetes), groups=therapy, data=kidney, bw = 8, plot.points="rug", auto.key = TRUE)
+
+library("latticeExtra")
+ecdfplot(~MDRD7 | factor(diabetes), groups=therapy, data=kidney, auto.key=list(space="right"))
+
+qq(diabetes ~ MDRD7 | therapy, distribution=qnorm, data=kidney)
+qqmath( ~ MDRD7 | factor(diabetes), groups=therapy, data=kidney)
+
+cloud(MDRD7 ~ MDRD30 + MDRD12 | diabetes, data = kidney)
+
+library("MASS")
+siatka <- kde2d(kidney$MDRD7, kidney$MDRD30, n=50)
+siatka <- data.frame(expand.grid(MDRD7=siatka$x,MDRD30=siatka$y), z=c(siatka$z))
+levelplot(z~MDRD7*MDRD30, siatka, cuts=20, colorkey=T,region=T)
+contourplot(z~MDRD7*MDRD30, siatka, cuts=20)
+
+wireframe(z ~ MDRD7 * MDRD30, siatka, cuts=20, shade=TRUE)
+wireframe(z ~ MDRD7 * MDRD30, siatka, cuts=20, shade=FALSE)
+```
+
+### 5.3.8. Więcej o panelach
+
+```{r}
+xyplot(Petal.Length ~ Sepal.Length | Species, data=iris, scales = list(x = "free", y = "sliced"))
+
+tabela <- as.data.frame(table(daneSoc$wyksztalcenie, daneSoc$plec, daneSoc$praca))
+wykres <- barchart(wyksztalcenie ~ Freq | plec, groups = praca, auto.key=TRUE, data=tabela)
+wykres$panel
+
+nasz.panel <- function(..., border) {
+  panel.grid(h=0, v=-1)
+  panel.barchart(..., border="transparent")
+  panel.text(list(...)$x+1, as.numeric(list(...)$y) -0.5 +
+  as.numeric(list(...)$groups[list(...)$subscripts])/3,
+  as.numeric(list(...)$x))
+}
+update(wykres, panel=nasz.panel, scales=list(x="free"), origin=0)
+
+xyplot(cisnienie.skurczowe ~ cisnienie.rozkurczowe | plec,
+  data = daneSoc,
+  panel = function(x,y,...) {
+    lpoints(cisnienie.rozkurczowe,cisnienie.skurczowe,
+    pch=19, col='grey', cex=0.5)
+    panel.xyplot(x,y,pch='+', cex=2)
+  }
+)
+```
+
+### 5.3.9. Motywy i parametry graficzne
+
+```{r}
+trellis.par.get("plot.line")
+# trellis.par.set(plot.line = list(lwd = 3))
+```
+
+### 5.3.10. Zaawansowane opcje
+
+```{r}
+wykres <- xyplot(MDRD7 ~ MDRD12, data = kidney, pch = 19)
+plot(wykres, split = c(1,1,2,1))
+plot(wykres, split = c(2,1,2,2), newpage = FALSE)
+plot(wykres, split = c(3,2,4,2), newpage = FALSE)
+plot(wykres, split = c(4,2,4,2), newpage = FALSE)
+wykres <- xyplot(MDRD7 ~ MDRD12, data = kidney, pch = 19)
+plot(wykres, position=c(0,0,.8,.8))
+plot(wykres, position=c(0.35,0.35,.9,.9), newpage = FALSE)
+plot(wykres, position=c(0.7,0.7,1,1), newpage = FALSE)
+
+form <- sunspot.year~1:length(sunspot.year)
+xyplot(form, type="l", aspect="xy", xlab="", subset=1:140)
+xyplot(form, type="l", aspect="xy", xlab="", subset=141:280)
+xyplot(MDRD12~MDRD7, kidney, pch=19, aspect="iso")
+xyplot(MDRD12~MDRD7, kidney, pch=19, aspect="fill")
+```
+
+## 5.4. Pakiet ggplot2
+
+### 5.4.1. Wprowadzenie
+
+```{r}
+library("Przewodnik")
+head(countries)
+```
+
+### 5.4.2. Warstwy wykresu
+
+```{r}
+ggplot(countries, aes(birth.rate, death.rate)) +
+  geom_point() +
+  geom_smooth(se = FALSE, size = 3)
+
+ggplot(countries, aes(x=continent, y=birth.rate, label=country))+
+  geom_violin(aes(fill=continent)) +
+  geom_jitter(position=position_jitter(width = .45)) +
+  geom_rug(sides = "l")
+```
+
+### 5.4.3. Mapowanie zmiennych na atrybuty wykresu
+
+```{r}
+ggplot(countries, aes(x = birth.rate, y = death.rate, 
+                      color = continent, size = population)) +
+      geom_point()
+
+ggplot(countries, aes(x = birth.rate, y = death.rate,
+                      color = birth.rate)) + geom_point(size=3)
+```
+
+### 5.4.4. Geometria warstwy
+
+```{r}
+szkielet <- ggplot(countries, aes(continent, birth.rate, 
+                                  color=continent, fill=continent))
+szkielet + geom_point()
+szkielet + geom_boxplot()
+szkielet + geom_dotplot(binaxis = "y", stackdir = "center")
+szkielet + geom_violin(scale="width")
+```
+
+### 5.4.5. Statystyki i agregacje
+
+```{r}
+ggplot(countries, aes(continent)) + geom_bar()
+ggplot(countries, aes(birth.rate, death.rate)) +
+  geom_point() + geom_smooth() +
+  geom_smooth(method="lm", se=FALSE, color="red", size=5)
+```
+
+### 5.4.6. Mechanizm warunkowania
+
+```{r}
+ggplot(countries, aes(x = birth.rate, y = death.rate)) +
+  stat_ellipse() + geom_point() +
+  facet_grid(~continent)
+
+ggplot(countries, aes(x = birth.rate, y = death.rate)) +
+  geom_point(data=countries[,-5], size=0.5, color="grey") +
+  stat_ellipse(color="red4") + geom_point(size=2, color="red") +
+  facet_grid(~continent)
+```
+
+### 5.4.7. Kontrola skal
+
+```{r}
+pl <- ggplot(countries, aes(x = birth.rate, y = death.rate, 
+                            shape = continent)) + geom_point()
+pl + scale_shape_manual(values = LETTERS)
+pl + scale_shape_discrete(solid = FALSE)
+
+pl <- ggplot(countries, aes(x = birth.rate, y = death.rate)) + 
+  geom_point()
+pl + scale_x_reverse() + scale_y_reverse()
+pl + scale_x_continuous(breaks = c(1,2,5,10,20,50), limits=c(0,50))
+```
+
+### 5.4.8. Układ współrz˛ednych i osie wykresu
+
+```{r}
+pl <- ggplot(countries, aes(x = birth.rate, y = death.rate)) +
+  geom_point() + geom_smooth(se = FALSE, size = 2)
+pl + coord_trans(y = "sqrt", x = "sqrt")
+pl + coord_fixed()
+pl + coord_flip()
+```
+
+### 5.4.9. Motywy i kompozycje graficzne
+
+```{r}
+library("ggthemes")
+pl + theme_bw() + ggtitle("theme_bw")
+pl + theme_tufte() + ggtitle("theme_tufte")
+```
+
+### 5.4.10. Pozycjonowanie wykresów na rysunku
+
+```{r}
+library(grid)
+vp1 <- viewport()
+vp2 <- viewport(width=0.4, height=0.4, x=0.75, y=0.7)
+vp3 <- viewport(width=0.4, height=0.4, x=0.75, y=0.3)
+print(pl, vp = vp1)
+print(pl, vp = vp2)
+print(pl, vp = vp3)
+```
+
+### 5.4.11. Obiekt klasy gg
+
+```{r}
+class(pl)
+summary(pl)
+```
+
+## 5.5. Pakiet graphics
+
+### 5.5.1. Wprowadzenie
+
+```{r}
+x <- seq(-2*pi, 2*pi, by = 0.3)
+plot(x, sin(x), type="b",main="Wykres sin(x) i cos(x)",col="red")
+lines(x, cos(x), col="blue", type="l")
+
+curve(sin, from = -2*pi, to = 2*pi)
+curve(x^2 - sin(x^2), -2, 2)
+
+plot(0, xlim=c(-2,2), ylim=c(-2,2), type="n", xlab="", ylab="", main="Wariacje nt. funkcji abline()")
+
+abline(0, 0)
+for (i in 1:10)
+  abline(0, i)
+abline(h=-1, lwd=3, col="red")
+abline(v=-1, lwd=3, lty=2, col="blue")
+
+text( 1.7, 0.2, "a=0, b=0")
+text( 1.7, 1.1, "a=1, b=0")
+text( 1.3, 1.7, "a=2, b=0")
+text( 1.7,-0.8, "h = -1")
+text(-0.6, 1.1, "v = -1")
+
+```
+
+### 5.5.3. Funkcja matplot()
+
+```{r}
+ruchBrowna <- matrix(rnorm(800), 200, 4)
+ruchBrowna <- apply(ruchBrowna, 2, cumsum)
+matplot(ruchBrowna, type="l", lwd=2, lty=1)
+```
+
+
+### 5.5.6. Funkcja image()
+
+```{r}
+plusk <- function(x,y,s1,s2)
+  sin(sqrt((x-s1)^2+(y-s2)^2)/4)/(abs(x-s1)+abs(y-s2)+25)
+mat1 <- outer(1:200, 1:200, plusk, s1=100, s2=50)
+mat2 <- outer(1:200, 1:200, plusk, s1=50, s2=100)
+mat3 <- outer(1:200, 1:200, plusk, s1=20, s2=20)
+par(bty="n", mar=c(0,0,0,0))
+image(mat1+mat2+mat3, col=heat.colors(250))
+```
+
+### 5.5.8. Kolory
+
+```{r}
+t(col2rgb("orange"))
+```
+
+### 5.5.12. Tytuł, podtytuł i opisy osi wykresu
+
+```{r}
+boxplot(rnorm(100), main="Taki sobie boxplot")
+boxplot(rnorm(100))
+title(main="Taki sobie boxplot")
+```
+
+### 5.5.13. Pozycjonowanie wykresu, wiele wykresów na rysunku
+
+```{r}
+(matryca <- rbind(c(1,2,3), c(4,5,3)))
+# layout(matryca, widths=c(2,2,1), heights=c(2,2))
+```
+
+### 5.5.14. Wykres słonecznikowy, funkcja: sunflowerplot()
+
+```{r}
+zm1 <- rbinom(200,5,0.5)
+zm2 <- rbinom(200,5,0.5)
+sunflowerplot(zm1, zm2)
+```
+
+### 5.5.15. Wykresy kropkowe
+
+```{r}
+library(car)
+pairs(~wiek+cisnienie.skurczowe+cisnienie.rozkurczowe, data=daneSoc,pch=21, cex=1.5)
+scatterplotMatrix(daneSoc[,c(1,6,7)], pch=19)
+library(GGally)
+ggpairs(daneSoc[,c(2,3,6,7)])
+
+coplot(cisnienie.skurczowe~cisnienie.rozkurczowe|plec+wiek,
+data = daneSoc)
+
+library(scatterplot3d)
+scatterplot3d(daneSoc$wiek, daneSoc$cisnienie.skurczowe, daneSoc$cisnienie.rozkurczowe)
+#scatter3d(cisnienie.rozkurczowe, wzrost, cisnienie.skurczowe, groups=plec)
+```
+
+### 5.5.16. Wykres macierzy korelacji
+
+```{r}
+library("ellipse")
+kor <- cor(daneO[,c(1,2,3,4,8,9)], use = "pai")
+plotcorr(kor, numbers = TRUE)
+plotcorr(kor, col=rgb((kor+1)/2,0,0))
+```
+
+### 5.5.17. Wykres konturowy
+
+```{r}
+dataEllipse(daneSoc$cisnienie.skurczowe, daneSoc$cisnienie.rozkurczowe)
+dataEllipse(daneSoc$cisnienie.skurczowe, daneSoc$cisnienie.rozkurczowe,
+   levels=(1:10)/10, col=c("red",rep("black",204)), pch=19)
+```
+
+### 5.5.18. Wykres koniczyny
+
+```{r}
+library(vcd)
+attach(daneSoc)
+fourfold(table(plec, praca))
+fourfold(table(plec, praca, wyksztalcenie))
+```
+
+### 5.5.19. Wielowymiarowy, jądrowy estymator geęstości
+
+```{r}
+library(ks)
+library(MASS)
+danetmp <- daneSoc[, c(6,7)]
+mcov <- Hscv(danetmp)
+gest2d <- kde(danetmp, H=mcov)
+plot(gest2d, cont=c(5,25,50,75,95))
+```
+
+
+### 5.5.21. Wykres mapa ciepła
+
+```{r}
+heatmap(kor, margins=c(7,7), symm=TRUE)
+```
+
+### 5.5.22. Wykres profili obserwacji
+
+```{r}
+parcoord(daneSoc[,c(1,6,7)], col=c("red","green"))
+```
+
+### 5.5.22. Wykres profili obserwacji
+
+```{r}
+parcoord(daneSoc[,c(1,6,7)], col=c("red","green"))
+```
+
+## 5.6. Pakiet rCharts
+
+```{r}
+# library("devtools")
+# install_github("ramnathv/rCharts")
+
+library("Przewodnik")
+przezycia2009 <- przezycia[przezycia$Year == 2009 &
+przezycia$Age != "110+",]
+head(przezycia2009[,c(1,2,3,7,11)])
+
+library("rCharts")
+p1 <- nPlot(mx ~ Age, group = "Gender", data = przezycia2009, type = "lineChart")
+
+p1$chart(yScale = "#! d3.scale.log() !#")
+p1$xAxis(axisLabel = 'Wiek')
+p1$yAxis(axisLabel = 'Smiertelnosc')
+p1$set(width = 750, height = 590)
+
+# p1
+
+p2 <- nPlot(dx ~ Age, group = "Gender", data = przezycia2009, type = "multiBarChart")
+
+p2$chart(stacked = TRUE)
+p2$chart(tooltipContent = "#! function(key, x, y, e){
+  return 'Liczba osÓb: ' + e.point.dx
+} !#")
+p2$set(width = 750, height = 590)
+
+# p2
+
+map1 <- Leaflet$new()
+map1$setView(c(52.22, 21), zoom = 12)
+map1$marker(c(52.22223, 21.00728),
+  bindPopup = "Politechnika Warszawska, MiNI")
+map1$marker(c(52.21167, 20.9815),
+  bindPopup = "Uniwersytet Warszawski, MIM")
+map1$marker(c(52.23925, 21.01742),
+  bindPopup = "Uniwersytet Warszawski, Centrala")
+
+# map
+
+```
+
