@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Przemyslaw Biecek">
+    <title>Materia&#322;y do nauki pakietu / &#347;rodowiska / programu R </title>
+
+    <link href='fonts/font-droid.css' rel='stylesheet' type='text/css'>
+    <!-- Add custom CSS here -->
+    <link href="css/lavish-bootstrap-sp.css" rel="stylesheet">
+<style>
+ p {font-size:large}
+</style>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5650686-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+ </head>
+  <body>
+    <nav class="navbar navbar-inverse" role="navigation" style="padding-bottom:0px; border-color:#4a423d!important; background-color:#4a423d!important;">
+      <div class="container" style="padding-bottom:25px; padding-top:25px; ">
+        <br/>
+        <span  class="navbar-brand serif" href="index.html" style="font-size:xx-large">Materia&#322;y do nauki analizy danych z pakietem statystycznym GNU R </span>
+        <br/><br/><br/>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#Przewodnik">&nbsp;&nbsp;&nbsp;Programowanie z językiem R&nbsp;&nbsp;&nbsp;</a>
+          <a class="navbar-brand" href="#Analiza">&nbsp;&nbsp;&nbsp;Analiza danych z programem R&nbsp;&nbsp;&nbsp;</a>
+          <a class="navbar-brand" href="#Eseje">&nbsp;&nbsp;&nbsp;Wizualizacja danych&nbsp;&nbsp;&nbsp;</a>
+          <a class="navbar-brand" href="#Pogromcy">&nbsp;&nbsp;&nbsp;Pogromcy danych&nbsp;&nbsp;&nbsp;</a>
+        </div>
+      </div><!-- /.container -->
+    </nav> 
+<div class="section" id="Przewodnik">
+  <div class="container">
+<div class="row">
+  <div class="col-lg-7 col-md-7 col-sm-7"><h2>O Przewodniku...</h2><br/>
+    <p >,,Przewodnik po pakiecie R'' został po raz pierwszy wydany w roku 2008 i&nbsp;był pierwszą polską książką poświęconą w całości nauce programu R. </p>
+    <p >Wiele komentarzy od czytelników i&nbsp;lata doświadczeń w nauczaniu programowania, modelowania statystycznego i&nbsp;wizualizacji danych z&nbsp;programem R pozwoliło na ulepszenie ,,Przewodnika...''. </p>
+    <p ><a href="PrzewodnikPoPakiecieRWydanieIVinternet.pdf">Pobierz bezp&#322;atnie pierwsze dwa rozdzia&#322;y czwartego wydania <br/><i>,,Przewodnika po pakiecie R''</i> [150 stron format pdf]</a>.<br/><br/>
+    <a href="https://rawgit.com/pbiecek/Przewodnik/master/rozdzial1.html">Przykłady z rozdziału 1 (Wprowadzenie)</a>, <br/>
+    <a href="https://rawgit.com/pbiecek/Przewodnik/master/rozdzial2.html">Przykłady z rozdziału 2 (Podstawy pracy z R)</a>, <br/>
+    <a href="https://rawgit.com/pbiecek/Przewodnik/master/rozdzial4.html">Przykłady z rozdziału 4 (Niezbędnik statystyka)</a>, <br/>
+    <a href="https://rawgit.com/pbiecek/Przewodnik/master/rozdzial5.html">Przykłady z rozdziału 5 (Graficzna prezentacja danych)</a>, <br/>
+    <a reh="https://github.com/pbiecek/Przewodnik/blob/master/README.md">Tłumaczenie kodów z Przewodnika na język Python</a>.<br/>
+    </p >
+    <p >Czwarte wydanie to kurs <b>od zera do bohatera</b>, rozszerzone, z&nbsp;bardziej rozbudowanym wprowadzeniem do R i&nbsp;większą liczbą przykładów. Pierwszy rozdział pozwala na zaznajomienie się z&nbsp;programem R nowicjuszowi. Kolejne rozdziały przedstawiają najważniejsze zaawansowane możliwości programu R, w&nbsp;tym narzędzia do przetwarzania dużych danych (Big Data), wizualizacji z&nbsp;pakietem graficznym ggplot2 oraz modelowanie regresyjne.</p>
+
+<h2>Gdzie kupi&#263; Przewodnik...</h2><br/>
+
+<p>W klasycznej lub internetowej ksi&#281;garni, np. 
+<a href='http://ksiegarniagliwice.pl/pl/p/Przewodnik-po-pakiecie-R-wyd.-4%2C-2017/24282'>Ksi&#281;garnia Gliwice</a>,
+<a href="http://www.ksiegarnia-ekonomiczna.com.pl/modules.php?name=Sklep&plik=lista&nazwa=opis&nr_katal=9788362780440&hthost=1&store_id=2">Ksi&#281;garnia Ekonomiczna</a>,
+<a href="http://www.24naukowa.pl/modules.php?name=Sklep&plik=lista&nazwa=opis&nr_katal=9788362780440&hthost=1&store_id=2">Ksi&#281;garnia Naukowa</a> czy <a href='http://www.wydawnictwopw.pl/'>Oficyna Wydawnicza Politechniki Warszawskiej</a>.</p>
+<h2>O programie R ...</h2><br/>
+
+  </div>
+    <div class="col-lg-5 col-md-5 col-sm-5"><img style="border:1px solid #000" src="okladkaWydanie4.png" width="100%"/><br/><br/></div>
+
+</div><!-- /.row -->
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6">
+<p>
+Program R jest doskona&#322;ym narz&#281;dziem dla os&#243;b osoby pracuj&#261;cych przy statystycznej analizie danych, maszynowym przetwarzaniu danych czy wizualizacji danych. </p>
+<p>R to ca&#322;kowicie darmowe &#347;rodowisko do analiz statystycznych z ponad trzema tysi&#261;cami dodatkowych pakiet&#243;w. Wyposa&#380;one w elastyczny j&#281;zyk programowania jest coraz ch&#281;tniej wykorzystywane przez wyk&#322;adowc&#243;w do nauki analizy danych, przez naukowc&#243;w do analiz danych oraz przez analityk&#243;w w bankach, firmach i innych miejscach gdzie wyst&#281;puj&#261; dane oraz potrzeba ich analizy.</p>
+<p><i>Przewodnik po pakiecie R</i> pozwala pozna&#263; j&#281;zyk programowania, &#347;rodowisko pracy i zbi&#243;r najprzydatniejszych narz&#281;dzie do analizy i wizualizacji danych.</p>
+ </div><div class="col-lg-6 col-md-6 col-sm-6">
+<p>W wydaniu czwartym znale&#378;&#263; mo&#380;na mi&#281;dzy innymi: </p>
+<ul>
+<li><p> opis pakiet&#243;w shiny i knitr, lattice i ggplot2, </p></li>
+<li><p> jak efektywnie generować zmienne losowe z u&#380;yciem kopuli, </p></li>
+<li><p> jak profilować kod w celu poprawy wydajno&#347;ci, </p></li>
+<li><p> jak tworzyć w&#322;asne pakiety, </p></li>
+<li><p> jak proste wykonać statystyki opisowe i graficzne podsumowania danych.</p></li>
+</ul>
+</div>
+</div><!-- /.row -->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+<!--<p> Errata do wydania trzeciego (2014) znajduje si&#281; tutaj <a href="errataIII.pdf">[pdf 11kB]  >>>.</a></p>-->
+<hr/>
+</div>
+</div><!-- /.row -->
+<div class="row" id="Analiza">
+  <div class="col-lg-8 col-md-8 col-sm-8">
+<h2>Analiza danych z programem R</h2><br>
+<p>W roku 2013 ukaza&#322;o si&#281; drugie wydanie ksi&#261;&#380;ki  <a href="http://ksiegarnia.pwn.pl/produkt/104378/analiza-danych-z-programem-r.html">Analiza danych z programem R, Modele liniowe z efektami stałymi, losowymi i mieszanymi</a>.</p>
+<p> W tej pozycji na licznych przykładach danych rzeczywistych omawiane są różnorodne zagadnienia związane z modelowaniem statystycznym. Rozpoczynamy od regresji prostej przez analizę wariancji jedno, dwukierunkową z efektami przeciętymi i&nbsp;zagnieżdżonymi. Następnie przedstawiamy takie zagadnienia jak kolejność testowania, wybór zmiennych, ocena jakości modelu, modelowanie z użyciem efektów stałych i&nbsp;losowych. Książka podzielona jest na cztery główne części, dwie poświęcone teorii i&nbsp;dwie poświęcone przykładowym zastosowaniom.</p>
+<p>  Spis treści jest dostępny <a href="http://biecek.pl/Analiza.Danych/spistresci.pdf">[tutaj]</a>.</p>
+<p>Książka dostępna jest w postaci elektronicznej w wypożyczalni książek iBUK <a href="http://www.ibuk.pl/fiszka/39524/analiza-danych-z-programem-r-modele-liniowe-z-efektami-stalymi-losowymi-i-mieszanymi.html">[link]</a>.</p>
+<p> Aktualna wersja erraty (do wydania drugiego) jest dostępna <a href="http://biecek.pl/Analiza.Danych/errataII.pdf">[tutaj]</a>.</p>
+
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4">
+<a href="http://ksiegarnia.pwn.pl/produkt/104378/analiza-danych-z-programem-r.html"><img align="right" style="border:1px solid #021a40;"  src="http://biecek.pl/Analiza.Danych/okladkaprzodMala.png" width="100%"></a>
+</div>
+</div><!-- /.row -->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+  <hr>
+</div>
+</div><!-- /.row -->
+<div class="row" id="Eseje">
+  <div class="col-lg-8 col-md-8 col-sm-8">
+<h2>Eseje o sztuce wizualizacji danych</h2><br>
+<p>W roku 2014 ukaza&#322;a si&#281; moja nowa ksi&#261;&#380;ka  <a href="http://biecek.pl/Eseje">Odkrywa&#263;! Ujawnia&#263;! Obja&#347;nia&#263;! <br/> Zbi&#243;r esej&#243;w o sztuce prezentowania danych</a>.</p>
+
+<p>Ksi&#261;&#380;ka jest dost&#281;pna na licencji CC BY&SA na stronie <a href="http://biecek.pl/Eseje">http://biecek.pl/Eseje</a>, można kupić jej papierowe wydanie <a href="https://www.google.pl/search?q=biecek+ksi%C4%99garnia+odkrywa%C4%87+obja%C5%9Bnia%C4%87+ujawnia%C4%87">w księgarniach</a> lub można je wypożyczyć w księgarni <a href="http://www.ibuk.pl/fiszka/140028/odkrywac-ujawniac-objasniac.html">ibuk</a>. </p>
+<p>Zbiór esejów o sztuce pokazywania danych to próba usystematyzowania wiedzy przydatnej do projektowania i wykonania dobrej wizualizacji danych.</p>
+<p> Nie jest to proste. Z jednej strony możemy wpaść w pułapkę pstrokatej papki najeżonej liczbami, którą czasem dumnie nazywa się infografiką. Z drugiej strony wpaść można w pułapkę grafiki idealnie odwzorowującej złożoność liczb a przez to zupełnie niezrozumiałej.</p>
+<p>  Gdzieś po środku jest grafika, która wyjaśnia, która informuje, która jest estetyczna i&nbsp;treściwa. W kolejnych esejach znajdują się przykłady takich grafik, wraz z licznymi wskazówkami jak takie grafiki tworzyć.</p>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4">
+<a href="http://biecek.pl/Eseje"><img align="right" style="border:1px solid #021a40;"  src="http://biecek.pl/EsejeO.jpg" width="100%"></a>
+</div>
+  
+</div><!-- /.row -->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+  <hr>
+</div>
+</div><!-- /.row -->
+<div class="row" id="Pogromcy">
+  <div class="col-lg-8 col-md-8 col-sm-8">
+<h2>Pogromcy Danych</h2><br>
+<p>W roku 2015 opracowałem materiały do dwóch kursów analizy danych o nazwie ,,Pogromcy danych'' przygotowanych w formule MOOC. Pierwszy kurs jest wprowadzeniem do programu R, przez wczytywanie danych, omówienie składni, podstawowych typów danych, statystyk opisowych oraz przetwarzania potokowego. Drugi kurs poświęcony jest wizualizacji danych oraz modelowaniu statystycznemu. W&nbsp;pierwszej edycji kursu wzięło udział ponad 2000 osób.</p>
+<p> Materiały z pierwszego kursu ,,Przetwarzanie danych w programie R'' są dostępne w&nbsp;formacie ebook jako plik <a href="http://tofesi.mimuw.edu.pl/~cogito/PogromcyDanych/Pogromcy%20Danych%20Przetwarzanie%20danych%20w%20programie%20R%20-%20Przemyslaw%20Biecek%20Uniwersytet%20Warszawski.epub">epub</a> lub <a href="http://tofesi.mimuw.edu.pl/~cogito/PogromcyDanych/Pogromcy%20Danych%20Przetwarzanie%20danych%20w%20programie%20R%20-%20Przemyslaw%20Biecek%20Uniwersytet%20Warszawski.mobi">mobi</a>.</p>
+<p> Materiały z drugiego kursu ,,Wizualizacja i modelowanie'' są dostępne w formacie ebook jako plik <a href="http://tofesi.mimuw.edu.pl/~cogito/PogromcyDanych/Pogromcy%20Danych%20Wizualizacja%20i%20modelowanie%20-%20Przemyslaw%20Biecek%20Uniwersytet%20Warszawski.epub">epub</a> lub <a href="http://tofesi.mimuw.edu.pl/~cogito/PogromcyDanych/Pogromcy%20Danych%20Wizualizacja%20i%20modelowanie%20-%20Przemyslaw%20Biecek%20Uniwersytet%20Warszawski.mobi">mobi</a>.</p>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4">
+<img align="right" style="border:1px solid #021a40;"  src="pogromcyDanych2.jpg" width="100%">
+</div>
+</div><!-- /.row -->
+  <div class="col-lg-12 col-md-12 col-sm-12">
+  <hr>
+  </div><!-- /.container -->
+</div><!-- /.section -->
+
+     <!-- JavaScript -->
+    <script  src="js/jquery-1.10.2.js"></script>
+    <script  src="js/bootstrap.js"></script>
+
+  </body>
+</html>
+
