@@ -40,3 +40,12 @@ https://rawgit.com/pbiecek/Przewodnik/master/rozdzial4_python.html
 Rozdział 5:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial5_python.html
 
+Na przełaj przez Data Mining z pakietem R
+=========================================
+
+Przemysław Biecek, Krzysztof Trajkowski
+
+https://krzysiektr.github.io/NaPrzelajDataMiningR/
+
+
+
