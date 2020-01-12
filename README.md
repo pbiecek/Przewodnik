@@ -28,6 +28,9 @@ Jak to zrobić w Pythonie?
 
 Krzysztof Trajkowski przygotował tłumaczenia kodów z wybranych rozdziałów na język `python`.
 
+Przewodnik po pakiecie R - zadania i odpowiedzi:
+https://krzysiektr.github.io/Przewodnik_zad_odp/R_01.html
+
 Rozdział 1:
 https://rawgit.com/pbiecek/Przewodnik/master/rozdzial1_python.html
 
